@@ -1,0 +1,24 @@
+{
+  "name": "magic-starter-kit",
+  "version": "0.0.1",
+  "description": "Web Frameworks Starter Kit",
+  "main": "",
+  "scripts": {
+    "test": "echo hello world"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytm/magic-starter-kit.git"
+  },
+  "author": "Frameworks, Web",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nytm/magic-starter-kit/issues"
+  },
+  "homepage": "https://github.com/nytm/magic-starter-kit#readme",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "react": "^15.0.1"
+  }
+}
