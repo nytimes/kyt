@@ -21,6 +21,11 @@ module.exports = {
           'babel-loader'
         ]
       },
+      {
+        test: /\.css$/,
+        exclude: /node_modules/,
+        loaders: ['style', 'css?modules&sourceMap&importLoaders=1&localIdentName=[name]-[local]--[hash:base64:5]']
+      },
     ],
   },
   resolve: {
