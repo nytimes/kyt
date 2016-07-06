@@ -1,8 +1,11 @@
 import ReactDOM from 'react-dom'
 import React from 'react'
-import Test from './test'
+import Demo from './demo'
 
+// TODO: Figure out why site index won't load
 ReactDOM.render(
-  <Test />,
+  <div>
+    <Demo />
+  </div>,
   document.getElementById('root')
 )

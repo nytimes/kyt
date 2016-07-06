@@ -6,6 +6,8 @@
   "scripts": {
     "hello": "echo its me",
     "dev": "webpack-dev-server --port 1337",
+    "starter-kit": "node ./index.js --config ./config/config.js --port 1337",
+    "print-config": "node ./index.js --config ./config/config.js --print-config",
     "build": "webpack"
   },
   "repository": {
@@ -19,22 +21,36 @@
   },
   "homepage": "https://github.com/nytm/magic-starter-kit#readme",
   "devDependencies": {
+  },
+  "dependencies": {
+    "react": "^15.0.1",
+    "react-dom": "^15.1.0",
+    "autoprefixer": "^6.3.7",
+    "babel-cli": "^6.10.1",
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
+    "classnames": "^2.2.5",
+    "commander": "^2.9.0",
     "css-loader": "^0.23.1",
+    "date-fns": "^1.3.0",
     "file-loader": "^0.8.5",
+    "node-sass": "^3.8.0",
     "path": "^0.12.7",
     "postcss-loader": "^0.9.1",
+    "postcss-remify": "^1.0.1",
     "react-hot-loader": "^1.3.0",
+    "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.14.0"
   },
-  "dependencies": {
-    "react": "^15.0.1",
-    "react-dom": "^15.1.0"
+  "bin": {
+    "start-magic": "./start.js"
   }
 }

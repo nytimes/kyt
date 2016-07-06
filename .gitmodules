@@ -1,0 +1,3 @@
+[submodule "wf-components"]
+	path = wf-components
+	url = git@github.com:nytm/wf-components.git

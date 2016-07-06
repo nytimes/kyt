@@ -1,8 +1,6 @@
-var webpack = require('webpack')
 var path = require('path')
-
 module.exports = {
-  entry: "./sourcerer/index.js",
+  entry: "./src/index.js",
   output: {
     path: path.join(__dirname, './dist'),
     filename: 'bundle.js',
@@ -19,7 +17,7 @@ module.exports = {
         loaders: [
           'react-hot',
           'babel-loader'
-        ]
+        ],
       },
       {
         test: /\.css$/,
@@ -32,7 +30,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   devServer: {
-    contentBase: './sourcerer',
+    contentBase: './src',
     hot: true
   }
-}
+};
