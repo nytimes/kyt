@@ -1,9 +1,15 @@
 var path = require('path')
 module.exports = {
-  entry: "./src/index.js",
+  debug: true,
+  entry: [
+    "./src/index.js",
+    'webpack-dev-server/client?http://0.0.0.0:1337',
+    "webpack/hot/dev-server"
+  ],
   output: {
     path: path.join(__dirname, './dist'),
     filename: 'bundle.js',
+    publicPath: 'http://localhost:1337/',
   },
   module: {
     loaders: [
@@ -29,6 +35,9 @@ module.exports = {
   },
   devServer: {
     contentBase: './src',
+    hot: true,
+    port: 1337,
+    host: 'localhost',
     watchOptions: {
       aggregateTimeout: 300
     },
