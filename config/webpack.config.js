@@ -14,10 +14,8 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loaders: [
-          'react-hot',
-          'babel-loader'
-        ],
+        loader: 'babel-loader',
+        query: {presets: ['react-hmre']},
       },
       {
         test: /\.css$/,
@@ -31,6 +29,9 @@ module.exports = {
   },
   devServer: {
     contentBase: './src',
-    hot: true
+    watchOptions: {
+      aggregateTimeout: 300
+    },
+    stats: 'errors-only'
   }
 };

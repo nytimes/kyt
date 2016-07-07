@@ -10,17 +10,16 @@ program
   .option('--print-config', 'Debugs by printing out the full configuration')
   .parse(process.argv);
 
-logger.info(program.config);
 const config = ConfigBuilder(program.config || '');
 
 if (program.printConfig) {
-  console.dir(config, {depth: 8});
+  logger.dir(config, {depth: 8});
 } else {
 
   const compiler = webpack(config);
   const server = new WebpackDevServer(compiler, config.devServer);
 
   server.listen(program.port, 'localhost', function () {
-    console.log('webpack-dev-server http://localhost:%d/', program.port)
+    logger.info('webpack-dev-server http://localhost:%d/', program.port)
   });
 }
