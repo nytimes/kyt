@@ -10,7 +10,7 @@ program
   .option('--print-config', 'Debugs by printing out the full configuration')
   .parse(process.argv);
 
-const config = ConfigBuilder(program.config || '');
+const config = ConfigBuilder(program.config || '', program.port);
 
 if (program.printConfig) {
   logger.dir(config, {depth: 8});
