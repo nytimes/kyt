@@ -14,17 +14,13 @@ const baseConfig = require('./config/webpack.config.js');
  *
 */
 module.exports = (configPath, port) => {
-  console.log(baseConfig)
+
   if (configPath) {
     var configFile = path.join(process.cwd(), configPath);
 
     if (fs.existsSync(configFile)) {
       const customConfig = require(configFile);
-      return merge.smart(baseConfig(port), customConfig, {
-        plugins: [
-          new webpack.HotModuleReplacementPlugin()
-        ]
-      });
+      return merge.smart(baseConfig(port), customConfig);
     }
   }
 

@@ -1,6 +1,7 @@
 var path = require('path')
 const autoprefixer = require('autoprefixer');
 const remify = require('postcss-remify');
+const webpack = require('webpack');
 module.exports = function(port) {
   return {
     debug: true,
@@ -53,6 +54,9 @@ module.exports = function(port) {
     postcss: [
       autoprefixer({ browsers: ['last 2 versions'] }),
       remify,
+    ],
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
       contentBase: './src',

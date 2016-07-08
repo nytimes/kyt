@@ -11,11 +11,6 @@ const fs = require('fs');
 const path = require('path');
 
 program
-  .option('-p, --port [number]', 'Port to run starter-kit (Required)', parseInt)
-  .option('-c, --config [dir-name]', 'File for starter-kit config')
-  .option('--print-config', 'Debugs by printing out the full configuration')
-
-program
   .command('lint')
   .description(`lint .js and .jsx files in the ./src directory.
     See more options: start-magic lint --help
@@ -70,9 +65,14 @@ program
 program
   .command('start')
   .description('start a server with webpack')
+  .option('-p, --port [number]', 'Port to run starter-kit (Required)', parseInt)
+  .option('-c, --config [dir-name]', 'File for starter-kit config')
+  .option('--print-config', 'Debugs by printing out the full configuration')
   .action(() => {
-    logger.info(program.config);
-    const config = ConfigBuilder(program.config || '', program.port);
+    const defaultPort = 1337;
+    const port = program.port ? program.port : defaultPort;
+
+    const config = ConfigBuilder(program.config || '', port);
 
     // Optional Flag to print config for debugging
     if (program.printConfig) {
@@ -85,8 +85,8 @@ program
       const compiler = webpack(config);
       const server = new WebpackDevServer(compiler, config.devServer);
 
-      server.listen(program.port, 'localhost', function () {
-        console.log('webpack-dev-server http://localhost:%d/', program.port)
+      server.listen(port, 'localhost', function () {
+        logger.info('webpack-dev-server http://localhost:%d/', port)
       });
     }
   });
