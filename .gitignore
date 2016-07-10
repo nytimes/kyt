@@ -1,5 +1,7 @@
-# Dependency directory
+logs
+*.log
+pids
+*.pid
+*.seed
 node_modules
-
-# Optional npm cache directory
 .npm

@@ -3,8 +3,11 @@
   "version": "0.0.1",
   "description": "Web Frameworks Starter Kit",
   "main": "",
+  "bin": {
+    "start-magic": "index.js"
+  },
   "scripts": {
-    "starter-kit": "node ./index.js start ",
+    "starter-kit": "node ./index.js start",
     "print-config": "node ./index.js --port 1337 --print-config"
   },
   "repository": {
@@ -23,10 +26,12 @@
     "babel-cli": "^6.10.1",
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
+    "babel-plugin-transform-react-constant-elements": "^6.9.1",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-react-hmre": "^1.1.1",
+    "babel-preset-stage-3": "^6.11.0",
     "chai": "^3.5.0",
     "classnames": "^2.2.5",
     "commander": "^2.9.0",
@@ -58,8 +63,5 @@
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webpack-merge": "^0.14.0"
-  },
-  "bin": {
-    "start-magic": "./start.js"
   }
 }

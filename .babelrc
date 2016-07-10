@@ -1,4 +1,14 @@
 {
-  "presets": ["es2015", "react"],
-  "plugins": ["transform-runtime"]
+  "presets": ["react", "es2015", "stage-3"],
+  "plugins": ["transform-runtime"],
+  "env": {
+    "development": {
+      "presets": ["react-hmre"]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-constant-elements"
+      ]
+    }
+  }
 }

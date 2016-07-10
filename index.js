@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 
 const program = require('commander');
 const webpack = require('webpack');
@@ -8,7 +9,6 @@ const CLIEngine = require('eslint').CLIEngine;
 const logger = console;
 const temp = require('temp');
 const fs = require('fs');
-const path = require('path');
 
 program
   .command('lint')
@@ -69,13 +69,17 @@ program
   .option('-c, --config [dir-name]', 'File for starter-kit config')
   .option('--print-config', 'Debugs by printing out the full configuration')
   .action(() => {
+    const args = program.args[0];
     const defaultPort = 1337;
-    const port = program.port ? program.port : defaultPort;
+    const port = args.port ? args.port : defaultPort;
+    const options = {port};
 
-    const config = ConfigBuilder(program.config || '', port);
+    options.environment = process.env.NODE_ENV || 'development';
+
+    const config = ConfigBuilder(args.config || '', options);
 
     // Optional Flag to print config for debugging
-    if (program.printConfig) {
+    if (args.printConfig) {
       console.dir(config, {depth: 8});
     } else {
 
