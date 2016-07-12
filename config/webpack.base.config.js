@@ -4,11 +4,6 @@ const remify = require('postcss-remify');
 const webpack = require('webpack');
 const fs = require('fs');
 
-// Use our base .babelrc for the babel-loader query.
-const babelrcPath = path.resolve(__dirname, '../.babelrc');
-const babelQuery = JSON.parse(fs.readFileSync(babelrcPath, 'utf8'));
-babelQuery.babelrc = false;
-
 module.exports = function(options) {
   return {
     resolve: {
@@ -29,7 +24,10 @@ module.exports = function(options) {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           loader: 'babel-loader',
-          query: babelQuery,
+          query: {
+            extends: path.join(__dirname, '../.babelrc'),
+            babelrc: false,
+          }
         },
         {
           test: /\.css$/,

@@ -6,6 +6,9 @@
   "bin": {
     "start-magic": "index.js"
   },
+  "engines": {
+    "node": "^6.1.0"
+  },
   "scripts": {
     "starter-kit": "node ./index.js start",
     "print-config": "node ./index.js --port 1337 --print-config"
