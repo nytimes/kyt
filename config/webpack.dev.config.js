@@ -5,27 +5,31 @@ const webpack = require('webpack');
 const fs = require('fs');
 
 module.exports = function(options) {
+
+  const publicPath = 'http://localhost:' + options.port + '/';
+
   return {
     debug: true,
     entry: [
       './src/index.js',
-      'webpack-dev-server/client?http://localhost:' + options.port,
+      'webpack/hot/dev-server',
+      // 'webpack/hot/only-dev-server',
+      `webpack-dev-server/client?${publicPath}`,
+      'react-hot-loader/patch',
     ],
     output: {
       path: path.join(__dirname, './dist'),
       filename: 'bundle.js',
-      publicPath: 'http://localhost:' + options.port + '/',
+      publicPath: publicPath,
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
     ],
     devServer: {
+      hot: true,
       contentBase: './src',
-      port: options.port,
-      host: 'localhost',
-      // watchOptions: {
-      //   aggregateTimeout: 300,
-      // },
+      publicPath: publicPath,
       stats: 'errors-only',
     },
   }

@@ -1,14 +1,12 @@
 {
-  "presets": ["react", "es2015", "stage-3"],
+  "presets": ["es2015-webpack", "stage-3", "react"],
   "plugins": ["transform-runtime"],
   "env": {
     "development": {
-      "presets": ["react-hmre"]
+      plugins: ["react-hot-loader/babel"]
     },
     "production": {
-      "plugins": [
-        "transform-react-constant-elements"
-      ]
+      "plugins": ["transform-react-constant-elements"]
     }
   }
 }
