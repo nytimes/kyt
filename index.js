@@ -9,6 +9,8 @@ const CLIEngine = require('eslint').CLIEngine;
 const logger = console;
 const temp = require('temp');
 const fs = require('fs');
+const path = require('path')
+const shell = require('shelljs');
 
 program
   .command('lint')
@@ -89,9 +91,42 @@ program
       const compiler = webpack(config);
       const server = new WebpackDevServer(compiler, config.devServer);
 
-      server.listen(port, 'localhost', function () {
+      server.listen(port, 'localhost', () => {
         logger.info('webpack-dev-server http://localhost:%d/', port)
       });
+    }
+  });
+
+program
+  .command('init')
+  .description('Initializes directories and files for an app.')
+  .action(() => {
+    // Comment the following if you want to see the verbose command results.
+    shell.config.silent = true;
+
+    // Create a symbolic link from our local .babelrc
+    // to the project's main directory.
+    const babelrcPath = path.resolve(__dirname, '.babelrc');
+    const linkedPath = path.join(process.cwd(), '.babelrc');
+    shell.ln('-s', babelrcPath, linkedPath);
+
+    // Create a src directory with app files.
+    if (shell.ls('src').code !== 0) {
+      shell.mkdir('-p', 'src/components');
+      const index = path.resolve(__dirname, 'generator-files/index.js');
+      const src = path.join(process.cwd(), 'src');
+      shell.cp(index, src);
+      console.log('Created src directory with application files.');
+    } else {
+      console.log('src directory already exists. Doing nothing...')
+    }
+
+    // Create a test directory.
+    if (shell.ls('test').code !== 0) {
+      shell.mkdir('test');
+      console.log('Created test directory.');
+    } else {
+      console.log('test directory already exists. Doing nothing...')
     }
   });
 

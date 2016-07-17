@@ -1,4 +1,5 @@
-const path = require('path')
+
+const path = require('path');
 const autoprefixer = require('autoprefixer');
 const remify = require('postcss-remify');
 const webpack = require('webpack');
