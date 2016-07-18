@@ -12,8 +12,7 @@
   "scripts": {
     "starter-kit": "node ./index.js start",
     "print-config": "node ./index.js --port 1337 --print-config",
-    "test": "BABEL_DISABLE_CACHE=1 NODE_ENV=test find ./src -name \"*.test.js\" | xargs  node ./node_modules/mocha/_mocha --compilers js:babel-register --require babel-polyfill --require ./.mocha.js",
-    "test-no-coverage": "find ./src -name \"test.js\" | xargs mocha --compilers js:babel-core/register --require babel-polyfill --require ./.mocha.js"
+    "test": "NODE_ENV=TEST BABEL_DISABLE_CACHE=1 node ./node_modules/mocha/bin/_mocha --colors .mocha.js -- src/**/test/*.js"
   },
   "repository": {
     "type": "git",

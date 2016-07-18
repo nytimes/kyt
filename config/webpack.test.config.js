@@ -5,7 +5,7 @@ module.exports = merge.smart({}, {
   module: {
     loaders: [
       {
-        test: /\.scss$/,
+        test: /\.(scss|css)$/,
         loaders: [
           'style-loader',
           'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]',
