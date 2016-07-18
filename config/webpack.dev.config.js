@@ -11,11 +11,11 @@ module.exports = function(options) {
   return {
     debug: true,
     entry: [
-      './src/index.js',
+      'react-hot-loader/patch',
       'webpack/hot/dev-server',
       // 'webpack/hot/only-dev-server',
       `webpack-dev-server/client?${publicPath}`,
-      'react-hot-loader/patch',
+      './src/index.js',
     ],
     output: {
       path: path.join(__dirname, './dist'),
