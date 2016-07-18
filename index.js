@@ -97,6 +97,14 @@ program
     }
   });
 
+  program
+    .command('test')
+    .description('run test files')
+    .action(() => {
+      console.log('running test');
+      shell.exec('npm run test');
+    });
+
 program
   .command('init')
   .description('Initializes directories and files for an app.')

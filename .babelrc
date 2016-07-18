@@ -1,12 +1,22 @@
 {
   "presets": ["es2015-webpack", "stage-3", "react"],
-  "plugins": ["transform-runtime"],
   "env": {
     "development": {
       plugins: ["react-hot-loader/babel"]
     },
     "production": {
       "plugins": ["transform-react-constant-elements"]
+    },
+    "TEST": {
+      "plugins": [
+        [
+          "babel-plugin-webpack-loaders",
+          {
+            "config": "./config/webpack.dev.config.js",
+            "verbose": true
+          }
+        ]
+      ]
     }
   }
 }
