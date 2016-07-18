@@ -3,13 +3,13 @@
 const program = require('commander');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const ConfigBuilder = require('./configBuilder');
+const configBuilder = require('./configBuilder');
 const eslintConfigBuilder = require('./eslintConfigBuilder');
 const CLIEngine = require('eslint').CLIEngine;
 const logger = console;
 const temp = require('temp');
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
 const shell = require('shelljs');
 
 program
@@ -28,18 +28,16 @@ program
     // TODO: clean this long action up...
     const args = program.args[0];
     // http://eslint.org/docs/developer-guide/nodejs-api
-    let eslintCLI = {
+    const eslintCLI = {
       envs: ['browser', 'mocha'],
       extensions: ['.js', '.jsx'],
       useEslintrc: false,
     };
     // Get the default dir or the dir specified by the user/-d.
-    const getFiles = () => {
-      return args.dir ? args.dir.split(',') : ['src/'];
-    };
     const lint = () => {
+      const files = args.dir ? args.dir.split(',') : ['src/'];
       const cli = new CLIEngine(eslintCLI);
-      const report = cli.executeOnFiles(getFiles());
+      const report = cli.executeOnFiles(files);
       const formatter = cli.getFormatter();
       logger.info(formatter(report.results));
     };
@@ -48,11 +46,11 @@ program
     // we need to save the result of the merge to a temp file
     // and point to that. Otherwise, we just use our config.
     if (args.configFile) {
-      let config = eslintConfigBuilder(args.configFile);
-      temp.open('temp-eslintrc-', (err, info) => {
-        if (!err) {
+      const config = eslintConfigBuilder(args.configFile);
+      temp.open('temp-eslintrc-', (error, info) => {
+        if (!error) {
           fs.write(info.fd, JSON.stringify(config));
-          fs.close(info.fd, (err) => logger.info(err));
+          fs.close(info.fd, logger.error);
           eslintCLI.configFile = info.path;
           lint();
           temp.cleanupSync();
@@ -74,17 +72,16 @@ program
     const args = program.args[0];
     const defaultPort = 1337;
     const port = args.port ? args.port : defaultPort;
-    const options = {port};
+    const options = { port };
 
     options.environment = process.env.NODE_ENV || 'development';
 
-    const config = ConfigBuilder(args.config || '', options);
+    const config = configBuilder(args.config || '', options);
 
     // Optional Flag to print config for debugging
     if (args.printConfig) {
-      console.dir(config, {depth: 8});
+      logger.dir(config, { depth: 8 });
     } else {
-
       /*
        * Creates a webpack dev server at the specified port
       */
@@ -92,18 +89,18 @@ program
       const server = new WebpackDevServer(compiler, config.devServer);
 
       server.listen(port, 'localhost', () => {
-        logger.info('webpack-dev-server http://localhost:%d/', port)
+        logger.info('webpack-dev-server http://localhost:%d/', port);
       });
     }
   });
 
-  program
-    .command('test')
-    .description('run test files')
-    .action(() => {
-      console.log('running test');
-      shell.exec('npm run test');
-    });
+program
+  .command('test')
+  .description('run test files')
+  .action(() => {
+    logger.log('running test');
+    shell.exec('npm run test');
+  });
 
 program
   .command('init')
@@ -124,17 +121,17 @@ program
       const index = path.resolve(__dirname, 'generator-files/index.js');
       const src = path.join(process.cwd(), 'src');
       shell.cp(index, src);
-      console.log('Created src directory with application files.');
+      logger.log('Created src directory with application files.');
     } else {
-      console.log('src directory already exists. Doing nothing...')
+      logger.log('src directory already exists. Doing nothing...');
     }
 
     // Create a test directory.
     if (shell.ls('test').code !== 0) {
       shell.mkdir('test');
-      console.log('Created test directory.');
+      logger.log('Created test directory.');
     } else {
-      console.log('test directory already exists. Doing nothing...')
+      logger.log('test directory already exists. Doing nothing...');
     }
   });
 

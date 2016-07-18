@@ -3,6 +3,14 @@
       "airbnb"
     ],
 
+    "env": {
+      "mocha": true
+    },
+
+    "plugins": [
+      "json"
+    ],
+
     "rules": {
     }
 }

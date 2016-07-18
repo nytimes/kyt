@@ -2,11 +2,11 @@
 const path = require('path');
 const fs = require('fs');
 const merge = require('webpack-merge');
-const webpack = require('webpack');
 const baseConfig = require('./config/webpack.base.config.js');
 const devConfig = require('./config/webpack.dev.config.js');
 const prodConfig = require('./config/webpack.prod.config.js');
-let envConfig, config;
+let envConfig;
+let config;
 
 /*
  * The Config builder tool takes the magic starter
@@ -17,7 +17,6 @@ let envConfig, config;
  *
 */
 module.exports = (configPath, options) => {
-
   if (options.environment === 'development') {
     envConfig = devConfig;
   } else if (options.environment === 'production') {
@@ -27,10 +26,12 @@ module.exports = (configPath, options) => {
   config = merge.smart(baseConfig(options), envConfig(options));
 
   if (configPath) {
-    var configFile = path.join(process.cwd(), configPath);
+    const configFile = path.join(process.cwd(), configPath);
 
     if (fs.existsSync(configFile)) {
+      // eslint-disable-next-line
       let customConfig = require(configFile);
+
       // Support function or object configurations.
       // The former lets us pass in the options.
       if (typeof customConfig === 'function') {
@@ -41,4 +42,4 @@ module.exports = (configPath, options) => {
   }
 
   return config;
-}
+};

@@ -6,12 +6,13 @@ const baseConfig = require('./eslint.json');
 
 
 module.exports = (configPath) => {
-  var configFile = path.join(process.cwd(), configPath);
+  const configFile = path.join(process.cwd(), configPath);
 
   if (fs.existsSync(configFile)) {
+    // eslint-disable-next-line
     const customConfig = require(configFile);
     return merge(baseConfig, customConfig);
   }
 
   return baseConfig;
-}
+};
