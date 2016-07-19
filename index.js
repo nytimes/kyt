@@ -101,8 +101,8 @@ program
     .command('test')
     .description('run test files')
     .action(() => {
-      console.log('running test');
-      shell.exec('npm run test');
+      console.log('Running Tests');
+      shell.exec('CONFIG=$(pwd)/config/webpack.test.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=TEST node ./node_modules/ava/cli.js --verbose');
     });
 
 program
