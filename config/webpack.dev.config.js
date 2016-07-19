@@ -1,12 +1,9 @@
-const path = require('path')
-const autoprefixer = require('autoprefixer');
-const remify = require('postcss-remify');
+
+const path = require('path');
 const webpack = require('webpack');
-const fs = require('fs');
 
-module.exports = function(options) {
-
-  const publicPath = 'http://localhost:' + options.port + '/';
+module.exports = (options) => {
+  const publicPath = `http://localhost:${options.port}/`;
 
   return {
     debug: true,
@@ -18,19 +15,19 @@ module.exports = function(options) {
       './src/index.js',
     ],
     output: {
+      publicPath,
       path: path.join(__dirname, './dist'),
       filename: 'bundle.js',
-      publicPath: publicPath,
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
     ],
     devServer: {
+      publicPath,
       hot: true,
       contentBase: './src',
-      publicPath: publicPath,
       stats: 'errors-only',
     },
-  }
-}
+  };
+};

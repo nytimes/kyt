@@ -5,3 +5,4 @@ pids
 *.seed
 node_modules
 .npm
+config/dist/bundle.js
