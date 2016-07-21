@@ -28,23 +28,6 @@ module.exports = (options) => ({
           babelrc: false,
         },
       },
-      {
-        test: /\.css$/,
-        exclude: /node_modules/,
-        loaders: ['style',
-          'css?modules&sourceMap&importLoaders=1&localIdentName=[name]-[local]--[hash:base64:5]',
-        ],
-      },
-      {
-        test: /\.scss$/,
-        loaders: [
-          'style-loader',
-          'css-loader?modules&sourceMap&importLoaders=1' +
-            '&localIdentName=[name]-[local]--[hash:base64:5]',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      },
     ],
   },
   postcss: [
