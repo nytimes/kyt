@@ -1,7 +1,6 @@
 
 const path = require('path');
-const autoprefixer = require('autoprefixer');
-const remify = require('postcss-remify');
+const AssetsPlugin = require('assets-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = (options) => ({
@@ -30,13 +29,13 @@ module.exports = (options) => ({
       },
     ],
   },
-  postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] }),
-    remify,
-  ],
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(options.environment),
     }),
+    new AssetsPlugin({
+      filename: 'assets.json',
+      path: path.resolve(__dirname, `./build`),
+    })
   ],
 });

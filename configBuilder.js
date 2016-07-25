@@ -2,21 +2,26 @@
 const path = require('path');
 const fs = require('fs');
 const merge = require('webpack-merge');
+const webpack = require('webpack');
 const baseConfig = require('./config/webpack.base.config.js');
 const devConfig = require('./config/webpack.dev.config.js');
 const prodConfig = require('./config/webpack.prod.config.js');
 let envConfig;
 let config;
 
-/*
- * The Config builder tool takes the magic starter
- * base config and does a smart merge with any custom
- * config specified by the user.
- * It also adds the hot module plugin for the dev server
- * (Todo: move this when we create a dev vs prd option)
- *
-*/
-module.exports = (configPath, options) => {
+const getOptions = (options) => {
+  return options || JSON.parse(process.env.KYT_OPTIONS);
+};
+
+// The Config builder tool takes the magic starter base config
+// and does a smart merge with any custom config specified by the user.
+//
+// Returns `options` with a `webpackConfig` and `webpackCompiler`.
+//
+module.exports = (opts) => {
+
+  const options = getOptions(opts);
+
   if (options.environment === 'development') {
     envConfig = devConfig;
   } else if (options.environment === 'production') {
@@ -25,8 +30,8 @@ module.exports = (configPath, options) => {
 
   config = merge.smart(baseConfig(options), envConfig(options));
 
-  if (configPath) {
-    const configFile = path.join(process.cwd(), configPath);
+  if (options.configPath) {
+    const configFile = path.join(process.cwd(), options.configPath);
 
     if (fs.existsSync(configFile)) {
       // eslint-disable-next-line
@@ -34,12 +39,18 @@ module.exports = (configPath, options) => {
 
       // Support function or object configurations.
       // The former lets us pass in the options.
-      if (typeof customConfig === 'function') {
+      if (typeof customConfig === 'function')
         customConfig = customConfig(options);
-      }
-      return merge.smart(config, customConfig);
+
+      options.webpackConfig = merge.smart(config, customConfig);
     }
+  } else {
+    options.webpackConfig = config;
   }
 
-  return config;
+  if (options.printConfig) console.dir(config, { depth: 8 });
+
+  options.webpackCompiler = webpack(options.webpackConfig);
+
+  return options;
 };

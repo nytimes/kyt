@@ -2,7 +2,7 @@
 import { AppContainer } from 'react-hot-loader';
 import ReactDOM from 'react-dom';
 import React from 'react';
-import Demo from './demo';
+import Demo from './components/demo';
 
 const rootEl = document.getElementById('root');
 
@@ -14,9 +14,9 @@ ReactDOM.render(
 );
 
 if (module.hot) {
-  module.hot.accept('./demo', () => {
+  module.hot.accept('./components/demo', () => {
     // eslint-disable-next-line
-    const NextApp = require('./demo').default;
+    const NextApp = require('./components/demo').default;
     ReactDOM.render(
       <AppContainer>
         <Demo />
