@@ -14,6 +14,7 @@ const shell = require('shelljs');
 const initAction = require('./actions/init');
 const startAction = require('./actions/start');
 const lintAction = require('./actions/lint');
+const testAction = require('./actions/test');
 
 program
   .command('lint')
@@ -40,10 +41,7 @@ program
 program
   .command('test')
   .description('run test files')
-  .action(() => {
-    console.log(chalk.blue('Running Tests'));
-    shell.exec('CONFIG=$(pwd)/config/webpack.test.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=TEST node ../node_modules/ava/cli.js --verbose');
-  });
+  .action(() => testAction(program));
 
 program
   .command('init')
