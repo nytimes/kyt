@@ -1,12 +1,5 @@
 import React from 'react';
-import {create} from 'jss';
-import reactJss from 'react-jss';
-import vendorPrefixer from 'jss-vendor-prefixer';
-
-export let jss = create();
-export let useSheet = reactJss(jss);
-jss.use(vendorPrefixer());
-
+import {useSheet} from '../styleSheet.js';
 var styles = {
   demo: {
     'background-color': 'pink',
@@ -17,7 +10,7 @@ var styles = {
 
 
 /*
- * A demo component using react and css modules
+ * A demo component using react and jss
  *
 */
 class Demo extends React.Component {
