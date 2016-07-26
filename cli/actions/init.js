@@ -35,7 +35,9 @@ module.exports = (program) => {
     "files": [
       "./src/**/test/*.js"
     ],
-    "require": "babel-register",
+    "require": [
+    "babel-register",
+    "./node_modules/kyt/src/test-setup.js"],
     "babel": {
       "babelrc": false,
       "presets": [
@@ -51,7 +53,7 @@ module.exports = (program) => {
   }
   const commands = ['init','start', 'test', 'lint'];
   commands.forEach((command) => {
-    commandName = command + '-kyt';
+    commandName = 'kyt:' + command;
     packageJson.scripts[commandName] = 'kyt ' + command;
   });
   logger.log(chalk.green('Added kyt\'s scripts into your npm scripts'));

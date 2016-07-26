@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "0.0.11",
+  "version": "0.0.17",
   "description": "Web Frameworks Starter Kit",
   "main": "",
   "bin": {
@@ -9,29 +9,9 @@
   "engines": {
     "node": ">=6.1.0"
   },
-  "scripts": {
-    "starter-kit": "node ./index.js start",
-    "print-config": "node ./index.js --port 1337 --print-config",
-    "test": "NODE_ENV=TEST BABEL_DISABLE_CACHE=1 node ./node_modules/mocha/bin/_mocha --colors .mocha.js -- src/**/test/*.js",
-    "ava-test": "CONFIG=$(pwd)/config/webpack.test.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=TEST ava --verbose",
-    "lint": "eslint ./ --ext .js --ext .jsx --ext .json --config eslint.json"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nytm/wf-magic-starter-kit.git"
-  },
-  "ava": {
-    "files": [
-      "./src/**/test/*.js"
-    ],
-    "require": "babel-register",
-    "babel": {
-      "babelrc": false,
-      "presets": [
-        "es2015",
-        "react"
-      ]
-    }
   },
   "author": "Frameworks, Web",
   "license": "ISC",
@@ -69,6 +49,7 @@
     "express": "^4.14.0",
     "file-loader": "^0.8.5",
     "fs": "0.0.2",
+    "jsdom": "^9.4.1",
     "jss": "^5.1.0",
     "jss-vendor-prefixer": "^2.0.0",
     "path": "^0.12.7",

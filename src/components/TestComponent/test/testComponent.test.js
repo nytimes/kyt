@@ -10,7 +10,7 @@ import TestComponent from '../TestComponent';
  * enzyme: https://github.com/airbnb/enzyme
  */
 
-test('one', t => {
+test('Tests that true is true.', t => {
     const wrapper = enzyme.shallow(
       <TestComponent hello="hi"/>);
     t.pass(chai.assert.isTrue(true));
