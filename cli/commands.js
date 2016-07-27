@@ -15,6 +15,7 @@ const initAction = require('./actions/init');
 const startAction = require('./actions/start');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
+const updateAction = require('./actions/update');
 
 program
   .command('lint')
@@ -47,6 +48,11 @@ program
   .command('init')
   .description('Initializes directories and files for an app.')
   .action(() => initAction(program));
+
+  program
+    .command('update')
+    .description('Updates directories and files for an app.')
+    .action(() => updateAction(program));
 
 // program
 //   .command('proto')

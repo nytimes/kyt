@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSheet} from '../../styleSheet';
+import {useSheet} from 'kyt-utils/styleSheet';
 /*
  * A demo component
  * This component is built with:

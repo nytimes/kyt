@@ -6,3 +6,4 @@ pids
 node_modules
 .npm
 config/dist/bundle.js
+src/.DS_Store

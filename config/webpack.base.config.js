@@ -6,6 +6,9 @@ const webpack = require('webpack');
 module.exports = (options) => ({
   resolve: {
     extensions: ['', '.js', '.jsx'],
+    alias: {
+      'kyt-utils': path.resolve('./node_modules/kyt/utils'),
+    }
   },
   module: {
     loaders: [
