@@ -6,7 +6,7 @@ KYT is a tool created to let teams build simple react apps without having to man
 
 ## Setup
 
-Setup is completed with Three Easy Steps
+Setup is completed with Two Easy Steps
 
 ### 1. Package.json
 
@@ -23,7 +23,7 @@ Your app will need an example.json file that looks like this
 ```
 Run `npm install` and if you see the `kyt` repo in your node_modules then you have successfully completed this step.
 
-### 2. Init
+#### Init
 
 Kyt uses a postinstall script to initalize the base of your new app.
 
