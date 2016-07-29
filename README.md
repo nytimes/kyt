@@ -6,7 +6,7 @@ KYT is a tool created to let teams build simple react apps without having to man
 
 ## Setup
 
-Setup is completed with Three Easy Steps
+Setup is completed with Two Easy Steps
 
 ### 1. Package.json
 
@@ -23,18 +23,19 @@ Your app will need an example.json file that looks like this
 ```
 Run `npm install` and if you see the `kyt` repo in your node_modules then you have successfully completed this step.
 
-### 2. Init
+#### Init
 
-Kyt uses a postinstall script to initalize the the base of your new app.
+Kyt uses a postinstall script to initalize the base of your new app.
 
 After you run npm install you will see a few things in the root of your repo:
+
 1. `.babelrc` kyt symlinks a babelrc file so you can write the latest JS.
 2. `.editorconfig` symlinked to set up some basic editor conventions.
-3. `/src` We've created a src direction with a few files to help you get started.
-..* *client.js* For your frontend code
-..* *server.js* A basic express server setup with webpack
-..* *index.html* To serve your app with the webpack bundle
-..* */components* The components directory includes an example of a react component using JSS as well as a test written with Ava, chai and enzyme.
+3. `/src` kyt creates src directory with a few files to help you get started.
+  * *client.js* For your frontend code
+  * *server.js* A basic express server setup with webpack
+  * *index.html* To serve your app with the webpack bundle
+  * */components* The components directory includes an example of a react component using JSS as well as a test written with Ava, chai and enzyme.
 
 ###  3. Start your app
 
@@ -52,12 +53,12 @@ The command has three options
 
 During initialization kyt includes all of its commands in your package.json
 
-1. **kyt:start** starts up a wepack dev server
-2. **kyt:init** initializes files in the root of your repo
-3. **kyt:test** runs ava on all tests in /src
-4. **kyt:lint** lints src code using eslint
-5. **kyt:update** updates the configurations and files that have been copied into your rood directory
-6. **kyt:help** Shows commands and their documentation. You can also see options for any command by adding the --help flag.
+1. `kyt:start` starts up a wepack dev server
+2. `kyt:init` initializes files in the root of your repo
+3. `kyt:test` runs ava on all tests in /src
+4. `kyt:lint` lints src code using eslint
+5. `kyt:update` updates the configurations and files that have been copied into your rood directory
+6. `kyt:help` Shows commands and their documentation. You can also see options for any command by adding the --help flag.
 
 
 ## Updating kyt
@@ -75,16 +76,21 @@ There a few assumptions built into the base webpack config. All of these can be 
 
 ## Custom Configurations
 
-Kyt provides a base webpack config that runs a webpack dev server and includes loaders for all of our supported tools. If you would like to experiement with a new setup or extend with new tools you can create a custom webpack config that will be merged with the base provided.
+kyt provides a base webpack config that runs a webpack dev server and includes loaders for all of our supported tools. If you would like to experiement with a new setup or extend with new tools you can create a custom webpack config that will be merged with the base provided.
 
-If you would like to read more about webpack configs see here.
+Read more about [webpack configs](http://webpack.github.io/docs/examples.html)
 
-If you would like to read more about webpack smart merge see here.
-x
+Read more about [webpack-merge](https://www.npmjs.com/package/webpack-merge)
+
+
+## kyt utils
+kyt provides a set of utils to help extend your app.
+
+1. useReactJSS creates react-jss useSheet to be used in your react components. See the TestComponent for an example
 
 ## Tools List
 
-The Web Framework team recommends a suite of tools for React Apps. All of these tools are included in KYT.
+The Web Framework team recommends a suite of tools for building React Apps. All of these tools are included in kyt.
 
 ### React
 We currently support [React](https://facebook.github.io/react/docs/getting-started.html) Version 15 as well as React Dom.
@@ -98,6 +104,8 @@ We currently support [React](https://facebook.github.io/react/docs/getting-start
 
 ### URL Loader
 The [url loader](https://github.com/webpack/url-loader) is a tool for including urls in CSS.
+
+### Express
 
 
 ### Linters
