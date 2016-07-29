@@ -25,7 +25,7 @@ Run `npm install` and if you see the `kyt` repo in your node_modules then you ha
 
 ### 2. Init
 
-Kyt uses a postinstall script to initalize the the base of your new app.
+Kyt uses a postinstall script to initalize the base of your new app.
 
 After you run npm install you will see a few things in the root of your repo:
 1. `.babelrc` kyt symlinks a babelrc file so you can write the latest JS.
