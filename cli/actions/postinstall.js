@@ -49,6 +49,7 @@ module.exports = (program) => {
     commandName = 'kyt:' + command;
     packageJson.scripts[commandName] = 'kyt ' + command;
   });
+  packageJson.scripts['kyt:help'] = ' kyt --help';
   logger.log(chalk.green('Added kyt\'s scripts into your npm scripts'));
 
   // Write changes to user's package JSON

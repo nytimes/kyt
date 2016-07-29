@@ -16,11 +16,6 @@ Your app will need an example.json file that looks like this
 {
   "name": "my example app",
   "version": "0.0.0",
-  "scripts": {
-    "start": "kyt start",
-    "lint": "kyt lint",
-    "test": "kyt test",
-  },
   "devDependencies": {
     "kyt": "git+git@github.com:nytm/wf-magic-starter-kit.git"
   }
@@ -30,11 +25,16 @@ Run `npm install` and if you see the `kyt` repo in your node_modules then you ha
 
 ### 2. Init
 
-Generate an `.editorconfig`, `.babelrc` and `src` directory with the init command:
+Kyt uses a postinstall script to initalize the the base of your new app.
 
-```
-node_modules/.bin/kyt init
-```
+After you run npm install you will see a few things in the root of your repo:
+1. `.babelrc` kyt symlinks a babelrc file so you can write the latest JS.
+2. `.editorconfig` symlinked to set up some basic editor conventions.
+3. `/src` We've created a src direction with a few files to help you get started.
+..* *client.js* For your frontend code
+..* *server.js* A basic express server setup with webpack
+..* *index.html* To serve your app with the webpack bundle
+..* */components* The components directory includes an example of a react component using JSS as well as a test written with Ava, chai and enzyme.
 
 ###  3. Start your app
 
@@ -50,14 +50,21 @@ The command has three options
 
 ## CLI
 
-More commands and some of their documentation live under the help flag:
+During initialization kyt includes all of its commands in your package.json
 
-```
-node_modules/.bin/kyt --help
+1. **kyt:start** starts up a wepack dev server
+2. **kyt:init** initializes files in the root of your repo
+3. **kyt:test** runs ava on all tests in /src
+4. **kyt:lint** lints src code using eslint
+5. **kyt:update** updates the configurations and files that have been copied into your rood directory
+6. **kyt:help** Shows commands and their documentation. You can also see options for any command by adding the --help flag.
 
-# or, to see options for a given command:
 
-node_modules/.bin/kyt lint --help
+## Updating kyt
+When you run npm install, kyt will also make any new changes to its configurations, add new commands, and update its examples. 
+You can also manually update by running: 
+``` 
+npm run kyt:update
 ```
 
 
@@ -68,7 +75,7 @@ There a few assumptions built into the base webpack config. All of these can be 
 
 ## Custom Configurations
 
-The magic starter kit tool provides a base webpack config that runs a webpack dev server and includes loaders for all of our supported tools. If you would like to experiement with a new setup or extend with new tools you can create a custom webpack config that will be merged with the base provided.
+Kyt provides a base webpack config that runs a webpack dev server and includes loaders for all of our supported tools. If you would like to experiement with a new setup or extend with new tools you can create a custom webpack config that will be merged with the base provided.
 
 If you would like to read more about webpack configs see here.
 
@@ -94,3 +101,18 @@ The [url loader](https://github.com/webpack/url-loader) is a tool for including 
 
 
 ### Linters
+
+
+### Testing
+
+#### AVA 
+Kyt runs unit tests using the [Ava test runner](https://github.com/avajs/ava#test-syntax)
+
+#### Chai
+Kyt includes the [Chai assertion libary](http://chaijs.com/api/)
+
+#### Enzyme
+Kyt includes [Enzyme](https://github.com/airbnb/enzyme/blob/master/README.md) for unit testing react components. 
+
+#### JSDOM
+Kyt includes [JSDOM](https://github.com/tmpvar/jsdom) when using Ava to allow for easy testing when building components with JSS. JSDOM loads atomatically when running tests in kyt so there is no setup.

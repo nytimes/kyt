@@ -11,8 +11,6 @@ module.exports = (program) => {
   shell.config.silent = true;
 
 
-
-
   // Create a symbolic link from our local .babelrc
   // to the project's main directory.
   const babelrcPath = path.resolve(__dirname, '../../.babelrc');
@@ -48,6 +46,7 @@ module.exports = (program) => {
     commandName = 'kyt:' + command;
     packageJson.scripts[commandName] = 'kyt ' + command;
   });
+  packageJson.scripts['kyt:help'] = ' kyt --help';
   logger.log(chalk.green('Added kyt\'s scripts into your npm scripts'));
 
   // Write changes to user's package JSON
