@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "0.0.36",
+  "version": "0.0.1",
   "description": "Web Frameworks Starter Kit",
   "main": "",
   "bin": {
@@ -8,6 +8,10 @@
   },
   "engines": {
     "node": ">=6.1.0"
+  },
+  "scripts": {
+    "postinstall": "cli/commands.js postinstall",
+    "postversion": "cli/commands.js postinstall"
   },
   "repository": {
     "type": "git",

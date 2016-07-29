@@ -5,5 +5,5 @@ const shell = require('shelljs');
 
 module.exports = (program) => {
   console.log(chalk.blue('Running Tests'));
-  shell.exec('CONFIG=$(pwd)/node_modules/kyt/config/webpack.test.config.js BABEL_DISABLE_CACHE=1 NODE_ENV=TEST node node_modules/ava/cli.js --verbose');
+  shell.exec('BABEL_DISABLE_CACHE=1 node node_modules/ava/cli.js --verbose');
 };

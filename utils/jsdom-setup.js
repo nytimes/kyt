@@ -1,4 +1,7 @@
-/* setup.js */
+/**
+ * Adds JSDOM to the test setup.
+ *
+**/
 
 var jsdom = require('jsdom').jsdom;
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {useSheet} from 'kyt-utils/styleSheet';
+import {useJssSheet} from 'kyt/utils';
 /*
  * A demo component
  * This component is built with:
@@ -20,4 +20,4 @@ class TestComponent extends React.Component {
 
 }
 
-export default useSheet(TestComponent, styles);
+export default useJssSheet(TestComponent, styles);
