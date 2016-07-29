@@ -28,13 +28,14 @@ Run `npm install` and if you see the `kyt` repo in your node_modules then you ha
 Kyt uses a postinstall script to initalize the base of your new app.
 
 After you run npm install you will see a few things in the root of your repo:
+
 1. `.babelrc` kyt symlinks a babelrc file so you can write the latest JS.
 2. `.editorconfig` symlinked to set up some basic editor conventions.
 3. `/src` We've created a src direction with a few files to help you get started.
-..* *client.js* For your frontend code
-..* *server.js* A basic express server setup with webpack
-..* *index.html* To serve your app with the webpack bundle
-..* */components* The components directory includes an example of a react component using JSS as well as a test written with Ava, chai and enzyme.
+  * *client.js* For your frontend code
+  * *server.js* A basic express server setup with webpack
+  * *index.html* To serve your app with the webpack bundle
+  * */components* The components directory includes an example of a react component using JSS as well as a test written with Ava, chai and enzyme.
 
 ###  3. Start your app
 
