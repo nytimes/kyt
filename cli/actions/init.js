@@ -70,6 +70,12 @@ module.exports = (program) => {
       shell.exec(`cp ${server} src/.`);
       logger.log(chalk.blue('Created server.js file'));
     }
+    if(!shell.test('-f', 'src/proto.js')) {
+      const proto = path.resolve(__dirname, '../../src/proto.js');
+      shell.exec(`cp ${proto} src/.`);
+      logger.log(chalk.blue('Created proto.js file'));
+    }
+
     if(!shell.test('-f', 'src/index.html')) {
       const indexHTML = path.resolve(__dirname, '../../src/index.html');
       shell.exec(`cp ${indexHTML} src/.`);

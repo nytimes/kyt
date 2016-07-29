@@ -44,7 +44,7 @@ module.exports = (program) => {
   if(packageJson.scripts == undefined) {
     packageJson.scripts = {};
   }
-  const commands = ['init','start', 'test', 'lint', 'update'];
+  const commands = ['init','start', 'test', 'lint', 'update', 'proto'];
   commands.forEach((command) => {
     commandName = 'kyt:' + command;
     packageJson.scripts[commandName] = 'kyt ' + command;
@@ -76,6 +76,12 @@ module.exports = (program) => {
       const serverOG = path.resolve(process.cwd(), './src/server.js');
       shell.exec(`cp ${serverOG} ${server}`);
       logger.log(chalk.blue('Created server.js file'));
+    }
+    const proto = path.resolve(process.cwd(), '../../src/proto.js');
+    if(!shell.test('-f', proto)) {
+      const protoOG = path.resolve(process.cwd(), './src/proto.js');
+      shell.exec(`cp ${protoOG} ${proto}`);
+      logger.log(chalk.blue('Created proto.js file'));
     }
     const indexHTML = path.resolve(process.cwd(), '../../src/index.html');
     if(!shell.test('-f', indexHTML)) {

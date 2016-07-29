@@ -17,6 +17,7 @@ const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
 const updateAction = require('./actions/update');
 const postAction = require('./actions/postinstall');
+const protoAction = require('./actions/proto');
 
 program
   .command('lint')
@@ -35,8 +36,8 @@ program
 program
   .command('start')
   .description('start an express server')
-  .option('-p, --port [number]', 'Port to run starter-kit (Required)', parseInt)
-  .option('-c, --config [dir-name]', 'File for starter-kit config')
+  .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
+  .option('-c, --config [dir-name]', 'File for kyt custom config')
   .option('--print-config', 'Debugs by printing out the full configuration')
   .action(() => startAction(program));
 
@@ -59,5 +60,14 @@ program
     .command('postinstall')
     .description('Initializes directories and files for an app.')
     .action(() => postAction(program));
+
+  program
+    .command('proto')
+    .description('Starts a prorotype dev server. See proto.js')
+    .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
+    .option('-c, --config [dir-name]', 'File for kyt custom config')
+    .option('--print-config', 'Debugs by printing out the full configuration')
+    .action(() => protoAction(program));
+
 
 program.parse(process.argv);

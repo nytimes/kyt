@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const baseConfig = require('./config/webpack.base.config.js');
 const devConfig = require('./config/webpack.dev.config.js');
 const prodConfig = require('./config/webpack.prod.config.js');
+const protoConfig = require('./config/webpack.proto.config.js');
 let envConfig;
 let config;
 
@@ -26,6 +27,8 @@ module.exports = (opts) => {
     envConfig = devConfig;
   } else if (options.environment === 'production') {
     envConfig = prodConfig;
+  } else if (options.environment === 'proto') {
+    envConfig = protoConfig;
   }
 
   config = merge.smart(baseConfig(options), envConfig(options));
