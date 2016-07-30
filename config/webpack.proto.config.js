@@ -4,17 +4,25 @@
 **/
 const path = require('path');
 const webpack = require('webpack');
-const devConfig = require('./webpack.dev.config.js');
 const merge = require('webpack-merge');
 module.exports = (options) => {
   const publicPath = `http://localhost:${options.port}/`;
   console.log(__dirname);
-  return merge.smart(devConfig(options), {
+  return {
     entry: [
       'react-hot-loader/patch',
       'webpack/hot/dev-server',
       `webpack-dev-server/client?${publicPath}`,
       path.resolve(__dirname, '../../../src/proto.js'),
+    ],
+    output: {
+      path: path.resolve(__dirname, '../../../src'),
+      filename: 'bundle.js',
+      publicPath,
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
     ],
     devServer: {
       publicPath,
@@ -22,5 +30,5 @@ module.exports = (options) => {
       contentBase: path.resolve(__dirname, '../../../src'),
       stats: 'errors-only',
     },
-  });
+  };
 };
