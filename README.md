@@ -23,7 +23,7 @@ Your app will need an example.json file that looks like this
 ```
 Run `npm install` and if you see the `kyt` repo in your node_modules then you have successfully completed this step.
 
-#### Init
+#### postinstall kyt init
 
 Kyt uses a postinstall script to initalize the base of your new app.
 
@@ -37,7 +37,7 @@ After you run npm install you will see a few things in the root of your repo:
   * *index.html* To serve your app with the webpack bundle
   * */components* The components directory includes an example of a react component using JSS as well as a test written with Ava, chai and enzyme.
 
-###  3. Start your app
+###  2. Start your app
 
 Use the package.json `scripts` definition above to define `start` and other useful KYT commands to run - `npm run start`.
 
@@ -56,9 +56,10 @@ During initialization kyt includes all of its commands in your package.json
 1. `kyt:start` starts up a wepack dev server
 2. `kyt:init` initializes files in the root of your repo
 3. `kyt:test` runs ava on all tests in /src
-4. `kyt:lint` lints src code using eslint
-5. `kyt:update` updates the configurations and files that have been copied into your rood directory
-6. `kyt:help` Shows commands and their documentation. You can also see options for any command by adding the --help flag.
+4. `kyt:proto` starts the prototyping app. See `src/proto.js` for instructions.
+5. `kyt:lint` lints src code using eslint
+6. `kyt:update` updates the configurations and files that have been copied into your rood directory
+7. `kyt:help` Shows commands and their documentation. You can also see options for any command by adding the --help flag.
 
 
 ## Updating kyt
@@ -67,6 +68,10 @@ You can also manually update by running:
 ``` 
 npm run kyt:update
 ```
+
+## Component Prototyping with kyt
+kyt includes a simple prototyping interface for working on individual react components. 
+See `src/proto.js` for directions.
 
 
 ## Base Configuration
