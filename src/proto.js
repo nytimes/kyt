@@ -4,27 +4,16 @@
  * and npm run kyt:proto
  *
 */
-import { AppContainer } from 'react-hot-loader';
-import ReactDOM from 'react-dom';
-import React from 'react';
-import TestComponent from './components/TestComponent'; // Your Component Goes Here
-const rootEl = document.getElementById('root');
-ReactDOM.render(
-  <AppContainer>
-    <TestComponent />
-  </AppContainer>,
-  rootEl
-);
+import createProto from 'kyt/utils/proto-setup';
+import TestComponent from './components/TestComponent';
+const props = {
+  hello: "hi"
+};
+/**
+ * The create proto function takes two parameters
+ * and creates a single page app to test your prototypes.
+ * component: The root component of your prototype
+ * props: props for the component Object
+ */
+createProto(TestComponent, props);
 
-if (module.hot) {
-  module.hot.accept('./components/TestComponent', () => {
-    // eslint-disable-next-line
-    const NextApp = require('./components/TestComponent').default;
-    ReactDOM.render(
-      <AppContainer>
-        <TestComponent />
-      </AppContainer>,
-      rootEl
-    );
-  });
-}
