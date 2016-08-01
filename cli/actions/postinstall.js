@@ -44,9 +44,9 @@ module.exports = (program) => {
   if(packageJson.scripts == undefined) {
     packageJson.scripts = {};
   }
-  const commands = ['init','start', 'test', 'lint', 'update', 'proto'];
+  const commands = ['dev', 'build', 'run', 'test', 'lint', 'update', 'proto'];
   commands.forEach((command) => {
-    commandName = 'kyt:' + command;
+    if (packageJson.scripts[commandName]) commandName = 'kyt:' + command;
     packageJson.scripts[commandName] = 'kyt ' + command;
   });
   packageJson.scripts['kyt:help'] = ' kyt --help';
