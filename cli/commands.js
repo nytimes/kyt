@@ -9,12 +9,13 @@ const fs = require('fs');
 const path = require('path');
 
 const initAction = require('./actions/init');
-const startAction = require('./actions/start');
+const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
 const updateAction = require('./actions/update');
 const postAction = require('./actions/postinstall');
 const buildAction = require('./actions/build');
+const runAction = require('./actions/run');
 // const protoAction = require('./actions/proto');
 
 program
@@ -32,17 +33,24 @@ program
   .action(() => lintAction(program));
 
 program
-  .command('start')
-  .description('start an express server')
+  .command('dev')
+  .description('start an express server for development')
   .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
   .option('-c, --config [dir-name]', 'File for kyt custom config')
-  .option('--print-config', 'Debugs by printing out the full configuration')
-  .action(() => startAction(program));
+  .option('-v, --verbose ', 'Verbose output')
+  .action(() => devAction(program));
 
 program
   .command('build')
   .description('create a production build')
+  .option('-v, --verbose ', 'Verbose output')
   .action(() => buildAction(program));
+
+program
+  .command('run')
+  .description('run the production build')
+  .option('-v, --verbose ', 'Verbose output')
+  .action(() => runAction(program));
 
 program
   .command('test')

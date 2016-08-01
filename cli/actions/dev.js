@@ -18,6 +18,17 @@ module.exports = (program) => {
   const serverPort = args.port ? args.port : 3000;
   const basePath = path.resolve(__dirname, '../../../../');
 
+  const verboseOutput = (...input) => {
+    var logs = input.reduce((memo, log) => {
+      if (typeof log === 'object') memo.push(JSON.stringify(log, null, '  '));
+      else memo.push(log);
+      return memo;
+    }, []);
+    if (args.verbose) {
+      console.log.apply(null, logs);
+    }
+  };
+
   const clientOptions = {
     serverPort,
     clientPort,
@@ -28,8 +39,9 @@ module.exports = (program) => {
     basePath,
   };
 
-  const serverOptions = clientOptions;
-  serverOptions.assetsPath = path.join(basePath, 'build/server');
+  const serverOptions = merge(clientOptions, {
+    assetsPath: path.join(basePath, 'build/server'),
+  });
 
   let clientBundle = null;
   let clientCompiler = null;
@@ -57,7 +69,7 @@ module.exports = (program) => {
         });
         server.start();
 
-        console.log(`Server running at: ${'http://localhost:' + serverPort}`);
+        console.log(`ℹ️  Server running at: ${'http://localhost:' + serverPort}`);
         console.log('✅  Development started');
       }
     } catch (error) {
@@ -78,11 +90,11 @@ module.exports = (program) => {
     app.use(hotMiddleware(clientCompiler));
     app.listen(clientPort);
 
-    console.log(`Client server running at: ${clientCompiler.options.output.publicPath}`);
+    console.log(`ℹ️  Client server running at: ${clientCompiler.options.output.publicPath}`);
   }
 
   try {
-    // console.log(JSON.stringify(clientConfig, null, '  '))
+    verboseOutput('ℹ️  Client webpack configuration:', clientConfig);
     clientCompiler = webpack(clientConfig);
   } catch (error) {
     console.log('❌  Client webpack config is invalid\n', error)
@@ -90,7 +102,7 @@ module.exports = (program) => {
   }
 
   try {
-    // console.log(JSON.stringify(serverConfig, null, '  '))
+    verboseOutput('ℹ️  Server webpack configuration:', serverConfig);
     serverCompiler = webpack(serverConfig);
   } catch (error) {
     console.log('❌  Server webpack config is invalid\n', error)
@@ -101,7 +113,7 @@ module.exports = (program) => {
     if (stats.hasErrors()) {
       console.log('❌  Client build failed\n', stats.toString());
     } else {
-      console.log('Client build successful');
+      console.log('ℹ️  Client build successful');
     }
   });
 
@@ -119,7 +131,7 @@ module.exports = (program) => {
     if (stats.hasErrors()) {
       console.log('❌  Server compiler failed\n', stats.toString());
     } else {
-      console.log('Server compiled');
+      console.log('ℹ️  Server compiled');
       startHotServer();
     }
   });

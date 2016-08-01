@@ -18,6 +18,17 @@ module.exports = (program) => {
   const serverPort = args.port ? args.port : 3000;
   const basePath = path.resolve(__dirname, '../../../../');
 
+  const verboseOutput = (...input) => {
+    var logs = input.reduce((memo, log) => {
+      if (typeof log === 'object') memo.push(JSON.stringify(log, null, '  '));
+      else memo.push(log);
+      return memo;
+    }, []);
+    if (args.verbose) {
+      console.log.apply(null, logs);
+    }
+  };
+
   const clientOptions = {
     serverPort,
     clientPort: undefined,
@@ -27,8 +38,6 @@ module.exports = (program) => {
     assetsPath: path.join(basePath, 'build/client'),
     basePath,
   };
-
-  // "npm run clean && webpack --env.mode production --config config/webpack.prod.client && webpack --env.mode production --config config/webpack.prod.server.js"
 
   const serverOptions = merge(clientOptions, {
     assetsPath: path.join(basePath, 'build/server'),
@@ -44,14 +53,14 @@ module.exports = (program) => {
 
   // Clean the build directory.
   if (shell.exec(`rm -rf ${basePath}/build`).code === 0) {
-    console.log('Cleaned ./build');
+    console.log('ℹ️  Cleaned ./build');
   }
 
   const buildServer = () => {
     try {
-      // console.log(JSON.stringify(serverConfig, null, '  '))
+      verboseOutput('ℹ️  Server webpack configuration:', serverConfig);
       serverCompiler = webpack(serverConfig);
-      console.log('Server webpack configuration compiled');
+      console.log('ℹ️  Server webpack configuration compiled');
     } catch (error) {
       console.log('❌  Server webpack configuration is invalid\n', error)
       process.exit();
@@ -61,7 +70,7 @@ module.exports = (program) => {
       if (stats.hasErrors()) {
         console.log('❌  Server build failed\n', stats.toString());
       } else {
-        console.log('Server build successful');
+        console.log('ℹ️  Server build successful');
         console.log('✅  Done building');
       }
     });
@@ -70,9 +79,9 @@ module.exports = (program) => {
   };
 
   try {
-    // console.log(JSON.stringify(clientConfig, null, '  '))
+    verboseOutput('ℹ️  Client webpack configuration:', clientConfig);
     clientCompiler = webpack(clientConfig);
-    console.log('Client webpack configuration compiled');
+    console.log('ℹ️  Client webpack configuration compiled');
   } catch (error) {
     console.log('❌  Client webpack configuration is invalid\n', error)
     process.exit();
@@ -82,7 +91,7 @@ module.exports = (program) => {
     if (stats.hasErrors()) {
       console.log('❌  Client build failed\n', stats.toString());
     } else {
-      console.log('Client build successful');
+      console.log('ℹ️  Client build successful');
       buildServer();
     }
   });
