@@ -1,5 +1,5 @@
 
-const getConfiguration = require('./configBuilder');
+// const getConfiguration = require('./configBuilder');
 
-module.exports = { getConfiguration };
+// module.exports = { getConfiguration };
 

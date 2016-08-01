@@ -1,6 +1,7 @@
+
 const fs = require('fs');
 const chalk = require('chalk');
- const logger = console;
+const logger = console;
 const path = require('path');
 const shell = require('shelljs');
 const avaConfig = require('../../config/ava.config.js');
@@ -9,7 +10,6 @@ module.exports = (program) => {
   //Comment the following if you want
   //to see the verbose command ouput.
   shell.config.silent = true;
-
 
   logger.log('kyt postinstall');
 
