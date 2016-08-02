@@ -7,7 +7,6 @@ const logger = console;
 const temp = require('temp');
 const fs = require('fs');
 const path = require('path');
-
 const initAction = require('./actions/init');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
@@ -16,7 +15,7 @@ const updateAction = require('./actions/update');
 const postAction = require('./actions/postinstall');
 const buildAction = require('./actions/build');
 const runAction = require('./actions/run');
-// const protoAction = require('./actions/proto');
+const protoAction = require('./actions/proto');
 
 program
   .command('lint')
@@ -72,13 +71,13 @@ program
   .description('Initializes directories and files for an app.')
   .action(() => postAction(program));
 
-// program
-//   .command('proto')
-//   .description('Starts a prorotype dev server. See proto.js')
-//   .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
-//   .option('-c, --config [dir-name]', 'File for kyt custom config')
-//   .option('--print-config', 'Debugs by printing out the full configuration')
-//   .action(() => protoAction(program));
+program
+  .command('proto')
+  .description('Starts a prorotype dev server. See proto.js')
+  .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
+  .option('-c, --config [dir-name]', 'File for kyt custom config')
+  .option('--print-config', 'Debugs by printing out the full configuration')
+  .action(() => protoAction(program));
 
 
 program.parse(process.argv);

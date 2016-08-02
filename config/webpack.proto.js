@@ -6,17 +6,18 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 module.exports = (options) => {
-  const publicPath = `http://localhost:${options.port}/`;
-  console.log(__dirname);
+  const publicRoot = `http://localhost:${options.port}`;
+  const publicPath = publicRoot + '/prototype';
   return {
     entry: [
       'react-hot-loader/patch',
       'webpack/hot/dev-server',
-      `webpack-dev-server/client?${publicPath}`,
-      path.resolve(__dirname, '../../../src/proto.js'),
+      `webpack-dev-server/client?${publicRoot}`,
+      path.resolve(__dirname, '../prototype/index.html'),
+      path.resolve(__dirname, '../prototype/proto.js'),
     ],
     output: {
-      path: path.resolve(__dirname, '../../../src'),
+      path: path.join(options.basePath, 'build/prototype'),
       filename: 'bundle.js',
       publicPath,
     },
