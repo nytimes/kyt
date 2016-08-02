@@ -1,5 +1,5 @@
 
-import jss from './../../util/jss';
+import jss from './../../utils/jss';
 import normalize from 'normalize.json';
 
 jss(normalize, { named: false });
