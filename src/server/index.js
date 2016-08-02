@@ -10,6 +10,8 @@ import createMemoryHistory from 'react-router/lib/createMemoryHistory';
 import match from 'react-router/lib/match';
 import template from './template';
 import routes from '../routes';
+import cleancss from 'clean-css';
+import jss from 'jss';
 const clientAssets = require(process.env.ASSETS_PATH);
 
 const app = express();
@@ -29,6 +31,7 @@ app.get('*', (request, response, next) => {
     } else if (renderProps) {
       response.status(200).send(template({
         root: renderToString(<RouterContext {...renderProps} />),
+        css: new cleancss().minify(jss.sheets.toString()).styles,
         jsBundle: clientAssets.main.js
       }));
     } else {
