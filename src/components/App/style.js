@@ -1,8 +1,5 @@
 
 import jss from './../../utils/jss';
-import normalize from 'normalize.json';
-
-jss(normalize, { named: false });
 
 export default jss({
 
@@ -21,6 +18,7 @@ export default jss({
 
 });
 
+// Globally add nomalizer and css reset.
 jss({
 
   /* http://meyerweb.com/eric/tools/css/reset/
