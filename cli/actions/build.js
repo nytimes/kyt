@@ -1,7 +1,7 @@
 
 const fs = require('fs');
 const chalk = require('chalk');
-const logger = console;
+const logger = require('../logger');
 const path = require('path');
 const shell = require('shelljs');
 const webpack = require('webpack');
@@ -17,17 +17,9 @@ module.exports = (program) => {
   const args = program.args[0];
   const serverPort = args.port ? args.port : 3000;
   const basePath = path.resolve(__dirname, '../../../../');
-
-  const verboseOutput = (...input) => {
-    var logs = input.reduce((memo, log) => {
-      if (typeof log === 'object') memo.push(JSON.stringify(log, null, '  '));
-      else memo.push(log);
-      return memo;
-    }, []);
-    if (args.verbose) {
-      console.log.apply(null, logs);
-    }
-  };
+  if(args.verbose) {
+    process.env.debug = true;
+  }
 
   const clientOptions = {
     serverPort,
@@ -49,29 +41,29 @@ module.exports = (program) => {
   const clientConfig = merge.smart(baseConfig(clientOptions), clientWebpackConfig(clientOptions));
   const serverConfig = merge.smart(baseConfig(serverOptions), serverWebpackConfig(serverOptions));
 
-  console.log('🔥  Starting production build...');
+  logger.start('Starting production build...');
 
   // Clean the build directory.
   if (shell.exec(`rm -rf ${basePath}/build`).code === 0) {
-    console.log('ℹ️  Cleaned ./build');
+    logger.task('Cleaned ./build');
   }
 
   const buildServer = () => {
     try {
-      verboseOutput('ℹ️  Server webpack configuration:', serverConfig);
+      logger.debug('Server webpack configuration:', serverConfig);
       serverCompiler = webpack(serverConfig);
-      console.log('ℹ️  Server webpack configuration compiled');
+      logger.task('Server webpack configuration compiled');
     } catch (error) {
-      console.log('❌  Server webpack configuration is invalid\n', error)
+      logger.error('Server webpack configuration is invalid\n', error)
       process.exit();
     }
 
     serverCompiler.plugin('done', (stats) => {
       if (stats.hasErrors()) {
-        console.log('❌  Server build failed\n', stats.toString());
+        logger.error('Server build failed\n', stats);
       } else {
-        console.log('ℹ️  Server build successful');
-        console.log('✅  Done building');
+        logger.task('Server build successful');
+        logger.end('Done building');
       }
     });
 
@@ -79,19 +71,19 @@ module.exports = (program) => {
   };
 
   try {
-    verboseOutput('ℹ️  Client webpack configuration:', clientConfig);
+    logger.debug('Client webpack configuration:', clientConfig);
     clientCompiler = webpack(clientConfig);
-    console.log('ℹ️  Client webpack configuration compiled');
+    logger.task('Client webpack configuration compiled');
   } catch (error) {
-    console.log('❌  Client webpack configuration is invalid\n', error)
+    logger.error('Client webpack configuration is invalid\n', error)
     process.exit();
   }
 
   clientCompiler.plugin('done', (stats) => {
     if (stats.hasErrors()) {
-      console.log('❌  Client build failed\n', stats.toString());
+      logger.error('Client build failed\n', stats.toString());
     } else {
-      console.log('ℹ️  Client build successful');
+      logger.task('Client build successful');
       buildServer();
     }
   });

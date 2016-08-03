@@ -10,11 +10,13 @@ const protoConfig = require('../../config/webpack.proto.js');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
-console.log('made it through the imports');
 module.exports = (program) => {
   const args = program.args[0];
   const defaultPort = 3333;
-  logger.log('Starting prototype dev server');
+  if(args.verbose) {
+    process.env.debug = true;
+  }
+  logger.start('Starting prototype dev server');
   const port = args.port ? args.port : defaultPort;
   const basePath = path.resolve(__dirname, '../../../../');
   const options = {
@@ -35,7 +37,7 @@ module.exports = (program) => {
         */
         const server = new WebpackDevServer(compiler, webpackConfig.devServer);
         server.listen(port, 'localhost', () => {
-          logger.log('webpack-dev-server http://localhost:' + port + '/prototype');
+          logger.end('webpack-dev-server http://localhost:' + port + '/prototype');
         });
       }
 };

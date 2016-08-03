@@ -2,20 +2,18 @@
 
 const program = require('commander');
 const webpack = require('webpack');
-const chalk = require('chalk');
-const logger = console;
 const temp = require('temp');
 const fs = require('fs');
 const path = require('path');
-const initAction = require('./actions/init');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
-const updateAction = require('./actions/update');
 const postAction = require('./actions/postinstall');
 const buildAction = require('./actions/build');
 const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
+
+process.env.debug = false;
 
 program
   .command('lint')
@@ -55,16 +53,6 @@ program
   .command('test')
   .description('run test files')
   .action(() => testAction(program));
-
-program
-  .command('init')
-  .description('Initializes directories and files for an app.')
-  .action(() => initAction(program));
-
-program
-  .command('update')
-  .description('Updates directories and files for an app.')
-  .action(() => updateAction(program));
 
 program
   .command('postinstall')

@@ -1,7 +1,6 @@
 
 const CLIEngine = require('eslint').CLIEngine;
-const chalk = require('chalk');
-const logger = console;
+const logger = require('../logger');
 const temp = require('temp');
 const fs = require('fs');
 const path = require('path');
@@ -23,6 +22,9 @@ const getConfig = (configPath) => {
 
 module.exports = (program) => {
   const args = program.args[0];
+  if(args.verbose) {
+    process.env.debug = true;
+  }
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
@@ -37,7 +39,7 @@ module.exports = (program) => {
     const cli = new CLIEngine(eslintCLI);
     const report = cli.executeOnFiles(files);
     const formatter = cli.getFormatter();
-    logger.log(chalk.blue(formatter(report.results)));
+    logger.log(formatter(report.results));
   };
 
   // In order to support merging a local configFile/eslint.json,

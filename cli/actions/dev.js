@@ -4,6 +4,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 const webpack = require('webpack');
 const express = require('express');
+const logger = require('../logger');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
@@ -17,17 +18,9 @@ module.exports = (program) => {
   const clientPort = 3001;
   const serverPort = args.port ? args.port : 3000;
   const basePath = path.resolve(__dirname, '../../../../');
-
-  const verboseOutput = (...input) => {
-    var logs = input.reduce((memo, log) => {
-      if (typeof log === 'object') memo.push(JSON.stringify(log, null, '  '));
-      else memo.push(log);
-      return memo;
-    }, []);
-    if (args.verbose) {
-      console.log.apply(null, logs);
-    }
-  };
+  if(args.verbose) {
+    process.env.debug = true;
+  }
 
   const clientOptions = {
     serverPort,
@@ -51,8 +44,7 @@ module.exports = (program) => {
 
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
   serverConfig = merge.smart(baseConfig(serverOptions), serverConfig(serverOptions));
-
-  console.log('🔥  Starting development build...');
+  logger.start('Starting development build...');
 
   const startHotServer = () => {
     const serverPath = path.resolve(
@@ -62,18 +54,18 @@ module.exports = (program) => {
     try {
       if (server) {
         server.restart();
-        console.log('✅  Development server restarted')
+        logger.task('Development server restarted')
       } else {
         server = new SingleChild('node', [serverPath], {
           stdio: [0, 1, 2],
         });
         server.start();
 
-        console.log(`ℹ️  Server running at: ${'http://localhost:' + serverPort}`);
-        console.log('✅  Development started');
+        logger.task(`Server running at: ${'http://localhost:' + serverPort}`);
+        logger.end('Development started');
       }
     } catch (error) {
-      console.log('❌  Client bundle is invalid\n', error);
+      logger.error('Client bundle is invalid\n', error);
     }
   }
 
@@ -90,30 +82,30 @@ module.exports = (program) => {
     app.use(hotMiddleware(clientCompiler));
     app.listen(clientPort);
 
-    console.log(`ℹ️  Client server running at: ${clientCompiler.options.output.publicPath}`);
+    logger.task(`Client server running at: ${clientCompiler.options.output.publicPath}`);
   }
 
   try {
-    verboseOutput('ℹ️  Client webpack configuration:', clientConfig);
+    logger.debug('Client webpack configuration:', clientConfig);
     clientCompiler = webpack(clientConfig);
   } catch (error) {
-    console.log('❌  Client webpack config is invalid\n', error)
+    logger.error('❌  Client webpack config is invalid\n', error)
     process.exit()
   }
 
   try {
-    verboseOutput('ℹ️  Server webpack configuration:', serverConfig);
+    logger.debug('Server webpack configuration:', serverConfig);
     serverCompiler = webpack(serverConfig);
   } catch (error) {
-    console.log('❌  Server webpack config is invalid\n', error)
+    logger.error('Server webpack config is invalid\n', error)
     process.exit()
   }
 
   clientCompiler.plugin('done', (stats) => {
     if (stats.hasErrors()) {
-      console.log('❌  Client build failed\n', stats.toString());
+      logger.error('Client build failed\n', stats.toString());
     } else {
-      console.log('ℹ️  Client build successful');
+      logger.task('Client build successful');
     }
   });
 
@@ -129,9 +121,9 @@ module.exports = (program) => {
 
   serverCompiler.plugin('done', (stats) => {
     if (stats.hasErrors()) {
-      console.log('❌  Server compiler failed\n', stats.toString());
+      logger.error('Server compiler failed\n', stats.toString());
     } else {
-      console.log('ℹ️  Server compiled');
+      logger.task('Server compiled');
       startHotServer();
     }
   });
