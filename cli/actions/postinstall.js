@@ -5,6 +5,7 @@ const path = require('path');
 const shell = require('shelljs');
 const avaConfig = require('../../config/ava.config.js');
 
+
 module.exports = (program) => {
   //Comment the following if you want
   //to see the verbose command ouput.
@@ -62,6 +63,13 @@ module.exports = (program) => {
   if (shell.ls(src).code !== 0) {
     shell.exec(`cp -rf ./src ${src}`);
     logger.task('Created src directory with application files.');
+  }
+
+  // Copy a base kyt config
+  const userKytConfig = path.resolve(__dirname,'../../../../kyt.config.js');
+  if (!shell.test('-f', userKytConfig)) {
+    const kytConfigOG = path.resolve(process.cwd(), './config/kyt.base.config.js');
+          shell.exec(`cp ${kytConfigOG} ${userKytConfig}`);
   }
 
   logger.end('completed kyt postinstall');

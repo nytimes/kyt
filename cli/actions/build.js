@@ -5,6 +5,7 @@ const logger = require('../logger');
 const path = require('path');
 const shell = require('shelljs');
 const webpack = require('webpack');
+const kytConfig = require('../../config/kyt.config.js');
 const clientWebpackConfig = require('./../../config/webpack.prod.client');
 const serverWebpackConfig = require('./../../config/webpack.prod.server');
 const baseConfig = require('./../../config/webpack.base');
@@ -15,11 +16,8 @@ module.exports = (program) => {
   // to see the verbose command ouput.
   // shell.config.silent = true;
   const args = program.args[0];
-  const serverPort = args.port ? args.port : 3000;
+  const serverPort = kytConfig.serverPort;
   const basePath = path.resolve(__dirname, '../../../../');
-  if(args.verbose) {
-    process.env.debug = true;
-  }
 
   const clientOptions = {
     serverPort,

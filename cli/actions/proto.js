@@ -2,9 +2,10 @@
  * Sets up a component prototyping dev server
  *
  */
-const logger = console;
+const logger = require('../logger');
 const path = require('path');
 const shell = require('shelljs');
+const kytConfig = require('../../config/kyt.config.js');
 const baseConfig = require('../../config/webpack.base.js');
 const protoConfig = require('../../config/webpack.proto.js');
 const webpack = require('webpack');
@@ -12,12 +13,8 @@ const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
 module.exports = (program) => {
   const args = program.args[0];
-  const defaultPort = 3333;
-  if(args.verbose) {
-    process.env.debug = true;
-  }
   logger.start('Starting prototype dev server');
-  const port = args.port ? args.port : defaultPort;
+  const port = kytConfig.prototypePort;
   const basePath = path.resolve(__dirname, '../../../../');
   const options = {
     environment: 'proto',
@@ -29,15 +26,14 @@ module.exports = (program) => {
   const webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
   const compiler = webpack(webpackConfig);
       // Optional Flag to print config for debugging
-      if (args.printConfig) {
-        logger.dir(webpackConfig, { depth: 8 });
-      } else {
-        /*
-         * Creates a webpack dev server at the specified port
-        */
-        const server = new WebpackDevServer(compiler, webpackConfig.devServer);
-        server.listen(port, 'localhost', () => {
-          logger.end('webpack-dev-server http://localhost:' + port + '/prototype');
-        });
+      if (kytConfig.debug) {
+        logger.debug('Prototype Config', webpackConfig);
       }
+      /*
+       * Creates a webpack dev server at the specified port
+      */
+      const server = new WebpackDevServer(compiler, webpackConfig.devServer);
+      server.listen(port, 'localhost', () => {
+        logger.end('webpack-dev-server http://localhost:' + port + '/prototype');
+      });
 };

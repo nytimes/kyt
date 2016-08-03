@@ -4,6 +4,7 @@ const logger = require('../logger');
 const temp = require('temp');
 const fs = require('fs');
 const path = require('path');
+const kytConfig = require('../../config/kyt.config.js');
 const shell = require('shelljs');
 const merge = require('ramda').merge;
 const baseConfig = require('../../eslint.json');
@@ -22,9 +23,6 @@ const getConfig = (configPath) => {
 
 module.exports = (program) => {
   const args = program.args[0];
-  if(args.verbose) {
-    process.env.debug = true;
-  }
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {

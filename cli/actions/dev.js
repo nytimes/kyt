@@ -5,6 +5,7 @@ const chokidar = require('chokidar');
 const webpack = require('webpack');
 const express = require('express');
 const logger = require('../logger');
+const kytConfig = require('../../config/kyt.config.js');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
@@ -15,12 +16,9 @@ const merge = require('webpack-merge');
 
 module.exports = (program) => {
   const args = program.args[0];
-  const clientPort = 3001;
-  const serverPort = args.port ? args.port : 3000;
+  const clientPort = kytConfig.clientPort;
+  const serverPort = kytConfig.serverPort;
   const basePath = path.resolve(__dirname, '../../../../');
-  if(args.verbose) {
-    process.env.debug = true;
-  }
 
   const clientOptions = {
     serverPort,

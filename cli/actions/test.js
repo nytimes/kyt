@@ -1,12 +1,13 @@
 const logger = require('../logger');
 const path = require('path');
 const shell = require('shelljs');
+const kytConfig = require('../../config/kyt.config.js');
 
 module.exports = (program) => {
-  const args = program.args[0];
-  if(args.verbose) {
-    process.env.debug = true;
-  }
   logger.start('Running Tests');
-  shell.exec('BABEL_DISABLE_CACHE=1 node node_modules/ava/cli.js --verbose');
+  const command = 'BABEL_DISABLE_CACHE=1 node node_modules/ava/cli.js';
+  if(kytConfig.debug) {
+    command = command + ' --verbose';
+  }
+  shell.exec(command);
 };

@@ -1,4 +1,4 @@
-
+const kytConfig = require('../config/kyt.config.js');
 const logger = console;
 const write = (status, text, object) => {
   let textToLog = "";
@@ -53,7 +53,7 @@ const task = (text) => {
 
 const debug = (text, object) => {
 
-  if(process.env.debug === 'true') {
+  if(kytConfig.debug) {
     write('debug', text, object);
   }
 
