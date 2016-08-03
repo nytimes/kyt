@@ -2,22 +2,18 @@
 
 const program = require('commander');
 const webpack = require('webpack');
-const WebpackDevServer = require('webpack-dev-server');
-const configBuilder = require('../configBuilder');
-const chalk = require('chalk');
-const logger = console;
 const temp = require('temp');
 const fs = require('fs');
 const path = require('path');
-const shell = require('shelljs');
-
-const initAction = require('./actions/init');
-const startAction = require('./actions/start');
+const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
-const updateAction = require('./actions/update');
 const postAction = require('./actions/postinstall');
+const buildAction = require('./actions/build');
+const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
+
+process.env.debug = false;
 
 program
   .command('lint')
@@ -34,12 +30,24 @@ program
   .action(() => lintAction(program));
 
 program
-  .command('start')
-  .description('start an express server')
+  .command('dev')
+  .description('start an express server for development')
   .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
   .option('-c, --config [dir-name]', 'File for kyt custom config')
-  .option('--print-config', 'Debugs by printing out the full configuration')
-  .action(() => startAction(program));
+  .option('-v, --verbose ', 'Verbose output')
+  .action(() => devAction(program));
+
+program
+  .command('build')
+  .description('create a production build')
+  .option('-v, --verbose ', 'Verbose output')
+  .action(() => buildAction(program));
+
+program
+  .command('run')
+  .description('run the production build')
+  .option('-v, --verbose ', 'Verbose output')
+  .action(() => runAction(program));
 
 program
   .command('test')
@@ -47,27 +55,17 @@ program
   .action(() => testAction(program));
 
 program
-  .command('init')
+  .command('postinstall')
   .description('Initializes directories and files for an app.')
-  .action(() => initAction(program));
+  .action(() => postAction(program));
 
-  program
-    .command('update')
-    .description('Updates directories and files for an app.')
-    .action(() => updateAction(program));
-
-  program
-    .command('postinstall')
-    .description('Initializes directories and files for an app.')
-    .action(() => postAction(program));
-
-  program
-    .command('proto')
-    .description('Starts a prorotype dev server. See proto.js')
-    .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
-    .option('-c, --config [dir-name]', 'File for kyt custom config')
-    .option('--print-config', 'Debugs by printing out the full configuration')
-    .action(() => protoAction(program));
+program
+  .command('proto')
+  .description('Starts a prorotype dev server. See proto.js')
+  .option('-p, --port [number]', 'Port to run kyt (Required)', parseInt)
+  .option('-c, --config [dir-name]', 'File for kyt custom config')
+  .option('--print-config', 'Debugs by printing out the full configuration')
+  .action(() => protoAction(program));
 
 
 program.parse(process.argv);
