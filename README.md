@@ -14,7 +14,7 @@ Your app will need an example.json file that looks like this
 
 ```javascript
 {
-  "name": "my example app",
+  "name": "my-app",
   "version": "0.0.0",
   "devDependencies": {
     "kyt": "git+git@github.com:nytm/wf-kyt.git"
