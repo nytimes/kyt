@@ -10,8 +10,7 @@
     "node": ">=6.1.0"
   },
   "scripts": {
-    "postinstall": "cli/commands.js postinstall",
-    "postversion": "cli/commands.js postinstall"
+    "postinstall": "cli/commands.js postinstall"
   },
   "repository": {
     "type": "git",

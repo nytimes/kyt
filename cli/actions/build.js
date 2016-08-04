@@ -37,8 +37,8 @@ module.exports = (program) => {
   let clientCompiler = null;
   let serverCompiler = null;
 
-  const clientConfig = merge.smart(baseConfig(clientOptions), clientWebpackConfig(clientOptions));
-  const serverConfig = merge.smart(baseConfig(serverOptions), serverWebpackConfig(serverOptions));
+  let clientConfig = merge.smart(baseConfig(clientOptions), clientWebpackConfig(clientOptions));
+  let serverConfig = merge.smart(baseConfig(serverOptions), serverWebpackConfig(serverOptions));
 
   // modify configs
   clientConfig = kytConfig.modifyWebpackConfig(clientConfig, clientOptions);

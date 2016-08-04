@@ -25,12 +25,14 @@ module.exports = (program) => {
 
   // Build webpack config
   let webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
+
   // modify webpack config
   webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
   logger.task('modify webpack config');
 
   const compiler = webpack(webpackConfig);
   logger.debug('Prototype Config', webpackConfig);
+
   /*
   * Creates a webpack dev server at the specified port
   */

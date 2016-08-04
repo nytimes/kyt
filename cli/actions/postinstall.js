@@ -63,7 +63,7 @@ module.exports = (program) => {
   // Create a src directory with app files.
   const src = path.resolve(process.cwd(), '../../src');
   if (shell.ls(src).code !== 0) {
-    shell.exec(`cp -rf ./src ${src}`);
+    shell.exec(`cp -rf ./Demo/src ${src}`);
     logger.task('Created src directory with application files.');
   }
 

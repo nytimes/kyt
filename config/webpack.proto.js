@@ -17,7 +17,7 @@ module.exports = (options) => {
       path.resolve(__dirname, '../prototype/proto.js'),
     ],
     output: {
-      path: path.join(options.basePath, 'build/prototype'),
+      path: path.join(options.userRootPath, 'build/prototype'),
       filename: 'bundle.js',
       publicPath,
     },
