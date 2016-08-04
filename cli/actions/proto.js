@@ -13,7 +13,7 @@ const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
 module.exports = (program) => {
   const args = program.args[0];
-  logger.start('Starting prototype dev server');
+  logger.start('Configuring Prototype...');
   const port = kytConfig.prototypePort;
   const userRootPath = path.resolve(__dirname, '../../../../');
   const options = {
@@ -28,7 +28,7 @@ module.exports = (program) => {
 
   // modify webpack config
   webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
-  logger.task('modify webpack config');
+  logger.task('Modified webpack config');
 
   const compiler = webpack(webpackConfig);
   logger.debug('Prototype Config', webpackConfig);

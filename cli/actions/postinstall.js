@@ -65,6 +65,8 @@ module.exports = (program) => {
   if (shell.ls(src).code !== 0) {
     shell.exec(`cp -rf ./Demo/src ${src}`);
     logger.task('Created src directory with application files.');
+  } else {
+    logger.info(' src directory already exists; will not copy example');
   }
 
   // Copy a base kyt config
@@ -72,6 +74,17 @@ module.exports = (program) => {
   if (!shell.test('-f', userKytConfig)) {
     const kytConfigOG = path.resolve(process.cwd(), './config/kyt.base.config.js');
           shell.exec(`cp ${kytConfigOG} ${userKytConfig}`);
+  } else {
+    logger.info('kyt config already exists; will not copy default');
+  }
+
+  const prototype = path.resolve(__dirname,'../../../../prototype.js');
+  if (!shell.test('-f', prototype)) {
+      const prototypeOg = path.resolve(process.cwd(), './Demo/prototype.js');
+      shell.exec(`cp ${prototypeOg} ${prototype}`);
+      logger.task(' added prorotype.js example');
+  } else {
+    logger.info(' prototype.js already exists; will not copy example');
   }
 
   logger.end('completed kyt postinstall');

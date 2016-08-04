@@ -7,6 +7,7 @@ const write = (status, text, object) => {
   const processEnd = "✅ ";
   const error = "❌ ";
   const debug = "ℹ️ ";
+  const info = "📚 ";
 
   switch(status) {
     case "task":
@@ -17,6 +18,9 @@ const write = (status, text, object) => {
       break;
     case "end":
       textToLog = processEnd;
+      break;
+    case "info":
+      textToLog = info;
       break;
     case "error":
       textToLog = error;
@@ -51,6 +55,10 @@ const task = (text) => {
   write('task', text);
 };
 
+const info = (text) => {
+  write('info', text);
+};
+
 const debug = (text, object) => {
 
   if(kytConfig.debug) {
@@ -66,6 +74,7 @@ const error = (text, err) => {
 module.exports = {
   log,
   task,
+  info,
   debug,
   error,
   start,

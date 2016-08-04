@@ -25,33 +25,32 @@ program
 
 program
   .command('dev')
-  .description('start an express server for development')
-  .option('-c, --config [dir-name]', 'File for kyt custom config')
+  .description('Start an express server for development')
   .action(() => devAction(program));
 
 program
   .command('build')
-  .description('create a production build')
+  .description('Create a production build')
   .action(() => buildAction(program));
 
 program
   .command('run')
-  .description('run the production build')
+  .description('Run the production build')
   .action(() => runAction(program));
 
 program
   .command('test')
-  .description('run test files')
+  .description('Run test files with Ava.')
   .action(() => testAction(program));
 
 program
   .command('postinstall')
-  .description('Initializes directories and files for an app.')
+  .description('Initialize directories, commands, and configurations for an app.')
   .action(() => postAction(program));
 
 program
   .command('proto')
-  .description('Starts a prorotype dev server. See proto.js')
+  .description('Start a prorotype dev server.')
   .action(() => protoAction(program));
 
 
