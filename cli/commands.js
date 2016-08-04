@@ -52,7 +52,6 @@ program
 program
   .command('proto')
   .description('Starts a prorotype dev server. See proto.js')
-  .option('-c, --config [dir-name]', 'File for kyt custom config')
   .action(() => protoAction(program));
 
 

@@ -4,7 +4,7 @@
  * and npm run kyt:proto
  *
 */
-import createProto from 'kyt/utils/proto-setup';
+import createProto from './protoSetup';
 import UserComponent from '../../../prototype.js';
 /**
  * The create proto function takes two parameters
