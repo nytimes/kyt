@@ -20,10 +20,10 @@ module.exports = (program) => {
   const basePath = path.resolve(__dirname, '../../../../');
 
   const clientOptions = {
+    configType: 'buildClient',
     serverPort,
     clientPort: undefined,
     environment: 'production',
-    configPath: args.config,
     publicPath: '/assets/',
     assetsPath: path.join(basePath, 'build/client'),
     basePath,
@@ -31,6 +31,7 @@ module.exports = (program) => {
 
   const serverOptions = merge(clientOptions, {
     assetsPath: path.join(basePath, 'build/server'),
+    configType: 'buildServer'
   });
 
   let clientCompiler = null;
@@ -38,6 +39,12 @@ module.exports = (program) => {
 
   const clientConfig = merge.smart(baseConfig(clientOptions), clientWebpackConfig(clientOptions));
   const serverConfig = merge.smart(baseConfig(serverOptions), serverWebpackConfig(serverOptions));
+
+  // modify configs
+  clientConfig = kytConfig.modifyWebpackConfig(clientConfig, clientOptions);
+  logger.task('modify client config');
+  serverConfig = kytConfig.modifyWebpackConfig(serverConfig, serverOptions);
+  logger.task('modify server config');
 
   logger.start('Starting production build...');
 

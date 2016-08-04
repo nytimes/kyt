@@ -17,23 +17,25 @@ module.exports = (program) => {
   const port = kytConfig.prototypePort;
   const basePath = path.resolve(__dirname, '../../../../');
   const options = {
+    configType: 'prototype',
     environment: 'proto',
     port: port,
     basePath
   };
 
   // Build webpack config
-  const webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
+  let webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
+  // modify webpack config
+  webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
+  logger.task('modify webpack config');
+
   const compiler = webpack(webpackConfig);
-      // Optional Flag to print config for debugging
-      if (kytConfig.debug) {
-        logger.debug('Prototype Config', webpackConfig);
-      }
-      /*
-       * Creates a webpack dev server at the specified port
-      */
-      const server = new WebpackDevServer(compiler, webpackConfig.devServer);
-      server.listen(port, 'localhost', () => {
-        logger.end('webpack-dev-server http://localhost:' + port + '/prototype');
-      });
-};
+  logger.debug('Prototype Config', webpackConfig);
+  /*
+  * Creates a webpack dev server at the specified port
+  */
+  const server = new WebpackDevServer(compiler, webpackConfig.devServer);
+    server.listen(port, 'localhost', () => {
+    logger.end('webpack-dev-server http://localhost:' + port + '/prototype');
+    });
+  };

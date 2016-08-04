@@ -21,10 +21,10 @@ module.exports = (program) => {
   const basePath = path.resolve(__dirname, '../../../../');
 
   const clientOptions = {
+    configType: 'devClient',
     serverPort,
     clientPort,
     environment: 'development',
-    configPath: args.config,
     publicPath: `http://localhost:${clientPort}/assets/`,
     assetsPath: path.join(basePath, 'build/client'),
     basePath,
@@ -32,6 +32,7 @@ module.exports = (program) => {
 
   const serverOptions = merge(clientOptions, {
     assetsPath: path.join(basePath, 'build/server'),
+    configType: 'devServer'
   });
 
   let clientBundle = null;
@@ -42,6 +43,13 @@ module.exports = (program) => {
 
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
   serverConfig = merge.smart(baseConfig(serverOptions), serverConfig(serverOptions));
+
+    // modify configs
+  clientConfig = kytConfig.modifyWebpackConfig(clientConfig, clientOptions);
+  logger.task('modify client config');
+  serverConfig = kytConfig.modifyWebpackConfig(serverConfig, serverOptions);
+  logger.task('modify server config');
+
   logger.start('Starting development build...');
 
   const startHotServer = () => {
