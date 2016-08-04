@@ -17,7 +17,7 @@ Your app will need an example.json file that looks like this
   "name": "my example app",
   "version": "0.0.0",
   "devDependencies": {
-    "kyt": "git+git@github.com:nytm/wf-magic-starter-kit.git"
+    "kyt": "git+git@github.com:nytm/wf-kyt.git"
   }
 }
 ```
