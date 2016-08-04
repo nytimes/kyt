@@ -18,7 +18,7 @@ module.exports = (program) => {
   const args = program.args[0];
   const clientPort = kytConfig.clientPort;
   const serverPort = kytConfig.serverPort;
-  const basePath = path.resolve(__dirname, '../../../../');
+  const userRootPath = path.resolve(__dirname, '../../../../');
 
   const clientOptions = {
     configType: 'devClient',
@@ -26,12 +26,12 @@ module.exports = (program) => {
     clientPort,
     environment: 'development',
     publicPath: `http://localhost:${clientPort}/assets/`,
-    assetsPath: path.join(basePath, 'build/client'),
-    basePath,
+    assetsPath: path.join(userRootPath, 'build/client'),
+    userRootPath,
   };
 
   const serverOptions = merge(clientOptions, {
-    assetsPath: path.join(basePath, 'build/server'),
+    assetsPath: path.join(userRootPath, 'build/server'),
     configType: 'devServer'
   });
 
@@ -135,7 +135,7 @@ module.exports = (program) => {
   });
 
   // Watch the server files and recompile and restart on changes.
-  const watcher = chokidar.watch([path.join(basePath, 'src/server')]);
+  const watcher = chokidar.watch([path.join(userRootPath, 'src/server')]);
   watcher.on('ready', () => {
     watcher
       .on('add', compileHotServer)

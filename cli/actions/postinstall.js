@@ -46,7 +46,9 @@ module.exports = (program) => {
   const commands = ['dev', 'build', 'run', 'test', 'lint', 'update', 'proto'];
   commands.forEach((command) => {
     var commandName = command;
-    if(packageJson.scripts[command]) {
+    var initialCommand = packageJson.scripts[command];
+
+    if(initialCommand && initialCommand.indexOf('kyt') === -1) {
       commandName = 'kyt:' + command;
     }
     packageJson.scripts[commandName] = 'kyt ' + command;

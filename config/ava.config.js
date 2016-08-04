@@ -8,8 +8,7 @@ module.exports = {
     "./src/**/test/*.js"
   ],
   "require": [
-  "babel-register",
-  "./node_modules/kyt/utils/jsdom-setup.js"],
+  "babel-register"],
   "babel": {
     "babelrc": false,
     "presets": [

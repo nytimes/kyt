@@ -15,12 +15,12 @@ module.exports = (program) => {
   const args = program.args[0];
   logger.start('Starting prototype dev server');
   const port = kytConfig.prototypePort;
-  const basePath = path.resolve(__dirname, '../../../../');
+  const userRootPath = path.resolve(__dirname, '../../../../');
   const options = {
     configType: 'prototype',
     environment: 'proto',
     port: port,
-    basePath
+    userRootPath
   };
 
   // Build webpack config

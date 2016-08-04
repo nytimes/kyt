@@ -23,9 +23,9 @@ module.exports = (options) => ({
         SERVER_PORT: JSON.stringify(options.serverPort),
         CLIENT_PORT: JSON.stringify(options.clientPort || ''),
         PUBLIC_PATH: JSON.stringify(options.publicPath),
-        CLIENT_BUILD_PATH: JSON.stringify(path.join(options.basePath, `build/client`)),
-        SERVER_BUILD_PATH: JSON.stringify(path.join(options.basePath, `build/server`)),
-        ASSETS_PATH: JSON.stringify(path.join(options.basePath, `build/client/${assetsFile}`)),
+        CLIENT_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, `build/client`)),
+        SERVER_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, `build/server`)),
+        ASSETS_PATH: JSON.stringify(path.join(options.userRootPath, `build/client/${assetsFile}`)),
       },
     }),
 
@@ -57,7 +57,7 @@ module.exports = (options) => ({
         loader: 'babel-loader',
         exclude: [
           /node_modules/,
-          path.join(options.basePath, 'build'),
+          path.join(options.userRootPath, 'build'),
         ],
         query: {
           extends: path.join(__dirname, '../.babelrc'),

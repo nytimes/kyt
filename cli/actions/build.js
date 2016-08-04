@@ -17,7 +17,7 @@ module.exports = (program) => {
   // shell.config.silent = true;
   const args = program.args[0];
   const serverPort = kytConfig.serverPort;
-  const basePath = path.resolve(__dirname, '../../../../');
+  const userRootPath = path.resolve(__dirname, '../../../../');
 
   const clientOptions = {
     configType: 'buildClient',
@@ -25,12 +25,12 @@ module.exports = (program) => {
     clientPort: undefined,
     environment: 'production',
     publicPath: '/assets/',
-    assetsPath: path.join(basePath, 'build/client'),
-    basePath,
+    assetsPath: path.join(userRootPath, 'build/client'),
+    userRootPath,
   };
 
   const serverOptions = merge(clientOptions, {
-    assetsPath: path.join(basePath, 'build/server'),
+    assetsPath: path.join(userRootPath, 'build/server'),
     configType: 'buildServer'
   });
 
@@ -49,7 +49,7 @@ module.exports = (program) => {
   logger.start('Starting production build...');
 
   // Clean the build directory.
-  if (shell.exec(`rm -rf ${basePath}/build`).code === 0) {
+  if (shell.exec(`rm -rf ${userRootPath}/build`).code === 0) {
     logger.task('Cleaned ./build');
   }
 

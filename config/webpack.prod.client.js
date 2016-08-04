@@ -8,11 +8,11 @@ module.exports = (options) => ({
   devtool: 'hidden-source-map',
 
   entry: {
-    main: [path.join(options.basePath, `src/client/index.js`)]
+    main: [path.join(options.userRootPath, `src/client/index.js`)]
   },
 
   output: {
-    path: path.join(options.basePath, `build/client`),
+    path: path.join(options.userRootPath, `build/client`),
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
