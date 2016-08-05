@@ -6,22 +6,32 @@ kyt is a dev tool created to let teams build node-react apps without having to m
 
 ## Setup
 
-Setup is completed with two easy steps
+### Requirements
 
-### 1. package.json
+There are 2 basic requirements:
 
-Your app will need an example.json file that looks like this
+1. A `package.json`. The more "plain vanilla" it is, the better. For best results, start with a fresh `npm init`.
 
-```javascript
-{
-  "name": "my-app",
-  "version": "0.0.0",
-  "dependencies": {
-    "kyt": "git+git@github.com:nytm/wf-kyt.git"
-  }
-}
+2. Node v6 is required. You can install/manage versions of node using [nvm](https://github.com/creationix/nvm):
+
 ```
-Run `npm install` and if you see the `kyt` repo in your node_modules then you have successfully completed this step.
+nvm install 6
+```
 
+Or, if you already have it
+
+```
+nvm use 6
+```
+
+### Install kyt
+
+```
+npm install -S git+git@github.com:nytm/wf-kyt.git
+```
+
+kyt will modify your `package.json` to add the necessary npm scripts and test configuration for you.
+
+---
 
 MORE TO COME...
