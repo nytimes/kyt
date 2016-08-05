@@ -12,7 +12,9 @@ There are 2 basic requirements:
 
 1. A `package.json`. The more "plain vanilla" it is, the better. For best results, start with a fresh `npm init`.
 
-2. Node v6 is required. You can install/manage versions of node using [nvm](https://github.com/creationix/nvm):
+2. Node v6 is required.
+
+You can install/manage versions of node using [nvm](https://github.com/creationix/nvm):
 
 ```
 nvm install 6
