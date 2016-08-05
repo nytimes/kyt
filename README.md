@@ -71,16 +71,54 @@ kyt includes a base config file in the root of your repo that allows you set a f
  2. clientPort - port for the client assets server
  3. prototypePort - port for the prototyping dev server
  4. debug - when true, the cli returns all verbose output
- 5. modifyWebpackConfig - the callback function that allows you to edit webpack configs. see below
+ 5. modifyWebpackConfig - the callback function that allows you to edit webpack configs.
  
 #### modifyWebpackConfig 
- 
- 
+ modify webpack config is an optional callback you can define to edit the webpack config for each part of development.
+ The function is called with two parameters:
+ 1. `baseConfig` The base webpack config used in the process
+ 2. `options` an object of useful options including the webpackConfig type, ports, and paths
 
+
+ 
 ## Starter kyts
 
-## Prototyping with kyt
- 
+## kyt Commands Explained 
 
+### kyt dev
+The `dev` command takes the entry index.js in client and server, compiles them, and starts up a webpack dev server on the specified ports. The dev server includes a react hot loader to allow for faster development. 
+You can change ports in the kyt config.
+
+### kyt build
+The `build` command takes the entry index.js in client and server, compiles them, and saves them to a build folder. This is a production build and includes minification and tree shaking (with webpack 2). 
+
+### kyt run
+The `run` command takes the copiled code from the production build and runs a node server at the specified port. 
+You can change ports in the kyt config.
+
+### kyt test
+The `test` command takes any test files in your src directory and runs them using Ava. 
+
+### kyt lint
+The `lint` command lints all files in the src directory using eslint. 
+You can override the base eslint file in the kyt config.
+
+### kyt proto
+The `proto` command starts up a webpack dev server for building quick prototypes with react components. 
+
+To use the prototype, you must include a `prototype.js` in the root of your repo that exports the root react component for your prototype. Then run `npm run proto` and you will see your component at the specified url.
+You can change the prototype port in the kyt config.
  
+## kyt Tools List
+kyt has chosen several key dependencies for development. 
+ 
+### Webpack 
+ 
+### React
+
+### Ava
+
+### Chai
+
+### Enzyme
 
