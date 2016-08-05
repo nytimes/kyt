@@ -6,8 +6,8 @@ const write = (status, text, object) => {
   const processStart = "🔥 ";
   const processEnd = "✅ ";
   const error = "❌ ";
-  const debug = "ℹ️ ";
-  const info = "📚 ";
+  const debug = "🐞 ";
+  const info = "ℹ️ ";
 
   switch(status) {
     case "task":
