@@ -1,8 +1,7 @@
-/**
- * Configuration for AVA.
- * Added to user's package.json during init.
- *
-**/
+
+// Configuration for AVA.
+// Added to user's package.json during init.
+
 module.exports = {
   "files": [
     "./src/**/test/*.js"

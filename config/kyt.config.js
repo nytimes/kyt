@@ -1,3 +1,6 @@
+
+// Merges base and user kyt config
+
 const shell = require('shelljs');
 const path = require('path');
 const userConfig = path.resolve(__dirname,'../../../kyt.config.js');

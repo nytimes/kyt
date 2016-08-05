@@ -1,4 +1,6 @@
 
+// Command to lint src code
+
 const CLIEngine = require('eslint').CLIEngine;
 const logger = require('../logger');
 const temp = require('temp');

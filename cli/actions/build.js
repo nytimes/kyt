@@ -1,4 +1,6 @@
 
+// Command to build production code
+
 const fs = require('fs');
 const chalk = require('chalk');
 const logger = require('../logger');

@@ -1,4 +1,6 @@
 
+// Command to run production code
+
 const shell = require('shelljs');
 const logger = require('../logger');
 

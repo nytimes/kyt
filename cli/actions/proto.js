@@ -1,7 +1,6 @@
-/**
- * Sets up a component prototyping dev server
- *
- */
+
+// Command to run prorotype dev server
+
 const logger = require('../logger');
 const path = require('path');
 const shell = require('shelljs');
@@ -11,6 +10,8 @@ const protoConfig = require('../../config/webpack.proto.js');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
+
+
 module.exports = (program) => {
   const args = program.args[0];
   logger.start('Configuring Prototype...');

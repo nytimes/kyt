@@ -1,3 +1,6 @@
+
+// Command to run tests with Ava
+
 const logger = require('../logger');
 const path = require('path');
 const shell = require('shelljs');

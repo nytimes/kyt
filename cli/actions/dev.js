@@ -1,4 +1,6 @@
 
+// Command to run development server
+
 const shell = require('shelljs');
 const path = require('path');
 const chokidar = require('chokidar');

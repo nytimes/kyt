@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+
+// Command to build production code
 
 const program = require('commander');
 const devAction = require('./actions/dev');

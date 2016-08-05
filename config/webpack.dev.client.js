@@ -1,4 +1,6 @@
 
+// Development webpack config for client code
+
 const path = require('path');
 const webpack = require('webpack');
 

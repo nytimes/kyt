@@ -1,4 +1,6 @@
 
+// Command to initialize kyt after installation
+
 const fs = require('fs');
 const logger = require('../logger');
 const path = require('path');

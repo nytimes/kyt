@@ -1,4 +1,6 @@
 
+// Base webpack config
+
 const path = require('path');
 const AssetsPlugin = require('assets-webpack-plugin');
 const webpack = require('webpack');

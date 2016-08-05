@@ -1,7 +1,6 @@
-/**
-  * Merges dev config
-  * with the necessary changes for prototyping.
-**/
+
+// Prototype config
+
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');

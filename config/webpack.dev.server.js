@@ -1,4 +1,6 @@
 
+// Development webpack config for server code
+
 const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
