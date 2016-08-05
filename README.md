@@ -19,7 +19,7 @@ Example:
 {
   "name": "my-app",
   "version": "0.0.0",
-  "devDependencies": {
+  "dependencies": {
     "kyt": "git+git@github.com:nytm/wf-kyt.git"
   }
 }
