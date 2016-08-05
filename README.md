@@ -71,7 +71,7 @@ kyt includes a base config file in the root of your repo that allows you set a f
  2. clientPort - port for the client assets server
  3. prototypePort - port for the prototyping dev server
  4. debug - when true, the cli returns all verbose output
- 5. eslintFile - a path to a new eslintFile, to override kyt's default
+ 5. eslintConfig - a path to a new eslintConfig, to override kyt's default
  6. modifyWebpackConfig - the callback function that allows you to edit webpack configs.
  
 #### modifyWebpackConfig 
