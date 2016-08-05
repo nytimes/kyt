@@ -24,7 +24,6 @@ const getConfig = (configPath) => {
 };
 
 module.exports = (program) => {
-  const args = program.args[0];
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
@@ -35,7 +34,7 @@ module.exports = (program) => {
 
   // Get the default dir or the dir specified by the user/-d.
   const lint = () => {
-    const files = args.dir ? args.dir.split(',') : ['src/'];
+    const files = ['src/'];
     const cli = new CLIEngine(eslintCLI);
     const report = cli.executeOnFiles(files);
     const formatter = cli.getFormatter();
@@ -45,8 +44,8 @@ module.exports = (program) => {
   // In order to support merging a local configFile/eslint.json,
   // we need to save the result of the merge to a temp file
   // and point to that. Otherwise, we just use our config.
-  if (args.configFile) {
-    const config = getConfig(args.configFile);
+  if (kytConfig.eslintConfig) {
+    const config = getConfig(kytConfig.eslintConfig);
     temp.open('temp-eslintrc-', (error, info) => {
       if (!error) {
         fs.write(info.fd, JSON.stringify(config));
@@ -54,6 +53,9 @@ module.exports = (program) => {
         eslintCLI.configFile = info.path;
         lint();
         temp.cleanupSync();
+        logger.info('Using eslint config override');
+      } else {
+        logger.error('Error with user eslint config', error);
       }
     });
   } else {

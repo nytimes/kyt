@@ -1,6 +1,6 @@
 const kytConfig = require('../config/kyt.config.js');
 const logger = console;
-const write = (status, text, object) => {
+const write = (status, text, verbose) => {
   let textToLog = "";
   const task = "👍 ";
   const processStart = "🔥 ";
@@ -32,8 +32,12 @@ const write = (status, text, object) => {
 
   textToLog = textToLog + text;
 
-  if(object){
-    textToLog = textToLog + JSON.stringify(object, null, '  ');
+  if (verbose) {
+    if (typeof(verbose) === 'object') {
+      textToLog = textToLog + '\n' + JSON.stringify(verbose, null, '  ');
+    } else {
+      textToLog = textToLog + '\n' + verbose;
+    }
   }
 
    logger.log(textToLog);
