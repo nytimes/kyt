@@ -12,23 +12,22 @@ There are 2 basic requirements:
 
 1. A `package.json`. 
 
-Your package Json must include kyt as a dependency. You shouldn't need any other dependencies to get started.
+  Your package Json must include kyt as a dependency. You don't need any other dependencies to get started.
 
-Example: 
-```
-{
-  "name": "my-app",
-  "version": "0.0.0",
-  "dependencies": {
-    "kyt": "git+git@github.com:nytm/wf-kyt.git"
+  Example: 
+  ```
+  {
+    "name": "my-app",
+    "version": "0.0.0",
+    "dependencies": {
+      "kyt": "git+git@github.com:nytm/wf-kyt.git"
+    }
   }
-}
-```
-or if you already have a package.json simply:
-```
-npm install -S git+git@github.com:nytm/wf-kyt.git
-```
-
+  ```
+  or if you already have a package.json simply:
+  ```
+  npm install -S git+git@github.com:nytm/wf-kyt.git
+  ```
 
 2. Node v6 is required.
 
