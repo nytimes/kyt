@@ -10,7 +10,7 @@ const avaConfig = require('./../../config/ava.config.js');
 module.exports = (program) => {
 
   const args = program.args[0];
-  const basePath = path.resolve(__dirname, '../../../../');
+  const basePath = process.cwd();// path.resolve(, '../../../../');
   const userSrc = path.join(basePath, 'src');
   const packageJSONPath = path.join(basePath, 'package.json');
   const nodeModulesPath = path.join(basePath, 'node_modules');
@@ -44,15 +44,16 @@ module.exports = (program) => {
       const userPackageJSON = require(packageJSONPath);
       const oldPackageJSON = Object.assign({}, userPackageJSON);
       const tempPackageJSON = require(`${tmpDir}/package.json`);
-      const tempDependencies = tempPackageJSON.dependencies;
+      const tempDependencies = tempPackageJSON.dependencies || {};
 
       // Remove kyt dependency from the starter kyt package.
-      if (tempDependencies && tempDependencies.kyt) delete tempDependencies.kyt;
+      if (tempDependencies.kyt) delete tempDependencies.kyt;
 
       userPackageJSON.dependencies = Object.assign(
-        userPackageJSON.dependencies,
+        userPackageJSON.dependencies || {},
         tempPackageJSON.dependencies
       );
+
       userPackageJSON.ava = avaConfig;
 
       if (!userPackageJSON.scripts) userPackageJSON.scripts = {};
@@ -60,9 +61,9 @@ module.exports = (program) => {
       commands.forEach((command) => {
         var commandName = command;
         var initialCommand = userPackageJSON.scripts[command];
-        if (initialCommand && initialCommand.indexOf('kyt') === -1) {
-          return;
-        }
+        // if (initialCommand && initialCommand.indexOf('kyt') === -1) {
+        //   return;
+        // }
         userPackageJSON.scripts[commandName] = 'kyt ' + command;
       });
       userPackageJSON.scripts['kyt:help'] = ' kyt --help';

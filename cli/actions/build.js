@@ -14,19 +14,16 @@ const baseConfig = require('./../../config/webpack.base');
 const merge = require('webpack-merge');
 
 module.exports = (program) => {
-  // Comment the following if you want
-  // to see the verbose command ouput.
-  // shell.config.silent = true;
   const args = program.args[0];
   const serverPort = kytConfig.serverPort;
-  const userRootPath = path.resolve(__dirname, '../../../../');
+  const userRootPath = process.cwd();
 
   const clientOptions = {
     configType: 'buildClient',
     serverPort,
     clientPort: undefined,
     environment: 'production',
-    publicPath: '/assets/',
+    publicPath: kytConfig.productionPublicPath,
     assetsPath: path.join(userRootPath, 'build/client'),
     userRootPath,
   };

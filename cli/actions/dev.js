@@ -20,7 +20,7 @@ module.exports = (program) => {
   const args = program.args[0];
   const clientPort = kytConfig.clientPort;
   const serverPort = kytConfig.serverPort;
-  const userRootPath = path.resolve(__dirname, '../../../../');
+  const userRootPath = process.cwd();
 
   const clientOptions = {
     configType: 'devClient',
@@ -51,6 +51,12 @@ module.exports = (program) => {
   serverConfig = kytConfig.modifyWebpackConfig(serverConfig, serverOptions);
 
   logger.start('Starting development build...');
+
+  var scriptsPath = path.resolve(
+      process.cwd(),
+      'node_modules'
+    );
+  console.log(scriptsPath)
 
   const startHotServer = () => {
     const serverPath = path.resolve(
