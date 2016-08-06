@@ -24,6 +24,12 @@ Example:
   }
 }
 ```
+or if you already have a package.json simply:
+```
+npm install -S git+git@github.com:nytm/wf-kyt.git
+```
+
+
 2. Node v6 is required.
 
 You can install/manage versions of node using [nvm](https://github.com/creationix/nvm):
@@ -39,12 +45,9 @@ nvm use 6
 ```
 
 ### Install kyt
+Using `npm install`. When you see kyt in your node_modules, you've sucessfully completed this step.
 
-```
-npm install -S git+git@github.com:nytm/wf-kyt.git
-```
-
-### postinstall kyt init
+### kyt postinstall
 
 Kyt uses a postinstall script to initalize the base of your new app.
 
@@ -79,10 +82,33 @@ kyt includes a base config file in the root of your repo that allows you set a f
  The function is called with two parameters:
  1. `baseConfig` The base webpack config used in the process
  2. `options` an object of useful options including the webpackConfig type, ports, and paths
-
-
  
+
+## Conventions
+The kyt build follows several conventions, described below.
+
+### Source Files
+To use the kyt build you'll need to set up your directory as such.
+
+```
+src
+   client
+      index.js // webpack entry for client code
+    server
+      index.js // webpack entry for server code
+ ```
+
+### Test Files
+kyt expects all test files to be included in a /test directory in src. It is possible to have multiple test directories (eg. one per component)
+
+
 ## Starter kyts
+kyt provides several starter kits for creating more advanced applications.
+
+### Default kyt
+
+
+### Universal React App
 
 ## kyt Commands Explained 
 
@@ -112,14 +138,38 @@ You can change the prototype port in the kyt config.
  
 ## kyt Tools List
 kyt has chosen several key dependencies for development. 
+
+### Building
  
-### Webpack 
- 
-### React
+#### Webpack 
+kyt uses [webpack 2](https://webpack.github.io/docs/) so you can take advantage of features like System.import and tree shaking
 
-### Ava
+##### Url Loader
 
-### Chai
+##### File loader
 
-### Enzyme
+#### React
+kyt is designed to be used with [React](https://facebook.github.io/react/docs/getting-started.html). It supports building, testing, and protototyping with React.
 
+#### Babel
+kyt uses [Babel](https://babeljs.io/) so you can take advantage of the latest JS features. 
+We currently support the es2015-webpack, and react presets. 
+See the `.babelrc` for more details.
+
+### Testing
+
+#### AVA
+kyt uses the test runner [AVA](https://github.com/avajs/ava) which runs your test in parallel. 
+The ava configurations are located in your `package.json`
+
+#### Chai
+[Chai assertion library](http://chaijs.com/api/)
+
+### Sinon
+[Sinon](http://sinonjs.org/) for testing with spies and stubs.
+
+#### Enzyme
+[Enzyme](http://airbnb.io/enzyme/) is used for testing of React component. 
+
+### Linting 
+kyt lints JS using [eslint](http://eslint.org/). The linter rules are based of a guide from [Airbnb](https://github.com/airbnb/javascript). 
