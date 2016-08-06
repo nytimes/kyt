@@ -1,10 +1,9 @@
 
 // Command to run tests with Ava
-
-const logger = require('../logger');
+const logger = require('./../logger');
 const path = require('path');
 const shell = require('shelljs');
-const kytConfig = require('../../config/kyt.config.js');
+const kytConfig = require('./../../config/kyt.config.js');
 
 module.exports = (program) => {
   logger.start('Running Tests...');

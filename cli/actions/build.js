@@ -3,11 +3,11 @@
 
 const fs = require('fs');
 const chalk = require('chalk');
-const logger = require('../logger');
+const logger = require('./../logger');
 const path = require('path');
 const shell = require('shelljs');
 const webpack = require('webpack');
-const kytConfig = require('../../config/kyt.config.js');
+const kytConfig = require('./../../config/kyt.config.js');
 const clientWebpackConfig = require('./../../config/webpack.prod.client');
 const serverWebpackConfig = require('./../../config/webpack.prod.server');
 const baseConfig = require('./../../config/webpack.base');
@@ -42,11 +42,9 @@ module.exports = (program) => {
   let clientConfig = merge.smart(baseConfig(clientOptions), clientWebpackConfig(clientOptions));
   let serverConfig = merge.smart(baseConfig(serverOptions), serverWebpackConfig(serverOptions));
 
-  // modify configs
+  // Modify configs
   clientConfig = kytConfig.modifyWebpackConfig(clientConfig, clientOptions);
-  logger.task('modify client config');
   serverConfig = kytConfig.modifyWebpackConfig(serverConfig, serverOptions);
-  logger.task('modify server config');
 
   logger.start('Starting production build...');
 

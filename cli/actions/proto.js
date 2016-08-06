@@ -1,12 +1,12 @@
 
 // Command to run prorotype dev server
 
-const logger = require('../logger');
+const logger = require('./../logger');
 const path = require('path');
 const shell = require('shelljs');
-const kytConfig = require('../../config/kyt.config.js');
-const baseConfig = require('../../config/webpack.base.js');
-const protoConfig = require('../../config/webpack.proto.js');
+const kytConfig = require('./../../config/kyt.config.js');
+const baseConfig = require('./../../config/webpack.base.js');
+const protoConfig = require('./../../config/webpack.proto.js');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');

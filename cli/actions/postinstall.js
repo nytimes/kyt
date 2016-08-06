@@ -2,15 +2,17 @@
 // Command to initialize kyt after installation
 
 const fs = require('fs');
-const logger = require('../logger');
+const logger = require('./../logger');
 const path = require('path');
 const shell = require('shelljs');
 const avaConfig = require('../../config/ava.config.js');
 
-
 module.exports = (program) => {
-  //Comment the following if you want
-  //to see the verbose command ouput.
+
+  if (process.env.NODE_ENV === 'starter') process.exit();
+
+  // Comment the following if you want
+  // to see the verbose command ouput.
   shell.config.silent = true;
 
   logger.start('starting kyt postinstall');
@@ -61,16 +63,6 @@ module.exports = (program) => {
   // Write changes to user's package JSON
   fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
 
-
-  // Create a src directory with app files.
-  const src = path.resolve(process.cwd(), '../../src');
-  if (shell.ls(src).code !== 0) {
-    shell.exec(`cp -rf ./Demo/src ${src}`);
-    logger.task('Created src directory with application files.');
-  } else {
-    logger.info(' src directory already exists; will not copy example');
-  }
-
   // Copy a base kyt config
   const userKytConfig = path.resolve(__dirname,'../../../../kyt.config.js');
   if (!shell.test('-f', userKytConfig)) {
@@ -80,16 +72,6 @@ module.exports = (program) => {
     logger.info('kyt config already exists; will not copy default');
   }
 
-  const prototype = path.resolve(__dirname,'../../../../prototype.js');
-  if (!shell.test('-f', prototype)) {
-      const prototypeOg = path.resolve(process.cwd(), './Demo/prototype.js');
-      shell.exec(`cp ${prototypeOg} ${prototype}`);
-      logger.task(' added prorotype.js example');
-  } else {
-    logger.info(' prototype.js already exists; will not copy example');
-  }
-
   logger.end('completed kyt postinstall');
-
 
 };

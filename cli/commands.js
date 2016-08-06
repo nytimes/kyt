@@ -8,6 +8,7 @@ const postAction = require('./actions/postinstall');
 const buildAction = require('./actions/build');
 const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
+const setupAction = require('./actions/setup');
 
 program
   .command('lint')
@@ -37,6 +38,12 @@ program
   .command('run')
   .description('Run the production build')
   .action(() => runAction(program));
+
+program
+  .command('setup')
+  .description('Generate a project from a github url to get started.')
+  .option('-r, --repository [address]', 'Github repository address')
+  .action(() => setupAction(program));
 
 program
   .command('test')

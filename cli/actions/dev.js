@@ -6,7 +6,7 @@ const path = require('path');
 const chokidar = require('chokidar');
 const webpack = require('webpack');
 const express = require('express');
-const logger = require('../logger');
+const logger = require('./../logger');
 const kytConfig = require('../../config/kyt.config.js');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
@@ -46,11 +46,9 @@ module.exports = (program) => {
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
   serverConfig = merge.smart(baseConfig(serverOptions), serverConfig(serverOptions));
 
-    // modify configs
+  // Merge configs
   clientConfig = kytConfig.modifyWebpackConfig(clientConfig, clientOptions);
-  logger.task('modify client config');
   serverConfig = kytConfig.modifyWebpackConfig(serverConfig, serverOptions);
-  logger.task('modify server config');
 
   logger.start('Starting development build...');
 
@@ -90,7 +88,7 @@ module.exports = (program) => {
     app.use(hotMiddleware(clientCompiler));
     app.listen(clientPort);
 
-    logger.task(`Client server running at: ${clientCompiler.options.output.publicPath}`);
+    logger.task(`Client server running at ${clientCompiler.options.output.publicPath}`);
   }
 
   try {

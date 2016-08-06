@@ -1,31 +1,32 @@
+
 const kytConfig = require('../config/kyt.config.js');
 const logger = console;
 const write = (status, text, verbose) => {
-  let textToLog = "";
-  const task = "👍 ";
-  const processStart = "🔥 ";
-  const processEnd = "✅ ";
-  const error = "❌ ";
-  const debug = "🐞 ";
-  const info = "ℹ️ ";
+  let textToLog = '';
+  const task = '👍  ';
+  const processStart = '🔥  ';
+  const processEnd = '✅  ';
+  const error = '❌  ';
+  const debug = '🐞  ';
+  const info = 'ℹ️  ';
 
   switch(status) {
-    case "task":
+    case 'task':
       textToLog = task;
       break;
-    case "start":
+    case 'start':
       textToLog = processStart;
       break;
-    case "end":
+    case 'end':
       textToLog = processEnd;
       break;
-    case "info":
+    case 'info':
       textToLog = info;
       break;
-    case "error":
+    case 'error':
       textToLog = error;
       break;
-    case "debug":
+    case 'debug':
       textToLog = debug;
       break;
   }
@@ -33,14 +34,14 @@ const write = (status, text, verbose) => {
   textToLog = textToLog + text;
 
   if (verbose) {
-    if (typeof(verbose) === 'object') {
+    if (typeof verbose  === 'object') {
       textToLog = textToLog + '\n' + JSON.stringify(verbose, null, '  ');
     } else {
       textToLog = textToLog + '\n' + verbose;
     }
   }
 
-   logger.log(textToLog);
+  logger.log(textToLog);
 };
 
 const log = (text) => {
@@ -65,7 +66,7 @@ const info = (text) => {
 
 const debug = (text, object) => {
 
-  if(kytConfig.debug) {
+  if (kytConfig.debug) {
     write('debug', text, object);
   }
 

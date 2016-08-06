@@ -2,14 +2,14 @@
 // Command to lint src code
 
 const CLIEngine = require('eslint').CLIEngine;
-const logger = require('../logger');
+const logger = require('./../logger');
 const temp = require('temp');
 const fs = require('fs');
 const path = require('path');
-const kytConfig = require('../../config/kyt.config.js');
+const kytConfig = require('./../../config/kyt.config.js');
 const shell = require('shelljs');
 const merge = require('ramda').merge;
-const baseConfig = require('../../eslint.json');
+const baseConfig = require('./../../eslint.json');
 
 const getConfig = (configPath) => {
   const configFile = path.join(process.cwd(), configPath);
