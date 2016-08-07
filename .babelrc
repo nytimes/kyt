@@ -7,9 +7,6 @@
     },
     "production": {
       "plugins": ["transform-react-constant-elements"]
-    },
-    "TEST": {
-      "presets": ["es2015", "stage-3", "react"]
     }
   }
 }

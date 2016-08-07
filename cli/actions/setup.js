@@ -4,7 +4,6 @@ const path = require('path');
 const shell = require('shelljs');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
-const avaConfig = require('./../../config/ava.config');
 
 module.exports = (program) => {
   const args = program.args[0];
@@ -54,8 +53,6 @@ module.exports = (program) => {
         tempPackageJSON.dependencies
       );
 
-      userPackageJSON.ava = avaConfig;
-
       if (!userPackageJSON.scripts) userPackageJSON.scripts = {};
       const commands = ['dev', 'build', 'run', 'test', 'lint', 'proto'];
       commands.forEach((command) => {
@@ -67,7 +64,6 @@ module.exports = (program) => {
       fs.writeFileSync(packageJSONPath, JSON.stringify(userPackageJSON, null, 2));
       logger.task('Added kyt scripts into your package.json scripts');
       logger.task('Added new dependencies to package.json');
-      logger.task('Added ava config to package.json');
     };
 
     // Cleans and reinstalls node modules.
