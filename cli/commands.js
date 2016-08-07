@@ -4,7 +4,6 @@ const program = require('commander');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
-const postAction = require('./actions/postinstall');
 const buildAction = require('./actions/build');
 const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
@@ -49,11 +48,6 @@ program
   .command('test')
   .description('Run test files with Ava.')
   .action(() => testAction(program));
-
-program
-  .command('postinstall')
-  .description('Initialize directories, commands, and configurations for an app.')
-  .action(() => postAction(program));
 
 program
   .command('proto')

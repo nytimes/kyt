@@ -6,12 +6,11 @@ const logger = require('./../logger');
 const temp = require('temp');
 const fs = require('fs');
 const path = require('path');
-const kytConfig = require('./../../config/kyt.config.js');
-const shell = require('shelljs');
+const kytConfig = require('./../../config/kyt.config');
 const merge = require('ramda').merge;
 const baseConfig = require('./../../eslint.json');
 
-module.exports = (program) => {
+module.exports = () => {
   const userRootPath = process.cwd();
 
   const getConfig = (configPath) => {

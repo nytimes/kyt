@@ -13,7 +13,7 @@ module.exports = (options) => ({
   entry: {
     main: [
       path.join(options.userRootPath, 'src/server/index.js'),
-    ]
+    ],
   },
 
   output: {
@@ -21,7 +21,7 @@ module.exports = (options) => ({
     filename: '[name].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
   },
 
   plugins: [

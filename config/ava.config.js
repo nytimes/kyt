@@ -2,6 +2,8 @@
 // Configuration for AVA.
 // Added to user's package.json during init.
 
+/* eslint-disable */
+
 module.exports = {
   "files": [
     "./src/**/test/*.js"

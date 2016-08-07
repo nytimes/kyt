@@ -4,21 +4,22 @@ const path = require('path');
 const shell = require('shelljs');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
-const avaConfig = require('./../../config/ava.config.js');
-
+const avaConfig = require('./../../config/ava.config');
 
 module.exports = (program) => {
-
   const args = program.args[0];
-  const basePath = process.cwd();// path.resolve(, '../../../../');
+  const basePath = process.cwd();
   const userSrc = path.join(basePath, 'src');
   const packageJSONPath = path.join(basePath, 'package.json');
   const nodeModulesPath = path.join(basePath, 'node_modules');
-  const tmpDir = path.resolve(basePath, '\.kyt-tmp');
+  const tmpDir = path.resolve(basePath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.exec(`rm -rf ${tmpDir}`);
-  const bailProcess = () => {
+  const userPackageJSON = require(packageJSONPath); // eslint-disable-line global-require
+  const oldPackageJSON = Object.assign({}, userPackageJSON);
+  const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
+    if (error) logger.log(error);
     removeTmpDir();
     process.exit();
   };
@@ -41,8 +42,7 @@ module.exports = (program) => {
     // Uses the cloned package.json to update the user's
     // dependencies, scripts and other package configuration.
     const updateUserPackageJSON = () => {
-      const userPackageJSON = require(packageJSONPath);
-      const oldPackageJSON = Object.assign({}, userPackageJSON);
+      // eslint-disable-next-line global-require
       const tempPackageJSON = require(`${tmpDir}/package.json`);
       const tempDependencies = tempPackageJSON.dependencies || {};
 
@@ -59,12 +59,8 @@ module.exports = (program) => {
       if (!userPackageJSON.scripts) userPackageJSON.scripts = {};
       const commands = ['dev', 'build', 'run', 'test', 'lint', 'proto'];
       commands.forEach((command) => {
-        var commandName = command;
-        var initialCommand = userPackageJSON.scripts[command];
-        // if (initialCommand && initialCommand.indexOf('kyt') === -1) {
-        //   return;
-        // }
-        userPackageJSON.scripts[commandName] = 'kyt ' + command;
+        if (userPackageJSON.scripts[command]) return;
+        userPackageJSON.scripts[command] = `kyt ${command}`;
       });
       userPackageJSON.scripts['kyt:help'] = ' kyt --help';
 
@@ -157,8 +153,8 @@ module.exports = (program) => {
       createSrcDirectory();
       removeTmpDir();
       logger.end(`Done adding starter kyt: ${repoURL}`);
-    } catch (error) {
-      bailProcess();
+    } catch (err) {
+      bailProcess(err);
     }
   };
 

@@ -4,23 +4,24 @@
 const path = require('path');
 const AssetsPlugin = require('assets-webpack-plugin');
 const webpack = require('webpack');
+
 const assetsFile = 'assets.json';
 
 module.exports = (options) => ({
   node: {
     __dirname: true,
-    __filename: true
+    __filename: true,
   },
 
   devtool: 'source-map',
 
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
-    modules: [path.resolve(__dirname, '../node_modules'), 'node_modules'],
+    modules: [`${options.userRootPath}/node_modules`, path.resolve(__dirname, '../node_modules')],
   },
 
   resolveLoader: {
-    modules: [path.resolve(__dirname, '../node_modules'), 'node_modules'],
+    modules: [`${options.userRootPath}/node_modules`, path.resolve(__dirname, '../node_modules')],
   },
 
   plugins: [
@@ -30,8 +31,8 @@ module.exports = (options) => ({
         SERVER_PORT: JSON.stringify(options.serverPort),
         CLIENT_PORT: JSON.stringify(options.clientPort || ''),
         PUBLIC_PATH: JSON.stringify(options.publicPath),
-        CLIENT_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, `build/client`)),
-        SERVER_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, `build/server`)),
+        CLIENT_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, 'build/client')),
+        SERVER_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, 'build/server')),
         ASSETS_PATH: JSON.stringify(path.join(options.userRootPath, `build/client/${assetsFile}`)),
       },
     }),
@@ -71,6 +72,6 @@ module.exports = (options) => ({
           babelrc: false,
         },
       },
-    ]
+    ],
   },
 });

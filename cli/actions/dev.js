@@ -1,13 +1,12 @@
 
 // Command to run development server
 
-const shell = require('shelljs');
 const path = require('path');
 const chokidar = require('chokidar');
 const webpack = require('webpack');
 const express = require('express');
 const logger = require('./../logger');
-const kytConfig = require('../../config/kyt.config.js');
+const kytConfig = require('../../config/kyt.config');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
@@ -16,8 +15,7 @@ let serverConfig = require('./../../config/webpack.dev.server');
 const baseConfig = require('./../../config/webpack.base');
 const merge = require('webpack-merge');
 
-module.exports = (program) => {
-  const args = program.args[0];
+module.exports = () => {
   const clientPort = kytConfig.clientPort;
   const serverPort = kytConfig.serverPort;
   const userRootPath = process.cwd();
@@ -34,13 +32,11 @@ module.exports = (program) => {
 
   const serverOptions = merge(clientOptions, {
     assetsPath: path.join(userRootPath, 'build/server'),
-    configType: 'devServer'
+    configType: 'devServer',
   });
 
-  let clientBundle = null;
   let clientCompiler = null;
   let server = null;
-  let serverBundle = null;
   let serverCompiler = null;
 
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
@@ -60,20 +56,20 @@ module.exports = (program) => {
     try {
       if (server) {
         server.restart();
-        logger.task('Development server restarted')
+        logger.task('Development server restarted');
       } else {
         server = new SingleChild('node', [serverPath], {
           stdio: [0, 1, 2],
         });
         server.start();
 
-        logger.task(`Server running at: ${'http://localhost:' + serverPort}`);
+        logger.task(`Server running at: http://localhost:${serverPort}`);
         logger.end('Development started');
       }
     } catch (error) {
       logger.error('Client bundle is invalid\n', error);
     }
-  }
+  };
 
   const startHotClient = () => {
     const app = express();
@@ -89,22 +85,22 @@ module.exports = (program) => {
     app.listen(clientPort);
 
     logger.task(`Client server running at ${clientCompiler.options.output.publicPath}`);
-  }
+  };
 
   try {
     logger.debug('Client webpack configuration:', clientConfig);
     clientCompiler = webpack(clientConfig);
   } catch (error) {
-    logger.error('❌  Client webpack config is invalid\n', error)
-    process.exit()
+    logger.error('❌  Client webpack config is invalid\n', error);
+    process.exit();
   }
 
   try {
     logger.debug('Server webpack configuration:', serverConfig);
     serverCompiler = webpack(serverConfig);
   } catch (error) {
-    logger.error('Server webpack config is invalid\n', error)
-    process.exit()
+    logger.error('Server webpack config is invalid\n', error);
+    process.exit();
   }
 
   clientCompiler.plugin('done', (stats) => {

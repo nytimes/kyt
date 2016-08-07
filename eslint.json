@@ -4,7 +4,6 @@
     ],
 
     "env": {
-      "mocha": true
     },
 
     "plugins": [

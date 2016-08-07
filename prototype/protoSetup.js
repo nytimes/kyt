@@ -1,10 +1,14 @@
-'use strict';
-var path = require('path');
-var reactDom = require('react-dom');
-var react = require('react');
+
+// TOODOO: Not sure what to do here since
+// we no longer depend on React
+
+/* eslint-disable */
+
+const reactDom = require('react-dom');
+const react = require('react');
 
 // Render Component in the DOM
-module.exports = function(component) {
-  var rootEl = document.getElementById('root');
+module.exports = (component) => {
+  const rootEl = document.getElementById('root');
   reactDom.render(react.createElement(component), rootEl)
-}
+};

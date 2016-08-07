@@ -12,7 +12,7 @@ module.exports = (options) => ({
       'react-hot-loader/patch',
       `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`,
       path.join(options.userRootPath, 'src/client/index.js'),
-    ]
+    ],
   },
 
   output: {
@@ -20,7 +20,7 @@ module.exports = (options) => ({
     filename: '[name].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
-    libraryTarget: 'var'
+    libraryTarget: 'var',
   },
 
   plugins: [
