@@ -12,6 +12,8 @@ const clientWebpackConfig = require('./../../config/webpack.prod.client');
 const serverWebpackConfig = require('./../../config/webpack.prod.server');
 const baseConfig = require('./../../config/webpack.base');
 const merge = require('webpack-merge');
+const filesize = require('filesize');
+const stripAnsi = require('strip-ansi');
 
 module.exports = (program) => {
   const args = program.args[0];
@@ -81,11 +83,39 @@ module.exports = (program) => {
     process.exit();
   }
 
+  const printAssets = (stats) => {
+    const assets = stats.toJson().assets
+      .filter(asset => /\.(js|css)$/.test(asset.name))
+      .map(asset => {
+        return {
+          folder: path.join('build/client', path.dirname(asset.name)),
+          name: path.basename(asset.name),
+          size: asset.size,
+          sizeLabel: filesize(asset.size)
+        };
+      });
+    assets.sort((a, b) => b.size - a.size);
+    const longestSizeLabelLength = Math.max.apply(null,
+      assets.map(a => stripAnsi(a.sizeLabel).length)
+    );
+    assets.forEach(asset => {
+      let sizeLabel = asset.sizeLabel;
+      const sizeLength = stripAnsi(sizeLabel).length;
+      if (sizeLength < longestSizeLabelLength) {
+        const rightPadding = ' '.repeat(longestSizeLabelLength - sizeLength);
+        sizeLabel += rightPadding;
+      }
+      logger.log('    ' + sizeLabel + '    ' + asset.folder + path.sep + asset.name);
+    });
+  }
+
   clientCompiler.plugin('done', (stats) => {
     if (stats.hasErrors()) {
       logger.error('Client build failed\n', stats.toString());
     } else {
       logger.task('Client build successful');
+      logger.info('Assets:');
+      printAssets(stats);
       buildServer();
     }
   });
