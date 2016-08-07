@@ -1,5 +1,5 @@
 {
-  "presets": ["react", "es2015-webpack"],
+  "presets": ["react", ["es2015", { "modules": false } ]],
   "plugins": ["transform-runtime"],
   "env": {
     "development": {

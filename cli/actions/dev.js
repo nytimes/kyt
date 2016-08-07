@@ -52,12 +52,6 @@ module.exports = (program) => {
 
   logger.start('Starting development build...');
 
-  var scriptsPath = path.resolve(
-      process.cwd(),
-      'node_modules'
-    );
-  console.log(scriptsPath)
-
   const startHotServer = () => {
     const serverPath = path.resolve(
       serverCompiler.options.output.path, `${Object.keys(serverCompiler.options.entry)[0]}.js`
