@@ -11,19 +11,20 @@ const shell = require('shelljs');
 const merge = require('ramda').merge;
 const baseConfig = require('./../../eslint.json');
 
-const getConfig = (configPath) => {
-  const configFile = path.join(process.cwd(), configPath);
-
-  if (fs.existsSync(configFile)) {
-    // eslint-disable-next-line
-    const customConfig = require(configFile);
-    return merge(baseConfig, customConfig);
-  }
-
-  return baseConfig;
-};
-
 module.exports = (program) => {
+  const userRootPath = process.cwd();
+
+  const getConfig = (configPath) => {
+    const configFile = path.join(userRootPath, configPath);
+
+    if (fs.existsSync(configFile)) {
+      // eslint-disable-next-line
+      const customConfig = require(configFile);
+      return merge(baseConfig, customConfig);
+    }
+
+    return baseConfig;
+  };
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
@@ -59,7 +60,7 @@ module.exports = (program) => {
       }
     });
   } else {
-    eslintCLI.configFile = 'node_modules/kyt/eslint.json';
+    eslintCLI.configFile = path.join(__dirname, '../../eslint.json');
     lint();
   }
 };
