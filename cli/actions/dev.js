@@ -21,7 +21,7 @@ module.exports = () => {
   const userRootPath = process.cwd();
 
   const clientOptions = {
-    configType: 'devClient',
+    type: 'client',
     serverPort,
     clientPort,
     environment: 'development',
@@ -32,7 +32,7 @@ module.exports = () => {
 
   const serverOptions = merge(clientOptions, {
     assetsPath: path.join(userRootPath, 'build/server'),
-    configType: 'devServer',
+    type: 'server',
   });
 
   let clientCompiler = null;

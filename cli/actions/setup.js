@@ -134,10 +134,27 @@ module.exports = (program) => {
         const mvTo = path.join(basePath, `src-${Date.now()}-bak`);
         shell.exec(`mv -f ${userSrc} ${mvTo}`);
         logger.task(`Backed up current src directory to: ${mvTo}`);
-        cpSrc();
-      } else {
-        cpSrc();
       }
+
+      cpSrc();
+
+    };
+
+    const createPrototypeFile = () => {
+
+      const userProto = path.join(basePath, './prototype.js');
+      const starterProto = `${tmpDir}/prototype.js`;
+      // No need to copy file if it doesn't exist
+      if(!shell.test('-f', starterProto)) return;
+      // Backup user's prototype file if they already have one
+      if (shell.test('-f', userProto)) {
+        const prototypeBackup = path.join(basePath, `proto-${Date.now()}-bak.js`);
+        shell.exec(`mv ${userProto} ${protoBackup} `);
+        logger.task(`Backed up current prototype file to: ${prototypeBackup}`);
+      }
+      // Copy the prototype file from the starter kit into the users repo
+      shell.exec(`cp ${starterProto} ${userProto}`);
+      logger.task(`copied prototype.js file into root`);
     };
 
     try {
@@ -146,6 +163,7 @@ module.exports = (program) => {
       createBabelrcLink();
       createEditorconfigLink();
       createKytConfig();
+      createPrototypeFile();
       createSrcDirectory();
       removeTmpDir();
       logger.end(`Done adding starter kyt: ${repoURL}`);
