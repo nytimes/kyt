@@ -9,6 +9,9 @@ const userConfigPath = path.join(process.cwd(), './kyt.config.js');
 
 let config;
 
+// Add base config option for productionPublicPath
+baseConfig.productionPublicPath =  '/assets/';
+
 // Find user config
 if (shell.test('-f', userConfigPath)) {
   config = require(userConfigPath); // eslint-disable-line global-require
