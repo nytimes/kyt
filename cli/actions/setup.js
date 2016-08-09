@@ -107,16 +107,23 @@ module.exports = (program) => {
     const createKytConfig = () => {
       const userKytConfig = path.join(userRootPath, 'kyt.config.js');
       const tmpConfig = path.join(tmpDir, 'kyt.config.js');
-      if (!shell.test('-f', tmpConfig)) return;
+      const baseConfig = path.join(__dirname, '../../config/kyt.base.config.js');
+      let newConfig = tmpConfig;
+
+      // Use the base kyt.config
+      // if one does not exist in the starter
+      if (!shell.test('-f', tmpConfig)) {
+        newConfig = baseConfig;
+      }
       const copyConfig = () => {
-        shell.exec(`cp ${tmpConfig} ${userKytConfig}`);
+        shell.exec(`cp ${newConfig} ${userKytConfig}`);
         logger.task('Created new kyt.config.js');
       };
       if (shell.test('-f', userKytConfig)) {
         // Since the user already has a kyt.config,
         // we need to back it up before copying.
         const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.bak.js`);
-        shell.exec(`mv -f ${tmpConfig} ${mvTo}`);
+        shell.exec(`mv -f ${newConfig} ${mvTo}`);
         logger.task(`Backed up current kyt.config.js to: ${mvTo}`);
         copyConfig();
       } else {
