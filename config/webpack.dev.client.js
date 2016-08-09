@@ -3,6 +3,18 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const clone = require('ramda').clone;
+
+const cssStyleLoaders = [
+  'style',
+  {
+    loader: 'css',
+    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+  },
+  'postcss',
+];
+
+const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
 
 module.exports = (options) => ({
   target: 'web',
@@ -21,6 +33,19 @@ module.exports = (options) => ({
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
     libraryTarget: 'var',
+  },
+
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loaders: cssStyleLoaders,
+      },
+      {
+        test: /\.scss$/,
+        loaders: sassStyleLoaders,
+      },
+    ],
   },
 
   plugins: [

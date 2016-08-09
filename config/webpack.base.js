@@ -16,7 +16,7 @@ module.exports = (options) => ({
   devtool: 'source-map',
 
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
     modules: [`${options.userRootPath}/node_modules`, path.resolve(__dirname, '../node_modules')],
   },
 
@@ -43,6 +43,11 @@ module.exports = (options) => ({
     }),
   ],
 
+  postcss: [
+    // Users should add their own postcss plugins for the css
+    // and sass loaders through the `modifyWebpackConfig` callback.
+  ],
+
   module: {
     loaders: [
       {
@@ -53,7 +58,7 @@ module.exports = (options) => ({
         test: /\.(jpg|jpeg|png|gif|eot|svg|ttf|woff|woff2)$/,
         loader: 'url-loader',
         query: {
-          limit: 10000,
+          limit: 20000,
         },
       },
       {

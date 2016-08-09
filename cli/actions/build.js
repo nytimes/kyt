@@ -13,8 +13,6 @@ const baseConfig = require('./../../config/webpack.base');
 const clientWebpackConfig = require('./../../config/webpack.prod.client');
 const serverWebpackConfig = require('./../../config/webpack.prod.server');
 
-
-
 module.exports = () => {
   const serverPort = kytConfig.serverPort;
   const userRootPath = kytConfig.userRootPath;

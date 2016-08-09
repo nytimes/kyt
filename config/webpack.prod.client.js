@@ -3,6 +3,16 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const clone = require('ramda').clone;
+
+const cssStyleLoaders = [
+  {
+    loader: 'css',
+    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+  },
+  'postcss',
+];
 
 module.exports = (options) => ({
   target: 'web',
@@ -21,7 +31,28 @@ module.exports = (options) => ({
     libraryTarget: 'var',
   },
 
+  module: {
+    loaders: [
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          notExtractLoader: 'style',
+          loader: cssStyleLoaders,
+        }),
+      },
+      {
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract({
+          notExtractLoader: 'style',
+          loader: clone(cssStyleLoaders).concat('sass')
+        }),
+      },
+    ],
+  },
+
   plugins: [
+    new ExtractTextPlugin({ filename: '[name]-[chunkhash].css', allChunks: true }),
+
     new webpack.LoaderOptionsPlugin({
       minimize: true,
       debug: false,
