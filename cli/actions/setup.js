@@ -11,6 +11,7 @@ module.exports = (program) => {
   const userSrc = path.join(basePath, 'src');
   const packageJSONPath = path.join(basePath, 'package.json');
   const nodeModulesPath = path.join(basePath, 'node_modules');
+  const gitignoreFile = path.join(basePath, '.gitignore');
   const tmpDir = path.resolve(basePath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.exec(`rm -rf ${tmpDir}`);
@@ -126,7 +127,7 @@ module.exports = (program) => {
     const createSrcDirectory = () => {
       const cpSrc = () => {
         shell.exec(`cp -r ${tmpDir}/src ${basePath}`);
-        logger.task('Created ./src directory');
+        logger.task('Created src directory');
       };
       if (shell.test('-d', userSrc)) {
         // Since the user already has a src directory,
@@ -137,19 +138,25 @@ module.exports = (program) => {
       }
 
       cpSrc();
+    };
 
+    const createGitignore = () => {
+      if (!shell.test('-f', gitignoreFile)) {
+        const gitignoreLocal = path.resolve(__dirname, '../../.gitignore')
+        shell.exec(`cp ${gitignoreLocal} ${gitignoreFile}`);
+        logger.task(`Created .gitignore file`);
+      }
     };
 
     const createPrototypeFile = () => {
-
       const userProto = path.join(basePath, './prototype.js');
       const starterProto = `${tmpDir}/prototype.js`;
       // No need to copy file if it doesn't exist
-      if(!shell.test('-f', starterProto)) return;
+      if (!shell.test('-f', starterProto)) return;
       // Backup user's prototype file if they already have one
       if (shell.test('-f', userProto)) {
         const prototypeBackup = path.join(basePath, `proto-${Date.now()}-bak.js`);
-        shell.exec(`mv ${userProto} ${protoBackup} `);
+        shell.exec(`mv ${userProto} ${prototypeBackup} `);
         logger.task(`Backed up current prototype file to: ${prototypeBackup}`);
       }
       // Copy the prototype file from the starter kit into the users repo
@@ -165,6 +172,7 @@ module.exports = (program) => {
       createKytConfig();
       createPrototypeFile();
       createSrcDirectory();
+      createGitignore();
       removeTmpDir();
       logger.end(`Done adding starter kyt: ${repoURL}`);
     } catch (err) {
