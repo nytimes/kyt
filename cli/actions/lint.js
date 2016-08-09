@@ -1,17 +1,17 @@
 
 // Command to lint src code
 
+const path = require('path');
 const CLIEngine = require('eslint').CLIEngine;
-const logger = require('./../logger');
 const temp = require('temp');
 const fs = require('fs');
-const path = require('path');
-const kytConfig = require('./../../config/kyt.config');
 const merge = require('ramda').merge;
+const logger = require('./../logger');
+const kytConfig = require('./../../config/kyt.config');
 const baseConfig = require('./../../eslint.json');
 
 module.exports = () => {
-  const userRootPath = process.cwd();
+  const userRootPath = kytConfig.userRootPath;
 
   const getConfig = (configPath) => {
     const configFile = path.join(userRootPath, configPath);

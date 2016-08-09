@@ -14,9 +14,6 @@ program
   .description(`lint .js and .jsx files in the ./src directory.
     See more options: kyt lint --help
   `)
-  .option('-f, --config-file [filemane]', `use a local eslint file to override or add rules.
-    kyt lint -f eslint.json
-  `)
   .option('-d, --dir <dir-name>', `The default directory is ./src.
     If you want to lint your own, add a comma-delimited list.
       kyt lint -d src/,test/

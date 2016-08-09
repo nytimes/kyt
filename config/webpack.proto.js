@@ -7,7 +7,6 @@ const webpack = require('webpack');
 module.exports = (options) => {
   const publicRoot = `http://localhost:${options.port}`;
   const publicPath = `${publicRoot}/prototype`;
-  console.log('root', process.cwd());
 
   return {
     entry: [
@@ -32,7 +31,7 @@ module.exports = (options) => {
     devServer: {
       publicPath,
       hot: true,
-      contentBase: path.resolve(process.cwd(), './src'),
+      contentBase: path.resolve(options.userRootPath, './src'),
       stats: 'errors-only',
     },
   };

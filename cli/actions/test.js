@@ -1,8 +1,8 @@
 
 // Command to run tests with Ava
 
-const logger = require('./../logger');
 const path = require('path');
+const logger = require('./../logger');
 const shell = require('shelljs');
 const kytConfig = require('./../../config/kyt.config');
 
@@ -26,7 +26,7 @@ module.exports = () => {
   shell.exec(`${babel} ${userSrc} --presets ${presets} --out-dir ${userBuild} -s inline`);
   // Next, execute the ava cli on our build.
   // We add our node_modules tothe NODE_PATH so that ava can be resolved.
-  let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/test/**/*.test.js`;
+  let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/__test__/**/*.test.js`;
   if (kytConfig.debug) command += ' --verbose';
   shell.config.silent = false;
   shell.exec(command);

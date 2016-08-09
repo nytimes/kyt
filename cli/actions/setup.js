@@ -1,18 +1,20 @@
 
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
 const shell = require('shelljs');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
+const kytConfig = require('../../config/kyt.config');
 
 module.exports = (program) => {
   const args = program.args[0];
-  const basePath = process.cwd();
-  const userSrc = path.join(basePath, 'src');
-  const packageJSONPath = path.join(basePath, 'package.json');
-  const nodeModulesPath = path.join(basePath, 'node_modules');
-  const gitignoreFile = path.join(basePath, '.gitignore');
-  const tmpDir = path.resolve(basePath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
+
+  const userRootPath = kytConfig.userRootPath;
+  const userSrc = path.join(userRootPath, 'src');
+  const packageJSONPath = path.join(userRootPath, 'package.json');
+  const nodeModulesPath = path.join(userRootPath, 'node_modules');
+  const gitignoreFile = path.join(userRootPath, '.gitignore');
+  const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.exec(`rm -rf ${tmpDir}`);
   const userPackageJSON = require(packageJSONPath); // eslint-disable-line global-require
@@ -83,8 +85,8 @@ module.exports = (program) => {
     // Creates a symbolic link from our local
     // .babelrc to the user's base directory.
     const createBabelrcLink = () => {
-      const babelrcPath = path.join(basePath, 'node_modules/kyt/.babelrc');
-      const linkedPath = path.join(basePath, '.babelrc');
+      const babelrcPath = path.join(userRootPath, 'node_modules/kyt/.babelrc');
+      const linkedPath = path.join(userRootPath, '.babelrc');
       if (shell.ln('-s', babelrcPath, linkedPath).code === 0) {
         logger.task('Linked .babelrc');
       }
@@ -93,8 +95,8 @@ module.exports = (program) => {
     // Creates a symbolic link from our local
     // .editorconfig to the user's base directory.
     const createEditorconfigLink = () => {
-      const editorPath = path.join(basePath, 'node_modules/kyt/.editorconfig');
-      const configPath = path.join(basePath, '.editorconfig');
+      const editorPath = path.join(userRootPath, 'node_modules/kyt/.editorconfig');
+      const configPath = path.join(userRootPath, '.editorconfig');
       if (shell.ln('-s', editorPath, configPath).code === 0) {
         logger.task('Linked .editorconfig');
       }
@@ -103,7 +105,7 @@ module.exports = (program) => {
     // Copies the starter kyt kyt.config.js
     // to the user's base directory.
     const createKytConfig = () => {
-      const userKytConfig = path.join(basePath, 'kyt.config.js');
+      const userKytConfig = path.join(userRootPath, 'kyt.config.js');
       const tmpConfig = path.join(tmpDir, 'kyt.config.js');
       if (!shell.test('-f', tmpConfig)) return;
       const copyConfig = () => {
@@ -113,7 +115,7 @@ module.exports = (program) => {
       if (shell.test('-f', userKytConfig)) {
         // Since the user already has a kyt.config,
         // we need to back it up before copying.
-        const mvTo = path.join(basePath, `kyt.config-${Date.now()}.bak.js`);
+        const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.bak.js`);
         shell.exec(`mv -f ${tmpConfig} ${mvTo}`);
         logger.task(`Backed up current kyt.config.js to: ${mvTo}`);
         copyConfig();
@@ -126,13 +128,13 @@ module.exports = (program) => {
     // repo into the user's base direcotry.
     const createSrcDirectory = () => {
       const cpSrc = () => {
-        shell.exec(`cp -r ${tmpDir}/src ${basePath}`);
+        shell.exec(`cp -r ${tmpDir}/src ${userRootPath}`);
         logger.task('Created src directory');
       };
       if (shell.test('-d', userSrc)) {
         // Since the user already has a src directory,
         // we need to make a backup before copying.
-        const mvTo = path.join(basePath, `src-${Date.now()}-bak`);
+        const mvTo = path.join(userRootPath, `src-${Date.now()}-bak`);
         shell.exec(`mv -f ${userSrc} ${mvTo}`);
         logger.task(`Backed up current src directory to: ${mvTo}`);
       }
@@ -149,13 +151,13 @@ module.exports = (program) => {
     };
 
     const createPrototypeFile = () => {
-      const userProto = path.join(basePath, './prototype.js');
+      const userProto = path.join(userRootPath, './prototype.js');
       const starterProto = `${tmpDir}/prototype.js`;
       // No need to copy file if it doesn't exist
       if (!shell.test('-f', starterProto)) return;
       // Backup user's prototype file if they already have one
       if (shell.test('-f', userProto)) {
-        const prototypeBackup = path.join(basePath, `proto-${Date.now()}-bak.js`);
+        const prototypeBackup = path.join(userRootPath, `proto-${Date.now()}-bak.js`);
         shell.exec(`mv ${userProto} ${prototypeBackup} `);
         logger.task(`Backed up current prototype file to: ${prototypeBackup}`);
       }

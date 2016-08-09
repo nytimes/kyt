@@ -1,23 +1,20 @@
 
 // Command to run prorotype dev server
 
-const logger = require('./../logger');
-const path = require('path');
-const kytConfig = require('./../../config/kyt.config');
-const baseConfig = require('./../../config/webpack.base');
-const protoConfig = require('./../../config/webpack.proto');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
-
-
+const logger = require('./../logger');
+const kytConfig = require('./../../config/kyt.config');
+const baseConfig = require('./../../config/webpack.base');
+const protoConfig = require('./../../config/webpack.proto');
 module.exports = () => {
   logger.start('Configuring Prototype...');
   const port = kytConfig.prototypePort;
-  const userRootPath = path.resolve(__dirname, '../../../../');
+  const userRootPath = kytConfig.userRootPath;
   const options = {
-    configType: 'prototype',
-    environment: 'proto',
+    type: 'prototype',
+    environment: 'prototype',
     port,
     userRootPath,
   };
@@ -26,8 +23,16 @@ module.exports = () => {
   let webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
   webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
 
-  const compiler = webpack(webpackConfig);
-  logger.debug('Prototype Config', webpackConfig);
+  // Preparing prototype compiler
+  let compiler = null;
+  try {
+    logger.debug('Prototype Config', webpackConfig);
+    compiler = webpack(webpackConfig);
+  } catch (error) {
+    logger.error('Webpack config is invalid\n', error);
+    process.exit();
+  }
+
 
   // Creates a webpack dev server at the specified port
   const server = new WebpackDevServer(compiler, webpackConfig.devServer);

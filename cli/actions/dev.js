@@ -3,22 +3,22 @@
 
 const path = require('path');
 const chokidar = require('chokidar');
-const webpack = require('webpack');
 const express = require('express');
-const logger = require('./../logger');
-const kytConfig = require('../../config/kyt.config');
+const webpack = require('webpack');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
+const merge = require('webpack-merge');
 const SingleChild = require('single-child');
+const logger = require('./../logger');
+const kytConfig = require('../../config/kyt.config');
+const baseConfig = require('./../../config/webpack.base');
 let clientConfig = require('./../../config/webpack.dev.client');
 let serverConfig = require('./../../config/webpack.dev.server');
-const baseConfig = require('./../../config/webpack.base');
-const merge = require('webpack-merge');
 
 module.exports = () => {
   const clientPort = kytConfig.clientPort;
   const serverPort = kytConfig.serverPort;
-  const userRootPath = process.cwd();
+  const userRootPath = kytConfig.userRootPath;
 
   const clientOptions = {
     type: 'client',

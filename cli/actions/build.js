@@ -1,21 +1,23 @@
 
 // Command to build production code
 
-const logger = require('./../logger');
 const path = require('path');
 const shell = require('shelljs');
 const webpack = require('webpack');
-const kytConfig = require('./../../config/kyt.config');
-const clientWebpackConfig = require('./../../config/webpack.prod.client');
-const serverWebpackConfig = require('./../../config/webpack.prod.server');
-const baseConfig = require('./../../config/webpack.base');
 const merge = require('webpack-merge');
 const filesize = require('filesize');
 const stripAnsi = require('strip-ansi');
+const logger = require('./../logger');
+const kytConfig = require('./../../config/kyt.config');
+const baseConfig = require('./../../config/webpack.base');
+const clientWebpackConfig = require('./../../config/webpack.prod.client');
+const serverWebpackConfig = require('./../../config/webpack.prod.server');
+
+
 
 module.exports = () => {
   const serverPort = kytConfig.serverPort;
-  const userRootPath = process.cwd();
+  const userRootPath = kytConfig.userRootPath;
 
   const clientOptions = {
     type: 'client',
@@ -49,6 +51,7 @@ module.exports = () => {
     logger.task('Cleaned ./build');
   }
 
+  // Compiles server code using the prod.server config
   const buildServer = () => {
     try {
       logger.debug('Server webpack configuration:', serverConfig);
@@ -71,6 +74,7 @@ module.exports = () => {
     serverCompiler.run(() => undefined);
   };
 
+  // Preparing client webpack compiler
   try {
     logger.debug('Client webpack configuration:', clientConfig);
     clientCompiler = webpack(clientConfig);

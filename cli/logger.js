@@ -4,6 +4,7 @@ const kytConfig = require('../config/kyt.config');
 const logger = console;
 const write = (status, text, verbose) => {
   let textToLog = '';
+  let logObject = false;
 
   if (status === 'task') textToLog = '👍  ';
   else if (status === 'start') textToLog = '🔥  ';
@@ -14,43 +15,53 @@ const write = (status, text, verbose) => {
 
   textToLog += text;
 
+  // Adds optional verbose output
   if (verbose) {
     if (typeof verbose === 'object') {
-      textToLog += `\n${JSON.stringify(verbose, null, '  ')}`;
+      logObject = true;
     } else {
       textToLog += `\n${verbose}`;
     }
   }
 
   logger.log(textToLog);
+  if (logObject) logger.dir(verbose, {depth: 15});
 };
-
+// Printing any statements
 const log = (text) => {
   logger.log(text);
 };
 
+// Starting a process
 const start = (text) => {
   write('start', text);
 };
 
+// Ending a process
 const end = (text) => {
   write('end', text);
 };
 
+// Tasks within a process
 const task = (text) => {
   write('task', text);
 };
 
+// Info about a process task
 const info = (text) => {
   write('info', text);
 };
 
-const debug = (text, object) => {
+// Verbose output
+// takes optional data
+const debug = (text, data) => {
   if (kytConfig.debug) {
-    write('debug', text, object);
+    write('debug', text, data);
   }
 };
 
+// Error output
+// takes an optional error
 const error = (text, err) => {
   write('error', text, err);
 };
