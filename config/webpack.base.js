@@ -4,8 +4,18 @@
 const path = require('path');
 const AssetsPlugin = require('assets-webpack-plugin');
 const webpack = require('webpack');
+const fs = require('fs');
 
 const assetsFile = 'assets.json';
+const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
+const resolvePluginsPresets = (babelGroup) => {
+  babelGroup.plugins = (babelGroup.plugins || []).map(require.resolve);
+  babelGroup.presets = (babelGroup.presets || []).map(require.resolve);
+};
+
+babelrc.babelrc = false;
+resolvePluginsPresets(babelrc);
+Object.keys(babelrc.env || {}).forEach((env) => resolvePluginsPresets(babelrc.env[env]));
 
 module.exports = (options) => ({
   node: {
@@ -72,10 +82,7 @@ module.exports = (options) => ({
           /node_modules/,
           path.join(options.userRootPath, 'build'),
         ],
-        query: {
-          extends: path.join(__dirname, '../.babelrc'),
-          babelrc: false,
-        },
+        query: babelrc,
       },
     ],
   },

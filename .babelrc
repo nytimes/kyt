@@ -1,12 +1,12 @@
 {
-  "presets": ["react", ["es2015", { "modules": false } ]],
-  "plugins": ["transform-runtime"],
+  "presets": ["babel-preset-react", "babel-preset-es2015"],
+  "plugins": ["babel-plugin-transform-runtime"],
   "env": {
     "development": {
       "plugins": ["react-hot-loader/babel"]
     },
     "production": {
-      "plugins": ["transform-react-constant-elements"]
+      "plugins": ["babel-plugin-transform-react-constant-elements"]
     }
   }
 }
