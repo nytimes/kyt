@@ -17,8 +17,7 @@ module.exports = (program) => {
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.exec(`rm -rf ${tmpDir}`);
-  const userPackageJSON = require(packageJSONPath); // eslint-disable-line global-require
-  const oldPackageJSON = Object.assign({}, userPackageJSON);
+  let oldPackageJSON;
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
@@ -41,14 +40,27 @@ module.exports = (program) => {
       bailProcess();
     }
 
-    // Uses the cloned package.json to update the user's
-    // dependencies, scripts and other package configuration.
+    // Add dependencies, scripts and other package to
+    // the user's package.json configuration.
     const updateUserPackageJSON = () => {
+      let userPackageJSON;
+      // Create a package.json definition if
+      // the user doesn't already have one.
+      if (shell.test('-f', packageJSONPath)) {
+        userPackageJSON = require(packageJSONPath); // eslint-disable-line global-require
+      } else {
+        userPackageJSON =
+          { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
+        logger.task('Creating a new package.json. You should fill it in.');
+      }
+
+      // Clone the package.json so that we have a backup.
+      oldPackageJSON = Object.assign({}, userPackageJSON);
       // eslint-disable-next-line global-require
       const tempPackageJSON = require(`${tmpDir}/package.json`);
       const tempDependencies = tempPackageJSON.dependencies || {};
 
-      // Remove kyt dependency from the starter kyt package.
+      // In case the starter kyt used `kyt` as a dependency.
       if (tempDependencies.kyt) delete tempDependencies.kyt;
 
       userPackageJSON.dependencies = Object.assign(
@@ -151,9 +163,9 @@ module.exports = (program) => {
 
     const createGitignore = () => {
       if (!shell.test('-f', gitignoreFile)) {
-        const gitignoreLocal = path.resolve(__dirname, '../../.gitignore')
+        const gitignoreLocal = path.resolve(__dirname, '../../.gitignore');
         shell.exec(`cp ${gitignoreLocal} ${gitignoreFile}`);
-        logger.task(`Created .gitignore file`);
+        logger.task('Created .gitignore file');
       }
     };
 
@@ -170,7 +182,7 @@ module.exports = (program) => {
       }
       // Copy the prototype file from the starter kit into the users repo
       shell.exec(`cp ${starterProto} ${userProto}`);
-      logger.task(`copied prototype.js file into root`);
+      logger.task('copied prototype.js file into root');
     };
 
     try {
