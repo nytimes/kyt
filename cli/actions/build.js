@@ -39,8 +39,13 @@ module.exports = () => {
   let serverConfig = merge.smart(baseConfig(serverOptions), serverWebpackConfig(serverOptions));
 
   // Modify configs
-  clientConfig = kytConfig.modifyWebpackConfig(clientConfig, clientOptions);
-  serverConfig = kytConfig.modifyWebpackConfig(serverConfig, serverOptions);
+  try {
+    clientConfig = kytConfig.modifyWebpackConfig(clientConfig, clientOptions);
+    serverConfig = kytConfig.modifyWebpackConfig(serverConfig, serverOptions);
+  } catch (error) {
+    logger.error('Error in your kyt.config.js modifyWebpackConfig():', error);
+    process.exit();
+  }
 
   logger.start('Starting production build...');
 
