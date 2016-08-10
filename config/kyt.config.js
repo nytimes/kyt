@@ -14,7 +14,12 @@ baseConfig.productionPublicPath =  '/assets/';
 
 // Find user config
 if (shell.test('-f', userConfigPath)) {
-  config = require(userConfigPath); // eslint-disable-line global-require
+  try {
+    config = require(userConfigPath); // eslint-disable-line global-require
+  } catch (error) {
+    console.error('❌ Error loading your kyt.config.js:', error);
+    process.exit();
+  }
 }
 
 config = merge(baseConfig, config);
