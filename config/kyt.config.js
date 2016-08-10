@@ -17,7 +17,7 @@ if (shell.test('-f', userConfigPath)) {
   try {
     config = require(userConfigPath); // eslint-disable-line global-require
   } catch (error) {
-    console.error('❌ Error loading your kyt.config.js:', error);
+    logger.error('❌ Error loading your kyt.config.js:', error);
     process.exit();
   }
 }

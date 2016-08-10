@@ -8,6 +8,7 @@ const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
+  shell.config.silent = true;
 
   const userRootPath = kytConfig.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
@@ -23,12 +24,13 @@ module.exports = () => {
   const testConfig = path.resolve(__dirname, '../../config/webpack.test.js');
   const tempTestDir = path.join(userRootPath,'./node_modules/kyt/tmp-test');
   const newConfig = path.join(tempTestDir, './webpack.config.js');
-  // Comment this out to see full shell output
-  shell.config.silent = true;
-  logger.start('Running Tests...');
+
+  logger.start('Running Test Command...');
+
   // Create Temp Directory and move user src files there
   shell.mkdir(tempTestDir);
   shell.cp('-r', userSrc, tempTestDir );
+
   // Copy the webpack config into the temp directory
   shell.cp(testConfig, newConfig);
 
@@ -38,9 +40,12 @@ module.exports = () => {
 
   // Remove tmp directory
   shell.rm('-rf', tempTestDir);
+  logger.task('Test files prepared by Babel');
+  // Move back to user's root directory
+  shell.cd(userRootPath);
 
-  // // // Next, execute the ava cli on our build.
-  // // // We add our node_modules tothe NODE_PATH so that ava can be resolved.
+  // Execute the ava cli on our build.
+  // We add our node_modules tothe NODE_PATH so that ava can be resolved.
   let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/test/**/__test__/*.test.js`;
   if (kytConfig.debug) command += ' --verbose';
   shell.config.silent = false;
