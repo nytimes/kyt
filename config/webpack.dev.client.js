@@ -14,8 +14,6 @@ const cssStyleLoaders = [
   'postcss',
 ];
 
-const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
-
 module.exports = (options) => ({
   target: 'web',
 
@@ -43,7 +41,7 @@ module.exports = (options) => ({
       },
       {
         test: /\.scss$/,
-        loaders: sassStyleLoaders,
+        loaders: clone(cssStyleLoaders).concat('sass'),
       },
     ],
   },

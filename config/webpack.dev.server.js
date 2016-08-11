@@ -7,15 +7,12 @@ const nodeExternals = require('webpack-node-externals');
 const clone = require('ramda').clone;
 
 const cssStyleLoaders = [
-  'fake-style',
   {
-    loader: 'css',
+    loader: 'css-loader/locals',
     query: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
   'postcss',
 ];
-
-const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
 
 module.exports = (options) => ({
   target: 'node',
@@ -44,7 +41,7 @@ module.exports = (options) => ({
       },
       {
         test: /\.scss$/,
-        loaders: sassStyleLoaders,
+        loaders: clone(cssStyleLoaders).concat('sass'),
       },
     ],
 
