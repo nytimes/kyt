@@ -5,7 +5,7 @@ const path = require('path');
 const logger = require('./../logger');
 const shell = require('shelljs');
 const kytConfig = require('./../../config/kyt.config');
-
+const fs = require('fs');
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
@@ -21,19 +21,21 @@ module.exports = () => {
   const presets = `${es2015Preset},${reactPreset}`;
   const babelWebpack = require.resolve('babel-plugin-webpack-loaders');
   const plugins =`${babelWebpack}`;
-  const testConfig = path.resolve(__dirname, '../../config/webpack.test.js');
+  const testConfigPath = path.resolve(__dirname, '../../config/webpack.temp.test.js');
   const tempTestDir = path.join(userRootPath,'./node_modules/kyt/tmp-test');
-  const newConfig = path.join(tempTestDir, './webpack.config.js');
+  const newConfigPath = path.join(tempTestDir, './webpack.config.js');
 
   logger.start('Running Test Command...');
+
+  // Prep webpack Config
 
   // Create Temp Directory and move user src files there
   shell.mkdir(tempTestDir);
   shell.cp('-r', userSrc, tempTestDir );
 
   // Copy the webpack config into the temp directory
-  shell.cp(testConfig, newConfig);
-
+  //fs.writeFileSync(newConfigPath, configOutput);
+  shell.cp(testConfigPath, newConfigPath);
   // Compile Code and move it into the user's root directory
   shell.cd(tempTestDir);
   shell.exec(`NODE_PATH=$NODE_PATH:${npath} BABEL_DISABLE_CACHE=1 ${babel} ${tempTestDir} --presets ${presets} --plugins ${plugins} --out-dir ${userBuild} -s inline`);

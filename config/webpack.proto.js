@@ -14,7 +14,7 @@ module.exports = (options) => {
       'webpack/hot/dev-server',
       `webpack-dev-server/client?${publicRoot}`,
       path.resolve(__dirname, '../prototype/index.html'),
-      path.resolve(process.cwd(), './prototype.js'),
+      path.resolve(options.userRootPath, './prototype.js'),
     ],
 
     output: {

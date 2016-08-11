@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+const path = require('path');
+process.env.USER_ROOT = path.resolve(process.cwd());
 const program = require('commander');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
@@ -8,7 +10,6 @@ const buildAction = require('./actions/build');
 const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
-
 program
   .command('lint')
   .description(`lint .js and .jsx files in the ./src directory.
