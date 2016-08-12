@@ -2,7 +2,6 @@
 
 ## CLI
 kyt includes a CLI with all the basic commands needed for development.
-The commands are included in your package.json during install.
 
 1. `kyt dev` starts up a wepack dev server
 2. `kyt build` compiles server and client code for production use
@@ -27,14 +26,17 @@ The `run` command takes the copiled code from the production build and runs a no
 You can change ports in the kyt config.
 
 ### kyt test
-The `test` command takes any test files in your src directory and runs them using Ava. 
+The `test` command takes any test files in your src directory and runs them using [Ava](https://github.com/avajs/ava). 
 
 ### kyt lint
 The `lint` command lints all files in the src directory using eslint. 
 You can override the base eslint file in the kyt config.
 
+stylelint details TK.
+
 ### kyt proto
-The `proto` command starts up a webpack dev server for building quick prototypes with react components. 
+The `proto` command starts up a webpack dev server for building prototypes.
+More about [prototyping with kyt](//link tk)
 
 ### kyt setup
 the `setup` command allows you to plugin a starter-kyt to your app. The command has two options:
