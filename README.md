@@ -7,7 +7,7 @@ kyt is a dev tool created to let teams build node apps without having to spend h
 
 ## How it Works
 
-kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](//link tk) popular loaders including react and css-modules. 
+kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](//link tk) popular libaries including react and css-modules. 
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
 See our [config override instructions](//link tk) for details.
