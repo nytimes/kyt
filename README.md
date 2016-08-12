@@ -1,25 +1,15 @@
 # kyt
-A development kit for Node-React Apps
+A development kit for Node Apps
 
 ## What is kyt?
-kyt is a dev tool created to let teams build node-react apps without having to spend hours messing with configuration.
+kyt is a dev tool created to let teams build node apps without having to spend hours messing with configuration.
 
+## Quick Start
 
 ## Requirements
 
 1. Node v6 is required.
-
-You can install/manage versions of node using [nvm](https://github.com/creationix/nvm):
-
-```
-nvm install 6
-```
-
-Or, if you already have it
-
-```
-nvm use 6
-
+2. 
 
 ## Installation
 
