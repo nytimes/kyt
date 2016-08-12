@@ -1,4 +1,4 @@
-# kyt webpack support list
+# kyt dev tool support list
 
 kyt supports a number of webpack functions out of the box
 
@@ -16,3 +16,7 @@ kyt supports a number of webpack functions out of the box
 
 
 ## Webpack Plugins
+
+## Other Tools
+
+### React Hot Loading
