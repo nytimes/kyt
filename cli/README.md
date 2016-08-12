@@ -15,7 +15,7 @@ kyt includes a CLI with all the basic commands needed for development.
 ## kyt Commands Explained 
 
 ### kyt dev
-The `dev` command takes the entry index.js in client and server, compiles them, and starts up a webpack dev server on the specified ports. The dev server includes a react hot loader to allow for faster development. 
+The `dev` command takes the entry index.js in client and server, compiles them, and starts up a webpack dev server on the specified ports. The dev server includes a live reloading to allow for faster development. 
 You can change ports in the kyt config.
 
 ### kyt build
