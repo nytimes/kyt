@@ -2,11 +2,17 @@
 
 kyt supports a number of webpack functions out of the box
 
-
-## Babel Presets and Plugins
-
-
 ## Webpack Loaders
+
+* React
+* CSS Modules
+* Scss
+* PostCss
+* HTML
+* URL loader
+* babel loader
+
+### Babel Presets and Plugins
 
 
 ## Webpack Plugins
