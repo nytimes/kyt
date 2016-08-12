@@ -135,7 +135,7 @@ module.exports = (program) => {
         // Since the user already has a kyt.config,
         // we need to back it up before copying.
         const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.bak.js`);
-        shell.exec(`mv -f ${newConfig} ${mvTo}`);
+        shell.exec(`mv -f ${userKytConfig} ${mvTo}`);
         logger.task(`Backed up current kyt.config.js to: ${mvTo}`);
         copyConfig();
       } else {
