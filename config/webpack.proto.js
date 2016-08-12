@@ -3,6 +3,17 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const clone = require('ramda').clone;
+
+const cssStyleLoaders = [
+  'style',
+  {
+    loader: 'css',
+    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+  },
+  'postcss',
+];
+
 
 module.exports = (options) => {
   const publicRoot = `http://localhost:${options.port}`;
@@ -21,6 +32,19 @@ module.exports = (options) => {
       path: path.join(options.userRootPath, 'build/prototype'),
       filename: 'bundle.js',
       publicPath,
+    },
+
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loaders: cssStyleLoaders,
+        },
+        {
+          test: /\.scss$/,
+          loaders: clone(cssStyleLoaders).concat('sass'),
+        },
+      ],
     },
 
     plugins: [
