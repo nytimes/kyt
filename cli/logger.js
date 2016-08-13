@@ -25,7 +25,7 @@ const write = (status, text, verbose) => {
   }
 
   logger.log(textToLog);
-  if (logObject) logger.dir(verbose, {depth: 15});
+  if (logObject) logger.dir(verbose, { depth: 15 });
 };
 // Printing any statements
 const log = (text) => {

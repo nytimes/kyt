@@ -1,13 +1,17 @@
 #!/usr/bin/env node
 
 // Surface any uncaught errors
-process.on('uncaughtException', function(error) {
-  console.error("UNHANDLED EXCEPTION", error.stack);
+process.on('uncaughtException', (error) => {
+  const log = console;
+  log.error('UNHANDLED EXCEPTION', error.stack);
   process.exit();
 });
 
 const path = require('path');
+
+// define user root
 process.env.USER_ROOT = path.resolve(process.cwd());
+
 const program = require('commander');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
@@ -16,6 +20,7 @@ const buildAction = require('./actions/build');
 const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
+
 program
   .command('lint')
   .description(`lint .js and .jsx files in the ./src directory.

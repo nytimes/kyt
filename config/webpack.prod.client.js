@@ -44,7 +44,7 @@ module.exports = (options) => ({
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           notExtractLoader: 'style',
-          loader: clone(cssStyleLoaders).concat('sass')
+          loader: clone(cssStyleLoaders).concat('sass'),
         }),
       },
     ],
