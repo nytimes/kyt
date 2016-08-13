@@ -7,7 +7,7 @@ kyt is a dev tool created to let teams build node apps without having to spend h
 
 ## How it Works
 
-kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](//link tk) popular libaries including react and css-modules. 
+kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](//link tk) popular libaries including React and css-modules. 
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
 See our [config override instructions](//link tk) for details.
@@ -15,7 +15,7 @@ See our [config override instructions](//link tk) for details.
 
 ## Quick Start
 
-1. Create a package.json with your kyt dependency.
+1. Create a package.json
 ```
  {
    "name": "my-app",
@@ -25,10 +25,10 @@ See our [config override instructions](//link tk) for details.
    }
  }
 ```
-2. Run `npm install`
-3. Run `node_modules/.bin/kyt setup`
-4. Run `npm run dev`
-5. Check http://localhost:3000
+2. `npm install`
+3. `node_modules/.bin/kyt setup`
+4. `npm run dev`
+5. http://localhost:3000
 
 
 ## Requirements
@@ -68,6 +68,9 @@ kyt includes a CLI with all the basic commands needed for development.
 
 See our [CLI docs](//link tk) for further details.
 
+## Conventions
+kyt follows several conventions for directory structure. If you're setting up a new project, see details [here](https://github.com/nytm/wf-kyt/conventions.md). 
+
 
 ## Configuration
 
@@ -79,7 +82,7 @@ See the list of supported functionality [here](//link tk)
 
 ## starter-kyts
 
-kyt provides all the basic functions for doing development. It can easily be used on it's own, or be intergrated into existing projects. 
+kyt provides all the basic functions for doing development. It can easily be used on it's own, or be integrated into existing projects. 
 
 starter-kyts are boilerplates built to work alongside kyt. 
 They include more additional tools and libraries for a variety of projects.
