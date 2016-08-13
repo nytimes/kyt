@@ -176,7 +176,7 @@ module.exports = (program) => {
       if (!shell.test('-f', starterProto)) return;
       // Backup user's prototype file if they already have one
       if (shell.test('-f', userProto)) {
-        const prototypeBackup = path.join(userRootPath, `proto-${Date.now()}-bak.js`);
+        const prototypeBackup = path.join(userRootPath, `prototype-${Date.now()}-bak.js`);
         shell.exec(`mv ${userProto} ${prototypeBackup} `);
         logger.task(`Backed up current prototype file to: ${prototypeBackup}`);
       }
