@@ -117,6 +117,7 @@ module.exports = () => {
     }
   });
 
+  // detect if port is in use
   detect(clientPort, function(error, unusedPort) {
 
     if (clientPort === unusedPort) {
@@ -124,7 +125,7 @@ module.exports = () => {
     } else {
       logger.error(`clientPort: ${clientPort} is in use.`);
       logger.info('Ports can be configured in kyt.config.js');
-      process.exit()
+      process.exit();
     }
   });
 
@@ -142,6 +143,8 @@ module.exports = () => {
       logger.error('Server compiler failed\n', stats.toString());
     } else {
       logger.task('Server compiled');
+
+      // detect if port is in use
       detect(serverPort, function(error, unusedPort) {
 
         if (serverPort === unusedPort) {
@@ -149,7 +152,7 @@ module.exports = () => {
         } else {
           logger.error(`serverPort: ${serverPort} is in use.`);
           logger.info('Ports can be configured in kyt.config.js');
-          process.exit()
+          process.exit();
         }
       });
 
