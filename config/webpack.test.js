@@ -6,7 +6,7 @@ const webpack = require.resolve('webpack');
 const clone = require('ramda').clone;
 // NOTE: This is the file path from the temporary test-src directory
 const kytConfig = require('./kyt.config');
-const logger = require('../cli/logger.js');
+const logger = console;
 const cssStyleLoaders = [
   'style',
   {
@@ -22,14 +22,6 @@ const options = {
   type: "test"
 };
 const testConfig = {
-  target: 'web',
-  entry: [
-    path.join(process.cwd(),'./src')
-  ],
-  output: {
-    path: path.join(process.env.USER_ROOT, 'build/test'),
-  },
-
   module: {
     loaders: [
       {
