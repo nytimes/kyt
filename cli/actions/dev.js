@@ -9,6 +9,7 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const merge = require('webpack-merge');
 const SingleChild = require('single-child');
+const detect = require('detect-port');
 const logger = require('./../logger');
 const kytConfig = require('../../config/kyt.config');
 const baseConfig = require('./../../config/webpack.base');
@@ -16,8 +17,8 @@ let clientConfig = require('./../../config/webpack.dev.client');
 let serverConfig = require('./../../config/webpack.dev.server');
 
 module.exports = () => {
-  const clientPort = kytConfig.clientPort;
-  const serverPort = kytConfig.serverPort;
+  let clientPort = kytConfig.clientPort;
+  let serverPort = kytConfig.serverPort;
   const userRootPath = kytConfig.userRootPath;
 
   const clientOptions = {
@@ -116,7 +117,18 @@ module.exports = () => {
     }
   });
 
-  startHotClient();
+  // detect if port is in use
+  detect(clientPort, function(error, unusedPort) {
+
+    if (clientPort === unusedPort) {
+      startHotClient();
+    } else {
+      logger.error(`clientPort: ${clientPort} is in use.`);
+      logger.info('Ports can be configured in kyt.config.js');
+      process.exit();
+    }
+  });
+
 
   const compileHotServer = () => {
     serverCompiler.run(() => undefined);
@@ -131,7 +143,19 @@ module.exports = () => {
       logger.error('Server compiler failed\n', stats.toString());
     } else {
       logger.task('Server compiled');
-      startHotServer();
+
+      // detect if port is in use
+      detect(serverPort, function(error, unusedPort) {
+
+        if (serverPort === unusedPort) {
+          startHotServer();
+        } else {
+          logger.error(`serverPort: ${serverPort} is in use.`);
+          logger.info('Ports can be configured in kyt.config.js');
+          process.exit();
+        }
+      });
+
     }
   });
 

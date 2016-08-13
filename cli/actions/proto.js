@@ -2,6 +2,7 @@
 // Command to run prorotype dev server
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const detect = require('detect-port');
 const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
 const shell = require('shelljs');
@@ -33,12 +34,20 @@ module.exports = () => {
       logger.error('Webpack config is invalid\n', error);
       process.exit();
     }
+    // detect if port is in use
+    detect(port, function(error, unusedPort) {
 
-    //webpackConfig.devServer.stats = true;
-    // Creates a webpack dev server at the specified port
-    const server = new WebpackDevServer(compiler, webpackConfig.devServer);
-    server.listen(port, 'localhost', () => {
-      logger.end(`webpack-dev-server http://localhost:${port}/prototype`);
+      if (port === unusedPort) {
+        // Creates a webpack dev server at the specified port
+        const server = new WebpackDevServer(compiler, webpackConfig.devServer);
+        server.listen(port, 'localhost', () => {
+          logger.end(`webpack-dev-server http://localhost:${port}/prototype`);
+        });
+      } else {
+        logger.error(`port: ${port} is in use.`);
+        logger.info('Ports can be configured in kyt.config.js');
+        process.exit();
+      }
     });
   };
   logger.start('Configuring Prototype...');
