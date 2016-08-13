@@ -8,7 +8,7 @@ const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
-  // shell.config.silent = true;
+  shell.config.silent = true;
 
   const userRootPath = kytConfig.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
@@ -20,7 +20,7 @@ module.exports = () => {
   const reactPreset = require.resolve('babel-preset-react');
   const presets = `${es2015Preset},${reactPreset}`;
   const babelWebpack = require.resolve('babel-plugin-webpack-loaders');
-  const plugins =`${babelWebpack}`;
+  const plugins = babelWebpack;
   const testConfigPath = path.resolve(__dirname, '../../config/webpack.temp.test.js');
   const tempTestDir = path.join(userRootPath, './node_modules/kyt/tmp-test');
   const newConfigPath = path.join(tempTestDir, './webpack.config.js');
