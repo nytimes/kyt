@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+// Surface any uncaught errors
 process.on('uncaughtException', function(error) {
   console.error("UNHANDLED EXCEPTION", error.stack);
   process.exit();
