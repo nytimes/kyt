@@ -1,5 +1,11 @@
 #!/usr/bin/env node
 
+// Surface any uncaught errors
+process.on('uncaughtException', function(error) {
+  console.error("UNHANDLED EXCEPTION", error.stack);
+  process.exit();
+});
+
 const path = require('path');
 process.env.USER_ROOT = path.resolve(process.cwd());
 const program = require('commander');
