@@ -37,7 +37,7 @@ stylelint details TK.
 
 ### kyt proto
 The `proto` command starts up a webpack dev server for building prototypes.
-More about [prototyping with kyt](//link tk)
+More about [prototyping with kyt](https://github.com/nytm/wf-kyt/prototype)
 
 ### kyt setup
 the `setup` command allows you to plug a starter-kyt into to your app. 
