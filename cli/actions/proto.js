@@ -9,6 +9,7 @@ const logger = require('./../logger');
 const kytConfig = require('./../../config/kyt.config');
 const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
+
 module.exports = () => {
   const port = kytConfig.prototypePort;
   const userRootPath = kytConfig.userRootPath;
@@ -19,7 +20,7 @@ module.exports = () => {
     userRootPath,
   };
 
-  var startPrototype = (err) => {
+  const startPrototype = () => {
     // Build webpack config
     let webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
     webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
@@ -34,7 +35,6 @@ module.exports = () => {
       process.exit();
     }
 
-    //webpackConfig.devServer.stats = true;
     // Creates a webpack dev server at the specified port
     const server = new WebpackDevServer(compiler, webpackConfig.devServer);
     server.listen(port, 'localhost', () => {
