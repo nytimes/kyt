@@ -16,4 +16,5 @@ src/
 The `kyt test` command finds all files with `*.test.js`
 
 ## kyt.config.js
-The kyt config file must live in the root of your repository
+The kyt config file must live in the root of your repository.
+See further instructions [here](/config/kytConfig.md)
