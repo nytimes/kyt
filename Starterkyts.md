@@ -15,7 +15,7 @@ The universal starter-kyt is for building react apps with SSR and React Router.
 ## How to build a starter-kyt
 starter-kyts act as boiler plates for projects. They use kyt as their build system and add new tools.
 
-1. Choose your starter-kyt architecture. Make sure you are familiar with the [kyt conventions](https://github.com/nytm/wf-kyt/conventions.md).
+1. Choose your starter-kyt architecture. Make sure you are familiar with the [kyt conventions](conventions.md).
 
 2. Add additional dependencies to a package.json
 
