@@ -23,5 +23,5 @@ starter-kyts act as boiler plates for projects. They use kyt as their build syst
 
 4. Create Documentation
 
-5. Submit to [kyt](https://github.com/nytm/wf-kyt) to be considered as a recommended starter-kyt
+5. Submit to [kyt](/issues) to be considered as a recommended starter-kyt
 

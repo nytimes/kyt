@@ -6,7 +6,7 @@ To set up your config, create a `kyt.config.js` file in the root of your project
 and export an object with the options.
 
 *NOTE* kyt.config.js  is not currently transpiled with babel. It supports the same syntax as node 6+.
-See the [base kyt config](https://github.com/nytm/wf-kyt/blob/master/config/kyt.base.config.js) for an example.
+See the [base kyt config](/config/kyt.base.config.js) for an example.
 
 ## kyt.config.js options
 

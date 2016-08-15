@@ -7,10 +7,10 @@ kyt is a dev tool created to let teams build node apps without having to spend h
 
 ## How it Works
 
-kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](https://github.com/nytm/wf-kyt/config/webpackConfig.md) popular libaries including React and css-modules. 
+kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](/config/webpackConfig.md) popular libaries including React and css-modules. 
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
-See our [config override instructions](https://github.com/nytm/wf-kyt/config/kytConfig.md) for details.
+See our [config override instructions](/config/kytConfig.md) for details.
 
 
 ## Quick Start
@@ -66,10 +66,10 @@ kyt includes a CLI with all the basic commands needed for development.
 `kyt help` Shows commands and their documentation.
 `kyt setup` sets up kyt and installs a specified starter kyt
 
-See our [CLI docs](https://github.com/nytm/wf-kyt/cli) for further details.
+See our [CLI docs](/cli) for further details.
 
 ## Conventions
-kyt follows several conventions for directory structure. If you're setting up a new project, see details [here](https://github.com/nytm/wf-kyt/conventions.md). 
+kyt follows several conventions for directory structure. If you're setting up a new project, see details [here](/conventions.md). 
 
 
 ## Configuration
@@ -78,7 +78,7 @@ kyt allows you to specify options in a kyt.config file.
 See [here](https://github.com/nytm/wf-kyt/kytConfig.md) for instructions.
 
 kyt uses webpack to compile project code and run tests.
-See the list of supported functionality [here](https://github.com/nytm/wf-kyt/config/webpackConfig.md)
+See the list of supported functionality [here](/config/webpackConfig.md)
 
 ## starter-kyts
 
@@ -87,13 +87,13 @@ kyt provides all the basic functions for doing development. It can easily be use
 starter-kyts are boilerplates built to work alongside kyt. 
 They include more additional tools and libraries for a variety of projects.
 
-See our recommended list of [starter-kyts](https://github.com/nytm/wf-kyt/Starterkyts.md) 
+See our recommended list of [starter-kyts](/Starterkyts.md) 
 
 
 ### How to build a starter
 
 Community supported starter-kyts can be built to support a variety of projects. 
-See additional info [here](https://github.com/nytm/wf-kyt/Starterkyts.md)
+See additional info [here](/Starterkyts.md)
 
 
 ## How to contribute to kyt
@@ -108,10 +108,10 @@ There are two ways to contribute to kyt:
 2. Build a starter kyt
 
   Have a great idea for a boilerplate? Build it on top of kyt and let us know about it. 
-  We feature [recommended starter-kyts](https://github.com/nytm/wf-kyt/Starterkyts.md)
+  We feature [recommended starter-kyts](/Starterkyts.md)
 
 
 ## Need Help?
 
-1. Check our [FAQ](https://github.com/nytm/wf-kyt/FAQ.md)
+1. Check our [FAQ](/FAQ.md)
 2. Submit an issue 
