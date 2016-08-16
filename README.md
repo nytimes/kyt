@@ -10,26 +10,7 @@ kyt is a dev tool created to let developers build node apps without having to sp
 kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](/config/webpackConfig.md) popular libaries including React and css-modules. 
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
-See our [config override instructions](/config/kytConfig.md#modifyWebpackConfig) for details.
-
-
-## Quick Start
-
-1. Create a package.json
-```
- {
-   'name': 'my-app',
-   'version': '0.0.0',
-   'dependencies': {
-     'kyt': 'git+git@github.com:nytm/wf-kyt.git'
-   }
- }
-```
-2. `npm install`
-3. `node_modules/.bin/kyt setup`
-4. `npm run dev`
-5. http://localhost:3000
-
+See our [config override instructions](/config/kytConfig.md#modifyWebpackConfig) for details, and our [recipes](/recipes.md) for examples.
 
 ## Requirements
 
@@ -41,26 +22,41 @@ That's it.
 
 1. create a repo with a package.json file
 2. `npm install --save git@github.com:nytm/wf-kyt.git`
+3. `node_modules/.bin/kyt setup` - This will set up your project to use the default starter-kyt. If you are integrating kyt into an existing project you can skip this step. Learn more about [setup](/cli). 
 
 We recommend installing kyt as a dependency in your project.
 
 ## CLI
 
 kyt includes a CLI with all the basic commands needed for development.
+The `setup` command will include these commands as scripts in your package.json.
+You can also run them with `node_modules/.bin/kyt commandName`
 
-`kyt dev` starts up a Webpack dev server
-`kyt build` compiles server and client code for production use
-`kyt run` runs production code
-`kyt test` runs ava on all tests in /src
-`kyt proto` starts the prototyping app.
-`kyt lint` lints src code using eslint
-`kyt help` Shows commands and their documentation.
-`kyt setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
+`dev` starts up a Webpack dev server
+`build` compiles server and client code for production use
+`run` runs production code
+`test` runs ava on all tests in /src
+`proto` starts the prototyping app.
+`lint` lints src code using eslint
+`help` Shows commands and their documentation.
+`setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
 
 See our [CLI docs](/cli) for further details.
 
 ## Conventions
-kyt follows a few simple conventions for directory structure. If you're setting up a new project, see details [here](/conventions.md). 
+
+kyt follows a few simple conventions.
+
+All projects must have the following files:
+```
+  src/
+    client/
+      index.js
+    server/
+      index.js
+```
+Each index.js file act as the build entry.
+If you're setting up a new project see additional details [here](/conventions.md). 
 
 
 ## Configuration
@@ -91,17 +87,8 @@ See additional info [here](/Starterkyts.md)
 
 ## How to contribute to kyt
 
-There are two ways to contribute to kyt:
+Want to help? See details [here](/CONTRIBUTING.md) 
 
-1. Contribute to open issues
-
-   We're looking for developers to help maintain kyt. 
-   See something you think we should address? Open an issue.
-
-2. Build a starter kyt
-
-  Have a great idea for a boilerplate? Build it on top of kyt and let us know about it. 
-  We feature [recommended starter-kyts](/Starterkyts.md)
 
 
 ## Need Help?
