@@ -1,11 +1,9 @@
 
 // Testing webpack config
 
-const path = require('path');
-const webpack = require.resolve('webpack');
 const clone = require('ramda').clone;
-// NOTE: This is the file path from the temporary test-src directory
 const kytConfig = require('./kyt.config');
+
 const logger = console;
 const cssStyleLoaders = [
   'style',
@@ -18,8 +16,8 @@ const cssStyleLoaders = [
 
 const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
 const options = {
-  environment: "test",
-  type: "test"
+  environment: 'test',
+  type: 'test',
 };
 const testConfig = {
   module: {
@@ -33,7 +31,7 @@ const testConfig = {
         loaders: sassStyleLoaders,
       },
     ],
-  }
+  },
 };
 
 module.exports = () => {
@@ -41,8 +39,8 @@ module.exports = () => {
   let webpackConfig = null;
   try {
     webpackConfig = kytConfig.modifyWebpackConfig(testConfig, options);
-    return webpackConfig;
-  } catch(error) {
+  } catch (error) {
     logger.log('Error Loading the Test Webpack Config', error);
   }
+  return webpackConfig;
 };

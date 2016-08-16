@@ -5,11 +5,14 @@ const path = require('path');
 const shell = require('shelljs');
 const baseConfig = require('./kyt.base.config');
 const merge = require('ramda').merge;
-let userConfigPath = path.join(process.env.USER_ROOT, './kyt.config.js');
+
+
+const userConfigPath = path.join(process.env.USER_ROOT, './kyt.config.js');
 let config;
+const logger = console;
 
 // Add base config option for productionPublicPath
-baseConfig.productionPublicPath =  '/assets/';
+baseConfig.productionPublicPath = '/assets/';
 // Find user config
 if (shell.test('-f', userConfigPath)) {
   try {

@@ -18,14 +18,14 @@ const resolvePluginsPresets = (babelGroup) => {
       plugin[0] = require.resolve(plugin[0]);
       return plugin;
     }
-    else return require.resolve(plugin);
+    return require.resolve(plugin);
   });
   babelGroup.presets = (babelGroup.presets || []).map((preset) => {
     if (typeof preset === 'object') {
       preset[0] = require.resolve(preset[0]);
       return preset;
     }
-    else return require.resolve(preset);
+    return require.resolve(preset);
   });
 };
 babelrc.babelrc = false;
