@@ -6,7 +6,11 @@
       "plugins": ["react-hot-loader/babel"]
     },
     "production": {
-      "plugins": ["babel-plugin-transform-react-constant-elements"]
+      "plugins": [
+        "babel-plugin-transform-react-remove-prop-types",
+        "babel-plugin-transform-react-constant-elements",
+        "babel-plugin-transform-react-inline-elements"
+      ]
     }
   }
 }
