@@ -6,6 +6,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const path = require('path');
 const shell = require('shelljs');
 const logger = require('./../logger');
+const detectPort = require('./../../utils/detectPort');
 const kytConfig = require('./../../config/kyt.config');
 const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
@@ -49,5 +50,12 @@ module.exports = () => {
     logger.error('See the kyt Readme for details.');
     process.exit();
   }
-  startPrototype();
+
+  detectPort.isPortFree(port, (portFree) => {
+    if (portFree) {
+      startPrototype();
+    } else {
+      process.exit();
+    }
+  })
 };
