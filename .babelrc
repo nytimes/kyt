@@ -1,5 +1,9 @@
 {
-  "presets": ["babel-preset-react", ["babel-preset-es2015", { "modules": false }]],
+  "presets": [
+    "babel-preset-react",
+    ["babel-preset-es2015", { "modules": false }],
+    "babel-preset-stage-2"
+  ],
   "plugins": ["babel-plugin-transform-runtime"],
   "env": {
     "development": {

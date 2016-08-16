@@ -35,7 +35,7 @@
     "babel-plugin-webpack-loaders": "^0.7.1",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
-    "babel-preset-stage-3": "^6.11.0",
+    "babel-preset-stage-2": "^6.13.0",
     "chokidar": "^1.6.0",
     "classnames": "^2.2.5",
     "commander": "^2.9.0",
