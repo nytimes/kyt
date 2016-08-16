@@ -4,6 +4,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const clone = require('ramda').clone;
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const dashboard = new Dashboard();
 
 const cssStyleLoaders = [
   'style',
@@ -50,6 +53,7 @@ module.exports = (options) => {
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.NoErrorsPlugin(),
+      new DashboardPlugin(dashboard.setData),
     ],
 
     devServer: {

@@ -5,6 +5,8 @@ const path = require('path');
 const chokidar = require('chokidar');
 const express = require('express');
 const webpack = require('webpack');
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const merge = require('webpack-merge');
@@ -78,6 +80,8 @@ module.exports = () => {
 
   const startHotClient = () => {
     const app = express();
+    let dashboard = new Dashboard();
+    clientCompiler.apply(new DashboardPlugin(dashboard.setData));
     const webpackDevMiddleware = devMiddleware(clientCompiler, {
       publicPath: clientCompiler.options.output.publicPath,
       headers: { 'Access-Control-Allow-Origin': '*' },
