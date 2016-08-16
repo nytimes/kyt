@@ -3,14 +3,14 @@
 ## CLI
 kyt includes a CLI with all the basic commands needed for development.
 
-1. `kyt dev` starts up a wepack dev server
+1. `kyt dev` starts up a Webpack dev server
 2. `kyt build` compiles server and client code for production use
 3. `kyt run` runs production code
-4. `kyt test` runs ava on all tests in /src
+4. `kyt test` runs AVA on all tests in /src
 5. `kyt proto` starts the prototyping app.
 6. `kyt lint` lints src code using eslint
 7. `kyt help` Shows commands and their documentation. 
-8. `kyt setup` sets up kyt and installs a specified starter kyt
+8. `kyt setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
 
 ## kyt Commands Explained 
 

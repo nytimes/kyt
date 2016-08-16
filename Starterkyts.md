@@ -6,16 +6,16 @@ starter-kyts are boilerplates built with kyt.
 
 ### [Default starter-kyt](https://github.com/nytm/wf-kyt-starter)
 
-The default starter-kyt is for building simple react apps. 
+The default starter-kyt is for building simple React apps. 
 Install by running: `kyt setup`
 
 ### [Universal starter-kyt](https://github.com/nytm/wf-kyt-starter-universal) 
 The universal starter-kyt is for building react apps with SSR and React Router.
 
 ## How to build a starter-kyt
-starter-kyts act as boiler plates for projects. They use kyt as their build system and add new tools.
+starter-kyts act as boilerplates for projects. They use kyt as their build system and add new tools.
 
-1. Choose your starter-kyt architecture. Make sure you are familiar with the [kyt conventions](conventions.md).
+1. Choose your starter-kyt architecture. Make sure you are familiar with the [kyt conventions](/conventions.md).
 
 2. Add additional dependencies to a package.json
 

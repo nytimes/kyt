@@ -1,8 +1,8 @@
 # kyt
-A development kit for Node Apps
+Your escape from configuration hell
 
 ## What is kyt?
-kyt is a dev tool created to let teams build node apps without having to spend hours messing with configuration.
+kyt is a dev tool created to let developers build node apps without having to spend hours messing setup, configuration, and build tools.
 
 
 ## How it Works
@@ -10,7 +10,7 @@ kyt is a dev tool created to let teams build node apps without having to spend h
 kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](/config/webpackConfig.md) popular libaries including React and css-modules. 
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
-See our [config override instructions](/config/kytConfig.md) for details.
+See our [config override instructions](/config/kytConfig.md#modifyWebpackConfig) for details.
 
 
 ## Quick Start
@@ -18,10 +18,10 @@ See our [config override instructions](/config/kytConfig.md) for details.
 1. Create a package.json
 ```
  {
-   "name": "my-app",
-   "version": "0.0.0",
-   "dependencies": {
-     "kyt": "git+git@github.com:nytm/wf-kyt.git"
+   'name': 'my-app',
+   'version': '0.0.0',
+   'dependencies': {
+     'kyt': 'git+git@github.com:nytm/wf-kyt.git'
    }
  }
 ```
@@ -38,33 +38,24 @@ See our [config override instructions](/config/kytConfig.md) for details.
 That's it.
 
 ## Installation
-There are two ways to install kyt.
-
-### Global Install
-
-```
-npm install kyt -g
-``` 
-
-With global install you can use kyt commands in any repo.
-
-### Install as a dependency
 
 1. create a repo with a package.json file
 2. `npm install --save git@github.com:nytm/wf-kyt.git`
+
+We recommend installing kyt as a dependency in your project.
 
 ## CLI
 
 kyt includes a CLI with all the basic commands needed for development.
 
-`kyt dev` starts up a wepack dev server
+`kyt dev` starts up a Webpack dev server
 `kyt build` compiles server and client code for production use
 `kyt run` runs production code
 `kyt test` runs ava on all tests in /src
 `kyt proto` starts the prototyping app.
 `kyt lint` lints src code using eslint
 `kyt help` Shows commands and their documentation.
-`kyt setup` sets up kyt and installs a specified starter kyt
+`kyt setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
 
 See our [CLI docs](/cli) for further details.
 
@@ -85,7 +76,7 @@ See the list of supported functionality [here](/config/webpackConfig.md)
 kyt provides all the basic functions for doing development. It can easily be used on it's own, or be integrated into existing projects. 
 
 starter-kyts are boilerplates built to work alongside kyt. 
-They include more additional tools and libraries for a variety of projects.
+They include additional tools and libraries for a variety of projects.
 
 See our recommended list of [starter-kyts](/Starterkyts.md) 
 
@@ -115,3 +106,4 @@ There are two ways to contribute to kyt:
 
 1. Check our [FAQ](/FAQ.md)
 2. Submit an issue 
+2. Check out our [recipes](/Recipes.md) for extending kyt 
