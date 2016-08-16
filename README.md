@@ -60,7 +60,7 @@ kyt includes a CLI with all the basic commands needed for development.
 See our [CLI docs](/cli) for further details.
 
 ## Conventions
-kyt follows several conventions for directory structure. If you're setting up a new project, see details [here](/conventions.md). 
+kyt follows a few simple conventions for directory structure. If you're setting up a new project, see details [here](/conventions.md). 
 
 
 ## Configuration
@@ -68,8 +68,10 @@ kyt follows several conventions for directory structure. If you're setting up a 
 kyt allows you to specify options in a kyt.config file.
 See [here](https://github.com/nytm/wf-kyt/kytConfig.md) for instructions.
 
-kyt uses webpack to compile project code and run tests.
-See the list of supported functionality [here](/config/webpackConfig.md)
+kyt uses Webpack to compile project code and run tests.
+See the list of [supported functionality](/config/webpackConfig.md)
+or our [recipes](/Recipes.md) for easy config extension
+
 
 ## starter-kyts
 

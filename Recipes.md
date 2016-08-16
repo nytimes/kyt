@@ -43,3 +43,6 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 ## Add Babel Presets
 
+
+## How to extend `.babelrc`
+
