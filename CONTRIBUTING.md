@@ -6,6 +6,10 @@ There are two ways to contribute to kyt:
 
    We're looking for developers to help maintain kyt. 
    See something you think we should address? Open an issue.
+   
+   
+### kyt local development
+We recommend forking kyt and linking it to a test repo for easy development. 
 
 ## Build a starter kyt
 
