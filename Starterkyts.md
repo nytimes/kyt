@@ -19,9 +19,9 @@ starter-kyts act as boilerplates for projects. They use kyt as their build syste
 
 2. Add additional dependencies to a package.json
 
-3. Set up /src
+3. Set up `/src`
 
-4. Create Documentation
+4. Create documentation
 
 5. Submit to [kyt](/issues) to be considered as a recommended starter-kyt
 

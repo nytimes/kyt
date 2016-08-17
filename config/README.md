@@ -1,7 +1,7 @@
-# kyt Configs
+# kyt configs
 
-kyt allows you to specify options in a kyt.config file.
+kyt allows you to specify options in a `kyt.config.js` file.
 See [here](/config/kytConfig.md) for instructions.
 
-kyt uses webpack to compile project code and run tests.
+kyt uses Webpack to compile project code and run tests.
 See the list of supported functionality [here](/config/webpackConfig.md)

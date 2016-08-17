@@ -1,4 +1,4 @@
-# kyt Recipes
+# kyt recipes
 Easy ways to extend kyt
 
 ## Use Options in `modifyWebpackConfig`
@@ -6,7 +6,7 @@ Easy ways to extend kyt
 The `modifyWebpackConfig` function is called any time a webpack config is used. 
 It's called with two parameters:
 1. baseConfig: The current webpack config
-2. options: an object of useful data for editing configuration.
+2. options: an object of useful data for editing configuration
   * envrionment: The envrionment the webpack file will be used for [production, development, test, prototype]
   * type: The type of config [client, server, test, prototype]
 
@@ -17,7 +17,7 @@ if (options.environment === 'production') {
   // Add the appropriate loader
 }
 ```
-Or if you want to make a change only for client side code
+Or if you want to make a change only for client side code:
 ```
 if (options.type === 'client') {
   // Make changes here
@@ -26,7 +26,7 @@ if (options.type === 'client') {
 
 
 ## Add webpack alises
-in kyt.config.js
+in `kyt.config.js`
 
 ```
 modifyWebpackConfig: (baseConfig, options) => {
@@ -38,7 +38,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 ```
 
 ## Add PostCSS Plugins
-in kyt.config.js
+in `kyt.config.js`
 ```   
 modifyWebpackConfig: (baseConfig, options) => { 
 baseConfig.postcss = (bundler) => {

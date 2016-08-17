@@ -36,9 +36,9 @@ You can also run them with `node_modules/.bin/kyt commandName`
 * `build` compiles server and client code for production use
 * `run` runs production code
 * `test` runs ava on all tests in /src
-* `proto` starts the prototyping app.
+* `proto` starts the prototyping app
 * `lint` lints src code using eslint
-* `help` Shows commands and their documentation.
+* `help` shows commands and their documentation
 * `setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
 
 See our [CLI docs](/cli) for further details.
@@ -47,7 +47,7 @@ See our [CLI docs](/cli) for further details.
 
 kyt follows a few simple conventions.
 
-All projects must have the following files:
+All projects must have the following structure:
 ```
   src/
     client/
@@ -55,23 +55,23 @@ All projects must have the following files:
     server/
       index.js
 ```
-Each index.js file act as the build entry.
+Each `index.js` file acts as the build entry.
 If you're setting up a new project see additional details [here](/conventions.md). 
 
 
 ## Configuration
 
-kyt allows you to specify options in a kyt.config file.
+kyt allows you to specify options in a `kyt.config.js` file.
 See [here](https://github.com/nytm/wf-kyt/kytConfig.md) for instructions.
 
-kyt uses Webpack to compile project code and run tests.
+kyt uses Webpack to compile src code and run tests.
 See the list of [supported functionality](/config/webpackConfig.md)
-or our [recipes](/Recipes.md) for easy config extension
+or our [recipes](/Recipes.md) for easy config extension.
 
 
 ## starter-kyts
 
-kyt provides all the basic functions for doing development. It can easily be used on it's own, or be integrated into existing projects. 
+kyt provides all the basic functionality for development. It can easily be used standalone or integrated into existing projects. 
 
 starter-kyts are boilerplates built to work alongside kyt. 
 They include additional tools and libraries for a variety of projects.
@@ -79,7 +79,7 @@ They include additional tools and libraries for a variety of projects.
 See our recommended list of [starter-kyts](/Starterkyts.md) 
 
 
-### How to build a starter
+### How to build a starter-kyt
 
 Community supported starter-kyts can be built to support a variety of projects. 
 See additional info [here](/Starterkyts.md)
@@ -88,7 +88,6 @@ See additional info [here](/Starterkyts.md)
 ## How to contribute to kyt
 
 Want to help? See details [here](/CONTRIBUTING.md) 
-
 
 
 ## Need Help?

@@ -1,10 +1,10 @@
-# kyt Conventions
+# kyt conventions
 
 In order to use kyt, your project must follow these conventions.
 
 ## Directory Structure
 
-kyt follows several conventions for folder structure. If you're setting up a new project, structure your directory like the following:
+kyt follows several conventions for folder structure. If you're setting up a new project, structure your directory as follows.
 ```
 src/
   /client
@@ -13,7 +13,7 @@ src/
     index.js // wepack entry for server code
 ```
 ## Testing
-The `kyt test` command finds all files with `*.test.js`
+The `kyt test` command finds all files with `*.test.js`.
 
 ## kyt.config.js
 The kyt config file must live in the root of your repository.
