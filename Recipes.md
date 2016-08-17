@@ -12,13 +12,13 @@ It's called with two parameters:
 
 For example, if you want to add a new loader for only production code:
 
-``` 
+```javascript 
 if (options.environment === 'production') {
   // Add the appropriate loader
 }
 ```
 Or if you want to make a change only for client side code:
-```
+```javascript
 if (options.type === 'client') {
   // Make changes here
 }
@@ -28,7 +28,7 @@ if (options.type === 'client') {
 ## Add webpack alises
 in `kyt.config.js`
 
-```
+```javascript
 modifyWebpackConfig: (baseConfig, options) => {
   baseConfig.resolve.alias = {
     'myAliasFolder': path.resolve(process.cwd(), './src/path/to/my/folder'),
@@ -39,7 +39,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 ## Add PostCSS Plugins
 in `kyt.config.js`
-```   
+```javascript   
 modifyWebpackConfig: (baseConfig, options) => { 
 baseConfig.postcss = (bundler) => {
       return [
@@ -54,7 +54,7 @@ baseConfig.postcss = (bundler) => {
 
 ## Add Babel Plugin
 in kyt.config.js
-```
+```javascript
 modifyWebpackConfig: (baseConfig, options) => {
 
   const babelLoader = baseConfig.module.loaders.find(loader => loader.loader === 'babel-loader');
