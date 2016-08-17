@@ -8,13 +8,13 @@ const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
-  shell.config.silent = true;
+  //shell.config.silent = true;
 
   const userRootPath = kytConfig.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
   const userBuild = path.join(userRootPath, 'build/test');
-  const avaCLI = path.resolve(__dirname, '../../node_modules/ava/cli.js');
-  const npath = path.resolve(__dirname, '../../node_modules');
+  const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
+  const npath = path.resolve(userRootPath, './node_modules');
   const babel = path.join(npath, '.bin/babel');
   const es2015Preset = require.resolve('babel-preset-es2015');
   const reactPreset = require.resolve('babel-preset-react');
