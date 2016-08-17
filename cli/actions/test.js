@@ -8,7 +8,7 @@ const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
-  //shell.config.silent = true;
+  shell.config.silent = true;
 
   const userRootPath = kytConfig.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
@@ -22,7 +22,7 @@ module.exports = () => {
   const babelWebpack = require.resolve('babel-plugin-webpack-loaders');
   const plugins = babelWebpack;
   const testConfigPath = path.resolve(__dirname, '../../config/webpack.temp.test.js');
-  const tempTestDir = path.join(userRootPath, './node_modules/kyt/tmp-test');
+  const tempTestDir = path.join(userRootPath, './tmp-test');
   const newConfigPath = path.join(tempTestDir, './webpack.config.js');
 
   logger.start('Running Test Command...');
@@ -39,7 +39,7 @@ module.exports = () => {
   // Compile Code and move it into the user's root directory
   shell.cd(tempTestDir);
   const babelCommand = `NODE_PATH=$NODE_PATH:${npath} BABEL_DISABLE_CACHE=1 ` +
-  `${babel} ${tempTestDir} --presets ${presets} ` +
+  `${babel} ${tempTestDir} --ignore node_modules --presets ${presets} ` +
   `--plugins ${plugins} --out-dir ${userBuild} -s inline`;
   shell.exec(babelCommand);
 
