@@ -95,16 +95,6 @@ module.exports = (program) => {
     };
 
     // Creates a symbolic link from our local
-    // .babelrc to the user's base directory.
-    const createBabelrcLink = () => {
-      const babelrcPath = path.join(userRootPath, 'node_modules/kyt/.babelrc');
-      const linkedPath = path.join(userRootPath, '.babelrc');
-      if (shell.ln('-s', babelrcPath, linkedPath).code === 0) {
-        logger.task('Linked .babelrc');
-      }
-    };
-
-    // Creates a symbolic link from our local
     // .editorconfig to the user's base directory.
     const createEditorconfigLink = () => {
       const editorPath = path.join(userRootPath, 'node_modules/kyt/.editorconfig');
@@ -188,7 +178,6 @@ module.exports = (program) => {
     try {
       updateUserPackageJSON();
       installUserDependencies();
-      createBabelrcLink();
       createEditorconfigLink();
       createKytConfig();
       createPrototypeFile();
