@@ -2,15 +2,15 @@
 Your escape from configuration hell
 
 ## What is kyt?
-kyt is a dev tool created to let developers build node apps without having to spend hours messing setup, configuration, and build tools.
+kyt is a dev tool created to let developers build node apps without having to spend hours messing with setup, configuration, and build tools.
 
 
 ## How it Works
 
-kyt uses webpack and babel to manage a dev and production build for node apps. It [supports](/config/webpackConfig.md) popular libaries including React and css-modules. 
+kyt uses webpack and babel to manage a dev and production builds for node apps. It [supports](/config/webpackConfig.md) popular libaries including React and css-modules. 
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
-See our [config override instructions](/config/kytConfig.md#modifyWebpackConfig) for details, and our [recipes](/recipes.md) for examples.
+See our [config override instructions](/config/kytConfig.md#modifyWebpackConfig) for details, and our [recipes](/Recipes.md) for examples.
 
 ## Requirements
 
@@ -20,7 +20,7 @@ That's it.
 
 ## Installation
 
-1. create a repo with a package.json file
+1. Create a repo with a package.json file
 2. `npm install --save git@github.com:nytm/wf-kyt.git`
 3. `node_modules/.bin/kyt setup` - This will set up your project to use the default starter-kyt. If you are integrating kyt into an existing project you can skip this step. Learn more about [setup](/cli). 
 
@@ -29,17 +29,17 @@ We recommend installing kyt as a dependency in your project.
 ## CLI
 
 kyt includes a CLI with all the basic commands needed for development.
-The `setup` command will include these commands as scripts in your package.json.
+`setup` will include these commands as scripts in your package.json.
 You can also run them with `node_modules/.bin/kyt commandName`
 
-`dev` starts up a Webpack dev server
-`build` compiles server and client code for production use
-`run` runs production code
-`test` runs ava on all tests in /src
-`proto` starts the prototyping app.
-`lint` lints src code using eslint
-`help` Shows commands and their documentation.
-`setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
+* `dev` starts a Webpack dev server
+* `build` compiles server and client code for production use
+* `run` runs production code
+* `test` runs ava on all tests in /src
+* `proto` starts the prototyping app.
+* `lint` lints src code using eslint
+* `help` Shows commands and their documentation.
+* `setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
 
 See our [CLI docs](/cli) for further details.
 
