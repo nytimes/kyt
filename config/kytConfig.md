@@ -29,7 +29,7 @@ The function is called with two parameters:
  
 Define the function in your `kyt.config.js` and it will be called as each webpack file loads.
 
-``` 
+```javascript 
   modifyWebpackConfig: (config, options) => {
     // modify config based on the options
     return config;
