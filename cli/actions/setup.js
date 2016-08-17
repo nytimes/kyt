@@ -97,7 +97,7 @@ module.exports = (program) => {
     // Creates a symbolic link from our local
     // .editorconfig to the user's base directory.
     const createEditorconfigLink = () => {
-      const editorPath = path.join(userRootPath, 'node_modules/kyt/.editorconfig');
+      const editorPath = './node_modules/kyt/.editorconfig';
       const configPath = path.join(userRootPath, '.editorconfig');
       if (shell.ln('-s', editorPath, configPath).code === 0) {
         logger.task('Linked .editorconfig');
