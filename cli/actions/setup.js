@@ -109,13 +109,13 @@ module.exports = (program) => {
       // Copy over starter-kyt esLint
       if (shell.test('-f', tmpEsLint)) {
         if (shell.cp(tmpEsLint, linkedPath).code === 0 ) {
-          logger.task('Copied esLint config from starter-kyt');
+          logger.task('Copied ESLint config from starter-kyt');
         }
       } else {
-        // Create a symbolic link from our local eslint
+        // Copy our local eslint
         const esLintPath = path.join(userRootPath, 'node_modules/kyt/eslint.json');
-        if (shell.ln('-s', esLintPath, linkedPath).code === 0) {
-          logger.task('Linked esLint config');
+        if (shell.cp(esLintPath, linkedPath).code === 0) {
+          logger.task('Copied kyt default ESLint config');
         }
       }
     };
@@ -197,7 +197,7 @@ module.exports = (program) => {
       }
       // Copy the prototype file from the starter kit into the users repo
       shell.exec(`cp ${starterProto} ${userProto}`);
-      logger.task('copied prototype.js file into root');
+      logger.task('Copied prototype.js file into root');
     };
 
     try {
