@@ -94,17 +94,6 @@ module.exports = (program) => {
       logger.task('Installed new modules');
     };
 
-    // Creates a symbolic link from our local
-    // .babelrc to the user's base directory.
-    const createBabelrcLink = () => {
-      const babelrcPath = path.join(userRootPath, 'node_modules/kyt/.babelrc');
-      const linkedPath = path.join(userRootPath, '.babelrc');
-      if (shell.ln('-s', babelrcPath, linkedPath).code === 0) {
-        logger.task('Linked .babelrc');
-      }
-    };
-
-
     // Create an eslint.json in the user's base directory
     const createEsLintLink = () => {
       const tmpEsLint = path.join(tmpDir, 'eslint.json');
@@ -131,10 +120,9 @@ module.exports = (program) => {
       }
     };
 
-    // Creates a symbolic link from our local
     // .editorconfig to the user's base directory.
     const createEditorconfigLink = () => {
-      const editorPath = path.join(userRootPath, 'node_modules/kyt/.editorconfig');
+      const editorPath = './node_modules/kyt/.editorconfig';
       const configPath = path.join(userRootPath, '.editorconfig');
       if (shell.ln('-s', editorPath, configPath).code === 0) {
         logger.task('Linked .editorconfig');
@@ -203,7 +191,7 @@ module.exports = (program) => {
       if (!shell.test('-f', starterProto)) return;
       // Backup user's prototype file if they already have one
       if (shell.test('-f', userProto)) {
-        const prototypeBackup = path.join(userRootPath, `proto-${Date.now()}-bak.js`);
+        const prototypeBackup = path.join(userRootPath, `prototype-${Date.now()}-bak.js`);
         shell.exec(`mv ${userProto} ${prototypeBackup} `);
         logger.task(`Backed up current prototype file to: ${prototypeBackup}`);
       }
@@ -215,7 +203,6 @@ module.exports = (program) => {
     try {
       updateUserPackageJSON();
       installUserDependencies();
-      createBabelrcLink();
       createEsLintLink();
       createEditorconfigLink();
       createKytConfig();
