@@ -27,7 +27,7 @@ module.exports = (environment = 'development') => {
     serverPort,
     clientPort,
     environment,
-    publicPath: `http://localhost:${clientPort}/assets/`,
+    publicPath: `http://localhost:${clientPort}/public/assets/`,
     assetsPath: path.join(userRootPath, 'build/client'),
     userRootPath,
     reactHotLoader,

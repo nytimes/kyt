@@ -12,7 +12,7 @@ let config;
 const logger = console;
 
 // Add base config option for productionPublicPath
-baseConfig.productionPublicPath = '/assets/';
+baseConfig.productionPublicPath = '/public/assets/';
 // Find user config
 if (shell.test('-f', userConfigPath)) {
   try {
