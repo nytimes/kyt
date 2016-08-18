@@ -20,21 +20,22 @@ module.exports = () => {
   } = buildConfigs('production');
 
   // Clean the build directory.
-  if (shell.exec(`rm -rf ${userRootPath}/build`).code === 0) {
-    shell.mkdir(`${userRootPath}/build`);
+  const buildPath = path.resolve(userRootPath, './build');
+
+  if (shell.exec(`rm -rf ${buildPath}`).code === 0) {
+    shell.mkdir(buildPath);
     logger.task('Cleaned ./build');
   }
 
   // Copy public folder into build
   const userPublicPath = path.resolve(userRootPath, './src/public');
-  const buildPublicPath = path.resolve(userRootPath, './build/public');
+  const buildPublicPath = path.resolve(buildPath, './public');
+
   if (shell.test('-d', userPublicPath )) {
-
     // Create build folder if it doesnt exist
-    if (!shell.test('-d', path.resolve(userRootPath, './build'))) {
-      shell.mkdir(`${userRootPath}/build`);
+    if (!shell.test('-d', buildPath)) {
+      shell.mkdir(buildPath);
     }
-
     // copy files
     shell.cp('-r', userPublicPath, buildPublicPath);
     logger.task('Copied /src/public to /build/public');
