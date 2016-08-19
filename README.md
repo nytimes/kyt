@@ -22,7 +22,7 @@ That's it.
 
 1. Create a repo with a package.json file
 2. `npm install --save git@github.com:nytm/wf-kyt.git`
-3. `node_modules/.bin/kyt setup` - This will set up your project to use the default starter-kyt. If you are integrating kyt into an existing project you can skip this step. Learn more about [setup](/cli). 
+3. `node_modules/.bin/kyt setup` - This will set up your project with all things kyt. Learn more about [setup](/cli). 
 
 We recommend installing kyt as a dependency in your project.
 
