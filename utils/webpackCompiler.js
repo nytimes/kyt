@@ -19,7 +19,8 @@ module.exports = (webpackConfig, cb) => {
   webpackCompiler.plugin('done', stats => {
     if (stats.hasErrors()) {
       logger.error(`${type} build failed\n`, stats.toString());
-      process.exit(1);
+      logger.info('See webpack error above');
+      return null;
     }
 
     if (stats.hasWarnings()) {
