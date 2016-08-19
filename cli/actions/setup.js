@@ -176,8 +176,7 @@ module.exports = (program) => {
       logger.task('copied prototype.js file into root');
     };
 
-
-    const defaultPrompt = () => {
+    const setupPrompt = () => {
       let question = [
         {
           type: 'confirm',
@@ -185,38 +184,61 @@ module.exports = (program) => {
           message: 'Would you like to setup with a starter-kyt?',
           default: false
         }
-      ]
-      console.log('in here');
-      prompt.prompt(question).then((answers) => {
-          console.log('answer', answers);
-          if (answers.setupStarter) {
-            updateUserPackageJSON();
-            installUserDependencies();
-            createEditorconfigLink();
-            createKytConfig();
-            createPrototypeFile();
-            createSrcDirectory();
-            createGitignore();
-            removeTmpDir();
-            logger.end(`Done adding starter kyt: ${repoURL}`);
+      ];
+      prompt.prompt(question).then((answer) => {
+          if (answer.setupStarter) {
+            srcPrompt(starterKytSetup);
           } else {
-            console.log('ok lets do a default setup');
+            defaultSetup();
           }
       });
     };
 
+
+    const starterKytSetup = () => {
+      updateUserPackageJSON();
+      installUserDependencies();
+      createEditorconfigLink();
+      createKytConfig();
+      createPrototypeFile();
+      createSrcDirectory();
+      createGitignore();
+      removeTmpDir();
+      logger.end(`Done adding starter kyt: ${repoURL}`);
+    };
+
+    const defaultSetup = () => {
+      console.log('this is a default SEtup');
+    };
+
+    const srcPrompt = (startSetup) => {
+      const userSrcPath = path.resolve(userRootPath, './src');
+
+      // Check if src already exists
+      if (shell.test('-d', userRootPath)) {
+        let question = [
+        {
+          type: 'confirm',
+          name: 'srcBackup',
+          message: 'You already have a src directory. Would you like kyt to backup src/ and continue?',
+          default: true
+        }
+        ];
+        prompt.prompt(question).then((answer) => {
+          if (answer.srcBackup) {
+            startSetup();
+          } else {
+            process.exit();
+          }
+        });
+      } else {
+        startSetup();
+      }
+    };
+
     try {
       console.log('helloooo');
-      defaultPrompt();
-      // updateUserPackageJSON();
-      // installUserDependencies();
-      // createEditorconfigLink();
-      // createKytConfig();
-      // createPrototypeFile();
-      // createSrcDirectory();
-      // createGitignore();
-      // removeTmpDir();
-      // logger.end(`Done adding starter kyt: ${repoURL}`);
+      setupPrompt();
     } catch (err) {
       bailProcess(err);
     }
