@@ -1,15 +1,21 @@
 
+// Surface any uncaught errors
+process.on('uncaughtException', (error) => {
+  const log = console;
+  log.error('UNHANDLED EXCEPTION', error.stack);
+  process.exit();
+});
+
 const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
-const prompt = require('inquirer');
+const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
 const kytConfig = require('../../config/kyt.config');
 
 module.exports = (program) => {
   const args = program.args[0];
-
   const userRootPath = kytConfig.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
   const packageJSONPath = path.join(userRootPath, 'package.json');
@@ -17,7 +23,8 @@ module.exports = (program) => {
   const gitignoreFile = path.join(userRootPath, '.gitignore');
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
-  const removeTmpDir = () => shell.exec(`rm -rf ${tmpDir}`);
+  const removeTmpDir = () => shell.rm('-rf', tmpDir);
+  let defaultMode = true;
   let oldPackageJSON;
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
@@ -28,8 +35,6 @@ module.exports = (program) => {
 
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
-
-  logger.start('Setting up kyt starter');
 
   // First, clean any old cloned repositories.
   removeTmpDir();
@@ -57,6 +62,19 @@ module.exports = (program) => {
 
       // Clone the package.json so that we have a backup.
       oldPackageJSON = Object.assign({}, userPackageJSON);
+
+      // Add dependencies from starter-kyts
+      if (!defaultMode) {
+        userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
+      }
+
+      // Add scripts
+      userPackageJSON = addPackageJsonScripts(userPackageJSON);
+      fs.writeFileSync(packageJSONPath, JSON.stringify(userPackageJSON, null, 2));
+    };
+
+    // Adds dependencies from the starter-kyts package.json
+    const updatePackageJSONDependencies = (packageJson) => {
       // eslint-disable-next-line global-require
       const tempPackageJSON = require(`${tmpDir}/package.json`);
       const tempDependencies = tempPackageJSON.dependencies || {};
@@ -64,23 +82,27 @@ module.exports = (program) => {
       // In case the starter kyt used `kyt` as a dependency.
       if (tempDependencies.kyt) delete tempDependencies.kyt;
 
-      userPackageJSON.dependencies = Object.assign(
-        userPackageJSON.dependencies || {},
+      packageJson.dependencies = Object.assign(
+        packageJson.dependencies || {},
         tempPackageJSON.dependencies
       );
+      logger.task('Added new dependencies to package.json');
+      return packageJson;
+    };
 
-      if (!userPackageJSON.scripts) userPackageJSON.scripts = {};
+    // Adds kyt commands as npm scripts
+    const addPackageJsonScripts = (packageJson) => {
+      if (!packageJson.scripts) packageJson.scripts = {};
       const commands = ['dev', 'build', 'run', 'test', 'lint', 'proto'];
       commands.forEach((command) => {
-        if (userPackageJSON.scripts[command]) return;
-        userPackageJSON.scripts[command] = `kyt ${command}`;
+        if (packageJson.scripts[command]) return;
+        packageJson.scripts[command] = `kyt ${command}`;
       });
-      userPackageJSON.scripts['kyt:help'] = ' kyt --help';
-
-      fs.writeFileSync(packageJSONPath, JSON.stringify(userPackageJSON, null, 2));
+      packageJson.scripts['kyt:help'] = ' kyt --help';
       logger.task('Added kyt scripts into your package.json scripts');
-      logger.task('Added new dependencies to package.json');
+      return packageJson;
     };
+
 
     // Cleans and reinstalls node modules.
     const installUserDependencies = () => {
@@ -89,7 +111,7 @@ module.exports = (program) => {
         fs.writeFileSync(packageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
         logger.error('An error occurred when trying to install node modules');
         logger.task('Restored the original package.json and bailing');
-        logger.log('You may need to reinstall your modules');
+        logger.info('You may need to reinstall your modules');
         bailProcess();
       }
       logger.task('Installed new modules');
@@ -100,9 +122,16 @@ module.exports = (program) => {
     const createEditorconfigLink = () => {
       const editorPath = './node_modules/kyt/.editorconfig';
       const configPath = path.join(userRootPath, '.editorconfig');
-      if (shell.ln('-s', editorPath, configPath).code === 0) {
-        logger.task('Linked .editorconfig');
+
+      // Backup existing editor config
+      if (shell.test('-f', configPath)) {
+        const mvTo = path.join(userRootPath, `editorconfig-${Date.now()}.bak`);
+        shell.mv(configPath, mvTo);
+        logger.info(`Backed up current editor config to ${mvTo}`);
       }
+
+      shell.cp(editorPath, configPath);
+      logger.task('Copied .editorconfig');
     };
 
     // Copies the starter kyt kyt.config.js
@@ -119,15 +148,15 @@ module.exports = (program) => {
         newConfig = baseConfig;
       }
       const copyConfig = () => {
-        shell.exec(`cp ${newConfig} ${userKytConfig}`);
+        shell.cp(newConfig, userKytConfig);
         logger.task('Created new kyt.config.js');
       };
       if (shell.test('-f', userKytConfig)) {
         // Since the user already has a kyt.config,
         // we need to back it up before copying.
         const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.bak.js`);
-        shell.exec(`mv -f ${userKytConfig} ${mvTo}`);
-        logger.task(`Backed up current kyt.config.js to: ${mvTo}`);
+        shell.mv('-f', userKytConfig, mvTo);
+        logger.info(`Backed up current kyt.config.js to: ${mvTo}`);
         copyConfig();
       } else {
         copyConfig();
@@ -138,28 +167,31 @@ module.exports = (program) => {
     // repo into the user's base direcotry.
     const createSrcDirectory = () => {
       const cpSrc = () => {
-        shell.exec(`cp -r ${tmpDir}/src ${userRootPath}`);
+        shell.cp('-r', `${tmpDir}/src`, userRootPath);
         logger.task('Created src directory');
       };
       if (shell.test('-d', userSrc)) {
         // Since the user already has a src directory,
         // we need to make a backup before copying.
         const mvTo = path.join(userRootPath, `src-${Date.now()}-bak`);
-        shell.exec(`mv -f ${userSrc} ${mvTo}`);
-        logger.task(`Backed up current src directory to: ${mvTo}`);
+        shell.mv('-f', userSrc, mvTo);
+        logger.info(`Backed up current src directory to: ${mvTo}`);
       }
 
       cpSrc();
     };
 
+    // Copies gitignore file
     const createGitignore = () => {
       if (!shell.test('-f', gitignoreFile)) {
         const gitignoreLocal = path.resolve(__dirname, '../../.gitignore');
-        shell.exec(`cp ${gitignoreLocal} ${gitignoreFile}`);
+        shell.cp(gitignoreLocal, gitignoreFile);
         logger.task('Created .gitignore file');
       }
     };
 
+
+    // Creates prototype file if one exists
     const createPrototypeFile = () => {
       const userProto = path.join(userRootPath, './prototype.js');
       const starterProto = `${tmpDir}/prototype.js`;
@@ -168,34 +200,42 @@ module.exports = (program) => {
       // Backup user's prototype file if they already have one
       if (shell.test('-f', userProto)) {
         const prototypeBackup = path.join(userRootPath, `prototype-${Date.now()}-bak.js`);
-        shell.exec(`mv ${userProto} ${prototypeBackup} `);
-        logger.task(`Backed up current prototype file to: ${prototypeBackup}`);
+        shell.mv(userProto, prototypeBackup);
+        logger.info(`Backed up current prototype file to: ${prototypeBackup}`);
       }
       // Copy the prototype file from the starter kit into the users repo
-      shell.exec(`cp ${starterProto} ${userProto}`);
+      shell.cp(starterProto, userProto);
       logger.task('copied prototype.js file into root');
     };
 
+    // Selects type of setup
     const setupPrompt = () => {
-      let question = [
-        {
-          type: 'confirm',
-          name: 'setupStarter',
-          message: 'Would you like to setup with a starter-kyt?',
-          default: false
-        }
-      ];
-      prompt.prompt(question).then((answer) => {
-          if (answer.setupStarter) {
-            srcPrompt(starterKytSetup);
-          } else {
-            defaultSetup();
+      // Skip starter-kyt question if they've already supplied a repo name
+      if (args.repository) {
+        srcPrompt(starterKytSetup);
+      } else {
+        let question = [
+          {
+            type: 'confirm',
+            name: 'setupStarter',
+            message: 'Would you like to setup with the default starter-kyt?',
+            default: false
           }
-      });
+        ];
+        inquire.prompt(question).then((answer) => {
+            if (answer.setupStarter) {
+              srcPrompt(starterKytSetup);
+            } else {
+              defaultSetup();
+            }
+        });
+      }
     };
 
-
+    // setup flow for starter-kyts
     const starterKytSetup = () => {
+      defaultMode = false;
+      logger.start('Setting up starter-kyt');
       updateUserPackageJSON();
       installUserDependencies();
       createEditorconfigLink();
@@ -207,10 +247,17 @@ module.exports = (program) => {
       logger.end(`Done adding starter kyt: ${repoURL}`);
     };
 
+    // default setup flow
     const defaultSetup = () => {
-      console.log('this is a default SEtup');
+      logger.start('Setting up kyt');
+      updateUserPackageJSON();
+      createEditorconfigLink();
+      createKytConfig();
+      createGitignore();
+      logger.end('Done setting up kyt');
     };
 
+    // Checks to see if user would like src backed up before continuing
     const srcPrompt = (startSetup) => {
       const userSrcPath = path.resolve(userRootPath, './src');
 
@@ -224,7 +271,7 @@ module.exports = (program) => {
           default: true
         }
         ];
-        prompt.prompt(question).then((answer) => {
+        inquire.prompt(question).then((answer) => {
           if (answer.srcBackup) {
             startSetup();
           } else {
@@ -237,7 +284,6 @@ module.exports = (program) => {
     };
 
     try {
-      console.log('helloooo');
       setupPrompt();
     } catch (err) {
       bailProcess(err);
