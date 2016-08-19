@@ -2,6 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
+const prompt = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
 const kytConfig = require('../../config/kyt.config');
@@ -175,16 +176,47 @@ module.exports = (program) => {
       logger.task('copied prototype.js file into root');
     };
 
+
+    const defaultPrompt = () => {
+      let question = [
+        {
+          type: 'confirm',
+          name: 'setupStarter',
+          message: 'Would you like to setup with a starter-kyt?',
+          default: false
+        }
+      ]
+      console.log('in here');
+      prompt.prompt(question).then((answers) => {
+          console.log('answer', answers);
+          if (answers.setupStarter) {
+            updateUserPackageJSON();
+            installUserDependencies();
+            createEditorconfigLink();
+            createKytConfig();
+            createPrototypeFile();
+            createSrcDirectory();
+            createGitignore();
+            removeTmpDir();
+            logger.end(`Done adding starter kyt: ${repoURL}`);
+          } else {
+            console.log('ok lets do a default setup');
+          }
+      });
+    };
+
     try {
-      updateUserPackageJSON();
-      installUserDependencies();
-      createEditorconfigLink();
-      createKytConfig();
-      createPrototypeFile();
-      createSrcDirectory();
-      createGitignore();
-      removeTmpDir();
-      logger.end(`Done adding starter kyt: ${repoURL}`);
+      console.log('helloooo');
+      defaultPrompt();
+      // updateUserPackageJSON();
+      // installUserDependencies();
+      // createEditorconfigLink();
+      // createKytConfig();
+      // createPrototypeFile();
+      // createSrcDirectory();
+      // createGitignore();
+      // removeTmpDir();
+      // logger.end(`Done adding starter kyt: ${repoURL}`);
     } catch (err) {
       bailProcess(err);
     }
