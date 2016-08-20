@@ -17,7 +17,7 @@ module.exports = () => {
   const eslintCLI = {
     envs: ['browser', 'mocha'],
     extensions: ['.js', '.jsx'],
-    useEslintrc: false,
+    useEslintrc: true,
   };
 
   // Get the default dir or the dir specified by the user/-d.
@@ -29,7 +29,7 @@ module.exports = () => {
     logger.log(formatter(report.results));
   };
 
-    const esLintPath = path.join(kytConfig.userRootPath, './eslint.json');
+    const esLintPath = path.join(kytConfig.userRootPath, './.eslintrc');
 
     // Check to see if eslint file exists
     if (!shell.test('-f', esLintPath)) {
@@ -37,6 +37,5 @@ module.exports = () => {
       logger.info('Run node_modules/.bin kyt setup to get the default eslint config');
       process.exit();
     }
-    eslintCLI.configFile = esLintPath;
     lint();
 };

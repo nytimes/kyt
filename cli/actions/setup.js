@@ -26,7 +26,7 @@ module.exports = (program) => {
   };
 
   // Comment the following to see verbose shell ouput.
-  shell.config.silent = true;
+  //shell.config.silent = true;
 
   logger.start('Setting up kyt starter');
 
@@ -101,7 +101,7 @@ module.exports = (program) => {
 
       // Backup esLint if it exists
       if(shell.test('-f', linkedPath)) {
-        const eslintBackup = path.join(userRootPath, `eslint-${Date.now()}-bak.json`);
+        const eslintBackup = path.join(userRootPath, `eslintrc-${Date.now()}-bak`);
         shell.exec(`mv ${linkedPath} ${eslintBackup} `);
         logger.task(`Backed up current eslint file to: ${eslintBackup}`);
       }
