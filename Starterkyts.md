@@ -19,7 +19,9 @@ starter-kyts act as boilerplates for projects. They use kyt as their build syste
 
 2. Add additional dependencies to a package.json
 
-3. Set up `/src`
+3. Set up `/src/server/index.js` and `/src/client/index.js` files
+
+4. Optionally add `.stylelintrc` and `.eslintrc` configurations to be copied into the user directory
 
 4. Create documentation
 
