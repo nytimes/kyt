@@ -262,7 +262,7 @@ module.exports = (program) => {
       const userSrcPath = path.resolve(userRootPath, './src');
 
       // Check if src already exists
-      if (shell.test('-d', userRootPath)) {
+      if (shell.test('-d', userSrcPath)) {
         let question = [
         {
           type: 'confirm',
