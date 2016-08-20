@@ -27,7 +27,11 @@ module.exports = () => {
 
   logger.start('Running Test Command...');
 
-  // Prep webpack Config
+  // Clean the build directory.
+  if (shell.test('-d', userBuild)) {
+    shell.rm('-rf', userBuild);
+    logger.task('Cleaned test folder');
+  }
 
   // Create Temp Directory and move user src files there
   shell.mkdir(tempTestDir);
@@ -41,7 +45,12 @@ module.exports = () => {
   const babelCommand = `NODE_PATH=$NODE_PATH:${npath} BABEL_DISABLE_CACHE=1 ` +
   `${babel} ${tempTestDir} --ignore node_modules --presets ${presets} ` +
   `--plugins ${plugins} --out-dir ${userBuild} -s inline`;
-  shell.exec(babelCommand);
+
+  let babelExec = shell.exec(babelCommand);
+  if (babelExec.code !== 0) {
+    logger.error('Error transpiling test code', babelExec.stderr);
+    process.exit();
+  }
 
   // Remove tmp directory
   shell.rm('-rf', tempTestDir);
