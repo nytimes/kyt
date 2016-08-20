@@ -26,7 +26,7 @@ module.exports = (program) => {
   };
 
   // Comment the following to see verbose shell ouput.
-  //shell.config.silent = true;
+  shell.config.silent = true;
 
   logger.start('Setting up kyt starter');
 
