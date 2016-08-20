@@ -9,7 +9,7 @@ module.exports = (stats) => {
   const assets = stats.toJson().assets
     .filter(asset => /\.(js|css)$/.test(asset.name))
     .map(asset => ({
-      folder: path.join('build/client', path.dirname(asset.name)),
+      folder: path.join('build/public/assets', path.dirname(asset.name)),
       name: path.basename(asset.name),
       size: asset.size,
       sizeLabel: filesize(asset.size),

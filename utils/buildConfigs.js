@@ -30,7 +30,7 @@ module.exports = (environment = 'development') => {
     environment,
     buildPath,
     publicPath: `http://localhost:${clientPort}/assets/`,
-    publicDir: path.join(userRootPath, 'public'),
+    publicDir: path.join(userRootPath, 'src/public'),
     clientAssetsFile: 'publicAssets.json',
     userRootPath,
     reactHotLoader,
