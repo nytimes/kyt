@@ -9,22 +9,9 @@ const merge = require('ramda').merge;
 const shell = require('shelljs');
 const logger = require('./../logger');
 const kytConfig = require('./../../config/kyt.config');
-const baseConfig = require('./../../eslint.json');
 
 module.exports = () => {
   const userRootPath = kytConfig.userRootPath;
-
-  const getConfig = (configPath) => {
-    const configFile = path.join(userRootPath, configPath);
-
-    if (fs.existsSync(configFile)) {
-      // eslint-disable-next-line
-      const customConfig = require(configFile);
-      return merge(baseConfig, customConfig);
-    }
-
-    return baseConfig;
-  };
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
