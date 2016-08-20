@@ -10,7 +10,7 @@ You can also run them with `node_modules/.bin/kyt commandName`
 3. `run` runs production code
 4. `test` runs AVA on all tests in /src
 5. `proto` starts the prototyping app
-6. `lint` lints src code using eslint
+6. `lint` lints src code using ESlint
 7. `help` shows commands and their documentation 
 8. `setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
 
@@ -33,7 +33,10 @@ kyt test looks for any `*.test.js` files in `src/`.
 
 ### lint
 The `lint` command lints all files in the src directory using eslint. 
-You can override the base eslint file in the kyt config.
+During setup, an ESLint config is copied into the root of your repo. 
+You can add or update any rules from this file. 
+
+kyt's ESLint config extends [Airbnb](https://github.com/airbnb/javascript)
 
 stylelint details TK.
 
@@ -51,6 +54,7 @@ The command has two options:
 1. Clone the repo for your starter
 2. Install necessary npm packages
 3. Copy configuration and src
-4. Add kyt commands to your npm scripts 
+4. Copy lint configs into your root
+5. Add kyt commands to your npm scripts 
 
 After that you're ready to build. 

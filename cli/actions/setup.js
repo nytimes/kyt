@@ -94,7 +94,32 @@ module.exports = (program) => {
       logger.task('Installed new modules');
     };
 
-    // Creates a symbolic link from our local
+    // Create an eslint.json in the user's base directory
+    const createEsLintLink = () => {
+      const tmpEsLint = path.join(tmpDir, 'eslint.json');
+      const linkedPath = path.join(userRootPath, 'eslint.json');
+
+      // Backup esLint if it exists
+      if(shell.test('-f', linkedPath)) {
+        const eslintBackup = path.join(userRootPath, `eslint-${Date.now()}-bak.json`);
+        shell.exec(`mv ${linkedPath} ${eslintBackup} `);
+        logger.task(`Backed up current eslint file to: ${eslintBackup}`);
+      }
+
+      // Copy over starter-kyt esLint
+      if (shell.test('-f', tmpEsLint)) {
+        if (shell.cp(tmpEsLint, linkedPath).code === 0 ) {
+          logger.task('Copied ESLint config from starter-kyt');
+        }
+      } else {
+        // Copy our local eslint
+        const esLintPath = path.join(userRootPath, 'node_modules/kyt/eslint.json');
+        if (shell.cp(esLintPath, linkedPath).code === 0) {
+          logger.task('Copied kyt default ESLint config');
+        }
+      }
+    };
+
     // .editorconfig to the user's base directory.
     const createEditorconfigLink = () => {
       const editorPath = './node_modules/kyt/.editorconfig';
@@ -172,12 +197,13 @@ module.exports = (program) => {
       }
       // Copy the prototype file from the starter kit into the users repo
       shell.exec(`cp ${starterProto} ${userProto}`);
-      logger.task('copied prototype.js file into root');
+      logger.task('Copied prototype.js file into root');
     };
 
     try {
       updateUserPackageJSON();
       installUserDependencies();
+      createEsLintLink();
       createEditorconfigLink();
       createKytConfig();
       createPrototypeFile();
