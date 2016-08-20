@@ -3,6 +3,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const AssetsPlugin = require('assets-webpack-plugin');
 const clone = require('ramda').clone;
 
 const cssStyleLoaders = [
@@ -20,7 +21,11 @@ module.exports = (options) => {
   ];
   const plugins = [
     new webpack.NoErrorsPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+    new AssetsPlugin({
+      filename: options.clientAssetsFile,
+      path: options.buildPath,
+    }),
   ];
 
   if (options.reactHotLoader) {
@@ -41,7 +46,7 @@ module.exports = (options) => {
     },
 
     output: {
-      path: path.join(options.userRootPath, 'build/client'),
+      path: path.join(options.publicDir, 'assets'),
       filename: '[name].js',
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
@@ -64,4 +69,3 @@ module.exports = (options) => {
     plugins,
   };
 };
-

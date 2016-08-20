@@ -2,11 +2,8 @@
 // Base webpack config
 
 const path = require('path');
-const AssetsPlugin = require('assets-webpack-plugin');
 const webpack = require('webpack');
 const fs = require('fs');
-
-const assetsFile = 'assets.json';
 
 // Create the babelrc query for the babel loader.
 const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
@@ -56,15 +53,11 @@ module.exports = (options) => ({
         SERVER_PORT: JSON.stringify(options.serverPort),
         CLIENT_PORT: JSON.stringify(options.clientPort || ''),
         PUBLIC_PATH: JSON.stringify(options.publicPath),
-        CLIENT_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, 'build/client')),
-        SERVER_BUILD_PATH: JSON.stringify(path.join(options.userRootPath, 'build/server')),
-        ASSETS_PATH: JSON.stringify(path.join(options.userRootPath, `build/client/${assetsFile}`)),
+        PUBLIC_DIR: JSON.stringify(options.publicDir),
+        CLIENT_BUILD_PATH: JSON.stringify(path.join(options.publicDir, 'assets')),
+        SERVER_BUILD_PATH: JSON.stringify(path.join(options.buildPath, 'server')),
+        ASSETS_MANIFEST: JSON.stringify(path.join(options.buildPath, options.clientAssetsFile)),
       },
-    }),
-
-    new AssetsPlugin({
-      filename: assetsFile,
-      path: options.assetsPath,
     }),
   ],
 
@@ -95,7 +88,7 @@ module.exports = (options) => ({
         loader: 'babel-loader',
         exclude: [
           /node_modules/,
-          path.join(options.userRootPath, 'build'),
+          options.buildPath,
         ],
         query: babelrc,
       },

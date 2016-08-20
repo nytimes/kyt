@@ -23,7 +23,7 @@ module.exports = (options) => ({
   },
 
   output: {
-    path: path.join(options.userRootPath, 'build/server'),
+    path: path.join(options.buildPath, 'server'),
     filename: '[name].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
