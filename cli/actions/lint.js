@@ -33,8 +33,8 @@ module.exports = () => {
 
     // Check to see if eslint file exists
     if (!shell.test('-f', esLintPath)) {
-      logger.error('You do not have an esLint File');
-      logger.info('Run node_modules/.bin kyt setup to get the default eslint config');
+      logger.error('You do not have an .eslintrc file');
+      logger.info('Run "node_modules/.bin kyt setup" to get the default eslint config');
       process.exit();
     }
     lint();

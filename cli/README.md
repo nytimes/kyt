@@ -33,7 +33,7 @@ kyt test looks for any `*.test.js` files in `src/`.
 
 ### lint
 The `lint` command lints all files in the src directory using eslint. 
-During setup, an ESLint config is copied into the root of your repo. 
+During setup, an `.eslintrc` is copied into the root of your repo. 
 You can add or update any rules from this file. 
 
 kyt's ESLint config extends [Airbnb](https://github.com/airbnb/javascript)
