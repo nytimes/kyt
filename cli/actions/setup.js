@@ -95,27 +95,54 @@ module.exports = (program) => {
     };
 
     // Create an eslint.json in the user's base directory
-    const createEsLintLink = () => {
+    const createESLintFile = () => {
       const tmpEsLint = path.join(tmpDir, '.eslintrc');
       const linkedPath = path.join(userRootPath, '.eslintrc');
 
       // Backup esLint if it exists
-      if(shell.test('-f', linkedPath)) {
-        const eslintBackup = path.join(userRootPath, `eslintrc-${Date.now()}-bak`);
+      if (shell.test('-f', linkedPath)) {
+        const eslintBackup = path.join(userRootPath, `.eslintrc-${Date.now()}-bak.json`);
         shell.exec(`mv ${linkedPath} ${eslintBackup} `);
         logger.task(`Backed up current eslint file to: ${eslintBackup}`);
       }
 
       // Copy over starter-kyt esLint
       if (shell.test('-f', tmpEsLint)) {
-        if (shell.cp(tmpEsLint, linkedPath).code === 0 ) {
+        if (shell.cp(tmpEsLint, linkedPath).code === 0) {
           logger.task('Copied ESLint config from starter-kyt');
         }
       } else {
         // Copy our local eslint
-        const esLintPath = path.join(userRootPath, 'node_modules/kyt/.eslintrc');
+        const esLintPath = path.join(__dirname, '../../.eslintrc');
         if (shell.cp(esLintPath, linkedPath).code === 0) {
           logger.task('Copied kyt default ESLint config');
+        }
+      }
+    };
+
+    // Create an stylelint.json in the user's base directory.
+    const createStylelintFile = () => {
+      const stylelintFileName = '.stylelintrc';
+      const tmpStylelint = path.join(tmpDir, stylelintFileName);
+      const userStylelintPath = path.join(userRootPath, stylelintFileName);
+
+      // Backup the user's .stylelintrc if it exists.
+      if (shell.test('-f', userStylelintPath)) {
+        const stylelintBackup = path.join(userRootPath, `.stylelintrc-${Date.now()}-bak`);
+        shell.exec(`mv ${userStylelintPath} ${stylelintBackup} `);
+        logger.task(`Backed up current stylelint file to: ${stylelintBackup}`);
+      }
+
+      // Copy over starter-kyt .stylelintrc if it exists.
+      if (shell.test('-f', tmpStylelint)) {
+        if (shell.cp(tmpStylelint, userStylelintPath).code === 0) {
+          logger.task('Copied Stylelint config from starter-kyt');
+        }
+      } else {
+        // Copy our .stylelintrc into the user's directory
+        const stylelintPath = path.join(__dirname, `../../config/${stylelintFileName}`);
+        if (shell.cp(stylelintPath, userStylelintPath).code === 0) {
+          logger.task('Copied default Stylelint config');
         }
       }
     };
@@ -203,7 +230,8 @@ module.exports = (program) => {
     try {
       updateUserPackageJSON();
       installUserDependencies();
-      createEsLintLink();
+      createESLintFile();
+      createStylelintFile();
       createEditorconfigLink();
       createKytConfig();
       createPrototypeFile();
