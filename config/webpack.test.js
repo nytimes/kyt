@@ -3,6 +3,8 @@
 
 const clone = require('ramda').clone;
 const kytConfig = require('./kyt.config');
+const merge = require('webpack-merge');
+const baseConfig = require('./webpack.base');
 
 const logger = console;
 const cssStyleLoaders = [
@@ -15,11 +17,13 @@ const cssStyleLoaders = [
 ];
 
 const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
+const userRootPath = kytConfig.userRootPath;
 const options = {
   environment: 'test',
   type: 'test',
+  userRootPath,
 };
-const testConfig = {
+let testConfig = {
   module: {
     loaders: [
       {
@@ -37,6 +41,7 @@ const testConfig = {
 module.exports = () => {
   // Uses kytConfig callback to merge with user webpack config
   let webpackConfig = null;
+  testConfig = merge.smart(baseConfig(options), testConfig);
   try {
     webpackConfig = kytConfig.modifyWebpackConfig(testConfig, options);
   } catch (error) {

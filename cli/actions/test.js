@@ -46,7 +46,7 @@ module.exports = () => {
   `${babel} ${tempTestDir} --ignore node_modules --presets ${presets} ` +
   `--plugins ${plugins} --out-dir ${userBuild} -s inline`;
 
-  let babelExec = shell.exec(babelCommand);
+  const babelExec = shell.exec(babelCommand);
   if (babelExec.code !== 0) {
     logger.error('Error transpiling test code', babelExec.stderr);
     process.exit();
