@@ -49,6 +49,7 @@ module.exports = () => {
   const babelExec = shell.exec(babelCommand);
   if (babelExec.code !== 0) {
     logger.error('Error transpiling test code', babelExec.stderr);
+    shell.rm('-rf', tempTestDir);
     process.exit();
   }
 
