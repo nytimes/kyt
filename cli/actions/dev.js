@@ -62,8 +62,6 @@ module.exports = () => {
     app.use(hotMiddleware(clientCompiler));
 
     app.listen(clientPort);
-
-    logger.task(`Client server running at ${clientCompiler.options.output.publicPath}`);
   };
 
   const compileHotServer = () => {
@@ -83,6 +81,7 @@ module.exports = () => {
 
   // Compile Client Webpack Config
   clientCompiler = webpackCompiler(clientConfig, () => {
+    logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
     compileHotServer();
   });
 
