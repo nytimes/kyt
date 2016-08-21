@@ -96,12 +96,12 @@ module.exports = (program) => {
 
     // Create an eslint.json in the user's base directory
     const createEsLintLink = () => {
-      const tmpEsLint = path.join(tmpDir, 'eslint.json');
-      const linkedPath = path.join(userRootPath, 'eslint.json');
+      const tmpEsLint = path.join(tmpDir, '.eslintrc');
+      const linkedPath = path.join(userRootPath, '.eslintrc');
 
       // Backup esLint if it exists
       if(shell.test('-f', linkedPath)) {
-        const eslintBackup = path.join(userRootPath, `eslint-${Date.now()}-bak.json`);
+        const eslintBackup = path.join(userRootPath, `eslintrc-${Date.now()}-bak`);
         shell.exec(`mv ${linkedPath} ${eslintBackup} `);
         logger.task(`Backed up current eslint file to: ${eslintBackup}`);
       }
@@ -113,7 +113,7 @@ module.exports = (program) => {
         }
       } else {
         // Copy our local eslint
-        const esLintPath = path.join(userRootPath, 'node_modules/kyt/eslint.json');
+        const esLintPath = path.join(userRootPath, 'node_modules/kyt/.eslintrc');
         if (shell.cp(esLintPath, linkedPath).code === 0) {
           logger.task('Copied kyt default ESLint config');
         }

@@ -9,28 +9,15 @@ const merge = require('ramda').merge;
 const shell = require('shelljs');
 const logger = require('./../logger');
 const kytConfig = require('./../../config/kyt.config');
-const baseConfig = require('./../../eslint.json');
 
 module.exports = () => {
   const userRootPath = kytConfig.userRootPath;
-
-  const getConfig = (configPath) => {
-    const configFile = path.join(userRootPath, configPath);
-
-    if (fs.existsSync(configFile)) {
-      // eslint-disable-next-line
-      const customConfig = require(configFile);
-      return merge(baseConfig, customConfig);
-    }
-
-    return baseConfig;
-  };
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
     envs: ['browser', 'mocha'],
     extensions: ['.js', '.jsx'],
-    useEslintrc: false,
+    useEslintrc: true,
   };
 
   // Get the default dir or the dir specified by the user/-d.
@@ -42,14 +29,13 @@ module.exports = () => {
     logger.log(formatter(report.results));
   };
 
-    const esLintPath = path.join(kytConfig.userRootPath, './eslint.json');
+    const esLintPath = path.join(kytConfig.userRootPath, './.eslintrc');
 
     // Check to see if eslint file exists
     if (!shell.test('-f', esLintPath)) {
-      logger.error('You do not have an esLint File');
-      logger.info('Run node_modules/.bin kyt setup to get the default eslint config');
+      logger.error('You do not have an .eslintrc file');
+      logger.info('Run "node_modules/.bin kyt setup" to get the default eslint config');
       process.exit();
     }
-    eslintCLI.configFile = esLintPath;
     lint();
 };
