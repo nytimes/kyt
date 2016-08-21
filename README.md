@@ -38,7 +38,7 @@ You can also run them with `node_modules/.bin/kyt commandName`
 * `test` runs ava on all tests in /src
 * `proto` starts the prototyping app
 * `lint` lints src code using ESLint
-* `lint` lints src code using Stylelint
+* `lint-style` lints src code using Stylelint
 * `help` shows commands and their documentation
 * `setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
 
