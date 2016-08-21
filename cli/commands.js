@@ -11,7 +11,7 @@ const path = require('path');
 
 // define user root
 process.env.USER_ROOT = path.resolve(process.cwd());
-const nodeVersion = require('./../utils/nodeVersion');
+const exitIfOldNodeVersion = require('./../utils/exitIfOldNodeVersion');
 const program = require('commander');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
@@ -22,10 +22,7 @@ const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
 
-// exit if node version is incorrect
-if(!nodeVersion()) {
-  process.exit();
-}
+exitIfOldNodeVersion();
 
 program
   .command('lint')

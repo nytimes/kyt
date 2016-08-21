@@ -8,7 +8,7 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
 const logger = require('./../logger');
-const isPortFree = require('../../utils/isPortFree');
+const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 
@@ -89,11 +89,10 @@ module.exports = () => {
 
   // Compile Server Webpack Config
   serverCompiler = webpackCompiler(serverConfig, () => {
-    isPortFree(serverPort, startHotServer);
-
+    ifPortIsFreeDo(serverPort, startHotServer);
   });
 
   // Start client hot server
-  isPortFree(clientPort, startHotClient);
+  ifPortIsFreeDo(clientPort, startHotClient);
 
 };
