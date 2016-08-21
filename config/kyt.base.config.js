@@ -7,5 +7,4 @@ module.exports = {
   serverPort: 3000,
   prototypePort: 3002,
   debug: false,
-  reactHotLoader: false,
 };

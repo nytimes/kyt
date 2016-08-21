@@ -32,4 +32,7 @@ if (typeof config.modifyWebpackConfig !== 'function') {
   config.modifyWebpackConfig = (webpackConfig) => webpackConfig;
 }
 
+// In case `reactHotLoader` is undefined, make it a boolean
+config.reactHotLoader = !!config.reactHotLoader;
+
 module.exports = config;
