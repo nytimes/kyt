@@ -20,6 +20,7 @@ const buildAction = require('./actions/build');
 const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
+const lintStyleAction = require('./actions/lintStyle');
 
 program
   .command('lint')
@@ -57,6 +58,11 @@ program
   .command('test')
   .description('Run test files with Ava.')
   .action(() => testAction(program));
+
+program
+  .command('lint-style')
+  .description('')
+  .action(() => lintStyleAction(program));
 
 program
   .command('proto')

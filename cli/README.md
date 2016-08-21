@@ -32,13 +32,15 @@ The `test` command takes any test files in your src directory and runs them usin
 kyt test looks for any `*.test.js` files in `src/`.
 
 ### lint
-The `lint` command lints all files in the src directory using eslint. 
-During setup, an `.eslintrc` is copied into the root of your repo. 
+The `lint` command lints all files in the src directory using ESLint. 
+During setup, an `.eslintrc` is copied into the root of your app. 
 You can add or update any rules from this file. 
 
 kyt's ESLint config extends [Airbnb](https://github.com/airbnb/javascript)
 
-stylelint details TK.
+### lint-style
+The `lint-style` command uses Stylelint to lint all files in the src directory. By convention, it look for files with a `.css` or `.scss` extension.
+During `setup`, a `.stylelintrc` is copied into the root of your app that is pre-configured with sensible defaults for CSS/SASS Modules. Feel free to add or update any of the pre-configured [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc`. 
 
 ### proto
 The `proto` command starts a webpack dev server for building prototypes.
