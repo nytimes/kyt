@@ -21,7 +21,8 @@ module.exports = () => {
   const testConfigPath = path.resolve(__dirname, '../../config/webpack.temp.test.js');
   const tempTestDir = path.join(userRootPath, './tmp-test');
   const newConfigPath = path.join(tempTestDir, './webpack.config.js');
-
+  const fakePkgJsonPath = path.join(__dirname, '../../fakePkg.json');
+  const testPkgJsonPath = path.join(userRootPath, './tmp-test/package.json');
   logger.start('Running Test Command...');
 
   // Clean the build directory.
@@ -35,6 +36,7 @@ module.exports = () => {
   shell.cp('-r', userSrc, tempTestDir);
   // Copy babelRC into test directory
   shell.cp(babelRC, tmpBabelRC);
+  shell.cp(fakePkgJsonPath, testPkgJsonPath);
   // Copy the webpack config into the temp directory
   shell.cp(testConfigPath, newConfigPath);
 

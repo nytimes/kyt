@@ -25,10 +25,29 @@ const options = {
   userRootPath,
 };
 
-let babelrc = {};
-babelrc.plugins = [];
-babelrc.presets = [];
+// Create the babelrc query for the babel loader.
+const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
+// Uses require.resolve to add the full paths to all of the plugins
+// and presets, making sure that we handle the new array syntax.
+const resolvePluginsPresets = (babelGroup) => {
+  babelGroup.plugins = (babelGroup.plugins || []).map((plugin) => {
+    if (typeof plugin === 'object') {
+      plugin[0] = require.resolve(plugin[0]);
+      return plugin;
+    }
+    return require.resolve(plugin);
+  });
+  babelGroup.presets = (babelGroup.presets || []).map((preset) => {
+    if (typeof preset === 'object') {
+      preset[0] = require.resolve(preset[0]);
+      return preset;
+    }
+    return require.resolve(preset);
+  });
+};
 babelrc.babelrc = false;
+resolvePluginsPresets(babelrc);
+Object.keys(babelrc.env || {}).forEach((env) => resolvePluginsPresets(babelrc.env[env]));
 
 const testConfig = {
   resolve: {
