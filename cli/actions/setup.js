@@ -117,7 +117,7 @@ module.exports = (program) => {
 
       // Backup esLint if it exists
       if (shell.test('-f', linkedPath)) {
-        const eslintBackup = path.join(userRootPath, `.eslintrc-${Date.now()}-bak`);
+        const eslintBackup = path.join(userRootPath, `.eslintrc-${Date.now()}.bak`);
         shell.mv(linkedPath, eslintBackup);
         logger.task(`Backed up current eslint file to: ${eslintBackup}`);
       }
@@ -144,7 +144,7 @@ module.exports = (program) => {
 
       // Backup the user's .stylelintrc if it exists.
       if (shell.test('-f', userStylelintPath)) {
-        const stylelintBackup = path.join(userRootPath, `.stylelintrc-${Date.now()}-bak`);
+        const stylelintBackup = path.join(userRootPath, `.stylelintrc-${Date.now()}.bak`);
         shell.mv(userStylelintPath, stylelintBackup);
         logger.task(`Backed up current stylelint file to: ${stylelintBackup}`);
       }
@@ -199,7 +199,7 @@ module.exports = (program) => {
       if (shell.test('-f', userKytConfig)) {
         // Since the user already has a kyt.config,
         // we need to back it up before copying.
-        const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.bak.js`);
+        const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.js.bak`);
         shell.mv('-f', userKytConfig, mvTo);
         logger.info(`Backed up current kyt.config.js to: ${mvTo}`);
         copyConfig();
@@ -245,7 +245,7 @@ module.exports = (program) => {
       if (!shell.test('-f', starterProto)) return;
       // Backup user's prototype file if they already have one
       if (shell.test('-f', userProto)) {
-        const prototypeBackup = path.join(userRootPath, `prototype-${Date.now()}-bak.js`);
+        const prototypeBackup = path.join(userRootPath, `prototype-${Date.now()}.js.bak`);
         shell.mv(userProto, prototypeBackup);
         logger.info(`Backed up current prototype file to: ${prototypeBackup}`);
       }
