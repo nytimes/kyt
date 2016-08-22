@@ -9,7 +9,7 @@ const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
-  //shell.config.silent = true;
+  shell.config.silent = true;
 
   const userRootPath = kytConfig.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
@@ -34,6 +34,7 @@ module.exports = () => {
 
   // Copy ava's configuration into the root
   shell.cp(avaPkgJsonPath, testPkgJsonPath);
+
   // Copy the webpack config into the temp directory
   shell.cp(testConfigPath, newConfigPath);
 

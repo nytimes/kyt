@@ -22,6 +22,7 @@ const options = {
   type: 'test',
   userRootPath,
 };
+
 const babelrc = {};
 babelrc.babelrc = false;
 babelrc.presets = [];

@@ -10,17 +10,6 @@
         "babel-plugin-transform-react-remove-prop-types",
         "babel-plugin-transform-react-constant-elements"
       ]
-    },
-    "TEST": {
-      "plugins": [
-        [
-          "babel-plugin-webpack-loaders",
-          {
-            "config": "./webpack.config.js",
-            "verbose": false
-          }
-        ]
-      ]
     }
   }
 }
