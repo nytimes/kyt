@@ -14,42 +14,54 @@ const cssStyleLoaders = [
   'postcss',
 ];
 
-module.exports = (options) => ({
-  target: 'web',
-
-  entry: {
-    main: [
-      'react-hot-loader/patch',
-      `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`,
-      path.join(options.userRootPath, 'src/client/index.js'),
-    ],
-  },
-
-  output: {
-    path: path.join(options.userRootPath, 'build/client'),
-    filename: '[name].js',
-    chunkFilename: '[name]-[chunkhash].js',
-    publicPath: options.publicPath,
-    libraryTarget: 'var',
-  },
-
-  module: {
-    loaders: [
-      {
-        test: /\.css$/,
-        loaders: cssStyleLoaders,
-      },
-      {
-        test: /\.scss$/,
-        loaders: clone(cssStyleLoaders).concat('sass'),
-      },
-    ],
-  },
-
-  plugins: [
+module.exports = (options) => {
+  const main = [
+    path.join(options.userRootPath, 'src/client/index.js')
+  ];
+  const plugins = [
     new webpack.NoErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-  ],
-});
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
+  ];
+
+  if (options.reactHotLoader) {
+    main.unshift(
+      'react-hot-loader/patch',
+      `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`
+    );
+    plugins.push(new webpack.HotModuleReplacementPlugin());
+  } else {
+    main.unshift(`webpack-dev-server/client?http://localhost:${options.clientPort}`);
+  }
+
+  return {
+    target: 'web',
+
+    entry: {
+      main,
+    },
+
+    output: {
+      path: path.join(options.userRootPath, 'build/client'),
+      filename: '[name].js',
+      chunkFilename: '[name]-[chunkhash].js',
+      publicPath: options.publicPath,
+      libraryTarget: 'var',
+    },
+
+    module: {
+      loaders: [
+        {
+          test: /\.css$/,
+          loaders: cssStyleLoaders,
+        },
+        {
+          test: /\.scss$/,
+          loaders: clone(cssStyleLoaders).concat('sass'),
+        },
+      ],
+    },
+
+    plugins,
+  };
+};
 

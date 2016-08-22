@@ -10,6 +10,7 @@ const write = (status, text, verbose) => {
   else if (status === 'start') textToLog = '🔥  ';
   else if (status === 'end') textToLog = '✅  ';
   else if (status === 'info') textToLog = 'ℹ️  ';
+  else if (status === 'warn') textToLog = '🙀  ';
   else if (status === 'error') textToLog = '❌  ';
   else if (status === 'debug') textToLog = '🐞  ';
 
@@ -60,6 +61,11 @@ const debug = (text, data) => {
   }
 };
 
+// Warn output
+const warn = (text, data) => {
+  write('warn', text, data);
+}
+
 // Error output
 // takes an optional error
 const error = (text, err) => {
@@ -71,6 +77,7 @@ module.exports = {
   task,
   info,
   debug,
+  warn,
   error,
   start,
   end,

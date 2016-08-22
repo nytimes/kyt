@@ -10,7 +10,7 @@ You can also run them with `node_modules/.bin/kyt commandName`
 3. `run` runs production code
 4. `test` runs AVA on all tests in /src
 5. `proto` starts the prototyping app
-6. `lint` lints src code using eslint
+6. `lint` lints src code using ESlint
 7. `help` shows commands and their documentation 
 8. `setup` sets up kyt and can install a specified [starter-kyt](/Starterkyts.md)
 
@@ -32,10 +32,15 @@ The `test` command takes any test files in your src directory and runs them usin
 kyt test looks for any `*.test.js` files in `src/`.
 
 ### lint
-The `lint` command lints all files in the src directory using eslint. 
-You can override the base eslint file in the kyt config.
+The `lint` command lints all files in the src directory using ESLint. 
+During setup, an `.eslintrc` is copied into the root of your app. 
+You can add or update any rules from this file. 
 
-stylelint details TK.
+kyt's ESLint config extends [Airbnb](https://github.com/airbnb/javascript)
+
+### lint-style
+The `lint-style` command uses Stylelint to lint all files in the src directory. By convention, it look for files with a `.css` or `.scss` extension.
+During `setup`, a `.stylelintrc` is copied into the root of your app that is pre-configured with sensible defaults for CSS/SASS Modules. Feel free to add or update any of the pre-configured [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc`. 
 
 ### proto
 The `proto` command starts a webpack dev server for building prototypes.
@@ -62,6 +67,7 @@ The command has one flag:
 1. Clone the repo for your starter
 2. Install necessary npm packages
 3. Copy configuration and src
-4. Add kyt commands to your npm scripts 
+4. Copy lint configs into your root
+5. Add kyt commands to your npm scripts 
 
 After that you're ready to build. 

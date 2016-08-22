@@ -14,9 +14,8 @@ See the [base kyt config](/config/kyt.base.config.js) for an example.
  2. `clientPort` - port for the client assets server *default*: 3001
  3. `prototypePort` - port for the prototyping dev server *default*: 3002
  4. `debug` - when true, the CLI returns all verbose output *default*: false
- 5. `eslintConfig` - a path to a new eslintConfig, which overrides kyt's default
- 6. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/assets/`
- 7. `modifyWebpackConfig` - the callback function that allows you to edit webpack configs. See more details below
+ 5. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/assets/`
+ 6. `modifyWebpackConfig` - the callback function that allows you to edit webpack configs. See more details below
  
 
 ## ModifyWebpackConfig

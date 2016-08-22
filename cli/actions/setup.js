@@ -20,7 +20,6 @@ module.exports = (program) => {
   const userSrc = path.join(userRootPath, 'src');
   const packageJSONPath = path.join(userRootPath, 'package.json');
   const nodeModulesPath = path.join(userRootPath, 'node_modules');
-  const gitignoreFile = path.join(userRootPath, '.gitignore');
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.rm('-rf', tmpDir);
@@ -39,12 +38,6 @@ module.exports = (program) => {
   // First, clean any old cloned repositories.
   removeTmpDir();
 
-  const afterClone = (error) => {
-    if (error) {
-      logger.error('There was a problem cloning the repository');
-      logger.log(error);
-      bailProcess();
-    }
 
     // Add dependencies, scripts and other package to
     // the user's package.json configuration.
@@ -117,7 +110,59 @@ module.exports = (program) => {
       logger.task('Installed new modules');
     };
 
-    // Creates a symbolic link from our local
+    // Create an .eslintrc in the user's base directory
+    const createESLintFile = () => {
+      const tmpEsLint = path.join(tmpDir, '.eslintrc');
+      const linkedPath = path.join(userRootPath, '.eslintrc');
+
+      // Backup esLint if it exists
+      if (shell.test('-f', linkedPath)) {
+        const eslintBackup = path.join(userRootPath, `.eslintrc-${Date.now()}-bak`);
+        shell.mv(linkedPath, eslintBackup);
+        logger.task(`Backed up current eslint file to: ${eslintBackup}`);
+      }
+
+      // Copy over starter-kyt esLint
+      if (shell.test('-f', tmpEsLint)) {
+        if (shell.cp(tmpEsLint, linkedPath).code === 0) {
+          logger.task('Copied ESLint config from starter-kyt');
+        }
+      } else {
+        // Copy our local eslint
+        const esLintPath = path.join(__dirname, '../../.eslintrc');
+        if (shell.cp(esLintPath, linkedPath).code === 0) {
+          logger.task('Copied kyt default ESLint config');
+        }
+      }
+    };
+
+    // Create an stylelint.json in the user's base directory.
+    const createStylelintFile = () => {
+      const stylelintFileName = '.stylelintrc';
+      const tmpStylelint = path.join(tmpDir, stylelintFileName);
+      const userStylelintPath = path.join(userRootPath, stylelintFileName);
+
+      // Backup the user's .stylelintrc if it exists.
+      if (shell.test('-f', userStylelintPath)) {
+        const stylelintBackup = path.join(userRootPath, `.stylelintrc-${Date.now()}-bak`);
+        shell.mv(userStylelintPath, stylelintBackup);
+        logger.task(`Backed up current stylelint file to: ${stylelintBackup}`);
+      }
+
+      // Copy over starter-kyt .stylelintrc if it exists.
+      if (shell.test('-f', tmpStylelint)) {
+        if (shell.cp(tmpStylelint, userStylelintPath).code === 0) {
+          logger.task('Copied Stylelint config from starter-kyt');
+        }
+      } else {
+        // Copy our .stylelintrc into the user's directory
+        const stylelintPath = path.join(__dirname, `../../config/${stylelintFileName}`);
+        if (shell.cp(stylelintPath, userStylelintPath).code === 0) {
+          logger.task('Copied default Stylelint config');
+        }
+      }
+    };
+
     // .editorconfig to the user's base directory.
     const createEditorconfigLink = () => {
       const editorPath = './node_modules/kyt/.editorconfig';
@@ -183,8 +228,9 @@ module.exports = (program) => {
 
     // Copies gitignore file
     const createGitignore = () => {
+      const gitignoreFile = path.join(userRootPath, './.gitignore');
       if (!shell.test('-f', gitignoreFile)) {
-        const gitignoreLocal = path.resolve(__dirname, '../../.gitignore');
+        const gitignoreLocal = path.resolve(__dirname, '../../.kyt-gitignore');
         shell.cp(gitignoreLocal, gitignoreFile);
         logger.task('Created .gitignore file');
       }
@@ -208,19 +254,45 @@ module.exports = (program) => {
       logger.task('copied prototype.js file into root');
     };
 
+    // Checks to see if user would like src backed up before continuing
+    const srcPrompt = (startSetup) => {
+      const userSrcPath = path.resolve(userRootPath, './src');
+
+      // Check if src already exists
+      if (shell.test('-d', userSrcPath)) {
+        const question = [
+          {
+            type: 'confirm',
+            name: 'srcBackup',
+            message: 'You already have a src directory. Would you like kyt to backup src/ and continue?',
+            default: true,
+          },
+        ];
+        inquire.prompt(question).then((answer) => {
+          if (answer.srcBackup) {
+            startSetup();
+          } else {
+            process.exit();
+          }
+        });
+      } else {
+        startSetup();
+      }
+    };
+
     // Selects type of setup
     const setupPrompt = () => {
       // Skip starter-kyt question if they've already supplied a repo name
       if (args.repository) {
         srcPrompt(starterKytSetup);
       } else {
-        let question = [
+        const question = [
           {
             type: 'confirm',
             name: 'setupStarter',
             message: 'Would you like to setup with the default starter-kyt?',
-            default: false
-          }
+            default: false,
+          },
         ];
         inquire.prompt(question).then((answer) => {
             if (answer.setupStarter) {
@@ -236,59 +308,43 @@ module.exports = (program) => {
     const starterKytSetup = () => {
       defaultMode = false;
       logger.start('Setting up starter-kyt');
-      updateUserPackageJSON();
-      installUserDependencies();
-      createEditorconfigLink();
-      createKytConfig();
-      createPrototypeFile();
-      createSrcDirectory();
-      createGitignore();
-      removeTmpDir();
-      logger.end(`Done adding starter kyt: ${repoURL}`);
+      const afterClone = (error) => {
+        if (error) {
+          logger.error('There was a problem cloning the repository');
+          logger.log(error);
+          bailProcess();
+        }
+        updateUserPackageJSON();
+        installUserDependencies();
+        createESLintFile();
+        createStylelintFile();
+        createEditorconfigLink();
+        createKytConfig();
+        createPrototypeFile();
+        createSrcDirectory();
+        createGitignore();
+        removeTmpDir();
+        logger.end(`Done adding starter kyt: ${repoURL}`);
+      };
+
+      simpleGit.clone(repoURL, tmpDir, {}, afterClone);
     };
 
     // default setup flow
-    const defaultSetup = () => {
-      logger.start('Setting up kyt');
-      updateUserPackageJSON();
-      createEditorconfigLink();
-      createKytConfig();
-      createGitignore();
-      logger.end('Done setting up kyt');
-    };
-
-    // Checks to see if user would like src backed up before continuing
-    const srcPrompt = (startSetup) => {
-      const userSrcPath = path.resolve(userRootPath, './src');
-
-      // Check if src already exists
-      if (shell.test('-d', userSrcPath)) {
-        let question = [
-        {
-          type: 'confirm',
-          name: 'srcBackup',
-          message: 'You already have a src directory. Would you like kyt to backup src/ and continue?',
-          default: true
-        }
-        ];
-        inquire.prompt(question).then((answer) => {
-          if (answer.srcBackup) {
-            startSetup();
-          } else {
-            process.exit();
-          }
-        });
-      } else {
-        startSetup();
-      }
-    };
-
-    try {
-      setupPrompt();
-    } catch (err) {
-      bailProcess(err);
-    }
+  const defaultSetup = () => {
+    logger.start('Setting up kyt');
+    updateUserPackageJSON();
+    createEditorconfigLink();
+    createESLintFile();
+    createStylelintFile();
+    createKytConfig();
+    createGitignore();
+    logger.end('Done setting up kyt');
   };
 
-  simpleGit.clone(repoURL, tmpDir, {}, afterClone);
+  try {
+    setupPrompt();
+  } catch (err) {
+    bailProcess(err);
+  }
 };
