@@ -17,7 +17,7 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (environment = 'development') => {
-  const { clientPort, serverPort, userRootPath } = kytConfig;
+  const { clientPort, serverPort, userRootPath, reactHotLoader } = kytConfig;
 
   let clientConfig = devClientConfig;
   let serverConfig = devServerConfig;
@@ -30,6 +30,7 @@ module.exports = (environment = 'development') => {
     publicPath: `http://localhost:${clientPort}/assets/`,
     assetsPath: path.join(userRootPath, 'build/client'),
     userRootPath,
+    reactHotLoader,
   };
 
   // These are the only differences between dev & prod
@@ -64,5 +65,6 @@ module.exports = (environment = 'development') => {
     clientPort, // TODO: Should these really be here?
     serverPort,
     userRootPath,
+    reactHotLoader,
   };
 };

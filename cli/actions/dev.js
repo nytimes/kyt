@@ -11,6 +11,7 @@ const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
+const WebpackDevServer = require('webpack-dev-server');
 
 module.exports = () => {
   logger.start('Starting development build...');
@@ -21,11 +22,36 @@ module.exports = () => {
     clientPort,
     serverPort,
     userRootPath,
+    reactHotLoader,
   } = buildConfigs();
 
   let clientCompiler;
   let serverCompiler;
   let server = null;
+
+  const getHotClient = (options) => {
+    const app = express();
+    const webpackDevMiddleware = devMiddleware(clientCompiler, options);
+
+    app.use(webpackDevMiddleware);
+    app.use(hotMiddleware(clientCompiler));
+
+    return app;
+  };
+
+  const getDevServer = (options) => new WebpackDevServer(clientCompiler, options);
+
+  const startClient = () => {
+    const devOptions = {
+      publicPath: clientCompiler.options.output.publicPath,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      noInfo: true,
+      quiet: true,
+    };
+
+    const app = reactHotLoader ? getHotClient(devOptions) : getDevServer(devOptions);
+    app.listen(clientPort);
+  };
 
   const startHotServer = () => {
     const serverPath = path.resolve(
@@ -50,21 +76,6 @@ module.exports = () => {
     }
   };
 
-  const startHotClient = () => {
-    const app = express();
-    const webpackDevMiddleware = devMiddleware(clientCompiler, {
-      publicPath: clientCompiler.options.output.publicPath,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      noInfo: true,
-      quiet: true,
-    });
-
-    app.use(webpackDevMiddleware);
-    app.use(hotMiddleware(clientCompiler));
-
-    app.listen(clientPort);
-  };
-
   const compileHotServer = () => {
     serverCompiler.run(() => undefined);
   };
@@ -82,6 +93,7 @@ module.exports = () => {
 
   // Compile Client Webpack Config
   clientCompiler = webpackCompiler(clientConfig, () => {
+    if (reactHotLoader) logger.task('Setup React Hot Loader');
     logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
     compileHotServer();
   });
@@ -92,6 +104,5 @@ module.exports = () => {
   });
 
   // Start client hot server
-  ifPortIsFreeDo(clientPort, startHotClient);
-
+  ifPortIsFreeDo(clientPort, startClient);
 };
