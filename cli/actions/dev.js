@@ -25,6 +25,8 @@ module.exports = () => {
     reactHotLoader,
   } = buildConfigs();
 
+  let isInitialServerCompile = true;
+  let isInitialClientCompile = true;
   let clientCompiler;
   let serverCompiler;
   let server = null;
@@ -93,14 +95,23 @@ module.exports = () => {
 
   // Compile Client Webpack Config
   clientCompiler = webpackCompiler(clientConfig, () => {
-    if (reactHotLoader) logger.task('Setup React Hot Loader');
-    logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
+    if (isInitialClientCompile) {
+      if (reactHotLoader) logger.task('Setup React Hot Loader');
+      logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
+      isInitialClientCompile = false;
+    }
     compileHotServer();
   });
 
   // Compile Server Webpack Config
   serverCompiler = webpackCompiler(serverConfig, () => {
-    ifPortIsFreeDo(serverPort, startHotServer);
+    // The hot server will recompile and restart so we
+    // need to make sure we only check the port once.
+    if (isInitialServerCompile) {
+      ifPortIsFreeDo(serverPort, startHotServer);
+      isInitialServerCompile = false;
+    }
+    else startHotServer();
   });
 
   // Start client hot server
