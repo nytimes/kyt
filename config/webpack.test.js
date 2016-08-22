@@ -3,9 +3,7 @@
 
 const clone = require('ramda').clone;
 const kytConfig = require('./kyt.config');
-const merge = require('webpack-merge');
 const path = require('path');
-const fs = require('fs');
 
 const logger = console;
 const cssStyleLoaders = [
@@ -24,30 +22,10 @@ const options = {
   type: 'test',
   userRootPath,
 };
-
-// Create the babelrc query for the babel loader.
-const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
-// Uses require.resolve to add the full paths to all of the plugins
-// and presets, making sure that we handle the new array syntax.
-const resolvePluginsPresets = (babelGroup) => {
-  babelGroup.plugins = (babelGroup.plugins || []).map((plugin) => {
-    if (typeof plugin === 'object') {
-      plugin[0] = require.resolve(plugin[0]);
-      return plugin;
-    }
-    return require.resolve(plugin);
-  });
-  babelGroup.presets = (babelGroup.presets || []).map((preset) => {
-    if (typeof preset === 'object') {
-      preset[0] = require.resolve(preset[0]);
-      return preset;
-    }
-    return require.resolve(preset);
-  });
-};
+const babelrc = {};
 babelrc.babelrc = false;
-resolvePluginsPresets(babelrc);
-Object.keys(babelrc.env || {}).forEach((env) => resolvePluginsPresets(babelrc.env[env]));
+babelrc.presets = [];
+babelrc.plugins = [];
 
 const testConfig = {
   resolve: {

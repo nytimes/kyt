@@ -1,0 +1,21 @@
+{
+  "ava": {
+    "babel": "inherit",
+    "require": ["babel-register"]
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "react"
+    ],
+    "plugins": [
+      [
+        "babel-plugin-webpack-loaders",
+        {
+          "config": "${CONFIG}",
+          "verbose": false
+        }
+      ]
+    ]
+  }
+}
