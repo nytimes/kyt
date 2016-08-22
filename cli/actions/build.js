@@ -2,6 +2,7 @@
 // Command to build production code
 
 const shell = require('shelljs');
+const path = require('path');
 const logger = require('./../logger');
 const printAssets = require('../../utils/printAssets');
 const buildConfigs = require('../../utils/buildConfigs');
@@ -19,8 +20,25 @@ module.exports = () => {
   } = buildConfigs('production');
 
   // Clean the build directory.
-  if (shell.exec(`rm -rf ${userRootPath}/build`).code === 0) {
+  const buildPath = path.resolve(userRootPath, './build');
+
+  if (shell.exec(`rm -rf ${buildPath}`).code === 0) {
+    shell.mkdir(buildPath);
     logger.task('Cleaned ./build');
+  }
+
+  // Copy public folder into build
+  const userPublicPath = path.resolve(userRootPath, './src/public');
+  const buildPublicPath = path.resolve(buildPath, './public');
+
+  if (shell.test('-d', userPublicPath )) {
+    // Create build folder if it doesnt exist
+    if (!shell.test('-d', buildPath)) {
+      shell.mkdir(buildPath);
+    }
+    // copy files
+    shell.cp('-r', userPublicPath, buildPublicPath);
+    logger.task('Copied /src/public to /build/public');
   }
 
   // Compiles server code using the prod.server config
