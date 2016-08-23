@@ -3,6 +3,7 @@
 
 const clone = require('ramda').clone;
 const kytConfig = require('./kyt.config');
+const path = require('path');
 
 const logger = console;
 const cssStyleLoaders = [
@@ -15,11 +16,23 @@ const cssStyleLoaders = [
 ];
 
 const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
+const userRootPath = kytConfig.userRootPath;
 const options = {
   environment: 'test',
   type: 'test',
+  userRootPath,
 };
+
+const babelrc = {};
+babelrc.babelrc = false;
+babelrc.presets = [];
+babelrc.plugins = [];
+
 const testConfig = {
+  resolve: {
+  },
+  plugins: [],
+  postcss: [],
   module: {
     loaders: [
       {
@@ -30,9 +43,34 @@ const testConfig = {
         test: /\.scss$/,
         loaders: sassStyleLoaders,
       },
+      {
+        test: /\.html$/,
+        loader: 'file?name=[name].[ext]',
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif|eot|svg|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 20000,
+        },
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader',
+      },
+      {
+        test: /\.(js|jsx)$/,
+        loader: 'babel-loader',
+        exclude: [
+          /node_modules/,
+          path.join(options.userRootPath, 'build'),
+        ],
+        query: babelrc,
+      },
     ],
   },
 };
+
 
 module.exports = () => {
   // Uses kytConfig callback to merge with user webpack config
