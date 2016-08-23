@@ -52,7 +52,6 @@
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
     "file-loader": "^0.9.0",
     "filesize": "^3.3.0",
-    "fs": "0.0.2",
     "install": "^0.8.1",
     "json-loader": "^0.5.4",
     "node-sass": "^3.8.0",
