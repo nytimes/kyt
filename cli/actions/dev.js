@@ -78,11 +78,10 @@ module.exports = () => {
 
   const compileServer = () => {
     serverCompiler.run(() => {
-      //clientCompiler.run(() => undefined);
+      clientCompiler.run(() => undefined);
       //webpackDevMiddleware.invalidate();
       //clientServer.invalidate();
-      console.log(clientServer.sockets)
-      clientServer.sockWrite(clientServer.sockets, 'ok');
+      //clientServer.sockWrite(clientServer.sockets, 'ok');
     });
   };
 
