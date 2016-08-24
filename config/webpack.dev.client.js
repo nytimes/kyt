@@ -17,26 +17,9 @@ const cssStyleLoaders = [
 
 module.exports = (options) => {
   const main = [
+    `webpack-dev-server/client?http://localhost:${options.clientPort}`,
     path.join(options.userRootPath, 'src/client/index.js')
   ];
-  const plugins = [
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-    new AssetsPlugin({
-      filename: options.clientAssetsFile,
-      path: options.buildPath,
-    }),
-  ];
-
-  if (options.reactHotLoader) {
-    main.unshift(
-      'react-hot-loader/patch',
-      `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`
-    );
-    plugins.push(new webpack.HotModuleReplacementPlugin());
-  } else {
-    main.unshift(`webpack-dev-server/client?http://localhost:${options.clientPort}`);
-  }
 
   return {
     target: 'web',
@@ -66,6 +49,13 @@ module.exports = (options) => {
       ],
     },
 
-    plugins,
+    plugins: [
+      new webpack.NoErrorsPlugin(),
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+      new AssetsPlugin({
+        filename: options.clientAssetsFile,
+        path: options.buildPath,
+      }),
+    ],
   };
 };

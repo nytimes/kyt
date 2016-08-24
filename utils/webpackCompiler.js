@@ -19,7 +19,7 @@ module.exports = (webpackConfig, cb) => {
   webpackCompiler.plugin('done', stats => {
     if (stats.hasErrors()) {
       logger.error(`${type} build failed\n`, stats.toString());
-      logger.info('See webpack error above');
+      logger.info('See build errors above');
       return null;
     }
 
@@ -28,6 +28,7 @@ module.exports = (webpackConfig, cb) => {
     }
 
     logger.task(`${type} build successful`);
+    //logger.info(stats.toString());
 
     // Call the callback on successful build
     if (cb) {

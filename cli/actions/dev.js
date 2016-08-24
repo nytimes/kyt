@@ -4,9 +4,8 @@
 const path = require('path');
 const chokidar = require('chokidar');
 const express = require('express');
-const devMiddleware = require('webpack-dev-middleware');
-const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
+const devMiddleware = require('webpack-dev-middleware');
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
@@ -22,7 +21,6 @@ module.exports = () => {
     clientPort,
     serverPort,
     userRootPath,
-    reactHotLoader,
   } = buildConfigs();
 
   let isInitialServerCompile = true;
@@ -30,18 +28,8 @@ module.exports = () => {
   let clientCompiler;
   let serverCompiler;
   let server = null;
-
-  const getHotClient = (options) => {
-    const app = express();
-    const webpackDevMiddleware = devMiddleware(clientCompiler, options);
-
-    app.use(webpackDevMiddleware);
-    app.use(hotMiddleware(clientCompiler));
-
-    return app;
-  };
-
-  const getDevServer = (options) => new WebpackDevServer(clientCompiler, options);
+  let webpackDevMiddleware;
+  let clientServer;
 
   const startClient = () => {
     const devOptions = {
@@ -49,13 +37,23 @@ module.exports = () => {
       headers: { 'Access-Control-Allow-Origin': '*' },
       noInfo: true,
       quiet: true,
-    };
+      // watchOptions: {
+      //   poll: false,
+      // },
 
-    const app = reactHotLoader ? getHotClient(devOptions) : getDevServer(devOptions);
+      lazy: true,
+      filename: clientCompiler.options.output.filename,
+    };
+    const app = new WebpackDevServer(clientCompiler, devOptions);
+    // const app = express();
+    // webpackDevMiddleware = devMiddleware(clientCompiler, devOptions);
+    // app.use(webpackDevMiddleware);
+
     app.listen(clientPort);
+    clientServer = app;
   };
 
-  const startHotServer = () => {
+  const startServer = () => {
     const serverPath = path.resolve(
       serverCompiler.options.output.path, `${Object.keys(serverCompiler.options.entry)[0]}.js`
     );
@@ -78,29 +76,35 @@ module.exports = () => {
     }
   };
 
-  const compileHotServer = () => {
-    serverCompiler.run(() => undefined);
+  const compileServer = () => {
+    serverCompiler.run(() => {
+      //clientCompiler.run(() => undefined);
+      //webpackDevMiddleware.invalidate();
+      //clientServer.invalidate();
+      console.log(clientServer.sockets)
+      clientServer.sockWrite(clientServer.sockets, 'ok');
+    });
   };
 
-  // Watch the server files and recompile and restart on changes.
-  const watcher = chokidar.watch([path.join(userRootPath, 'src/server')]);
-  watcher.on('ready', () => {
-    watcher
-      .on('add', compileHotServer)
-      .on('addDir', compileHotServer)
-      .on('change', compileHotServer)
-      .on('unlink', compileHotServer)
-      .on('unlinkDir', compileHotServer);
-  });
+  const startWatcher = () => {
+    // Watch the server files and recompile and restart on changes.
+    const watcher = chokidar.watch([path.join(userRootPath, 'src')]);
+    watcher.on('ready', () => {
+      watcher
+        .on('add', compileServer)
+        .on('addDir', compileServer)
+        .on('change', compileServer)
+        .on('unlink', compileServer)
+        .on('unlinkDir', compileServer);
+    });
+  };
 
   // Compile Client Webpack Config
   clientCompiler = webpackCompiler(clientConfig, () => {
-    if (isInitialClientCompile) {
-      if (reactHotLoader) logger.task('Setup React Hot Loader');
-      logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
-      isInitialClientCompile = false;
-    }
-    compileHotServer();
+    // if (isInitialClientCompile) {
+    //   isInitialClientCompile = false;
+    //   logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
+    // }
   });
 
   // Compile Server Webpack Config
@@ -108,12 +112,23 @@ module.exports = () => {
     // The hot server will recompile and restart so we
     // need to make sure we only check the port once.
     if (isInitialServerCompile) {
-      ifPortIsFreeDo(serverPort, startHotServer);
       isInitialServerCompile = false;
+      // ifPortIsFreeDo(serverPort, startServer);
+      // startWatcher();
+    } else {
+      startServer();
     }
-    else startHotServer();
   });
 
   // Start client hot server
   ifPortIsFreeDo(clientPort, startClient);
+  clientCompiler.run(() => {
+    logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
+    serverCompiler.run(() => {
+      ifPortIsFreeDo(serverPort, startServer);
+      startWatcher();
+    });
+  });
+
+  //compileServer();
 };
