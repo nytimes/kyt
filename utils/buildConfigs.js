@@ -17,7 +17,7 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (environment = 'development') => {
-  const { clientPort, serverPort, userRootPath, reactHotLoader } = kytConfig;
+  const { clientPort, serverPort, userRootPath, reactHotLoader } = kytConfig();
   const buildPath = path.join(userRootPath, 'build');
 
   let clientConfig = devClientConfig;
