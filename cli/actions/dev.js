@@ -4,6 +4,7 @@
 const path = require('path');
 const chokidar = require('chokidar');
 const express = require('express');
+const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
@@ -15,6 +16,12 @@ const WebpackDevServer = require('webpack-dev-server');
 
 module.exports = () => {
   logger.start('Starting development build...');
+  // Clean the build directory.
+  const buildPath = path.resolve(process.cwd(), './build');
+
+  if (shell.test('-d', buildPath) && shell.rm('-rf', buildPath).code === 0) {
+    logger.task('Cleaned ./build');
+  }
 
   const {
     clientConfig,
