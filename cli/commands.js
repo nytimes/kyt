@@ -11,19 +11,9 @@ const path = require('path');
 
 // define user root
 process.env.USER_ROOT = path.resolve(process.cwd());
-console.log(process.argv);
+
 const exitIfOldNodeVersion = require('./../utils/exitIfOldNodeVersion');
 const program = require('commander');
-
-program
-  .version('0.0.1')
-  .option('-C, --config <path>', 'config path');
-if (program.args.config) {
-  console.log('got the config');
-}
-
-const kytConfigPath = program.options('-c', 'optional kyt config path');
-console.log(kytConfigPath);
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
@@ -53,8 +43,14 @@ program
 
 program
   .command('build')
+  .option('-C, --config <path>', 'config path')
   .description('Create a production build')
-  .action(() => buildAction(program));
+  .action(() => {
+    if (program.args[0].config) {
+      process.env.ENV_KYT_CONFIG = program.args[0].config;
+    }
+    buildAction(program);
+  });
 
 program
   .command('run')
