@@ -39,6 +39,8 @@ module.exports = () => {
     // copy files
     shell.cp('-r', userPublicPath, buildPublicPath);
     logger.task('Copied /src/public to /build/public');
+  } else {
+    shell.mkdir('-p', `${buildPath}/public`);
   }
 
   // Compiles server code using the prod.server config
