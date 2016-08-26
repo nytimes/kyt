@@ -9,7 +9,7 @@ const kytConfig = require('../../config/kyt.config');
 module.exports = (program) => {
   const args = program.args[0];
 
-  const userRootPath = kytConfig.userRootPath;
+  const userRootPath = kytConfig().userRootPath;
   const userSrc = path.join(userRootPath, 'src');
   const packageJSONPath = path.join(userRootPath, 'package.json');
   const nodeModulesPath = path.join(userRootPath, 'node_modules');

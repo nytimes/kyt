@@ -56,7 +56,7 @@ const info = (text) => {
 // Verbose output
 // takes optional data
 const debug = (text, data) => {
-  if (kytConfig.debug) {
+  if (kytConfig().debug) {
     write('debug', text, data);
   }
 };
@@ -64,7 +64,7 @@ const debug = (text, data) => {
 // Warn output
 const warn = (text, data) => {
   write('warn', text, data);
-}
+};
 
 // Error output
 // takes an optional error

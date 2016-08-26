@@ -11,7 +11,7 @@ const logger = require('./../logger');
 const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
-  const userRootPath = kytConfig.userRootPath;
+  const userRootPath = kytConfig().userRootPath;
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
@@ -29,7 +29,7 @@ module.exports = () => {
     logger.log(formatter(report.results));
   };
 
-    const esLintPath = path.join(kytConfig.userRootPath, './.eslintrc');
+    const esLintPath = path.join(userRootPath, './.eslintrc');
 
     // Check to see if eslint file exists
     if (!shell.test('-f', esLintPath)) {

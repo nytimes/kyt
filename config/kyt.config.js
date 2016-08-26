@@ -8,7 +8,7 @@ const merge = require('ramda').merge;
 
 module.exports = () => {
   const userConfigPath = process.env.ENV_KYT_CONFIG ?
-  path.join(process.env.USER_ROOT_PATH, process.env.ENV_KYT_CONFIG) :
+  path.join(process.env.USER_ROOT, process.env.ENV_KYT_CONFIG) :
   path.join(process.env.USER_ROOT, './kyt.config.js');
   let config;
   const logger = console;

@@ -7,7 +7,7 @@ const merge = require('webpack-merge');
 const logger = require('../cli/logger');
 const clone = require('ramda').clone;
 // base configs
-const kytConfig = require('../config/kyt.config');
+const kytConfigFn = require('../config/kyt.config');
 const baseConfig = require('../config/webpack.base');
 // dev configs
 const devClientConfig = require('../config/webpack.dev.client');
@@ -17,7 +17,8 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (environment = 'development') => {
-  const { clientPort, serverPort, userRootPath, reactHotLoader } = kytConfig();
+  const kytConfig = kytConfigFn();
+  const { clientPort, serverPort, userRootPath, reactHotLoader } = kytConfig;
   const buildPath = path.join(userRootPath, 'build');
 
   let clientConfig = devClientConfig;
