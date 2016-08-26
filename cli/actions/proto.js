@@ -7,7 +7,7 @@ const path = require('path');
 const shell = require('shelljs');
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('./../../utils/ifPortIsFreeDo');
-const kytConfigFn = require('./../../config/kyt.config');
+const kytConfigFn = require('./../../utils/kytConfig');
 const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
 

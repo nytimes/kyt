@@ -3,7 +3,7 @@
 
 const path = require('path');
 const shell = require('shelljs');
-const baseConfig = require('./kyt.base.config');
+const baseConfig = require('./../config/kyt.base.config');
 const merge = require('ramda').merge;
 
 module.exports = () => {

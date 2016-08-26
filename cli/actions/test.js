@@ -4,7 +4,7 @@
 const path = require('path');
 const logger = require('./../logger');
 const shell = require('shelljs');
-const kytConfig = require('./../../config/kyt.config');
+const kytConfig = require('./../../utils/kytConfig');
 
 
 module.exports = () => {
