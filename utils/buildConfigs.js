@@ -7,7 +7,7 @@ const merge = require('webpack-merge');
 const logger = require('../cli/logger');
 const clone = require('ramda').clone;
 // base configs
-const kytConfigFn = require('../config/kyt.config');
+const kytConfigFn = require('./kytConfig');
 const baseConfig = require('../config/webpack.base');
 // dev configs
 const devClientConfig = require('../config/webpack.dev.client');

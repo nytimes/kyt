@@ -1,5 +1,5 @@
 
-const kytConfig = require('../config/kyt.config');
+const kytConfig = require('../utils/kytConfig');
 
 const logger = console;
 const write = (status, text, verbose) => {

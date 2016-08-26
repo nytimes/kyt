@@ -2,7 +2,7 @@
 // Testing webpack config
 
 const clone = require('ramda').clone;
-const kytConfig = require('./kyt.config')();
+const kytConfig = require('./../utils/kytConfig')();
 const path = require('path');
 
 const logger = console;

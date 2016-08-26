@@ -8,7 +8,7 @@ const fs = require('fs');
 const merge = require('ramda').merge;
 const shell = require('shelljs');
 const logger = require('./../logger');
-const kytConfig = require('./../../config/kyt.config');
+const kytConfig = require('./../../utils/kytConfig');
 
 module.exports = () => {
   const userRootPath = kytConfig().userRootPath;

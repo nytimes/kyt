@@ -4,7 +4,7 @@ const fs = require('fs');
 const shell = require('shelljs');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
-const kytConfig = require('../../config/kyt.config');
+const kytConfig = require('../../utils/kytConfig');
 
 module.exports = (program) => {
   const args = program.args[0];
