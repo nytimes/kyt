@@ -37,3 +37,11 @@ Define the function in your `kyt.config.js` and it will be called as each webpac
 
 Dev Tip: 
 [webpack-merge](https://github.com/survivejs/webpack-merge) is a helpful tool for changing and combining Webpack configs. 
+
+
+## Creating env specific kyt configs
+kyt allows developers to specify a different kyt config in `build` command for the purpose of creating environment specific configurations. 
+```
+kyt build -c kyt.stage.js
+```
+option `-c` or `--config` takes a configuration path from the root of your project. 

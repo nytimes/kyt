@@ -4,7 +4,7 @@ const logger = require('./../logger');
 const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
-  const userRootPath = kytConfig.userRootPath;
+  const userRootPath = kytConfig().userRootPath;
 
   stylelint.lint({
     files: [`${userRootPath}/src/**/*.css`, `${userRootPath}/src/**/*.scss`],

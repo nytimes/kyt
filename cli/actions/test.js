@@ -11,7 +11,7 @@ module.exports = () => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
-  const userRootPath = kytConfig.userRootPath;
+  const userRootPath = kytConfig().userRootPath;
   const userSrc = path.join(userRootPath, 'src');
   const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
   const npath = path.resolve(userRootPath, './node_modules');

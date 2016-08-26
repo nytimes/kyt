@@ -56,7 +56,7 @@ const info = (text) => {
 // Verbose output
 // takes optional data
 const debug = (text, data) => {
-  if (kytConfig.debug) {
+  if (kytConfig().debug) {
     write('debug', text, data);
   }
 };
