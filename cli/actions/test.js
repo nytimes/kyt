@@ -2,10 +2,12 @@
 // Command to run tests with Ava
 
 const path = require('path');
+const glob = require('glob');
 const logger = require('./../logger');
 const shell = require('shelljs');
 const kytConfig = require('./../../config/kyt.config');
-
+let testConfig = require('../../config/webpack.test.js');
+const webpackCompiler = require('../../utils/webpackCompiler');
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
@@ -13,43 +15,53 @@ module.exports = () => {
 
   const userRootPath = kytConfig.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
+  const userBuild = path.join(userRootPath, 'build/test');
   const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
   const npath = path.resolve(userRootPath, './node_modules');
-  const testConfigPath = path.resolve(__dirname, '../../config/webpack.temp.test.js');
-  const tempTestDir = path.join(userRootPath, './kyt-test');
-  const newConfigPath = path.join(tempTestDir, './webpack.config.js');
-  const avaPkgJsonPath = path.join(__dirname, '../../config/ava.package.json');
-  const testPkgJsonPath = path.join(tempTestDir, './package.json');
-  logger.start('Running Test Command...');
 
-  // Clean the build directory.
-  if (shell.test('-d', tempTestDir)) {
-    shell.rm('-rf', tempTestDir);
-    logger.task('Cleaned test folder');
+  if (shell.test('-d', userBuild) && shell.rm('-rf', userBuild).code === 0) {
+    logger.task('Cleaned ./build/test');
+  }
+  shell.mkdir('-p', userBuild);
+
+  const getFiles = () => {
+    const pattern = path.join(userRootPath, '/src/**/*.test.js');
+    return glob.sync(pattern);
+  };
+
+  const getFileNameFromPath = (filePath) => {
+    return filePath.replace(/.+\/src\//, '')
+      .replace(/\.\//g, '')
+      .replace(/\//g, '.')
+      .split('.')
+      .slice(0, -1)
+      .join('_');
+  };
+
+  const getFileHash = (files) => {
+    return getFiles().reduce(function (prev, next) {
+      const path = './' + next;
+      prev[getFileNameFromPath(next)] = next;
+      return prev;
+    }, {});
   }
 
-  // Create Temp Directory and move user src files there
-  shell.mkdir(tempTestDir);
-  shell.cp('-r', userSrc, tempTestDir);
+  logger.start('Running Test Command...');
 
-  // Copy ava's configuration into the root
-  shell.cp(avaPkgJsonPath, testPkgJsonPath);
+  testConfig = testConfig();
+  testConfig.entry = getFileHash();
 
-  // Copy the webpack config into the temp directory
-  shell.cp(testConfigPath, newConfigPath);
+  const compiler = webpackCompiler(testConfig, (stats) => {
+    logger.info('Starting test...');
 
-  // Compile Code and move it into the user's root directory
-  shell.cd(tempTestDir);
+    let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
+    if (kytConfig.debug) command += ' --verbose';
 
-  // Execute the ava cli on our build.
-  // We add our node_modules tothe NODE_PATH so that ava can be resolved.
-  let command = `NODE_PATH=$NODE_PATH:${npath} CONFIG=${newConfigPath} BABEL_DISABLE_CACHE=1 ` +
-  `node ${avaCLI} ${userRootPath}/kyt-test/**/*.test.js`;
+    shell.config.silent = false;
+    shell.exec(command);
+  });
 
-  if (kytConfig.debug) command += ' --verbose';
+  logger.info('Compiling...')
+  compiler.run(() => undefined);
 
-  shell.config.silent = false;
-  shell.exec(command);
-  shell.cd(userRootPath);
-  shell.rm('-rf', tempTestDir);
 };
