@@ -5,9 +5,12 @@ const path = require('path');
 const glob = require('glob');
 const logger = require('./../logger');
 const shell = require('shelljs');
+const merge = require('webpack-merge');
 const kytConfig = require('./../../config/kyt.config');
-let testConfig = require('../../config/webpack.test.js');
+let testConfig = require('../../config/webpack.test');
+let baseConfig = require('../../config/webpack.base');
 const webpackCompiler = require('../../utils/webpackCompiler');
+
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
@@ -24,11 +27,13 @@ module.exports = () => {
   }
   shell.mkdir('-p', userBuild);
 
+  // Find test files
   const getFiles = () => {
     const pattern = path.join(userRootPath, '/src/**/*.test.js');
     return glob.sync(pattern);
   };
 
+  // Create new file name from file path
   const getFileNameFromPath = (filePath) => {
     return filePath.replace(/.+\/src\//, '')
       .replace(/\.\//g, '')
@@ -38,6 +43,7 @@ module.exports = () => {
       .join('_');
   };
 
+  // Creates list of files for webpack entry
   const getFileHash = (files) => {
     return getFiles().reduce(function (prev, next) {
       const path = './' + next;
@@ -46,9 +52,35 @@ module.exports = () => {
     }, {});
   }
 
+  // Create webpack config for testing
+  const getConfig = () => {
+    const { clientPort, serverPort} = kytConfig;
+    const buildPath = path.join(userRootPath, 'build');
+    const options = {
+      buildPath,
+      type: 'test',
+      serverPort,
+      clientPort,
+      environment: 'test',
+      buildPath,
+      publicPath: `http://localhost:${clientPort}/assets/`,
+      publicDir: path.join(userRootPath, 'src/public'),
+      clientAssetsFile: 'publicAssets.json',
+      userRootPath,
+    };
+    let webpackConfig = null;
+    try {
+      webpackConfig = merge.smart(baseConfig(options), testConfig(options));
+      webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
+    } catch (error) {
+      logger.log('Error Loading the Test Webpack Config', error);
+    }
+    return webpackConfig;
+  }
+
   logger.start('Running Test Command...');
 
-  testConfig = testConfig();
+  testConfig = getConfig();
   testConfig.entry = getFileHash();
 
   const compiler = webpackCompiler(testConfig, (stats) => {
@@ -63,5 +95,4 @@ module.exports = () => {
 
   logger.info('Compiling...')
   compiler.run(() => undefined);
-
 };
