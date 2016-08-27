@@ -9,7 +9,7 @@ const fs = require('fs');
 
 const logger = console;
 const cssStyleLoaders = [
-  'style',
+  'fake-style-loader',
   {
     loader: 'css',
     query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]' },
