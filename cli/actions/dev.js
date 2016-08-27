@@ -110,8 +110,7 @@ module.exports = () => {
     if (isInitialServerCompile) {
       ifPortIsFreeDo(serverPort, startHotServer);
       isInitialServerCompile = false;
-    }
-    else startHotServer();
+    } else startHotServer();
   });
 
   // Start client hot server
