@@ -88,8 +88,11 @@ module.exports = (program) => {
       if (!packageJson.scripts) packageJson.scripts = {};
       const commands = ['dev', 'build', 'run', 'test', 'lint', 'proto'];
       commands.forEach((command) => {
-        if (packageJson.scripts[command]) return;
-        packageJson.scripts[command] = `kyt ${command}`;
+        let commandName = command;
+        if (packageJson.scripts[commandName]) {
+          commandName = 'kyt:' + commandName;
+        }
+        packageJson.scripts[commandName] = `kyt ${command}`;
       });
       packageJson.scripts['kyt:help'] = ' kyt --help';
       logger.task('Added kyt scripts into your package.json scripts');
