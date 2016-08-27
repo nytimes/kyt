@@ -4,7 +4,7 @@ const logger = require('./../cli/logger');
 
 // Determines whethere the given port is in use
 const ifPortIsFreeDo = (port, callback) => {
-  detect(port, function(error, unusedPort) {
+  detect(port, (error, unusedPort) => {
     if (error) {
       logger.error('error attempting to detect port', error);
       process.exit();

@@ -31,7 +31,7 @@ module.exports = () => {
   const userPublicPath = path.resolve(userRootPath, './src/public');
   const buildPublicPath = path.resolve(buildPath, './public');
 
-  if (shell.test('-d', userPublicPath )) {
+  if (shell.test('-d', userPublicPath)) {
     // Create build folder if it doesnt exist
     if (!shell.test('-d', buildPath)) {
       shell.mkdir(buildPath);
