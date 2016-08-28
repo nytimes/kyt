@@ -17,7 +17,7 @@ const cssStyleLoaders = [
 
 module.exports = (options) => {
   const main = [
-    path.join(options.userRootPath, 'src/client/index.js')
+    path.join(options.userRootPath, 'src/client/index.js'),
   ];
   const plugins = [
     new webpack.NoErrorsPlugin(),
