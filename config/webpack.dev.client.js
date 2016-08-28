@@ -17,26 +17,11 @@ const cssStyleLoaders = [
 
 module.exports = (options) => {
   const main = [
-    path.join(options.userRootPath, 'src/client/index.js'),
-  ];
-  const plugins = [
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-    new AssetsPlugin({
-      filename: options.clientAssetsFile,
-      path: options.buildPath,
-    }),
+    `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`,
+    path.join(options.userRootPath, 'src/client/index.js')
   ];
 
-  if (options.reactHotLoader) {
-    main.unshift(
-      'react-hot-loader/patch',
-      `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`
-    );
-    plugins.push(new webpack.HotModuleReplacementPlugin());
-  } else {
-    main.unshift(`webpack-dev-server/client?http://localhost:${options.clientPort}`);
-  }
+  if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
 
   return {
     target: 'web',
@@ -53,6 +38,13 @@ module.exports = (options) => {
       libraryTarget: 'var',
     },
 
+    devServer: {
+      publicPath: options.publicPath,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      noInfo: true,
+      quiet: true,
+    },
+
     module: {
       loaders: [
         {
@@ -66,6 +58,17 @@ module.exports = (options) => {
       ],
     },
 
-    plugins,
+    plugins: [
+      new webpack.NoErrorsPlugin(),
+
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+
+      new AssetsPlugin({
+        filename: options.clientAssetsFile,
+        path: options.buildPath,
+      }),
+
+      new webpack.HotModuleReplacementPlugin(),
+    ],
   };
 };
