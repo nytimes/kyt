@@ -25,7 +25,7 @@ module.exports = (options) => ({
   },
 
   output: {
-    path: path.join(options.publicDir, 'assets'),
+    path: path.join(options.publicDirPath, 'assets'),
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
