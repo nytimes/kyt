@@ -4,17 +4,24 @@
 const path = require('path');
 const chokidar = require('chokidar');
 const express = require('express');
+const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
 const logger = require('./../logger');
+const kytConfig = require('./../../config/kyt.config');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
-const WebpackDevServer = require('webpack-dev-server');
 
 module.exports = () => {
   logger.start('Starting development build...');
+  // Clean the build directory.
+  const buildPath = path.resolve(kytConfig.userRootPath, './build');
+
+  if (shell.test('-d', buildPath) && shell.rm('-rf', buildPath).code === 0) {
+    logger.task('Cleaned ./build');
+  }
 
   const {
     clientConfig,
@@ -31,27 +38,13 @@ module.exports = () => {
   let serverCompiler;
   let server = null;
 
-  const getHotClient = (options) => {
+  const startClient = () => {
+    const devOptions = clientCompiler.options.devServer;
     const app = express();
-    const webpackDevMiddleware = devMiddleware(clientCompiler, options);
+    const webpackDevMiddleware = devMiddleware(clientCompiler, devOptions);
 
     app.use(webpackDevMiddleware);
     app.use(hotMiddleware(clientCompiler));
-
-    return app;
-  };
-
-  const getDevServer = (options) => new WebpackDevServer(clientCompiler, options);
-
-  const startClient = () => {
-    const devOptions = {
-      publicPath: clientCompiler.options.output.publicPath,
-      headers: { 'Access-Control-Allow-Origin': '*' },
-      noInfo: true,
-      quiet: true,
-    };
-
-    const app = reactHotLoader ? getHotClient(devOptions) : getDevServer(devOptions);
     app.listen(clientPort);
   };
 
@@ -113,6 +106,9 @@ module.exports = () => {
     } else startHotServer();
   });
 
-  // Start client hot server
+  // Starting point...
+  // By starting the client, the middleware will
+  // compile the client configuration and trigger
+  // the `clientCompiler` callback.
   ifPortIsFreeDo(clientPort, startClient);
 };

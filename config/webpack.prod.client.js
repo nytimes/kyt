@@ -4,6 +4,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const AssetsPlugin = require('assets-webpack-plugin');
 const clone = require('ramda').clone;
 
 const cssStyleLoaders = [
@@ -24,7 +25,7 @@ module.exports = (options) => ({
   },
 
   output: {
-    path: path.join(options.userRootPath, 'build/client'),
+    path: path.join(options.publicDirPath, 'assets'),
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
@@ -63,6 +64,11 @@ module.exports = (options) => ({
         screw_ie8: true,
         warnings: false,
       },
+    }),
+
+    new AssetsPlugin({
+      filename: options.clientAssetsFile,
+      path: options.buildPath,
     }),
   ],
 });

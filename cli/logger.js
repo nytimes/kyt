@@ -64,7 +64,7 @@ const debug = (text, data) => {
 // Warn output
 const warn = (text, data) => {
   write('warn', text, data);
-}
+};
 
 // Error output
 // takes an optional error

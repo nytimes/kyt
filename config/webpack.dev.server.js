@@ -17,6 +17,11 @@ const cssStyleLoaders = [
 module.exports = (options) => ({
   target: 'node',
 
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
+
   externals: nodeExternals(),
 
   entry: {

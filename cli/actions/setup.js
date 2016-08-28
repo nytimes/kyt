@@ -55,7 +55,7 @@ module.exports = (program) => {
   // Adds kyt commands as npm scripts
   const addPackageJsonScripts = (packageJson) => {
     if (!packageJson.scripts) packageJson.scripts = {};
-    const commands = ['dev', 'build', 'run', 'test', 'lint', 'proto'];
+    const commands = ['dev', 'build', 'run', 'test', 'lint', 'lint-style', 'proto'];
     commands.forEach((command) => {
       let commandName = command;
       if (packageJson.scripts[commandName]) {

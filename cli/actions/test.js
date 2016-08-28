@@ -2,69 +2,100 @@
 // Command to run tests with Ava
 
 const path = require('path');
+const glob = require('glob');
 const logger = require('./../logger');
 const shell = require('shelljs');
+const merge = require('webpack-merge');
 const kytConfig = require('./../../config/kyt.config');
+let testConfig = require('../../config/webpack.test');
+const baseConfig = require('../../config/webpack.base');
+const webpackCompiler = require('../../utils/webpackCompiler');
+
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
   const userRootPath = kytConfig.userRootPath;
-  const userSrc = path.join(userRootPath, 'src');
   const userBuild = path.join(userRootPath, 'build/test');
   const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
   const npath = path.resolve(userRootPath, './node_modules');
-  const babel = path.join(npath, '.bin/babel');
-  const es2015Preset = require.resolve('babel-preset-es2015');
-  const reactPreset = require.resolve('babel-preset-react');
-  const presets = `${es2015Preset},${reactPreset}`;
-  const babelWebpack = require.resolve('babel-plugin-webpack-loaders');
-  const plugins = babelWebpack;
-  const testConfigPath = path.resolve(__dirname, '../../config/webpack.temp.test.js');
-  const tempTestDir = path.join(userRootPath, './tmp-test');
-  const newConfigPath = path.join(tempTestDir, './webpack.config.js');
+
+  if (shell.test('-d', userBuild) && shell.rm('-rf', userBuild).code === 0) {
+    logger.task('Cleaned ./build/test');
+  }
+  shell.mkdir('-p', userBuild);
+
+  // Find test files
+  const getFiles = () => {
+    const pattern = path.join(userRootPath, '/src/**/*.test.js');
+    return glob.sync(pattern);
+  };
+
+  // Create new file name from file path
+  const getFileNameFromPath = (filePath) => (
+    filePath
+      .replace(/.+\/src\//, '')
+      .replace(/\.test(\.js)/, '$1')
+      .replace(/\.\//g, '')
+      .replace(/\//g, '.')
+      .split('.')
+      .slice(0, -1)
+      .join('_')
+  );
+
+  // Creates list of files for webpack entry
+  const getFileHash = () => (
+    getFiles().reduce((prev, next) => {
+      prev[getFileNameFromPath(next)] = next; // eslint-disable-line no-param-reassign
+      return prev;
+    }, {})
+  );
+
+  // Create webpack config for testing
+  const getConfig = () => {
+    const buildPath = path.join(userRootPath, 'build');
+    const options = {
+      buildPath,
+      type: 'test',
+      serverPort: undefined,
+      clientPort: undefined,
+      environment: 'test',
+      publicPath: undefined,
+      publicDir: undefined,
+      clientAssetsFile: undefined,
+      userRootPath,
+    };
+
+    let webpackConfig = null;
+    try {
+      const base = baseConfig(options);
+      const babelLoader = base.module.loaders.find(loader => loader.loader === 'babel-loader');
+      babelLoader.compact = true;
+      webpackConfig = merge.smart(base, testConfig(options));
+      webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
+    } catch (error) {
+      logger.error('Error Loading the Test Webpack Config', error);
+      process.exit();
+    }
+    return webpackConfig;
+  };
 
   logger.start('Running Test Command...');
 
-  // Clean the build directory.
-  if (shell.test('-d', userBuild)) {
-    shell.rm('-rf', userBuild);
-    logger.task('Cleaned test folder');
-  }
+  testConfig = getConfig();
+  testConfig.entry = getFileHash();
 
-  // Create Temp Directory and move user src files there
-  shell.mkdir(tempTestDir);
-  shell.cp('-r', userSrc, tempTestDir);
+  const compiler = webpackCompiler(testConfig, () => {
+    logger.info('Starting test...');
 
-  // Copy the webpack config into the temp directory
-  shell.cp(testConfigPath, newConfigPath);
+    let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
+    if (kytConfig.debug) command += ' --verbose';
 
-  // Compile Code and move it into the user's root directory
-  shell.cd(tempTestDir);
-  const babelCommand = `NODE_PATH=$NODE_PATH:${npath} BABEL_DISABLE_CACHE=1 ` +
-  `${babel} ${tempTestDir} --ignore node_modules --presets ${presets} ` +
-  `--plugins ${plugins} --out-dir ${userBuild} -s inline`;
+    shell.config.silent = false;
+    shell.exec(command);
+  });
 
-  let babelExec = shell.exec(babelCommand);
-  if (babelExec.code !== 0) {
-    logger.error('Error transpiling test code', babelExec.stderr);
-    process.exit();
-  }
-
-  // Remove tmp directory
-  shell.rm('-rf', tempTestDir);
-  logger.task('Test files prepared by Babel');
-  // Move back to user's root directory
-  shell.cd(userRootPath);
-
-  // Execute the ava cli on our build.
-  // We add our node_modules tothe NODE_PATH so that ava can be resolved.
-  let command = `NODE_PATH=$NODE_PATH:${npath} ` +
-  `node ${avaCLI} ${userRootPath}/build/test/**/*.test.js`;
-
-  if (kytConfig.debug) command += ' --verbose';
-
-  shell.config.silent = false;
-  shell.exec(command);
+  logger.info('Compiling...');
+  compiler.run(() => undefined);
 };

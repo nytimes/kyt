@@ -16,6 +16,11 @@ const cssStyleLoaders = [
 module.exports = (options) => ({
   target: 'node',
 
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
+
   externals: nodeExternals(),
 
   entry: {
@@ -23,7 +28,7 @@ module.exports = (options) => ({
   },
 
   output: {
-    path: path.join(options.userRootPath, 'build/server'),
+    path: path.join(options.buildPath, 'server'),
     filename: '[name].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,

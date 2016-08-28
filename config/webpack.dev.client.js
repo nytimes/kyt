@@ -3,6 +3,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const AssetsPlugin = require('assets-webpack-plugin');
 const clone = require('ramda').clone;
 
 const cssStyleLoaders = [
@@ -16,22 +17,11 @@ const cssStyleLoaders = [
 
 module.exports = (options) => {
   const main = [
+    `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`,
     path.join(options.userRootPath, 'src/client/index.js')
   ];
-  const plugins = [
-    new webpack.NoErrorsPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 })
-  ];
 
-  if (options.reactHotLoader) {
-    main.unshift(
-      'react-hot-loader/patch',
-      `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`
-    );
-    plugins.push(new webpack.HotModuleReplacementPlugin());
-  } else {
-    main.unshift(`webpack-dev-server/client?http://localhost:${options.clientPort}`);
-  }
+  if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
 
   return {
     target: 'web',
@@ -41,11 +31,18 @@ module.exports = (options) => {
     },
 
     output: {
-      path: path.join(options.userRootPath, 'build/client'),
+      path: path.join(options.publicDir, 'assets'),
       filename: '[name].js',
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
       libraryTarget: 'var',
+    },
+
+    devServer: {
+      publicPath: options.publicPath,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+      noInfo: true,
+      quiet: true,
     },
 
     module: {
@@ -61,7 +58,17 @@ module.exports = (options) => {
       ],
     },
 
-    plugins,
+    plugins: [
+      new webpack.NoErrorsPlugin(),
+
+      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+
+      new AssetsPlugin({
+        filename: options.clientAssetsFile,
+        path: options.buildPath,
+      }),
+
+      new webpack.HotModuleReplacementPlugin(),
+    ],
   };
 };
-

@@ -18,17 +18,20 @@ const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (environment = 'development') => {
   const { clientPort, serverPort, userRootPath, reactHotLoader } = kytConfig;
+  const buildPath = path.join(userRootPath, 'build');
 
   let clientConfig = devClientConfig;
   let serverConfig = devServerConfig;
 
-  const clientOptions = {
+  let clientOptions = {
     type: 'client',
     serverPort,
     clientPort,
     environment,
+    buildPath,
     publicPath: `http://localhost:${clientPort}/assets/`,
-    assetsPath: path.join(userRootPath, 'build/client'),
+    publicDir: path.join(userRootPath, 'build/client'),
+    clientAssetsFile: 'publicAssets.json',
     userRootPath,
     reactHotLoader,
   };
@@ -37,13 +40,19 @@ module.exports = (environment = 'development') => {
   if (environment === 'production') {
     clientConfig = prodClientConfig;
     serverConfig = prodServerConfig;
-    clientOptions.clientPort = undefined;
-    clientOptions.publicPath = kytConfig.productionPublicPath;
+    clientOptions = merge(clientOptions, {
+      clientPort: undefined,
+      publicPath: kytConfig.productionPublicPath,
+      // In production, we use the relative path
+      // from build/client/*.js or build/server/*.js.
+      publicDir: '../public',
+      // Absolute path to the public directory.
+      publicDirPath: path.join(buildPath, 'public'),
+    });
   }
 
   const serverOptions = merge(clientOptions, {
     type: 'server',
-    assetsPath: path.join(userRootPath, 'build/server'),
   });
 
   // Merge options with static webpack configs

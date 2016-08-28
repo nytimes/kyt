@@ -2,24 +2,28 @@
 // Testing webpack config
 
 const clone = require('ramda').clone;
-const kytConfig = require('./kyt.config');
+const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-const logger = console;
 const cssStyleLoaders = [
-  'style',
   {
-    loader: 'css',
-    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]' },
+    loader: 'css-loader/locals',
+    query: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
   'postcss',
 ];
 
-const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
-const options = {
-  environment: 'test',
-  type: 'test',
-};
-const testConfig = {
+module.exports = (options) => ({
+
+  devtool: 'inline-source-map',
+
+  output: {
+    path: path.join(options.userRootPath, 'build/test'),
+    filename: '[name].js',
+  },
+
+  externals: nodeExternals(),
+
   module: {
     loaders: [
       {
@@ -28,19 +32,8 @@ const testConfig = {
       },
       {
         test: /\.scss$/,
-        loaders: sassStyleLoaders,
+        loaders: clone(cssStyleLoaders).concat('sass'),
       },
     ],
   },
-};
-
-module.exports = () => {
-  // Uses kytConfig callback to merge with user webpack config
-  let webpackConfig = null;
-  try {
-    webpackConfig = kytConfig.modifyWebpackConfig(testConfig, options);
-  } catch (error) {
-    logger.log('Error Loading the Test Webpack Config', error);
-  }
-  return webpackConfig;
-};
+});
