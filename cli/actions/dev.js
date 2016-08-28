@@ -9,7 +9,6 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const SingleChild = require('single-child');
 const logger = require('./../logger');
-const kytConfig = require('./../../config/kyt.config');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
@@ -18,7 +17,7 @@ const WebpackDevServer = require('webpack-dev-server');
 module.exports = () => {
   logger.start('Starting development build...');
   // Clean the build directory.
-  const buildPath = path.resolve(kytConfig.userRootPath, './build');
+  const buildPath = path.resolve(global.config.userRootPath, './build');
 
   if (shell.test('-d', buildPath) && shell.rm('-rf', buildPath).code === 0) {
     logger.task('Cleaned ./build');

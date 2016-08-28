@@ -8,16 +8,17 @@ const printAssets = require('../../utils/printAssets');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 
-module.exports = () => {
+module.exports = (program) => {
   logger.start('Starting production build...');
 
   let serverCompiler;
+  let config = program.args[0].config ? program.args[0].config: null;
 
   const {
     clientConfig,
     serverConfig,
     userRootPath,
-  } = buildConfigs('production');
+  } = buildConfigs('production', config);
 
   // Clean the build directory.
   const buildPath = path.resolve(userRootPath, './build');

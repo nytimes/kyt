@@ -1,10 +1,9 @@
 
 const stylelint = require('stylelint');
 const logger = require('./../logger');
-const kytConfig = require('./../../utils/kytConfig');
 
 module.exports = () => {
-  const userRootPath = kytConfig().userRootPath;
+  const userRootPath = global.config.userRootPath;
 
   stylelint.lint({
     files: [`${userRootPath}/src/**/*.css`, `${userRootPath}/src/**/*.scss`],

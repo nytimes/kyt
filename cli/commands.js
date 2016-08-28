@@ -22,6 +22,7 @@ const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
+const loadConfigAndDo = require('./../utils/loadConfigAndDo');
 
 exitIfOldNodeVersion();
 
@@ -34,49 +35,47 @@ program
     If you want to lint your own, add a comma-delimited list.
       kyt lint -d src/,test/
   `)
-  .action(() => lintAction(program));
+  .action(() => loadConfigAndDo(lintAction, program));
 
 program
   .command('dev')
   .description('Start an express server for development')
-  .action(() => devAction(program));
+  .action(() => loadConfigAndDo(devAction, program));
 
 program
   .command('build')
   .option('-C, --config <path>', 'config path')
   .description('Create a production build')
   .action(() => {
-    if (program.args[0].config) {
-      process.env.ENV_KYT_CONFIG = program.args[0].config;
-    }
-    buildAction(program);
+    let config = program.args[0].config ? program.args[0].config: null;
+    loadConfigAndDo(buildAction, program, config);
   });
 
 program
   .command('run')
   .description('Run the production build')
-  .action(() => runAction(program));
+  .action(() => loadConfigAndDo(runAction, program));
 
 program
   .command('setup')
   .description('Generate a project from a github url to get started.')
   .option('-r, --repository [address]', 'Github repository address')
-  .action(() => setupAction(program));
+  .action(() => loadConfigAndDo(setupAction, program));
 
 program
   .command('test')
   .description('Run test files with Ava.')
-  .action(() => testAction(program));
+  .action(() => loadConfigAndDo(testAction, program));
 
 program
   .command('lint-style')
   .description('')
-  .action(() => lintStyleAction(program));
+  .action(() => loadConfigAndDo(lintStyleAction, program));
 
 program
   .command('proto')
   .description('Start a prorotype dev server.')
-  .action(() => protoAction(program));
+  .action(() => loadConfigAndDo(protoAction, program));
 
 
 program.parse(process.argv);

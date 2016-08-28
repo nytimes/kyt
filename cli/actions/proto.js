@@ -7,14 +7,12 @@ const path = require('path');
 const shell = require('shelljs');
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('./../../utils/ifPortIsFreeDo');
-const kytConfigFn = require('./../../utils/kytConfig');
 const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
 
 module.exports = () => {
-  const kytConfig = kytConfigFn();
-  const port = kytConfig.prototypePort;
-  const userRootPath = kytConfig.userRootPath;
+  const port = global.config.prototypePort;
+  const userRootPath = global.config.userRootPath;
   const options = {
     type: 'prototype',
     environment: 'prototype',
@@ -28,7 +26,7 @@ module.exports = () => {
   const startPrototype = () => {
     // Build webpack config
     let webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
-    webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
+    webpackConfig = global.config.modifyWebpackConfig(webpackConfig, options);
 
     // Preparing prototype compiler
     let compiler = null;

@@ -5,10 +5,9 @@ const path = require('path');
 const CLIEngine = require('eslint').CLIEngine;
 const shell = require('shelljs');
 const logger = require('./../logger');
-const kytConfig = require('./../../utils/kytConfig');
 
 module.exports = () => {
-  const userRootPath = kytConfig().userRootPath;
+  const userRootPath = global.config.userRootPath;
 
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {

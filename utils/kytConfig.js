@@ -6,9 +6,11 @@ const shell = require('shelljs');
 const baseConfig = require('./../config/kyt.base.config');
 const merge = require('ramda').merge;
 
-module.exports = () => {
-  const userConfigPath = process.env.ENV_KYT_CONFIG ?
-  path.join(process.env.USER_ROOT, process.env.ENV_KYT_CONFIG) :
+module.exports = (optionalConfig) => {
+  if (global.config) return;
+  
+  const userConfigPath = optionalConfig ?
+  path.join(process.env.USER_ROOT, optionalConfig) :
   path.join(process.env.USER_ROOT, './kyt.config.js');
   let config;
   const logger = console;
@@ -36,5 +38,5 @@ module.exports = () => {
 
   // In case `reactHotLoader` is undefined, make it a boolean
   config.reactHotLoader = !!config.reactHotLoader;
-  return config;
+  global.config = Object.freeze(config);
 };

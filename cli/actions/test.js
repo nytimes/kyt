@@ -4,14 +4,12 @@
 const path = require('path');
 const logger = require('./../logger');
 const shell = require('shelljs');
-const kytConfig = require('./../../utils/kytConfig');
-
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
-  const userRootPath = kytConfig().userRootPath;
+  const userRootPath = global.config.userRootPath;
   const userSrc = path.join(userRootPath, 'src');
   const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
   const npath = path.resolve(userRootPath, './node_modules');
@@ -46,7 +44,7 @@ module.exports = () => {
   let command = `NODE_PATH=$NODE_PATH:${npath} CONFIG=${newConfigPath} BABEL_DISABLE_CACHE=1 ` +
   `node ${avaCLI} ${userRootPath}/kyt-test/**/*.test.js`;
 
-  if (kytConfig.debug) command += ' --verbose';
+  if (global.config.debug) command += ' --verbose';
 
   shell.config.silent = false;
   shell.exec(command);
