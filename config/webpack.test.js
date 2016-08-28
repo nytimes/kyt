@@ -2,29 +2,26 @@
 // Testing webpack config
 
 const clone = require('ramda').clone;
-const kytConfig = require('./kyt.config');
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
-const fs = require('fs');
 
-const logger = console;
 const cssStyleLoaders = [
-  'fake-style-loader',
   {
-    loader: 'css',
-    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]' },
+    loader: 'css-loader/locals',
+    query: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
   'postcss',
 ];
 
-const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
-
 module.exports = (options) => ({
+
   output: {
     path: path.join(options.userRootPath, 'build/test'),
-    filename: '[name].js'
+    filename: '[name].js',
   },
+
   externals: nodeExternals(),
+
   module: {
     loaders: [
       {
@@ -33,7 +30,7 @@ module.exports = (options) => ({
       },
       {
         test: /\.scss$/,
-        loaders: sassStyleLoaders,
+        loaders: clone(cssStyleLoaders).concat('sass'),
       },
     ],
   },

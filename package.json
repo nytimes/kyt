@@ -50,7 +50,6 @@
     "eslint-plugin-react": "^6.0.0",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^2.0.0-beta.3",
-    "fake-style-loader": "^1.0.1",
     "file-loader": "^0.9.0",
     "filesize": "^3.3.0",
     "glob": "^7.0.6",

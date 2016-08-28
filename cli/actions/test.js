@@ -8,7 +8,7 @@ const shell = require('shelljs');
 const merge = require('webpack-merge');
 const kytConfig = require('./../../config/kyt.config');
 let testConfig = require('../../config/webpack.test');
-let baseConfig = require('../../config/webpack.base');
+const baseConfig = require('../../config/webpack.base');
 const webpackCompiler = require('../../utils/webpackCompiler');
 
 
@@ -17,7 +17,6 @@ module.exports = () => {
   shell.config.silent = true;
 
   const userRootPath = kytConfig.userRootPath;
-  const userSrc = path.join(userRootPath, 'src');
   const userBuild = path.join(userRootPath, 'build/test');
   const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
   const npath = path.resolve(userRootPath, './node_modules');
@@ -34,56 +33,59 @@ module.exports = () => {
   };
 
   // Create new file name from file path
-  const getFileNameFromPath = (filePath) => {
-    return filePath.replace(/.+\/src\//, '')
+  const getFileNameFromPath = (filePath) => (
+    filePath
+      .replace(/.+\/src\//, '')
       .replace(/\.\//g, '')
       .replace(/\//g, '.')
       .split('.')
       .slice(0, -1)
-      .join('_');
-  };
+      .join('_')
+  );
 
   // Creates list of files for webpack entry
-  const getFileHash = (files) => {
-    return getFiles().reduce(function (prev, next) {
-      const path = './' + next;
-      prev[getFileNameFromPath(next)] = next;
+  const getFileHash = () => (
+    getFiles().reduce((prev, next) => {
+      prev[getFileNameFromPath(next)] = next; // eslint-disable-line no-param-reassign
       return prev;
-    }, {});
-  }
+    }, {})
+  );
 
   // Create webpack config for testing
   const getConfig = () => {
-    const { clientPort, serverPort} = kytConfig;
     const buildPath = path.join(userRootPath, 'build');
     const options = {
       buildPath,
       type: 'test',
-      serverPort,
-      clientPort,
+      serverPort: undefined,
+      clientPort: undefined,
       environment: 'test',
-      buildPath,
-      publicPath: `http://localhost:${clientPort}/assets/`,
-      publicDir: path.join(userRootPath, 'src/public'),
-      clientAssetsFile: 'publicAssets.json',
+      publicPath: undefined,
+      publicDir: undefined,
+      clientAssetsFile: undefined,
       userRootPath,
     };
+
     let webpackConfig = null;
     try {
-      webpackConfig = merge.smart(baseConfig(options), testConfig(options));
+      const base = baseConfig(options);
+      const babelLoader = base.module.loaders.find(loader => loader.loader === 'babel-loader');
+      babelLoader.compact = true;
+      webpackConfig = merge.smart(base, testConfig(options));
       webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
     } catch (error) {
-      logger.log('Error Loading the Test Webpack Config', error);
+      logger.error('Error Loading the Test Webpack Config', error);
+      process.exit();
     }
     return webpackConfig;
-  }
+  };
 
   logger.start('Running Test Command...');
 
   testConfig = getConfig();
   testConfig.entry = getFileHash();
 
-  const compiler = webpackCompiler(testConfig, (stats) => {
+  const compiler = webpackCompiler(testConfig, () => {
     logger.info('Starting test...');
 
     let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
@@ -93,6 +95,6 @@ module.exports = () => {
     shell.exec(command);
   });
 
-  logger.info('Compiling...')
+  logger.info('Compiling...');
   compiler.run(() => undefined);
 };
