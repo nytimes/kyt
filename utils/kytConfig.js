@@ -20,6 +20,7 @@ module.exports = (optionalConfig) => {
   // Find user config
   if (shell.test('-f', userConfigPath)) {
     try {
+      logger.info(`Using kyt config at ${userConfigPath}`);
       config = require(userConfigPath); // eslint-disable-line global-require
     } catch (error) {
       logger.error('Error loading your kyt.config.js:', error);
