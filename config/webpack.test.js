@@ -15,6 +15,8 @@ const cssStyleLoaders = [
 
 module.exports = (options) => ({
 
+  devtool: 'inline-source-map',
+
   output: {
     path: path.join(options.userRootPath, 'build/test'),
     filename: '[name].js',

@@ -36,6 +36,7 @@ module.exports = () => {
   const getFileNameFromPath = (filePath) => (
     filePath
       .replace(/.+\/src\//, '')
+      .replace(/\.test(\.js)/, '$1')
       .replace(/\.\//g, '')
       .replace(/\//g, '.')
       .split('.')
