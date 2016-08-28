@@ -12,13 +12,12 @@ module.exports = (program) => {
   logger.start('Starting production build...');
 
   let serverCompiler;
-  let config = program.args[0].config ? program.args[0].config: null;
 
   const {
     clientConfig,
     serverConfig,
     userRootPath,
-  } = buildConfigs('production', config);
+  } = buildConfigs('production');
 
   // Clean the build directory.
   const buildPath = path.resolve(userRootPath, './build');

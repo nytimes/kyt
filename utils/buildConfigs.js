@@ -15,7 +15,7 @@ const devServerConfig = require('../config/webpack.dev.server');
 const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
-module.exports = (environment = 'development', optionalConfig) => {
+module.exports = (environment = 'development') => {
 
   const { clientPort, serverPort, userRootPath, reactHotLoader } = global.config;
   const buildPath = path.join(userRootPath, 'build');
@@ -42,7 +42,7 @@ module.exports = (environment = 'development', optionalConfig) => {
     serverConfig = prodServerConfig;
     clientOptions = merge(clientOptions, {
       clientPort: undefined,
-      publicPath: kytConfig.productionPublicPath,
+      publicPath: global.config.productionPublicPath,
       // In production, we use the relative path
       // from build/client/*.js or build/server/*.js.
       publicDir: '../public',
