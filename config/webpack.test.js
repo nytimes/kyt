@@ -2,37 +2,28 @@
 // Testing webpack config
 
 const clone = require('ramda').clone;
-const kytConfig = require('./kyt.config');
 const path = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-const logger = console;
 const cssStyleLoaders = [
-  'style',
   {
-    loader: 'css',
-    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]' },
+    loader: 'css-loader/locals',
+    query: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
   'postcss',
 ];
 
-const sassStyleLoaders = clone(cssStyleLoaders).concat('sass');
-const userRootPath = kytConfig.userRootPath;
-const options = {
-  environment: 'test',
-  type: 'test',
-  userRootPath,
-};
+module.exports = (options) => ({
 
-const babelrc = {};
-babelrc.babelrc = false;
-babelrc.presets = [];
-babelrc.plugins = [];
+  devtool: 'inline-source-map',
 
-const testConfig = {
-  resolve: {
+  output: {
+    path: path.join(options.userRootPath, 'build/test'),
+    filename: '[name].js',
   },
-  plugins: [],
-  postcss: [],
+
+  externals: nodeExternals(),
+
   module: {
     loaders: [
       {
@@ -41,44 +32,8 @@ const testConfig = {
       },
       {
         test: /\.scss$/,
-        loaders: sassStyleLoaders,
-      },
-      {
-        test: /\.html$/,
-        loader: 'file?name=[name].[ext]',
-      },
-      {
-        test: /\.(jpg|jpeg|png|gif|eot|svg|ttf|woff|woff2)$/,
-        loader: 'url-loader',
-        query: {
-          limit: 20000,
-        },
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader',
-      },
-      {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: [
-          /node_modules/,
-          path.join(options.userRootPath, 'build'),
-        ],
-        query: babelrc,
+        loaders: clone(cssStyleLoaders).concat('sass'),
       },
     ],
   },
-};
-
-
-module.exports = () => {
-  // Uses kytConfig callback to merge with user webpack config
-  let webpackConfig = null;
-  try {
-    webpackConfig = kytConfig.modifyWebpackConfig(testConfig, options);
-  } catch (error) {
-    logger.log('Error Loading the Test Webpack Config', error);
-  }
-  return webpackConfig;
-};
+});

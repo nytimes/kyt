@@ -25,6 +25,7 @@ module.exports = (options) => {
   // Create the babelrc query for the babel loader.
   const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
   babelrc.babelrc = false;
+  babelrc.cacheDirectory = true;
   resolvePluginsPresets(babelrc);
   if (options.reactHotLoader) {
     babelrc.env.development.plugins.push('react-hot-loader/babel');
@@ -53,13 +54,14 @@ module.exports = (options) => {
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(options.environment),
-          SERVER_PORT: JSON.stringify(options.serverPort),
+          SERVER_PORT: JSON.stringify(options.serverPort || ''),
           CLIENT_PORT: JSON.stringify(options.clientPort || ''),
-          PUBLIC_PATH: JSON.stringify(options.publicPath),
-          PUBLIC_DIR: JSON.stringify(options.publicDir),
-          CLIENT_BUILD_PATH: JSON.stringify(path.join(options.publicDir, 'assets')),
-          SERVER_BUILD_PATH: JSON.stringify(path.join(options.buildPath, 'server')),
-          ASSETS_MANIFEST: JSON.stringify(path.join(options.buildPath, options.clientAssetsFile)),
+          PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
+          PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
+          CLIENT_BUILD_PATH: JSON.stringify(path.join(options.publicDir || '', 'assets')),
+          SERVER_BUILD_PATH: JSON.stringify(path.join(options.buildPath || '', 'server')),
+          ASSETS_MANIFEST:
+            JSON.stringify(path.join(options.buildPath || '', options.clientAssetsFile || '')),
         },
       }),
     ],
