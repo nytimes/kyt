@@ -26,7 +26,7 @@ const kytConfigFn = require('./../utils/kytConfig');
 
 exitIfOldNodeVersion();
 
-const loadConfigAndDo = (callback, program, optionalConfig) => {
+const loadConfigAndDo = (callback, optionalConfig) => {
   kytConfigFn(optionalConfig);
   callback(program);
 };
@@ -41,12 +41,12 @@ program
     If you want to lint your own, add a comma-delimited list.
       kyt lint -d src/,test/
   `)
-  .action(() => loadConfigAndDo(lintAction, program));
+  .action(() => loadConfigAndDo(lintAction));
 
 program
   .command('dev')
   .description('Start an express server for development')
-  .action(() => loadConfigAndDo(devAction, program));
+  .action(() => loadConfigAndDo(devAction));
 
 program
   .command('build')
@@ -54,34 +54,34 @@ program
   .description('Create a production build')
   .action(() => {
     let config = program.args[0].config ? program.args[0].config: null;
-    loadConfigAndDo(buildAction, program, config);
+    loadConfigAndDo(buildAction, config);
   });
 
 program
   .command('run')
   .description('Run the production build')
-  .action(() => loadConfigAndDo(runAction, program));
+  .action(() => loadConfigAndDo(runAction));
 
 program
   .command('setup')
   .description('Generate a project from a github url to get started.')
   .option('-r, --repository [address]', 'Github repository address')
-  .action(() => loadConfigAndDo(setupAction, program));
+  .action(() => loadConfigAndDo(setupAction));
 
 program
   .command('test')
   .description('Run test files with Ava.')
-  .action(() => loadConfigAndDo(testAction, program));
+  .action(() => loadConfigAndDo(testAction));
 
 program
   .command('lint-style')
   .description('')
-  .action(() => loadConfigAndDo(lintStyleAction, program));
+  .action(() => loadConfigAndDo(lintStyleAction));
 
 program
   .command('proto')
   .description('Start a prorotype dev server.')
-  .action(() => loadConfigAndDo(protoAction, program));
+  .action(() => loadConfigAndDo(protoAction));
 
 
 program.parse(process.argv);
