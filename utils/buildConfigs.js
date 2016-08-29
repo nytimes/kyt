@@ -7,7 +7,6 @@ const merge = require('webpack-merge');
 const logger = require('../cli/logger');
 const clone = require('ramda').clone;
 // base configs
-const kytConfig = require('../config/kyt.config');
 const baseConfig = require('../config/webpack.base');
 // dev configs
 const devClientConfig = require('../config/webpack.dev.client');
@@ -17,7 +16,8 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (environment = 'development') => {
-  const { clientPort, serverPort, userRootPath, reactHotLoader } = kytConfig;
+
+  const { clientPort, serverPort, userRootPath, reactHotLoader } = global.config;
   const buildPath = path.join(userRootPath, 'build');
 
   let clientConfig = devClientConfig;
@@ -42,7 +42,7 @@ module.exports = (environment = 'development') => {
     serverConfig = prodServerConfig;
     clientOptions = merge(clientOptions, {
       clientPort: undefined,
-      publicPath: kytConfig.productionPublicPath,
+      publicPath: global.config.productionPublicPath,
       // In production, we use the relative path
       // from build/client/*.js or build/server/*.js.
       publicDir: '../public',
@@ -61,8 +61,8 @@ module.exports = (environment = 'development') => {
 
   // Modify via userland config
   try {
-    clientConfig = kytConfig.modifyWebpackConfig(clone(clientConfig), clientOptions);
-    serverConfig = kytConfig.modifyWebpackConfig(clone(serverConfig), serverOptions);
+    clientConfig = global.config.modifyWebpackConfig(clone(clientConfig), clientOptions);
+    serverConfig = global.config.modifyWebpackConfig(clone(serverConfig), serverOptions);
   } catch (error) {
     logger.error('Error in your kyt.config.js modifyWebpackConfig():', error);
     process.exit(1);
