@@ -14,7 +14,7 @@ See our [config override instructions](/config/kytConfig.md#modifyWebpackConfig)
 
 ## Requirements
 
-1. Node v6 is required.
+Node v6 is required.
 
 ## Installation
 
