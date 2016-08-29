@@ -7,7 +7,7 @@ kyt is a dev tool created to let developers build node apps without having to sp
 
 ## How it Works
 
-kyt uses webpack and babel to manage a dev and production builds for node apps. It [supports](/config/webpackConfig.md) popular libaries including React and css-modules. 
+kyt uses webpack and babel to manage dev and production builds for node apps. It [supports](/config/webpackConfig.md) popular libaries including React and css-modules. 
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
 See our [config override instructions](/config/kytConfig.md#modifyWebpackConfig) for details, and our [recipes](/Recipes.md) for examples.
