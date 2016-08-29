@@ -8,7 +8,7 @@ const printAssets = require('../../utils/printAssets');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 
-module.exports = () => {
+module.exports = (program) => {
   logger.start('Starting production build...');
 
   let serverCompiler;

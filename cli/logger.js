@@ -1,6 +1,4 @@
 
-const kytConfig = require('../config/kyt.config');
-
 const logger = console;
 const write = (status, text, verbose) => {
   let textToLog = '';
@@ -56,7 +54,7 @@ const info = (text) => {
 // Verbose output
 // takes optional data
 const debug = (text, data) => {
-  if (kytConfig.debug) {
+  if (global.config.debug) {
     write('debug', text, data);
   }
 };

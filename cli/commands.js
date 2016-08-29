@@ -11,6 +11,7 @@ const path = require('path');
 
 // define user root
 process.env.USER_ROOT = path.resolve(process.cwd());
+
 const exitIfOldNodeVersion = require('./../utils/exitIfOldNodeVersion');
 const program = require('commander');
 const devAction = require('./actions/dev');
@@ -21,8 +22,15 @@ const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
+const kytConfigFn = require('./../utils/kytConfig');
 
 exitIfOldNodeVersion();
+
+const loadConfigAndDo = (callback, optionalConfig) => {
+  kytConfigFn(optionalConfig);
+  callback(program);
+};
+
 
 program
   .command('lint')
@@ -33,43 +41,47 @@ program
     If you want to lint your own, add a comma-delimited list.
       kyt lint -d src/,test/
   `)
-  .action(() => lintAction(program));
+  .action(() => loadConfigAndDo(lintAction));
 
 program
   .command('dev')
   .description('Start an express server for development')
-  .action(() => devAction(program));
+  .action(() => loadConfigAndDo(devAction));
 
 program
   .command('build')
+  .option('-C, --config <path>', 'config path')
   .description('Create a production build')
-  .action(() => buildAction(program));
+  .action(() => {
+    let config = program.args[0].config ? program.args[0].config: null;
+    loadConfigAndDo(buildAction, config);
+  });
 
 program
   .command('run')
   .description('Run the production build')
-  .action(() => runAction(program));
+  .action(() => loadConfigAndDo(runAction));
 
 program
   .command('setup')
   .description('Generate a project from a github url to get started.')
   .option('-r, --repository [address]', 'Github repository address')
-  .action(() => setupAction(program));
+  .action(() => loadConfigAndDo(setupAction));
 
 program
   .command('test')
   .description('Run test files with Ava.')
-  .action(() => testAction(program));
+  .action(() => loadConfigAndDo(testAction));
 
 program
   .command('lint-style')
   .description('')
-  .action(() => lintStyleAction(program));
+  .action(() => loadConfigAndDo(lintStyleAction));
 
 program
   .command('proto')
   .description('Start a prorotype dev server.')
-  .action(() => protoAction(program));
+  .action(() => loadConfigAndDo(protoAction));
 
 
 program.parse(process.argv);

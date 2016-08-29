@@ -23,6 +23,8 @@ You can change ports in the [kyt config](/config/kytConfig.md).
 ### build
 The `build` command takes the entry index.js in client and server, compiles them, and saves them to a build folder. This is a production build and includes minification and tree shaking (with Webpack 2). 
 
+Build uses option `-c`(`--config`) to denote a path to a different [kyt.config.js](/config/kytConfig.md) file
+
 ### run
 The `run` command takes the compiled code from the production build and runs a node server at the specified port. 
 You can change ports in the kyt config.

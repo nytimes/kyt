@@ -5,9 +5,10 @@ const path = require('path');
 const CLIEngine = require('eslint').CLIEngine;
 const shell = require('shelljs');
 const logger = require('./../logger');
-const kytConfig = require('./../../config/kyt.config');
 
 module.exports = () => {
+  const userRootPath = global.config.userRootPath;
+
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
     envs: ['browser', 'mocha'],
@@ -24,7 +25,8 @@ module.exports = () => {
     logger.log(formatter(report.results));
   };
 
-  const esLintPath = path.join(kytConfig.userRootPath, './.eslintrc');
+
+  const esLintPath = path.join(userRootPath, './.eslintrc');
 
   // Check to see if eslint file exists
   if (!shell.test('-f', esLintPath)) {

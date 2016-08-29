@@ -6,17 +6,16 @@ const glob = require('glob');
 const logger = require('./../logger');
 const shell = require('shelljs');
 const merge = require('webpack-merge');
-const kytConfig = require('./../../config/kyt.config');
 let testConfig = require('../../config/webpack.test');
 const baseConfig = require('../../config/webpack.base');
 const webpackCompiler = require('../../utils/webpackCompiler');
-
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
-  const userRootPath = kytConfig.userRootPath;
+  const userRootPath = global.config.userRootPath;
+  const userSrc = path.join(userRootPath, 'src');
   const userBuild = path.join(userRootPath, 'build/test');
   const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
   const npath = path.resolve(userRootPath, './node_modules');
@@ -73,7 +72,7 @@ module.exports = () => {
       const babelLoader = base.module.loaders.find(loader => loader.loader === 'babel-loader');
       babelLoader.compact = true;
       webpackConfig = merge.smart(base, testConfig(options));
-      webpackConfig = kytConfig.modifyWebpackConfig(webpackConfig, options);
+      webpackConfig = global.config.modifyWebpackConfig(webpackConfig, options);
     } catch (error) {
       logger.error('Error Loading the Test Webpack Config', error);
       process.exit();
@@ -90,11 +89,11 @@ module.exports = () => {
     logger.info('Starting test...');
 
     let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
-    if (kytConfig.debug) command += ' --verbose';
-
+    if (global.config.debug) command += ' --verbose';
     shell.config.silent = false;
     shell.exec(command);
   });
+
 
   logger.info('Compiling...');
   compiler.run(() => undefined);
