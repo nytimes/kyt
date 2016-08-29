@@ -22,9 +22,15 @@ const runAction = require('./actions/run');
 const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
-const loadConfigAndDo = require('./../utils/loadConfigAndDo');
+const kytConfigFn = require('./../utils/kytConfig');
 
 exitIfOldNodeVersion();
+
+const loadConfigAndDo = (callback, program, optionalConfig) => {
+  kytConfigFn(optionalConfig);
+  callback(program);
+};
+
 
 program
   .command('lint')
