@@ -10,7 +10,8 @@
     "node": ">=6.1.0"
   },
   "scripts": {
-    "lint": "eslint ./ -c .eslintrc --ext .js --ext .jsx"
+    "lint": "eslint ./ -c .eslintrc --ext .js --ext .jsx",
+    "test": "ava __test__/*.test.js --verbose"
   },
   "repository": {
     "type": "git",
