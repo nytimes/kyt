@@ -8,9 +8,9 @@ kyt follows several conventions for folder structure. If you're setting up a new
 ```
 src/
   /client
-    index.js // webpack entry for client code
+    index.js // Webpack entry for client code
   /server
-    index.js // wepack entry for server code
+    index.js // Webpack entry for server code
 ```
 ## Testing
 The `kyt test` command finds all files with `*.test.js`.
