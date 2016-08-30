@@ -5,10 +5,9 @@ const path = require('path');
 const CLIEngine = require('eslint').CLIEngine;
 const shell = require('shelljs');
 const logger = require('./../logger');
+const { userRootPath } = require('../../utils/paths')();
 
 module.exports = () => {
-  const userRootPath = global.config.userRootPath;
-
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
     envs: ['browser', 'mocha'],
@@ -24,7 +23,6 @@ module.exports = () => {
     const formatter = cli.getFormatter();
     logger.log(formatter(report.results));
   };
-
 
   const esLintPath = path.join(userRootPath, './.eslintrc');
 

@@ -2,8 +2,8 @@
 // Testing webpack config
 
 const clone = require('ramda').clone;
-const path = require('path');
 const nodeExternals = require('webpack-node-externals');
+const { testBuildPath } = require('../utils/paths')();
 
 const cssStyleLoaders = [
   {
@@ -13,12 +13,12 @@ const cssStyleLoaders = [
   'postcss',
 ];
 
-module.exports = (options) => ({
+module.exports = () => ({
 
   devtool: 'inline-source-map',
 
   output: {
-    path: path.join(options.userRootPath, 'build/test'),
+    path: testBuildPath,
     filename: '[name].js',
   },
 

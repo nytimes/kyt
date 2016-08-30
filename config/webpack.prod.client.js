@@ -1,11 +1,11 @@
 
 // Production webpack config for client code
 
-const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const clone = require('ramda').clone;
+const { clientSrcPath, assetsBuildPath, buildPath } = require('../utils/paths')();
 
 const cssStyleLoaders = [
   {
@@ -21,11 +21,11 @@ module.exports = (options) => ({
   devtool: 'hidden-source-map',
 
   entry: {
-    main: [path.join(options.userRootPath, 'src/client/index.js')],
+    main: [`${clientSrcPath}/index.js`],
   },
 
   output: {
-    path: path.join(options.publicDirPath, 'assets'),
+    path: assetsBuildPath,
     filename: '[name]-[hash].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
@@ -68,7 +68,7 @@ module.exports = (options) => ({
 
     new AssetsPlugin({
       filename: options.clientAssetsFile,
-      path: options.buildPath,
+      path: buildPath,
     }),
   ],
 });

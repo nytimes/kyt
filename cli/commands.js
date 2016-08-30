@@ -7,11 +7,6 @@ process.on('uncaughtException', (error) => {
   process.exit();
 });
 
-const path = require('path');
-
-// define user root
-process.env.USER_ROOT = path.resolve(process.cwd());
-
 const exitIfOldNodeVersion = require('./../utils/exitIfOldNodeVersion');
 const program = require('commander');
 const devAction = require('./actions/dev');
@@ -30,7 +25,6 @@ const loadConfigAndDo = (callback, optionalConfig) => {
   kytConfigFn(optionalConfig);
   callback(program);
 };
-
 
 program
   .command('lint')
@@ -53,7 +47,7 @@ program
   .option('-C, --config <path>', 'config path')
   .description('Create a production build')
   .action(() => {
-    let config = program.args[0].config ? program.args[0].config: null;
+    const config = program.args[0].config ? program.args[0].config : null;
     loadConfigAndDo(buildAction, config);
   });
 

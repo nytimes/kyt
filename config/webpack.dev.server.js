@@ -1,10 +1,10 @@
 
 // Development webpack config for server code
 
-const path = require('path');
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const clone = require('ramda').clone;
+const { serverSrcPath, serverBuildPath } = require('../utils/paths')();
 
 const cssStyleLoaders = [
   {
@@ -25,13 +25,11 @@ module.exports = (options) => ({
   externals: nodeExternals(),
 
   entry: {
-    main: [
-      path.join(options.userRootPath, 'src/server/index.js'),
-    ],
+    main: [`${serverSrcPath}/index.js`],
   },
 
   output: {
-    path: path.join(options.userRootPath, 'build/server'),
+    path: serverBuildPath,
     filename: '[name].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
