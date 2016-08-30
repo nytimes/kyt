@@ -5,15 +5,6 @@ const logger = require('../cli/logger');
 
 module.exports = () => {
   const userRootPath = path.resolve(process.cwd());
-
-  // Check if the user ran the command from the root
-  // of their project. If not, shut the process down.
-  if (!shell.test('-d', path.join(userRootPath, 'node_modules'))) {
-    logger.error(`kyt works best when you execute commands
-      from the root of your project where kyt is installed.`);
-    process.exit();
-  }
-
   const buildPath = path.join(userRootPath, 'build');
   const srcPath = path.join(userRootPath, 'src');
   const publicBuildPath = path.join(buildPath, 'public');

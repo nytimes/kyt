@@ -9,6 +9,8 @@ process.on('uncaughtException', (error) => {
 
 const exitIfOldNodeVersion = require('./../utils/exitIfOldNodeVersion');
 const program = require('commander');
+const path = require('path');
+const shell = require('shelljs');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
@@ -18,8 +20,18 @@ const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
 const kytConfigFn = require('./../utils/kytConfig');
+const logger = require('./logger');
+const { userNodeModulesPath } = require('../utils/paths')();
 
 exitIfOldNodeVersion();
+
+// Check if the user ran the command from the root
+// of their project. If not, shut the process down.
+if (!shell.test('-d', userNodeModulesPath)) {
+  logger.error(`kyt works best when you execute commands
+    from the root of your project where kyt is installed.`);
+  process.exit();
+}
 
 const loadConfigAndDo = (callback, optionalConfig) => {
   kytConfigFn(optionalConfig);
