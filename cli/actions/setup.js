@@ -1,11 +1,4 @@
 
-// Surface any uncaught errors
-process.on('uncaughtException', (error) => {
-  const log = console;
-  log.error('UNHANDLED EXCEPTION', error.stack);
-  process.exit();
-});
-
 const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
