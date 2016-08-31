@@ -1,10 +1,9 @@
 
 const stylelint = require('stylelint');
 const logger = require('./../logger');
+const { userRootPath } = require('../../utils/paths')();
 
 module.exports = () => {
-  const userRootPath = global.config.userRootPath;
-
   stylelint.lint({
     files: [`${userRootPath}/src/**/*.css`, `${userRootPath}/src/**/*.scss`],
     formatter: 'string',

@@ -9,25 +9,27 @@ const merge = require('webpack-merge');
 let testConfig = require('../../config/webpack.test');
 const baseConfig = require('../../config/webpack.base');
 const webpackCompiler = require('../../utils/webpackCompiler');
+const {
+  userRootPath,
+  testBuildPath,
+  srcPath,
+  userNodeModulesPath,
+} = require('../../utils/paths')();
 
 module.exports = () => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
-  const userRootPath = global.config.userRootPath;
-  const userSrc = path.join(userRootPath, 'src');
-  const userBuild = path.join(userRootPath, 'build/test');
-  const avaCLI = path.resolve(userRootPath, './node_modules/ava/cli.js');
-  const npath = path.resolve(userRootPath, './node_modules');
+  const avaCLI = path.join(userNodeModulesPath, '/ava/cli.js');
 
-  if (shell.test('-d', userBuild) && shell.rm('-rf', userBuild).code === 0) {
+  if (shell.test('-d', testBuildPath) && shell.rm('-rf', testBuildPath).code === 0) {
     logger.task('Cleaned ./build/test');
   }
-  shell.mkdir('-p', userBuild);
+  shell.mkdir('-p', testBuildPath);
 
   // Find test files
   const getFiles = () => {
-    const pattern = path.join(userRootPath, '/src/**/*.test.js');
+    const pattern = path.join(srcPath, '/**/*.test.js');
     return glob.sync(pattern);
   };
 
@@ -53,9 +55,7 @@ module.exports = () => {
 
   // Create webpack config for testing
   const getConfig = () => {
-    const buildPath = path.join(userRootPath, 'build');
     const options = {
-      buildPath,
       type: 'test',
       serverPort: undefined,
       clientPort: undefined,
@@ -63,7 +63,6 @@ module.exports = () => {
       publicPath: undefined,
       publicDir: undefined,
       clientAssetsFile: undefined,
-      userRootPath,
     };
 
     let webpackConfig = null;
@@ -88,7 +87,8 @@ module.exports = () => {
   const compiler = webpackCompiler(testConfig, () => {
     logger.info('Starting test...');
 
-    let command = `NODE_PATH=$NODE_PATH:${npath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
+    let command =
+      `NODE_PATH=$NODE_PATH:${userNodeModulesPath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
     if (global.config.debug) command += ' --verbose';
     shell.config.silent = false;
     shell.exec(command);

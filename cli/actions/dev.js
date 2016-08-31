@@ -12,12 +12,12 @@ const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
+const { buildPath, serverSrcPath } = require('../../utils/paths')();
 
 module.exports = () => {
   logger.start('Starting development build...');
-  // Clean the build directory.
-  const buildPath = path.resolve(global.config.userRootPath, './build');
 
+  // Clean the build directory.
   if (shell.test('-d', buildPath) && shell.rm('-rf', buildPath).code === 0) {
     logger.task('Cleaned ./build');
   }
@@ -27,7 +27,6 @@ module.exports = () => {
     serverConfig,
     clientPort,
     serverPort,
-    userRootPath,
     reactHotLoader,
   } = buildConfigs();
 
@@ -75,7 +74,7 @@ module.exports = () => {
   };
 
   // Watch the server files and recompile and restart on changes.
-  const watcher = chokidar.watch([path.join(userRootPath, 'src/server')]);
+  const watcher = chokidar.watch([serverSrcPath]);
   watcher.on('ready', () => {
     watcher
       .on('add', compileHotServer)

@@ -3,23 +3,20 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
-const path = require('path');
 const shell = require('shelljs');
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('./../../utils/ifPortIsFreeDo');
 const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
+const { userPrototypePath, publicSrcPath } = require('../../utils/paths')();
 
 module.exports = () => {
   const port = global.config.prototypePort;
-  const userRootPath = global.config.userRootPath;
   const options = {
     type: 'prototype',
     environment: 'prototype',
     port,
-    publicDir: path.join(userRootPath, 'src/public'),
-    userRootPath,
-    buildPath: path.join(userRootPath, 'build'),
+    publicDir: publicSrcPath,
     clientAssetsFile: 'publicAssets.json',
   };
 
@@ -46,7 +43,6 @@ module.exports = () => {
   };
   logger.start('Configuring Prototype...');
 
-  const userPrototypePath = path.join(userRootPath, './prototype.js');
   if (!shell.test('-f', userPrototypePath)) {
     logger.error('Prototype.js entry file does not exist.');
     logger.error('See the kyt Readme for details.');
