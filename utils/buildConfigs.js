@@ -28,6 +28,7 @@ module.exports = (environment = 'development') => {
     environment,
     publicPath: `http://localhost:${clientPort}/assets/`,
     publicDir: clientBuildPath,
+    publicDir: 'src/public',
     clientAssetsFile: 'publicAssets.json',
     reactHotLoader,
   };
@@ -39,9 +40,7 @@ module.exports = (environment = 'development') => {
     clientOptions = merge(clientOptions, {
       clientPort: undefined,
       publicPath: global.config.productionPublicPath,
-      // In production, we use the relative path
-      // from build/client/*.js or build/server/*.js.
-      publicDir: '../public',
+      publicDir: 'build/public',
       // Absolute path to the public directory.
       publicBuildPath,
     });
