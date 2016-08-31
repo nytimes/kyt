@@ -21,6 +21,11 @@ test('installation', t => {
 test('setup', t => {
   const output = shell.exec('node_modules/.bin/kyt setup');
   t.is(output.code, 0);
+  const setupArr = output.stdout.split('\n');
+  t.is(setupArr[0], '🔥  Setting up kyt starter');
+});
+
+test('setup-files', t => {
   t.true(shell.test('-d', 'src'));
   t.true(shell.test('-f', 'kyt.config.js'));
   t.true(shell.test('-f', '.editorconfig'));
@@ -41,8 +46,8 @@ test('setup-package-json', t => {
   t.is(scripts['kyt:help'], 'kyt --help');
 });
 
-// test.after(t => {
-//   console.log('running after');
-//     shell.cd('..');
-//     shell.rm('-rf', 'cli-test');
-// });
+test.after(t => {
+  console.log('running after');
+    shell.cd('..');
+    shell.rm('-rf', 'cli-test');
+});
