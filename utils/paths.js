@@ -1,7 +1,5 @@
 
-const shell = require('shelljs');
 const path = require('path');
-const logger = require('../cli/logger');
 
 module.exports = () => {
   const userRootPath = path.resolve(process.cwd());
