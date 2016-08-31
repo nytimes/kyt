@@ -4,6 +4,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const clone = require('ramda').clone;
+const { userPrototypePath, prototypeBuildPath, srcPath } = require('../utils/paths')();
 
 const cssStyleLoaders = [
   'style',
@@ -25,11 +26,11 @@ module.exports = (options) => {
       'webpack/hot/dev-server',
       `webpack-dev-server/client?${publicRoot}`,
       path.resolve(__dirname, '../prototype/index.html'),
-      path.resolve(options.userRootPath, './prototype.js'),
+      userPrototypePath,
     ],
 
     output: {
-      path: path.join(options.userRootPath, 'build/prototype'),
+      path: prototypeBuildPath,
       filename: 'bundle.js',
       publicPath,
     },
@@ -55,7 +56,7 @@ module.exports = (options) => {
     devServer: {
       publicPath,
       hot: true,
-      contentBase: path.resolve(options.userRootPath, './src'),
+      contentBase: srcPath,
       stats: 'errors-only',
     },
   };

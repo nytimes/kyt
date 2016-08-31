@@ -12,17 +12,21 @@ const shell = require('shelljs');
 const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
+const {
+  userRootPath,
+  srcPath,
+  userPrototypePath,
+  userKytConfigPath,
+  userNodeModulesPath,
+  userPackageJSONPath,
+} = require('../../utils/paths')();
 
 module.exports = (program) => {
   const args = program.args[0];
-  const userRootPath = global.config.userRootPath;
-  const userSrc = path.join(userRootPath, 'src');
-  const packageJSONPath = path.join(userRootPath, 'package.json');
-  const nodeModulesPath = path.join(userRootPath, 'node_modules');
+  const gitignoreFile = path.join(userRootPath, '.gitignore');
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.rm('-rf', tmpDir);
-  let defaultMode = true;
   let oldPackageJSON;
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
@@ -62,19 +66,19 @@ module.exports = (program) => {
       }
       packageJson.scripts[commandName] = `kyt ${command}`;
     });
-    packageJson.scripts['kyt:help'] = ' kyt --help';
+    packageJson.scripts['kyt:help'] = 'kyt --help';
     logger.task('Added kyt scripts into your package.json scripts');
     return packageJson;
   };
 
   // Add dependencies, scripts and other package to
   // the user's package.json configuration.
-  const updateUserPackageJSON = () => {
+  const updateUserPackageJSON = (defaultMode) => {
     let userPackageJSON;
     // Create a package.json definition if
     // the user doesn't already have one.
-    if (shell.test('-f', packageJSONPath)) {
-      userPackageJSON = require(packageJSONPath); // eslint-disable-line global-require
+    if (shell.test('-f', userPackageJSONPath)) {
+      userPackageJSON = require(userPackageJSONPath); // eslint-disable-line global-require
     } else {
       userPackageJSON =
         { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
@@ -88,18 +92,17 @@ module.exports = (program) => {
     if (!defaultMode) {
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
     }
-
     // Add scripts
     userPackageJSON = addPackageJsonScripts(userPackageJSON);
-    fs.writeFileSync(packageJSONPath, JSON.stringify(userPackageJSON, null, 2));
+    fs.writeFileSync(userPackageJSONPath, JSON.stringify(userPackageJSON, null, 2));
   };
 
 
   // Cleans and reinstalls node modules.
   const installUserDependencies = () => {
     logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
-    if (shell.exec(`rm -rf ${nodeModulesPath} && npm cache clear && npm i`).code !== 0) {
-      fs.writeFileSync(packageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
+    if (shell.exec(`rm -rf ${userNodeModulesPath} && npm cache clear && npm i`).code !== 0) {
+      fs.writeFileSync(userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
       logger.error('An error occurred when trying to install node modules');
       logger.task('Restored the original package.json and bailing');
       logger.info('You may need to reinstall your modules');
@@ -180,7 +183,6 @@ module.exports = (program) => {
   // Copies the starter kyt kyt.config.js
   // to the user's base directory.
   const createKytConfig = () => {
-    const userKytConfig = path.join(userRootPath, 'kyt.config.js');
     const tmpConfig = path.join(tmpDir, 'kyt.config.js');
     const baseConfig = path.join(__dirname, '../../config/kyt.base.config.js');
     let newConfig = tmpConfig;
@@ -192,15 +194,15 @@ module.exports = (program) => {
     }
 
     const copyConfig = () => {
-      shell.cp(newConfig, userKytConfig);
+      shell.cp(newConfig, userKytConfigPath);
       logger.task('Created new kyt.config.js');
     };
 
-    if (shell.test('-f', userKytConfig)) {
+    if (shell.test('-f', userKytConfigPath)) {
       // Since the user already has a kyt.config,
       // we need to back it up before copying.
       const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.js.bak`);
-      shell.mv('-f', userKytConfig, mvTo);
+      shell.mv('-f', userKytConfigPath, mvTo);
       logger.info(`Backed up current kyt.config.js to: ${mvTo}`);
       copyConfig();
     } else {
@@ -215,11 +217,11 @@ module.exports = (program) => {
       shell.cp('-r', `${tmpDir}/src`, userRootPath);
       logger.task('Created src directory');
     };
-    if (shell.test('-d', userSrc)) {
+    if (shell.test('-d', srcPath)) {
       // Since the user already has a src directory,
       // we need to make a backup before copying.
       const mvTo = path.join(userRootPath, `src-${Date.now()}-bak`);
-      shell.mv('-f', userSrc, mvTo);
+      shell.mv('-f', srcPath, mvTo);
       logger.info(`Backed up current src directory to: ${mvTo}`);
     }
 
@@ -243,19 +245,18 @@ module.exports = (program) => {
     // No need to copy file if it doesn't exist
     if (!shell.test('-f', starterProto)) return;
     // Backup user's prototype file if they already have one
-    if (shell.test('-f', userProto)) {
+    if (shell.test('-f', userPrototypePath)) {
       const prototypeBackup = path.join(userRootPath, `prototype-${Date.now()}.js.bak`);
-      shell.mv(userProto, prototypeBackup);
+      shell.mv(userPrototypePath, prototypeBackup);
       logger.info(`Backed up current prototype file to: ${prototypeBackup}`);
     }
     // Copy the prototype file from the starter kit into the users repo
-    shell.cp(starterProto, userProto);
+    shell.cp(starterProto, userPrototypePath);
     logger.task('copied prototype.js file into root');
   };
 
   // setup flow for starter-kyts
   const starterKytSetup = () => {
-    defaultMode = false;
     logger.start('Setting up starter-kyt');
     const afterClone = (error) => {
       if (error) {
@@ -263,7 +264,7 @@ module.exports = (program) => {
         logger.log(error);
         bailProcess();
       }
-      updateUserPackageJSON();
+      updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
       createStylelintFile();
@@ -284,7 +285,7 @@ module.exports = (program) => {
     // default setup flow
   const defaultSetup = () => {
     logger.start('Setting up kyt');
-    updateUserPackageJSON();
+    updateUserPackageJSON(true);
     createEditorconfigLink();
     createESLintFile();
     createStylelintFile();
@@ -295,10 +296,9 @@ module.exports = (program) => {
 
   // Checks to see if user would like src backed up before continuing
   const srcPrompt = (startSetup) => {
-    const userSrcPath = path.resolve(userRootPath, './src');
 
     // Check if src already exists
-    if (shell.test('-d', userSrcPath)) {
+    if (shell.test('-d', srcPath)) {
       const question = [
         {
           type: 'confirm',

@@ -2,10 +2,10 @@
 // Compiles the {server, client} configurations
 // For use by the client and server compilers.
 
-const path = require('path');
 const merge = require('webpack-merge');
 const logger = require('../cli/logger');
 const clone = require('ramda').clone;
+const { clientBuildPath, publicBuildPath } = require('./paths')();
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
@@ -16,9 +16,7 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (environment = 'development') => {
-
-  const { clientPort, serverPort, userRootPath, reactHotLoader } = global.config;
-  const buildPath = path.join(userRootPath, 'build');
+  const { clientPort, serverPort, reactHotLoader } = global.config;
 
   let clientConfig = devClientConfig;
   let serverConfig = devServerConfig;
@@ -28,11 +26,9 @@ module.exports = (environment = 'development') => {
     serverPort,
     clientPort,
     environment,
-    buildPath,
     publicPath: `http://localhost:${clientPort}/assets/`,
-    publicDir: path.join(userRootPath, 'build/client'),
+    publicDir: clientBuildPath,
     clientAssetsFile: 'publicAssets.json',
-    userRootPath,
     reactHotLoader,
   };
 
@@ -47,13 +43,11 @@ module.exports = (environment = 'development') => {
       // from build/client/*.js or build/server/*.js.
       publicDir: '../public',
       // Absolute path to the public directory.
-      publicDirPath: path.join(buildPath, 'public'),
+      publicBuildPath,
     });
   }
 
-  const serverOptions = merge(clientOptions, {
-    type: 'server',
-  });
+  const serverOptions = merge(clientOptions, { type: 'server' });
 
   // Merge options with static webpack configs
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
@@ -73,7 +67,6 @@ module.exports = (environment = 'development') => {
     serverConfig,
     clientPort, // TODO: Should these really be here?
     serverPort,
-    userRootPath,
     reactHotLoader,
   };
 };
