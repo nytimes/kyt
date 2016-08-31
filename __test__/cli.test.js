@@ -23,12 +23,22 @@ test('setup', t => {
   t.is(output.code, 0);
   t.true(shell.test('-d', 'src'));
   t.true(shell.test('-f', 'kyt.config.js'));
-  //t.true(shell.test('-f', '.gitignore'));
   t.true(shell.test('-f', '.editorconfig'));
   t.true(shell.test('-f', '.eslintrc'));
   t.true(shell.test('-f', '.stylelintrc'));
+  t.true(shell.test('-f', 'prototype.js'));
+});
 
-
+test('setup-package-json', t => {
+  let userPackageJSON = require('./cli-test/package.json');
+  console.log(userPackageJSON);
+  let scripts = userPackageJSON.scripts;
+  t.is(scripts.dev, 'kyt dev');
+  t.is(scripts.build, 'kyt build');
+  t.is(scripts.test, 'kyt test');
+  t.is(scripts.lint, 'kyt lint');
+  t.is(scripts.proto, 'kyt proto');
+  t.is(scripts['kyt:help'], 'kyt --help');
 });
 
 // test.after(t => {

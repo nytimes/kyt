@@ -73,7 +73,7 @@ module.exports = (program) => {
         if (userPackageJSON.scripts[command]) return;
         userPackageJSON.scripts[command] = `kyt ${command}`;
       });
-      userPackageJSON.scripts['kyt:help'] = ' kyt --help';
+      userPackageJSON.scripts['kyt:help'] = 'kyt --help';
 
       fs.writeFileSync(packageJSONPath, JSON.stringify(userPackageJSON, null, 2));
       logger.task('Added kyt scripts into your package.json scripts');
