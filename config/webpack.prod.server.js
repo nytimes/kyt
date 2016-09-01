@@ -2,6 +2,7 @@
 // Production webpack config for server code
 
 const nodeExternals = require('webpack-node-externals');
+const autoprefixer = require('autoprefixer');
 const clone = require('ramda').clone;
 const { serverSrcPath, serverBuildPath } = require('../utils/paths')();
 
@@ -47,4 +48,7 @@ module.exports = (options) => ({
       },
     ],
   },
+
+  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+
 });
