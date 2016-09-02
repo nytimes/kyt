@@ -3,7 +3,6 @@
 
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const clone = require('ramda').clone;
 const { clientSrcPath, buildPath, assetsBuildPath } = require('../utils/paths')();
 
@@ -58,8 +57,6 @@ module.exports = (options) => {
         },
       ],
     },
-
-    postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
 
     plugins: [
       new webpack.NoErrorsPlugin(),

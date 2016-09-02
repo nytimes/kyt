@@ -4,7 +4,6 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
-const autoprefixer = require('autoprefixer');
 const clone = require('ramda').clone;
 const { clientSrcPath, assetsBuildPath, buildPath } = require('../utils/paths')();
 
@@ -51,8 +50,6 @@ module.exports = (options) => ({
       },
     ],
   },
-
-  postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
 
   plugins: [
     new ExtractTextPlugin({ filename: '[name]-[chunkhash].css', allChunks: true }),
