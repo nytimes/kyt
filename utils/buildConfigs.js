@@ -5,7 +5,7 @@
 const merge = require('webpack-merge');
 const logger = require('../cli/logger');
 const clone = require('ramda').clone;
-const { clientBuildPath, publicBuildPath } = require('./paths')();
+const { clientBuildPath } = require('./paths')();
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
@@ -27,7 +27,7 @@ module.exports = (environment = 'development') => {
     clientPort,
     environment,
     publicPath: `http://localhost:${clientPort}/assets/`,
-    publicDir: clientBuildPath,
+    publicDir: 'src/public',
     clientAssetsFile: 'publicAssets.json',
     reactHotLoader,
   };
@@ -39,11 +39,7 @@ module.exports = (environment = 'development') => {
     clientOptions = merge(clientOptions, {
       clientPort: undefined,
       publicPath: global.config.productionPublicPath,
-      // In production, we use the relative path
-      // from build/client/*.js or build/server/*.js.
-      publicDir: '../public',
-      // Absolute path to the public directory.
-      publicBuildPath,
+      publicDir: 'build/public',
     });
   }
 
