@@ -54,7 +54,10 @@ module.exports = (program) => {
     const commands = ['dev', 'build', 'run', 'test', 'lint', 'lint-style', 'proto'];
     commands.forEach((command) => {
       let commandName = command;
+      
+      // Check to see if command already exists
       if (packageJson.scripts[commandName]) {
+        if (packageJson.scripts[commandName].includes('kyt')) return;
         commandName = `kyt:${commandName}`;
       }
       packageJson.scripts[commandName] = `kyt ${command}`;
