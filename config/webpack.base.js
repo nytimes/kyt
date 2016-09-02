@@ -6,6 +6,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs');
+const autoprefixer = require('autoprefixer');
 const { buildPath, userNodeModulesPath } = require('../utils/paths')();
 
 // Uses require.resolve to add the full paths to all of the plugins
@@ -65,10 +66,7 @@ module.exports = (options) => {
       }),
     ],
 
-    postcss: [
-      // Users should add their own postcss plugins for the css
-      // and sass loaders through the `modifyWebpackConfig` callback.
-    ],
+    postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
 
     module: {
       loaders: [
