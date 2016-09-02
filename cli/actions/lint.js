@@ -5,13 +5,14 @@ const path = require('path');
 const CLIEngine = require('eslint').CLIEngine;
 const shell = require('shelljs');
 const logger = require('./../logger');
+const glob = require('glob');
 const { userRootPath } = require('../../utils/paths')();
 
 module.exports = () => {
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
-    envs: ['browser', 'mocha'],
-    extensions: ['.js', '.jsx'],
+    envs: ['browser'],
+    extensions: ['.js'],
     useEslintrc: true,
   };
 
@@ -24,12 +25,10 @@ module.exports = () => {
     logger.log(formatter(report.results));
   };
 
-  const esLintPath = path.join(userRootPath, './.eslintrc');
-
   // Check to see if eslint file exists
-  if (!shell.test('-f', esLintPath)) {
-    logger.error('You do not have an .eslintrc file');
-    logger.info('Run "node_modules/.bin kyt setup" to get the default eslint config');
+  const eslintrc = glob.sync(`${userRootPath}/.*eslintrc*`);
+  if (!eslintrc.length) {
+    logger.error('You do not have an eslintrc file in the root of your project');
     process.exit();
   }
   lint();
