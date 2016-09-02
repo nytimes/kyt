@@ -91,7 +91,9 @@ module.exports = () => {
       `NODE_PATH=$NODE_PATH:${userNodeModulesPath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
     if (global.config.debug) command += ' --verbose';
     shell.config.silent = false;
-    shell.exec(command);
+    shell.exec(command, (code) => {
+      process.exit(code)
+    });
   });
 
 
