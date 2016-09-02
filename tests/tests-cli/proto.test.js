@@ -4,11 +4,11 @@ import path from 'path';
 
 test.before(t => {
   const pkgJsonPath = path.join(__dirname, './../pkg.json');
-    if (shell.test('-d', 'cli-test-test')) {
-      shell.rm('-rf', 'cli-test-test');
+    if (shell.test('-d', 'cli-test-proto')) {
+      shell.rm('-rf', 'cli-test-proto');
     }
-    shell.mkdir('cli-test-test');
-    shell.cd('cli-test-test');
+    shell.mkdir('cli-test-proto');
+    shell.cd('cli-test-proto');
     shell.cp(pkgJsonPath, 'package.json');
     const output = shell.exec('npm install');
     if (output.code !== 0) {
@@ -26,20 +26,9 @@ test.serial('setup', t => {
   t.is(output.code, 0);
 });
 
-test.serial('test', t => {
-  let output = shell.exec('npm run test');
-  t.is(output.code, 0);
-  const outputArr = output.stdout.split('\n');
-  console.log('ARR', outputArr);
-  t.true(outputArr.includes('🔥  Running Test Command...'));
-  t.true(outputArr.includes('👍  Server webpack configuration compiled'));
-  t.true(outputArr.includes('ℹ️  Compiling...'));
-  t.true(outputArr.includes('👍  Server build successful'));
-  t.true(outputArr.includes('ℹ️  Starting test...'));
-});
-
+test.todo('proto');
 
 test.after(t => {
     shell.cd('..');
-    shell.rm('-rf', 'cli-test-test');
+    shell.rm('-rf', 'cli-test-proto');
 });

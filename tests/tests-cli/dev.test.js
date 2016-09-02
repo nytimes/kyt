@@ -4,11 +4,11 @@ import path from 'path';
 
 test.before(t => {
   const pkgJsonPath = path.join(__dirname, './../pkg.json');
-    if (shell.test('-d', 'cli-test-test')) {
-      shell.rm('-rf', 'cli-test-test');
+    if (shell.test('-d', 'cli-test-dev')) {
+      shell.rm('-rf', 'cli-test-dev');
     }
-    shell.mkdir('cli-test-test');
-    shell.cd('cli-test-test');
+    shell.mkdir('cli-test-dev');
+    shell.cd('cli-test-dev');
     shell.cp(pkgJsonPath, 'package.json');
     const output = shell.exec('npm install');
     if (output.code !== 0) {
@@ -26,20 +26,20 @@ test.serial('setup', t => {
   t.is(output.code, 0);
 });
 
-test.serial('test', t => {
-  let output = shell.exec('npm run test');
-  t.is(output.code, 0);
-  const outputArr = output.stdout.split('\n');
-  console.log('ARR', outputArr);
-  t.true(outputArr.includes('🔥  Running Test Command...'));
-  t.true(outputArr.includes('👍  Server webpack configuration compiled'));
-  t.true(outputArr.includes('ℹ️  Compiling...'));
-  t.true(outputArr.includes('👍  Server build successful'));
-  t.true(outputArr.includes('ℹ️  Starting test...'));
+test.serial('dev', t => {
+  const child = shell.exec('npm run dev', (code, stdout, stderr) => {
+    const outputArr = stdout.split('\n');
+    t.is(outputArr.includes('🔥  Starting development build...'));
+  });
+  shell.exec('sleep 15');
+  const output = shell.exec('curl -I localhost:3100');
+  t.true(output.includes('200'));
+  child.kill();
 });
 
+test.todo('change file and watch for reload');
 
 test.after(t => {
     shell.cd('..');
-    shell.rm('-rf', 'cli-test-test');
+    shell.rm('-rf', 'cli-test-dev');
 });
