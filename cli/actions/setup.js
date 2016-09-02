@@ -54,7 +54,7 @@ module.exports = (program) => {
     const commands = ['dev', 'build', 'run', 'test', 'lint', 'lint-style', 'proto'];
     commands.forEach((command) => {
       let commandName = command;
-      
+
       // Check to see if command already exists
       if (packageJson.scripts[commandName]) {
         if (packageJson.scripts[commandName].includes('kyt')) return;
@@ -116,7 +116,7 @@ module.exports = (program) => {
     if (shell.test('-f', linkedPath)) {
       const eslintBackup = path.join(userRootPath, `.eslintrc-${Date.now()}.bak`);
       shell.mv(linkedPath, eslintBackup);
-      logger.task(`Backed up current eslint file to: ${eslintBackup}`);
+      logger.info(`Backed up current eslint file to: ${eslintBackup}`);
     }
 
     // Copy over starter-kyt esLint
@@ -143,7 +143,7 @@ module.exports = (program) => {
     if (shell.test('-f', userStylelintPath)) {
       const stylelintBackup = path.join(userRootPath, `.stylelintrc-${Date.now()}.bak`);
       shell.mv(userStylelintPath, stylelintBackup);
-      logger.task(`Backed up current stylelint file to: ${stylelintBackup}`);
+      logger.info(`Backed up current stylelint file to: ${stylelintBackup}`);
     }
 
     // Copy over starter-kyt .stylelintrc if it exists.
