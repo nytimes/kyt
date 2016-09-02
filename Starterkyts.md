@@ -7,7 +7,8 @@ starter-kyts are boilerplates built with kyt.
 ### [Default starter-kyt](https://github.com/nytm/wf-kyt-starter)
 
 The default starter-kyt is for building simple React apps. 
-Install by running: `kyt setup`
+Install by running: `node_modules/.bin/kyt setup`
+More details [here](/cli).
 
 ### [Universal starter-kyt](https://github.com/nytm/wf-kyt-starter-universal) 
 The universal starter-kyt is for building react apps with SSR and React Router.
