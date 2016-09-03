@@ -7,7 +7,8 @@ const express = require('express');
 const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
-const SingleChild = require('single-child');
+const nodemon = require('nodemon');
+const once = require('ramda').once;
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
@@ -15,26 +16,20 @@ const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, serverSrcPath } = require('../../utils/paths')();
 
 module.exports = () => {
+  let clientCompiler;
+  let serverCompiler;
+  const { clientConfig, serverConfig, clientPort, serverPort, reactHotLoader } = buildConfigs();
+  const afterClientCompile = once(() => {
+    if (reactHotLoader) logger.task('Setup React Hot Loader');
+    logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
+  });
+
   logger.start('Starting development build...');
 
   // Clean the build directory.
   if (shell.test('-d', buildPath) && shell.rm('-rf', buildPath).code === 0) {
     logger.task('Cleaned ./build');
   }
-
-  const {
-    clientConfig,
-    serverConfig,
-    clientPort,
-    serverPort,
-    reactHotLoader,
-  } = buildConfigs();
-
-  let isInitialServerCompile = true;
-  let isInitialClientCompile = true;
-  let clientCompiler;
-  let serverCompiler;
-  let server = null;
 
   const startClient = () => {
     const devOptions = clientCompiler.options.devServer;
@@ -46,63 +41,43 @@ module.exports = () => {
     app.listen(clientPort);
   };
 
-  const startHotServer = () => {
+  const startServer = () => {
     const serverPath = path.resolve(
       serverCompiler.options.output.path, `${Object.keys(serverCompiler.options.entry)[0]}.js`
     );
 
-    try {
-      if (server) {
-        server.restart();
-        logger.task('Development server restarted');
-      } else {
-        server = new SingleChild('node', [serverPath], {
-          stdio: [0, 1, 2],
-        });
-        server.start();
-
+    nodemon({ script: serverPath, watch: [serverPath] })
+      .once('start', () => {
         logger.task(`Server running at: http://localhost:${serverPort}`);
         logger.end('Development started');
-      }
-    } catch (error) {
-      logger.error('Client bundle is invalid\n', error);
-    }
+      })
+      .on('restart', () => logger.task('Development server restarted'))
+      .on('quit', process.exit);
   };
 
-  const compileHotServer = () => {
-    serverCompiler.run(() => undefined);
-  };
+  const compileServer = () => serverCompiler.run(() => undefined);
 
   // Watch the server files and recompile and restart on changes.
   const watcher = chokidar.watch([serverSrcPath]);
   watcher.on('ready', () => {
     watcher
-      .on('add', compileHotServer)
-      .on('addDir', compileHotServer)
-      .on('change', compileHotServer)
-      .on('unlink', compileHotServer)
-      .on('unlinkDir', compileHotServer);
+      .on('add', compileServer)
+      .on('addDir', compileServer)
+      .on('change', compileServer)
+      .on('unlink', compileServer)
+      .on('unlinkDir', compileServer);
   });
 
   // Compile Client Webpack Config
   clientCompiler = webpackCompiler(clientConfig, () => {
-    if (isInitialClientCompile) {
-      if (reactHotLoader) logger.task('Setup React Hot Loader');
-      logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
-      isInitialClientCompile = false;
-    }
-    compileHotServer();
+    afterClientCompile();
+    compileServer();
   });
 
   // Compile Server Webpack Config
-  serverCompiler = webpackCompiler(serverConfig, () => {
-    // The hot server will recompile and restart so we
-    // need to make sure we only check the port once.
-    if (isInitialServerCompile) {
-      ifPortIsFreeDo(serverPort, startHotServer);
-      isInitialServerCompile = false;
-    } else startHotServer();
-  });
+  serverCompiler = webpackCompiler(serverConfig, once(() => {
+    ifPortIsFreeDo(serverPort, startServer);
+  }));
 
   // Starting point...
   // By starting the client, the middleware will
