@@ -22,10 +22,10 @@ test.serial('installation', t => {
 });
 
 test.serial('setup', t => {
-  const output = shell.exec('node_modules/.bin/kyt setup');
+  const output = shell.exec('node_modules/.bin/kyt setup -r git@github.com:nytm/wf-kyt-starter-universal.git');
   t.is(output.code, 0);
   const setupArr = output.stdout.split('\n');
-  t.true(setupArr.includes('🔥  Setting up kyt starter'));
+  t.true(setupArr.includes('🔥  Setting up starter-kyt'));
   t.true(setupArr.includes('👍  Added kyt scripts into your package.json scripts'));
   t.true(setupArr.includes('👍  Added new dependencies to package.json'));
   t.true(setupArr.includes('ℹ️  Cleaning node modules and reinstalling. This may take a couple of minutes...'));

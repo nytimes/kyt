@@ -9,6 +9,7 @@
     "plugins": [
       "json"
     ],
+
     "rules": {
       "no-lonely-if": 2,
       "no-nested-ternary": 2,

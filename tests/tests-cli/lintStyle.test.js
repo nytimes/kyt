@@ -30,7 +30,7 @@ test.serial('lint-style', t => {
   let output = shell.exec('node_modules/.bin/kyt lint-style');
   t.is(output.code, 0);
   const outputArr = output.stdout.split('\n');
-  t.true(outputArr.includes('Your styles look good! ✨\n'));
+  t.true(outputArr.includes('Your styles look good! ✨'));
 });
 
 test.after(t => {

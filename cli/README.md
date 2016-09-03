@@ -12,7 +12,7 @@ You can also run them with `node_modules/.bin/kyt commandName`
 5. `proto` starts the prototyping app
 6. `lint` lints src code using ESlint
 7. `help` shows commands and their documentation 
-8. `setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
+8. `setup` sets up kyt and can install a specified [starter-kyt](/Starterkyts.md)
 
 ## kyt commands explained 
 
@@ -49,10 +49,21 @@ The `proto` command starts a webpack dev server for building prototypes.
 More about [prototyping with kyt](/prototype)
 
 ### setup
-The `setup` command allows you to plug a starter-kyt into to your app. 
-The command has two options:
-1. use the default starter: running `kyt setup` without any flags will give you the default starter
-2. `kyt setup -r` : the `-r` flag allows you to specify any github repo for a starter-kyt
+
+The `setup` command sets up your repo with all the things you'll need to use kyt.
+
+1. Create a new [kyt.config.js](/config/kytConfig.md)
+2. Create a .gitignore and .editorconfig
+3. Create eslint.json file
+4. Add kyt commands to npm scripts
+
+
+#### setup with a starter-kyt
+
+`setup` also allows you to plug a starter-kyt into to your app. 
+
+The command has one flag:
+1. `kyt setup -r` : the `-r` flag allows you to specify any github repo for a starter-kyt
 
 `setup` will then:
 1. Clone the repo for your starter
