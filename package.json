@@ -11,7 +11,7 @@
   },
   "scripts": {
     "lint": "eslint ./ -c .eslintrc --ext .js --ext .jsx",
-    "test": "ava tests/**/dev.test.js --verbose --serial"
+    "test": "ava tests/**/*.test.js --verbose --serial --fail-fast"
   },
   "repository": {
     "type": "git",

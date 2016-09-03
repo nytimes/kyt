@@ -4,11 +4,11 @@ import path from 'path';
 
 test.before(t => {
   const pkgJsonPath = path.join(__dirname, './../pkg.json');
-    if (shell.test('-d', 'cli-test-setup')) {
-      shell.rm('-rf', 'cli-test-setup');
+    if (shell.test('-d', 'cli-test')) {
+      shell.rm('-rf', 'cli-test');
     }
-    shell.mkdir('cli-test-setup');
-    shell.cd('cli-test-setup');
+    shell.mkdir('cli-test');
+    shell.cd('cli-test');
     shell.cp(pkgJsonPath, 'package.json');
     const output = shell.exec('npm install');
     if (output.code !== 0) {
@@ -22,7 +22,7 @@ test.serial('installation', t => {
 });
 
 test.serial('setup', t => {
-  const output = shell.exec('node_modules/.bin/kyt setup -r git@github.com:nytm/wf-kyt-starter-universal.git');
+  const output = shell.exec('node_modules/.bin/kyt setup -r git@github.com:nytm/wf-kyt-starter-test.git');
   t.is(output.code, 0);
   const setupArr = output.stdout.split('\n');
   t.true(setupArr.includes('🔥  Setting up starter-kyt'));
@@ -44,7 +44,7 @@ test.serial('setup-files', t => {
 });
 
 test.serial('setup-package-json', t => {
-  let userPackageJSON = require('./cli-test-setup/package.json');
+  let userPackageJSON = require('./cli-test/package.json');
   let scripts = userPackageJSON.scripts;
   t.is(scripts.dev, 'kyt dev');
   t.is(scripts.build, 'kyt build');
@@ -52,9 +52,4 @@ test.serial('setup-package-json', t => {
   t.is(scripts.lint, 'kyt lint');
   t.is(scripts.proto, 'kyt proto');
   t.is(scripts['kyt:help'], 'kyt --help');
-});
-
-test.after(t => {
-    shell.cd('..');
-    shell.rm('-rf', 'cli-test-setup');
 });

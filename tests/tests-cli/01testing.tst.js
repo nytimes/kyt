@@ -3,6 +3,7 @@ import shell from 'shelljs';
 import kill from '../../utils/psKill';
 shell.config.silent = true;
 test.cb('run', t => {
+  console.log('THIS FILE FIRST');
   const child = shell.exec('node ./../../cli/actions/testing.js', (code, stdout, stderr) => {
     console.log('callback', code);
     t.end();
