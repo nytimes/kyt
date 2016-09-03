@@ -5,6 +5,7 @@ import kill from '../../utils/psKill';
 test.before(t => {
   shell.cd('cli-test');
 });
+
 test.cb('proto', t => {
   const child = shell.exec('npm run proto', (code, stdout, stderr) => {
     t.end();

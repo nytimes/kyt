@@ -1,6 +1,5 @@
 import test from 'ava';
 import shell from 'shelljs';
-import path from 'path';
 import kill from '../../utils/psKill';
 
 test.before(t => {
