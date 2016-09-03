@@ -35,6 +35,9 @@ module.exports = (webpackConfig, cb) => {
     }
   });
 
+  webpackCompiler.plugin('exit', data => {
+    console.log('exitingg', data);
+  });
 
   // Return the compiler
   return webpackCompiler;
