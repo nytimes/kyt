@@ -1,6 +1,7 @@
 import test from 'ava';
 import shell from 'shelljs';
 import path from 'path';
+import kill from '../../utils/psKill';
 
 test.before(t => {
   const pkgJsonPath = path.join(__dirname, './../pkg.json');
@@ -26,20 +27,44 @@ test.serial('setup', t => {
   t.is(output.code, 0);
 });
 
-test.serial('dev', t => {
+test.cb('dev', t => {
   const child = shell.exec('npm run dev', (code, stdout, stderr) => {
-    const outputArr = stdout.split('\n');
-    t.is(outputArr.includes('🔥  Starting development build...'));
+    t.end();
   });
-  shell.exec('sleep 15');
-  const output = shell.exec('curl -I localhost:3100');
-  t.true(output.includes('200'));
-  child.kill();
+  child.stdout.on('data', (data) => {
+    if (data.includes('✅  Development started')) {
+      shell.exec('sleep 2');
+      const output = shell.exec('curl -I localhost:3100');
+      t.true(output.includes('200'));
+      kill(child.pid);
+    }
+  });
 });
 
-test.todo('change file and watch for reload');
+test.cb('change file and watch for reload', t => {
+  const child = shell.exec('npm run dev', (code, stdout, stderr) => {
+    t.end();
+  });
+  let stillAlive = true;
+  child.stdout.on('data', (data) => {
+    if (data.includes('✅  Development started')) {
+      shell.exec('sleep 2');
+      const output = shell.exec('curl -I localhost:3100');
+      t.true(output.includes('200'));
+      shell.exec('touch -am ./src/components/HelloWorld/index.js');
+    }
 
-test.after(t => {
+    if (data.includes('👍  Development server restarted') && stillAlive) {
+      stillAlive = false;
+      shell.exec('sleep 3');
+      const output = shell.exec('curl -I localhost:3100');
+      t.true(output.includes('200'));
+      kill(child.pid);
+    }
+  });
+});
+
+test.after.always(t => {
     shell.cd('..');
     shell.rm('-rf', 'cli-test-dev');
 });
