@@ -5,11 +5,15 @@ const glob = require('glob');
 const { userRootPath } = require('../../utils/paths')();
 
 module.exports = () => {
+  const handleError = (error) => {
+    logger.error(error);
+    process.exit(1);
+  };
+
   // Check to see if stylelint file exists
   const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc`);
   if (!stylelintrc.length) {
-    logger.error('You do not have a .stylelintrc file in the root of your project');
-    process.exit();
+    handleError('You do not have a .stylelintrc file in the root of your project');
   }
 
   stylelint.lint({
@@ -18,13 +22,14 @@ module.exports = () => {
   })
   .then((result) => {
     if (result.output) {
-      logger.log(result.output);
+      handleError(`\n${result.output}`);
     } else {
       logger.log('');
       logger.end('Your styles look good! ✨\n');
+      process.exit(0);
     }
   })
-  .catch((err) => {
-    logger.error(err.stack);
+  .catch((error) => {
+    handleError(error.stack);
   });
 };
