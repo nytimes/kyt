@@ -7,7 +7,6 @@ const express = require('express');
 const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
-const SingleChild = require('single-child');
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
@@ -15,6 +14,10 @@ const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, serverSrcPath } = require('../../utils/paths')();
 
 module.exports = () => {
+  // Only load single child when dev is running
+  // This is temporary and will be replaced with nodemon
+  const SingleChild = require('single-child');
+
   logger.start('Starting development build...');
 
   // Clean the build directory.
