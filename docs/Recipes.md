@@ -3,7 +3,7 @@ Easy ways to extend kyt
 
 ## Use Options in `modifyWebpackConfig`
 
-The `modifyWebpackConfig` function is called any time a webpack config is used. 
+The `modifyWebpackConfig` function is called any time a Webpack config is used. 
 It's called with two parameters:
 1. baseConfig: The current webpack config
 2. options: an object of useful data for editing configuration
@@ -12,7 +12,7 @@ It's called with two parameters:
 
 For example, if you want to add a new loader for only production code:
 
-```javascript 
+```javascript
 if (options.environment === 'production') {
   // Add the appropriate loader
 }
@@ -40,7 +40,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 ## Add PostCSS Plugins
 in `kyt.config.js`
 ```javascript   
-modifyWebpackConfig: (baseConfig, options) => { 
+modifyWebpackConfig: (baseConfig, options) => {
 baseConfig.postcss = (bundler) => {
       return [
         require('postcss-import')({ addDependencyTo: bundler }),
@@ -59,7 +59,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 
   const babelLoader = baseConfig.module.loaders.find(loader => loader.loader === 'babel-loader');
   babelLoader.query.plugins.push(path.resolve('./path/to/my/plugin'));
-  
+
   return baseConfig;
 }
 ```
@@ -68,4 +68,3 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 
 ## How to extend `.babelrc`
-

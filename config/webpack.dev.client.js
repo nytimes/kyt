@@ -1,10 +1,10 @@
 
 // Development webpack config for client code
 
-const path = require('path');
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const clone = require('ramda').clone;
+const { clientSrcPath, buildPath, assetsBuildPath } = require('../utils/paths')();
 
 const cssStyleLoaders = [
   'style',
@@ -18,7 +18,7 @@ const cssStyleLoaders = [
 module.exports = (options) => {
   const main = [
     `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`,
-    path.join(options.userRootPath, 'src/client/index.js')
+    `${clientSrcPath}/index.js`,
   ];
 
   if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
@@ -31,7 +31,7 @@ module.exports = (options) => {
     },
 
     output: {
-      path: path.join(options.publicDir, 'assets'),
+      path: assetsBuildPath,
       filename: '[name].js',
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
@@ -65,7 +65,7 @@ module.exports = (options) => {
 
       new AssetsPlugin({
         filename: options.clientAssetsFile,
-        path: options.buildPath,
+        path: buildPath,
       }),
 
       new webpack.HotModuleReplacementPlugin(),

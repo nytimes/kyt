@@ -9,6 +9,7 @@
     "plugins": [
       "json"
     ],
+
     "rules": {
       "no-lonely-if": 2,
       "no-nested-ternary": 2,
@@ -21,6 +22,7 @@
       "react/sort-comp": 0,
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "import/no-unresolved": [2, { "ignore": ["ava"] }],
-      "import/no-extraneous-dependencies": [0]
+      "import/no-extraneous-dependencies": [0],
+      "no-param-reassign": 0
     }
 }

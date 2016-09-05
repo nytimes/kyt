@@ -89,10 +89,23 @@ See [modifyWebpackConfig](/kytConfig.md) instructions.
 
 ### setup
 
-The `setup` command allows you to plug a starter-kyt into to your app.
-The command has two options:
-1. use the default starter: running `kyt setup` without any flags will give you the default starter
-2. `kyt setup -r` : the `-r` flag allows you to specify any github repo for a starter-kyt
+The `setup` command sets up your repo with all the things you'll need to use kyt.
+
+1. Creates a new [kyt.config.js](/config/kytConfig.md)
+2. Creates a .gitignore and .editorconfig
+3. Creates an .eslintrc file
+4. Creates a .stylelintrc file
+4. Adds kyt commands to npm scripts
+
+If you would like to use a starter-kyt in your app, see directions below. 
+
+#### setup with a starter-kyt
+
+`setup` also allows you to plug a starter-kyt into to your app.
+
+Running `kyt setup` will give you the option to install the default starter-kyt.
+
+You can also pass the `-r` flag with any starter-kyt github repo
 
 `setup` will then:
 1. Clone the repo for your starter

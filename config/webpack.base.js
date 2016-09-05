@@ -6,6 +6,8 @@
 const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs');
+const autoprefixer = require('autoprefixer');
+const { buildPath, userNodeModulesPath } = require('../utils/paths')();
 
 // Uses require.resolve to add the full paths to all of the plugins
 // and presets, making sure that we handle the new array syntax.
@@ -43,11 +45,11 @@ module.exports = (options) => {
 
     resolve: {
       extensions: ['.js', '.json'],
-      modules: [`${options.userRootPath}/node_modules`, path.resolve(__dirname, '../node_modules')],
+      modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
     },
 
     resolveLoader: {
-      modules: [`${options.userRootPath}/node_modules`, path.resolve(__dirname, '../node_modules')],
+      modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
     },
 
     plugins: [
@@ -58,18 +60,13 @@ module.exports = (options) => {
           CLIENT_PORT: JSON.stringify(options.clientPort || ''),
           PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
           PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
-          CLIENT_BUILD_PATH: JSON.stringify(path.join(options.publicDir || '', 'assets')),
-          SERVER_BUILD_PATH: JSON.stringify(path.join(options.buildPath || '', 'server')),
           ASSETS_MANIFEST:
-            JSON.stringify(path.join(options.buildPath || '', options.clientAssetsFile || '')),
+            JSON.stringify(path.join(buildPath || '', options.clientAssetsFile || '')),
         },
       }),
     ],
 
-    postcss: [
-      // Users should add their own postcss plugins for the css
-      // and sass loaders through the `modifyWebpackConfig` callback.
-    ],
+    postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
 
     module: {
       loaders: [
@@ -93,7 +90,7 @@ module.exports = (options) => {
           loader: 'babel-loader',
           exclude: [
             /node_modules/,
-            options.buildPath,
+            buildPath,
           ],
           query: babelrc,
         },

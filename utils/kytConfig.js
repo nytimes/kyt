@@ -5,18 +5,20 @@ const path = require('path');
 const shell = require('shelljs');
 const baseConfig = require('./../config/kyt.base.config');
 const merge = require('ramda').merge;
+const { userRootPath, userKytConfigPath } = require('./paths')();
 
 module.exports = (optionalConfig) => {
   if (global.config) return;
-  
-  const userConfigPath = optionalConfig ?
-  path.join(process.env.USER_ROOT, optionalConfig) :
-  path.join(process.env.USER_ROOT, './kyt.config.js');
+
+  const userConfigPath = optionalConfig
+    ? path.join(userRootPath, optionalConfig)
+    : userKytConfigPath;
   let config;
   const logger = console;
 
   // Add base config option for productionPublicPath
   baseConfig.productionPublicPath = '/assets/';
+
   // Find user config
   if (shell.test('-f', userConfigPath)) {
     try {
@@ -29,8 +31,6 @@ module.exports = (optionalConfig) => {
   }
 
   config = merge(baseConfig, config);
-  // add userRootPath to Config
-  config.userRootPath = process.env.USER_ROOT;
 
   // Create default modify function
   if (typeof config.modifyWebpackConfig !== 'function') {

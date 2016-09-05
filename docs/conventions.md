@@ -13,7 +13,7 @@ src/
     index.js // Webpack entry for server code
 ```
 ## Testing
-The `kyt test` command finds all files with `*.test.js`.
+The `kyt test` command finds all files with `*.test.js` in the `/src` directory.
 
 ## Style Linting
 The `kyt lint-style` command finds all files with `.css` and `.scss` extensions in the `/src` directory.

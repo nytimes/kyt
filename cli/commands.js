@@ -7,13 +7,9 @@ process.on('uncaughtException', (error) => {
   process.exit();
 });
 
-const path = require('path');
-
-// define user root
-process.env.USER_ROOT = path.resolve(process.cwd());
-
 const exitIfOldNodeVersion = require('./../utils/exitIfOldNodeVersion');
 const program = require('commander');
+const shell = require('shelljs');
 const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
@@ -23,14 +19,23 @@ const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
 const kytConfigFn = require('./../utils/kytConfig');
+const logger = require('./logger');
+const { userPackageJSONPath } = require('../utils/paths')();
 
 exitIfOldNodeVersion();
+
+// Check if the user ran the command from the root
+// of their project. If not, shut the process down.
+if (!shell.test('-f', userPackageJSONPath)) {
+  logger.error(`kyt works best when you execute commands
+    from the root of your project where kyt is installed.`);
+  process.exit();
+}
 
 const loadConfigAndDo = (callback, optionalConfig) => {
   kytConfigFn(optionalConfig);
   callback(program);
 };
-
 
 program
   .command('lint')
@@ -53,7 +58,7 @@ program
   .option('-C, --config <path>', 'config path')
   .description('Create a production build')
   .action(() => {
-    let config = program.args[0].config ? program.args[0].config: null;
+    const config = program.args[0].config ? program.args[0].config : null;
     loadConfigAndDo(buildAction, config);
   });
 
