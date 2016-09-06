@@ -26,4 +26,4 @@ starter-kyts act as boilerplates for projects. They use kyt as their build syste
 
 4. Create documentation
 
-5. Submit to [kyt](/issues) to be considered as a recommended starter-kyt
+5. Submit to kyt to be considered as a recommended starter-kyt
