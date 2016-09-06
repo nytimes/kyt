@@ -50,6 +50,7 @@ test.serial('setup-package-json', t => {
   t.is(scripts.build, 'kyt build');
   t.is(scripts.test, 'kyt test');
   t.is(scripts.lint, 'kyt lint');
+  t.is(scripts['lint-style'], 'kyt lint-style');
   t.is(scripts.proto, 'kyt proto');
   t.is(scripts['kyt:help'], 'kyt --help');
 });
