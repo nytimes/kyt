@@ -50,8 +50,12 @@ program
 
 program
   .command('dev')
+  .option('-C, --config <path>', 'config path')
   .description('Start an express server for development')
-  .action(() => loadConfigAndDo(devAction));
+  .action(() => {
+    const config = program.args[0].config ? program.args[0].config : null;
+    loadConfigAndDo(devAction, config);
+  });
 
 program
   .command('build')
