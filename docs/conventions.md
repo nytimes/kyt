@@ -8,15 +8,19 @@ kyt follows several conventions for folder structure. If you're setting up a new
 ```
 src/
   /client
-    index.js // webpack entry for client code
+    index.js // Webpack entry for client code
   /server
-    index.js // wepack entry for server code
+    index.js // Webpack entry for server code
 ```
 ## Testing
-The `kyt test` command finds all files with `*.test.js`.
+The `kyt test` command finds all files with `*.test.js` in the `/src` directory.
 
 ## Style Linting
 The `kyt lint-style` command finds all files with `.css` and `.scss` extensions in the `/src` directory.
+
+## Public directory
+
+## Environment Variables 
 
 ## kyt.config.js
 The kyt config file must live in the root of your repository.
