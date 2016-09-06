@@ -20,8 +20,8 @@ The `kyt lint-style` command finds all files with `.css` and `.scss` extensions 
 
 ## Public directory
 
-## Environment Variables 
+## Environment Variables
 
 ## kyt.config.js
 The kyt config file must live in the root of your repository.
-See further instructions [here](/config/kytConfig.md)
+See further instructions [here](/docs/kytConfig.md)

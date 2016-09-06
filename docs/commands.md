@@ -12,14 +12,14 @@ You can also run them with `node_modules/.bin/kyt commandName`
 6. `lint` lints src code using ESLint
 7. `lint-style` lints src code using StyleLint
 7. `help` shows commands and their documentation
-8. `setup` sets up kyt and installs a specified [starter-kyt](/Starterkyts.md)
+8. `setup` sets up kyt and installs a specified [starter-kyt](/docs/Starterkyts.md)
 
 ## kyt commands explained
 
 ### dev
 
 The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers on the specified ports. The dev environment includes hot reloading to allow for fast development.
-You can update ports in the [kyt config](/kytConfig.md).
+You can update ports in the [kyt config](/docs/kytConfig.md).
 
 ### build
 
@@ -27,7 +27,7 @@ The `build` command takes the entry index.js in `src/client/` and `src/server/`,
 
 The build command will also copy the `src/public` directory for static assets.
 
-`build` uses option `-C`(`--config`) to denote a path to a different [kyt.config.js](/config/kytConfig.md) file
+`build` uses option `-C`(`--config`) to denote a path to a different [kyt.config.js](/docs/kytConfig.md) file
 
 ### run
 
@@ -97,7 +97,7 @@ The `setup` command sets up your repo with all the things you'll need to use kyt
 4. Creates a .stylelintrc file
 4. Adds kyt commands to npm scripts
 
-If you would like to use a starter-kyt in your app, see directions below. 
+If you would like to use a starter-kyt in your app, see directions below.
 
 #### setup with a starter-kyt
 
