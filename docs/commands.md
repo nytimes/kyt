@@ -1,4 +1,4 @@
-# kyt Command Line Interface
+# kyt command line interface
 
 kyt includes a CLI with all the commands needed for development.
 During `setup` the commands are written into your package.json file.
