@@ -9,6 +9,9 @@ Your escape from configuration hell
 
 kyt manages configuration for all aspects of development. It can be installed as a dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a simple [CLI](/docs/commands.md) for running all development tools.
 
+
+![diagram](/images/kyt-diagram.png)
+
 kyt is designed with a set of base opinions such as Node server support, client and server hot reloading, ES2015 feature syntax, style and script linter rulesets, and a pre-configured test runner. Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
