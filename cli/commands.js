@@ -1,13 +1,5 @@
 #!/usr/bin/env node
 
-// Surface any uncaught errors
-process.on('uncaughtException', (error) => {
-  const log = console;
-  log.error('UNHANDLED EXCEPTION', error.stack);
-  process.exit();
-});
-
-const exitIfOldNodeVersion = require('./../utils/exitIfOldNodeVersion');
 const program = require('commander');
 const shell = require('shelljs');
 const devAction = require('./actions/dev');
@@ -21,8 +13,6 @@ const lintStyleAction = require('./actions/lintStyle');
 const kytConfigFn = require('./../utils/kytConfig');
 const logger = require('./logger');
 const { userPackageJSONPath } = require('../utils/paths')();
-
-exitIfOldNodeVersion();
 
 // Check if the user ran the command from the root
 // of their project. If not, shut the process down.
