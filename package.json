@@ -4,7 +4,7 @@
   "description": "Web Frameworks Starter Kit",
   "main": "",
   "bin": {
-    "kyt": "cli/commands.js"
+    "kyt": "cli/index.js"
   },
   "engines": {
     "node": ">=6.1.0"
