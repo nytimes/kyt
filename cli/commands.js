@@ -14,12 +14,12 @@ const kytConfigFn = require('./../utils/kytConfig');
 const logger = require('./logger');
 const { userPackageJSONPath } = require('../utils/paths')();
 
-// Check if the user ran the command from the root
-// of their project. If not, shut the process down.
+// Kill the process if the user did not run
+// the command from the root of their project.
 if (!shell.test('-f', userPackageJSONPath)) {
   logger.error(`kyt works best when you execute commands
     from the root of your project where kyt is installed.`);
-  process.exit();
+  process.exit(1);
 }
 
 const loadConfigAndDo = (callback, optionalConfig) => {
@@ -29,13 +29,7 @@ const loadConfigAndDo = (callback, optionalConfig) => {
 
 program
   .command('lint')
-  .description(`lint .js and .jsx files in the ./src directory.
-    See more options: kyt lint --help
-  `)
-  .option('-d, --dir <dir-name>', `The default directory is ./src.
-    If you want to lint your own, add a comma-delimited list.
-      kyt lint -d src/,test/
-  `)
+  .description('lints .js files in the ./src directory.')
   .action(() => loadConfigAndDo(lintAction));
 
 program
