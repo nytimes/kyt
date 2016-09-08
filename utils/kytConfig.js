@@ -5,18 +5,18 @@ const path = require('path');
 const shell = require('shelljs');
 const merge = require('ramda').merge;
 const { userRootPath, userKytConfigPath } = require('./paths')();
-
-// base config options
-const baseConfig = {
-  productionPublicPath: '/assets/',
-  clientPort: 3001,
-  serverPort: 3000,
-  prototypePort: 3002,
-  debug: false,
-  reactHotLoader: false,
-};
 module.exports = (optionalConfig) => {
   if (global.config) return;
+
+  // base config options
+  const baseConfig = {
+    productionPublicPath: '/assets/',
+    clientPort: 3001,
+    serverPort: 3000,
+    prototypePort: 3002,
+    debug: false,
+    reactHotLoader: false,
+  };
 
   const userConfigPath = optionalConfig
     ? path.join(userRootPath, optionalConfig)
@@ -36,7 +36,7 @@ module.exports = (optionalConfig) => {
   }
 
   config = merge(baseConfig, config);
-  
+
   // Create default modify function
   if (typeof config.modifyWebpackConfig !== 'function') {
     config.modifyWebpackConfig = (webpackConfig) => webpackConfig;
