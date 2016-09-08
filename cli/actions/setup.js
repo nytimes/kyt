@@ -180,7 +180,7 @@ module.exports = (program) => {
   // to the user's base directory.
   const createKytConfig = () => {
     const tmpConfig = path.join(tmpDir, 'kyt.config.js');
-    const baseConfig = path.join(__dirname, '../../config/kyt.base.config.js');
+    const baseConfig = path.join(__dirname, '../../config/kyt.user.config.js');
     let newConfig = tmpConfig;
 
     // Use the base kyt.config
