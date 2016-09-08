@@ -18,7 +18,7 @@ const cssStyleLoaders = [
 module.exports = (options) => ({
   target: 'web',
 
-  devtool: 'hidden-source-map',
+  devtool: 'source-map',
 
   entry: {
     main: [`${clientSrcPath}/index.js`],
@@ -64,6 +64,10 @@ module.exports = (options) => ({
         screw_ie8: true,
         warnings: false,
       },
+      output: {
+        comments: false,
+      },
+      sourceMap: true,
     }),
 
     new AssetsPlugin({
