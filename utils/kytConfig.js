@@ -3,7 +3,7 @@
 
 const path = require('path');
 const shell = require('shelljs');
-const merge = require('ramda').merge;
+const mergeAll = require('ramda').mergeAll;
 const { userRootPath, userKytConfigPath } = require('./paths')();
 module.exports = (optionalConfig) => {
   if (global.config) return;
@@ -35,7 +35,7 @@ module.exports = (optionalConfig) => {
     }
   }
 
-  config = merge(baseConfig, config);
+  config = mergeAll([{}, baseConfig, config]);
 
   // Create default modify function
   if (typeof config.modifyWebpackConfig !== 'function') {
