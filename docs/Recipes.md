@@ -25,7 +25,7 @@ if (options.type === 'client') {
 ```
 
 
-## Add Webpack Alises
+## Add Webpack Aliases
 In `kyt.config.js`
 
 ```javascript
