@@ -72,6 +72,7 @@ module.exports = () => {
       babelLoader.compact = true;
       webpackConfig = merge.smart(base, testConfig(options));
       webpackConfig = global.config.modifyWebpackConfig(webpackConfig, options);
+      logger.debug('Test Webpack Config ', webpackConfig);
     } catch (error) {
       logger.error('Error Loading the Test Webpack Config', error);
       process.exit();
