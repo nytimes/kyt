@@ -21,10 +21,13 @@ module.exports = () => {
     const report = cli.executeOnFiles(files);
     const formatter = cli.getFormatter();
     logger.log(`${formatter(report.results)}\n`);
+
     if (report.errorCount === 0) {
-      logger.end('Your JS looks good ✨');
+      logger.end(`Your JS looks ${report.warningCount === 0 ? 'great ✨' :
+        'OK, though there were warnings 🤔👆'}`);
     }
-    process.exit(report.errorCount + report.warningCount > 0 ? 1 : 0);
+
+    process.exit(report.errorCount > 0 ? 1 : 0);
   };
 
   // Check to see if eslint file exists
