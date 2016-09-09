@@ -37,10 +37,12 @@ module.exports = (optionalConfig) => {
 
   config = mergeAll([{}, baseConfig, config]);
 
-  // Create default modify function
-  if (typeof config.modifyWebpackConfig !== 'function') {
-    config.modifyWebpackConfig = (webpackConfig) => webpackConfig;
-  }
+  // Create default identity functions for modify functions
+  ['modifyWebpackConfig', 'modifyJestConfig'].forEach(m => {
+    if (typeof config[m] !== 'function') {
+      config[m] = c => c;
+    }
+  });
 
   global.config = Object.freeze(config);
 };
