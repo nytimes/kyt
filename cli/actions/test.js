@@ -32,7 +32,8 @@ module.exports = () => {
   jestConfig = global.config.modifyJestConfig(clone(jestConfig), { environment: 'test' });
 
   // TODO Remove --no-cache
-  jest.run(['--config', JSON.stringify(jestConfig), '--no-cache']);
+  // TODO Add --watch support
+  jest.run(['--config', JSON.stringify(jestConfig), '--watch']);
 
   // TODO: Delete everything below this
   return;

@@ -13,7 +13,7 @@ module.exports = rootDir => {
     scriptPreprocessor: resolveFromUtils('preprocessor.js'),
     testPathIgnorePatterns: ['<rootDir>/(build|docs|node_modules|images)/'],
     testEnvironment: 'node',
-    testRegex: '\\Shell.test.js$',
+    testRegex: '\\.test.js$',
     rootDir,
   };
 
