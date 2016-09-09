@@ -1,9 +1,23 @@
 ![logo](/images/kyt-logo-large.png)
 
 # kyt
-Your escape from configuration hell
 
-## What is kyt?
+Web apps written in JavaScript require tools for transpiling, testing, and linting. Typical project setup includes copying configuration boilerplate.
+
+kyt is a toolkit that encapsulates the configuration for web apps.
+
+## Quick Start
+
+1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
+2. Create a repo with a package.json file
+3. `npm install --save git://git@github.com:nytm/wf-kyt.git`
+4. `node_modules/.bin/kyt setup` - This will set up your project with all things kyt. Learn more about [setup](/docs/commands.md).
+5. `npm run dev`
+6. Check out `http://localhost:3000`
+
+We recommend installing kyt as a dependency in your project.
+
+Want an in depth look at setting up kyt? Check out our [tutorial](/docs/tutorial.md)
 
 ## How it Works
 
@@ -19,23 +33,21 @@ kyt is designed with a set of base opinions such as Node server support, client 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
 See our [config override instructions](/docs/kytConfig.md#modifyWebpackConfig) for details, and our [recipes](/docs/Recipes.md) for examples.
 
-## Requirements
-
-Node v6 is required.
-
-## Installation
-
-1. Create a repo with a package.json file
-2. `npm install --save git://git@github.com:nytm/wf-kyt.git`
-3. `node_modules/.bin/kyt setup` - This will set up your project with all things kyt. Learn more about [setup](/docs/commands.md).
-
-We recommend installing kyt as a dependency in your project.
-
 ## CLI
 
 kyt includes a CLI with all the basic commands needed for development.
-`setup` will include these commands as scripts in your package.json.
-You can also run them with `node_modules/.bin/kyt commandName`
+
+`setup` includes these commands as scripts in your package.json:
+
+```
+npm run dev
+```
+
+Or you can run a command with `node_modules/.bin/kyt command`
+
+```
+node_modules/.bin/kyt build
+```
 
 * `dev` starts a development environment
 * `build` compiles server and client code for production use

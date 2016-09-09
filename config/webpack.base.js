@@ -26,10 +26,21 @@ module.exports = options => ({
     modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
   },
 
+  devtool: 'source-map',
+
+  resolve: {
+    extensions: ['.js', '.json'],
+    modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
+  },
+
+  resolveLoader: {
+    modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(options.environment),
+        NODE_ENV: JSON.stringify(process.env.NODE_ENV || options.environment),
         SERVER_PORT: JSON.stringify(options.serverPort || ''),
         CLIENT_PORT: JSON.stringify(options.clientPort || ''),
         PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
