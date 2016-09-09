@@ -21,7 +21,7 @@ module.exports = options => {
   babelrc.babelrc = false;
   babelrc.cacheDirectory = false;
   resolvePluginsPresets(babelrc);
-  if (options.reactHotLoader) {
+  if (options && options.reactHotLoader) {
     babelrc.env.development.plugins.push('react-hot-loader/babel');
   }
   Object.keys(babelrc.env || {}).forEach(env => resolvePluginsPresets(babelrc.env[env]));

@@ -10,6 +10,11 @@
         "babel-plugin-transform-react-remove-prop-types",
         "babel-plugin-transform-react-constant-elements"
       ]
+    },
+    "test": {
+      "plugins": [
+        ["babel-plugin-transform-es2015-modules-commonjs", { "loose": true }]
+      ]
     }
   }
 }

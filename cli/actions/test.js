@@ -1,6 +1,6 @@
 
 // Command to run tests with Ava
-
+const clone = require('ramda').clone;
 const path = require('path');
 const glob = require('glob');
 const logger = require('./../logger');
@@ -16,11 +16,27 @@ const {
   userNodeModulesPath,
 } = require('../../utils/paths')();
 
+const jest = require('jest');
+const jestConfigBuilder = require('../../config/jest');
+
 module.exports = () => {
   console.time('Test Runtime');
 
   // Comment the following to see verbose shell ouput.
-  shell.config.silent = true;
+  shell.config.silent = false;
+
+  // explicitly set BABEL_ENV to test to pick up the proper babel config
+  process.env.BABEL_ENV = 'test';
+
+  let jestConfig = jestConfigBuilder(srcPath);
+  jestConfig = global.config.modifyJestConfig(clone(jestConfig), { environment: 'test' });
+
+  // TODO Remove --no-cache
+  jest.run(['--config', JSON.stringify(jestConfig), '--no-cache']);
+
+  // TODO: Delete everything below this
+  return;
+
 
   const avaCLI = path.join(userNodeModulesPath, '/ava/cli.js');
 
