@@ -21,6 +21,9 @@ module.exports = () => {
     const report = cli.executeOnFiles(files);
     const formatter = cli.getFormatter();
     logger.log(`${formatter(report.results)}\n`);
+    if (report.errorCount === 0) {
+      logger.end('Your JS looks good ✨');
+    }
     process.exit(report.errorCount + report.warningCount > 0 ? 1 : 0);
   };
 
