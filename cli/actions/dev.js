@@ -18,7 +18,7 @@ const { buildPath, serverSrcPath } = require('../../utils/paths')();
 module.exports = () => {
   let clientCompiler;
   let serverCompiler;
-  const { clientConfig, serverConfig, clientPort, serverPort, reactHotLoader } = buildConfigs();
+  const { clientConfig, serverConfig, clientPort, serverPort, clientHost, serverURL, reactHotLoader } = buildConfigs();
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
     logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
@@ -38,7 +38,7 @@ module.exports = () => {
 
     app.use(webpackDevMiddleware);
     app.use(hotMiddleware(clientCompiler));
-    app.listen(clientPort);
+    app.listen(clientPort, clientHost);
   };
 
   const startServer = () => {
@@ -48,7 +48,7 @@ module.exports = () => {
 
     nodemon({ script: serverPath, watch: [serverPath] })
       .once('start', () => {
-        logger.task(`Server running at: http://localhost:${serverPort}`);
+        logger.task(`Server running at: ${serverURL}`);
         logger.end('Development started');
       })
       .on('restart', () => logger.task('Development server restarted'))
