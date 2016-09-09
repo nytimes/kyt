@@ -17,6 +17,8 @@ const {
 } = require('../../utils/paths')();
 
 module.exports = () => {
+  console.time('Test Runtime');
+
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
@@ -93,7 +95,8 @@ module.exports = () => {
     if (global.config.debug) command += ' --verbose';
     shell.config.silent = false;
     shell.exec(command, (code) => {
-      process.exit(code)
+      console.timeEnd('Test Runtime');
+      process.exit(code);
     });
   });
 
