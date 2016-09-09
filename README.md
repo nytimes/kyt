@@ -1,22 +1,19 @@
 ![logo](/images/kyt-logo-large.png)
 
 # kyt
-Your escape from configuration hell
 
-## What is kyt?
+Web apps written in JavaScript require tools for transpiling, testing, and linting. Typical project setup includes copying configuration boilerplate.
+
 kyt is a toolkit that encapsulates the configuration for web apps.
-
-## Requirements
-
-Node v6 is required.
 
 ## Quick Start
 
-1. Create a repo with a package.json file
-2. `npm install --save git://git@github.com:nytm/wf-kyt.git`
-3. `node_modules/.bin/kyt setup` - This will set up your project with all things kyt. Learn more about [setup](/docs/commands.md).
-4. `npm run dev`
-5. Check out `http://localhost:3000`
+1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
+2. Create a repo with a package.json file
+3. `npm install --save git://git@github.com:nytm/wf-kyt.git`
+4. `node_modules/.bin/kyt setup` - This will set up your project with all things kyt. Learn more about [setup](/docs/commands.md).
+5. `npm run dev`
+6. Check out `http://localhost:3000`
 
 We recommend installing kyt as a dependency in your project.
 
