@@ -4,6 +4,23 @@
 Your escape from configuration hell
 
 ## What is kyt?
+kyt is a toolkit that encapsulates the configuration for web apps.
+
+## Requirements
+
+Node v6 is required.
+
+## Quick Start
+
+1. Create a repo with a package.json file
+2. `npm install --save git://git@github.com:nytm/wf-kyt.git`
+3. `node_modules/.bin/kyt setup` - This will set up your project with all things kyt. Learn more about [setup](/docs/commands.md).
+4. `npm run dev`
+5. Check out `http://localhost:3000`
+
+We recommend installing kyt as a dependency in your project.
+
+Want an in depth look at setting up kyt? Check out our [tutorial](/docs/tutorial.md)
 
 ## How it Works
 
@@ -19,23 +36,21 @@ kyt is designed with a set of base opinions such as Node server support, client 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
 See our [config override instructions](/docs/kytConfig.md#modifyWebpackConfig) for details, and our [recipes](/docs/Recipes.md) for examples.
 
-## Requirements
-
-Node v6 is required.
-
-## Installation
-
-1. Create a repo with a package.json file
-2. `npm install --save git://git@github.com:nytm/wf-kyt.git`
-3. `node_modules/.bin/kyt setup` - This will set up your project with all things kyt. Learn more about [setup](/docs/commands.md).
-
-We recommend installing kyt as a dependency in your project.
-
 ## CLI
 
 kyt includes a CLI with all the basic commands needed for development.
-`setup` will include these commands as scripts in your package.json.
-You can also run them with `node_modules/.bin/kyt commandName`
+
+`setup` includes these commands as scripts in your package.json:
+
+```
+npm run dev
+```
+
+Or you can run a command with `node_modules/.bin/kyt command`
+
+```
+node_modules/.bin/kyt build
+```
 
 * `dev` starts a development environment
 * `build` compiles server and client code for production use
