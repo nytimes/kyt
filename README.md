@@ -57,7 +57,7 @@ node_modules/.bin/kyt build
 
 * `dev` starts a development environment
 * `build` compiles server and client code for production use
-* `run` runs production code
+* `start` runs production code
 * `test` runs ava on all tests in /src
 * `proto` starts the prototyping app
 * `lint` lints src code using ESLint
