@@ -16,7 +16,7 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (environment = 'development') => {
-  const { clientPort, serverPort, reactHotLoader } = global.config;
+  const { clientPort, clientURL, serverPort, serverURL, reactHotLoader } = global.config;
 
   let clientConfig = devClientConfig;
   let serverConfig = devServerConfig;
@@ -26,7 +26,7 @@ module.exports = (environment = 'development') => {
     serverPort,
     clientPort,
     environment,
-    publicPath: `http://localhost:${clientPort}/assets/`,
+    publicPath: `${clientURL}/assets/`,
     publicDir: 'src/public',
     clientAssetsFile: 'publicAssets.json',
     reactHotLoader,
@@ -61,6 +61,8 @@ module.exports = (environment = 'development') => {
   return {
     clientConfig,
     serverConfig,
+    clientURL,
+    serverURL,
     clientPort, // TODO: Should these really be here?
     serverPort,
     reactHotLoader,

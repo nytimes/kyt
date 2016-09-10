@@ -4,7 +4,33 @@
 const path = require('path');
 const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
+const url = require('url');
 const { userRootPath, userKytConfigPath } = require('./paths')();
+
+
+// Parses config urls into:
+// protocol
+// hostname
+// port
+const parseUrl = (config) => {
+  if (config.clientURL) {
+    const clientURLObj = url.parse(config.clientURL);
+    if (clientURLObj.port) config.clientPort = clientURLObj.port;
+    if (clientURLObj.hostname) config.clientHost = clientURLObj.hostname;
+    if (clientURLObj.protocol) config.clientProtocol = clientURLObj.protocol.replace(':', '');
+  } else {
+    config.clientURL = 'http://localhost:3001';
+  }
+  if (config.serverURL) {
+    const serverURLObj = url.parse(config.serverURL);
+    if (serverURLObj.port) config.clientPort = serverURLObj.port;
+    if (serverURLObj.hostname) config.clientHost = serverURLObj.hostname;
+    if (serverURLObj.protocol) config.clientProtocol = serverURLObj.protocol.replace(':', '');
+  } else {
+    config.serverURL = 'http://localhost:3000';
+  }
+};
+
 module.exports = (optionalConfig) => {
   if (global.config) return;
 
@@ -13,7 +39,13 @@ module.exports = (optionalConfig) => {
     productionPublicPath: '/assets/',
     clientPort: 3001,
     serverPort: 3000,
+    clientHost:'localhost',
+    serverHost: 'localhost',
+    clientProtocol: 'http',
+    serverProtocol: 'http',
     prototypePort: 3002,
+    prototypeHost: 'localhost',
+    prototypePrototcol: 'http',
     debug: false,
     reactHotLoader: false,
   };
@@ -34,7 +66,7 @@ module.exports = (optionalConfig) => {
       process.exit();
     }
   }
-
+  parseUrl(config);
   config = mergeAll([{}, baseConfig, config]);
 
   // Create default modify function
