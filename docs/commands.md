@@ -1,12 +1,19 @@
 # kyt command line interface
 
 kyt includes a CLI with all the commands needed for development.
-During `setup` the commands are written into your package.json file.
-You can also run them with `node_modules/.bin/kyt commandName`
+
+`setup` includes these commands as scripts in your package.json:
+```
+npm run dev
+```
+Or you can run a command with `node_modules/.bin/kyt command`
+```
+node_modules/.bin/kyt build
+```
 
 1. `dev` starts up a development environment
 2. `build` compiles server and client code for production use
-3. `run` runs production code
+3. `start` runs production code
 4. `test` runs AVA on all tests in /src
 5. `proto` starts the prototyping app
 6. `lint` lints src code using ESLint
@@ -29,9 +36,9 @@ The build command will also copy the `src/public` directory for static assets.
 
 `build` uses option `-C`(`--config`) to denote a path to a different [kyt.config.js](/docs/kytConfig.md) file
 
-### run
+### start
 
-The `run` command takes the compiled code from the production build and runs a node server at the specified port.
+The `start` command takes the compiled code from the production build and runs a node server at the specified port.
 You can update ports in the [kyt config](/kytConfig.md).
 
 ### test
