@@ -15,7 +15,16 @@ src/
 
 ## Public directory
 
-During `build`, kyt copies a `/src/public` directory into the build folder. This folder is intended to be used to server static assets.
+During `build`, kyt copies a `/src/public` directory into the build folder. This folder is intended to be used to serve static assets.
+
+## File extensions
+
+### JavaScript
+All `.js` files in `/src` are transpiled with Babel.
+
+### CSS and Sass
+`.css` files are intended for writing css with CSS Modules
+`.scss` files are intended for writing Sass with CSS Modules
 
 ## Environment Variables
 
