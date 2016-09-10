@@ -51,7 +51,7 @@ module.exports = (program) => {
   // Adds kyt commands as npm scripts
   const addPackageJsonScripts = (packageJson) => {
     if (!packageJson.scripts) packageJson.scripts = {};
-    const commands = ['dev', 'build', 'run', 'test', 'lint', 'lint-style', 'proto'];
+    const commands = ['dev', 'build', 'start', 'test', 'lint', 'lint-style', 'proto'];
     commands.forEach((command) => {
       let commandName = command;
 
@@ -180,7 +180,7 @@ module.exports = (program) => {
   // to the user's base directory.
   const createKytConfig = () => {
     const tmpConfig = path.join(tmpDir, 'kyt.config.js');
-    const baseConfig = path.join(__dirname, '../../config/kyt.base.config.js');
+    const baseConfig = path.join(__dirname, '../../config/kyt.user.config.js');
     let newConfig = tmpConfig;
 
     // Use the base kyt.config

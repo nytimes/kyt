@@ -27,7 +27,7 @@ module.exports = (options) => {
   // Create the babelrc query for the babel loader.
   const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
   babelrc.babelrc = false;
-  babelrc.cacheDirectory = true;
+  babelrc.cacheDirectory = false;
   resolvePluginsPresets(babelrc);
   if (options.reactHotLoader) {
     babelrc.env.development.plugins.push('react-hot-loader/babel');
@@ -55,7 +55,7 @@ module.exports = (options) => {
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify(options.environment),
+          NODE_ENV: JSON.stringify(process.env.NODE_ENV || options.environment),
           SERVER_PORT: JSON.stringify(options.serverPort || ''),
           CLIENT_PORT: JSON.stringify(options.clientPort || ''),
           PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
@@ -66,7 +66,7 @@ module.exports = (options) => {
       }),
     ],
 
-    postcss: [ autoprefixer({ browsers: ['last 2 versions'] }) ],
+    postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
 
     module: {
       loaders: [

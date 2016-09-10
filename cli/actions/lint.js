@@ -1,9 +1,7 @@
 
 // Command to lint src code
 
-const path = require('path');
 const CLIEngine = require('eslint').CLIEngine;
-const shell = require('shelljs');
 const logger = require('./../logger');
 const glob = require('glob');
 const { userRootPath } = require('../../utils/paths')();
@@ -22,14 +20,22 @@ module.exports = () => {
     const cli = new CLIEngine(eslintCLI);
     const report = cli.executeOnFiles(files);
     const formatter = cli.getFormatter();
-    logger.log(formatter(report.results));
+    logger.log(`${formatter(report.results)}\n`);
+
+    if (report.errorCount === 0) {
+      logger.end(`Your JS looks ${report.warningCount === 0 ? 'great ✨' :
+        'OK, though there were warnings 🤔👆'}`);
+    }
+
+    process.exit(report.errorCount > 0 ? 1 : 0);
   };
 
   // Check to see if eslint file exists
   const eslintrc = glob.sync(`${userRootPath}/.*eslintrc*`);
   if (!eslintrc.length) {
     logger.error('You do not have an eslintrc file in the root of your project');
-    process.exit();
+    process.exit(1);
   }
+
   lint();
 };
