@@ -10,7 +10,7 @@
     "node": ">=6.1.0"
   },
   "scripts": {
-    "lint": "eslint ./ -c .eslintrc --ext .js --ext .jsx"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
