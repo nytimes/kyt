@@ -6,9 +6,9 @@ test.before(t => {
   shell.cd('cli-test');
 });
 
-test.cb('run', t => {
+test.cb('start', t => {
   shell.exec('npm run build');
-  const child = shell.exec('npm run run', (code, stdout, stderr) => {
+  const child = shell.exec('npm run start', (code, stdout, stderr) => {
     t.end();
   });
   child.stdout.on('data', (data) => {
