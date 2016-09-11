@@ -93,14 +93,14 @@ See our [recipes](/docs/Recipes.md) for extending configuration.
 
 ## starter-kyts
 
-While kyt can be easily integrated into new or existing Node projects, it is most powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt CLI includes a `setup` command which installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
+While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt CLI includes a `setup` command which installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
 
 See our recommended list of [starter-kyts](/docs/commands.md#recommended-starter-kyts)
 
 ### How to build a starter-kyt
 
 Community supported starter-kyts can be built to support a variety of projects.
-See additional info [here](/docs/Starterkyts.md)
+See additional info on [how to build a starter kyt](/docs/Starterkyts.md).
 
 
 ## How to contribute to kyt
