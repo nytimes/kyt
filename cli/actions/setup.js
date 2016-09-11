@@ -317,7 +317,7 @@ module.exports = (program) => {
       tempPackageJSON = require(`${tmpDir}/package.json`);
       checkStarterKytVersion();
       updateUserPackageJSON(false);
-      //installUserDependencies();
+      installUserDependencies();
       createESLintFile();
       createStylelintFile();
       createEditorconfigLink();
