@@ -5,7 +5,6 @@
 const merge = require('webpack-merge');
 const logger = require('../cli/logger');
 const clone = require('ramda').clone;
-const { clientBuildPath } = require('./paths')();
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
@@ -61,7 +60,7 @@ module.exports = (environment = 'development') => {
   return {
     clientConfig,
     serverConfig,
-    clientPort, // TODO: Should these really be here?
+    clientPort,
     serverPort,
     reactHotLoader,
   };

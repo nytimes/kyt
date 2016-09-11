@@ -17,7 +17,7 @@ module.exports = (stats) => {
 
   assets.sort((a, b) => b.size - a.size);
 
-  const longestSizeLabelLength = Math.max.apply(null,
+  const longestSizeLabelLength = Reflect.apply(Math.max, null,
     assets.map(a => stripAnsi(a.sizeLabel).length)
   );
 

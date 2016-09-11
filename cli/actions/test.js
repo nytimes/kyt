@@ -93,7 +93,7 @@ module.exports = () => {
     if (global.config.debug) command += ' --verbose';
     shell.config.silent = false;
     shell.exec(command, (code) => {
-      process.exit(code)
+      process.exit(code);
     });
   });
 
