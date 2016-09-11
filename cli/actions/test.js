@@ -16,7 +16,7 @@ const {
   userNodeModulesPath,
 } = require('../../utils/paths')();
 
-module.exports = () => {
+module.exports = config => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
@@ -71,8 +71,8 @@ module.exports = () => {
       const babelLoader = base.module.loaders.find(loader => loader.loader === 'babel-loader');
       babelLoader.compact = true;
       webpackConfig = merge.smart(base, testConfig(options));
-      webpackConfig = global.config.modifyWebpackConfig(webpackConfig, options);
-      logger.debug('Test Webpack Config ', webpackConfig);
+      webpackConfig = config.modifyWebpackConfig(webpackConfig, options);
+      if (config.debug) logger.debug('Test Webpack Config ', webpackConfig);
     } catch (error) {
       logger.error('Error Loading the Test Webpack Config', error);
       process.exit();
@@ -90,7 +90,7 @@ module.exports = () => {
 
     let command =
       `NODE_PATH=$NODE_PATH:${userNodeModulesPath} node ${avaCLI} ${userRootPath}/build/test/*.js`;
-    if (global.config.debug) command += ' --verbose';
+    if (config.debug) command += ' --verbose';
     shell.config.silent = false;
     shell.exec(command, (code) => {
       process.exit(code);

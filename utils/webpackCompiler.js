@@ -7,7 +7,6 @@ module.exports = (webpackConfig, cb) => {
 
   // Compile the webpack config
   try {
-    logger.debug(`${type} webpack configuration:`, webpackConfig);
     webpackCompiler = webpack(webpackConfig);
     logger.task(`${type} webpack configuration compiled`);
   } catch (error) {

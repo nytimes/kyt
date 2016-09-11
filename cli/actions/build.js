@@ -8,7 +8,7 @@ const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, publicBuildPath, publicSrcPath } = require('../../utils/paths')();
 
-module.exports = () => {
+module.exports = config => {
   logger.start('Starting production build...');
 
   let serverCompiler;
@@ -16,7 +16,7 @@ module.exports = () => {
   const {
     clientConfig,
     serverConfig,
-  } = buildConfigs('production');
+  } = buildConfigs(config, 'production');
 
   // Clean the build directory.
   if (shell.exec(`rm -rf ${buildPath}`).code === 0) {

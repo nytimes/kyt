@@ -14,8 +14,8 @@ const devServerConfig = require('../config/webpack.dev.server');
 const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
-module.exports = (environment = 'development') => {
-  const { clientPort, serverPort, reactHotLoader } = global.config;
+module.exports = (config, environment = 'development') => {
+  const { clientPort, serverPort, reactHotLoader } = config;
 
   let clientConfig = devClientConfig;
   let serverConfig = devServerConfig;
@@ -37,7 +37,7 @@ module.exports = (environment = 'development') => {
     serverConfig = prodServerConfig;
     clientOptions = merge(clientOptions, {
       clientPort: undefined,
-      publicPath: global.config.productionPublicPath,
+      publicPath: config.productionPublicPath,
       publicDir: 'build/public',
     });
   }
@@ -50,11 +50,17 @@ module.exports = (environment = 'development') => {
 
   // Modify via userland config
   try {
-    clientConfig = global.config.modifyWebpackConfig(clone(clientConfig), clientOptions);
-    serverConfig = global.config.modifyWebpackConfig(clone(serverConfig), serverOptions);
+    clientConfig = config.modifyWebpackConfig(clone(clientConfig), clientOptions);
+    serverConfig = config.modifyWebpackConfig(clone(serverConfig), serverOptions);
   } catch (error) {
     logger.error('Error in your kyt.config.js modifyWebpackConfig():', error);
     process.exit(1);
+  }
+
+  if (config.debug) {
+    logger.debug('Client webpack configuration:', clientConfig);
+    logger.debug('\n\n');
+    logger.debug('Server webpack configuration:', serverConfig);
   }
 
   return {

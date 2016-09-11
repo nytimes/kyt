@@ -54,9 +54,7 @@ const info = (text) => {
 // Verbose output
 // takes optional data
 const debug = (text, data) => {
-  if (global.config.debug) {
-    write('debug', text, data);
-  }
+  write('debug', text, data);
 };
 
 // Warn output
