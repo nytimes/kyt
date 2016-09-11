@@ -63,6 +63,7 @@
     "ramda": "^0.22.0",
     "react-hot-loader": "^3.0.0-beta.3",
     "sass-loader": "^4.0.0",
+    "semver": "^5.3.0",
     "shelljs": "^0.7.0",
     "simple-git": "^1.44.0",
     "sinon": "^1.17.4",
