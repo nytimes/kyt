@@ -17,7 +17,7 @@
     "url": "git+https://github.com/nytm/wf-kyt.git"
   },
   "author": "Frameworks, Web",
-  "license": "ISC",
+  "license": "Apache 2.0",
   "bugs": {
     "url": "https://github.com/nytm/wf-kyt/issues"
   },
