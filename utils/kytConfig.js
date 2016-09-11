@@ -6,10 +6,7 @@ const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
 const { userRootPath, userKytConfigPath } = require('./paths')();
 
-// let config;
-
 module.exports = optionalConfig => {
-  // if (config) return config;
   let config;
 
   // base config options
@@ -44,7 +41,5 @@ module.exports = optionalConfig => {
     config.modifyWebpackConfig = webpackConfig => webpackConfig;
   }
 
-  config = Object.freeze(config);
-
-  return config;
+  return Object.freeze(config);
 };
