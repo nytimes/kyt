@@ -15,6 +15,7 @@ const {
   userNodeModulesPath,
   userPackageJSONPath,
 } = require('../../utils/paths')();
+const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (program) => {
   const args = program.args[0];
@@ -38,8 +39,6 @@ module.exports = (program) => {
   const checkStarterKytVersion = () => {
     const kytStarterVersion = (tempPackageJSON.kyt && tempPackageJSON.kyt.version) || null;
     if (kytStarterVersion) {
-      // eslint-disable-next-line global-require
-      const kytPkg = require(path.join(__dirname, '../../package.json'));
       if (!semver.satisfies(kytPkg.version, kytStarterVersion)) {
         // eslint-disable-next-line max-len
         logger.warn(`${tempPackageJSON.name} requires kyt version ${kytStarterVersion} but kyt ${kytPkg.version} is installed.`);
