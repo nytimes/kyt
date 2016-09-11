@@ -16,7 +16,6 @@ const {
 
 module.exports = (program) => {
   const args = program.args[0];
-  const gitignoreFile = path.join(userRootPath, '.gitignore');
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.rm('-rf', tmpDir);
@@ -38,7 +37,9 @@ module.exports = (program) => {
     const tempDependencies = tempPackageJSON.dependencies || {};
 
     // In case the starter kyt used `kyt` as a dependency.
-    if (tempDependencies.kyt) delete tempDependencies.kyt;
+    if (tempDependencies.kyt) {
+      Reflect.deleteProperty(tempDependencies, 'kyt');
+    }
 
     packageJson.dependencies = Object.assign(
       packageJson.dependencies || {},
@@ -51,7 +52,7 @@ module.exports = (program) => {
   // Adds kyt commands as npm scripts
   const addPackageJsonScripts = (packageJson) => {
     if (!packageJson.scripts) packageJson.scripts = {};
-    const commands = ['dev', 'build', 'run', 'test', 'lint', 'lint-style', 'proto'];
+    const commands = ['dev', 'build', 'start', 'test', 'lint', 'lint-style', 'proto'];
     commands.forEach((command) => {
       let commandName = command;
 
@@ -236,7 +237,6 @@ module.exports = (program) => {
 
   // Creates prototype file if one exists
   const createPrototypeFile = () => {
-    const userProto = path.join(userRootPath, './prototype.js');
     const starterProto = `${tmpDir}/prototype.js`;
     // No need to copy file if it doesn't exist
     if (!shell.test('-f', starterProto)) return;
@@ -292,7 +292,6 @@ module.exports = (program) => {
 
   // Checks to see if user would like src backed up before continuing
   const srcPrompt = (startSetup) => {
-
     // Check if src already exists
     if (shell.test('-d', srcPath)) {
       const question = [

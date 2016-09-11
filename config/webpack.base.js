@@ -26,17 +26,6 @@ module.exports = options => ({
     modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
   },
 
-  devtool: 'source-map',
-
-  resolve: {
-    extensions: ['.js', '.json'],
-    modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
-  },
-
-  resolveLoader: {
-    modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
-  },
-
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {

@@ -5,6 +5,7 @@ const path = require('path');
 const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
 const { userRootPath, userKytConfigPath } = require('./paths')();
+
 module.exports = (optionalConfig) => {
   if (global.config) return;
 

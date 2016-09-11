@@ -20,8 +20,6 @@ const jest = require('jest');
 const jestConfigBuilder = require('../../config/jest');
 
 module.exports = () => {
-  console.time('Test Runtime');
-
   // Comment the following to see verbose shell ouput.
   shell.config.silent = false;
 
@@ -112,7 +110,6 @@ module.exports = () => {
     if (global.config.debug) command += ' --verbose';
     shell.config.silent = false;
     shell.exec(command, (code) => {
-      console.timeEnd('Test Runtime');
       process.exit(code);
     });
   });

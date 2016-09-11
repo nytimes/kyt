@@ -5,7 +5,7 @@ const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
 const buildAction = require('./actions/build');
-const runAction = require('./actions/run');
+const startAction = require('./actions/start');
 const protoAction = require('./actions/proto');
 const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
@@ -50,9 +50,9 @@ program
   });
 
 program
-  .command('run')
-  .description('Run the production build')
-  .action(() => loadConfigAndDo(runAction));
+  .command('start')
+  .description('Starts the production build')
+  .action(() => loadConfigAndDo(startAction));
 
 program
   .command('setup')
