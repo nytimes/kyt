@@ -29,7 +29,7 @@ kyt's base features include:
 
 * A Node server provided for rendering front-end page requests
 * Client and server hot reloading
-* ES2015 feature syntax using Babel
+* [ES-Latest stable](https://babeljs.io/docs/plugins/preset-latest/) features using Babel.
 * CSS Module and SASS support
 * Inline SVG support
 * Style and script linter rulesets
