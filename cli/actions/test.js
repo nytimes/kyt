@@ -57,8 +57,8 @@ module.exports = config => {
   const getConfig = () => {
     const options = {
       type: 'test',
-      serverPort: undefined,
-      clientPort: undefined,
+      serverURL: undefined,
+      clientURL: undefined,
       environment: 'test',
       publicPath: undefined,
       publicDir: undefined,

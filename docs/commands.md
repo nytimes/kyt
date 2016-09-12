@@ -72,8 +72,8 @@ node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angu
 
 ## dev
 
-The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers on the specified ports. The dev environment includes hot reloading to allow for fast development.
-You can update ports in the [kyt config](/docs/kytConfig.md).
+The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot reloading to allow for fast development.
+Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
 
 ## build
 
@@ -86,7 +86,8 @@ The build command will also copy the `src/public` directory for static assets.
 ## start
 
 The `start` command takes the compiled code from the production build and runs a node server at the specified port.
-You can update ports in the [kyt config](/docs/kytConfig.md).
+
+Optionally, you can configure the server url in your [kyt.config.js](/kytConfig.md).
 
 ## test
 
@@ -130,7 +131,7 @@ The proto command also provides an `index.html` file with the following content:
 
 ### The proto command
 
-Running `proto` starts a dev server at the port specified in your `kyt.config.js`
+Running `proto` starts a dev server. Optionally, you can configure the prototype server url in your [kyt.config.js](/docs/kytConfig.md).
 
 ```
 ✅  webpack-dev-server http://localhost:3002/prototype

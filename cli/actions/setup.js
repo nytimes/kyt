@@ -14,7 +14,7 @@ const {
   userKytConfigPath,
   userNodeModulesPath,
   userPackageJSONPath,
-} = require('../../utils/paths')();
+} = require('../../utils/paths')(); // eslint-disable-line import/newline-after-import
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (config, program) => {

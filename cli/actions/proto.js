@@ -11,11 +11,12 @@ const protoConfig = require('./../../config/webpack.proto');
 const { userPrototypePath, publicSrcPath } = require('../../utils/paths')();
 
 module.exports = config => {
-  const port = config.prototypePort;
+  const prototypeURL = config.prototypeURL;
+
   const options = {
     type: 'prototype',
     environment: 'prototype',
-    port,
+    port: prototypeURL.port,
     publicDir: publicSrcPath,
     clientAssetsFile: 'publicAssets.json',
   };
@@ -37,8 +38,8 @@ module.exports = config => {
 
     // Creates a webpack dev server at the specified port
     const server = new WebpackDevServer(compiler, webpackConfig.devServer);
-    server.listen(port, 'localhost', () => {
-      logger.end(`webpack-dev-server http://localhost:${port}/prototype`);
+    server.listen(prototypeURL.port, prototypeURL.hostname, () => {
+      logger.end(`webpack-dev-server ${prototypeURL.href}prototype`);
     });
   };
   logger.start('Configuring Prototype...');
@@ -49,5 +50,5 @@ module.exports = config => {
     process.exit();
   }
 
-  ifPortIsFreeDo(port, startPrototype);
+  ifPortIsFreeDo(prototypeURL.port, startPrototype);
 };

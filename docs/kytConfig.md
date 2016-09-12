@@ -9,9 +9,9 @@ and export an object with the following options.
 
 ## kyt.config.js options
 
- 1. `serverPort` - port for the node server *default*: 3000
- 2. `clientPort` - port for the client assets server *default*: 3001
- 3. `prototypePort` - port for the prototyping dev server *default*: 3002
+ 1. `serverURL` - url for the backend node server. *default*: http://localhost:3000
+ 2. `clientURL` - in development, the url for the client assets server *default*: http://localhost:3001
+ 3. `prototypeURL` - url for the prototyping dev server *default*: http://localhost:3002
  4. `debug` - when true, the CLI returns all verbose output *default*: false
  5. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/assets/`
  6. `reactHotLoader` - Turns on React Hot Loading *default*: false
