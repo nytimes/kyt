@@ -25,7 +25,7 @@ node_modules/.bin/kyt build
 
 The `setup` command sets up your project with all the application files that you'll need to use kyt.
 
-1. Creates a new [kyt.config.js](/config/kytConfig.md)
+1. Creates a new [kyt.config.js](/docs/kytConfig.md)
 2. Creates a .gitignore and .editorconfig
 3. Creates linter configurations -  .eslintrc and .stylelintrc files
 4. Adds kyt commands to npm scripts
@@ -86,7 +86,7 @@ The build command will also copy the `src/public` directory for static assets.
 ## start
 
 The `start` command takes the compiled code from the production build and runs a node server at the specified port.
-You can update ports in the [kyt config](/kytConfig.md).
+You can update ports in the [kyt config](/docs/kytConfig.md).
 
 ## test
 
@@ -139,4 +139,4 @@ Running `proto` starts a dev server at the port specified in your `kyt.config.js
 ### Updating the prototype Webpack config
 
 You can update the prototype config by using the modifyWebpackConfig function in `kyt.config.js`.
-See [modifyWebpackConfig](/kytConfig.md) instructions.
+See [modifyWebpackConfig](/docs/kytConfig.md) instructions.
