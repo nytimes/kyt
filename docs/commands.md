@@ -14,7 +14,7 @@ node_modules/.bin/kyt build
 1. `dev` starts up a development environment
 2. `build` compiles server and client code for production use
 3. `start` runs production code
-4. `test` runs AVA on all tests in /src
+4. `test` runs Jest on all tests in /src
 5. `proto` starts the prototyping app
 6. `lint` lints src code using ESLint
 7. `lint-style` lints src code using StyleLint
@@ -43,7 +43,7 @@ You can update ports in the [kyt config](/kytConfig.md).
 
 ### test
 
-The `test` command takes test files in your `src/` directory and runs them using [Ava](https://github.com/avajs/ava).
+The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
 kyt test looks for any `*.test.js` files in `src/`.
 
 ### lint

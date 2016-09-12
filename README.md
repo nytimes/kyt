@@ -32,7 +32,7 @@ kyt is designed with a set of base opinions such as
 * ES2015 feature syntax
 * CSS Module and SASS support
 * Style and script linter rulesets
-* A pre-configured test runner with AVA
+* A pre-configured test runner with Jest
 
 Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.
 
@@ -58,7 +58,7 @@ node_modules/.bin/kyt build
 * `dev` starts a development environment
 * `build` compiles server and client code for production use
 * `start` runs production code
-* `test` runs ava on all tests in /src
+* `test` runs Jest on all tests in /src
 * `proto` starts the prototyping app
 * `lint` lints src code using ESLint
 * `lint-style` lints src code using Stylelint
