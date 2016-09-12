@@ -15,17 +15,18 @@ const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, serverSrcPath } = require('../../utils/paths')();
 
-module.exports = () => {
+module.exports = config => {
+  logger.start('Starting development build...');
+
   let clientCompiler;
   let serverCompiler;
-  const { clientConfig, serverConfig } = buildConfigs();
-  const { clientURL, serverURL, reactHotLoader } = global.config;
+  const { clientConfig, serverConfig } = buildConfigs(config);
+  const { clientURL, serverURL, reactHotLoader } = config;
+
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
     logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
   });
-
-  logger.start('Starting development build...');
 
   // Clean the build directory.
   if (shell.test('-d', buildPath) && shell.rm('-rf', buildPath).code === 0) {

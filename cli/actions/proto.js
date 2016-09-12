@@ -10,8 +10,9 @@ const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
 const { userPrototypePath, publicSrcPath } = require('../../utils/paths')();
 
-module.exports = () => {
-  const prototypeURL = global.config.prototypeURL;
+module.exports = config => {
+  const prototypeURL = config.prototypeURL;
+
   const options = {
     type: 'prototype',
     environment: 'prototype',
@@ -23,12 +24,12 @@ module.exports = () => {
   const startPrototype = () => {
     // Build webpack config
     let webpackConfig = merge.smart(baseConfig(options), protoConfig(options));
-    webpackConfig = global.config.modifyWebpackConfig(webpackConfig, options);
+    webpackConfig = config.modifyWebpackConfig(webpackConfig, options);
 
     // Preparing prototype compiler
     let compiler = null;
     try {
-      logger.debug('Prototype Config', webpackConfig);
+      if (config.debug) logger.debug('Prototype Config', webpackConfig);
       compiler = webpack(webpackConfig);
     } catch (error) {
       logger.error('Webpack config is invalid\n', error);

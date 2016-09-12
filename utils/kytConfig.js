@@ -7,8 +7,9 @@ const mergeAll = require('ramda').mergeAll;
 const { userRootPath, userKytConfigPath } = require('./paths')();
 const url = require('url');
 
-module.exports = (optionalConfig) => {
-  if (global.config) return;
+module.exports = optionalConfig => {
+  let config;
+  const logger = console;
 
   // base config options
   const baseConfig = {
@@ -20,17 +21,15 @@ module.exports = (optionalConfig) => {
     reactHotLoader: false,
   };
 
-  const userConfigPath = optionalConfig
+  const kytConfigPath = optionalConfig
     ? path.join(userRootPath, optionalConfig)
     : userKytConfigPath;
-  let config;
-  const logger = console;
 
   // Find user config
-  if (shell.test('-f', userConfigPath)) {
+  if (shell.test('-f', kytConfigPath)) {
     try {
-      logger.info(`Using kyt config at ${userConfigPath}`);
-      config = require(userConfigPath); // eslint-disable-line global-require
+      logger.info(`Using kyt config at ${kytConfigPath}`);
+      config = require(kytConfigPath); // eslint-disable-line global-require
     } catch (error) {
       logger.error('Error loading your kyt.config.js:', error);
       process.exit();
@@ -41,14 +40,15 @@ module.exports = (optionalConfig) => {
 
   // Create default modify function
   if (typeof config.modifyWebpackConfig !== 'function') {
-    config.modifyWebpackConfig = (webpackConfig) => webpackConfig;
+    config.modifyWebpackConfig = webpackConfig => webpackConfig;
   }
 
-  const validateURL = (name, url) => {
+  const validateURL = (name, userURL) => {
     // Check to see if the url has the
     // required protocol, hostname and port.
-    if (!url.protocol || !url.hostname || !url.port)
-      logger.error(`❌  Error: ${name} is an invalid url - ${url.href}`);
+    if (!userURL.protocol || !userURL.hostname || !userURL.port) {
+      logger.error(`❌  Error: ${name} is an invalid url - ${userURL.href}`);
+    }
   };
 
   // Convert the URL strings into objects
@@ -60,5 +60,5 @@ module.exports = (optionalConfig) => {
   config.prototypeURL = url.parse(config.prototypeURL);
   validateURL('prototypeURL', config.prototypeURL);
 
-  global.config = Object.freeze(config);
+  return Object.freeze(config);
 };
