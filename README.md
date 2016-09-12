@@ -1,4 +1,4 @@
-![logo](/images/kyt-logo-large.png)
+<p align="center"><img src="/images/kyt-logo-large.png"></p>
 
 # kyt
 
@@ -23,7 +23,7 @@ Want an in depth look at setting up kyt? Check out our [tutorial](/docs/tutorial
 
 kyt manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a [command line interface](/docs/commands.md) for running all development tools.
 
-![diagram](/images/kyt-diagram.png)
+<p align="center"><img src="/images/kyt-diagram.png"></p>
 
 kyt's base features include:
 
