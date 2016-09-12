@@ -5,6 +5,8 @@ const shell = require('shelljs');
 const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('./../logger');
+const semver = require('semver');
+const uniq = require('ramda').uniq;
 const {
   userRootPath,
   srcPath,
@@ -13,12 +15,14 @@ const {
   userNodeModulesPath,
   userPackageJSONPath,
 } = require('../../utils/paths')();
+const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (config, program) => {
   const args = program.args[0];
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
   const removeTmpDir = () => shell.rm('-rf', tmpDir);
+  let tempPackageJSON;
   let oldPackageJSON;
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
@@ -30,10 +34,20 @@ module.exports = (config, program) => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
+  // Compare the Starter-kyt's package.json kyt.version
+  // configuration to make sure kyt is an expected version.
+  const checkStarterKytVersion = () => {
+    const kytStarterVersion = (tempPackageJSON.kyt && tempPackageJSON.kyt.version) || null;
+    if (kytStarterVersion) {
+      if (!semver.satisfies(kytPkg.version, kytStarterVersion)) {
+        // eslint-disable-next-line max-len
+        logger.warn(`${tempPackageJSON.name} requires kyt version ${kytStarterVersion} but kyt ${kytPkg.version} is installed.`);
+      }
+    }
+  };
+
   // Adds dependencies from the starter-kyts package.json
   const updatePackageJSONDependencies = (packageJson) => {
-    // eslint-disable-next-line global-require
-    const tempPackageJSON = require(`${tmpDir}/package.json`);
     const tempDependencies = tempPackageJSON.dependencies || {};
 
     // In case the starter kyt used `kyt` as a dependency.
@@ -49,19 +63,37 @@ module.exports = (config, program) => {
     return packageJson;
   };
 
-  // Adds kyt commands as npm scripts
+  // Adds kyt and Starter-kyt commands as npm scripts
   const addPackageJsonScripts = (packageJson) => {
     if (!packageJson.scripts) packageJson.scripts = {};
-    const commands = ['dev', 'build', 'start', 'test', 'lint', 'lint-style', 'proto'];
+    let commands = ['dev', 'build', 'start', 'test', 'lint', 'lint-style', 'proto'];
+
+    // Merge the Starter-kyt script names into the list of commands.
+    const tempScripts = (tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
+    if (tempScripts.length) {
+      commands = uniq(commands.concat(tempScripts));
+    }
+
     commands.forEach((command) => {
       let commandName = command;
 
-      // Check to see if command already exists
+      // If the command already exists, we namespace it with "kyt:".
       if (packageJson.scripts[commandName]) {
-        if (packageJson.scripts[commandName].includes('kyt')) return;
+        // We don't need to prefix if the command already
+        // runs kyt and it's not a Starter-kyt script.
+        if (packageJson.scripts[commandName].includes('kyt') && !tempScripts.indexOf(command)) {
+          return;
+        }
         commandName = `kyt:${commandName}`;
       }
-      packageJson.scripts[commandName] = `kyt ${command}`;
+
+      // If the command is from a Starter-kyt then
+      // we need to copy in the Starter-kyt value.
+      if (tempScripts.indexOf(command) > -1) {
+        packageJson.scripts[commandName] = tempPackageJSON.scripts[command];
+      } else {
+        packageJson.scripts[commandName] = `kyt ${command}`;
+      }
     });
     packageJson.scripts['kyt:help'] = 'kyt --help';
     logger.task('Added kyt scripts into your package.json scripts');
@@ -235,6 +267,26 @@ module.exports = (config, program) => {
     }
   };
 
+  const copyStarterKytFiles = () => {
+    const kytStarterFiles = (tempPackageJSON.kyt && tempPackageJSON.kyt.files) || [];
+    if (kytStarterFiles.length) {
+      kytStarterFiles.forEach((file) => {
+        const tempFilePath = path.join(tmpDir, file);
+        const filePath = path.join(userRootPath, file);
+        // If the file name isn't one of the kyt copied files then
+        // we should back up any pre-existing files in the user dir.
+        if (['.gitignore', '.stylelintrc', '.eslintrc', '.editorconfig'].indexOf(file) === -1 &&
+            (shell.test('-f', filePath) || shell.test('-d', filePath))) {
+          const fileBackup = path.join(userRootPath, `${file}-${Date.now()}-bak`);
+          shell.mv(filePath, fileBackup);
+          logger.info(`Backed up current ${file} to: ${fileBackup}`);
+        }
+        shell.cp('-Rf', tempFilePath, userRootPath);
+        logger.task(`Copied ${file} from Starter-kyt`);
+      });
+    }
+  };
+
   // Creates prototype file if one exists
   const createPrototypeFile = () => {
     const starterProto = `${tmpDir}/prototype.js`;
@@ -260,6 +312,9 @@ module.exports = (config, program) => {
         logger.log(error);
         bailProcess();
       }
+      // eslint-disable-next-line global-require
+      tempPackageJSON = require(`${tmpDir}/package.json`);
+      checkStarterKytVersion();
       updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
@@ -269,6 +324,7 @@ module.exports = (config, program) => {
       createPrototypeFile();
       createSrcDirectory();
       createGitignore();
+      copyStarterKytFiles();
       removeTmpDir();
       logger.end(`Done adding starter kyt: ${repoURL}`);
     };
@@ -278,7 +334,7 @@ module.exports = (config, program) => {
     simpleGit.clone(repoURL, tmpDir, {}, afterClone);
   };
 
-    // default setup flow
+  // default setup flow
   const defaultSetup = () => {
     logger.start('Setting up kyt');
     updateUserPackageJSON(true);

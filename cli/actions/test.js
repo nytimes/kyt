@@ -18,9 +18,10 @@ module.exports = (config, program) => {
   // set BABEL_ENV to test if undefined
   process.env.BABEL_ENV = process.env.BABEL_ENV || 'test';
 
+  // Build Jest config
   let jestConfig = jestConfigBuilder(srcPath);
   jestConfig = config.modifyJestConfig(clone(jestConfig), { environment: 'test' });
 
-  // TODO Remove --no-cache
-  jest.run(['--config', JSON.stringify(jestConfig), '--no-cache', ...args]);
+  // Run Jest
+  jest.run(['--config', JSON.stringify(jestConfig), ...args]);
 };
