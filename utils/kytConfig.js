@@ -6,8 +6,8 @@ const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
 const { userRootPath, userKytConfigPath } = require('./paths')();
 
-module.exports = (optionalConfig) => {
-  if (global.config) return;
+module.exports = optionalConfig => {
+  let config;
 
   // base config options
   const baseConfig = {
@@ -19,19 +19,17 @@ module.exports = (optionalConfig) => {
     reactHotLoader: false,
   };
 
-  const userConfigPath = optionalConfig
+  const kytConfigPath = optionalConfig
     ? path.join(userRootPath, optionalConfig)
     : userKytConfigPath;
-  let config;
-  const logger = console;
 
   // Find user config
-  if (shell.test('-f', userConfigPath)) {
+  if (shell.test('-f', kytConfigPath)) {
     try {
-      logger.info(`Using kyt config at ${userConfigPath}`);
-      config = require(userConfigPath); // eslint-disable-line global-require
+      console.info(`Using kyt config at ${kytConfigPath}`);
+      config = require(kytConfigPath); // eslint-disable-line global-require
     } catch (error) {
-      logger.error('Error loading your kyt.config.js:', error);
+      console.error('Error loading your kyt.config.js:', error);
       process.exit();
     }
   }
@@ -40,8 +38,8 @@ module.exports = (optionalConfig) => {
 
   // Create default modify function
   if (typeof config.modifyWebpackConfig !== 'function') {
-    config.modifyWebpackConfig = (webpackConfig) => webpackConfig;
+    config.modifyWebpackConfig = webpackConfig => webpackConfig;
   }
 
-  global.config = Object.freeze(config);
+  return Object.freeze(config);
 };
