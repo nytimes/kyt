@@ -38,7 +38,7 @@ kyt's base features include:
 Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
-See our [config override instructions](/docs/kytConfig.md#ModifyWebpackConfig) for details, and our [recipes](/docs/Recipes.md) for examples.
+See our [config override instructions](/docs/kytConfig.md#modifywebpackconfig) for details, and our [recipes](/docs/Recipes.md) for examples.
 
 ## Command line
 
