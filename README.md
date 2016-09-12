@@ -101,7 +101,7 @@ See our recommended list of [starter-kyts](/docs/commands.md#recommended-starter
 ### How to build a starter-kyt
 
 Community supported starter-kyts can be built to support a variety of projects.
-See additional info on [how to build a starter kyt](/docs/Starterkyts.md).
+See additional info on [how to build a starter-kyt](/docs/Starterkyts.md).
 
 
 ## How to contribute to kyt
