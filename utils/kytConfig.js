@@ -5,6 +5,7 @@ const path = require('path');
 const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
 const { userRootPath, userKytConfigPath } = require('./paths')();
+const url = require('url');
 
 module.exports = (optionalConfig) => {
   if (global.config) return;
@@ -12,9 +13,9 @@ module.exports = (optionalConfig) => {
   // base config options
   const baseConfig = {
     productionPublicPath: '/assets/',
-    clientPort: 3001,
-    serverPort: 3000,
-    prototypePort: 3002,
+    serverURL: 'http://localhost:3000',
+    clientURL: 'http://localhost:3001',
+    prototypeURL: 'http://localhost:3002',
     debug: false,
     reactHotLoader: false,
   };
@@ -42,6 +43,12 @@ module.exports = (optionalConfig) => {
   if (typeof config.modifyWebpackConfig !== 'function') {
     config.modifyWebpackConfig = (webpackConfig) => webpackConfig;
   }
+
+  // Convert the URL strings into objects
+  // to make them easier to work with.
+  config.serverURL = url.parse(config.serverURL);
+  config.clientURL = url.parse(config.clientURL);
+  config.prototypeURL = url.parse(config.prototypeURL);
 
   global.config = Object.freeze(config);
 };

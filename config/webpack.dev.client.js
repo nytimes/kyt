@@ -17,7 +17,7 @@ const cssStyleLoaders = [
 
 module.exports = (options) => {
   const main = [
-    `webpack-hot-middleware/client?reload=true&path=http://localhost:${options.clientPort}/__webpack_hmr`,
+    `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
     `${clientSrcPath}/index.js`,
   ];
 

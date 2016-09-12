@@ -7,5 +7,5 @@ const logger = require('./../logger');
 module.exports = () => {
   logger.start('Starting production...');
   shell.exec('node build/server/main.js', { async: true });
-  logger.end(`Server running at http://localhost:${global.config.serverPort}`);
+  logger.end(`Server running at ${global.config.serverURL.href}`);
 };

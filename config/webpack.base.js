@@ -34,6 +34,9 @@ module.exports = (options) => {
   }
   Object.keys(babelrc.env || {}).forEach((env) => resolvePluginsPresets(babelrc.env[env]));
 
+  const serverPort = (options.serverURL && options.serverURL.port) || '';
+  const clientPort = (options.clientURL && options.clientURL.port) || '';
+
   return {
 
     node: {
@@ -56,8 +59,8 @@ module.exports = (options) => {
       new webpack.DefinePlugin({
         'process.env': {
           NODE_ENV: JSON.stringify(process.env.NODE_ENV || options.environment),
-          SERVER_PORT: JSON.stringify(options.serverPort || ''),
-          CLIENT_PORT: JSON.stringify(options.clientPort || ''),
+          SERVER_PORT: JSON.stringify(serverPort),
+          CLIENT_PORT: JSON.stringify(clientPort),
           PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
           PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
           ASSETS_MANIFEST:
