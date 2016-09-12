@@ -15,29 +15,46 @@ and export an object with the following options.
  4. `debug` - when true, the CLI returns all verbose output *default*: false
  5. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/assets/`
  6. `reactHotLoader` - Turns on React Hot Loading *default*: false
- 7. `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. See more details below
+ 7. `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
+ 8. `modifyJestConfig` - Callback function for editing kyt's Jest config. [See more details below](#modifyJestConfig).
 
 
-## ModifyWebpackConfig
-modifyWebpackConfig is an optional callback you can define to edit the Webpack config for each part of development.
+## modifyWebpackConfig
+`modifyWebpackConfig` is an optional callback you can define to edit the Webpack config for each part of development.
 This allows you to add new babel-plugins, modify Webpack loaders, etc.
 
 The function is called with two parameters:
-1. `baseConfig` The base Webpack config used in the process
+1. `baseConfig` The base Webpack config used in the process.
 2. `options` an object of useful options including the webpackConfig type, ports, and paths. The options object includes an environment and type so you can make changes based on a particular development task.
 
 Define the function in your `kyt.config.js` and it will be called as each Webpack file loads.
 
 ```javascript
-  modifyWebpackConfig: (config, options) => {
-    // modify config based on the options
-    return config;
-  }
+modifyWebpackConfig: (baseConfig, options) => {
+  // modify baseConfig based on the options
+  return baseConfig;
+}
 ```
 
 Dev Tip:
 [webpack-merge](https://github.com/survivejs/webpack-merge) is a helpful tool for changing and combining Webpack configs.
 
+## modifyJestConfig
+`modifyJestConfig` is an optional callback you can define to edit the Jest config for your tests.
+
+The function is called with one parameter:
+1. `baseConfig` The base Jest config that will be used.
+
+There are no options passed in (like how `modifyWebpackConfig` has) since the only option would be a "test" environment, which would be redundant.
+
+```javascript
+modifyJestConfig: (baseConfig) => {
+  // modify baseConfig as needed
+  return baseConfig;
+}
+```
+
+> **NOTE:** Currently the base Jest config runs `modifyWebpackConfig()` for you with `options.environment = "development"` in order to grab the development settings for your app (babel plugins, aliases, etc). For most cases, this will be sufficient configuration to get your tests working out of the box without a need to define `modifyJestConfig` yourself. So it is recommended that you try running the tests through first and only add this callback if it's needed. If you try it out and this assumption doesn't seem to work for your use case, please file an issue.
 
 ## Creating env specific kyt configs
 kyt allows developers to specify a different kyt config in `dev` and `build` commands for the purpose of creating environment specific configurations.

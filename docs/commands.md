@@ -93,6 +93,11 @@ You can update ports in the [kyt config](/docs/kytConfig.md).
 The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
 kyt test looks for any `*.test.js` files in `src/`.
 
+### Updating the Jest config
+
+You can update the Jest configuration by defining a `modifyJestConfig` function in your `kyt.config.js`.
+See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
+
 ## lint
 
 The `lint` command lints all files in the `src/` directory using ESLint.
