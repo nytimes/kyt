@@ -2,8 +2,9 @@ const mergeAll = require('ramda').mergeAll;
 const babel = require('../../config/babel')();
 const babelJest = require('babel-jest');
 const buildConfigs = require('../buildConfigs');
+const config = require('../kytConfig')();
 
-const { clientConfig } = buildConfigs();
+const { clientConfig } = buildConfigs(config);
 
 // Merge userland babel config with our babel config
 // TODO: This logic should probably move to config/babel.js,

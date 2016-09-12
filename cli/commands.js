@@ -21,9 +21,9 @@ if (!shell.test('-f', userPackageJSONPath)) {
   process.exit(1);
 }
 
-const loadConfigAndDo = (callback, optionalConfig) => {
-  kytConfigFn(optionalConfig);
-  callback(program);
+const loadConfigAndDo = (action, optionalConfig) => {
+  const config = kytConfigFn(optionalConfig);
+  action(config, program);
 };
 
 program
@@ -62,7 +62,7 @@ program
 
 program
   .command('test')
-  .description('Run test files with Ava.')
+  .description('Run test files with Jest.')
   .action(() => loadConfigAndDo(testAction));
 
 program
