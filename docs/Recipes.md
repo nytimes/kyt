@@ -5,9 +5,9 @@ Easy ways to extend kyt
 
 The `modifyWebpackConfig` function is called any time a Webpack config is used.
 It's called with two parameters:
-1. baseConfig: The current webpack config
+1. baseConfig: The current Webpack config
 2. options: an object of useful data for editing configuration
-  * envrionment: The envrionment the webpack file will be used for [production, development, test, prototype]
+  * environment: The environment the Webpack file will be used for [production, development, test, prototype]
   * type: The type of config [client, server, test, prototype]
 
 For example, if you want to add a new loader for only production code:
