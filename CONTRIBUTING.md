@@ -7,6 +7,7 @@ See something you think we should address? Open an issue.
 
 ### Submitting a PR
 Please make sure all PRs are:
+
 1. linted (npm run lint)
 2. tested (npm test)
 3. Connected to an issue
