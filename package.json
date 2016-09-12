@@ -1,7 +1,7 @@
 {
   "name": "kyt",
-  "version": "0.0.1",
-  "description": "Web Frameworks Starter Kit",
+  "version": "0.1.0",
+  "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "main": "",
   "bin": {
     "kyt": "cli/index.js"
@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nytm/wf-kyt.git"
+    "url": "git+https://github.com/nytimes/kyt.git"
   },
-  "author": "Frameworks, Web",
+  "author": "NYTimes",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/nytm/wf-kyt/issues"
+    "url": "https://github.com/nytimes/kyt/issues"
   },
-  "homepage": "https://github.com/nytm/wf-kyt#readme",
+  "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "assets-webpack-plugin": "^3.4.0",
     "autoprefixer": "^6.4.0",
