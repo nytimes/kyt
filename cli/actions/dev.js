@@ -39,7 +39,7 @@ module.exports = () => {
 
     app.use(webpackDevMiddleware);
     app.use(hotMiddleware(clientCompiler));
-    app.listen(clientURL.port);
+    app.listen(clientURL.port, clientURL.hostname);
   };
 
   const startServer = () => {

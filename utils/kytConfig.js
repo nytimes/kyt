@@ -44,11 +44,21 @@ module.exports = (optionalConfig) => {
     config.modifyWebpackConfig = (webpackConfig) => webpackConfig;
   }
 
+  const validateURL = (name, url) => {
+    // Check to see if the url has the
+    // required protocol, hostname and port.
+    if (!url.protocol || !url.hostname || !url.port)
+      logger.error(`❌  Error: ${name} is an invalid url - ${url.href}`);
+  };
+
   // Convert the URL strings into objects
   // to make them easier to work with.
   config.serverURL = url.parse(config.serverURL);
+  validateURL('serverURL', config.serverURL);
   config.clientURL = url.parse(config.clientURL);
+  validateURL('clientURL', config.clientURL);
   config.prototypeURL = url.parse(config.prototypeURL);
+  validateURL('prototypeURL', config.prototypeURL);
 
   global.config = Object.freeze(config);
 };
