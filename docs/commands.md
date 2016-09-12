@@ -139,4 +139,4 @@ Running `proto` starts a dev server at the port specified in your `kyt.config.js
 ### Updating the prototype Webpack config
 
 You can update the prototype config by using the modifyWebpackConfig function in `kyt.config.js`.
-See [modifyWebpackConfig](/docs/kytConfig.md) instructions.
+See [modifyWebpackConfig](/docs/kytConfig.md#modifywebpackconfig) instructions.
