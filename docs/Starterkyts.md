@@ -14,7 +14,7 @@ starter-kyts act as boilerplates for projects. They use kyt as their build syste
 4. Optionally add a package.json `kyt` object configuration with the following keys and values:
 
     - `version` (*default:* `undefined`) - use this to lock down the starter-kyt kyt dependency version. This should be in [value/range semver form](https://github.com/npm/node-semver#versions).
-    - `files` (*default:* `[]`) - an array of files/paths to copy into a user's project.
+    - `files` (*default:* `[]`) - an array of files/paths to copy into a user's project. The entire `src/` directory will always be copied.
     - `scripts` (*default:* `[]`) - an array of package.json script names to copy into the user's package.json scripts.
 
     ```

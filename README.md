@@ -2,16 +2,16 @@
 
 # kyt
 
-Web apps written in JavaScript require tools for transpiling, testing, and linting. Typical project setup includes copying configuration boilerplate, managing and updating it over the lifetime of the project.
+Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code. Typical project setup includes copying configuration boilerplate, managing and updating it over the lifetime of the project.
 
 kyt is a toolkit that encapsulates and manages the configuration for web apps.
 
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
-2. Create a repo with a package.json file
+2. Create a directory with a package.json file
 3. `npm install --save git://git@github.com:nytm/wf-kyt.git`
-4. `node_modules/.bin/kyt setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/commands.md).
+4. `node_modules/.bin/kyt setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/commands.md#setup).
 5. `npm run dev`
 6. Check out `http://localhost:3000`
 
@@ -21,23 +21,24 @@ Want an in depth look at setting up kyt? Check out our [tutorial](/docs/tutorial
 
 ## How it Works
 
-kyt manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a [command line tool](/docs/commands.md) for running all development tools.
+kyt manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a [command line interface](/docs/commands.md) for running all development tools.
 
 ![diagram](/images/kyt-diagram.png)
 
-kyt is designed with a set of base opinions such as
+kyt's base features include:
 
 * A Node server provided for rendering front-end page requests
 * Client and server hot reloading
-* ES2015 feature syntax
+* [ES-Latest stable](https://babeljs.io/docs/plugins/preset-latest/) features using Babel.
 * CSS Module and SASS support
+* Inline SVG support
 * Style and script linter rulesets
 * A pre-configured test runner with AVA
 
 Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.
 
 For advanced use cases, kyt enables developers to add additional tools and configuration.
-See our [config override instructions](/docs/kytConfig.md#modifyWebpackConfig) for details, and our [recipes](/docs/Recipes.md) for examples.
+See our [config override instructions](/docs/kytConfig.md#modifywebpackconfig) for details, and our [recipes](/docs/Recipes.md) for examples.
 
 ## Command line
 
@@ -80,13 +81,13 @@ All projects must have the following structure:
       index.js
 ```
 Each `index.js` file acts as the build entry.
-If you're setting up a new project see additional details [here](/docs/conventions.md).
+If you're setting up a new project our full list of [conventions](/docs/conventions.md).
 
 
 ## Configuration
 
 kyt allows you to specify options in a `kyt.config.js` file.
-See [here](/docs/kytConfig.md) for instructions.
+See the [kyt config docs](/docs/kytConfig.md) for instructions.
 
 kyt uses Webpack to compile src code and run tests.
 See our [recipes](/docs/Recipes.md) for extending configuration.
@@ -100,7 +101,7 @@ See our recommended list of [starter-kyts](/docs/commands.md#recommended-starter
 ### How to build a starter-kyt
 
 Community supported starter-kyts can be built to support a variety of projects.
-See additional info on [how to build a starter kyt](/docs/Starterkyts.md).
+See additional info on [how to build a starter-kyt](/docs/Starterkyts.md).
 
 
 ## How to contribute to kyt
