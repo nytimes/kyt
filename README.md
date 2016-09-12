@@ -113,3 +113,8 @@ Want to help? See details [here](/CONTRIBUTING.md)
 1. Check our [FAQ](/docs/FAQ.md)
 2. Submit an issue
 3. Check out our [recipes](/docs/Recipes.md) for extending kyt
+
+## Changelog
+
+[Changelog](/CHANGELOG.md)
+
