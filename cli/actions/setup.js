@@ -15,6 +15,7 @@ const {
   userNodeModulesPath,
   userPackageJSONPath,
 } = require('../../utils/paths')();
+
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (config, program) => {
@@ -66,7 +67,15 @@ module.exports = (config, program) => {
   // Adds kyt and Starter-kyt commands as npm scripts
   const addPackageJsonScripts = (packageJson) => {
     if (!packageJson.scripts) packageJson.scripts = {};
-    let commands = ['dev', 'build', 'start', 'test', 'lint', 'lint-style', 'proto'];
+    let commands = [
+      'dev', 'build', 'start',
+      'test', 'test-watch', 'test-coverage',
+      'lint', 'lint-style', 'proto',
+    ];
+    const commandMap = {
+      'test-watch': 'test -- --watch',
+      'test-coverage': 'test -- --coverage',
+    };
 
     // Merge the Starter-kyt script names into the list of commands.
     const tempScripts = (tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
@@ -92,7 +101,7 @@ module.exports = (config, program) => {
       if (tempScripts.indexOf(command) > -1) {
         packageJson.scripts[commandName] = tempPackageJSON.scripts[command];
       } else {
-        packageJson.scripts[commandName] = `kyt ${command}`;
+        packageJson.scripts[commandName] = `kyt ${commandMap[command] || command}`;
       }
     });
     packageJson.scripts['kyt:help'] = 'kyt --help';
