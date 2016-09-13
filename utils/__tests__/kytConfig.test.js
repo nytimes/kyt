@@ -5,27 +5,29 @@ jest.setMock('path', {
 jest.setMock('shelljs', {
   test: () => true,
 });
+jest.mock('../../cli/logger');
 
 describe('kytConfig', () => {
+  let logger;
   beforeEach(() => {
     jest.resetModules();
+    logger = require('../../cli/logger');
   });
 
   it('logs error loading invalid kyt.config.js', () => {
-    global.console.error = jest.fn();
     global.process.exit = jest.fn();
     require('../kytConfig')();
 
-    expect(global.console.error).toBeCalled();
+    expect(logger.error).toBeCalled();
     expect(global.process.exit).toBeCalled();
   });
 
   it('correctly builds config', () => {
     jest.mock('joined-path', () => {}, { virtual: true });
-    global.console.info = jest.fn();
+    logger.info = jest.fn();
     const config = require('../kytConfig')();
 
-    expect(global.console.info).toBeCalled();
+    expect(logger.info).toBeCalled();
     expect(typeof config.modifyWebpackConfig).toBe('function');
     expect(typeof config.modifyJestConfig).toBe('function');
     expect(() => {

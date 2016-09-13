@@ -4,6 +4,7 @@
 const path = require('path');
 const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
+const logger = require('../cli/logger');
 const { userRootPath, userKytConfigPath } = require('./paths')();
 
 module.exports = optionalConfig => {
@@ -26,10 +27,10 @@ module.exports = optionalConfig => {
   // Find user config
   if (shell.test('-f', kytConfigPath)) {
     try {
-      console.info(`Using kyt config at ${kytConfigPath}`);
+      logger.info(`Using kyt config at ${kytConfigPath}`);
       config = require(kytConfigPath); // eslint-disable-line global-require
     } catch (error) {
-      console.error('Error loading your kyt.config.js:', error);
+      logger.error('Error loading your kyt.config.js:', error);
       process.exit();
     }
   }
