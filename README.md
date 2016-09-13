@@ -2,7 +2,8 @@
 
 # kyt
 
-Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code.  
+Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code.
+
 kyt is a toolkit that encapsulates and manages the configuration for web apps.
 
 ## Quick Start
