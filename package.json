@@ -11,7 +11,8 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "repository": {
     "type": "git",
