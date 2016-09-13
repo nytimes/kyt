@@ -12,6 +12,13 @@ const { userPrototypePath, publicSrcPath } = require('../../utils/paths')();
 
 module.exports = config => {
   const prototypeURL = config.prototypeURL;
+  let server;
+
+  // Kill the server on exit.
+  process.on('SIGINT', () => {
+    server.close();
+    process.exit();
+  });
 
   const options = {
     type: 'prototype',
@@ -37,7 +44,7 @@ module.exports = config => {
     }
 
     // Creates a webpack dev server at the specified port
-    const server = new WebpackDevServer(compiler, webpackConfig.devServer);
+    server = new WebpackDevServer(compiler, webpackConfig.devServer);
     server.listen(prototypeURL.port, prototypeURL.hostname, () => {
       logger.end(`webpack-dev-server ${prototypeURL.href}prototype`);
     });
