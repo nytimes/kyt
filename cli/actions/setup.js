@@ -14,14 +14,13 @@ const {
   userKytConfigPath,
   userNodeModulesPath,
   userPackageJSONPath,
-} = require('../../utils/paths')();
-
+} = require('../../utils/paths')(); // eslint-disable-line import/newline-after-import
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (config, program) => {
   const args = program.args[0];
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
-  const repoURL = args.repository || 'git@github.com:nytm/wf-kyt-starter.git';
+  const repoURL = args.repository || 'git@github.com:NYTimes/kyt-starter.git';
   const removeTmpDir = () => shell.rm('-rf', tmpDir);
   let tempPackageJSON;
   let oldPackageJSON;
