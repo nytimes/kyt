@@ -58,7 +58,7 @@ module.exports = (options) => {
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify(process.env.NODE_ENV || options.environment),
+          NODE_ENV: process.env.NODE_ENV || JSON.stringify(options.environment),
           SERVER_PORT: JSON.stringify(serverPort),
           CLIENT_PORT: JSON.stringify(clientPort),
           PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
