@@ -16,7 +16,7 @@ const {
   userNodeModulesPath,
 } = require('../../utils/paths')();
 
-module.exports = config => {
+module.exports = (config) => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
 
@@ -34,7 +34,7 @@ module.exports = config => {
   };
 
   // Create new file name from file path
-  const getFileNameFromPath = (filePath) => (
+  const getFileNameFromPath = filePath => (
     filePath
       .replace(/.+\/src\//, '')
       .replace(/\.test(\.js)/, '$1')

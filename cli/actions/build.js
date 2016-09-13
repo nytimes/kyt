@@ -8,7 +8,7 @@ const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, publicBuildPath, publicSrcPath } = require('../../utils/paths')();
 
-module.exports = config => {
+module.exports = (config) => {
   logger.start('Starting production build...');
 
   let serverCompiler;
@@ -44,7 +44,7 @@ module.exports = config => {
     serverCompiler.run(() => undefined);
   };
 
-  const clientCompiler = webpackCompiler(clientConfig, stats => {
+  const clientCompiler = webpackCompiler(clientConfig, (stats) => {
     logger.info('Assets:');
     printAssets(stats);
     buildServer();

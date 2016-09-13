@@ -21,7 +21,7 @@ module.exports = (stats) => {
     assets.map(a => stripAnsi(a.sizeLabel).length)
   );
 
-  assets.forEach(asset => {
+  assets.forEach((asset) => {
     let sizeLabel = asset.sizeLabel;
     const sizeLength = stripAnsi(sizeLabel).length;
     if (sizeLength < longestSizeLabelLength) {
