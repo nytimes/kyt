@@ -1,9 +1,7 @@
 const jest = require('../jest');
 
-it('returns a jest config', () => {
+it('jest() returns a jest config', () => {
   const rootDir = 'rootDir';
-  const aliases = { testAlias: 'testAlias' };
-
   const jestConfig = jest(rootDir);
 
   expect(typeof jestConfig).toBe('object');
