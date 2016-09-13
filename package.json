@@ -17,7 +17,7 @@
     "url": "git+https://github.com/nytimes/kyt.git"
   },
   "author": "NYTimes",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/nytimes/kyt/issues"
   },
