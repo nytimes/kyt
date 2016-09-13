@@ -37,7 +37,7 @@ kyt sets several environment variables with useful information about the app env
 * `PUBLIC_DIR` Relative path to the public directory
 * `ASSETS_MANIFEST` Object with build assets paths
 
-For examples of how to use these environment variables, checkout out the simple React [starter-kyt](https://github.com/nytm/wf-kyt-starter)
+For examples of how to use these environment variables, checkout out the simple React [starter-kyt](https://github.com/nytimes/kyt-starter)
 
 ## kyt.config.js
 The kyt config file must live in the root of your repository.

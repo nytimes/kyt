@@ -17,8 +17,6 @@ kyt is a toolkit that encapsulates and manages the configuration for web apps.
 
 We recommend installing kyt as a dependency in your project.
 
-Want an in depth look at setting up kyt? Check out our [tutorial](/docs/tutorial.md)
-
 ## How it Works
 
 kyt manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a [command line interface](/docs/commands.md) for running all development tools.
