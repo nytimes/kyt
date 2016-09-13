@@ -39,7 +39,7 @@ Running `kyt setup` will give you the option to install the default starter-kyt.
 You can also pass the `-r` flag with any starter-kyt git clone URL:
 
 ```
- kyt setup -r git@github.com:nytimes/kyt-starter-react-universal.git
+ kyt setup -r git@github.com:nytimes/kyt-starter-universal.git
 ```
 
 `setup` will then:
@@ -60,7 +60,7 @@ Install by running: `node_modules/.bin/kyt setup`
 This starter-kyt is a good base for building advanced, universal React apps.
 
 ```
-node_modules/.bin/kyt setup -r git@github.com:nytm/wf-kyt-starter-universal.git
+node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter-universal.git
 ```
 
 #### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
@@ -87,7 +87,7 @@ The build command will also copy the `src/public` directory for static assets.
 
 The `start` command takes the compiled code from the production build and runs a node server at the specified port.
 
-Optionally, you can configure the server url in your [kyt.config.js](/kytConfig.md).
+Optionally, you can configure the server url in your [kyt.config.js](/docs/kytConfig.md).
 
 ## test
 
