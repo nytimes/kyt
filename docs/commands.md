@@ -94,6 +94,8 @@ Optionally, you can configure the server url in your [kyt.config.js](/docs/kytCo
 The `test` command takes test files in your `src/` directory and runs them using [Ava](https://github.com/avajs/ava).
 kyt test looks for any `*.test.js` files in `src/`.
 
+**NOTE** We are currently [evaluating](https://github.com/NYTimes/kyt/pull/115) Jest as a potential replacement for Ava. If we do switch to Jest we will provide an upgrade path and instructions for how to convert existing Ava tests.
+
 ## lint
 
 The `lint` command lints all files in the `src/` directory using ESLint.
