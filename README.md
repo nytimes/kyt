@@ -10,7 +10,7 @@ kyt is a toolkit that encapsulates and manages the configuration for web apps.
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
 2. Create a directory with a package.json file
-3. `npm install --save git://git@github.com:NYTimes/kyt.git`
+3. `npm install --save kyt`
 4. `node_modules/.bin/kyt setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/commands.md#setup).
 5. `npm run dev`
 6. Check out `http://localhost:3000`
