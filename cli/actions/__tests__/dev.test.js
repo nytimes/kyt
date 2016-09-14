@@ -6,9 +6,7 @@ jest.mock('../../../utils/paths');
 jest.mock('../../../utils/buildConfigs');
 jest.mock('../../../utils/webpackCompiler');
 jest.mock('express');
-jest.setMock('../../../utils/ifPortIsFreeDo',
-  jest.fn((port, todo) => { todo(); })
-);
+jest.mock('../../../utils/ifPortIsFreeDo');
 jest.setMock('path', {
   resolve: p => p,
 });
