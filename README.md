@@ -5,6 +5,8 @@
 Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code.
 kyt is a toolkit that encapsulates and manages the configuration for web apps.
 
+Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/introducing-kyt-our-web-app-configuration-toolkit/).
+
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
