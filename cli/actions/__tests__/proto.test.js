@@ -8,6 +8,7 @@ jest.setMock('webpack-dev-server', () => ({ listen }));
 
 const config = {
   modifyWebpackConfig: jest.fn(c => c),
+  prototypeURL: 'url',
 };
 
 describe('proto', () => {

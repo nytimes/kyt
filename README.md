@@ -1,29 +1,28 @@
-![logo](/images/kyt-logo-large.png)
+<p align="center"><img src="/images/kyt-logo-large.png"></p>
 
 # kyt
 
-Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code. Typical project setup includes copying configuration boilerplate, managing and updating it over the lifetime of the project.
-
+Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code.
 kyt is a toolkit that encapsulates and manages the configuration for web apps.
+
+Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/introducing-kyt-our-web-app-configuration-toolkit/).
 
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
 2. Create a directory with a package.json file
-3. `npm install --save git://git@github.com:nytm/wf-kyt.git`
+3. `npm install --save kyt`
 4. `node_modules/.bin/kyt setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/commands.md#setup).
 5. `npm run dev`
 6. Check out `http://localhost:3000`
 
 We recommend installing kyt as a dependency in your project.
 
-Want an in depth look at setting up kyt? Check out our [tutorial](/docs/tutorial.md)
-
 ## How it Works
 
 kyt manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a [command line interface](/docs/commands.md) for running all development tools.
 
-![diagram](/images/kyt-diagram.png)
+<p align="center"><img src="/images/kyt-diagram.png"></p>
 
 kyt's base features include:
 
@@ -113,3 +112,7 @@ Want to help? See details [here](/CONTRIBUTING.md)
 1. Check our [FAQ](/docs/FAQ.md)
 2. Submit an issue
 3. Check out our [recipes](/docs/Recipes.md) for extending kyt
+
+## Changelog
+
+[Changelog](/CHANGELOG.md)

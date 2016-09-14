@@ -15,17 +15,17 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (config, environment = 'development') => {
-  const { clientPort, serverPort, reactHotLoader } = config;
+  const { clientURL, serverURL, reactHotLoader } = config;
 
   let clientConfig = devClientConfig;
   let serverConfig = devServerConfig;
 
   let clientOptions = {
     type: 'client',
-    serverPort,
-    clientPort,
+    serverURL,
+    clientURL,
     environment,
-    publicPath: `http://localhost:${clientPort}/assets/`,
+    publicPath: `${clientURL.href}assets/`,
     publicDir: 'src/public',
     clientAssetsFile: 'publicAssets.json',
     reactHotLoader,
@@ -36,7 +36,6 @@ module.exports = (config, environment = 'development') => {
     clientConfig = prodClientConfig;
     serverConfig = prodServerConfig;
     clientOptions = merge(clientOptions, {
-      clientPort: undefined,
       publicPath: config.productionPublicPath,
       publicDir: 'build/public',
     });
@@ -66,8 +65,5 @@ module.exports = (config, environment = 'development') => {
   return {
     clientConfig,
     serverConfig,
-    clientPort,
-    serverPort,
-    reactHotLoader,
   };
 };

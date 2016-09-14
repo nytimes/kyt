@@ -30,7 +30,15 @@ describe('dev', () => {
   let clientCompilerDone;
   let serverCompilerDone;
 
-  require('../dev')();
+  const href = { href: 'href' };
+  const port = 1000;
+  const hostname = 'hostname';
+  const mockURL = { href, port, hostname };
+  require('../dev')({
+    clientURL: mockURL,
+    serverURL: mockURL,
+    reactHotLoader: false,
+  });
 
   it('cleans the build directory', () => {
     expect(logger.task).toBeCalledWith('Cleaned ./build');
@@ -52,7 +60,7 @@ describe('dev', () => {
     expect(devMiddleware).toBeCalled();
     expect(express).toBeCalled();
     expect(express.use.mock.calls.length).toBe(2);
-    expect(express.listen).toBeCalledWith('clientPort');
+    expect(express.listen).toBeCalledWith(port, hostname);
   });
 
   it('webpack compiler', () => {

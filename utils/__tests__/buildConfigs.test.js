@@ -1,10 +1,10 @@
-const clientPort = 1000;
-const serverPort = 2000;
 const stubConfig = {
   modifyWebpackConfig: jest.fn(c => c),
-  clientPort,
-  serverPort,
+  clientPort: 1000,
+  serverPort: 2000,
   reactHotLoader: false,
+  clientURL: 'clientURL',
+  serverURL: 'serverURL',
 };
 const buildConfigs = require('../buildConfigs');
 
@@ -31,9 +31,6 @@ describe('buildConfigs', () => {
     expect(built.clientConfig.target).toBe('web');
     expect(built.serverConfig).toBeDefined();
     expect(built.serverConfig.target).toBe('node');
-    expect(built.clientPort).toBe(clientPort);
-    expect(built.serverPort).toBe(serverPort);
-    expect(built.reactHotLoader).toBe(false);
   });
 
   it('for production', () => {
@@ -54,8 +51,5 @@ describe('buildConfigs', () => {
     expect(built.clientConfig.target).toBe('web');
     expect(built.serverConfig).toBeDefined();
     expect(built.serverConfig.target).toBe('node');
-    expect(built.clientPort).toBe(clientPort);
-    expect(built.serverPort).toBe(serverPort);
-    expect(built.reactHotLoader).toBe(false);
   });
 });

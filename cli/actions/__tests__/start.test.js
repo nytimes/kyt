@@ -6,11 +6,12 @@ const logger = require('../../logger');
 const start = require('../start');
 
 describe('start', () => {
-  start({ serverPort: 0 });
+  const serverURL = { href: 'href' };
+  start({ serverURL });
 
   it('logs start and end', () => {
     expect(logger.start).toBeCalledWith('Starting production...');
-    expect(logger.end).toBeCalledWith('Server running at http://localhost:0');
+    expect(logger.end).toBeCalledWith(`Server running at ${serverURL.href}`);
   });
 
   it('executes the node process asynchronously', () => {

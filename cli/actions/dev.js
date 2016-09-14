@@ -20,20 +20,13 @@ module.exports = config => {
 
   let clientCompiler;
   let serverCompiler;
-
-  const {
-    clientConfig,
-    serverConfig,
-    clientPort,
-    serverPort,
-    reactHotLoader,
-  } = buildConfigs(config);
+  const { clientConfig, serverConfig } = buildConfigs(config);
+  const { clientURL, serverURL, reactHotLoader } = config;
 
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
     logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
   });
-
 
   // Clean the build directory.
   if (shell.test('-d', buildPath) && shell.rm('-rf', buildPath).code === 0) {
@@ -47,7 +40,7 @@ module.exports = config => {
 
     app.use(webpackDevMiddleware);
     app.use(hotMiddleware(clientCompiler));
-    app.listen(clientPort);
+    app.listen(clientURL.port, clientURL.hostname);
   };
 
   const startServer = () => {
@@ -57,7 +50,7 @@ module.exports = config => {
 
     nodemon({ script: serverPath, watch: [serverPath] })
       .once('start', () => {
-        logger.task(`Server running at: http://localhost:${serverPort}`);
+        logger.task(`Server running at: ${serverURL.href}`);
         logger.end('Development started');
       })
       .on('restart', () => logger.task('Development server restarted'))
@@ -85,12 +78,12 @@ module.exports = config => {
 
   // Compile Server Webpack Config
   serverCompiler = webpackCompiler(serverConfig, once(() => {
-    ifPortIsFreeDo(serverPort, startServer);
+    ifPortIsFreeDo(serverURL.port, startServer);
   }));
 
   // Starting point...
   // By starting the client, the middleware will
   // compile the client configuration and trigger
   // the `clientCompiler` callback.
-  ifPortIsFreeDo(clientPort, startClient);
+  ifPortIsFreeDo(clientURL.port, startClient);
 };
