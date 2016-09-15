@@ -3,8 +3,8 @@ const fs = require('fs');
 
 // Uses require.resolve to add the full paths to all of the plugins
 // and presets, making sure that we handle the new array syntax.
-const resolvePluginsPresets = babelGroup => {
-  const resolve = dep => {
+const resolvePluginsPresets = (babelGroup) => {
+  const resolve = (dep) => {
     if (typeof dep === 'object') {
       dep[0] = require.resolve(dep[0]);
       return dep;
@@ -15,7 +15,7 @@ const resolvePluginsPresets = babelGroup => {
   babelGroup.presets = (babelGroup.presets || []).map(resolve);
 };
 
-module.exports = options => {
+module.exports = (options) => {
   // Create the babelrc query for the babel loader.
   const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
   babelrc.babelrc = false;

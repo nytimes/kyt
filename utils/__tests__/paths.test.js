@@ -18,7 +18,7 @@ describe('paths', () => {
      'userKytConfigPath',
      'userNodeModulesPath',
      'userPackageJSONPath',
-   ].forEach(p => {
+   ].forEach((p) => {
      expect(paths[p]).toBeDefined();
    });
   });
