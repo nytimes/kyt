@@ -8,7 +8,7 @@ const logger = require('../cli/logger');
 const { userRootPath, userKytConfigPath } = require('./paths')();
 const url = require('url');
 
-module.exports = optionalConfig => {
+module.exports = (optionalConfig) => {
   let config;
 
   // base config options
