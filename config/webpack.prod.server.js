@@ -13,7 +13,7 @@ const cssStyleLoaders = [
   'postcss',
 ];
 
-module.exports = (options) => ({
+module.exports = options => ({
   target: 'node',
 
   node: {

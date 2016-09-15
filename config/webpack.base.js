@@ -32,7 +32,7 @@ module.exports = (options) => {
   if (options.reactHotLoader) {
     babelrc.env.development.plugins.push('react-hot-loader/babel');
   }
-  Object.keys(babelrc.env || {}).forEach((env) => resolvePluginsPresets(babelrc.env[env]));
+  Object.keys(babelrc.env || {}).forEach(env => resolvePluginsPresets(babelrc.env[env]));
 
   const serverPort = (options.serverURL && options.serverURL.port) || '';
   const clientPort = (options.clientURL && options.clientURL.port) || '';

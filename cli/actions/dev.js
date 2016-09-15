@@ -15,7 +15,7 @@ const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, serverSrcPath } = require('../../utils/paths')();
 
-module.exports = config => {
+module.exports = (config) => {
   logger.start('Starting development build...');
 
   let clientCompiler;
