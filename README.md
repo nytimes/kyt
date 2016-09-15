@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/NYTimes/kyt.svg?branch=master)](https://travis-ci.org/NYTimes/kyt)
+
 <p align="center"><img src="/images/kyt-logo-large.png"></p>
 
 # kyt
