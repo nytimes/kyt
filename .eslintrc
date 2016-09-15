@@ -21,7 +21,7 @@
       "no-warning-comments": [1, { "terms": ["todo", "fixme"], "location": "start" }],
       "react/sort-comp": 0,
       "react/require-extension": "off",
-      "import/extensions": [1, { "js": "never", "jsx": "never" }],
+      "import/extensions": [1, { "js": "never" }],
       "import/no-unresolved": [2, { "ignore": ["ava"] }],
       "import/no-extraneous-dependencies": [0],
       "no-param-reassign": 0
