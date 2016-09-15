@@ -28,9 +28,9 @@
   "dependencies": {
     "assets-webpack-plugin": "3.4.0",
     "autoprefixer": "6.4.0",
-    "ava": "0.15.2",
     "babel-cli": "6.11.4",
     "babel-core": "6.13.2",
+    "babel-jest": "15.0.0",
     "babel-loader": "6.2.4",
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-remove-prop-types": "0.2.9",
