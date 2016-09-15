@@ -10,7 +10,7 @@ const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
 const { userPrototypePath, publicSrcPath } = require('../../utils/paths')();
 
-module.exports = config => {
+module.exports = (config) => {
   const prototypeURL = config.prototypeURL;
   let server;
 
