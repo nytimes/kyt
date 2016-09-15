@@ -1,5 +1,6 @@
 describe('paths', () => {
   const paths = require('../paths')();
+
   it('exports the expected properties', () => {
     ['userRootPath',
      'srcPath',

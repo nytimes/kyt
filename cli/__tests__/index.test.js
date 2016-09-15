@@ -7,6 +7,6 @@ it('bails when min node version is not met', () => {
   global.process.versions = { node: '4.0' };
   require('../index');
 
-  expect(console.error).toBeCalled();
+  expect(global.console.error).toBeCalled();
   expect(process.exit).toBeCalled();
 });
