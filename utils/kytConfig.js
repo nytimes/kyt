@@ -7,7 +7,7 @@ const mergeAll = require('ramda').mergeAll;
 const { userRootPath, userKytConfigPath } = require('./paths')();
 const url = require('url');
 
-module.exports = optionalConfig => {
+module.exports = (optionalConfig) => {
   let config;
   const logger = console;
 

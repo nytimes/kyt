@@ -15,7 +15,7 @@ const cssStyleLoaders = [
   'postcss',
 ];
 
-module.exports = (options) => ({
+module.exports = options => ({
   target: 'web',
 
   devtool: 'source-map',
