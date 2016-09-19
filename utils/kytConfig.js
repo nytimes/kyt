@@ -1,4 +1,4 @@
-
+/* eslint-disable no-console */
 // Merges base and user kyt config
 
 const path = require('path');
@@ -38,10 +38,12 @@ module.exports = (optionalConfig) => {
 
   config = mergeAll([{}, baseConfig, config]);
 
-  // Create default modify function
-  if (typeof config.modifyWebpackConfig !== 'function') {
-    config.modifyWebpackConfig = webpackConfig => webpackConfig;
-  }
+  // Create default identity functions for modify functions
+  ['modifyWebpackConfig', 'modifyJestConfig'].forEach((m) => {
+    if (typeof config[m] !== 'function') {
+      config[m] = c => c;
+    }
+  });
 
   const validateURL = (name, userURL) => {
     // Check to see if the url has the

@@ -34,7 +34,7 @@ kyt's base features include:
 * CSS Module and SASS support
 * Inline SVG support
 * Style and script linter rulesets
-* A pre-configured test runner with AVA
+* A pre-configured test runner with Jest
 
 Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.
 
@@ -61,7 +61,7 @@ node_modules/.bin/kyt build
 * [`dev`](/docs/commands.md#dev) starts a development environment
 * [`build`](/docs/commands.md#build) compiles server and client code for production use
 * [`start`](/docs/commands.md#start) runs production code
-* [`test`](/docs/commands.md#test) runs ava on all tests in /src
+* [`test`](/docs/commands.md#test) runs all tests in /src
 * [`proto`](/docs/commands.md#proto) starts the prototyping app
 * [`lint`](/docs/commands.md#lint) lints src code using ESLint
 * [`lint-style`](/docs/commands.md#lint-style) lints src code using Stylelint

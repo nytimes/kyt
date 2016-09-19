@@ -4,6 +4,7 @@
     ],
 
     "env": {
+      "jest": true
     },
 
     "plugins": [
@@ -22,7 +23,6 @@
       "react/sort-comp": 0,
       "react/require-extension": "off",
       "import/extensions": [1, { "js": "never" }],
-      "import/no-unresolved": [2, { "ignore": ["ava"] }],
       "import/no-extraneous-dependencies": [0],
       "no-param-reassign": 0
     }

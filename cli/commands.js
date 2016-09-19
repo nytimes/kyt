@@ -62,7 +62,7 @@ program
 
 program
   .command('test')
-  .description('Run test files with Ava.')
+  .description('Run test files with Jest.')
   .action(() => loadConfigAndDo(testAction));
 
 program

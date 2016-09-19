@@ -15,7 +15,7 @@ node_modules/.bin/kyt build
 2. `dev` starts up a development environment
 3. `build` compiles server and client code for production use
 4. `start` runs production code
-5. `test` runs AVA on all tests in /src
+5. `test` runs all tests in /src
 6. `proto` starts the prototyping app
 7. `lint` lints src code using ESLint
 8. `lint-style` lints src code using StyleLint
@@ -91,10 +91,21 @@ Optionally, you can configure the server url in your [kyt.config.js](/docs/kytCo
 
 ## test
 
-The `test` command takes test files in your `src/` directory and runs them using [Ava](https://github.com/avajs/ava).
+The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
 kyt test looks for any `*.test.js` files in `src/`.
 
-**NOTE** We are currently [evaluating](https://github.com/NYTimes/kyt/pull/115) Jest as a potential replacement for Ava. If we do switch to Jest we will provide an upgrade path and instructions for how to convert existing Ava tests.
+### test-watch
+
+Runs Jest with `--watch`.
+
+### test-coverage
+
+Runs Jest with `--coverage`.
+
+### Updating the Jest config
+
+You can update the Jest configuration by defining a `modifyJestConfig` function in your `kyt.config.js`.
+See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
 
 ## lint
 
