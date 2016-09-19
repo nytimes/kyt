@@ -2,6 +2,8 @@ const path = require('path');
 
 const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', file);
 
+// For configuration information, see:
+// https://facebook.github.io/jest/docs/api.html#configuration-options-configuration
 module.exports = (rootDir, aliases = {}) => ({
   moduleNameMapper: Object.assign(
     {

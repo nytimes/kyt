@@ -43,9 +43,9 @@ Dev Tip:
 `modifyJestConfig` is an optional callback you can define to edit the Jest config for your tests.
 
 The function is called with one parameter:
-1. `baseConfig` The base Jest config that will be used.
 
-There are no options passed in (like how `modifyWebpackConfig` has) since the only option would be a "test" environment, which would be redundant.
+- `baseConfig` The base Jest config that will be used.
+
 
 ```javascript
 modifyJestConfig: (baseConfig) => {
@@ -54,7 +54,7 @@ modifyJestConfig: (baseConfig) => {
 }
 ```
 
-> **NOTE:** Currently the base Jest config runs `modifyWebpackConfig()` for you with `options.environment = "development"` in order to grab the development settings for your app (babel plugins, aliases, etc). For most cases, this will be sufficient configuration to get your tests working out of the box without a need to define `modifyJestConfig` yourself. So it is recommended that you try running the tests through first and only add this callback if it's needed. If you try it out and this assumption doesn't seem to work for your use case, please file an issue.
+> **NOTE:** Currently the base Jest config runs `modifyWebpackConfig()` for you with `options.environment = "development"` in order to grab the development settings for your app (babel plugins, aliases, etc). See the [Jest config recipe](/docs/Recipes.md) for an example use case.
 
 ## Creating env specific kyt configs
 kyt allows developers to specify a different kyt config in `dev` and `build` commands for the purpose of creating environment specific configurations.

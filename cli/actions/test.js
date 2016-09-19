@@ -24,7 +24,7 @@ module.exports = (config, program) => {
 
   // Build Jest config
   let jestConfig = jestConfigBuilder(srcPath, aliases);
-  jestConfig = config.modifyJestConfig(clone(jestConfig), { environment: 'test' });
+  jestConfig = config.modifyJestConfig(clone(jestConfig));
 
   // Run Jest
   jest.run(['--config', JSON.stringify(jestConfig), ...args]);
