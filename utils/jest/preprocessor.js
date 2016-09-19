@@ -7,16 +7,11 @@ const config = require('../kytConfig')();
 const { clientConfig } = buildConfigs(config);
 
 // Merge userland babel config with our babel config
-// TODO: This logic should probably move to config/babel.js,
-// but that would be a breaking change.
+// This should go away after https://github.com/NYTimes/kyt/issues/134
 const clientBabelConfig = clientConfig.module.loaders
   .find(loader => loader.loader === 'babel-loader')
   .query;
 
-// TODO: What's sort of confusing here is that userland babel config
-// (at least for Project-Vi) does not put things in babel.env's.
-// It should. E.g. userland could define a .babelrc file and kyt should
-// read it in and merge what's needed.
 const babelConfigForJest = mergeAll([{}, babel, clientBabelConfig]);
 
 module.exports = babelJest.createTransformer(babelConfigForJest);
