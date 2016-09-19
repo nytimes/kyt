@@ -62,3 +62,20 @@ modifyWebpackConfig: (baseConfig, options) => {
 }
 ```
 Check out the current [Babel configuration](/.babelrc).
+
+## Add always-mocked modules to Jest configuration
+in `kyt.config.js`
+```javascript
+modifyJestConfig: (baseConfig) => {
+  const jestConfig = Object.assign({}, baseConfig);
+
+  // always mock Relay (react-relay) for tests
+  jestConfig.moduleNameMapper = Object.assign({}, jestConfig.moduleNameMapper,
+    {
+      'react-relay': path.resolve(__dirname, '__mocks__/react-relay.js'),
+    }
+  );
+
+  return jestConfig;
+}
+```

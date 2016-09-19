@@ -71,6 +71,8 @@ module.exports = (config, program) => {
       'test', 'test-watch', 'test-coverage',
       'lint', 'lint-style', 'proto',
     ];
+
+    // for commands that aren't 1:1 name:script
     const commandMap = {
       'test-watch': 'test -- --watch',
       'test-coverage': 'test -- --coverage',
