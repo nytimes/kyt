@@ -6,7 +6,7 @@ describe('logger', () => {
     global.console.dir = jest.fn();
   });
 
-  const simpleMethods = [
+  const oneArgMethods = [
     { method: 'log', expectedPrefix: '' },
     { method: 'task', expectedPrefix: '👍  ' },
     { method: 'start', expectedPrefix: '🔥  ' },
@@ -14,13 +14,13 @@ describe('logger', () => {
     { method: 'info', expectedPrefix: 'ℹ️  ' },
   ];
 
-  const advancedMethods = [
+  const twoArgMethods = [
     { method: 'warn', expectedPrefix: '🙀  ' },
     { method: 'error', expectedPrefix: '❌  ' },
     { method: 'debug', expectedPrefix: '🐞  ' },
   ];
 
-  [...simpleMethods, ...advancedMethods].forEach(({ method, expectedPrefix }) => {
+  [...oneArgMethods, ...twoArgMethods].forEach(({ method, expectedPrefix }) => {
     it(`logger.${method}: simple usage`, () => {
       logger[method]('here is some text');
       expect(global.console.log.mock.calls).toEqual([[`${expectedPrefix}here is some text`]]);
@@ -28,7 +28,7 @@ describe('logger', () => {
     });
   });
 
-  simpleMethods.forEach(({ method, expectedPrefix }) => {
+  oneArgMethods.forEach(({ method, expectedPrefix }) => {
     it(`logger.${method}: can only take one arg`, () => {
       logger[method]('here is some text', { description: 'and a second argument' });
       expect(global.console.dir.mock.calls.length).toBe(0);
@@ -36,7 +36,7 @@ describe('logger', () => {
     });
   });
 
-  advancedMethods.forEach(({ method, expectedPrefix }) => {
+  twoArgMethods.forEach(({ method, expectedPrefix }) => {
     it(`logger.${method}: string as second argument`, () => {
       logger[method]('here is some text', 'and a second string argument');
       expect(global.console.dir.mock.calls.length).toBe(0);
@@ -46,7 +46,7 @@ describe('logger', () => {
     });
   });
 
-  advancedMethods.forEach(({ method, expectedPrefix }) => {
+  twoArgMethods.forEach(({ method, expectedPrefix }) => {
     it(`logger.${method}: object as second argument`, () => {
       const objectToLog = { description: 'and some object' };
       logger[method]('here is some text', objectToLog);
