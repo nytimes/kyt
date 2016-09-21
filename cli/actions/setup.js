@@ -79,7 +79,7 @@ module.exports = (config, program) => {
     };
 
     // Merge the Starter-kyt script names into the list of commands.
-    const tempScripts = (tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
+    const tempScripts = (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
     if (tempScripts.length) {
       commands = uniq(commands.concat(tempScripts));
     }
@@ -123,7 +123,6 @@ module.exports = (config, program) => {
         { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
       logger.task('Creating a new package.json. You should fill it in.');
     }
-
     // Clone the package.json so that we have a backup.
     oldPackageJSON = Object.assign({}, userPackageJSON);
 
@@ -152,60 +151,45 @@ module.exports = (config, program) => {
 
   // Create an .eslintrc in the user's base directory
   const createESLintFile = () => {
-    const tmpEsLint = path.join(tmpDir, '.eslintrc');
-    const linkedPath = path.join(userRootPath, '.eslintrc');
+    const eslintFileName = '.eslintrc.json';
+    const linkedPath = path.join(userRootPath, eslintFileName);
 
     // Backup esLint if it exists
     if (shell.test('-f', linkedPath)) {
-      const eslintBackup = path.join(userRootPath, `.eslintrc-${Date.now()}.bak`);
+      const eslintBackup = path.join(userRootPath, `${eslintFileName}-${Date.now()}.bak`);
       shell.mv(linkedPath, eslintBackup);
       logger.info(`Backed up current eslint file to: ${eslintBackup}`);
     }
 
-    // Copy over starter-kyt esLint
-    if (shell.test('-f', tmpEsLint)) {
-      if (shell.cp(tmpEsLint, linkedPath).code === 0) {
-        logger.task('Copied ESLint config from starter-kyt');
-      }
-    } else {
-      // Copy our local eslint
-      const esLintPath = path.join(__dirname, '../../.eslintrc');
-      if (shell.cp(esLintPath, linkedPath).code === 0) {
-        logger.task('Copied kyt default ESLint config');
-      }
+    // Copy our user eslintrc into the user's root.
+    const esLintPath = path.join(__dirname, `../../config/user/${eslintFileName}`);
+    if (shell.cp(esLintPath, linkedPath).code === 0) {
+      logger.task(`Created ${eslintFileName} file`);
     }
   };
 
   // Create an stylelint.json in the user's base directory.
   const createStylelintFile = () => {
-    const stylelintFileName = '.stylelintrc';
-    const tmpStylelint = path.join(tmpDir, stylelintFileName);
+    const stylelintFileName = '.stylelintrc.json';
     const userStylelintPath = path.join(userRootPath, stylelintFileName);
 
     // Backup the user's .stylelintrc if it exists.
     if (shell.test('-f', userStylelintPath)) {
-      const stylelintBackup = path.join(userRootPath, `.stylelintrc-${Date.now()}.bak`);
+      const stylelintBackup = path.join(userRootPath, `${stylelintFileName}-${Date.now()}.bak`);
       shell.mv(userStylelintPath, stylelintBackup);
       logger.info(`Backed up current stylelint file to: ${stylelintBackup}`);
     }
 
-    // Copy over starter-kyt .stylelintrc if it exists.
-    if (shell.test('-f', tmpStylelint)) {
-      if (shell.cp(tmpStylelint, userStylelintPath).code === 0) {
-        logger.task('Copied Stylelint config from starter-kyt');
-      }
-    } else {
-      // Copy our .stylelintrc into the user's directory
-      const stylelintPath = path.join(__dirname, `../../config/${stylelintFileName}`);
-      if (shell.cp(stylelintPath, userStylelintPath).code === 0) {
-        logger.task('Copied default Stylelint config');
-      }
+    // Copy our .stylelintrc into the user's directory
+    const stylelintPath = path.join(__dirname, `../../config/user/${stylelintFileName}`);
+    if (shell.cp(stylelintPath, userStylelintPath).code === 0) {
+      logger.task(`Created ${stylelintFileName} file`);
     }
   };
 
   // .editorconfig to the user's base directory.
   const createEditorconfigLink = () => {
-    const editorPath = './node_modules/kyt/.editorconfig';
+    const editorPath = path.join(__dirname, '../../config/user/.editorconfig');
     const configPath = path.join(userRootPath, '.editorconfig');
 
     // Backup existing editor config
@@ -216,14 +200,15 @@ module.exports = (config, program) => {
     }
 
     shell.cp(editorPath, configPath);
-    logger.task('Copied .editorconfig');
+    logger.task('Created .editorconfig file');
   };
 
   // Copies the starter kyt kyt.config.js
   // to the user's base directory.
   const createKytConfig = () => {
-    const tmpConfig = path.join(tmpDir, 'kyt.config.js');
-    const baseConfig = path.join(__dirname, '../../config/kyt.user.config.js');
+    const configFileName = 'kyt.config.js';
+    const tmpConfig = path.join(tmpDir, configFileName);
+    const baseConfig = path.join(__dirname, `../../config/user/${configFileName}`);
     let newConfig = tmpConfig;
 
     // Use the base kyt.config
@@ -234,15 +219,15 @@ module.exports = (config, program) => {
 
     const copyConfig = () => {
       shell.cp(newConfig, userKytConfigPath);
-      logger.task('Created new kyt.config.js');
+      logger.task(`Created ${configFileName} file`);
     };
 
     if (shell.test('-f', userKytConfigPath)) {
       // Since the user already has a kyt.config,
       // we need to back it up before copying.
-      const mvTo = path.join(userRootPath, `kyt.config-${Date.now()}.js.bak`);
+      const mvTo = path.join(userRootPath, `${configFileName}-${Date.now()}.bak`);
       shell.mv('-f', userKytConfigPath, mvTo);
-      logger.info(`Backed up current kyt.config.js to: ${mvTo}`);
+      logger.info(`Backed up current ${configFileName} to: ${mvTo}`);
       copyConfig();
     } else {
       copyConfig();
@@ -271,7 +256,7 @@ module.exports = (config, program) => {
   const createGitignore = () => {
     const gitignoreFile = path.join(userRootPath, './.gitignore');
     if (!shell.test('-f', gitignoreFile)) {
-      const gitignoreLocal = path.resolve(__dirname, '../../.kyt-gitignore');
+      const gitignoreLocal = path.resolve(__dirname, '../../config/user/.gitignore');
       shell.cp(gitignoreLocal, gitignoreFile);
       logger.task('Created .gitignore file');
     }
@@ -285,7 +270,8 @@ module.exports = (config, program) => {
         const filePath = path.join(userRootPath, file);
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
-        if (['.gitignore', '.stylelintrc', '.eslintrc', '.editorconfig'].indexOf(file) === -1 &&
+        if (['.gitignore', '.stylelintrc.json', '.eslintrc.json', '.editorconfig']
+              .indexOf(file) === -1 &&
             (shell.test('-f', filePath) || shell.test('-d', filePath))) {
           const fileBackup = path.join(userRootPath, `${file}-${Date.now()}-bak`);
           shell.mv(filePath, fileBackup);

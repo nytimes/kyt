@@ -1,0 +1,14 @@
+{
+    "extends": [
+      "./node_modules/kyt/config/.eslintrc.json"
+    ],
+
+    "env": {
+    },
+
+    "plugins": [
+    ],
+
+    "rules": {
+    }
+}

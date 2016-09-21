@@ -11,7 +11,7 @@ module.exports = () => {
   };
 
   // Check to see if stylelint file exists
-  const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc`);
+  const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc.json`);
   if (!stylelintrc.length) {
     handleError('You do not have a .stylelintrc file in the root of your project');
   }

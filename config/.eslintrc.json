@@ -21,8 +21,9 @@
       "prefer-reflect": 2,
       "no-warning-comments": [1, { "terms": ["todo", "fixme"], "location": "start" }],
       "react/sort-comp": 0,
-      "react/require-extension": "off",
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
       "import/extensions": [1, { "js": "never" }],
+      "react/require-extension": "off",
       "import/no-extraneous-dependencies": [0],
       "no-param-reassign": 0
     }
