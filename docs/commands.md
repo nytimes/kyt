@@ -27,7 +27,7 @@ The `setup` command sets up your project with all the application files that you
 
 1. Creates a new [kyt.config.js](/docs/kytConfig.md)
 2. Creates a .gitignore and .editorconfig
-3. Creates linter configurations -  .eslintrc and .stylelintrc files
+3. Creates linter configurations -  .eslintrc.json and .stylelintrc.json files
 4. Adds kyt commands to npm scripts
 
 ### setup with a starter-kyt
@@ -110,15 +110,15 @@ See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
 ## lint
 
 The `lint` command lints all files in the `src/` directory using ESLint.
-During `setup`, an `.eslintrc` is copied into the root of your app.
+During `setup`, an `.eslintrc.json` file is copied into the root of your app which extends kyt's base configuration.
 You can add or update any rules in this file.
 
-kyt's ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides.
+kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/config/.eslintrc.json).
 
 ## lint-style
 
-The `lint-style` command uses Stylelint to lint all files in the `src/` directory. By convention, it look for files with a `.css` or `.scss` extension.
-During `setup`, a `.stylelintrc` is copied into the root of your app that is pre-configured with defaults for CSS/Sass Modules. You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc`.
+The `lint-style` command uses Stylelint to lint all files in the `src/` directory. By convention, it looks for files with a `.css` or `.scss` extension.
+During `setup`, a `.stylelintrc.json` is copied into the root of your app that extends kyt's base configuration, pre-configured with [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules. You can find kyt's base Stylelint configuration [here](/config/.stylelintrc.json). You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc.json`.
 
 ## proto
 

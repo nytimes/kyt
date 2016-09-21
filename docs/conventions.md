@@ -50,9 +50,9 @@ The `kyt test` command finds all files with `*.test.js` in the `/src` directory.
 
 The `kyt lint` command finds all files with `.js` extension in `/src`
 
-Specify lint rules with a `.eslintrc` file in the root of your project.
+Specify lint rules with a `.eslintrc.json` file in the root of your project.
 
 ## Style Linting
 The `kyt lint-style` command finds all files with `.css` and `.scss` extensions in `/src`
 
-Specify lint rules with a `.stylelintrc` file in the root of your project.
+Specify lint rules with a `.stylelintrc.json` file in the root of your project.
