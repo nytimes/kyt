@@ -28,7 +28,7 @@ module.exports = options => ({
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
+      'KYT': {
         NODE_ENV: JSON.stringify(process.env.NODE_ENV || options.environment),
         SERVER_PORT: JSON.stringify((options.serverURL && options.serverURL.port) || ''),
         CLIENT_PORT: JSON.stringify((options.clientURL && options.clientURL.port) || ''),
