@@ -1,6 +1,6 @@
 
 const detect = require('detect-port');
-const logger = require('./../cli/logger');
+const logger = require('../cli/logger');
 
 // Determines whethere the given port is in use
 const ifPortIsFreeDo = (port, callback) => {
