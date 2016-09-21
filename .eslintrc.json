@@ -3,6 +3,10 @@
     "airbnb"
   ],
 
+  "env": {
+    "jest": true
+  },
+
   "plugins": [
     "json"
   ],
