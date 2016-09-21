@@ -52,7 +52,7 @@ module.exports = options => ({
   },
 
   plugins: [
-    new ExtractTextPlugin({ filename: '[name]-[chunkhash].css', allChunks: true }),
+    new ExtractTextPlugin({ filename: '[name]-[chunkhash].css' }),
 
     new webpack.LoaderOptionsPlugin({
       minimize: true,
