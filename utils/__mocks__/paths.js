@@ -1,0 +1,18 @@
+module.exports = () => ({
+  userRootPath: 'userRootPath',
+  srcPath: 'srcPath',
+  buildPath: 'buildPath',
+  publicBuildPath: 'publicBuildPath',
+  publicSrcPath: 'publicSrcPath',
+  serverSrcPath: 'serverSrcPath',
+  clientSrcPath: 'clientSrcPath',
+  clientBuildPath: 'clientBuildPath',
+  serverBuildPath: 'serverBuildPath',
+  testBuildPath: 'testBuildPath',
+  prototypeBuildPath: 'prototypeBuildPath',
+  assetsBuildPath: 'assetsBuildPath',
+  userPrototypePath: 'userPrototypePath',
+  userKytConfigPath: 'userKytConfigPath',
+  userNodeModulesPath: 'userNodeModulesPath',
+  userPackageJSONPath: 'userPackageJSONPath',
+});

@@ -4,12 +4,12 @@
 const path = require('path');
 const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
+const logger = require('../cli/logger');
 const { userRootPath, userKytConfigPath } = require('./paths')();
 const url = require('url');
 
 module.exports = (optionalConfig) => {
   let config;
-  const logger = console;
 
   // base config options
   const baseConfig = {

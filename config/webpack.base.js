@@ -28,8 +28,9 @@ module.exports = options => ({
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(process.env.NODE_ENV || options.environment),
+      // Hardcode NODE_ENV at build time so libraries like React get optimized
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || options.environment),
+      KYT: {
         SERVER_PORT: JSON.stringify((options.serverURL && options.serverURL.port) || ''),
         CLIENT_PORT: JSON.stringify((options.clientURL && options.clientURL.port) || ''),
         PUBLIC_PATH: JSON.stringify(options.publicPath || ''),

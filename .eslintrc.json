@@ -3,10 +3,6 @@
     "airbnb"
   ],
 
-  "env": {
-    "jest": true
-  },
-
   "plugins": [
     "json"
   ],
@@ -23,5 +19,9 @@
     "import/extensions": [1, { "js": "never" }],
     "import/no-extraneous-dependencies": [0],
     "no-param-reassign": 0
-  }
+  },
+
+  "ignore": [
+    "coverage"
+  ]
 }

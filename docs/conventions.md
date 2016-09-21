@@ -28,14 +28,13 @@ All `.js` files in `/src` are transpiled with Babel.
 
 ## Environment Variables
 
-kyt sets several environment variables with useful information about the app environment.
+kyt sets several global variables with useful information about the app environment.
 
-* `NODE_ENV` Node environment currently running (eg. production)
-* `SERVER_PORT` Port your node server should listen on.
-* `CLIENT_PORT` Port the client assets server is listening on.
-* `PUBLIC_PATH` Full path for static assets server
-* `PUBLIC_DIR` Relative path to the public directory
-* `ASSETS_MANIFEST` Object with build assets paths
+* `KYT.SERVER_PORT` Port your node server should listen on.
+* `KYT.CLIENT_PORT` Port the client assets server is listening on.
+* `KYT.PUBLIC_PATH` Full path for static assets server
+* `KYT.PUBLIC_DIR` Relative path to the public directory
+* `KYT.ASSETS_MANIFEST` Object with build assets paths
 
 For examples of how to use these environment variables, checkout out the simple React [starter-kyt](https://github.com/nytimes/kyt-starter)
 
