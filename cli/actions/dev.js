@@ -18,6 +18,9 @@ const { buildPath, serverSrcPath } = require('../../utils/paths')();
 module.exports = (config) => {
   logger.start('Starting development build...');
 
+  // Kill the server on exit.
+  process.on('SIGINT', process.exit);
+
   let clientCompiler;
   let serverCompiler;
   const { clientConfig, serverConfig } = buildConfigs(config);
