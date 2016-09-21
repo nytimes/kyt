@@ -79,7 +79,8 @@ module.exports = (config, program) => {
     };
 
     // Merge the Starter-kyt script names into the list of commands.
-    const tempScripts = (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
+    const tempScripts =
+        (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
     if (tempScripts.length) {
       commands = uniq(commands.concat(tempScripts));
     }
@@ -162,7 +163,7 @@ module.exports = (config, program) => {
     }
 
     // Copy our user eslintrc into the user's root.
-    const esLintPath = path.join(__dirname, `../../config/user/${eslintFileName}`);
+    const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.json');
     if (shell.cp(esLintPath, linkedPath).code === 0) {
       logger.task(`Created ${eslintFileName} file`);
     }
