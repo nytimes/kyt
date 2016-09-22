@@ -9,7 +9,10 @@
 ### BREAKING CHANGES
 #### `kyt test` now uses [Jest](https://github.com/NYTimes/kyt/commit/55d51626405cb2be3046cc78e38d285e8116d1a3)
 
-If you've already written tests in Ava you can use this code mod as a resource for upgrading.
+See the new [testing docs](/docs/commands.md#test).
+Read more about [Jest](https://facebook.github.io/jest/)
+
+If you've already written tests in Ava check out these code mods from [mikenikles](https://github.com/mikenikles/jscodeshift-ava-to-jest) and [dcousineau](https://gist.github.com/dcousineau/0170c4cf30bcc83ebf1a39b4636ae7d6) as a resource for upgrading.
 
 #### support of other ESLint and StyleLint file types
 .eslintrc --> .eslintrc.json
