@@ -7,7 +7,7 @@ const logger = require('./../logger');
 module.exports = (config) => {
   if (config.noServer) {
     logger.error('You have noServer set to true, bailing');
-    process.exit(1);
+    return process.exit(1);
   }
 
   logger.start('Starting production server...');

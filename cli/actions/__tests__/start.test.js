@@ -35,7 +35,7 @@ describe('start', () => {
 
   describe('noServer set to true', () => {
     beforeEach(() => {
-      start({ serverURL, noServer: true });
+      start({ noServer: true });
     });
 
     it('logs an error and exits', () => {
