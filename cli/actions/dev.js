@@ -24,7 +24,7 @@ module.exports = (config) => {
   let clientCompiler;
   let serverCompiler;
   const { clientConfig, serverConfig } = buildConfigs(config);
-  const { clientURL, serverURL, reactHotLoader } = config;
+  const { clientURL, serverURL, reactHotLoader, noServer } = config;
 
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
@@ -63,26 +63,32 @@ module.exports = (config) => {
   const compileServer = () => serverCompiler.run(() => undefined);
 
   // Watch the server files and recompile and restart on changes.
-  const watcher = chokidar.watch([serverSrcPath]);
-  watcher.on('ready', () => {
-    watcher
-      .on('add', compileServer)
-      .on('addDir', compileServer)
-      .on('change', compileServer)
-      .on('unlink', compileServer)
-      .on('unlinkDir', compileServer);
-  });
+  if (!noServer) {
+    const watcher = chokidar.watch([serverSrcPath]);
+    watcher.on('ready', () => {
+      watcher
+        .on('add', compileServer)
+        .on('addDir', compileServer)
+        .on('change', compileServer)
+        .on('unlink', compileServer)
+        .on('unlinkDir', compileServer);
+    });
+  }
 
   // Compile Client Webpack Config
   clientCompiler = webpackCompiler(clientConfig, () => {
     afterClientCompile();
-    compileServer();
+    if (!noServer) {
+      compileServer();
+    }
   });
 
   // Compile Server Webpack Config
-  serverCompiler = webpackCompiler(serverConfig, once(() => {
-    ifPortIsFreeDo(serverURL.port, startServer);
-  }));
+  if (!noServer) {
+    serverCompiler = webpackCompiler(serverConfig, once(() => {
+      ifPortIsFreeDo(serverURL.port, startServer);
+    }));
+  }
 
   // Starting point...
   // By starting the client, the middleware will
