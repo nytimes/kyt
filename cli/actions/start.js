@@ -4,6 +4,10 @@
 const shell = require('shelljs');
 const logger = require('./../logger');
 
+// we ignore the return value; it's just a convenience to
+// prevent the code from reaching a line later that would
+// cause a ReferenceError
+// eslint-disable-next-line consistent-return
 module.exports = (config) => {
   if (config.noServer) {
     logger.error('You have noServer set to true, bailing');
