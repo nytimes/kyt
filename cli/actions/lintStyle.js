@@ -2,6 +2,7 @@
 const stylelint = require('stylelint');
 const logger = require('./../logger');
 const glob = require('glob');
+const path = require('path');
 const { userRootPath } = require('../../utils/paths')();
 
 module.exports = () => {
@@ -10,15 +11,18 @@ module.exports = () => {
     process.exit(1);
   };
 
-  // Check to see if stylelint file exists
-  const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc`);
-  if (!stylelintrc.length) {
-    handleError('You do not have a .stylelintrc file in the root of your project');
-  }
+  // Check to see if stylelint file exists and use base config as a backup.
+  const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc.json`);
+  const configFile = stylelintrc.length
+      ? stylelintrc[0]
+      : path.join(__dirname, '../../config/.stylelintrc.json');
+
+  logger.info(`Using Stylelint file: ${configFile}`);
 
   stylelint.lint({
     files: [`${userRootPath}/src/**/*.css`, `${userRootPath}/src/**/*.scss`],
     formatter: 'string',
+    configFile,
   })
   .then((result) => {
     if (result.output) {

@@ -1,5 +1,6 @@
 {
   "extends": "stylelint-config-standard",
+
   "rules": {
     "string-quotes": "single",
     "selector-no-id": true,
