@@ -19,6 +19,7 @@ const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (config, program) => {
   const args = program.args[0];
+  const date = Date.now();
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:NYTimes/kyt-starter.git';
   const removeTmpDir = () => shell.rm('-rf', tmpDir);
@@ -157,7 +158,7 @@ module.exports = (config, program) => {
 
     // Backup esLint if it exists
     if (shell.test('-f', linkedPath)) {
-      const eslintBackup = path.join(userRootPath, `${eslintFileName}-${Date.now()}.bak`);
+      const eslintBackup = path.join(userRootPath, `${eslintFileName}-${date}.bak`);
       shell.mv(linkedPath, eslintBackup);
       logger.info(`Backed up current eslint file to: ${eslintBackup}`);
     }
@@ -166,6 +167,8 @@ module.exports = (config, program) => {
     const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.json');
     if (shell.cp(esLintPath, linkedPath).code === 0) {
       logger.task(`Created ${eslintFileName} file`);
+    } else {
+      logger.error(`There was a problem creating ${eslintFileName}`);
     }
   };
 
@@ -176,7 +179,7 @@ module.exports = (config, program) => {
 
     // Backup the user's .stylelintrc if it exists.
     if (shell.test('-f', userStylelintPath)) {
-      const stylelintBackup = path.join(userRootPath, `${stylelintFileName}-${Date.now()}.bak`);
+      const stylelintBackup = path.join(userRootPath, `${stylelintFileName}-${date}.bak`);
       shell.mv(userStylelintPath, stylelintBackup);
       logger.info(`Backed up current stylelint file to: ${stylelintBackup}`);
     }
@@ -185,6 +188,8 @@ module.exports = (config, program) => {
     const stylelintPath = path.join(__dirname, `../../config/user/${stylelintFileName}`);
     if (shell.cp(stylelintPath, userStylelintPath).code === 0) {
       logger.task(`Created ${stylelintFileName} file`);
+    } else {
+      logger.error(`There was a problem creating ${stylelintFileName}`);
     }
   };
 
@@ -195,7 +200,7 @@ module.exports = (config, program) => {
 
     // Backup existing editor config
     if (shell.test('-f', configPath)) {
-      const mvTo = path.join(userRootPath, `editorconfig-${Date.now()}.bak`);
+      const mvTo = path.join(userRootPath, `editorconfig-${date}.bak`);
       shell.mv(configPath, mvTo);
       logger.info(`Backed up current editor config to ${mvTo}`);
     }
@@ -226,7 +231,7 @@ module.exports = (config, program) => {
     if (shell.test('-f', userKytConfigPath)) {
       // Since the user already has a kyt.config,
       // we need to back it up before copying.
-      const mvTo = path.join(userRootPath, `${configFileName}-${Date.now()}.bak`);
+      const mvTo = path.join(userRootPath, `${configFileName}-${date}.bak`);
       shell.mv('-f', userKytConfigPath, mvTo);
       logger.info(`Backed up current ${configFileName} to: ${mvTo}`);
       copyConfig();
@@ -245,7 +250,7 @@ module.exports = (config, program) => {
     if (shell.test('-d', srcPath)) {
       // Since the user already has a src directory,
       // we need to make a backup before copying.
-      const mvTo = path.join(userRootPath, `src-${Date.now()}-bak`);
+      const mvTo = path.join(userRootPath, `src-${date}-bak`);
       shell.mv('-f', srcPath, mvTo);
       logger.info(`Backed up current src directory to: ${mvTo}`);
     }
@@ -274,7 +279,7 @@ module.exports = (config, program) => {
         if (['.gitignore', '.stylelintrc.json', '.eslintrc.json', '.editorconfig']
               .indexOf(file) === -1 &&
             (shell.test('-f', filePath) || shell.test('-d', filePath))) {
-          const fileBackup = path.join(userRootPath, `${file}-${Date.now()}-bak`);
+          const fileBackup = path.join(userRootPath, `${file}-${date}-bak`);
           shell.mv(filePath, fileBackup);
           logger.info(`Backed up current ${file} to: ${fileBackup}`);
         }
@@ -291,7 +296,7 @@ module.exports = (config, program) => {
     if (!shell.test('-f', starterProto)) return;
     // Backup user's prototype file if they already have one
     if (shell.test('-f', userPrototypePath)) {
-      const prototypeBackup = path.join(userRootPath, `prototype-${Date.now()}.js.bak`);
+      const prototypeBackup = path.join(userRootPath, `prototype-${date}.js.bak`);
       shell.mv(userPrototypePath, prototypeBackup);
       logger.info(`Backed up current prototype file to: ${prototypeBackup}`);
     }

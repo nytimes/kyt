@@ -30,6 +30,8 @@ The `setup` command sets up your project with all the application files that you
 3. Creates linter configurations -  .eslintrc.json and .stylelintrc.json files
 4. Adds kyt commands to npm scripts
 
+If kyt finds any files with duplicate names, it will back up your file before replacing it.
+
 ### setup with a starter-kyt
 
 `setup` also allows you to plug a starter-kyt into your app.
