@@ -1,5 +1,5 @@
 {
-  "extends": "./node_modules/kyt/config/.stylelintrc.json",
+  "extends": "./node_modules/kyt/config/.stylelintrc.base.json",
   "rules": {
   }
 }
