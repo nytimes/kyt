@@ -20,7 +20,7 @@ If you've already written tests in Ava check out these code mods from [mikenikle
 
 kyt adds these linter files to your project on setup. These files now reference base linter files in kyt to allow for easier upgrades. As always you can use these files to create your own overrides.
 
-#### kyt's global variables are now in a [KYT global object](https://github.com/NYTimes/kyt/commit/4d934378c9271b9b4115e42619d78fcc09ea2d7c) rather than process.env
+#### kyt's global variables are now in a [KYT global object](/docs/conventions.md#environment-variables) rather than process.env
 
 ### BUG FIXES
 * [Fixes](https://github.com/NYTimes/kyt/commit/af786d7b9a7d2b0834bdaa2b20be7b9268656934) bug where dev server child process was not killed after Webpack build error
