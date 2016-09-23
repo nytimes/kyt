@@ -195,7 +195,7 @@ module.exports = (config, program) => {
 
   // .editorconfig to the user's base directory.
   const createEditorconfigLink = () => {
-    const editorPath = path.join(__dirname, '../../config/user/.editorconfig');
+    const editorPath = path.join(__dirname, '../../config/user/.kyt-editorconfig');
     const configPath = path.join(userRootPath, '.editorconfig');
 
     // Backup existing editor config
@@ -262,7 +262,7 @@ module.exports = (config, program) => {
   const createGitignore = () => {
     const gitignoreFile = path.join(userRootPath, './.gitignore');
     if (!shell.test('-f', gitignoreFile)) {
-      const gitignoreLocal = path.resolve(__dirname, '../../config/user/.gitignore');
+      const gitignoreLocal = path.resolve(__dirname, '../../config/user/.kyt-gitignore');
       shell.cp(gitignoreLocal, gitignoreFile);
       logger.task('Created .gitignore file');
     }
