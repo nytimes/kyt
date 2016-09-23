@@ -15,7 +15,7 @@ module.exports = () => {
   const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc.json`);
   const configFile = stylelintrc.length
       ? stylelintrc[0]
-      : path.join(__dirname, '../../config/.stylelintrc.json');
+      : path.join(__dirname, '../../config/.stylelintrc.base.json');
 
   logger.info(`Using Stylelint file: ${configFile}`);
 
