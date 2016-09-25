@@ -74,13 +74,13 @@ module.exports = (config) => {
   });
 
   // Compile Client Webpack Config
-  clientCompiler = webpackCompiler(clientConfig, () => {
+  clientCompiler = webpackCompiler(clientConfig, "dev", () => {
     afterClientCompile();
     compileServer();
   });
 
   // Compile Server Webpack Config
-  serverCompiler = webpackCompiler(serverConfig, once(() => {
+  serverCompiler = webpackCompiler(serverConfig, "dev", once(() => {
     ifPortIsFreeDo(serverURL.port, startServer);
   }));
 

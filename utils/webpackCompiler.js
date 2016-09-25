@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 const logger = require('../cli/logger');
 
-module.exports = (webpackConfig, cb) => {
+module.exports = (webpackConfig, action, cb) => {
   let webpackCompiler;
   const type = webpackConfig.target === 'web' ? 'Client' : 'Server';
 
@@ -19,6 +19,11 @@ module.exports = (webpackConfig, cb) => {
     if (stats.hasErrors()) {
       logger.error(`${type} build failed\n`, stats.toString());
       logger.info('See webpack error above');
+
+      // Quit process if we're building
+      if (action === "build") {
+        process.exit(1);
+      }
       return;
     }
 

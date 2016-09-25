@@ -38,13 +38,13 @@ module.exports = (config) => {
 
   // Compiles server code using the prod.server config
   const buildServer = () => {
-    serverCompiler = webpackCompiler(serverConfig, () => {
+    serverCompiler = webpackCompiler(serverConfig, "build", () => {
       logger.end('Done building');
     });
     serverCompiler.run(() => undefined);
   };
 
-  const clientCompiler = webpackCompiler(clientConfig, (stats) => {
+  const clientCompiler = webpackCompiler(clientConfig, "build", (stats) => {
     logger.info('Assets:');
     printAssets(stats);
     buildServer();
