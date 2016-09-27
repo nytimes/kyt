@@ -27,7 +27,7 @@
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "assets-webpack-plugin": "3.4.0",
-    "autoprefixer": "6.4.0",
+    "autoprefixer": "6.5.0",
     "babel-cli": "6.11.4",
     "babel-core": "6.13.2",
     "babel-jest": "15.0.0",
