@@ -39,12 +39,17 @@ module.exports = options => ({
             JSON.stringify(path.join(buildPath || '', options.clientAssetsFile || '')),
       },
     }),
+
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+        context: '/',
+      },
+    }),
   ],
 
-  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.html$/,
         loader: 'file?name=[name].[ext]',
@@ -52,7 +57,7 @@ module.exports = options => ({
       {
         test: /\.(jpg|jpeg|png|gif|eot|svg|ttf|woff|woff2)$/,
         loader: 'url-loader',
-        query: {
+        options: {
           limit: 20000,
         },
       },
@@ -67,7 +72,7 @@ module.exports = options => ({
           /node_modules/,
           buildPath,
         ],
-        query: babel(options),
+        options: babel(options),
       },
     ],
   },
