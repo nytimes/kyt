@@ -56,7 +56,7 @@ module.exports = (config) => {
         logger.task(`Server running at: ${serverURL.href}`);
         logger.end('Development started');
       })
-      .on('restart', () => logger.task('Development server restarted'))
+      .on('restart', () => logger.end('Development server restarted'))
       .on('quit', process.exit);
   };
 

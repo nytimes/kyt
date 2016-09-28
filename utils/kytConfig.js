@@ -28,6 +28,7 @@ module.exports = (optionalConfig) => {
   // Find user config
   if (shell.test('-f', kytConfigPath)) {
     try {
+      logger.log('');
       logger.info(`Using kyt config at ${kytConfigPath}`);
       // eslint-disable-next-line global-require,import/no-dynamic-require
       config = require(kytConfigPath);
