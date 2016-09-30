@@ -15,6 +15,7 @@ const {
   userNodeModulesPath,
   userPackageJSONPath,
 } = require('../../utils/paths')(); // eslint-disable-line import/newline-after-import
+// eslint-disable-next-line import/no-dynamic-require
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (config, program) => {
@@ -119,7 +120,8 @@ module.exports = (config, program) => {
     // Create a package.json definition if
     // the user doesn't already have one.
     if (shell.test('-f', userPackageJSONPath)) {
-      userPackageJSON = require(userPackageJSONPath); // eslint-disable-line global-require
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      userPackageJSON = require(userPackageJSONPath);
     } else {
       userPackageJSON =
         { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
@@ -314,7 +316,7 @@ module.exports = (config, program) => {
         logger.log(error);
         bailProcess();
       }
-      // eslint-disable-next-line global-require
+      // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
       checkStarterKytVersion();
       updateUserPackageJSON(false);
