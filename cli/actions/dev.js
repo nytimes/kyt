@@ -74,15 +74,20 @@ module.exports = (config) => {
   });
 
   // Compile Client Webpack Config
-  clientCompiler = webpackCompiler(clientConfig, "dev", () => {
+  clientCompiler = webpackCompiler(clientConfig, (stats) => {
+    if (stats.hasErrors()) return;
     afterClientCompile();
     compileServer();
   });
 
   // Compile Server Webpack Config
-  serverCompiler = webpackCompiler(serverConfig, "dev", once(() => {
-    ifPortIsFreeDo(serverURL.port, startServer);
-  }));
+  let startServerOnce = once(() => {
+        ifPortIsFreeDo(serverURL.port, startServer);
+  });
+  serverCompiler = webpackCompiler(serverConfig, (stats) => {
+    if (stats.hasErrors()) return;
+    startServerOnce();
+});
 
   // Starting point...
   // By starting the client, the middleware will
