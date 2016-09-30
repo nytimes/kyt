@@ -57,7 +57,7 @@
     "install": "0.8.1",
     "jest": "15.1.1",
     "json-loader": "0.5.4",
-    "node-sass": "3.8.0",
+    "node-sass": "3.10.1",
     "nodemon": "1.10.2",
     "path": "0.12.7",
     "postcss-loader": "0.13.0",
