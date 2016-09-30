@@ -81,13 +81,13 @@ module.exports = (config) => {
   });
 
   // Compile Server Webpack Config
-  let startServerOnce = once(() => {
-        ifPortIsFreeDo(serverURL.port, startServer);
+  const startServerOnce = once(() => {
+    ifPortIsFreeDo(serverURL.port, startServer);
   });
   serverCompiler = webpackCompiler(serverConfig, (stats) => {
     if (stats.hasErrors()) return;
     startServerOnce();
-});
+  });
 
   // Starting point...
   // By starting the client, the middleware will
