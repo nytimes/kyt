@@ -1,6 +1,10 @@
 
 ## Master
 
+## 0.2.2 (Sept 23, 2016)
+
+- Fixes linter `Configuration for rule "eol-last" is invalid` ESLint bug by upgrading all of the linter dependencies.
+
 ## 0.2.1 (Sept 23, 2016)
 
 - Fixes `kyt lint-style` bug where the base config file name was incorrect (#180).
