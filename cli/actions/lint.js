@@ -2,16 +2,25 @@
 // Command to lint src code
 
 const CLIEngine = require('eslint').CLIEngine;
+const path = require('path');
 const logger = require('./../logger');
 const glob = require('glob');
 const { userRootPath } = require('../../utils/paths')();
 
 module.exports = () => {
+  const eslintrc = glob.sync(`${userRootPath}/.*eslintrc*`);
+  const configFile = eslintrc.length
+      ? eslintrc[0]
+      : path.join(__dirname, '../../config/.eslintrc.base.json');
+
+  logger.info(`Using ESLint file: ${configFile}`);
+
   // http://eslint.org/docs/developer-guide/nodejs-api
   const eslintCLI = {
     envs: ['browser'],
     extensions: ['.js'],
     useEslintrc: true,
+    configFile,
   };
 
   // Get the default dir or the dir specified by the user/-d.
@@ -29,13 +38,6 @@ module.exports = () => {
 
     process.exit(report.errorCount > 0 ? 1 : 0);
   };
-
-  // Check to see if eslint file exists
-  const eslintrc = glob.sync(`${userRootPath}/.*eslintrc*`);
-  if (!eslintrc.length) {
-    logger.error('You do not have an eslintrc file in the root of your project');
-    process.exit(1);
-  }
 
   lint();
 };

@@ -29,7 +29,8 @@ module.exports = (optionalConfig) => {
   if (shell.test('-f', kytConfigPath)) {
     try {
       logger.info(`Using kyt config at ${kytConfigPath}`);
-      config = require(kytConfigPath); // eslint-disable-line global-require
+      // eslint-disable-next-line global-require,import/no-dynamic-require
+      config = require(kytConfigPath);
     } catch (error) {
       logger.error('Error loading your kyt.config.js:', error);
       process.exit();
