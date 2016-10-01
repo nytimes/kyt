@@ -16,7 +16,9 @@ jest.setMock('shelljs', {
   test: () => true,
   rm: () => ({ code: 0 }),
 });
-
+const stats = {
+  hasErrors: jest.fn()
+}
 describe('dev', () => {
   const chokidar = require('chokidar');
   const nodemon = require('nodemon');
@@ -76,12 +78,12 @@ describe('dev', () => {
   });
 
   it('client compilation done', () => {
-    clientCompilerDone();
+    clientCompilerDone(stats);
     expect(logger.task).toBeCalledWith('Client assets serving from publicPath');
   });
 
   it('server compilation done', () => {
-    serverCompilerDone();
+    serverCompilerDone(stats);
 
     expect(nodemon).toBeCalledWith({ script: 'fakePath', watch: ['fakePath'] });
 

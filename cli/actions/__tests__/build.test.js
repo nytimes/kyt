@@ -51,24 +51,26 @@ describe('build', () => {
   });
 
   it('compiles webpack configs', () => {
-    const stats = webpackCompiler.mock.calls[0][1];
-    expect(typeof stats).toBe('function');
+    const callback = webpackCompiler.mock.calls[0][1];
+    expect(typeof callback).toBe('function');
 
     // for client
     expect(webpackCompiler.mock.calls[0][0]).toBe('clientConfig');
     expect(webpackCompiler.run).toBeCalled();
-
+    const stats = {
+      hasErrors: jest.fn()
+    }
     // client stats
-    stats('stats');
+    callback(stats);
     expect(logger.info).toBeCalledWith('Assets:');
-    expect(printAssets).toBeCalledWith('stats');
+    expect(printAssets).toBeCalledWith(stats);
 
     // for server
     const doneBuilding = webpackCompiler.mock.calls[1][1];
     expect(webpackCompiler.mock.calls[1][0]).toBe('serverConfig');
 
     // done building server
-    doneBuilding();
+    doneBuilding(stats);
     expect(logger.end).toBeCalledWith('Done building');
   });
 });
