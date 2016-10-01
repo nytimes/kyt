@@ -4,8 +4,8 @@ const shell = {
   test: jest.fn(() => true).mockReturnValueOnce(true).mockReturnValueOnce(false),
   cp: jest.fn(),
 };
-jest.setMock('shelljs', shell);
 
+jest.setMock('shelljs', shell);
 jest.mock('../../../utils/paths');
 jest.mock('../../logger');
 jest.mock('../../../utils/printAssets');
@@ -20,6 +20,7 @@ const buildConfigs = require('../../../utils/buildConfigs');
 const { buildPath, publicBuildPath, publicSrcPath } = require('../../../utils/paths')();
 
 describe('build', () => {
+  global.process.exit = jest.fn();
   const testConfig = { test: 'test' };
 
   build(testConfig);
@@ -51,8 +52,8 @@ describe('build', () => {
   });
 
   it('compiles webpack configs', () => {
-    const callback = webpackCompiler.mock.calls[0][1];
-    expect(typeof callback).toBe('function');
+    const clientCallback = webpackCompiler.mock.calls[0][1];
+    expect(typeof clientCallback).toBe('function');
 
     // for client
     expect(webpackCompiler.mock.calls[0][0]).toBe('clientConfig');
@@ -61,7 +62,7 @@ describe('build', () => {
       hasErrors: jest.fn(),
     };
     // client stats
-    callback(stats);
+    clientCallback(stats);
     expect(logger.info).toBeCalledWith('Assets:');
     expect(printAssets).toBeCalledWith(stats);
 
@@ -73,4 +74,19 @@ describe('build', () => {
     doneBuilding(stats);
     expect(logger.end).toBeCalledWith('Done building');
   });
+
+  it('exits when the build errors', () => {
+    const clientCallback = webpackCompiler.mock.calls[0][1];
+    const failingStats = {
+      hasErrors: jest.fn(() => true)
+    };
+    clientCallback(failingStats);
+    expect(process.exit).toBeCalledWith(1);
+
+    const serverCallback = webpackCompiler.mock.calls[1][1];
+    serverCallback(failingStats);
+    expect(process.exit).toBeCalledWith(1);
+
+  });
+
 });
