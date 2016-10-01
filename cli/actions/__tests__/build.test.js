@@ -78,7 +78,7 @@ describe('build', () => {
   it('exits when the build errors', () => {
     const clientCallback = webpackCompiler.mock.calls[0][1];
     const failingStats = {
-      hasErrors: jest.fn(() => true)
+      hasErrors: jest.fn(() => true),
     };
     clientCallback(failingStats);
     expect(process.exit).toBeCalledWith(1);
@@ -86,7 +86,5 @@ describe('build', () => {
     const serverCallback = webpackCompiler.mock.calls[1][1];
     serverCallback(failingStats);
     expect(process.exit).toBeCalledWith(1);
-
   });
-
 });
