@@ -19,14 +19,11 @@ module.exports = (webpackConfig, cb) => {
     if (stats.hasErrors()) {
       logger.error(`${type} build failed\n`, stats.toString());
       logger.info('See webpack error above');
-      return;
-    }
-
-    if (stats.hasWarnings()) {
+    } else if (stats.hasWarnings()) {
       logger.warn(`${type} build warnings`, stats.toString());
+    } else {
+      logger.task(`${type} build successful`);
     }
-
-    logger.task(`${type} build successful`);
 
     // Call the callback on successful build
     if (cb) {
