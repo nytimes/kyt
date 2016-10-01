@@ -17,8 +17,8 @@ jest.setMock('shelljs', {
   rm: () => ({ code: 0 }),
 });
 const stats = {
-  hasErrors: jest.fn()
-}
+  hasErrors: jest.fn(),
+};
 describe('dev', () => {
   const chokidar = require('chokidar');
   const nodemon = require('nodemon');

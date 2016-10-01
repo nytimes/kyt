@@ -58,8 +58,8 @@ describe('build', () => {
     expect(webpackCompiler.mock.calls[0][0]).toBe('clientConfig');
     expect(webpackCompiler.run).toBeCalled();
     const stats = {
-      hasErrors: jest.fn()
-    }
+      hasErrors: jest.fn(),
+    };
     // client stats
     callback(stats);
     expect(logger.info).toBeCalledWith('Assets:');
