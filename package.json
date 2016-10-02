@@ -11,7 +11,8 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "test": "jest",
+    "test": "jest --testPathPattern /__tests__/",
+    "e2e": "jest --testPathPattern /e2e_tests/tests/ --runInBand --verbose",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage"
   },
