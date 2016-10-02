@@ -22,8 +22,9 @@ if (!shell.test('-f', userPackageJSONPath)) {
 }
 
 const loadConfigAndDo = (action, optionalConfig) => {
+  const flags = program.args.filter(item => typeof item === 'string' );
   const config = kytConfigFn(optionalConfig);
-  action(config, program);
+  action(config, program, flags);
 };
 
 program
