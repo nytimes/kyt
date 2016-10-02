@@ -26,7 +26,8 @@ describe('logger', () => {
     it(`logger.${method}: simple usage`, () => {
       logger[method]('here is some text');
       if (newlineMethods.indexOf(method) > -1) {
-        expect(global.console.log.mock.calls).toEqual([[`${expectedPrefix}here is some text`],[]]);
+        expect(global.console.log.mock.calls)
+          .toEqual([[`${expectedPrefix}here is some text`], []]);
       } else {
         expect(global.console.log.mock.calls).toEqual([[`${expectedPrefix}here is some text`]]);
       }
@@ -39,7 +40,8 @@ describe('logger', () => {
       logger[method]('here is some text', { description: 'and a second argument' });
       expect(global.console.dir.mock.calls.length).toBe(0);
       if (newlineMethods.indexOf(method) > -1) {
-        expect(global.console.log.mock.calls).toEqual([[`${expectedPrefix}here is some text`],[]]);
+        expect(global.console.log.mock.calls)
+          .toEqual([[`${expectedPrefix}here is some text`], []]);
       } else {
         expect(global.console.log.mock.calls).toEqual([[`${expectedPrefix}here is some text`]]);
       }
@@ -52,7 +54,7 @@ describe('logger', () => {
       expect(global.console.dir.mock.calls.length).toBe(0);
       if (newlineMethods.indexOf(method) > -1) {
         expect(global.console.log.mock.calls).toEqual(
-          [[`${expectedPrefix}here is some text\nand a second string argument`],[]]
+          [[`${expectedPrefix}here is some text\nand a second string argument`], []]
         );
       } else {
         expect(global.console.log.mock.calls).toEqual(
@@ -67,7 +69,8 @@ describe('logger', () => {
       const objectToLog = { description: 'and some object' };
       logger[method]('here is some text', objectToLog);
       if (newlineMethods.indexOf(method) > -1) {
-        expect(global.console.log.mock.calls).toEqual([[`${expectedPrefix}here is some text`],[]]);
+        expect(global.console.log.mock.calls)
+          .toEqual([[`${expectedPrefix}here is some text`], []]);
       } else {
         expect(global.console.log.mock.calls).toEqual([[`${expectedPrefix}here is some text`]]);
       }

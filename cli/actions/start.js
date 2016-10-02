@@ -8,5 +8,5 @@ module.exports = (config) => {
   logger.start('Starting production...');
   shell.exec('node build/server/main.js', { async: true });
   logger.task(`Server running on ${config.serverURL.href}`);
-  logger.end(`Production started`);
+  logger.end('Production started');
 };
