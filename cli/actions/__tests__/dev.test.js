@@ -96,7 +96,7 @@ describe('dev', () => {
     // on restart
     expect(nodemon.on.mock.calls[0][0]).toBe('restart');
     nodemon.on.mock.calls[0][1]();
-    expect(logger.task).toBeCalledWith('Development server restarted');
+    expect(logger.end).toBeCalledWith('Development server restarted');
 
     // on quit
     expect(nodemon.on.mock.calls[1][0]).toBe('quit');
