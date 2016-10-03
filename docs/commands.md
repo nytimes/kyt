@@ -76,7 +76,7 @@ node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angu
 
 The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot reloading to allow for fast development.
 
-If `hasServer` is set to `false` in [kyt.config.js](/docs/kytConfig.md)), `src/server/` is ignored and no backend server is started.
+If `hasServer` is set to `false` in [kyt.config.js](/docs/kytConfig.md), `src/server/` is ignored and no backend server is started.
 
 Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
 
