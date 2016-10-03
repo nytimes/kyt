@@ -85,7 +85,7 @@ All projects must have the following structure:
 
 Each `index.js` file acts as the build entry.
 
-*(Note that `server/index.js` is not required if `noServer` is true in [config](#configuration)).*
+*(Note that `server/index.js` is not required if `hasServer` is `false` in [config](#configuration)).*
 
 If you're setting up a new project our full list of [conventions](/docs/conventions.md).
 

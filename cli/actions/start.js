@@ -9,8 +9,8 @@ const logger = require('./../logger');
 // cause a ReferenceError
 // eslint-disable-next-line consistent-return
 module.exports = (config) => {
-  if (config.noServer) {
-    logger.error('You have noServer set to true, bailing');
+  if (!config.hasServer) {
+    logger.error('You have hasServer set to false, bailing');
     return process.exit(1);
   }
 

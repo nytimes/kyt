@@ -76,13 +76,13 @@ node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angu
 
 The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot reloading to allow for fast development.
 
-If `noServer` is set to `true` in [kyt.config.js](/docs/kytConfig.md)), `src/server/` is ignored and no backend server is started.
+If `hasServer` is set to `false` in [kyt.config.js](/docs/kytConfig.md)), `src/server/` is ignored and no backend server is started.
 
 Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
 
 ## build
 
-The `build` command takes the entry index.js in `src/client/` and `src/server/` (the latter only if `noServer` is falsy in [kyt.config.js](/docs/kytConfig.md)), compiles them, and saves them to a build folder. This is an optimized production build.
+The `build` command takes the entry index.js in `src/client/` and `src/server/` (ignoring the latter if `hasServer` set to false in [kyt.config.js](/docs/kytConfig.md)), compiles them, and saves them to a build folder. This is an optimized production build.
 
 The build command will also copy the `src/public` directory for static assets.
 
@@ -90,7 +90,7 @@ The build command will also copy the `src/public` directory for static assets.
 
 ## start
 
-The `start` command takes the compiled code from the production build and runs a node server at the specified port. `start` will log an error and exit if `noServer` is set to `true` in your [kyt.config.js](/docs/kytConfig.md).
+The `start` command takes the compiled code from the production build and runs a node server at the specified port. `start` will log an error and exit if `hasServer` is set to `false` in your [kyt.config.js](/docs/kytConfig.md).
 
 Optionally, you can configure the server url in your [kyt.config.js](/docs/kytConfig.md).
 

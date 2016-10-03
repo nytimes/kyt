@@ -63,6 +63,7 @@ describe('dev', () => {
       clientURL: mockURL,
       serverURL: mockURL,
       reactHotLoader: false,
+      hasServer: true,
     });
 
     assert.deepEqual(logger.task.mock.calls[0], ['Cleaned ./build'],
@@ -138,8 +139,11 @@ describe('dev', () => {
       clientURL: mockURL,
       serverURL: mockURL,
       reactHotLoader: false,
-      noServer: true,
+      hasServer: false,
     });
+
+    const clientDone = webpackCompiler.mock.calls[0][1];
+    clientDone({ hasErrors: jest.fn() });
 
     assert.equal(webpackCompiler.mock.calls.length, 1,
       'should only call webpackCompiler once');

@@ -40,7 +40,7 @@ describe('build', () => {
   });
 
   it('builds correctly with a server', () => {
-    const testConfig = { test: 'test' };
+    const testConfig = { test: 'test', hasServer: true };
 
     build(testConfig);
 
@@ -98,7 +98,7 @@ describe('build', () => {
   });
 
   it('builds correctly without a server', () => {
-    build({ test: 'test', noServer: true });
+    build({ test: 'test', hasServer: false });
     assert.equal(webpackCompiler.mock.calls[0][0], 'clientConfig',
       'should call webpackCompiler with clientConfig');
     assert.ok(webpackCompiler.run.mock.calls.length > 0,
@@ -108,7 +108,7 @@ describe('build', () => {
   });
 
   it('exits when the client build errors', () => {
-    build({ test: 'test' });
+    build({ test: 'test', hasServer: true });
     const clientCallback = webpackCompiler.mock.calls[0][1];
     const failingStats = {
       hasErrors: jest.fn(() => true),
@@ -118,7 +118,7 @@ describe('build', () => {
   });
 
   it('exits when the server build errors', () => {
-    build({ test: 'test' });
+    build({ test: 'test', hasServer: true });
     const clientCallback = webpackCompiler.mock.calls[0][1];
     clientCallback({
       hasErrors: jest.fn(),

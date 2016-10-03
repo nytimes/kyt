@@ -11,7 +11,7 @@ src/
     index.js // Webpack entry for client code
   /server
     index.js // Webpack entry for server code
-             // (ignored if noServer is set to true in config)
+             // (ignored if hasServer is set to false in config)
 ```
 
 ## Public directory

@@ -15,7 +15,7 @@ describe('start', () => {
 
   describe('default case', () => {
     beforeEach(() => {
-      start({ serverURL });
+      start({ serverURL, hasServer: true });
     });
 
     it('does not call process.exit or logger.error', () => {
@@ -33,13 +33,13 @@ describe('start', () => {
     });
   });
 
-  describe('noServer set to true', () => {
+  describe('hasServer set to false', () => {
     beforeEach(() => {
-      start({ noServer: true });
+      start({ hasServer: false });
     });
 
     it('logs an error and exits', () => {
-      expect(logger.error).toBeCalledWith('You have noServer set to true, bailing');
+      expect(logger.error).toBeCalledWith('You have hasServer set to false, bailing');
       expect(global.process.exit.mock.calls).toEqual([[1]]);
     });
   });
