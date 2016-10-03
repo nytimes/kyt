@@ -30,7 +30,7 @@
     "autoprefixer": "6.5.0",
     "babel-cli": "6.16.0",
     "babel-core": "6.16.0",
-    "babel-jest": "15.0.0",
+    "babel-jest": "16.0.0",
     "babel-loader": "6.2.5",
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-remove-prop-types": "0.2.9",
