@@ -6,13 +6,15 @@ const shell = {
   test: jest.fn(() => true).mockReturnValueOnce(true).mockReturnValueOnce(false),
   cp: jest.fn(),
 };
-jest.setMock('shelljs', shell);
 
+jest.setMock('shelljs', shell);
 jest.mock('../../../utils/paths');
 jest.mock('../../logger');
 jest.mock('../../../utils/printAssets');
 jest.mock('../../../utils/buildConfigs');
 jest.mock('../../../utils/webpackCompiler');
+
+global.process.exit = jest.fn();
 
 const printAssets = require('../../../utils/printAssets');
 const webpackCompiler = require('../../../utils/webpackCompiler');
@@ -33,6 +35,7 @@ describe('build', () => {
       webpackCompiler.run,
       ...submodules(logger),
       buildConfigs,
+      global.process.exit,
     ].forEach(mock => mock.mockClear());
   });
 
@@ -71,13 +74,16 @@ describe('build', () => {
       'should call webpackCompiler.run');
 
     // client stats
-    const stats = webpackCompiler.mock.calls[0][1];
-    assert.equal(typeof stats, 'function',
-      'stats should be a function');
-    stats('stats');
+    const clientCallback = webpackCompiler.mock.calls[0][1];
+    assert.equal(typeof clientCallback, 'function',
+      'clientCallback should be a function');
+    const stats = {
+      hasErrors: jest.fn(),
+    };
+    clientCallback(stats);
     assert.deepEqual(logger.info.mock.calls, [['Assets:']],
       'should call logger.info');
-    assert.deepEqual(printAssets.mock.calls, [['stats']],
+    assert.deepEqual(printAssets.mock.calls, [[stats]],
       'should call printAssets');
 
     // for server
@@ -86,7 +92,7 @@ describe('build', () => {
       'should call webpackCompiler with serverConfig second');
 
     // done building server
-    doneBuilding();
+    doneBuilding(stats);
     assert.deepEqual(logger.end.mock.calls, [['Done building']],
       'should log success');
   });
@@ -99,5 +105,30 @@ describe('build', () => {
       'should call webpackCompiler.run');
     assert.equal(webpackCompiler.mock.calls.length, 1,
       'should not call webpackCompiler a second time for server');
+  });
+
+  it('exits when the client build errors', () => {
+    build({ test: 'test' });
+    const clientCallback = webpackCompiler.mock.calls[0][1];
+    const failingStats = {
+      hasErrors: jest.fn(() => true),
+    };
+    clientCallback(failingStats);
+    expect(process.exit).toBeCalledWith(1);
+  });
+
+  it('exits when the server build errors', () => {
+    build({ test: 'test' });
+    const clientCallback = webpackCompiler.mock.calls[0][1];
+    clientCallback({
+      hasErrors: jest.fn(),
+    });
+    expect(process.exit.mock.calls.length).toEqual(0);
+
+    const serverCallback = webpackCompiler.mock.calls[1][1];
+    serverCallback({
+      hasErrors: jest.fn(() => true),
+    });
+    expect(process.exit).toBeCalledWith(1);
   });
 });

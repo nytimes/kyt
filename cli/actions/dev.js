@@ -76,7 +76,8 @@ module.exports = (config) => {
   }
 
   // Compile Client Webpack Config
-  clientCompiler = webpackCompiler(clientConfig, () => {
+  clientCompiler = webpackCompiler(clientConfig, (stats) => {
+    if (stats.hasErrors()) return;
     afterClientCompile();
     if (!noServer) {
       compileServer();
@@ -85,9 +86,13 @@ module.exports = (config) => {
 
   // Compile Server Webpack Config
   if (!noServer) {
-    serverCompiler = webpackCompiler(serverConfig, once(() => {
+    const startServerOnce = once(() => {
       ifPortIsFreeDo(serverURL.port, startServer);
-    }));
+    });
+    serverCompiler = webpackCompiler(serverConfig, (stats) => {
+      if (stats.hasErrors()) return;
+      startServerOnce();
+    });
   }
 
   // Starting point...
