@@ -26,7 +26,7 @@ const { buildPath, publicBuildPath, publicSrcPath } = require('../../../utils/pa
 const submodules = mod => Object.keys(mod).map(key => mod[key]);
 
 describe('build', () => {
-  // can replace this with jest.clearAllMocks when it lands in 16.0.0
+  // this can be replaced with jest.clearAllMocks in jest 16.0.0
   beforeEach(() => {
     [
       ...submodules(shell),
