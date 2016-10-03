@@ -62,19 +62,6 @@ module.exports = (config) => {
 
   const compileServer = () => serverCompiler.run(() => undefined);
 
-  // Watch the server files and recompile and restart on changes.
-  if (hasServer) {
-    const watcher = chokidar.watch([serverSrcPath]);
-    watcher.on('ready', () => {
-      watcher
-        .on('add', compileServer)
-        .on('addDir', compileServer)
-        .on('change', compileServer)
-        .on('unlink', compileServer)
-        .on('unlinkDir', compileServer);
-    });
-  }
-
   // Compile Client Webpack Config
   clientCompiler = webpackCompiler(clientConfig, (stats) => {
     if (stats.hasErrors()) return;
@@ -86,6 +73,17 @@ module.exports = (config) => {
 
   // Compile Server Webpack Config
   if (hasServer) {
+    // Watch the server files and recompile and restart on changes.
+    const watcher = chokidar.watch([serverSrcPath]);
+    watcher.on('ready', () => {
+      watcher
+        .on('add', compileServer)
+        .on('addDir', compileServer)
+        .on('change', compileServer)
+        .on('unlink', compileServer)
+        .on('unlinkDir', compileServer);
+    });
+
     const startServerOnce = once(() => {
       ifPortIsFreeDo(serverURL.port, startServer);
     });
