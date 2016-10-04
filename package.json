@@ -12,7 +12,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "jest --testPathPattern /__tests__/",
-    "e2e": "jest --testPathPattern /e2e_tests/tests/ --runInBand --verbose",
+    "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage"
   },

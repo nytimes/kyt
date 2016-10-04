@@ -1,10 +1,9 @@
+const path = require('path');
+const shell = require('shelljs');
+const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('Installation and Setup', () => {
   it('installs', () => {
-    const path = require.requireActual('path');
-    const pkgJsonPath = path.join(__dirname, './../pkg.json');
-    const shell = require.requireActual('shelljs');
-
     if (shell.test('-d', 'cli-test')) {
       shell.rm('-rf', 'cli-test');
     }
@@ -20,7 +19,6 @@ describe('Installation and Setup', () => {
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up the default starter-kyt', () => {
-    const shell = require.requireActual('shelljs');
     const output = shell.exec('node_modules/.bin/kyt setup -r git@github.com:nytm/wf-kyt-starter-test.git');
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
@@ -36,7 +34,6 @@ describe('Installation and Setup', () => {
     expect(setupArr.includes('👍  Created src directory')).toBe(true);
   });
   it('sets up with the correct file', () => {
-    const shell = require.requireActual('shelljs');
     expect(shell.test('-d', 'src')).toBe(true);
     expect(shell.test('-f', 'kyt.config.js')).toBe(true);
     expect(shell.test('-f', '.editorconfig')).toBe(true);
@@ -57,8 +54,7 @@ describe('Installation and Setup', () => {
     expect(scripts['kyt:help']).toBe('kyt --help');
   });
 
-  // afterAll(() => {
-  //   const shell = require.requireActual('shelljs');
-  //   shell.rm('-rf', 'cli-test');
-  // });
+  afterAll(() => {
+    shell.rm('-rf', 'cli-test');
+  });
 });
