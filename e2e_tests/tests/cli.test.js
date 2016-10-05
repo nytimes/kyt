@@ -1,5 +1,6 @@
 const path = require('path');
 const shell = require('shelljs');
+
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('Installation and Setup', () => {
@@ -54,7 +55,37 @@ describe('Installation and Setup', () => {
     expect(scripts['kyt:help']).toBe('kyt --help');
   });
 
+  it('runs the lint command', () => {
+    expect(true).toBe(true);
+    const output = shell.exec('npm run lint');
+    expect(output.code).toBe(0);
+    const outputArr = output.stdout.split('\n');
+    expect(outputArr.includes('Your JS looks great ✨')).toBe(true);
+  });
+
+  it('runs the lint-style command', () => {
+    const output = shell.exec('node_modules/.bin/kyt lint-style');
+    expect(output.code).toBe(0);
+    const outputArr = output.stdout.split('\n');
+    expect(outputArr.includes('✅  Your styles look good! ✨')).toBe(true);
+  });
+
+  it('runs the tests command', () => {
+    const output = shell.exec('npm run test');
+    expect(output.code).toBe(0);
+  });
+
+  it('runs the build command', () => {
+    const output = shell.exec('npm run build');
+    expect(output.code).toBe(0);
+    expect(shell.test('-d', 'build')).toBe(true);
+    expect(shell.test('-d', 'build/server')).toBe(true);
+    expect(shell.test('-f', 'build/publicAssets.json')).toBe(true);
+    expect(shell.test('-d', 'build/public')).toBe(true);
+  });
+
   afterAll(() => {
+    shell.cd('..');
     shell.rm('-rf', 'cli-test');
   });
 });
