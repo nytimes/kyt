@@ -60,7 +60,7 @@ describe('Installation and Setup', () => {
     const output = shell.exec('npm run lint');
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
-    expect(outputArr.includes('Your JS looks great ✨')).toBe(true);
+    expect(outputArr.includes('✅  Your JS looks great ✨')).toBe(true);
   });
 
   it('runs the lint-style command', () => {
