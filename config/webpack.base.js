@@ -6,6 +6,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
+const url = require('url');
 const babel = require('./babel');
 const { buildPath, userNodeModulesPath } = require('../utils/paths')();
 
@@ -32,7 +33,9 @@ module.exports = options => ({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || options.environment),
       KYT: {
         SERVER_PORT: JSON.stringify((options.serverURL && options.serverURL.port) || ''),
+        SERVER_URL: JSON.stringify((options.serverURL && url.format(options.serverURL)) || ''),
         CLIENT_PORT: JSON.stringify((options.clientURL && options.clientURL.port) || ''),
+        CLIENT_URL: JSON.stringify((options.clientURL && url.format(options.clientURL)) || ''),
         PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
         PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
         ASSETS_MANIFEST:
