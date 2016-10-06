@@ -13,7 +13,7 @@ const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
-const { buildPath, serverSrcPath } = require('../../utils/paths')();
+const { buildPath, serverSrcPath, publicSrcPath } = require('../../utils/paths')();
 
 module.exports = (config) => {
   logger.start('Starting development build...');
@@ -43,6 +43,7 @@ module.exports = (config) => {
 
     app.use(webpackDevMiddleware);
     app.use(hotMiddleware(clientCompiler));
+    app.use(express.static(publicSrcPath));
     app.listen(clientURL.port, clientURL.hostname);
   };
 
