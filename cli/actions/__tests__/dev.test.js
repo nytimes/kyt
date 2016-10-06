@@ -61,7 +61,7 @@ describe('dev', () => {
     // start client
     expect(devMiddleware).toBeCalled();
     expect(express).toBeCalled();
-    expect(express.use.mock.calls.length).toBe(2);
+    expect(express.use.mock.calls.length).toBe(3);
     expect(express.listen).toBeCalledWith(port, hostname);
   });
 
