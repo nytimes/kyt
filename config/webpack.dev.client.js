@@ -26,7 +26,7 @@ module.exports = (options) => {
   return {
     target: 'web',
 
-    devtool: 'cheap-module-source-map',
+    devtool: 'inline-source-map',
 
     entry: {
       main,
@@ -62,6 +62,7 @@ module.exports = (options) => {
 
     plugins: [
       new webpack.NoErrorsPlugin(),
+
       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
 
       new AssetsPlugin({
