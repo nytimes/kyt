@@ -31,7 +31,9 @@ All `.js` files in `/src` are transpiled with Babel.
 kyt sets several global variables with useful information about the app environment.
 
 * `KYT.SERVER_PORT` Port your node server should listen on.
+* `KYT.SERVER_URL` URL of the backend server. For defaults and configuration, check out [`serverURL` in kyt.config.js configuration options](/docs/kytConfig.md#kytconfigjs-options).
 * `KYT.CLIENT_PORT` Port the client assets server is listening on.
+* `KYT.CLIENT_URL` URL for the client static/public directory. For defaults and configuration, check out [`clientURL` in kyt.config.js configuration options](/docs/kytConfig.md#kytconfigjs-options).
 * `KYT.PUBLIC_PATH` Full path for static assets server
 * `KYT.PUBLIC_DIR` Relative path to the public directory
 * `KYT.ASSETS_MANIFEST` Object with build assets paths
