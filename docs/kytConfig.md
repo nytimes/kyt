@@ -56,6 +56,13 @@ modifyJestConfig: (baseConfig) => {
 
 > **NOTE:** Currently the base Jest config runs `modifyWebpackConfig()` for you with `options.environment = "development"` in order to grab the development settings for your app (babel plugins, aliases, etc). See the [Jest config recipe](/docs/Recipes.md) for an example use case.
 
+**Dev Tip:**
+In some cases you may notice that your Jest configuration doesn't seem to have an affect, this is because Jest has a built-in cache to speed up subsequent test runs. In order to ensure that your configuration changes are reflected, run your tests with the [--no-cache flag](http://facebook.github.io/jest/docs/troubleshooting.html#caching-issues) passed into Jest, like so:
+
+```
+kyt run test -- --no-cache
+```
+
 ## Creating env specific kyt configs
 kyt allows developers to specify a different kyt config in `dev` and `build` commands for the purpose of creating environment specific configurations.
 ```
