@@ -1,10 +1,11 @@
 const path = require('path');
 const shell = require('shelljs');
+const kill = require('../../utils/pskill');
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
-describe('Installation and Setup', () => {
-  it('installs', () => {
+describe('KYT CLI', () => {
+  it('installs kyt', () => {
     if (shell.test('-d', 'cli-test')) {
       shell.rm('-rf', 'cli-test');
     }
@@ -19,7 +20,7 @@ describe('Installation and Setup', () => {
     expect(shell.test('-f', 'package.json')).toBe(true);
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
-  it('sets up the default starter-kyt', () => {
+  it('sets up a starter-kyt', () => {
     const output = shell.exec('node_modules/.bin/kyt setup -r git@github.com:nytm/wf-kyt-starter-test.git');
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
@@ -82,6 +83,54 @@ describe('Installation and Setup', () => {
     expect(shell.test('-d', 'build/server')).toBe(true);
     expect(shell.test('-f', 'build/publicAssets.json')).toBe(true);
     expect(shell.test('-d', 'build/public')).toBe(true);
+  });
+
+  window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
+
+  it('starts the app', (done) => {
+    shell.exec('npm run build');
+    const child = shell.exec('npm run start', (code, stdout, stderr) => {
+      done();
+    });
+    child.stdout.on('data', (data) => {
+      if (data.includes('Server running')) {
+        shell.exec('sleep 3');
+        const output = shell.exec('curl -I localhost:3100');
+        expect(output.includes('200'));
+        kill(child.pid);
+      }
+    });
+  });
+
+
+  it('dev', (done) => {
+    const child = shell.exec('npm run dev', (code, stdout, stderr) => {
+      done();
+    });
+    child.stdout.on('data', (data) => {
+      if (data.includes('✅  Development started')) {
+        shell.exec('sleep 2');
+        const output = shell.exec('curl -I localhost:3100');
+        expect(output.includes('200'));
+        kill(child.pid);
+      }
+    });
+  });
+
+  it('proto', (done) => {
+    const child = shell.exec('npm run proto', (code, stdout, stderr) => {
+      done();
+    });
+    let stillAlive = true;
+    child.stdout.on('data', (data) => {
+      if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
+        stillAlive = false;
+        shell.exec('sleep 2');
+        const output = shell.exec('curl -I localhost:3102/prototype');
+        expect(output.includes('200'));
+        kill(child.pid);
+      }
+    });
   });
 
   afterAll(() => {
