@@ -1,6 +1,6 @@
 const path = require('path');
 const shell = require('shelljs');
-const kill = require('../../utils/pskill');
+const kill = require('../../utils/psKill');
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
@@ -85,11 +85,12 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'build/public')).toBe(true);
   });
 
+  // eslint-disable-next-line
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
 
   it('starts the app', (done) => {
     shell.exec('npm run build');
-    const child = shell.exec('npm run start', (code, stdout, stderr) => {
+    const child = shell.exec('npm run start', () => {
       done();
     });
     child.stdout.on('data', (data) => {
@@ -104,7 +105,7 @@ describe('KYT CLI', () => {
 
 
   it('dev', (done) => {
-    const child = shell.exec('npm run dev', (code, stdout, stderr) => {
+    const child = shell.exec('npm run dev', () => {
       done();
     });
     child.stdout.on('data', (data) => {
@@ -118,7 +119,7 @@ describe('KYT CLI', () => {
   });
 
   it('proto', (done) => {
-    const child = shell.exec('npm run proto', (code, stdout, stderr) => {
+    const child = shell.exec('npm run proto', () => {
       done();
     });
     let stillAlive = true;
