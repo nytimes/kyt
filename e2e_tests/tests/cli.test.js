@@ -21,7 +21,7 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
-    const output = shell.exec('node_modules/.bin/kyt setup -r git@github.com:nytm/wf-kyt-starter-test.git');
+    const output = shell.exec('node_modules/.bin/kyt setup -r git@github.com:NYTimes/kyt-starter-test.git');
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
     expect(setupArr.includes('🔥  Setting up starter-kyt')).toBe(true);
