@@ -77,6 +77,13 @@ node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angu
 The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot reloading to allow for fast development.
 Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
 
+You can pass flags to the node server through `kyt dev`.
+For example
+```
+kyt dev -- --inspect
+```
+will run the [node debugging for Chrome DevTools](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27#.mpuwgy17v)
+
 ## build
 
 The `build` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and saves them to a build folder. This is an optimized production build.
