@@ -17,7 +17,7 @@ jest.setMock('path', {
 });
 
 const modifyBabelConfig = jest.fn(c => c);
-const mockKytConfig = () => ({ modifyBabelConfig });
+const mockKytConfig = jest.fn(() => ({ modifyBabelConfig }));
 jest.setMock('../../utils/kytConfig', mockKytConfig);
 
 const logger = require('../../cli/logger');
@@ -27,6 +27,7 @@ const babel = require('../babel');
 describe('babel', () => {
   beforeEach(() => {
     modifyBabelConfig.mockClear();
+    mockKytConfig.mockClear();
     global.process.exit = jest.fn();
     Object.keys(logger).forEach(k => logger[k].mockClear());
   });
@@ -76,5 +77,18 @@ describe('babel', () => {
     babel();
     expect(logger.error).toBeCalledWith('Error in your kyt.config.js modifyBabelConfig():', err);
     expect(global.process.exit).toBeCalledWith(1);
+  });
+
+  it('does not log out merged config if config.debug is falsy', () => {
+    babel();
+    expect(logger.debug).not.toBeCalled();
+  });
+
+  it('logs out the merged config if config.debug is truthy', () => {
+    mockKytConfig.mockImplementationOnce(() => ({ debug: true, modifyBabelConfig }));
+    babel();
+    expect(logger.debug).toBeCalled();
+    expect(typeof logger.debug.mock.calls[0][0]).toBe('string');
+    expect(typeof logger.debug.mock.calls[0][1]).toBe('object');
   });
 });

@@ -1,6 +1,6 @@
 const path = require('path');
 const fs = require('fs');
-const config = require('../utils/kytConfig')();
+const getKytConfig = require('../utils/kytConfig');
 const logger = require('../cli/logger');
 
 // Uses require.resolve to add the full paths to all of the plugins
@@ -18,6 +18,8 @@ const resolvePluginsPresets = (babelGroup) => {
 };
 
 module.exports = (options) => {
+  const config = getKytConfig();
+
   // Create the babelrc query for the babel loader.
   const babelrc = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'), 'utf8'));
   babelrc.babelrc = false;
@@ -30,7 +32,11 @@ module.exports = (options) => {
 
   // modify via userland kytConfig's `modifyBabelConfig`
   try {
-    return config.modifyBabelConfig(babelrc, options);
+    const mergedBabelrc = config.modifyBabelConfig(babelrc, options);
+    if (config.debug) {
+      logger.debug('Merged babel configuration:', mergedBabelrc);
+    }
+    return mergedBabelrc;
   } catch (error) {
     logger.error('Error in your kyt.config.js modifyBabelConfig():', error);
     // return to satisfy eslint `consistent-return` rule
