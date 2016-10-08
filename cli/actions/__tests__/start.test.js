@@ -7,7 +7,7 @@ const start = require('../start');
 
 describe('start', () => {
   const serverURL = { href: 'href' };
-  start({ serverURL });
+  start({ serverURL }, null, []);
 
   it('logs start and end', () => {
     expect(logger.start).toBeCalledWith('Starting production...');
@@ -15,6 +15,6 @@ describe('start', () => {
   });
 
   it('executes the node process asynchronously', () => {
-    expect(shell.exec).toBeCalledWith('node build/server/main.js', { async: true });
+    expect(shell.exec).toBeCalledWith('node build/server/main.js ', { async: true });
   });
 });

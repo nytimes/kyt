@@ -40,7 +40,9 @@ describe('dev', () => {
     clientURL: mockURL,
     serverURL: mockURL,
     reactHotLoader: false,
-  });
+  },
+  {},
+  []);
 
   it('cleans the build directory', () => {
     expect(logger.task).toBeCalledWith('Cleaned ./build');
@@ -83,9 +85,9 @@ describe('dev', () => {
   });
 
   it('server compilation done', () => {
+    const flagsStub = [];
     serverCompilerDone(stats);
-
-    expect(nodemon).toBeCalledWith({ script: 'fakePath', watch: ['fakePath'] });
+    expect(nodemon).toBeCalledWith({ script: 'fakePath', watch: ['fakePath'], nodeArgs: flagsStub });
 
     // nodemon.once
     expect(nodemon.once.mock.calls[0][0]).toBe('start');

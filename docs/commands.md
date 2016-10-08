@@ -78,7 +78,7 @@ The `dev` command takes the entry index.js in `src/client/` and `src/server/`, c
 Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
 
 You can pass flags to the node server through `kyt dev`.
-For example
+For example:
 ```
 kyt dev -- --inspect
 ```
@@ -97,6 +97,11 @@ The build command will also copy the `src/public` directory for static assets.
 The `start` command takes the compiled code from the production build and runs a node server at the specified port.
 
 Optionally, you can configure the server url in your [kyt.config.js](/docs/kytConfig.md).
+
+You can also pass flags to node through `kyt start`:
+```
+kyt start -- --no-warnings
+```
 
 ## test
 
