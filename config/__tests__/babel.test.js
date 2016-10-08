@@ -33,8 +33,8 @@ describe('babel', () => {
 
   it('does not call process.exit or logger.error on a successful run', () => {
     babel();
-    expect(logger.error.mock.calls.length).toBe(0);
-    expect(global.process.exit.mock.calls.length).toBe(0);
+    expect(logger.error).not.toBeCalled();
+    expect(global.process.exit).not.toBeCalled();
   });
 
   it('sets flags', () => {
