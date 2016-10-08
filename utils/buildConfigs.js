@@ -47,12 +47,28 @@ module.exports = (config, environment = 'development') => {
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
   serverConfig = merge.smart(baseConfig(serverOptions), serverConfig(serverOptions));
 
-  // Modify via userland config
+  // Modify via userland webpack config
   try {
     clientConfig = config.modifyWebpackConfig(clone(clientConfig), clientOptions);
     serverConfig = config.modifyWebpackConfig(clone(serverConfig), serverOptions);
   } catch (error) {
     logger.error('Error in your kyt.config.js modifyWebpackConfig():', error);
+    process.exit(1);
+  }
+
+  // Merge in userland babel config via `config.transformBabelConfig`
+  try {
+    [
+      { webpackConfig: clientConfig, options: clientOptions },
+      { webpackConfig: serverConfig, options: serverOptions },
+    ].forEach(({ webpackConfig, options }) => {
+      const babelLoader = webpackConfig.module.loaders.find(({ loader }) => loader === 'babel-loader');
+      Object.assign(babelLoader, {
+        query: config.modifyBabelConfig(clone(babelLoader.query), options),
+      });
+    });
+  } catch (error) {
+    logger.error('Error in your kyt.config.js modifyBabelConfig():', error);
     process.exit(1);
   }
 
