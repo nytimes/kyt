@@ -56,22 +56,6 @@ module.exports = (config, environment = 'development') => {
     process.exit(1);
   }
 
-  // Merge in userland babel config via `config.transformBabelConfig`
-  try {
-    [
-      { webpackConfig: clientConfig, options: clientOptions },
-      { webpackConfig: serverConfig, options: serverOptions },
-    ].forEach(({ webpackConfig, options }) => {
-      const babelLoader = webpackConfig.module.loaders.find(({ loader }) => loader === 'babel-loader');
-      Object.assign(babelLoader, {
-        query: config.modifyBabelConfig(clone(babelLoader.query), options),
-      });
-    });
-  } catch (error) {
-    logger.error('Error in your kyt.config.js modifyBabelConfig():', error);
-    process.exit(1);
-  }
-
   if (config.debug) {
     logger.debug('Client webpack configuration:', clientConfig);
     logger.debug('\n\n');

@@ -1,5 +1,7 @@
 const path = require('path');
 const fs = require('fs');
+const config = require('../utils/kytConfig')();
+const logger = require('../cli/logger');
 
 // Uses require.resolve to add the full paths to all of the plugins
 // and presets, making sure that we handle the new array syntax.
@@ -26,5 +28,12 @@ module.exports = (options) => {
   }
   Object.keys(babelrc.env || {}).forEach(env => resolvePluginsPresets(babelrc.env[env]));
 
-  return babelrc;
+  // modify via userland kytConfig's `modifyBabelConfig`
+  try {
+    return config.modifyBabelConfig(babelrc, options);
+  } catch (error) {
+    logger.error('Error in your kyt.config.js modifyBabelConfig():', error);
+    // return to satisfy eslint `consistent-return` rule
+    return process.exit(1);
+  }
 };

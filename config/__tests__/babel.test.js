@@ -15,6 +15,8 @@ jest.setMock('path', {
   resolve: a => a,
 });
 
+jest.mock('../../utils/kytConfig');
+
 const babel = require('../babel');
 
 describe('babel', () => {
