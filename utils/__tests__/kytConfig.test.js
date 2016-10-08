@@ -30,6 +30,7 @@ describe('kytConfig', () => {
     expect(logger.info).toBeCalled();
     expect(typeof config.modifyWebpackConfig).toBe('function');
     expect(typeof config.modifyJestConfig).toBe('function');
+    expect(typeof config.modifyBabelConfig).toBe('function');
     expect(() => {
       config.productionPublicPath = 'frozen!';
     }).toThrow();
