@@ -47,7 +47,7 @@ module.exports = (config, environment = 'development') => {
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
   serverConfig = merge.smart(baseConfig(serverOptions), serverConfig(serverOptions));
 
-  // Modify via userland webpack config
+  // Modify via userland config
   try {
     clientConfig = config.modifyWebpackConfig(clone(clientConfig), clientOptions);
     serverConfig = config.modifyWebpackConfig(clone(serverConfig), serverOptions);
