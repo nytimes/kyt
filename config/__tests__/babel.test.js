@@ -16,10 +16,15 @@ jest.setMock('path', {
 });
 
 jest.mock('../../utils/kytConfig');
+const kytConfig = require('../../utils/kytConfig');
 
 const babel = require('../babel');
 
 describe('babel', () => {
+  beforeEach(() => {
+    kytConfig().modifyBabelConfig.mockClear();
+  });
+
   it('sets flags', () => {
     const babelrc = babel();
     expect(babelrc.babelrc).toBe(false);
@@ -36,5 +41,19 @@ describe('babel', () => {
     const babelrc = babel();
     expect(babelrc.env.development.plugins).toEqual([thisResolved]);
     expect(babelrc.env.development.presets).toEqual([[thisResolved]]);
+  });
+
+  it('calls kytConfig\'s modifyBabelConfig', () => {
+    const opts = {};
+    babel(opts);
+    const config = kytConfig();
+    expect(config.modifyBabelConfig).toBeCalled();
+    expect(config.modifyBabelConfig.mock.calls[0][0]).toEqual(Object.assign({}, stubBabelrc, {
+      babelrc: false,
+      cacheDirectory: false,
+      plugins: [],
+      presets: [],
+    }));
+    expect(config.modifyBabelConfig.mock.calls[0][1]).toBe(opts);
   });
 });
