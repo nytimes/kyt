@@ -8,6 +8,7 @@ const stubBabelrc = {
     },
   },
 };
+jest.mock('../../cli/logger');
 jest.setMock('fs', {
   readFileSync: () => JSON.stringify(stubBabelrc),
 });
@@ -15,14 +16,25 @@ jest.setMock('path', {
   resolve: a => a,
 });
 
-jest.mock('../../utils/kytConfig');
-const kytConfig = require('../../utils/kytConfig');
+const modifyBabelConfig = jest.fn(c => c);
+const mockKytConfig = () => ({ modifyBabelConfig });
+jest.setMock('../../utils/kytConfig', mockKytConfig);
+
+const logger = require('../../cli/logger');
 
 const babel = require('../babel');
 
 describe('babel', () => {
   beforeEach(() => {
-    kytConfig().modifyBabelConfig.mockClear();
+    modifyBabelConfig.mockClear();
+    global.process.exit = jest.fn();
+    Object.keys(logger).forEach(k => logger[k].mockClear());
+  });
+
+  it('does not call process.exit or logger.error on a successful run', () => {
+    babel();
+    expect(logger.error.mock.calls.length).toBe(0);
+    expect(global.process.exit.mock.calls.length).toBe(0);
   });
 
   it('sets flags', () => {
@@ -46,6 +58,7 @@ describe('babel', () => {
   it('calls kytConfig\'s modifyBabelConfig', () => {
     const opts = {};
     babel(opts);
+    const kytConfig = require('../../utils/kytConfig');
     const config = kytConfig();
     expect(config.modifyBabelConfig).toBeCalled();
     expect(config.modifyBabelConfig.mock.calls[0][0]).toEqual(Object.assign({}, stubBabelrc, {
@@ -55,5 +68,13 @@ describe('babel', () => {
       presets: [],
     }));
     expect(config.modifyBabelConfig.mock.calls[0][1]).toBe(opts);
+  });
+
+  it('logs an error and exits the process if modifyBabelConfig throws', () => {
+    const err = new Error('oh no');
+    modifyBabelConfig.mockImplementationOnce(() => { throw err; });
+    babel();
+    expect(logger.error).toBeCalledWith('Error in your kyt.config.js modifyBabelConfig():', err);
+    expect(global.process.exit).toBeCalledWith(1);
   });
 });
