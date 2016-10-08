@@ -60,7 +60,7 @@ modifyJestConfig: (baseConfig) => {
 In some cases you may notice that your Jest configuration doesn't seem to have an affect, this is because Jest has a built-in cache to speed up subsequent test runs. In order to ensure that your configuration changes are reflected, run your tests with the [--no-cache flag](http://facebook.github.io/jest/docs/troubleshooting.html#caching-issues) passed into Jest, like so:
 
 ```
-kyt run test -- --no-cache
+kyt test -- --no-cache
 ```
 
 ## Creating env specific kyt configs
