@@ -6,6 +6,7 @@ const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
   it('installs kyt', () => {
+    console.log("TESTING", ENV.fetch("TEST_CI_USER_TOKEN"));
     if (shell.test('-d', 'cli-test')) {
       shell.rm('-rf', 'cli-test');
     }
