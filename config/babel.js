@@ -30,13 +30,13 @@ module.exports = (options) => {
   }
   Object.keys(babelrc.env || {}).forEach(env => resolvePluginsPresets(babelrc.env[env]));
 
-  // modify via userland kytConfig's `modifyBabelConfig`
   try {
-    const mergedBabelrc = config.modifyBabelConfig(babelrc, options);
+    // modify via userland kytConfig's `modifyBabelConfig`
+    const modifiedBabelrc = config.modifyBabelConfig(babelrc, options);
     if (config.debug) {
-      logger.debug('Merged babel configuration:', mergedBabelrc);
+      logger.debug('Modified babel configuration:', modifiedBabelrc);
     }
-    return mergedBabelrc;
+    return modifiedBabelrc;
   } catch (error) {
     logger.error('Error in your kyt.config.js modifyBabelConfig():', error);
     // return to satisfy eslint `consistent-return` rule
