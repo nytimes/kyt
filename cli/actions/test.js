@@ -9,7 +9,7 @@ const { srcPath } = require('../../utils/paths')();
 const buildConfigs = require('../../utils/buildConfigs');
 
 
-module.exports = (config, program, flags) => {
+module.exports = (config, flags) => {
   // Comment the following to see verbose shell ouput.
   shell.config.silent = false;
 

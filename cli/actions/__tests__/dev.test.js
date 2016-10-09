@@ -41,7 +41,6 @@ describe('dev', () => {
     serverURL: mockURL,
     reactHotLoader: false,
   },
-  {},
   []);
 
   it('cleans the build directory', () => {

@@ -18,7 +18,7 @@ const {
 // eslint-disable-next-line import/no-dynamic-require
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
-module.exports = (config, program) => {
+module.exports = (config, flags, program) => {
   const args = program.args[0];
   const date = Date.now();
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape

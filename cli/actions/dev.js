@@ -15,7 +15,7 @@ const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, serverSrcPath } = require('../../utils/paths')();
 
-module.exports = (config, program, flags) => {
+module.exports = (config, flags) => {
   logger.start('Starting development build...');
 
   // Kill the server on exit.
@@ -51,7 +51,7 @@ module.exports = (config, program, flags) => {
       serverCompiler.options.output.path, `${Object.keys(serverCompiler.options.entry)[0]}.js`
     );
 
-    nodemon({ script: serverPath, watch: [serverPath], nodeArgs: [...flags] })
+    nodemon({ script: serverPath, watch: [serverPath], nodeArgs: flags })
       .once('start', () => {
         logger.task(`Server running at: ${serverURL.href}`);
         logger.end('Development started');

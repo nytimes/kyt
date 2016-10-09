@@ -4,7 +4,7 @@
 const shell = require('shelljs');
 const logger = require('./../logger');
 
-module.exports = (config, program, flags) => {
+module.exports = (config, flags) => {
   logger.start('Starting production...');
   const cmd = `node build/server/main.js ${flags.join(' ')}`;
   shell.exec(cmd, { async: true });

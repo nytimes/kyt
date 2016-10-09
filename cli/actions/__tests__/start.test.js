@@ -7,7 +7,7 @@ const start = require('../start');
 
 describe('start', () => {
   const serverURL = { href: 'href' };
-  start({ serverURL }, null, []);
+  start({ serverURL }, []);
 
   it('logs start and end', () => {
     expect(logger.start).toBeCalledWith('Starting production...');
