@@ -26,7 +26,7 @@ module.exports = options => ({
 
   output: {
     path: assetsBuildPath,
-    filename: '[name]-[hash].js',
+    filename: '[name]-[chunkhash].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
     libraryTarget: 'var',
