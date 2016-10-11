@@ -24,6 +24,7 @@ describe('KYT CLI', () => {
     const setupURL = process.env.CI_USER_TOKEN ?
       `https://${process.env.CI_USER_TOKEN}@github.com/NYTimes/kyt-starter-test.git` :
       'git@github.com:NYTimes/kyt-starter-test.git';
+    console.log(setupURL);
     const output = shell.exec(`node_modules/.bin/kyt setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
