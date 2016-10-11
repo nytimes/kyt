@@ -8,7 +8,7 @@ const { clientConfig } = buildConfigs(config);
 
 // Merge userland babel config with our babel config
 // This should go away after https://github.com/NYTimes/kyt/issues/134
-const clientBabelConfig = clientConfig.module.loaders
+const clientBabelConfig = clientConfig.module.rules
   .find(loader => loader.loader === 'babel-loader')
   .query;
 
