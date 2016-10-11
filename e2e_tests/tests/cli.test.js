@@ -21,11 +21,11 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
-    console.log('TOKEN', process.env.CI_USER_TOKEN);
-    const setupURL = process.env.CI_USER_TOKEN ?
-      `https://${process.env.CI_USER_TOKEN}@github.com/NYTimes/kyt-starter-test.git` :
-      'git@github.com:NYTimes/kyt-starter-test.git';
-    console.log(setupURL);
+    let setupURL = 'git@github.com:NYTimes/kyt-starter-test.git';
+    if (process.env.CI_USER_TOKEN) {
+      console.log('it exists');
+      setupURL = `https://${process.env.CI_USER_TOKEN}@github.com/NYTimes/kyt-starter-test.git`;
+    }
     const output = shell.exec(`node_modules/.bin/kyt setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
