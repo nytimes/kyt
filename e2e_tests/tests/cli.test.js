@@ -6,7 +6,6 @@ const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
   it('installs kyt', () => {
-    console.log('TESTING', process.env.TEST_CI_USER_TOKEN); // eslint-disable-line
     if (shell.test('-d', 'cli-test')) {
       shell.rm('-rf', 'cli-test');
     }
@@ -22,7 +21,10 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
-    const output = shell.exec('node_modules/.bin/kyt setup -r https://github.com/NYTimes/kyt-starter-test.git');
+    const setupURL = process.env.CI_USER_TOKEN ?
+      `https://${process.env.CI_USER_TOKEN}@github.com/NYTimes/kyt-starter-test.git` :
+      'git@github.com:NYTimes/kyt-starter-test.git';
+    const output = shell.exec(`node_modules/.bin/kyt setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
     expect(setupArr.includes('🔥  Setting up starter-kyt')).toBe(true);
