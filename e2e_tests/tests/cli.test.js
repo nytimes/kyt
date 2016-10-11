@@ -21,6 +21,7 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
+    console.log('TOKEN', process.env.CI_USER_TOKEN);
     const setupURL = process.env.CI_USER_TOKEN ?
       `https://${process.env.CI_USER_TOKEN}@github.com/NYTimes/kyt-starter-test.git` :
       'git@github.com:NYTimes/kyt-starter-test.git';
