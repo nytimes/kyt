@@ -18,8 +18,7 @@ const {
 // eslint-disable-next-line import/no-dynamic-require
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
-module.exports = (config, flags, program) => {
-  const args = program.args[0];
+module.exports = (config, flags, args) => {
   const date = Date.now();
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:NYTimes/kyt-starter.git';
