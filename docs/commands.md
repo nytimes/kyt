@@ -108,6 +108,11 @@ kyt start -- --no-warnings
 The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
 kyt test looks for any `*.test.js` files in `src/`.
 
+You can pass flags to jest through `kyt test`.
+```
+kyt test -- --no-cache
+```
+
 ### test-watch
 
 Runs Jest with `--watch`.
@@ -128,6 +133,12 @@ During `setup`, an `.eslintrc.json` file is copied into the root of your app whi
 You can add or update any rules in this file.
 
 kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/config/.eslintrc.json).
+
+Flags can be passed to ESLint through `kyt lint`
+
+```
+kyt lint -- --fix
+```
 
 ## lint-style
 
