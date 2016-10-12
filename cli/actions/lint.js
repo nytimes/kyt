@@ -16,7 +16,7 @@ module.exports = (config, flags) => {
   logger.info(`Using ESLint file: ${configFile}`);
 
   const lint = () => {
-    const cmd = `eslint src/ -c ${configFile} --color --env browser ${flags.join(' ')}`;
+    const cmd = `eslint src/ -c ${configFile} --color ${flags.join(' ')}`;
     const output = shell.exec(cmd);
     if (output.code === 0) {
       logger.end(`Your JS looks ${output.stdout === '' ? 'great ✨' :
