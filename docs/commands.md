@@ -14,7 +14,7 @@ node_modules/.bin/kyt build
 1. `setup` sets up kyt and installs a specified [starter-kyt](/docs/Starterkyts.md)
 2. `dev` starts up a development environment
 3. `build` compiles server and client code for production use
-4. `start` runs production code
+4. `start` runs the production server
 5. `test` runs all tests in /src
 6. `proto` starts the prototyping app
 7. `lint` lints src code using ESLint
@@ -75,11 +75,14 @@ node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angu
 ## dev
 
 The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot reloading to allow for fast development.
+
+If `hasServer` is set to `false` in [kyt.config.js](/docs/kytConfig.md), `src/server/` is ignored and no backend server is started.
+
 Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
 
 ## build
 
-The `build` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and saves them to a build folder. This is an optimized production build.
+The `build` command takes the entry index.js in `src/client/` and `src/server/` (ignoring the latter if `hasServer` set to false in [kyt.config.js](/docs/kytConfig.md)), compiles them, and saves them to a build folder. This is an optimized production build.
 
 The build command will also copy the `src/public` directory for static assets.
 
@@ -87,7 +90,7 @@ The build command will also copy the `src/public` directory for static assets.
 
 ## start
 
-The `start` command takes the compiled code from the production build and runs a node server at the specified port.
+The `start` command takes the compiled code from the production build and runs a node server at the specified port. `start` will log an error and exit if `hasServer` is set to `false` in your [kyt.config.js](/docs/kytConfig.md).
 
 Optionally, you can configure the server url in your [kyt.config.js](/docs/kytConfig.md).
 
