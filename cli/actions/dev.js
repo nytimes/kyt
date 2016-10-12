@@ -28,7 +28,8 @@ module.exports = (config) => {
 
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
-    logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
+    if (!hasServer) logger.task(`Starting up server: ${clientCompiler.options.output.publicPath}`);
+    else logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
   });
 
   // Clean the build directory.
@@ -68,6 +69,8 @@ module.exports = (config) => {
     afterClientCompile();
     if (hasServer) {
       compileServer();
+    } else {
+      logger.end('Client started');
     }
   });
 
