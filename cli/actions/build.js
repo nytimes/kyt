@@ -51,6 +51,8 @@ module.exports = (config) => {
     printAssets(stats);
     if (config.hasServer) {
       buildServer();
+    } else {
+      logger.end('Done building');
     }
   });
   clientCompiler.run(() => undefined);
