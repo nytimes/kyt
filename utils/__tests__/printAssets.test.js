@@ -29,9 +29,9 @@ describe('printAssets', () => {
 
   it('should print asset stats', () => {
     expect(logger.log)
-      .toBeCalledWith('    648.98 KB    build/public/assets/main-1087ba4603e1150cbc80.js');
+      .toBeCalledWith('    648.98 KB    build/public/main-1087ba4603e1150cbc80.js');
 
     expect(logger.log)
-      .toBeCalledWith('    169.2 KB     build/public/assets/main-9b8998c0b9922c283729.css');
+      .toBeCalledWith('    169.2 KB     build/public/main-9b8998c0b9922c283729.css');
   });
 });

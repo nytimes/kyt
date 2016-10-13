@@ -25,7 +25,7 @@ module.exports = (config, environment = 'development') => {
     serverURL,
     clientURL,
     environment,
-    publicPath: `${clientURL.href}assets/`,
+    publicPath: `${clientURL.href}`,
     publicDir: 'src/public',
     clientAssetsFile: 'publicAssets.json',
     reactHotLoader,

@@ -49,7 +49,11 @@ module.exports = (config) => {
     if (stats.hasErrors()) process.exit(1);
     logger.info('Assets:');
     printAssets(stats);
-    buildServer();
+    if (config.hasServer) {
+      buildServer();
+    } else {
+      logger.end('Done building');
+    }
   });
   clientCompiler.run(() => undefined);
 };
