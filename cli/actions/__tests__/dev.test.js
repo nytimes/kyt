@@ -58,13 +58,21 @@ describe('dev', () => {
   const hostname = 'hostname';
   const mockURL = { href, port, hostname };
 
+  require('../dev')({
+    clientURL: mockURL,
+    serverURL: mockURL,
+    reactHotLoader: false,
+  },
+  []);
+
   it('runs correctly with a server enabled', () => {
     dev({
       clientURL: mockURL,
       serverURL: mockURL,
       reactHotLoader: false,
       hasServer: true,
-    });
+    },
+    []);
 
     assert.deepEqual(logger.task.mock.calls[0], ['Cleaned ./build'],
       'should log that it cleaned the build directory');
@@ -104,20 +112,22 @@ describe('dev', () => {
       'second arg for server webpackCompiler should be a callback');
 
     clientCompilerDone(stats);
-    assert.equal(logger.task.mock.calls[1][0], 'Client assets serving from publicPath',
+
+    assert.equal(logger.task.mock.calls[2][0], 'Client assets serving from publicPath',
       'should log a message about client server');
 
     serverCompilerDone(stats);
     assert.deepEqual(nodemon.mock.calls[0][0], {
       script: 'fakePath',
       watch: ['fakePath'],
+      nodeArgs: [],
     }, 'should set up nodemon with correct arguments');
 
     // nodemon.once
     assert.equal(nodemon.once.mock.calls[0][0], 'start',
       'should call nodemon.once for start');
     nodemon.once.mock.calls[0][1]();
-    assert.ok(/Server running at:/.test(logger.task.mock.calls[2][0]),
+    assert.ok(/Server running at:/.test(logger.task.mock.calls[3][0]),
       'should log that the server is running');
     assert.equal(logger.end.mock.calls[0][0], 'Development started',
       'should call logger.end with the correct message');
@@ -126,7 +136,7 @@ describe('dev', () => {
     assert.equal(nodemon.on.mock.calls[0][0], 'restart',
       'should set up nodemon restart listener');
     nodemon.on.mock.calls[0][1]();
-    assert.equal(logger.task.mock.calls[3][0], 'Development server restarted',
+    assert.equal(logger.task.mock.calls[4][0], 'Development server restarted',
       'should call logger.task with restart message');
 
     // on quit

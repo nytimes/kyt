@@ -80,6 +80,13 @@ If `hasServer` is set to `false` in [kyt.config.js](/docs/kytConfig.md), `src/se
 
 Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
 
+You can pass flags to the node server through `kyt dev`.
+For example:
+```
+kyt dev -- --inspect
+```
+will run the [node debugging for Chrome DevTools](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27#.mpuwgy17v)
+
 ## build
 
 The `build` command takes the entry index.js in `src/client/` and `src/server/` (ignoring the latter if `hasServer` set to false in [kyt.config.js](/docs/kytConfig.md)), compiles them, and saves them to a build folder. This is an optimized production build.
@@ -94,10 +101,20 @@ The `start` command takes the compiled code from the production build and runs a
 
 Optionally, you can configure the server url in your [kyt.config.js](/docs/kytConfig.md).
 
+You can also pass flags to node through `kyt start`:
+```
+kyt start -- --no-warnings
+```
+
 ## test
 
 The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
 kyt test looks for any `*.test.js` files in `src/`.
+
+You can pass flags to jest through `kyt test`.
+```
+kyt test -- --no-cache
+```
 
 ### test-watch
 
@@ -119,6 +136,12 @@ During `setup`, an `.eslintrc.json` file is copied into the root of your app whi
 You can add or update any rules in this file.
 
 kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/config/.eslintrc.json).
+
+Flags can be passed to ESLint through `kyt lint`
+
+```
+kyt lint -- --fix
+```
 
 ## lint-style
 
