@@ -8,14 +8,14 @@ const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const nodemon = require('nodemon');
-const ramda = require('ramda');
+const once = require('ramda').once;
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, serverSrcPath } = require('../../utils/paths')();
 
-module.exports = (config) => {
+module.exports = (config, flags) => {
   logger.start('Starting development build...');
 
   // Kill the server on exit.
@@ -26,7 +26,7 @@ module.exports = (config) => {
   const { clientConfig, serverConfig } = buildConfigs(config);
   const { clientURL, serverURL, reactHotLoader, hasServer } = config;
 
-  const afterClientCompile = ramda.once(() => {
+  const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
     if (!hasServer) logger.task(`Starting up server: ${clientCompiler.options.output.publicPath}`);
     else logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
@@ -53,7 +53,7 @@ module.exports = (config) => {
       .map(entry => path.join(serverCompiler.options.output.path, `${entry}.js`));
     const mainPath = path.join(serverCompiler.options.output.path, 'main.js');
 
-    nodemon({ script: mainPath, watch: ramda.flatten(serverPaths) })
+    nodemon({ script: mainPath, watch: serverPaths, nodeArgs: flags  })
       .once('start', () => {
         logger.task(`Server running at: ${serverURL.href}`);
         logger.end('Development started');
@@ -88,7 +88,7 @@ module.exports = (config) => {
         .on('unlinkDir', compileServer);
     });
 
-    const startServerOnce = ramda.once(() => {
+    const startServerOnce = once(() => {
       ifPortIsFreeDo(serverURL.port, startServer);
     });
     serverCompiler = webpackCompiler(serverConfig, (stats) => {

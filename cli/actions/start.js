@@ -8,13 +8,14 @@ const logger = require('./../logger');
 // prevent the code from reaching a line later that would
 // cause a ReferenceError
 // eslint-disable-next-line consistent-return
-module.exports = (config) => {
+module.exports = (config, flags) => {
   if (!config.hasServer) {
     logger.error('You have hasServer set to false, bailing');
     return process.exit(1);
   }
 
   logger.start('Starting production server...');
-  shell.exec('node build/server/main.js', { async: true });
+  const cmd = `node build/server/main.js ${flags.join(' ')}`;
+  shell.exec(cmd, { async: true });
   logger.end(`Server running at ${config.serverURL.href}`);
 };
