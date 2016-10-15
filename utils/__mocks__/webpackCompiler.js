@@ -2,7 +2,7 @@ const run = jest.fn();
 
 const defaultOptions = {
   entry: {
-    'main': ['main.js']
+    main: ['main.js'],
   },
   devServer: 'devServer',
   output: {
@@ -13,10 +13,10 @@ const defaultOptions = {
 
 const multiEntryOptions = {
   entry: {
-    'main': ['main.js'],
-    'additional': ['more.js']
+    main: ['main.js'],
+    additional: ['more.js'],
   },
-  devServer: 'shitServer',
+  devServer: 'devServer',
   output: {
     path: 'realPath',
     publicPath: 'killPath',
@@ -33,5 +33,5 @@ const configureOptionsType = (type) => {
 const webpackCompiler = jest.fn(() => ({ run, options }));
 
 module.exports = webpackCompiler;
-module.exports.__configureOptionsType = configureOptionsType;
+module.exports.configureOptionsType = configureOptionsType;
 module.exports.run = run; // expose run for test assertions

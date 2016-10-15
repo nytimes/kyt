@@ -50,9 +50,7 @@ module.exports = (config) => {
   const startServer = () => {
     const serverPaths = Object
       .keys(serverCompiler.options.entry)
-      .map((entry) => {
-        return path.join(serverCompiler.options.output.path, `${entry}.js`);
-      });
+      .map(entry => path.join(serverCompiler.options.output.path, `${entry}.js`));
     const mainPath = path.join(serverCompiler.options.output.path, 'main.js');
 
     nodemon({ script: mainPath, watch: ramda.flatten(serverPaths) })
