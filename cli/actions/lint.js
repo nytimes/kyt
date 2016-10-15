@@ -17,14 +17,8 @@ module.exports = (config, flags) => {
 
   const lint = () => {
     const eslintLib = require.resolve('eslint');
-    let eslint;
+    const eslint = eslintLib.replace(/(.*node_modules)(.*)/, '$1/.bin/eslint');
 
-    if (eslintLib) {
-      // Since we know eslint is in the node_modules, replace the path from the lib to the binary.
-      eslint = eslintLib.replace(/(.*node_modules)(.*)/, '$1/.bin/eslint');
-    } else {
-      logger.error('You must have eslint installed to run the `kyt lint` command.');
-    }
     const cmd = `${eslint} src/ -c ${configFile} --color ${flags.join(' ')}`;
     const output = shell.exec(cmd);
     if (output.code === 0) {
