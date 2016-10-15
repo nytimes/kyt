@@ -8,7 +8,7 @@ const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const nodemon = require('nodemon');
-const once = require('ramda').once;
+const ramda = require('ramda');
 const logger = require('./../logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
@@ -26,7 +26,7 @@ module.exports = (config) => {
   const { clientConfig, serverConfig } = buildConfigs(config);
   const { clientURL, serverURL, reactHotLoader, hasServer } = config;
 
-  const afterClientCompile = once(() => {
+  const afterClientCompile = ramda.once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
     if (!hasServer) logger.task(`Starting up server: ${clientCompiler.options.output.publicPath}`);
     else logger.task(`Client assets serving from ${clientCompiler.options.output.publicPath}`);
@@ -48,11 +48,14 @@ module.exports = (config) => {
   };
 
   const startServer = () => {
-    const serverPath = path.resolve(
-      serverCompiler.options.output.path, `${Object.keys(serverCompiler.options.entry)[0]}.js`
-    );
+    const serverPaths = Object
+      .keys(serverCompiler.options.entry)
+      .map((entry) => {
+        return path.join(serverCompiler.options.output.path, `${entry}.js`);
+      });
+    const mainPath = path.join(serverCompiler.options.output.path, 'main.js');
 
-    nodemon({ script: serverPath, watch: [serverPath] })
+    nodemon({ script: mainPath, watch: ramda.flatten(serverPaths) })
       .once('start', () => {
         logger.task(`Server running at: ${serverURL.href}`);
         logger.end('Development started');
@@ -87,7 +90,7 @@ module.exports = (config) => {
         .on('unlinkDir', compileServer);
     });
 
-    const startServerOnce = once(() => {
+    const startServerOnce = ramda.once(() => {
       ifPortIsFreeDo(serverURL.port, startServer);
     });
     serverCompiler = webpackCompiler(serverConfig, (stats) => {

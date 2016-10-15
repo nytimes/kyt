@@ -62,6 +62,14 @@ module.exports = (config, environment = 'development') => {
     logger.debug('Server webpack configuration:', serverConfig);
   }
 
+  // A "main" entry is required in the server config.
+  if (!serverConfig.entry.main) {
+    console.error(
+      'A main entry is required in the server configuration. Found: ', serverConfig.entry
+    );
+    process.exit(1);
+  }
+
   return {
     clientConfig,
     serverConfig,
