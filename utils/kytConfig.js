@@ -13,10 +13,11 @@ module.exports = (optionalConfig) => {
 
   // base config options
   const baseConfig = {
-    productionPublicPath: '/assets/',
+    productionPublicPath: '/',
     serverURL: 'http://localhost:3000',
     clientURL: 'http://localhost:3001',
     prototypeURL: 'http://localhost:3002',
+    hasServer: true,
     debug: false,
     reactHotLoader: false,
   };

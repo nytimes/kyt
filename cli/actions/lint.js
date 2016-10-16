@@ -1,13 +1,13 @@
 
 // Command to lint src code
 
-const CLIEngine = require('eslint').CLIEngine;
+const shell = require('shelljs');
 const path = require('path');
 const logger = require('./../logger');
 const glob = require('glob');
 const { userRootPath } = require('../../utils/paths')();
 
-module.exports = () => {
+module.exports = (config, flags) => {
   const eslintrc = glob.sync(`${userRootPath}/.*eslintrc*`);
   const configFile = eslintrc.length
       ? eslintrc[0]
@@ -15,28 +15,18 @@ module.exports = () => {
 
   logger.info(`Using ESLint file: ${configFile}`);
 
-  // http://eslint.org/docs/developer-guide/nodejs-api
-  const eslintCLI = {
-    envs: ['browser'],
-    extensions: ['.js'],
-    useEslintrc: true,
-    configFile,
-  };
-
-  // Get the default dir or the dir specified by the user/-d.
   const lint = () => {
-    const files = ['src/'];
-    const cli = new CLIEngine(eslintCLI);
-    const report = cli.executeOnFiles(files);
-    const formatter = cli.getFormatter();
-    logger.log(`${formatter(report.results)}\n`);
+    const eslintLib = require.resolve('eslint');
+    const eslint = eslintLib.replace(/(.*node_modules)(.*)/, '$1/.bin/eslint');
 
-    if (report.errorCount === 0) {
-      logger.end(`Your JS looks ${report.warningCount === 0 ? 'great ✨' :
+    const cmd = `${eslint} src/ -c ${configFile} --color ${flags.join(' ')}`;
+    const output = shell.exec(cmd);
+    if (output.code === 0) {
+      logger.end(`Your JS looks ${output.stdout === '' ? 'great ✨' :
         'OK, though there were warnings 🤔👆'}`);
     }
 
-    process.exit(report.errorCount > 0 ? 1 : 0);
+    process.exit(output.code > 0 ? 1 : 0);
   };
 
   lint();

@@ -19,7 +19,7 @@ module.exports = () => {
     serverBuildPath: path.join(buildPath, 'server'),
     testBuildPath: path.join(buildPath, 'test'),
     prototypeBuildPath: path.join(buildPath, 'prototype'),
-    assetsBuildPath: path.join(publicBuildPath, 'assets'),
+    assetsBuildPath: path.join(publicBuildPath, '/'),
     userPrototypePath: path.join(userRootPath, 'prototype.js'),
     userKytConfigPath: path.join(userRootPath, 'kyt.config.js'),
     userNodeModulesPath: path.join(userRootPath, 'node_modules'),
