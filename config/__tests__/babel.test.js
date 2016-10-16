@@ -8,6 +8,7 @@ const stubBabelrc = {
     },
   },
 };
+jest.mock('../../cli/logger');
 jest.setMock('fs', {
   readFileSync: () => JSON.stringify(stubBabelrc),
 });
@@ -15,9 +16,28 @@ jest.setMock('path', {
   resolve: a => a,
 });
 
+const modifyBabelConfig = jest.fn(c => c);
+const mockKytConfig = jest.fn(() => ({ modifyBabelConfig }));
+jest.setMock('../../utils/kytConfig', mockKytConfig);
+
+const logger = require('../../cli/logger');
+
 const babel = require('../babel');
 
 describe('babel', () => {
+  beforeEach(() => {
+    modifyBabelConfig.mockClear();
+    mockKytConfig.mockClear();
+    global.process.exit = jest.fn();
+    Object.keys(logger).forEach(k => logger[k].mockClear());
+  });
+
+  it('does not call process.exit or logger.error on a successful run', () => {
+    babel();
+    expect(logger.error).not.toBeCalled();
+    expect(global.process.exit).not.toBeCalled();
+  });
+
   it('sets flags', () => {
     const babelrc = babel();
     expect(babelrc.babelrc).toBe(false);
@@ -34,5 +54,41 @@ describe('babel', () => {
     const babelrc = babel();
     expect(babelrc.env.development.plugins).toEqual([thisResolved]);
     expect(babelrc.env.development.presets).toEqual([[thisResolved]]);
+  });
+
+  it('calls kytConfig\'s modifyBabelConfig', () => {
+    const opts = {};
+    babel(opts);
+    const kytConfig = require('../../utils/kytConfig');
+    const config = kytConfig();
+    expect(config.modifyBabelConfig).toBeCalled();
+    expect(config.modifyBabelConfig.mock.calls[0][0]).toEqual(Object.assign({}, stubBabelrc, {
+      babelrc: false,
+      cacheDirectory: false,
+      plugins: [],
+      presets: [],
+    }));
+    expect(config.modifyBabelConfig.mock.calls[0][1]).toBe(opts);
+  });
+
+  it('logs an error and exits the process if modifyBabelConfig throws', () => {
+    const err = new Error('oh no');
+    modifyBabelConfig.mockImplementationOnce(() => { throw err; });
+    babel();
+    expect(logger.error).toBeCalledWith('Error in your kyt.config.js modifyBabelConfig():', err);
+    expect(global.process.exit).toBeCalledWith(1);
+  });
+
+  it('does not log out merged config if config.debug is falsy', () => {
+    babel();
+    expect(logger.debug).not.toBeCalled();
+  });
+
+  it('logs out the merged config if config.debug is truthy', () => {
+    mockKytConfig.mockImplementationOnce(() => ({ debug: true, modifyBabelConfig }));
+    babel();
+    expect(logger.debug).toBeCalled();
+    expect(typeof logger.debug.mock.calls[0][0]).toBe('string');
+    expect(typeof logger.debug.mock.calls[0][1]).toBe('object');
   });
 });

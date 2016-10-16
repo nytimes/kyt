@@ -42,7 +42,7 @@ module.exports = (optionalConfig) => {
   config = mergeAll([{}, baseConfig, config]);
 
   // Create default identity functions for modify functions
-  ['modifyWebpackConfig', 'modifyJestConfig'].forEach((m) => {
+  ['modifyWebpackConfig', 'modifyJestConfig', 'modifyBabelConfig'].forEach((m) => {
     if (typeof config[m] !== 'function') {
       config[m] = c => c;
     }
