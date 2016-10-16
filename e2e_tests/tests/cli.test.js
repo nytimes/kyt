@@ -39,7 +39,7 @@ describe('KYT CLI', () => {
     expect(setupArr.includes('👍  Created .gitignore file')).toBe(true);
     expect(setupArr.includes('👍  Created src directory')).toBe(true);
   });
-  it('sets up with the correct file', () => {
+  it('sets up with the correct files', () => {
     expect(shell.test('-d', 'src')).toBe(true);
     expect(shell.test('-f', 'kyt.config.js')).toBe(true);
     expect(shell.test('-f', '.editorconfig')).toBe(true);
