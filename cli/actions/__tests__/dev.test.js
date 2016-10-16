@@ -176,13 +176,14 @@ describe('dev', () => {
       serverURL: mockURL,
       reactHotLoader: false,
       hasServer: true,
-    });
+    }, []);
 
     const serverCompilerDone = compiler.mock.calls[1][1];
     serverCompilerDone(stats);
     assert.deepEqual(nodemon.mock.calls[0][0], {
       script: 'realPathmain.js',
       watch: ['realPathmain.js', 'realPathadditional.js'],
+      nodeArgs: [],
     }, 'should set up nodemon with correct arguments');
   });
 });
