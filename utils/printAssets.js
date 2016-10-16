@@ -1,19 +1,28 @@
 
 // Prints webpack asset stats
+const fs = require('fs');
 const path = require('path');
 const filesize = require('filesize');
+const gzipSize = require('gzip-size');
 const stripAnsi = require('strip-ansi');
 const logger = require('../cli/logger');
 
-module.exports = (stats) => {
+module.exports = (stats, clientConfig) => {
+  const assetPath = clientConfig.output.path;
   const assets = stats.toJson().assets
     .filter(asset => /\.(js|css)$/.test(asset.name))
-    .map(asset => ({
-      folder: path.join('build/public', path.dirname(asset.name)),
-      name: path.basename(asset.name),
-      size: asset.size,
-      sizeLabel: filesize(asset.size),
-    }));
+    .map((asset) => {
+      const file = fs.readFileSync(path.resolve(assetPath, asset.name));
+      const gzSize = gzipSize.sync(file);
+      return {
+        folder: path.join('build/public', path.dirname(asset.name)),
+        gzSize,
+        gzSizeLabel: `(${filesize(gzSize)} gzip)`,
+        name: path.basename(asset.name),
+        size: asset.size,
+        sizeLabel: filesize(asset.size),
+      };
+    });
 
   assets.sort((a, b) => b.size - a.size);
 
@@ -21,13 +30,23 @@ module.exports = (stats) => {
     assets.map(a => stripAnsi(a.sizeLabel).length)
   );
 
-  assets.forEach((asset) => {
-    let sizeLabel = asset.sizeLabel;
-    const sizeLength = stripAnsi(sizeLabel).length;
-    if (sizeLength < longestSizeLabelLength) {
-      const rightPadding = ' '.repeat(longestSizeLabelLength - sizeLength);
-      sizeLabel += rightPadding;
+  const longestGzSizeLabelLength = Reflect.apply(Math.max, null,
+    assets.map(a => stripAnsi(a.gzSizeLabel).length)
+  );
+
+  const addLabelPadding = (label, longestLength) => {
+    let padded = label;
+    const length = stripAnsi(label).length;
+    if (length < longestLength) {
+      const rightPadding = ' '.repeat(longestLength - length);
+      padded += rightPadding;
     }
-    logger.log(`    ${sizeLabel}    ${asset.folder + path.sep + asset.name}`);
+    return padded;
+  };
+
+  assets.forEach((asset) => {
+    const sizeLabel = addLabelPadding(asset.sizeLabel, longestSizeLabelLength);
+    const gzSizeLabel = addLabelPadding(asset.gzSizeLabel, longestGzSizeLabelLength);
+    logger.log(`    ${sizeLabel}    ${gzSizeLabel}    ${asset.folder + path.sep + asset.name}`);
   });
 };

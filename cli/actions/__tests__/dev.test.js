@@ -137,8 +137,7 @@ describe('dev', () => {
     assert.equal(nodemon.on.mock.calls[0][0], 'restart',
       'should set up nodemon restart listener');
     nodemon.on.mock.calls[0][1]();
-    assert.equal(logger.task.mock.calls[4][0], 'Development server restarted',
-      'should call logger.task with restart message');
+    expect(logger.end).toBeCalledWith('Development server restarted');
 
     // on quit
     assert.equal(nodemon.on.mock.calls[1][0], 'quit',

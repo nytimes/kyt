@@ -17,5 +17,6 @@ module.exports = (config, flags) => {
   logger.start('Starting production server...');
   const cmd = `node build/server/main.js ${flags.join(' ')}`;
   shell.exec(cmd, { async: true });
-  logger.end(`Server running at ${config.serverURL.href}`);
+  logger.task(`Server running on ${config.serverURL.href}`);
+  logger.end('Production started');
 };
