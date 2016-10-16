@@ -25,7 +25,7 @@ const loadConfigAndDo = (action, optionalConfig) => {
   const args = program.args.filter(item => typeof item === 'object');
   const flags = program.args.filter(item => typeof item === 'string');
   const config = kytConfigFn(optionalConfig);
-  action(config, flags, args);
+  action(config, flags, args[0]);
 };
 
 program
