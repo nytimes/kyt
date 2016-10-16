@@ -28,8 +28,7 @@ module.exports = () => {
     if (result.output) {
       handleError(`\n${result.output}`);
     } else {
-      logger.log('');
-      logger.end('Your styles look good! ✨\n');
+      logger.end('Your styles look good! ✨');
       process.exit(0);
     }
   })
