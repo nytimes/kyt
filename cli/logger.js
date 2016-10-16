@@ -5,11 +5,11 @@ const write = (status, text, verbose) => {
   let logObject = false;
 
   if (status === 'task') textToLog = '👍  ';
-  else if (status === 'start') textToLog = '🔥  ';
-  else if (status === 'end') textToLog = '✅  ';
+  else if (status === 'start') textToLog = '\n🔥  ';
+  else if (status === 'end') textToLog = '\n✅  ';
   else if (status === 'info') textToLog = 'ℹ️  ';
   else if (status === 'warn') textToLog = '🙀  ';
-  else if (status === 'error') textToLog = '❌  ';
+  else if (status === 'error') textToLog = '\n❌  ';
   else if (status === 'debug') textToLog = '🐞  ';
 
   textToLog += text;
@@ -24,6 +24,9 @@ const write = (status, text, verbose) => {
   }
 
   logger.log(textToLog);
+  if (['start', 'end', 'error'].indexOf(status) > -1) {
+    logger.log();
+  }
   if (logObject) logger.dir(verbose, { depth: 15 });
 };
 // Printing any statements

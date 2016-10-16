@@ -48,7 +48,7 @@ module.exports = (config) => {
   const clientCompiler = webpackCompiler(clientConfig, (stats) => {
     if (stats.hasErrors()) process.exit(1);
     logger.info('Assets:');
-    printAssets(stats);
+    printAssets(stats, clientConfig);
     if (config.hasServer) {
       buildServer();
     } else {

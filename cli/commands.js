@@ -22,8 +22,10 @@ if (!shell.test('-f', userPackageJSONPath)) {
 }
 
 const loadConfigAndDo = (action, optionalConfig) => {
+  const args = program.args.filter(item => typeof item === 'object');
+  const flags = program.args.filter(item => typeof item === 'string');
   const config = kytConfigFn(optionalConfig);
-  action(config, program);
+  action(config, flags, args);
 };
 
 program
@@ -36,7 +38,8 @@ program
   .option('-C, --config <path>', 'config path')
   .description('Start an express server for development')
   .action(() => {
-    const config = program.args[0].config ? program.args[0].config : null;
+    const args = program.args.filter(item => typeof item === 'object');
+    const config = args[0].config ? args[0].config : null;
     loadConfigAndDo(devAction, config);
   });
 
@@ -45,7 +48,8 @@ program
   .option('-C, --config <path>', 'config path')
   .description('Create a production build')
   .action(() => {
-    const config = program.args[0].config ? program.args[0].config : null;
+    const args = program.args.filter(item => typeof item === 'object');
+    const config = args[0].config ? args[0].config : null;
     loadConfigAndDo(buildAction, config);
   });
 

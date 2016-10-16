@@ -15,7 +15,7 @@ describe('start', () => {
 
   describe('default case', () => {
     beforeEach(() => {
-      start({ serverURL, hasServer: true });
+      start({ serverURL, hasServer: true }, []);
     });
 
     it('does not call process.exit or logger.error', () => {
@@ -23,19 +23,20 @@ describe('start', () => {
       expect(global.process.exit.mock.calls.length).toBe(0);
     });
 
-    it('logs start and end', () => {
+    it('logs start, task and end', () => {
       expect(logger.start).toBeCalledWith('Starting production server...');
-      expect(logger.end).toBeCalledWith(`Server running at ${serverURL.href}`);
+      expect(logger.task).toBeCalledWith(`Server running on ${serverURL.href}`);
+      expect(logger.end).toBeCalledWith('Production started');
     });
 
     it('executes the node process asynchronously', () => {
-      expect(shell.exec).toBeCalledWith('node build/server/main.js', { async: true });
+      expect(shell.exec).toBeCalledWith('node build/server/main.js ', { async: true });
     });
   });
 
   describe('hasServer set to false', () => {
     beforeEach(() => {
-      start({ hasServer: false });
+      start({ hasServer: false }, []);
     });
 
     it('logs an error and exits', () => {
