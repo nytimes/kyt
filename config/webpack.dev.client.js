@@ -26,6 +26,8 @@ module.exports = (options) => {
   return {
     target: 'web',
 
+    devtool: 'inline-source-map',
+
     entry: {
       main,
     },

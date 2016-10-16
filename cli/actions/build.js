@@ -48,8 +48,12 @@ module.exports = (config) => {
   const clientCompiler = webpackCompiler(clientConfig, (stats) => {
     if (stats.hasErrors()) process.exit(1);
     logger.info('Assets:');
-    printAssets(stats);
-    buildServer();
+    printAssets(stats, clientConfig);
+    if (config.hasServer) {
+      buildServer();
+    } else {
+      logger.end('Done building');
+    }
   });
   clientCompiler.run(() => undefined);
 };

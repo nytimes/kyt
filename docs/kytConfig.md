@@ -9,14 +9,15 @@ and export an object with the following options.
 
 ## kyt.config.js options
 
- 1. `serverURL` - url for the backend node server. *default*: http://localhost:3000
+ 1. `serverURL` - url for the backend node server. *default*: http://localhost:3000. if `hasServer` is set to `false`, then this value is ignored
  2. `clientURL` - in development, the url for the client assets server *default*: http://localhost:3001
  3. `prototypeURL` - url for the prototyping dev server *default*: http://localhost:3002
  4. `debug` - when true, the CLI returns all verbose output *default*: false
  5. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/assets/`
  6. `reactHotLoader` - Turns on React Hot Loading *default*: false
- 7. `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
- 8. `modifyJestConfig` - Callback function for editing kyt's Jest config. [See more details below](#modifyJestConfig).
+ 7. `hasServer` - Use a backend node server for build and dev (useful to false this out if you already have a backend) *default*: true
+ 8. `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
+ 9. `modifyJestConfig` - Callback function for editing kyt's Jest config. [See more details below](#modifyJestConfig).
 
 
 ## modifyWebpackConfig
@@ -55,6 +56,13 @@ modifyJestConfig: (baseConfig) => {
 ```
 
 > **NOTE:** Currently the base Jest config runs `modifyWebpackConfig()` for you with `options.environment = "development"` in order to grab the development settings for your app (babel plugins, aliases, etc). See the [Jest config recipe](/docs/Recipes.md) for an example use case.
+
+**Dev Tip:**
+In some cases you may notice that your Jest configuration doesn't seem to have an affect, this is because Jest has a built-in cache to speed up subsequent test runs. In order to ensure that your configuration changes are reflected, run your tests with the [--no-cache flag](http://facebook.github.io/jest/docs/troubleshooting.html#caching-issues) passed into Jest, like so:
+
+```
+kyt test -- --no-cache
+```
 
 ## Creating env specific kyt configs
 kyt allows developers to specify a different kyt config in `dev` and `build` commands for the purpose of creating environment specific configurations.

@@ -19,19 +19,29 @@ const assets = [{ name: 'main-1087ba4603e1150cbc80.js',
     chunkNames: ['main'],
     emitted: true }];
 
+const fs = {
+  readFileSync: jest.fn(),
+};
+
+const gzSize = {
+  sync: jest.fn().mockReturnValueOnce(200000).mockReturnValueOnce(60000),
+};
+
+jest.setMock('fs', fs);
+jest.setMock('gzip-size', gzSize);
 jest.mock('../../cli/logger');
 
 describe('printAssets', () => {
   const logger = require('../../cli/logger');
   require('../printAssets')({
     toJson: () => ({ assets }),
-  });
+  }, { output: { path: '' } });
 
   it('should print asset stats', () => {
     expect(logger.log)
-      .toBeCalledWith('    648.98 KB    build/public/assets/main-1087ba4603e1150cbc80.js');
+      .toBeCalledWith('    648.98 KB    (195.31 KB gzip)    build/public/main-1087ba4603e1150cbc80.js');
 
     expect(logger.log)
-      .toBeCalledWith('    169.2 KB     build/public/assets/main-9b8998c0b9922c283729.css');
+      .toBeCalledWith('    169.2 KB     (58.59 KB gzip)     build/public/main-9b8998c0b9922c283729.css');
   });
 });

@@ -13,10 +13,11 @@ module.exports = (optionalConfig) => {
 
   // base config options
   const baseConfig = {
-    productionPublicPath: '/assets/',
+    productionPublicPath: '/',
     serverURL: 'http://localhost:3000',
     clientURL: 'http://localhost:3001',
     prototypeURL: 'http://localhost:3002',
+    hasServer: true,
     debug: false,
     reactHotLoader: false,
   };
@@ -28,6 +29,7 @@ module.exports = (optionalConfig) => {
   // Find user config
   if (shell.test('-f', kytConfigPath)) {
     try {
+      logger.log('');
       logger.info(`Using kyt config at ${kytConfigPath}`);
       // eslint-disable-next-line global-require,import/no-dynamic-require
       config = require(kytConfigPath);

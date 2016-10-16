@@ -14,7 +14,7 @@ node_modules/.bin/kyt build
 1. `setup` sets up kyt and installs a specified [starter-kyt](/docs/Starterkyts.md)
 2. `dev` starts up a development environment
 3. `build` compiles server and client code for production use
-4. `start` runs production code
+4. `start` runs the production server
 5. `test` runs all tests in /src
 6. `proto` starts the prototyping app
 7. `lint` lints src code using ESLint
@@ -75,11 +75,21 @@ node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angu
 ## dev
 
 The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot reloading to allow for fast development.
+
+If `hasServer` is set to `false` in [kyt.config.js](/docs/kytConfig.md), `src/server/` is ignored and no backend server is started.
+
 Optionally, you can configure urls for the development servers in the [kyt config](/docs/kytConfig.md).
+
+You can pass flags to the node server through `kyt dev`.
+For example:
+```
+kyt dev -- --inspect
+```
+will run the [node debugging for Chrome DevTools](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27#.mpuwgy17v)
 
 ## build
 
-The `build` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and saves them to a build folder. This is an optimized production build.
+The `build` command takes the entry index.js in `src/client/` and `src/server/` (ignoring the latter if `hasServer` set to false in [kyt.config.js](/docs/kytConfig.md)), compiles them, and saves them to a build folder. This is an optimized production build.
 
 The build command will also copy the `src/public` directory for static assets.
 
@@ -87,14 +97,24 @@ The build command will also copy the `src/public` directory for static assets.
 
 ## start
 
-The `start` command takes the compiled code from the production build and runs a node server at the specified port.
+The `start` command takes the compiled code from the production build and runs a node server at the specified port. `start` will log an error and exit if `hasServer` is set to `false` in your [kyt.config.js](/docs/kytConfig.md).
 
 Optionally, you can configure the server url in your [kyt.config.js](/docs/kytConfig.md).
+
+You can also pass flags to node through `kyt start`:
+```
+kyt start -- --no-warnings
+```
 
 ## test
 
 The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
 kyt test looks for any `*.test.js` files in `src/`.
+
+You can pass flags to jest through `kyt test`.
+```
+kyt test -- --no-cache
+```
 
 ### test-watch
 
@@ -116,6 +136,12 @@ During `setup`, an `.eslintrc.json` file is copied into the root of your app whi
 You can add or update any rules in this file.
 
 kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/config/.eslintrc.json).
+
+Flags can be passed to ESLint through `kyt lint`
+
+```
+kyt lint -- --fix
+```
 
 ## lint-style
 

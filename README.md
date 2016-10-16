@@ -35,6 +35,7 @@ kyt's base features include:
 * Inline SVG support
 * Style and script linter rulesets
 * A pre-configured test runner with Jest
+* Optional client-only mode for apps that already have a server
 
 Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.
 
@@ -81,7 +82,11 @@ All projects must have the following structure:
     server/
       index.js
 ```
+
 Each `index.js` file acts as the build entry.
+
+*(Note that `server/index.js` is not required if `hasServer` is `false` in [config](#configuration)).*
+
 If you're setting up a new project our full list of [conventions](/docs/conventions.md).
 
 
