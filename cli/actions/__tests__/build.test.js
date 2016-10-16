@@ -83,7 +83,7 @@ describe('build', () => {
     clientCallback(stats);
     assert.deepEqual(logger.info.mock.calls, [['Assets:']],
       'should call logger.info');
-    assert.deepEqual(printAssets.mock.calls, [[stats]],
+    assert.deepEqual(printAssets.mock.calls, [[stats, 'clientConfig']],
       'should call printAssets');
 
     // for server
