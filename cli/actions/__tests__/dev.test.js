@@ -11,6 +11,7 @@ jest.mock('express');
 jest.mock('../../../utils/ifPortIsFreeDo');
 jest.setMock('path', {
   resolve: p => p,
+  join: (p, q) => p + q,
 });
 jest.mock('nodemon');
 jest.mock('chokidar');
@@ -118,8 +119,8 @@ describe('dev', () => {
 
     serverCompilerDone(stats);
     assert.deepEqual(nodemon.mock.calls[0][0], {
-      script: 'fakePath',
-      watch: ['fakePath'],
+      script: 'fakePathmain.js',
+      watch: ['fakePathmain.js'],
       nodeArgs: [],
     }, 'should set up nodemon with correct arguments');
 
@@ -162,5 +163,45 @@ describe('dev', () => {
       'should not set up chokidar watchers');
     assert.equal(ifPortIsFreeDo.mock.calls.length, 1,
       'should only call ifPortIsFreeDo once');
+  });
+
+  it('handles multiple server entries', () => {
+    require('../../../utils/webpackCompiler').configureOptionsType('multiEntry');
+    const compiler = require('../../../utils/webpackCompiler');
+
+    require('../dev')({
+      clientURL: mockURL,
+      serverURL: mockURL,
+      reactHotLoader: false,
+      hasServer: true,
+    }, []);
+
+    const serverCompilerDone = compiler.mock.calls[1][1];
+    serverCompilerDone(stats);
+    assert.deepEqual(nodemon.mock.calls[0][0], {
+      script: 'realPathmain.js',
+      watch: ['realPathmain.js', 'realPathadditional.js'],
+      nodeArgs: [],
+    }, 'should set up nodemon with correct arguments');
+  });
+
+  it('handles multiple server string literal entries', () => {
+    require('../../../utils/webpackCompiler').configureOptionsType('stringEntry');
+    const compiler = require('../../../utils/webpackCompiler');
+
+    require('../dev')({
+      clientURL: mockURL,
+      serverURL: mockURL,
+      reactHotLoader: false,
+      hasServer: true,
+    }, []);
+
+    const serverCompilerDone = compiler.mock.calls[1][1];
+    serverCompilerDone(stats);
+    assert.deepEqual(nodemon.mock.calls[0][0], {
+      script: 'realPathmain.js',
+      watch: ['realPathmain.js', 'realPathadditional.js'],
+      nodeArgs: [],
+    }, 'should set up nodemon with correct arguments');
   });
 });
