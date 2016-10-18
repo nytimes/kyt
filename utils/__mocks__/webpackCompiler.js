@@ -19,7 +19,19 @@ const multiEntryOptions = {
   devServer: 'devServer',
   output: {
     path: 'realPath',
-    publicPath: 'killPath',
+    publicPath: 'publicPath',
+  },
+};
+
+const stringLiteralEntryOptions = {
+  entry: {
+    main: 'main.js',
+    additional: 'more.js',
+  },
+  devServer: 'devServer',
+  output: {
+    path: 'realPath',
+    publicPath: 'publicPath',
   },
 };
 
@@ -27,6 +39,7 @@ let options = defaultOptions;
 
 const configureOptionsType = (type) => {
   if (type === 'multiEntry') options = multiEntryOptions;
+  else if (type === 'stringEntry') options = stringLiteralEntryOptions;
   else options = defaultOptions;
 };
 

@@ -167,7 +167,26 @@ describe('dev', () => {
 
   it('handles multiple server entries', () => {
     require('../../../utils/webpackCompiler').configureOptionsType('multiEntry');
-    jest.mock('../../../utils/webpackCompiler');
+    const compiler = require('../../../utils/webpackCompiler');
+
+    require('../dev')({
+      clientURL: mockURL,
+      serverURL: mockURL,
+      reactHotLoader: false,
+      hasServer: true,
+    }, []);
+
+    const serverCompilerDone = compiler.mock.calls[1][1];
+    serverCompilerDone(stats);
+    assert.deepEqual(nodemon.mock.calls[0][0], {
+      script: 'realPathmain.js',
+      watch: ['realPathmain.js', 'realPathadditional.js'],
+      nodeArgs: [],
+    }, 'should set up nodemon with correct arguments');
+  });
+
+  it('handles multiple server string literal entries', () => {
+    require('../../../utils/webpackCompiler').configureOptionsType('stringEntry');
     const compiler = require('../../../utils/webpackCompiler');
 
     require('../dev')({
