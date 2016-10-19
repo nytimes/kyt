@@ -6,6 +6,7 @@ it('jest() returns a jest config', () => {
 
   expect(typeof jestConfig).toBe('object');
   expect(jestConfig.moduleNameMapper).toBeDefined();
+  expect(jestConfig.moduleNameMapper['^[./a-zA-Z0-9$_-]+\\.(css|scss)$']).toBe('identity-obj-proxy');
   expect(jestConfig.scriptPreprocessor).toBeDefined();
   expect(jestConfig.testPathIgnorePatterns).toBeDefined();
   expect(jestConfig.testEnvironment).toBeDefined();

@@ -4,13 +4,13 @@ const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', 
 
 // For configuration information, see:
 // https://facebook.github.io/jest/docs/api.html#configuration-options-configuration
+// For css and scss module name mapper see: https://facebook.github.io/jest/docs/tutorial-webpack.html
 module.exports = (rootDir, aliases = {}) => ({
   moduleNameMapper: Object.assign(
     {
       '^[./a-zA-Z0-9$_-]+\\.(jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$':
           resolveFromUtils('file.stub'),
-      '^[./a-zA-Z0-9$_-]+\\.(css|scss)$':
-          resolveFromUtils('style.stub'),
+      '^[./a-zA-Z0-9$_-]+\\.(css|scss)$': 'identity-obj-proxy',
     },
     aliases
   ),
