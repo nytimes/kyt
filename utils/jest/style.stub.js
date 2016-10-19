@@ -1,3 +1,3 @@
-// TODO: use https://github.com/keyanzhang/identity-obj-proxy
+// see: https://facebook.github.io/jest/docs/tutorial-webpack.html
 
-module.exports = {};
+module.exports = 'identity-obj-proxy';
