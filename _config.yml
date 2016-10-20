@@ -27,8 +27,10 @@ permalink: pretty
 
 social:
   - title: blog post
+    icon: blog
     url: http://open.blogs.nytimes.com/2016/09/13/introducing-kyt-our-web-app-configuration-toolkit/
   - title: github
     url: https://github.com/NYTimes/kyt
   - title: npm
+    icon: code
     url: https://www.npmjs.com/package/kyt
