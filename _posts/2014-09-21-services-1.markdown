@@ -1,6 +1,6 @@
 ---
 layout: default
-img: ipad.png
+img: kyt-logo-large.png
 category: Quick Start
 title: Quick Start
 description: |
