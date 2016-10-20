@@ -1,0 +1,25 @@
+<section id="contact">
+	<div class="banner">
+		<div class="container">
+
+			<div class="row">
+				<div class="col-lg-6">
+					<h2>Keep in Touch:</h2>
+				</div>
+				<div class="col-lg-6">
+					<ul class="list-inline banner-social-buttons">
+						{% for social in site.social %}
+						<li>
+							<a href="{{ social.url }}" class="btn btn-default btn-lg"><i class="fa fa-{{ social.title }} fa-fw"></i> <span class="network-name">{{ social.title }}</span></a>
+						</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container -->
+
+	</div>
+</section>
+<!-- /.banner -->
