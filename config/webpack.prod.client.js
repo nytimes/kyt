@@ -4,9 +4,16 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
+const clone = require('ramda').clone;
 const { clientSrcPath, assetsBuildPath, buildPath } = require('../utils/paths')();
 
-const cssLoader = 'css?modules&sourceMap&localIdentName=[name]-[local]--[hash:base64:5]!postcss';
+const cssStyleLoaders = [
+  {
+    loader: 'css',
+    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+  },
+  'postcss',
+];
 
 module.exports = options => ({
   target: 'web',
@@ -26,29 +33,26 @@ module.exports = options => ({
   },
 
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style',
-          loader: cssLoader,
+          notExtractLoader: 'style',
+          loader: cssStyleLoaders,
         }),
       },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
-          fallbackLoader: 'style',
-          loader: `${cssLoader}!sass`,
+          notExtractLoader: 'style',
+          loader: clone(cssStyleLoaders).concat('sass'),
         }),
       },
     ],
   },
 
   plugins: [
-    new ExtractTextPlugin({
-      filename: '[name]-[chunkhash].css',
-      allChunks: true,
-    }),
+    new ExtractTextPlugin({ filename: '[name]-[chunkhash].css', allChunks: true }),
 
     new webpack.LoaderOptionsPlugin({
       minimize: true,

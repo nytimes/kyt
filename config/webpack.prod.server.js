@@ -8,7 +8,7 @@ const { serverSrcPath, serverBuildPath } = require('../utils/paths')();
 const cssStyleLoaders = [
   {
     loader: 'css-loader/locals',
-    options: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+    query: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
   'postcss',
 ];
@@ -36,14 +36,14 @@ module.exports = options => ({
   },
 
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.css$/,
-        use: cssStyleLoaders,
+        loaders: cssStyleLoaders,
       },
       {
         test: /\.scss$/,
-        use: clone(cssStyleLoaders).concat('sass'),
+        loaders: clone(cssStyleLoaders).concat('sass'),
       },
     ],
   },

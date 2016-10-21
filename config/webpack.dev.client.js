@@ -10,7 +10,7 @@ const cssStyleLoaders = [
   'style',
   {
     loader: 'css',
-    options: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+    query: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
   'postcss',
 ];
@@ -48,14 +48,14 @@ module.exports = (options) => {
     },
 
     module: {
-      rules: [
+      loaders: [
         {
           test: /\.css$/,
-          use: cssStyleLoaders,
+          loaders: cssStyleLoaders,
         },
         {
           test: /\.scss$/,
-          use: clone(cssStyleLoaders).concat('sass'),
+          loaders: clone(cssStyleLoaders).concat('sass'),
         },
       ],
     },
