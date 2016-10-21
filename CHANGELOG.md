@@ -19,6 +19,8 @@
 
 - Adds multiple server entry handling [#247](https://github.com/NYTimes/kyt/pull/247)
 
+- Default starter-kyt on setup is now the [universal starter-kyt](https://github.com/NYTimes/kyt-starter-universal) [#265](https://github.com/NYTimes/kyt/pull/265)
+
 - Assets now use chunkhash [#239](https://github.com/NYTimes/kyt/pull/239)
 
 - Make logs more readable [#190](https://github.com/NYTimes/kyt/pull/190)
