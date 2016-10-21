@@ -25,6 +25,8 @@
 
 - Displays Gzip size of assets [#244](https://github.com/NYTimes/kyt/pull/244)
 
+- Adds end to end tests [#241](https://github.com/NYTimes/kyt/pull/241)
+
 ## 0.2.2 (Sept 23, 2016)
 
 - Fixes linter `Configuration for rule "eol-last" is invalid` ESLint bug by upgrading all of the linter dependencies.
