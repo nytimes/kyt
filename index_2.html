@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code. kyt is a toolkit that encapsulates and manages the configuration for web apps.">
+        <meta name="author" content="The New York Times Company">
+
+        <title>kyt</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="css/landing-page.css" rel="stylesheet">
+
+        <!-- Custom Fonts -->
+        <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+    </head>
+
+	<body>
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="container">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header page-scroll">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand page-scroll" href="#home">kyt</a>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">  
+						<li>
+							<a class="page-scroll" href="#about">About</a>
+						</li>            
+						<li>
+							<a class="page-scroll" href="#quickstart">Quick Start</a>
+						</li>
+						<li>
+							<a class="page-scroll" href="#howitworks">How it works</a>
+						</li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+
+		<section id="home">
+		<!-- Header -->
+			<div class="intro-header">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="intro-message">
+								<h1>kyt</h1>
+								<h3>A toolkit that encapsulates and manages the configuration for web apps.</h3>
+								<hr class="intro-divider">
+								<ul class="list-inline intro-social-buttons">
+									<li>
+										<a href="http://open.blogs.nytimes.com/2016/09/13/introducing-kyt-our-web-app-configuration-toolkit/" class="btn btn-default btn-lg"><i class="fa fa-blog fa-fw"></i> <span class="network-name">blog post</span></a>
+									</li>
+									<li>
+										<a href="https://github.com/NYTimes/kyt" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">github</span></a>
+									</li>
+									<li>
+										<a href="https://www.npmjs.com/package/kyt" class="btn btn-default btn-lg"><i class="fa fa-download fa-fw"></i> <span class="network-name">npm</span></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /.container -->
+			</div>
+			<!-- /.intro-header -->
+		</section>
+		<!-- About Section -->
+		<section id="about" class="container content-section text-center">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2">
+				  <br/><br/>
+				  <h2>About kyt</h2>
+				  <br/>
+					<p>Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code. kyt is a toolkit that encapsulates and manages the configuration for web apps.</p>
+					<p>kyt is licenced under the Apache 2.0 licence.</p>
+					<p>Learn more in our <a href="http://open.blogs.nytimes.com/2016/09/13/introducing-kyt-our-web-app-configuration-toolkit/">blog post</a> and on <a href="https://github.com/NYTimes/kyt">GitHub</a>.</p>
+					<br/>
+				  </div>
+			</div>
+		</section>
+		<!-- Page Content -->
+		<section id="quickstart">
+			<div class="content-section-a">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-5 col-sm-6">
+							<hr class="section-heading-spacer">
+							<div class="clearfix"></div>
+							<h2 class="section-heading">Quick Start</h2>
+							<div class="lead">
+								<ol>
+									<li>Install <a href="https://nodejs.org/">NodeJS</a> (v6.0+ required).</li>
+									<li>Create a directory with a package.json file</li>
+									<li><code>npm install --save kyt</code></li>
+									<li><code>node_modules/.bin/kyt setup</code> - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about <a href="https://github.com/NYTimes/kyt/blob/master/docs/commands.md#setup">setup</a>.</li>
+									<li><code>npm run dev</code></li>
+									<li>Check out <code><a href"http://localhost:3000"></a></code></li>
+								</ol>
+								<p>We recommend installing kyt as a dependency in your project.</p>
+							</div>
+						</div>
+						<div class="col-lg-5 col-lg-offset-2 col-sm-6">
+							<img class="img-responsive" src="img/services/kyt-logo-large.png" alt="kyt logo">
+						</div>
+					</div>
+				</div>
+				<!-- /.container -->
+			</div>
+			<!-- /.content-section-a -->
+		</section>
+		<section id="howitworks">
+			<div class="content-section-b">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+							<hr class="section-heading-spacer">
+							<div class="clearfix"></div>
+							<h2 class="section-heading">How it works</h2>
+							<div class="lead">
+								<p>kyt manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a <a href="https://github.com/NYTimes/kyt/blob/master/docs/commands.md">command line interface</a> for running all development tools.</p>
+								<p>kyt's base features include:</p>
+								<ul>
+									<li>A Node server provided for rendering front-end page requests</li>
+									<li>Client and server hot reloading</li>
+									<li><a href="https://babeljs.io/docs/plugins/preset-latest/">ES-Latest stable</a> features using Babel</li>
+									<li>CSS Module and SASS support</li>
+									<li>Inline SVG support</li>
+									<li>Style and script linter rulesets</li>
+									<li>A pre-configured test runner with Jest</li>
+									<li>Optional client-only mode for apps that already have a server</li>
+								</ul>
+								<p>Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.</p>
+								<p>For advanced use cases, kyt enables developers to add additional tools and configuration.</p>
+								<p>See our <a href="https://github.com/NYTimes/kyt/blob/master/docs/kytConfig.md#modifywebpackconfig">config override instructions</a> for details, and our <a href="https://github.com/NYTimes/kyt/blob/master/docs/Recipes.md">recipes</a> for examples.</p>
+							</div>
+						</div>
+						<div class="col-lg-5 col-sm-pull-6  col-sm-6">
+						  <img class="img-responsive" src="img/services/kyt-diagram.png" alt="Diagram showing the role of kyt in a project">
+						</div>
+					</div>
+				</div>
+				<!-- /.container -->
+			</div>
+			<!-- /.content-section-b -->
+		</section>
+		<section id="buttons">
+			<div class="banner">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<h2>Learn more:</h2>
+						</div>
+						<div class="col-lg-6">
+							<ul class="list-inline banner-social-buttons">
+								<li>
+									<a href="http://open.blogs.nytimes.com/2016/09/13/introducing-kyt-our-web-app-configuration-toolkit/" class="btn btn-default btn-lg"><i class="fa fa-blog fa-fw"></i> <span class="network-name">blog post</span></a>
+								</li>
+								<li>
+									<a href="https://github.com/NYTimes/kyt" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">github</span></a>
+								</li>
+								<li>
+									<a href="https://www.npmjs.com/package/kyt" class="btn btn-default btn-lg"><i class="fa fa-download fa-fw"></i> <span class="network-name">npm</span></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /.container -->
+			</div>
+		</section>
+		<!-- /.banner -->
+		<!-- Footer -->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8">
+						<ul class="list-inline">
+							<li>
+								<a href="#home">Home</a>
+							</li>
+							<li class="footer-menu-divider">&sdot;</li>
+							<li>
+								<a href="#about">About</a>
+							</li>
+							<li class="footer-menu-divider">&sdot;</li>
+							<li>
+								<a href="#quickstart">Quick Start</a>
+							</li>
+							<li class="footer-menu-divider">&sdot;</li>
+							<li>
+								<a href="#howitworks">How it works</a>
+							</li>
+						</ul>
+						<p class="copyright text-muted small">Copyright &copy; 2016 The New York Times Company</p>
+					</div>
+					<div class="col-md-4">
+						Based on Landing Page by <a href="http://startbootstrap.com/">Start Bootstrap</a>.
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- jQuery Version 1.11.0 -->
+		<script src="js/jquery-1.11.0.js"></script>
+
+		<!-- Plugin JavaScript -->
+		<script src="js/jquery.easing.min.js"></script>
+
+		<!-- Bootstrap Core JavaScript -->
+		<script src="js/bootstrap.min.js"></script>
+
+		<!-- Custom Theme JavaScript -->
+		<script src="js/landing-page.js"></script>
+	</body>
+</html>
