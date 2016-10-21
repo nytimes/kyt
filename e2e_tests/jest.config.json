@@ -1,0 +1,5 @@
+{
+  "testPathDirs": [
+    "<rootDir>/e2e_tests"
+  ]
+}

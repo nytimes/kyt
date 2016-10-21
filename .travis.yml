@@ -1,4 +1,4 @@
 language: node_js
 node_js:
   - 6.0
-script: npm run lint && npm test
+script: npm run lint && npm test && npm run e2e

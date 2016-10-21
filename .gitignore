@@ -32,3 +32,4 @@ node_modules
 # OS-specific temporary files
 Thumbs.db
 .DS_Store
+cli-test
