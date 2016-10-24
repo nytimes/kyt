@@ -1,4 +1,14 @@
 language: node_js
+cache:
+  directories:
+    - $HOME/.npm
+    - $HOME/.yarn-cache
+    - node_modules
 node_js:
   - 6.0
-script: npm run lint && npm test && npm run e2e
+before_install:
+  - time npm i -g yarn --cache-min 999999999
+install:
+  - time yarn
+script:
+  - time yarn run lint && yarn test && yarn run e2e

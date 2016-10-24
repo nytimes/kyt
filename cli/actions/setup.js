@@ -7,6 +7,7 @@ const simpleGit = require('simple-git')();
 const logger = require('./../logger');
 const semver = require('semver');
 const uniq = require('ramda').uniq;
+const ypm = require('../../utils/yarnOrNpm')();
 const {
   userRootPath,
   srcPath,
@@ -142,7 +143,7 @@ module.exports = (config, flags, args) => {
   // Cleans and reinstalls node modules.
   const installUserDependencies = () => {
     logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
-    if (shell.exec(`rm -rf ${userNodeModulesPath} && npm cache clear && npm i`).code !== 0) {
+    if (shell.exec(`rm -rf ${userNodeModulesPath} && ${ypm} cache clear && ${ypm} install`).code !== 0) {
       fs.writeFileSync(userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
       logger.error('An error occurred when trying to install node modules');
       logger.task('Restored the original package.json and bailing');

@@ -1,6 +1,7 @@
 const path = require('path');
 const shell = require('shelljs');
 const kill = require('../../utils/psKill');
+const ypm = require('../../utils/yarnOrNpm')();
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
@@ -12,7 +13,7 @@ describe('KYT CLI', () => {
     shell.mkdir('cli-test');
     shell.cd('cli-test');
     shell.cp(pkgJsonPath, 'package.json');
-    const output = shell.exec('npm install');
+    const output = shell.exec(`${ypm} install`);
     if (output.code !== 0) {
       process.exit();
     }
@@ -62,7 +63,7 @@ describe('KYT CLI', () => {
 
   it('runs the lint command', () => {
     expect(true).toBe(true);
-    const output = shell.exec('npm run lint');
+    const output = shell.exec(`${ypm} run lint`);
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
     expect(outputArr.includes('✅  Your JS looks great ✨')).toBe(true);
@@ -76,12 +77,12 @@ describe('KYT CLI', () => {
   });
 
   it('runs the tests command', () => {
-    const output = shell.exec('npm run test');
+    const output = shell.exec(`${ypm} run test`);
     expect(output.code).toBe(0);
   });
 
   it('runs the build command', () => {
-    const output = shell.exec('npm run build');
+    const output = shell.exec(`${ypm} run build`);
     expect(output.code).toBe(0);
     expect(shell.test('-d', 'build')).toBe(true);
     expect(shell.test('-d', 'build/server')).toBe(true);
@@ -93,8 +94,8 @@ describe('KYT CLI', () => {
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
 
   it('starts the app', (done) => {
-    shell.exec('npm run build');
-    const child = shell.exec('npm run start', () => {
+    shell.exec(`${ypm} run build`);
+    const child = shell.exec(`${ypm} run start`, () => {
       done();
     });
     child.stdout.on('data', (data) => {
@@ -109,7 +110,7 @@ describe('KYT CLI', () => {
 
 
   it('dev', (done) => {
-    const child = shell.exec('npm run dev', () => {
+    const child = shell.exec(`${ypm} run dev`, () => {
       done();
     });
     child.stdout.on('data', (data) => {
@@ -123,7 +124,7 @@ describe('KYT CLI', () => {
   });
 
   it('proto', (done) => {
-    const child = shell.exec('npm run proto', () => {
+    const child = shell.exec(`${ypm} run proto`, () => {
       done();
     });
     let stillAlive = true;
