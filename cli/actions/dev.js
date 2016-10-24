@@ -48,11 +48,12 @@ module.exports = (config, flags) => {
   };
 
   const startServer = () => {
-    const serverPath = path.resolve(
-      serverCompiler.options.output.path, `${Object.keys(serverCompiler.options.entry)[0]}.js`
-    );
+    const serverPaths = Object
+      .keys(serverCompiler.options.entry)
+      .map(entry => path.join(serverCompiler.options.output.path, `${entry}.js`));
+    const mainPath = path.join(serverCompiler.options.output.path, 'main.js');
 
-    nodemon({ script: serverPath, watch: [serverPath], nodeArgs: flags })
+    nodemon({ script: mainPath, watch: serverPaths, nodeArgs: flags })
       .once('start', () => {
         logger.task(`Server running at: ${serverURL.href}`);
         logger.end('Development started');
