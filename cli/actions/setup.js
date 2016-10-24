@@ -14,6 +14,7 @@ const {
   userKytConfigPath,
   userNodeModulesPath,
   userPackageJSONPath,
+  userBabelrcPath,
 } = require('../../utils/paths')(); // eslint-disable-line import/newline-after-import
 // eslint-disable-next-line import/no-dynamic-require
 const kytPkg = require(path.join(__dirname, '../../package.json'));
@@ -208,6 +209,16 @@ module.exports = (config, flags, args) => {
 
     shell.cp(editorPath, configPath);
     logger.task('Created .editorconfig file');
+  };
+
+  const createBabelrc = () => {
+    // back up existing .babelrc, if it exists
+    if (shell.test('-f', userBabelrcPath)) {
+      const mvTo = path.join(userRootPath, `.babelrc-${date}.bak`);
+      shell.mv(userBabelrcPath, mvTo);
+      logger.info(`Backed up current .babelrc to ${mvTo}`);
+    }
+    // TODO finish this; figure out what's default setup vs what's managed by a starter kyt
   };
 
   // Copies the starter kyt kyt.config.js

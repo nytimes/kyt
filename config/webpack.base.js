@@ -6,7 +6,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-const babel = require('./babel');
 const { buildPath, userNodeModulesPath } = require('../utils/paths')();
 
 module.exports = options => ({
@@ -67,7 +66,24 @@ module.exports = options => ({
           /node_modules/,
           buildPath,
         ],
-        query: babel(options),
+        // babel configuration should come from presets defined in the user's
+        // .babelrc, unless there's a specific reason why it has to be put in
+        // the webpack loader query
+        query: Object.assign({
+          // this is a loader-specific option and can't be put in a babel preset
+          cacheDirectory: false,
+        },
+        // add react hot loader babel plugin for development here--users
+        // should only need to specify the reactHotLoader option in one place
+        // (kyt.config.js), instead of two (kyt.config.js and .babelrc).
+        // additionally, .babelrc has no notion of client vs server
+        (options.type === 'client' && options.reactHotLoader) ? {
+          env: {
+            development: {
+              plugins: [require.resolve('react-hot-loader/babel')],
+            },
+          },
+        } : {}),
       },
     ],
   },

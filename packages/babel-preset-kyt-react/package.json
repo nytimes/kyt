@@ -1,0 +1,14 @@
+{
+  "name": "babel-preset-kyt-react",
+  "version": "0.1.0",
+  "description": "an opinionated babel preset for react apps, best used with kyt",
+  "main": "lib/index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "babel-plugin-transform-react-constant-elements": "6.9.1",
+    "babel-plugin-transform-react-remove-prop-types": "0.2.9",
+    "babel-preset-react": "6.16.0",
+    "react-hot-loader": "3.0.0-beta.5"
+  }
+}

@@ -1,17 +1,27 @@
-const mergeAll = require('ramda').mergeAll;
-const babel = require('../../config/babel')();
 const babelJest = require('babel-jest');
-const buildConfigs = require('../buildConfigs');
-const config = require('../kytConfig')();
+const fs = require('fs');
+const path = require('path');
+const { userBabelrcPath, userNodeModulesPath } = require('../paths')();
 
-const { clientConfig } = buildConfigs(config);
+const resolvePluginsPresets = (babelGroup) => {
+  // TODO this is overly limiting--what if it's a custom plugin versioned with
+  // app code? need a better solution to read in the entirety of a user's .babelrc
+  const resolveFromUserNodeModules = dep => path.resolve(userNodeModulesPath, dep);
 
-// Merge userland babel config with our babel config
-// This should go away after https://github.com/NYTimes/kyt/issues/134
-const clientBabelConfig = clientConfig.module.loaders
-  .find(loader => loader.loader === 'babel-loader')
-  .query;
+  const resolve = (dep) => {
+    if (typeof dep === 'object') {
+      dep[0] = resolveFromUserNodeModules(dep[0]);
+      return dep;
+    }
+    return resolveFromUserNodeModules(dep);
+  };
+  babelGroup.plugins = (babelGroup.plugins || []).map(resolve);
+  babelGroup.presets = (babelGroup.presets || []).map(resolve);
+};
 
-const babelConfigForJest = mergeAll([{}, babel, clientBabelConfig]);
+const userBabelrc = JSON.parse(fs.readFileSync(userBabelrcPath));
 
-module.exports = babelJest.createTransformer(babelConfigForJest);
+resolvePluginsPresets(userBabelrc);
+Object.keys(userBabelrc.env || {}).forEach(env => resolvePluginsPresets(userBabelrc.env[env]));
+
+module.exports = babelJest.createTransformer(userBabelrc);
