@@ -11,6 +11,9 @@ module.exports = (rootDir, aliases = {}) => ({
           resolveFromUtils('file.stub'),
       '^[./a-zA-Z0-9$_-]+\\.(css|scss)$':
           resolveFromUtils('style.stub'),
+      // when this is removed from the base webpack config, we can likely
+      // remove the runtime and include the polyfill in the test environment
+      'babel-runtime': require.resolve('babel-plugin-transform-runtime'),
     },
     aliases
   ),

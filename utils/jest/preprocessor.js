@@ -1,22 +1,18 @@
 const babelJest = require('babel-jest');
 const fs = require('fs');
-const path = require('path');
-const { userBabelrcPath, userNodeModulesPath } = require('../paths')();
+const { userBabelrcPath, userRootPath } = require('../paths')();
+const resolve = require('resolve');
 
 const resolvePluginsPresets = (babelGroup) => {
-  // TODO this is overly limiting--what if it's a custom plugin versioned with
-  // app code? need a better solution to read in the entirety of a user's .babelrc
-  const resolveFromUserNodeModules = dep => path.resolve(userNodeModulesPath, dep);
-
-  const resolve = (dep) => {
+  const resolver = (dep) => {
     if (typeof dep === 'object') {
-      dep[0] = resolveFromUserNodeModules(dep[0]);
+      dep[0] = resolve.sync(dep[0], { basedir: userRootPath });
       return dep;
     }
-    return resolveFromUserNodeModules(dep);
+    return resolve.sync(dep, { basedir: userRootPath });
   };
-  babelGroup.plugins = (babelGroup.plugins || []).map(resolve);
-  babelGroup.presets = (babelGroup.presets || []).map(resolve);
+  babelGroup.plugins = (babelGroup.plugins || []).map(resolver);
+  babelGroup.presets = (babelGroup.presets || []).map(resolver);
 };
 
 const userBabelrc = JSON.parse(fs.readFileSync(userBabelrcPath));
