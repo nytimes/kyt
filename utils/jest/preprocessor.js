@@ -10,7 +10,7 @@ const { clientConfig } = buildConfigs(config);
 // This should go away after https://github.com/NYTimes/kyt/issues/134
 const clientBabelConfig = clientConfig.module.rules
   .find(loader => loader.loader === 'babel-loader')
-  .query;
+  .options;
 
 const babelConfigForJest = mergeAll([{}, babel, clientBabelConfig]);
 
