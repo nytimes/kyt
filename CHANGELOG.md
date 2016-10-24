@@ -7,7 +7,7 @@
 - Upgrades Jest to version 16 [#259](https://github.com/NYTimes/kyt/pull/259)
   See [Jest docs](http://facebook.github.io/jest/blog/2016/10/03/jest-16.html) for information on latest updates.
 
-- Upgrades Webpack to v2.1.0-beta.25
+- Upgrades Webpack to v2.1.0-beta.25 [#264](https://github.com/NYTimes/kyt/pull/264)
   Check the [recipes](/Recipes.md) to see the latest syntax for common extensions. Additional info in Webpack's [migration guide](https://webpack.js.org/how-to/upgrade-from-webpack-1/)
 
 ### FEATURES
