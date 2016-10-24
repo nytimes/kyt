@@ -7,7 +7,7 @@
     "kyt": "cli/index.js"
   },
   "engines": {
-    "node": ">=6.1.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "lint": "eslint .",
