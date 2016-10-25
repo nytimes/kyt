@@ -15,7 +15,7 @@ describe('KYT CLI', () => {
     shell.cp(pkgJsonPath, 'package.json');
     const output = shell.exec(`${ypm} install`);
     if (output.code !== 0) {
-      process.exit();
+      process.exit(output.code);
     }
 
     expect(shell.test('-f', 'package.json')).toBe(true);

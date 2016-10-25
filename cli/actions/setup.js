@@ -34,7 +34,7 @@ module.exports = (config, flags, args) => {
   };
 
   // Comment the following to see verbose shell ouput.
-  // shell.config.silent = true;
+  shell.config.silent = true;
 
   // Compare the Starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
@@ -143,9 +143,10 @@ module.exports = (config, flags, args) => {
   // Cleans and reinstalls node modules.
   const installUserDependencies = () => {
     logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
-    if (shell.exec(`rm -rf ${userNodeModulesPath} && ${ypm} cache clear && ${ypm} install`).code !== 0) {
+    const result = shell.exec(`rm -rf ${userNodeModulesPath} && ${ypm} install`);
+    if (result.code !== 0) {
       fs.writeFileSync(userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
-      logger.error('An error occurred when trying to install node modules');
+      logger.error('An error occurred when trying to install node modules', result.stderr);
       logger.task('Restored the original package.json and bailing');
       logger.info('You may need to reinstall your modules');
       bailProcess();
