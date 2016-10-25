@@ -38,12 +38,17 @@ module.exports = options => ({
             JSON.stringify(path.join(buildPath || '', options.clientAssetsFile || '')),
       },
     }),
+
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
+        context: '/',
+      },
+    }),
   ],
 
-  postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.html$/,
         loader: 'file?name=[name].[ext]',
@@ -51,7 +56,7 @@ module.exports = options => ({
       {
         test: /\.(jpg|jpeg|png|gif|eot|svg|ttf|woff|woff2)$/,
         loader: 'url-loader',
-        query: {
+        options: {
           limit: 20000,
         },
       },
@@ -69,7 +74,7 @@ module.exports = options => ({
         // babel configuration should come from presets defined in the user's
         // .babelrc, unless there's a specific reason why it has to be put in
         // the webpack loader query
-        query: Object.assign({
+        options: Object.assign({
           // this is a loader-specific option and can't be put in a babel preset
           cacheDirectory: false,
         },

@@ -36,14 +36,14 @@ module.exports = (options) => {
     },
 
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.css$/,
-          loaders: cssStyleLoaders,
+          use: cssStyleLoaders,
         },
         {
           test: /\.scss$/,
-          loaders: clone(cssStyleLoaders).concat('sass'),
+          use: clone(cssStyleLoaders).concat('sass'),
         },
       ],
     },
