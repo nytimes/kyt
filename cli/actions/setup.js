@@ -20,6 +20,7 @@ const {
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
 module.exports = (config, flags, args) => {
+  logger.info('kyt version: ', kytPkg.version);
   const date = Date.now();
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'git@github.com:NYTimes/kyt-starter-universal.git';
