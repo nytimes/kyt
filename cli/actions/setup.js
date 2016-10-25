@@ -34,7 +34,7 @@ module.exports = (config, flags, args) => {
   };
 
   // Comment the following to see verbose shell ouput.
-  shell.config.silent = true;
+  // shell.config.silent = true;
 
   // Compare the Starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
