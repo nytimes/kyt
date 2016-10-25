@@ -218,7 +218,8 @@ module.exports = (config, flags, args) => {
       shell.mv(userBabelrcPath, mvTo);
       logger.info(`Backed up current .babelrc to ${mvTo}`);
     }
-    // TODO finish this; figure out what's default setup vs what's managed by a starter kyt
+    shell.cp(`${tmpDir}/.babelrc`, userBabelrcPath);
+    logger.task('Created .babelrc');
   };
 
   // Copies the starter kyt kyt.config.js
@@ -332,6 +333,7 @@ module.exports = (config, flags, args) => {
       updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
+      createBabelrc();
       createStylelintFile();
       createEditorconfigLink();
       createKytConfig();
