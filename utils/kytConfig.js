@@ -18,7 +18,7 @@ module.exports = (optionalConfig) => {
     clientURL: 'http://localhost:3001',
     prototypeURL: 'http://localhost:3002',
     hasServer: true,
-    debug: true,
+    debug: false,
     reactHotLoader: false,
   };
 
