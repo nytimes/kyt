@@ -68,14 +68,6 @@ Install by running:
 node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter-static.git
 ```
 
-#### [Simple starter-kyt](https://github.com/NYTimes/kyt-starter)
-
-This starter-kyt is for building simple React apps.
-Install by running:
-```
-node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter.git
-```
-
 #### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
 Still a work in progress, but this starter-kyt will serve as the base for building advanced, universal Angular2 apps.
 
