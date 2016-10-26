@@ -87,7 +87,7 @@ Each `index.js` file acts as the build entry.
 
 *(Note that `server/index.js` is not required if `hasServer` is `false` in [config](#configuration)).*
 
-If you're setting up a new project our full list of [conventions](/docs/conventions.md).
+If you're setting up a new project see our full list of [conventions](/docs/conventions.md).
 
 
 ## Configuration
