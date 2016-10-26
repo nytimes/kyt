@@ -36,12 +36,12 @@ If kyt finds any files with duplicate names, it will back up your file before re
 
 `setup` also allows you to plug a starter-kyt into your app.
 
-Running `kyt setup` will give you the option to install the default starter-kyt.
+Running `kyt setup` will give you the option to install the [default starter-kyt.](https://github.com/NYTimes/kyt-starter-universal)
 
 You can also pass the `-r` flag with any starter-kyt git clone URL:
 
 ```
- kyt setup -r git@github.com:nytimes/kyt-starter-universal.git
+ kyt setup -r git@github.com:nytimes/kyt-starter.git
 ```
 
 `setup` will then:
@@ -53,16 +53,19 @@ You can also pass the `-r` flag with any starter-kyt git clone URL:
 
 ### Recommended starter-kyts
 
-#### [Default starter-kyt](https://github.com/nytm/wf-kyt-starter)
-
-The default starter-kyt is for building simple React apps.
-Install by running: `node_modules/.bin/kyt setup`
-
-#### [Universal React starter-kyt](https://github.com/nytm/wf-kyt-starter-universal)
-This starter-kyt is a good base for building advanced, universal React apps.
+#### [Universal React starter-kyt](https://github.com/NYTimes/kyt-starter-universal)
+This default starter-kyt is a good base for building advanced, universal React apps.
 
 ```
-node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter-universal.git
+node_modules/.bin/kyt setup
+```
+
+#### [Static starter-kyt](https://github.com/NYTimes/kyt-starter-static)
+
+This starter-kyt is for creating client side React apps.
+Install by running:
+```
+node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter-static.git
 ```
 
 #### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
