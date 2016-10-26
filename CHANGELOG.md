@@ -1,7 +1,7 @@
 
 ## Master
 
-## 0.3.0 ()
+## 0.3.0 (October 25, 2016)
 
 ### BREAKING CHANGES
 - Upgrades Jest to version 16 [#259](https://github.com/NYTimes/kyt/pull/259)
@@ -29,7 +29,7 @@
 
 - Adds end to end tests [#241](https://github.com/NYTimes/kyt/pull/241)
 
-## 0.2.2 (Sept 23, 2016)
+## 0.2.2 (Sept 30, 2016)
 
 - Fixes linter `Configuration for rule "eol-last" is invalid` ESLint bug by upgrading all of the linter dependencies.
 
