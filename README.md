@@ -12,13 +12,29 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
-2. Create a directory with a package.json file
-3. `npm install --save kyt`
-4. `node_modules/.bin/kyt setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/commands.md#setup).
-5. `npm run dev`
-6. Check out `http://localhost:3000`
+1. Create a directory for your application.
 
-We recommend installing kyt as a dependency in your project.
+  `mkdir myapp`
+  
+  `cd myapp`
+
+1. Create a package.json file for your application.
+
+  `npm init`
+
+1. We recommend installing kyt as a dependency in your project.
+
+  `npm install --save kyt`
+
+1. Run kyt setup. This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/commands.md#setup).
+
+  `node_modules/.bin/kyt setup`
+
+1. Start the development server
+
+  `npm run dev`
+
+1. The development server should be serving to `http://localhost:3000`. Visit it in a browser to view the application.
 
 ## How it Works
 
