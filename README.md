@@ -100,7 +100,7 @@ See our [recipes](/docs/Recipes.md) for extending configuration.
 
 ## starter-kyts
 
-While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt CLI includes a `setup` command which installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
+While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt CLI includes a `setup` command which installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory. As pointed out in #268, the default starter kyt uses ssh to clone from GitHub, which will fail if the user (or CI server, etc) doesn't have a public key set up. since they're public, let's default to the https url (users are still free to specify repos over ssh with the -r flag)
 
 See our recommended list of [starter-kyts](/docs/commands.md#recommended-starter-kyts)
 
