@@ -28,3 +28,4 @@ module.exports = (options) => {
 
   return babelrc;
 };
+//Right now, the way the Babel config is loaded for Jest is by running the modifyWebpackConfig() callback and grabbing it from there, but this overloads that method a bit. Now that there are 2 consumers for the Babel configuration (Webpack and Jest), it would be cleaner to pull that out
