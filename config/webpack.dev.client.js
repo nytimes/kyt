@@ -71,6 +71,7 @@ module.exports = (options) => {
       }),
 
       new webpack.HotModuleReplacementPlugin(),
+      'transform-react-jsx-source',
     ],
   };
 };
