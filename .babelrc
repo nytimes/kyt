@@ -3,7 +3,7 @@
   "plugins": ["babel-plugin-transform-runtime"],
   "env": {
     "development": {
-      "plugins": []
+      "plugins": ["babel-plugin-transform-react-jsx-source"]
     },
     "production": {
       "plugins": [
