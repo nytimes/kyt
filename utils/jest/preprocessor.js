@@ -1,17 +1,23 @@
-const mergeAll = require('ramda').mergeAll;
-const babel = require('../../config/babel')();
 const babelJest = require('babel-jest');
-const buildConfigs = require('../buildConfigs');
-const config = require('../kytConfig')();
+const fs = require('fs');
+const { userBabelrcPath, userRootPath } = require('../paths')();
+const resolve = require('resolve');
 
-const { clientConfig } = buildConfigs(config);
+const resolvePluginsPresets = (babelGroup) => {
+  const resolver = (dep) => {
+    if (typeof dep === 'object') {
+      dep[0] = resolve.sync(dep[0], { basedir: userRootPath });
+      return dep;
+    }
+    return resolve.sync(dep, { basedir: userRootPath });
+  };
+  babelGroup.plugins = (babelGroup.plugins || []).map(resolver);
+  babelGroup.presets = (babelGroup.presets || []).map(resolver);
+};
 
-// Merge userland babel config with our babel config
-// This should go away after https://github.com/NYTimes/kyt/issues/134
-const clientBabelConfig = clientConfig.module.rules
-  .find(loader => loader.loader === 'babel-loader')
-  .options;
+const userBabelrc = JSON.parse(fs.readFileSync(userBabelrcPath));
 
-const babelConfigForJest = mergeAll([{}, babel, clientBabelConfig]);
+resolvePluginsPresets(userBabelrc);
+Object.keys(userBabelrc.env || {}).forEach(env => resolvePluginsPresets(userBabelrc.env[env]));
 
-module.exports = babelJest.createTransformer(babelConfigForJest);
+module.exports = babelJest.createTransformer(userBabelrc);
