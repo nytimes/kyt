@@ -12,14 +12,14 @@ node_modules/.bin/kyt build
 ```
 
 1. [`setup`](/docs/commands.md#setup) sets up kyt and installs a specified [starter-kyt](/docs/Starterkyts.md)
-2. [`dev`](/docs/commands.md#setup) starts up a development environment
-3. [`build`](/docs/commands.md#setup) compiles server and client code for production use
-4. [`start`](/docs/commands.md#setup) runs the production server
-5. [`test`](/docs/commands.md#setup) runs all tests in /src
-6. [`proto`](/docs/commands.md#setup) starts the prototyping app
-7. [`lint`](/docs/commands.md#setup) lints src code using ESLint
-8. [`lint-style`](/docs/commands.md#setup) lints src code using StyleLint
-9. [`help`](/docs/commands.md#setup) shows commands and their documentation
+2. [`dev`](/docs/commands.md#dev) starts up a development environment
+3. [`build`](/docs/commands.md#build) compiles server and client code for production use
+4. [`start`](/docs/commands.md#start) runs the production server
+5. [`test`](/docs/commands.md#test) runs all tests in /src
+6. [`proto`](/docs/commands.md#proto) starts the prototyping app
+7. [`lint`](/docs/commands.md#lint) lints src code using ESLint
+8. [`lint-style`](/docs/commands.md#lint-style) lints src code using StyleLint
+9. [`help`](/docs/commands.md#help) shows commands and their documentation
 
 ## setup
 
