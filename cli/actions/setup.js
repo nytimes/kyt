@@ -87,7 +87,7 @@ module.exports = (config, flags, args) => {
     }
 
     // This is the default test script added by 'npm init'.
-    const npmInitDefaultTestScript = 'echo \"Error: no test specified\" && exit 1'; // eslint-disable-line no-useless-escape
+    const npmInitDefaultTestScript = 'echo "Error: no test specified" && exit 1';
 
     commands.forEach((command) => {
       let commandName = command;
