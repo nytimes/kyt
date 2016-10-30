@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "../kyt-core/config/.eslintrc.base.json"
+  ]
+}

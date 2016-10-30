@@ -17,9 +17,9 @@ const {
 } = require('kyt-utils/paths')(); // eslint-disable-line import/newline-after-import
 // eslint-disable-next-line import/no-dynamic-require
 const kytPkg = require(path.join(__dirname, '../../package.json'));
+const cliPkgJson = require('../../package.json');
 
 module.exports = (flags, args) => {
-  console.log('WERE HERE', process.cwd());
   const date = Date.now();
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'https://github.com/NYTimes/kyt-starter-universal.git';
@@ -61,6 +61,15 @@ module.exports = (flags, args) => {
       packageJson.dependencies || {},
       tempPackageJSON.dependencies
     );
+
+    // Add kyt to list of dependencies if its not there
+    if (!packageJson.dependencies.kyt) {
+      const output = shell.exec('npm info kyt version');
+      const kytVersion = output.stdout.trim();
+      packageJson.dependencies.kyt = 'file:../kyt/packages/kyt-core'
+      // = kytVersion;
+    }
+
     logger.task('Added new dependencies to package.json');
     return packageJson;
   };
@@ -167,7 +176,7 @@ module.exports = (flags, args) => {
 
     // Copy our user eslintrc into the user's root.
     const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.json');
-    console.log(esLintPath);
+
     if (shell.cp(esLintPath, linkedPath).code === 0) {
       logger.task(`Created ${eslintFileName} file`);
     } else {
@@ -386,7 +395,7 @@ module.exports = (flags, args) => {
           type: 'confirm',
           name: 'setupStarter',
           message: 'Would you like to setup with the default starter-kyt?',
-          default: false,
+          default: true,
         },
       ];
       inquire.prompt(question).then((answer) => {
@@ -399,9 +408,34 @@ module.exports = (flags, args) => {
     }
   };
 
+  const checkCliVersionPrompt = () => {
+    const currentVersion = cliPkgJson.version;
+    const output = shell.exec('npm info kyt-cli version');
+    // If kyt-cli is up to date, proceed
+    // TODO: remove code check after cli is published
+    if (output.code !== 0 || !semver.lt(currentVersion, output.stdout.trim())) {
+      setupPrompt();
+    } else {
+      const question = [
+        {
+          type: 'confirm',
+          name: 'cliVersion',
+          message: 'There is a newer version of kyt-cli available. \n We recommend you upgrade before you continue. \n Would you like to proceed anyway?',
+          default: false,
+        },
+      ];
+      inquire.prompt(question).then((answer) => {
+        if (answer.cliVersion) {
+          setupPrompt();
+        } else {
+          process.exit();
+        }
+      });
+    }
+  };
+
   try {
-    console.log('sucessfully in the function');
-    setupPrompt();
+    checkCliVersionPrompt();
   } catch (err) {
     bailProcess(err);
   }
