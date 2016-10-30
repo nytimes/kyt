@@ -38,7 +38,7 @@
     "babel-plugin-transform-runtime": "6.15.0",
     "babel-preset-latest": "6.16.0",
     "babel-preset-react": "6.16.0",
-    "babel-register": "^6.18.0",
+    "babel-register": "6.18.0",
     "chokidar": "1.6.0",
     "commander": "2.9.0",
     "css-loader": "0.25.0",
