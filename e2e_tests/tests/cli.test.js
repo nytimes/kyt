@@ -1,6 +1,6 @@
 const path = require('path');
 const shell = require('shelljs');
-const kill = require('../../utils/psKill');
+const kill = require('../utils/psKill');
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
@@ -22,7 +22,7 @@ describe('KYT CLI', () => {
   });
   it('sets up a starter-kyt', () => {
     const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
-    const output = shell.exec(`node_modules/.bin/kyt setup -r ${setupURL}`);
+    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
     expect(setupArr.includes('🔥  Setting up starter-kyt')).toBe(true);

@@ -1,0 +1,32 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+
+  "plugins": [
+    "json"
+  ],
+
+  "rules": {
+    "no-lonely-if": 2,
+    "no-nested-ternary": 2,
+    "max-nested-callbacks": [2, { "max": 5 }],
+    "constructor-super": 2,
+    "no-this-before-super": 2,
+    "prefer-spread": 2,
+    "prefer-reflect": 2,
+    "no-warning-comments": [1, { "terms": ["todo", "fixme"], "location": "start" }],
+    "import/extensions": [1, { "js": "never" }],
+    "import/no-extraneous-dependencies": [0],
+    "no-param-reassign": 0
+  },
+
+  "ignore": [
+    "coverage"
+  ]
+}
