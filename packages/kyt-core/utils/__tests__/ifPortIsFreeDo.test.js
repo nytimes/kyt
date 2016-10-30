@@ -1,6 +1,6 @@
 
 describe('ifPortIsFreeDo', () => {
-  jest.mock('../../cli/logger');
+  jest.mock('kyt-utils/logger');
 
   const processExitMock = jest.fn();
   global.process.exit = processExitMock;
@@ -23,7 +23,7 @@ describe('ifPortIsFreeDo', () => {
   it('should log and exit process when port is not free', () => {
     const mockCallback = jest.fn();
     jest.setMock('detect-port', (port, cb) => cb(null, port + 1));
-    const logger = require('../../cli/logger');
+    const logger = require('kyt-utils/logger');
     const ipifd = require('../ifPortIsFreeDo');
 
     ipifd(1, mockCallback);

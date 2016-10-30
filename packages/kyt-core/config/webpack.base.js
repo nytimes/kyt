@@ -7,7 +7,7 @@ const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 const babel = require('./babel');
-const { buildPath, userNodeModulesPath } = require('../utils/paths')();
+const { buildPath, userNodeModulesPath } = require('kyt-utils/paths')();
 
 module.exports = options => ({
   node: {

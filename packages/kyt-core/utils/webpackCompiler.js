@@ -1,5 +1,5 @@
 const webpack = require('webpack');
-const logger = require('../cli/logger');
+const logger = require('kyt-utils/logger');
 
 module.exports = (webpackConfig, cb) => {
   let webpackCompiler;

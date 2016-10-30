@@ -5,13 +5,13 @@ jest.setMock('path', {
 jest.setMock('shelljs', {
   test: () => true,
 });
-jest.mock('../../cli/logger');
+jest.mock('kyt-utils/logger');
 
 describe('kytConfig', () => {
   let logger;
   beforeEach(() => {
     jest.resetModules();
-    logger = require('../../cli/logger');
+    logger = require('kyt-utils/logger');
   });
 
   it('logs error loading invalid kyt.config.js', () => {

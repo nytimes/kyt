@@ -1,9 +1,9 @@
 
 const stylelint = require('stylelint');
-const logger = require('./../logger');
+const logger = require('kyt-utils/logger');
 const glob = require('glob');
 const path = require('path');
-const { userRootPath } = require('../../utils/paths')();
+const { userRootPath } = require('kyt-utils/paths')();
 
 module.exports = () => {
   const handleError = (error) => {

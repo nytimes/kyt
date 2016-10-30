@@ -1,6 +1,6 @@
 jest.mock('../../../utils/ifPortIsFreeDo');
-jest.mock('../../../utils/paths');
-jest.mock('../../logger');
+jest.mock('kyt-utils/paths');
+jest.mock('kyt-utils/logger');
 jest.mock('shelljs');
 
 const listen = jest.fn();

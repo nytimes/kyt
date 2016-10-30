@@ -4,7 +4,7 @@ const fs = require('fs');
 const shell = require('shelljs');
 const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
-const logger = require('./../logger');
+const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const uniq = require('ramda').uniq;
 const {
@@ -14,11 +14,12 @@ const {
   userKytConfigPath,
   userNodeModulesPath,
   userPackageJSONPath,
-} = require('../../utils/paths')(); // eslint-disable-line import/newline-after-import
+} = require('kyt-utils/paths')(); // eslint-disable-line import/newline-after-import
 // eslint-disable-next-line import/no-dynamic-require
 const kytPkg = require(path.join(__dirname, '../../package.json'));
 
-module.exports = (config, flags, args) => {
+module.exports = (flags, args) => {
+  console.log('WERE HERE', process.cwd());
   const date = Date.now();
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   const repoURL = args.repository || 'https://github.com/NYTimes/kyt-starter-universal.git';
@@ -166,6 +167,7 @@ module.exports = (config, flags, args) => {
 
     // Copy our user eslintrc into the user's root.
     const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.json');
+    console.log(esLintPath);
     if (shell.cp(esLintPath, linkedPath).code === 0) {
       logger.task(`Created ${eslintFileName} file`);
     } else {
@@ -398,6 +400,7 @@ module.exports = (config, flags, args) => {
   };
 
   try {
+    console.log('sucessfully in the function');
     setupPrompt();
   } catch (err) {
     bailProcess(err);

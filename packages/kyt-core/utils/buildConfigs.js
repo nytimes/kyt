@@ -3,7 +3,7 @@
 // For use by the client and server compilers.
 
 const merge = require('webpack-merge');
-const logger = require('../cli/logger');
+const logger = require('kyt-utils/logger');
 const clone = require('ramda').clone;
 // base configs
 const baseConfig = require('../config/webpack.base');

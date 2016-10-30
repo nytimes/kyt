@@ -4,8 +4,8 @@
 const path = require('path');
 const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
-const logger = require('../cli/logger');
-const { userRootPath, userKytConfigPath } = require('./paths')();
+const logger = require('kyt-utils/logger');
+const { userRootPath, userKytConfigPath } = require('kyt-utils/paths')();
 const url = require('url');
 
 module.exports = (optionalConfig) => {

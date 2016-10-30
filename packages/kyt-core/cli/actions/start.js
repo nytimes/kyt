@@ -2,7 +2,7 @@
 // Command to run production server
 
 const shell = require('shelljs');
-const logger = require('./../logger');
+const logger = require('kyt-utils/logger');
 
 // we ignore the return value; it's just a convenience to
 // prevent the code from reaching a line later that would

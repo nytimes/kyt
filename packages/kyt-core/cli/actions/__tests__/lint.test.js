@@ -4,8 +4,8 @@ jest.setMock('glob', {
 jest.setMock('path', {
   join: jest.fn().mockReturnValue('base filename'),
 });
-jest.mock('../../logger');
-jest.mock('../../../utils/paths');
+jest.mock('kyt-utils/logger');
+jest.mock('kyt-utils/paths');
 
 jest.mock('shelljs', () => (
   {
@@ -18,7 +18,7 @@ jest.mock('shelljs', () => (
 
 describe('lint', () => {
   global.process.exit = jest.fn();
-  const logger = require('../../logger');
+  const logger = require('kyt-utils/logger');
   const lint = require('../lint');
 
   beforeEach(() => {

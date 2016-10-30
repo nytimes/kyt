@@ -2,11 +2,11 @@
 // Command to build production code
 
 const shell = require('shelljs');
-const logger = require('./../logger');
+const logger = require('kyt-utils/logger');
 const printAssets = require('../../utils/printAssets');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
-const { buildPath, publicBuildPath, publicSrcPath } = require('../../utils/paths')();
+const { buildPath, publicBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 
 module.exports = (config) => {
   logger.start('Starting production build...');

@@ -9,11 +9,11 @@ const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
 const nodemon = require('nodemon');
 const once = require('ramda').once;
-const logger = require('./../logger');
+const logger = require('kyt-utils/logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
-const { buildPath, serverSrcPath } = require('../../utils/paths')();
+const { buildPath, serverSrcPath } = require('kyt-utils/paths')();
 
 module.exports = (config, flags) => {
   logger.start('Starting development build...');

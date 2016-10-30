@@ -3,9 +3,9 @@
 
 const shell = require('shelljs');
 const path = require('path');
-const logger = require('./../logger');
+const logger = require('kyt-utils/logger');
 const glob = require('glob');
-const { userRootPath } = require('../../utils/paths')();
+const { userRootPath } = require('kyt-utils/paths')();
 
 module.exports = (config, flags) => {
   const eslintrc = glob.sync(`${userRootPath}/.*eslintrc*`);

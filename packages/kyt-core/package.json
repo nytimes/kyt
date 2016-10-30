@@ -58,6 +58,7 @@
     "install": "0.8.1",
     "jest": "16.0.1",
     "json-loader": "0.5.4",
+    "kyt-utils": "file:../kyt-utils",
     "node-sass": "3.10.1",
     "nodemon": "1.10.2",
     "postcss-loader": "1.0.0",

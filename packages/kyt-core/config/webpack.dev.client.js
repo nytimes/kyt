@@ -4,7 +4,7 @@
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
 const clone = require('ramda').clone;
-const { clientSrcPath, buildPath, assetsBuildPath } = require('../utils/paths')();
+const { clientSrcPath, buildPath, assetsBuildPath } = require('kyt-utils/paths')();
 
 const cssStyleLoaders = [
   'style',

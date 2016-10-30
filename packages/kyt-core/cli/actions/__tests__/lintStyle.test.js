@@ -1,4 +1,4 @@
-jest.mock('../../logger');
+jest.mock('kyt-utils/logger');
 
 const stylelintMock = {
   lint: jest.fn()
@@ -11,7 +11,7 @@ jest.setMock('glob', {
   sync: jest.fn().mockReturnValueOnce(['filename']).mockReturnValueOnce([]),
 });
 
-jest.mock('../../../utils/paths');
+jest.mock('kyt-utils/paths');
 
 jest.setMock('path', {
   join: jest.fn().mockReturnValue('filename2'),
@@ -20,7 +20,7 @@ jest.setMock('path', {
 describe('lintStyle', () => {
   global.process.exit = jest.fn();
   const lintStyle = require('../lintStyle');
-  const logger = require('../../logger');
+  const logger = require('kyt-utils/logger');
 
   describe('when there is a user configuration', () => {
     it('lints with the found filename', () => {

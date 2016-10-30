@@ -5,10 +5,10 @@ const webpackMock = jest.fn((obj) => {
 });
 jest.setMock('webpack', webpackMock);
 const cb = jest.fn();
-jest.mock('../../cli/logger');
+jest.mock('kyt-utils/logger');
 
 describe('webpackCompiler', () => {
-  const logger = require('../../cli/logger');
+  const logger = require('kyt-utils/logger');
   const webpackCompiler = require('../webpackCompiler');
 
   beforeEach(() => {

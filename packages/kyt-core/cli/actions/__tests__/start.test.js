@@ -1,8 +1,8 @@
 jest.mock('shelljs');
-jest.mock('../../logger');
+jest.mock('kyt-utils/logger');
 
 const shell = require('shelljs');
-const logger = require('../../logger');
+const logger = require('kyt-utils/logger');
 const start = require('../start');
 
 describe('start', () => {

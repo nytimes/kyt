@@ -5,7 +5,7 @@ const path = require('path');
 const filesize = require('filesize');
 const gzipSize = require('gzip-size');
 const stripAnsi = require('strip-ansi');
-const logger = require('../cli/logger');
+const logger = require('kyt-utils/logger');
 
 module.exports = (stats, clientConfig) => {
   const assetPath = clientConfig.output.path;

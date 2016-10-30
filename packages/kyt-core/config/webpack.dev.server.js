@@ -4,7 +4,7 @@
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const clone = require('ramda').clone;
-const { serverSrcPath, serverBuildPath } = require('../utils/paths')();
+const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
 
 const cssStyleLoaders = [
   {

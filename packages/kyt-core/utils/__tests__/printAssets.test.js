@@ -29,10 +29,10 @@ const gzSize = {
 
 jest.setMock('fs', fs);
 jest.setMock('gzip-size', gzSize);
-jest.mock('../../cli/logger');
+jest.mock('kyt-utils/logger');
 
 describe('printAssets', () => {
-  const logger = require('../../cli/logger');
+  const logger = require('kyt-utils/logger');
   require('../printAssets')({
     toJson: () => ({ assets }),
   }, { output: { path: '' } });

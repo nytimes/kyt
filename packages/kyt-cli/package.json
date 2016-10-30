@@ -1,0 +1,22 @@
+{
+  "name": "kyt-cli",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "kyt-cli": "index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "inquirer": "^1.2.2",
+    "kyt-utils": "file:../kyt-utils",
+    "ramda": "^0.22.1",
+    "semver": "^5.3.0",
+    "shelljs": "^0.7.5",
+    "simple-git": "^1.59.0"
+  }
+}

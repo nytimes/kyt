@@ -7,11 +7,10 @@ const testAction = require('./actions/test');
 const buildAction = require('./actions/build');
 const startAction = require('./actions/start');
 const protoAction = require('./actions/proto');
-const setupAction = require('./actions/setup');
 const lintStyleAction = require('./actions/lintStyle');
 const kytConfigFn = require('./../utils/kytConfig');
-const logger = require('./logger');
-const { userPackageJSONPath } = require('../utils/paths')();
+const logger = require('kyt-utils/logger');
+const { userPackageJSONPath } = require('kyt-utils/paths')();
 
 // Kill the process if the user did not run
 // the command from the root of their project.
@@ -57,12 +56,6 @@ program
   .command('start')
   .description('Starts the production build')
   .action(() => loadConfigAndDo(startAction));
-
-program
-  .command('setup')
-  .description('Generate a project from a github url to get started.')
-  .option('-r, --repository [address]', 'Github repository address')
-  .action(() => loadConfigAndDo(setupAction));
 
 program
   .command('test')

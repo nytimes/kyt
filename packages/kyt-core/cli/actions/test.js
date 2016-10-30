@@ -5,7 +5,7 @@ const clone = require('ramda').clone;
 const jest = require('jest');
 const shell = require('shelljs');
 const jestConfigBuilder = require('../../config/jest');
-const { srcPath } = require('../../utils/paths')();
+const { srcPath } = require('kyt-utils/paths')();
 const buildConfigs = require('../../utils/buildConfigs');
 
 
