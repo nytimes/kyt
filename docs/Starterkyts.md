@@ -17,6 +17,7 @@ starter-kyts act as boilerplates for projects. They use kyt as their build syste
     - `files` (*default:* `[]`) - an array of files/paths to copy into a user's project. The entire `src/` directory will always be copied.
     - `scripts` (*default:* `[]`) - an array of package.json script names to copy into the user's package.json scripts.
 
+
     ```
     # package.json
     {
