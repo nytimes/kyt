@@ -66,8 +66,7 @@ module.exports = (flags, args) => {
     if (!packageJson.dependencies.kyt) {
       const output = shell.exec('npm info kyt version');
       const kytVersion = output.stdout.trim();
-      packageJson.dependencies.kyt = 'file:../kyt/packages/kyt-core'
-      // = kytVersion;
+      packageJson.dependencies.kyt = kytVersion;
     }
 
     logger.task('Added new dependencies to package.json');
