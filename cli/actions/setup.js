@@ -86,6 +86,9 @@ module.exports = (config, flags, args) => {
       commands = uniq(commands.concat(tempScripts));
     }
 
+    // This is the default test script added by 'npm init'.
+    const npmInitDefaultTestScript = 'echo "Error: no test specified" && exit 1';
+
     commands.forEach((command) => {
       let commandName = command;
 
@@ -96,7 +99,12 @@ module.exports = (config, flags, args) => {
         if (packageJson.scripts[commandName].includes('kyt') && !tempScripts.indexOf(command)) {
           return;
         }
-        commandName = `kyt:${commandName}`;
+
+        // Prefix except for when the command is 'test' and the script is
+        // the default from 'npm init'.
+        if (commandName !== 'test' || packageJson.scripts[commandName] !== npmInitDefaultTestScript) {
+          commandName = `kyt:${commandName}`;
+        }
       }
 
       // If the command is from a Starter-kyt then
