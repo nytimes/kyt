@@ -38,11 +38,16 @@ If kyt finds any files with duplicate names, it will back up your file before re
 
 Running `kyt setup` will give you the option to install the [default starter-kyt.](https://github.com/NYTimes/kyt-starter-universal)
 
-You can also pass the `-r` flag with any starter-kyt git clone URL:
+You can also pass the `-r` flag with any starter-kyt git clone URL (any url that [git understands](https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server#_git_on_the_server) will work; generally this will be SSH or HTTPS):
 
+```bash
+# SSH
+kyt setup -r git@github.com:nytimes/kyt-starter-universal.git
+# HTTPS
+kyt setup -r https://github.com/NYTimes/kyt-starter-universal.git
 ```
- kyt setup -r git@github.com:nytimes/kyt-starter.git
-```
+
+*NOTE: cloning GitHub repositories over SSH requires you to have an SSH key set up; see GitHub's guide on setting that up [here](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)*
 
 `setup` will then:
 
@@ -65,14 +70,14 @@ node_modules/.bin/kyt setup
 This starter-kyt is for creating client side React apps.
 Install by running:
 ```
-node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter-static.git
+node_modules/.bin/kyt setup -r https://github.com/NYTimes/kyt-starter-static.git
 ```
 
 #### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
 Still a work in progress, but this starter-kyt will serve as the base for building advanced, universal Angular2 apps.
 
 ```
-node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angular2.git
+node_modules/.bin/kyt setup -r https://github.com/delambo/kyt-starter-universal-angular2.git
 ```
 
 ## dev
