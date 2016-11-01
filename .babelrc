@@ -1,6 +1,5 @@
 {
   "presets": ["react", ["latest", { "modules": false }]],
-  "plugins": ["transform-runtime"],
   "env": {
     "development": {
       "plugins": ["babel-plugin-transform-react-jsx-source"]
