@@ -2,7 +2,7 @@
   "presets": ["react", ["latest", { "modules": false }]],
   "env": {
     "development": {
-      "plugins": ["babel-plugin-transform-react-jsx-source"]
+      "plugins": ["transform-react-jsx-source"]
     },
     "production": {
       "plugins": [
