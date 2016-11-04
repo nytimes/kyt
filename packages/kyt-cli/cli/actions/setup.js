@@ -16,13 +16,12 @@ const {
   userPackageJSONPath,
 } = require('kyt-utils/paths')(); // eslint-disable-line import/newline-after-import
 // eslint-disable-next-line import/no-dynamic-require
-const kytPkg = require(path.join(__dirname, '../../package.json'));
 const cliPkgJson = require('../../package.json');
 
 module.exports = (flags, args) => {
   const date = Date.now();
   const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
-  const repoURL = args.repository || 'https://github.com/NYTimes/kyt-starter-universal.git';
+  let repoURL = args.repository || 'https://github.com/NYTimes/kyt-starter-universal.git';
   const removeTmpDir = () => shell.rm('-rf', tmpDir);
   let tempPackageJSON;
   let oldPackageJSON;
@@ -38,12 +37,18 @@ module.exports = (flags, args) => {
 
   // Compare the Starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
-  const checkStarterKytVersion = () => {
+  const checkStarterKytVersion = (userPackageJSON) => {
     const kytStarterVersion = (tempPackageJSON.kyt && tempPackageJSON.kyt.version) || null;
     if (kytStarterVersion) {
-      if (!semver.satisfies(kytPkg.version, kytStarterVersion)) {
-        // eslint-disable-next-line max-len
-        logger.warn(`${tempPackageJSON.name} requires kyt version ${kytStarterVersion} but kyt ${kytPkg.version} is installed.`);
+      // Look everywhere for kyt
+      const kytVersion =
+        (userPackageJSON.devDependencies && userPackageJSON.devDependencies.kyt)
+        || (userPackageJSON.dependencies && userPackageJSON.dependencies.kyt);
+      if (semver.valid(kytVersion)) {
+        if (!semver.satisfies(kytVersion, kytStarterVersion)) {
+          // eslint-disable-next-line max-len
+          logger.warn(`${tempPackageJSON.name} requires kyt version ${kytStarterVersion} but kyt ${kytVersion} is installed.`);
+        }
       }
     }
   };
@@ -62,11 +67,13 @@ module.exports = (flags, args) => {
       tempPackageJSON.dependencies
     );
 
-    // Add kyt to list of dependencies if its not there
-    if (!packageJson.dependencies.kyt) {
+    // Add kyt to list of dev dependencies if its not there
+    // eslint-disable-next-line max-len
+    if (!packageJson.dependencies.kyt && !(packageJson.devDependencies && packageJson.devDependencies.kyt)) {
       const output = shell.exec('npm info kyt version');
       const kytVersion = output.stdout.trim();
-      packageJson.dependencies.kyt = kytVersion;
+      packageJson.devDependencies = packageJson.devDependencies || {};
+      packageJson.devDependencies.kyt = kytVersion;
     }
 
     logger.task('Added new dependencies to package.json');
@@ -141,6 +148,7 @@ module.exports = (flags, args) => {
     // Add dependencies from starter-kyts
     if (!defaultMode) {
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
+      checkStarterKytVersion(userPackageJSON);
     }
     // Add scripts
     userPackageJSON = addPackageJsonScripts(userPackageJSON);
@@ -317,8 +325,9 @@ module.exports = (flags, args) => {
   };
 
   // setup flow for starter-kyts
-  const starterKytSetup = () => {
-    logger.start('Setting up starter-kyt');
+  const starterKytSetup = (starterName) => {
+    starterName = starterName || 'specified';
+    logger.start(`Setting up the ${starterName} starter-kyt`);
     const afterClone = (error) => {
       if (error) {
         logger.error('There was a problem cloning the repository');
@@ -327,7 +336,6 @@ module.exports = (flags, args) => {
       }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
-      checkStarterKytVersion();
       updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
@@ -359,8 +367,34 @@ module.exports = (flags, args) => {
     logger.end('Done setting up kyt');
   };
 
+  const starterKytPrompt = () => {
+    const question = [
+      {
+        type: 'list',
+        name: 'starterChoice',
+        message: 'Which starter-kyt would you like to install?', // eslint-disable-line
+        choices: ['Universal', 'Static'],
+        default: 0,
+      },
+    ];
+    inquire.prompt(question).then((answer) => {
+      if (answer.starterChoice === 'Static') {
+        repoURL = 'https://github.com/NYTimes/kyt-starter-static.git';
+      }
+      starterKytSetup(answer.starterChoice);
+    });
+  };
+
+  const callStarterSetup = () => {
+    if (args.repository) {
+      starterKytSetup();
+    } else {
+      starterKytPrompt();
+    }
+  };
+
   // Checks to see if user would like src backed up before continuing
-  const srcPrompt = (startSetup) => {
+  const srcPrompt = () => {
     // Check if src already exists
     if (shell.test('-d', srcPath)) {
       const question = [
@@ -373,33 +407,33 @@ module.exports = (flags, args) => {
       ];
       inquire.prompt(question).then((answer) => {
         if (answer.srcBackup) {
-          startSetup();
+          callStarterSetup();
         } else {
           process.exit();
         }
       });
     } else {
-      startSetup();
+      callStarterSetup();
     }
   };
 
   // Selects type of setup
   const setupPrompt = () => {
-    // Skip starter-kyt question if they've already supplied a repo name
+    // Skip starter-kyt questions if they've already supplied a repo name
     if (args.repository) {
-      srcPrompt(starterKytSetup);
+      srcPrompt();
     } else {
       const question = [
         {
           type: 'confirm',
           name: 'setupStarter',
-          message: 'Would you like to setup with the default starter-kyt?',
+          message: 'Would you like to setup with a starter-kyt?',
           default: true,
         },
       ];
       inquire.prompt(question).then((answer) => {
         if (answer.setupStarter) {
-          srcPrompt(starterKytSetup);
+          srcPrompt();
         } else {
           defaultSetup();
         }
