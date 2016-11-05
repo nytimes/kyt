@@ -143,12 +143,8 @@ module.exports = (config, flags, args) => {
 
   // Cleans and reinstalls node modules.
   const installUserDependencies = () => {
-    logger.info('Cleaning node modules and reinstalling. This may take a couple of mins...');
+    logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
     const result = shell.exec(`rm -rf ${userNodeModulesPath} && ${ypm} install`);
-    // eslint-disable-next-line
-    logger.info('testing');
-    logger.info(`HELLO ${result}`);
-    logger.info(`hi ${result.code}`);
     if (result.code !== 0) {
       fs.writeFileSync(userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
       logger.error('An error occurred when trying to install node modules', result.stderr);
