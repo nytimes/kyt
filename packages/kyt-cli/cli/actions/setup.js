@@ -91,8 +91,9 @@ module.exports = (flags, args) => {
 
     // for commands that aren't 1:1 name:script
     const commandMap = {
-      'test-watch': 'test -- --watch',
-      'test-coverage': 'test -- --coverage',
+      'start': 'node build/server/main.js',
+      'test-watch': 'kyt test -- --watch',
+      'test-coverage': 'kyt test -- --coverage',
     };
 
     // Merge the Starter-kyt script names into the list of commands.
@@ -120,7 +121,7 @@ module.exports = (flags, args) => {
       if (tempScripts.indexOf(command) > -1) {
         packageJson.scripts[commandName] = tempPackageJSON.scripts[command];
       } else {
-        packageJson.scripts[commandName] = `kyt ${commandMap[command] || command}`;
+        packageJson.scripts[commandName] = commandMap[command] || `kyt ${command}`;
       }
     });
     packageJson.scripts['kyt:help'] = 'kyt --help';

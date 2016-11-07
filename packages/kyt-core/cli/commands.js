@@ -5,7 +5,6 @@ const devAction = require('./actions/dev');
 const lintAction = require('./actions/lint');
 const testAction = require('./actions/test');
 const buildAction = require('./actions/build');
-const startAction = require('./actions/start');
 const protoAction = require('./actions/proto');
 const lintStyleAction = require('./actions/lintStyle');
 const kytConfigFn = require('./../utils/kytConfig');
@@ -51,11 +50,6 @@ program
     const config = args[0].config ? args[0].config : null;
     loadConfigAndDo(buildAction, config);
   });
-
-program
-  .command('start')
-  .description('Starts the production build')
-  .action(() => loadConfigAndDo(startAction));
 
 program
   .command('test')

@@ -49,6 +49,7 @@ describe('KYT CLI', () => {
     const userPackageJSON = require.requireActual('../../cli-test/package.json');
     const scripts = userPackageJSON.scripts;
     expect(scripts.dev).toBe('kyt dev');
+    expect(scripts.start).toBe('node build/server/main.js');
     expect(scripts.build).toBe('kyt build');
     expect(scripts.test).toBe('kyt test');
     expect(scripts.lint).toBe('kyt lint');
@@ -95,7 +96,7 @@ describe('KYT CLI', () => {
       done();
     });
     child.stdout.on('data', (data) => {
-      if (data.includes('Server running')) {
+      if (data.includes('node build/server/main.js')) {
         shell.exec('sleep 3');
         const output = shell.exec('curl -I localhost:3100');
         expect(output.includes('200'));
