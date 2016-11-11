@@ -139,7 +139,7 @@ describe('KYT CLI', () => {
           stillAlive = false;
           shell.exec('sleep 5');
           const output = shell.exec('curl -I localhost:3102/prototype/');
-          testPass = output.stdout.includes('200');
+          testPass = output.stdout.includes('404');
           kill(child.pid);
         }
       });
