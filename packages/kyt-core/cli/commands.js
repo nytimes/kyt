@@ -66,5 +66,11 @@ program
   .description('Start a prorotype dev server.')
   .action(() => loadConfigAndDo(protoAction));
 
+program
+  .command('setup')
+  .description('deprecated')
+  .action(() => {
+    logger.error('Setup is now part of kyt-cli. \n npm install -g kyt-cli');
+  });
 
 program.parse(process.argv);
