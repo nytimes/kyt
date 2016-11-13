@@ -20,20 +20,21 @@ const cliPkgJson = require('../../package.json');
 
 module.exports = (flags, args) => {
   const date = Date.now();
-  const tmpDir = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
-  let repoURL = args.repository || 'https://github.com/NYTimes/kyt-starter-universal.git';
-  const removeTmpDir = () => shell.rm('-rf', tmpDir);
+  const tmpRepo = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
+  let tmpDir = tmpRepo;
+  let repoURL = args.repository || 'https://github.com/NYTimes/kyt.git';
+  const removeTmpRepo = () => shell.rm('-rf', tmpRepo);
   let tempPackageJSON;
   let oldPackageJSON;
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
-    removeTmpDir();
+    removeTmpRepo();
     process.exit();
   };
 
   // Comment the following to see verbose shell ouput.
-  shell.config.silent = true;
+  // shell.config.silent = true;
 
   // Compare the Starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
@@ -91,7 +92,7 @@ module.exports = (flags, args) => {
 
     // for commands that aren't 1:1 name:script
     const commandMap = {
-      'start': 'node build/server/main.js',
+      start: 'node build/server/main.js',
       'test-watch': 'kyt test -- --watch',
       'test-coverage': 'kyt test -- --coverage',
     };
@@ -264,7 +265,8 @@ module.exports = (flags, args) => {
   // repo into the user's base direcotry.
   const createSrcDirectory = () => {
     const cpSrc = () => {
-      shell.cp('-r', `${tmpDir}/src`, userRootPath);
+      const tmpSrcPath = path.join(tmpDir, '/src');
+      shell.cp('-r', `${tmpSrcPath}`, userRootPath);
       logger.task('Created src directory');
     };
     if (shell.test('-d', srcPath)) {
@@ -347,12 +349,12 @@ module.exports = (flags, args) => {
       createSrcDirectory();
       createGitignore();
       copyStarterKytFiles();
-      removeTmpDir();
+      removeTmpRepo();
       logger.end(`Done adding starter kyt: ${repoURL}`);
     };
 
     // First, clean any old cloned repositories.
-    removeTmpDir();
+    removeTmpRepo();
     simpleGit.clone(repoURL, tmpDir, {}, afterClone);
   };
 
@@ -379,8 +381,11 @@ module.exports = (flags, args) => {
       },
     ];
     inquire.prompt(question).then((answer) => {
-      if (answer.starterChoice === 'Static') {
-        repoURL = 'https://github.com/NYTimes/kyt-starter-static.git';
+      if (answer.starterChoice === 'Universal') {
+        tmpDir = path.join(tmpRepo, '/packages/starter-kyts/kyt-starter-universal/');
+      }
+      if (answer.starterChoice === 'static') {
+        tmpDir = path.join(tmpRepo, '/packages/starter-kyts/kyt-starter-static/');
       }
       starterKytSetup(answer.starterChoice);
     });
