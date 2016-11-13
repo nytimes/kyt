@@ -34,7 +34,7 @@ module.exports = (flags, args) => {
   };
 
   // Comment the following to see verbose shell ouput.
-  // shell.config.silent = true;
+  shell.config.silent = true;
 
   // Compare the Starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
@@ -337,6 +337,10 @@ module.exports = (flags, args) => {
         logger.log(error);
         bailProcess();
       }
+      // TODO: REMOVE THIS WHEN THIS GOES TO MASTER
+      if(!args.repository) {
+        shell.exec('cd .kyt-tmp && git checkout monorepo');
+      }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
       updateUserPackageJSON(false);
@@ -355,7 +359,7 @@ module.exports = (flags, args) => {
 
     // First, clean any old cloned repositories.
     removeTmpRepo();
-    simpleGit.clone(repoURL, tmpDir, {}, afterClone);
+    simpleGit.clone(repoURL, tmpRepo, {}, afterClone);
   };
 
   // default setup flow
@@ -384,7 +388,7 @@ module.exports = (flags, args) => {
       if (answer.starterChoice === 'Universal') {
         tmpDir = path.join(tmpRepo, '/packages/starter-kyts/kyt-starter-universal/');
       }
-      if (answer.starterChoice === 'static') {
+      if (answer.starterChoice === 'Static') {
         tmpDir = path.join(tmpRepo, '/packages/starter-kyts/kyt-starter-static/');
       }
       starterKytSetup(answer.starterChoice);
