@@ -29,7 +29,7 @@ module.exports = (flags, args) => {
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
-    removeTmpRepo();
+    // removeTmpRepo();
     process.exit();
   };
 
@@ -298,7 +298,7 @@ module.exports = (flags, args) => {
         const filePath = path.join(userRootPath, file);
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
-        if (['.gitignore', '.stylelintrc.json', '.eslintrc.json', '.editorconfig']
+        if (['.gitignore', '.stylelintrc.json', '.eslintrc.json', '.editorconfig', 'kyt.config.js']
               .indexOf(file) === -1 &&
             (shell.test('-f', filePath) || shell.test('-d', filePath))) {
           const fileBackup = path.join(userRootPath, `${file}-${date}-bak`);
@@ -338,7 +338,7 @@ module.exports = (flags, args) => {
         bailProcess();
       }
       // TODO: REMOVE THIS WHEN THIS GOES TO MASTER
-      if(!args.repository) {
+      if (!args.repository) {
         shell.exec('cd .kyt-tmp && git checkout monorepo');
       }
       // eslint-disable-next-line global-require,import/no-dynamic-require
