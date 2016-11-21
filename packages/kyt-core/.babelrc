@@ -1,19 +1,18 @@
 {
-  "presets": ["babel-preset-react", ["babel-preset-latest", { "modules": false }]],
-  "plugins": ["babel-plugin-transform-runtime"],
+  "presets": ["react", ["latest", { "modules": false }]],
   "env": {
     "development": {
-      "plugins": []
+      "plugins": ["transform-react-jsx-source"]
     },
     "production": {
       "plugins": [
-        "babel-plugin-transform-react-remove-prop-types",
-        "babel-plugin-transform-react-constant-elements"
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements"
       ]
     },
     "test": {
       "plugins": [
-        ["babel-plugin-transform-es2015-modules-commonjs", { "loose": true }]
+        ["transform-es2015-modules-commonjs", { "loose": true }]
       ]
     }
   }

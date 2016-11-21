@@ -11,15 +11,15 @@ Or you can run a command with `node_modules/.bin/kyt command`
 node_modules/.bin/kyt build
 ```
 
-1. `setup` sets up kyt and installs a specified [starter-kyt](/docs/Starterkyts.md)
-2. `dev` starts up a development environment
-3. `build` compiles server and client code for production use
-4. `start` runs the production server
-5. `test` runs all tests in /src
-6. `proto` starts the prototyping app
-7. `lint` lints src code using ESLint
-8. `lint-style` lints src code using StyleLint
-9. `help` shows commands and their documentation
+1. [`setup`](/docs/commands.md#setup) sets up kyt and installs a specified [starter-kyt](/docs/Starterkyts.md)
+2. [`dev`](/docs/commands.md#dev) starts up a development environment
+3. [`build`](/docs/commands.md#build) compiles server and client code for production use
+4. [`start`](/docs/commands.md#start) runs the production server
+5. [`test`](/docs/commands.md#test) runs all tests in /src
+6. [`proto`](/docs/commands.md#proto) starts the prototyping app
+7. [`lint`](/docs/commands.md#lint) lints src code using ESLint
+8. [`lint-style`](/docs/commands.md#lint-style) lints src code using StyleLint
+9. [`help`](/docs/commands.md#help) shows commands and their documentation
 
 ## setup
 
@@ -38,11 +38,16 @@ If kyt finds any files with duplicate names, it will back up your file before re
 
 Running `kyt setup` will give you the option to install the [default starter-kyt.](https://github.com/NYTimes/kyt-starter-universal)
 
-You can also pass the `-r` flag with any starter-kyt git clone URL:
+You can also pass the `-r` flag with any starter-kyt git clone URL (any url that [git understands](https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server#_git_on_the_server) will work; generally this will be SSH or HTTPS):
 
+```bash
+# SSH
+kyt setup -r git@github.com:nytimes/kyt-starter-universal.git
+# HTTPS
+kyt setup -r https://github.com/NYTimes/kyt-starter-universal.git
 ```
- kyt setup -r git@github.com:nytimes/kyt-starter.git
-```
+
+*NOTE: cloning GitHub repositories over SSH requires you to have an SSH key set up; see GitHub's guide on setting that up [here](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)*
 
 `setup` will then:
 
@@ -65,14 +70,14 @@ node_modules/.bin/kyt setup
 This starter-kyt is for creating client side React apps.
 Install by running:
 ```
-node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter-static.git
+node_modules/.bin/kyt setup -r https://github.com/NYTimes/kyt-starter-static.git
 ```
 
 #### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
 Still a work in progress, but this starter-kyt will serve as the base for building advanced, universal Angular2 apps.
 
 ```
-node_modules/.bin/kyt setup -r git@github.com:delambo/kyt-starter-universal-angular2.git
+node_modules/.bin/kyt setup -r https://github.com/delambo/kyt-starter-universal-angular2.git
 ```
 
 ## dev
@@ -138,7 +143,7 @@ The `lint` command lints all files in the `src/` directory using ESLint.
 During `setup`, an `.eslintrc.json` file is copied into the root of your app which extends kyt's base configuration.
 You can add or update any rules in this file.
 
-kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/config/.eslintrc.json).
+kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/config/.eslintrc.base.json).
 
 Flags can be passed to ESLint through `kyt lint`
 
@@ -149,7 +154,7 @@ kyt lint -- --fix
 ## lint-style
 
 The `lint-style` command uses Stylelint to lint all files in the `src/` directory. By convention, it looks for files with a `.css` or `.scss` extension.
-During `setup`, a `.stylelintrc.json` is copied into the root of your app that extends kyt's base configuration, pre-configured with [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules. You can find kyt's base Stylelint configuration [here](/config/.stylelintrc.json). You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc.json`.
+During `setup`, a `.stylelintrc.json` is copied into the root of your app that extends kyt's base configuration, pre-configured with [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules. You can find kyt's base Stylelint configuration [here](/config/.stylelintrc.base.json). You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc.json`.
 
 ## proto
 
@@ -178,7 +183,7 @@ The proto command also provides an `index.html` file with the following content:
 Running `proto` starts a dev server. Optionally, you can configure the prototype server url in your [kyt.config.js](/docs/kytConfig.md).
 
 ```
-✅  webpack-dev-server http://localhost:3002/prototype
+prototypeURL: "http://localhost:3002/prototype"
 ```
 
 ### Updating the prototype Webpack config

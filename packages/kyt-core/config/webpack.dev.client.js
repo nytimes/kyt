@@ -17,6 +17,7 @@ const cssStyleLoaders = [
 
 module.exports = (options) => {
   const main = [
+    'babel-polyfill',
     `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
     `${clientSrcPath}/index.js`,
   ];
