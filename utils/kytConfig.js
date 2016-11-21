@@ -32,6 +32,9 @@ module.exports = (optionalConfig) => {
       logger.log('');
       logger.info(`Using kyt config at ${kytConfigPath}`);
       // eslint-disable-next-line global-require,import/no-dynamic-require
+      require('babel-register')({
+        only : kytConfigPath
+      });
       config = require(kytConfigPath);
     } catch (error) {
       logger.error('Error loading your kyt.config.js:', error);
