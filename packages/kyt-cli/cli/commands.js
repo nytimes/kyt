@@ -11,6 +11,7 @@ const loadArgsAndDo = (action) => {
 program
   .command('setup')
   .description('Generate a project from a github url to get started.')
+  .option('-d, --directory <path>', 'Directory for your project')
   .option('-r, --repository [address]', 'Github repository address')
   .action(() => loadArgsAndDo(setupAction));
 

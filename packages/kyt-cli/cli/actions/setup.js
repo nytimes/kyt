@@ -7,34 +7,48 @@ const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const uniq = require('ramda').uniq;
-const {
-  userRootPath,
-  srcPath,
-  userPrototypePath,
-  userKytConfigPath,
-  userNodeModulesPath,
-  userPackageJSONPath,
-} = require('kyt-utils/paths')(); // eslint-disable-line import/newline-after-import
 // eslint-disable-next-line import/no-dynamic-require
 const cliPkgJson = require('../../package.json');
 
 module.exports = (flags, args) => {
+  // Comment the following to see verbose shell ouput.
+  shell.config.silent = true;
+  const checkAndBail = (code) => {
+    if (code) {
+      logger.error(`Unable to create directory ${args.directory}. Exiting...`);
+      process.exit(1);
+    }
+  };
+  if (args.directory) {
+    logger.task(`Creating your new project at ${args.directory}`);
+    let output = shell.mkdir(args.directory);
+    checkAndBail(output.code);
+    output = shell.cd(args.directory);
+    checkAndBail(output.code);
+  }
+  const {
+    userRootPath,
+    srcPath,
+    userPrototypePath,
+    userKytConfigPath,
+    userNodeModulesPath,
+    userPackageJSONPath,
+  } = require('kyt-utils/paths')(); // eslint-disable-line
+
   const date = Date.now();
   const tmpRepo = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
   let tmpDir = tmpRepo;
-  let repoURL = args.repository || 'https://github.com/NYTimes/kyt.git';
+  const repoURL = args.repository || 'https://github.com/NYTimes/kyt.git';
   const removeTmpRepo = () => shell.rm('-rf', tmpRepo);
   let tempPackageJSON;
   let oldPackageJSON;
+
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
-    // removeTmpRepo();
+    removeTmpRepo();
     process.exit();
   };
-
-  // Comment the following to see verbose shell ouput.
-  shell.config.silent = true;
 
   // Compare the Starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
