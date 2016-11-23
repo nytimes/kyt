@@ -1,6 +1,24 @@
 
 ## Master
 
+## 0.4.0 (TBD)
+
+### BREAKING CHANGES
+
+#### Monorepo
+kyt is now a mono repo with several packages
+1. kyt-cli - A globally installed package for project setup
+  - setup command now can create a new project directory with the -d flag.
+    `kyt-cli setup -d myDirectory`
+  - setup now supports copying devDependencies from starter-kyts
+2. kyt-core - The kyt build and dev systems. Used as a project dependency
+  - `setup` is now deprecated as part of kyt-core. It can be found in kyt-cli
+  - `start` now runs the node server without a kyt wrapped command. This means kyt can be installed as a dev dependency
+3. kyt-utils - Shared kyt code. Not to be used independently
+4. starter-kyts - kyt-starter-static and kyt-starter-universal now live in the yt repo.
+
+e2e tests have been pulled to the top level and will be used to test all packages. 
+
 ## 0.3.0 (October 25, 2016)
 
 ### BREAKING CHANGES
