@@ -71,16 +71,28 @@ module.exports = (flags, args) => {
   // Adds dependencies from the starter-kyts package.json
   const updatePackageJSONDependencies = (packageJson) => {
     const tempDependencies = tempPackageJSON.dependencies || {};
-
+    const tempDevDependencies = tempPackageJSON.devDependencies || {};
     // In case the starter kyt used `kyt` as a dependency.
     if (tempDependencies.kyt) {
       Reflect.deleteProperty(tempDependencies, 'kyt');
     }
+    if (tempDevDependencies.kyt) {
+      Reflect.deleteProperty(tempDevDependencies, 'kyt');
+    }
 
     packageJson.dependencies = Object.assign(
       packageJson.dependencies || {},
-      tempPackageJSON.dependencies
+      tempDependencies
     );
+
+    // Copies over dev dependencies
+    if (tempDevDependencies) {
+      console.log('happening');
+      packageJson.devDependencies = Object.assign(
+        packageJson.devDependencies || {},
+        tempDevDependencies
+      );
+    }
 
     // Add kyt to list of dev dependencies if its not there
     // eslint-disable-next-line max-len
