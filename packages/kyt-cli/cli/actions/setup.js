@@ -87,7 +87,6 @@ module.exports = (flags, args) => {
 
     // Copies over dev dependencies
     if (tempDevDependencies) {
-      console.log('happening');
       packageJson.devDependencies = Object.assign(
         packageJson.devDependencies || {},
         tempDevDependencies
