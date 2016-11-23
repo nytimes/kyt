@@ -1,4 +1,4 @@
 language: node_js
 node_js:
   - 6.0
-script: cd packages/kyt-core && npm install && cd ../kyt-cli && npm install && cd ../.. && npm run lint && npm test && npm run e2e
+script: cd packages/kyt-core && npm install && cd ../kyt-cli && npm install cd ../kyt-utils && npm install && cd ../.. && npm run lint && npm test && npm run e2e
