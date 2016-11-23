@@ -9,7 +9,7 @@
   "scripts": {
     "test": "jest --testPathPattern /__tests__/",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "eslint ."
+    "lint": "cd ./packages/kyt-cli && npm run lint && cd ../kyt-core && npm run lint && cd ../kyt-utils && npm run lint"
   },
   "repository": {
     "type": "git",

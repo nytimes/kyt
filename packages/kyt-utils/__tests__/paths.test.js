@@ -1,5 +1,5 @@
 describe('paths', () => {
-  const paths = require('../paths')();
+  const paths = require('../paths')(); // eslint-disable-line global-require
 
   it('exports the expected properties', () => {
     ['userRootPath',
