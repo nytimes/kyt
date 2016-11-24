@@ -14,6 +14,11 @@ module.exports = (context, opts = {}) => ({
     [babelPresetKytCore, opts.coreOptions || {}],
   ],
   env: {
+    development: {
+      plugins: [
+        reactTransformJsxSource,
+      ],
+    },
     production: {
       plugins: [
         reactRemovePropTypes,
