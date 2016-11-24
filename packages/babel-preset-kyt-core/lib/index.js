@@ -1,6 +1,6 @@
-const babelPresetLatest = require('babel-preset-latest');
-const babelTransformRuntime = require('babel-plugin-transform-runtime');
-const babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
+var babelPresetLatest = require('babel-preset-latest');
+var babelTransformRuntime = require('babel-plugin-transform-runtime');
+var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
 
 module.exports = (context, opts = {}) => ({
   // modules are handled by webpack, don't transform them

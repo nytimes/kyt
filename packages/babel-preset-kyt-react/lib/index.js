@@ -1,10 +1,11 @@
-const babelPresetReact = require('babel-preset-react');
-const reactRemovePropTypes = require('babel-plugin-transform-react-remove-prop-types');
-const reactTransformConstant = require('babel-plugin-transform-react-constant-elements');
-const reactTransformInline = require('babel-plugin-transform-react-inline-elements');
+var babelPresetReact = require('babel-preset-react');
+var reactRemovePropTypes = require('babel-plugin-transform-react-remove-prop-types');
+var reactTransformConstant = require('babel-plugin-transform-react-constant-elements');
+var reactTransformInline = require('babel-plugin-transform-react-inline-elements');
+var reactTransformJsxSource = require('babel-plugin-transform-react-jsx-source');
 
 // TODO add to package.json and use an absolute require once it's published
-const babelPresetKytCore = require('../../babel-preset-kyt-core');
+var babelPresetKytCore = require('../../babel-preset-kyt-core');
 
 module.exports = (context, opts = {}) => ({
   presets: [
