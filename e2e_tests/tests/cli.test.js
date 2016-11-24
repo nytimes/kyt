@@ -21,10 +21,7 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
-    let setupURL = 'git@github.com:NYTimes/kyt-starter-test.git';
-    if (process.env.TEST_TOKEN) {
-      setupURL = `https://${process.env.TEST_TOKEN}@github.com/NYTimes/kyt-starter-test.git`;
-    }
+    const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
     const output = shell.exec(`node_modules/.bin/kyt setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
@@ -92,50 +89,62 @@ describe('KYT CLI', () => {
   // eslint-disable-next-line
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
 
-  it('starts the app', (done) => {
+  it('starts the app', () => {
+    let testPass;
     shell.exec('npm run build');
-    const child = shell.exec('npm run start', () => {
-      done();
+    const exec = new Promise((resolve) => {
+      const child = shell.exec('npm run start', () => {
+        resolve(testPass);
+      });
+      child.stdout.on('data', (data) => {
+        if (data.includes('Server running')) {
+          shell.exec('sleep 3');
+          const output = shell.exec('curl -I localhost:3100');
+          testPass = output.stdout.includes('200');
+          kill(child.pid);
+        }
+      });
     });
-    child.stdout.on('data', (data) => {
-      if (data.includes('Server running')) {
-        shell.exec('sleep 3');
-        const output = shell.exec('curl -I localhost:3100');
-        expect(output.includes('200'));
-        kill(child.pid);
-      }
-    });
+    return exec.then(test => expect(test).toBe(true));
   });
 
 
-  it('dev', (done) => {
-    const child = shell.exec('npm run dev', () => {
-      done();
+  it('dev', () => {
+    let testPass;
+    const exec = new Promise((resolve) => {
+      const child = shell.exec('npm run dev', () => {
+        resolve(testPass);
+      });
+      child.stdout.on('data', (data) => {
+        if (data.includes('✅  Development started')) {
+          shell.exec('sleep 2');
+          const output = shell.exec('curl -I localhost:3100');
+          testPass = output.stdout.includes('200');
+          kill(child.pid);
+        }
+      });
     });
-    child.stdout.on('data', (data) => {
-      if (data.includes('✅  Development started')) {
-        shell.exec('sleep 2');
-        const output = shell.exec('curl -I localhost:3100');
-        expect(output.includes('200'));
-        kill(child.pid);
-      }
-    });
+    return exec.then(test => expect(test).toBe(true));
   });
 
-  it('proto', (done) => {
-    const child = shell.exec('npm run proto', () => {
-      done();
+  it('proto', () => {
+    const exec = new Promise((resolve) => {
+      let testPass;
+      const child = shell.exec('npm run proto', () => {
+        resolve(testPass);
+      });
+      let stillAlive = true;
+      child.stdout.on('data', (data) => {
+        if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
+          stillAlive = false;
+          shell.exec('sleep 5');
+          const output = shell.exec('curl -I localhost:3102/prototype/');
+          testPass = output.stdout.includes('404');
+          kill(child.pid);
+        }
+      });
     });
-    let stillAlive = true;
-    child.stdout.on('data', (data) => {
-      if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
-        stillAlive = false;
-        shell.exec('sleep 2');
-        const output = shell.exec('curl -I localhost:3102/prototype');
-        expect(output.includes('200'));
-        kill(child.pid);
-      }
-    });
+    return exec.then(test => expect(test).toBe(true));
   });
 
   afterAll(() => {

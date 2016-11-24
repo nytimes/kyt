@@ -18,6 +18,10 @@ We recommend forking kyt and creating a test project with a starter-kyt for loca
 ### Testing kyt
 Instructions TK
 
+## Create an RFC
+
+If you want to propose a large feature idea or architecture change you should consider submitting an RFC. It's often helpful to get feedback on your concept in an issue before starting the RFC. RFCs are an evolving process in the kyt repository so expect a lot of changes and guidelines in the future. You can find the kyt RFC template [here](/rfc/template.md).
+
 ## Build a starter-kyt
 
 Have a great idea for a boilerplate? Build it on top of kyt and let us know about it. Directions are [here](/docs/Starterkyts.md).
