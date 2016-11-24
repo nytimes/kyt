@@ -68,7 +68,7 @@
     "sass-loader": "4.0.2",
     "semver": "5.3.0",
     "shelljs": "0.7.4",
-    "simple-git": "1.52.0",
+    "simple-git": "1.54.0",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
     "stylelint": "7.5.0",
