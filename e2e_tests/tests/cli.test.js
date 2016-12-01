@@ -87,16 +87,14 @@ describe('KYT CLI', () => {
   });
 
   it('runs the build command and exits on SIGINT', () => {
-    const exec = new Promise((resolve) => {
-      let finishedBuild = false;
+    const exec = new Promise((resolve, reject) => {
       let sentKill = false;
       const child = shell.exec('npm run build', (code) => {
-        resolve({ finishedBuild, code });
+        resolve(code);
       });
       child.stdout.on('data', (data) => {
         if (data.includes('✅ Done building')) {
-          finishedBuild = true;
-          resolve(finishedBuild);
+          reject();
         }
         if (!sentKill) {
           sentKill = true;
@@ -104,21 +102,18 @@ describe('KYT CLI', () => {
         }
       });
     });
-    return exec.then(({ finishedBuild, code }) =>
-      expect(finishedBuild).toBe(false) && expect(code).toBe(0));
+    return exec.then(code => expect(code).toBe(0));
   });
 
   it('runs the dev command and exits on SIGINT', () => {
-    const exec = new Promise((resolve) => {
-      let finishedBuild = false;
+    const exec = new Promise((resolve, reject) => {
       let sentKill = false;
       const child = shell.exec('npm run dev', (code) => {
-        resolve({ finishedBuild, code });
+        resolve(code);
       });
       child.stdout.on('data', (data) => {
         if (data.includes('✅ Development started')) {
-          finishedBuild = true;
-          resolve(finishedBuild);
+          reject();
         }
         if (!sentKill) {
           sentKill = true;
@@ -126,8 +121,7 @@ describe('KYT CLI', () => {
         }
       });
     });
-    return exec.then(({ finishedBuild, code }) =>
-      expect(finishedBuild).toBe(false) && expect(code).toBe(0));
+    return exec.then(code => expect(code).toBe(0));
   });
   // eslint-disable-next-line
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
