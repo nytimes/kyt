@@ -22,6 +22,7 @@ if (!shell.test('-f', userPackageJSONPath)) {
 }
 
 process.on('SIGINT', () => {
+  logger.warn('kyt interrupted ☝️');
   process.exit(0);
 });
 
