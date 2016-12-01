@@ -108,6 +108,27 @@ describe('KYT CLI', () => {
       expect(finishedBuild).toBe(false) && expect(code).toBe(0));
   });
 
+  it('runs the dev command and exits on SIGINT', () => {
+    const exec = new Promise((resolve) => {
+      let finishedBuild = false;
+      let sentKill = false;
+      const child = shell.exec('npm run dev', (code) => {
+        resolve({ finishedBuild, code });
+      });
+      child.stdout.on('data', (data) => {
+        if (data.includes('✅ Development started')) {
+          finishedBuild = true;
+          resolve(finishedBuild);
+        }
+        if (!sentKill) {
+          sentKill = true;
+          kill(child.pid, 'SIGINT');
+        }
+      });
+    });
+    return exec.then(({ finishedBuild, code }) =>
+      expect(finishedBuild).toBe(false) && expect(code).toBe(0));
+  });
   // eslint-disable-next-line
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
 
