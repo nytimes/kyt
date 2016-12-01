@@ -90,8 +90,8 @@ describe('KYT CLI', () => {
     const exec = new Promise((resolve) => {
       let finishedBuild = false;
       let sentKill = false;
-      const child = shell.exec('npm run build', () => {
-        resolve(finishedBuild);
+      const child = shell.exec('npm run build', (code) => {
+        resolve({ finishedBuild, code });
       });
       child.stdout.on('data', (data) => {
         if (data.includes('✅ Done building')) {
@@ -104,7 +104,8 @@ describe('KYT CLI', () => {
         }
       });
     });
-    return exec.then(test => expect(test).toBe(false));
+    return exec.then(({ finishedBuild, code }) =>
+      expect(finishedBuild).toBe(false) && expect(code).toBe(0));
   });
 
   // eslint-disable-next-line
