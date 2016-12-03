@@ -19,6 +19,11 @@ if (!shell.test('-f', userPackageJSONPath)) {
   process.exit(1);
 }
 
+process.on('SIGINT', () => {
+  logger.warn('kyt interrupted ☝️');
+  process.exit(0);
+});
+
 const loadConfigAndDo = (action, optionalConfig) => {
   const args = program.args.filter(item => typeof item === 'object');
   const flags = program.args.filter(item => typeof item === 'string');
