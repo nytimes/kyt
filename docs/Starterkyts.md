@@ -1,6 +1,6 @@
 # Starter-kyts
 
-The following is a guide for building starter-kyts. If you would like to know more about installing a starter-kyt, check out the [`setup` command](/docs/commands.md#setup).
+The following is a guide for building starter-kyts. If you would like to know more about installing a starter-kyt, check out the [`kyt-cli setup` tool](/docs/kytCli.md).
 
 ## How to build a starter-kyt
 starter-kyts act as boilerplates for projects. They use kyt as their build system and add additional source code and tools.

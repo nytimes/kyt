@@ -1,0 +1,63 @@
+# kyt-cli
+
+kyt-cli is a tool for creating new kyt projects.
+
+## Install kyt-cli
+`npm install -g kyt-cli`
+
+The `setup` command sets up your project with all the application files that you'll need to use kyt:
+
+1. Creates a new [kyt.config.js](/docs/kytConfig.md)
+2. Install necessary npm packages
+3. Creates a .gitignore and .editorconfig
+4. Creates linter configurations -  .eslintrc.json and .stylelintrc.json files
+5. Adds kyt commands to npm scripts
+
+If kyt finds any files with duplicate names, it will back up your file before replacing it.
+
+It takes 2 options:
+
+- `-d` The name of the new project directory. If not specified kyt will install the project in your current working directory.
+- `-r` The github url for a starter-kyt. If not specified you will be prompted to select a starter-kyt from the supported list.
+
+## Setup a new project
+`kyt-cli setup -d my-proj-name`
+
+kyt will provide you with a list of supported starter-kyts to install
+
+The supported starter-kyts are:
+
+- [kyt-starter-universal](/packages/starter-kyts/kyt-starter-universal)
+- [kyt-starter-static](/packages/starter-kyts/kyt-starter-static)
+
+### Setup a starter-kyt from github
+
+`kyt-cli setup -d my-proj-name -r https://github.com/starter-kyt-repo.git`
+
+## Setup an existing project
+Run `kyt-cli setup` in your project directory.
+Select `no` when prompted to setup with a starter-kyt.
+
+### Recommended starter-kyts
+
+#### [Universal React starter-kyt](/packages/starter-kyts/kyt-starter-universal)
+This default starter-kyt is a good base for building advanced, universal React apps.
+
+```
+node_modules/.bin/kyt setup
+```
+
+#### [Static starter-kyt](/packages/starter-kyts/kyt-starter-static)
+
+This starter-kyt is for creating client side React apps.
+Install by running:
+```
+node_modules/.bin/kyt setup -r https://github.com/NYTimes/kyt-starter-static.git
+```
+
+#### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
+Still a work in progress, but this starter-kyt will serve as the base for building advanced, universal Angular2 apps.
+
+```
+node_modules/.bin/kyt setup -r https://github.com/delambo/kyt-starter-universal-angular2.git
+```

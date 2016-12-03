@@ -13,12 +13,11 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
 2. Create a directory and initialize npm - `npm init`
-3. `npm install --save kyt`
-4. `node_modules/.bin/kyt setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/commands.md#setup).
+3. `npm install -g kyt-cli`
+4. `kyt-cli setup -d my-kyt-project` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/kytCli.md).
 5. `npm run dev`
 6. Check out `http://localhost:3000`
 
-We recommend installing kyt as a dependency in your project.
 
 ## How it Works
 
@@ -42,11 +41,19 @@ Developers design their own architecture, choosing the tools they need for rende
 For advanced use cases, kyt enables developers to add additional tools and configuration.
 See our [config override instructions](/docs/kytConfig.md#modifywebpackconfig) for details, and our [recipes](/docs/Recipes.md) for examples.
 
+
+## Setting up a kyt project
+kyt-cli is a utility for bootstrapping kyt projects. It can be installed globally and run to create a new project or integrate kyt with an existing project.
+
+`kyt-cli setup`
+
+See the [kyt-cli](/docs/kytCli.md) documentation for more details. 
+
 ## Command line
 
 kyt includes a command line program with all the commands needed for development.
 
-Running `node_modules/.bin/kyt setup` includes these commands as scripts in your package.json:
+Running `kyt-cli setup` includes these commands as scripts in your package.json:
 
 ```
 npm run dev
@@ -60,7 +67,6 @@ node_modules/.bin/kyt build
 
 Here are the available commands:
 
-* [`setup`](/docs/commands.md#setup) sets up kyt and installs a starter-kyt
 * [`dev`](/docs/commands.md#dev) starts a development environment
 * [`build`](/docs/commands.md#build) compiles server and client code for production use
 * [`start`](/docs/commands.md#start) runs production code
@@ -102,9 +108,9 @@ See our [recipes](/docs/Recipes.md) for extending configuration.
 
 ## starter-kyts
 
-While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt CLI includes a `setup` command which installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
+While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt-cli `setup` command installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
 
-See our recommended list of [starter-kyts](/docs/commands.md#recommended-starter-kyts).
+See our recommended list of [starter-kyts](/docs/kytCli.md#recommended-starter-kyts).
 
 ### How to build a starter-kyt
 

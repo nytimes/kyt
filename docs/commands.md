@@ -2,7 +2,7 @@
 
 kyt includes a CLI with all the commands needed for development.
 
-`setup` includes these commands as scripts in your package.json:
+`kyt-cli setup` includes these commands as scripts in your package.json:
 ```
 npm run dev
 ```
@@ -11,7 +11,7 @@ Or you can run a command with `node_modules/.bin/kyt command`
 node_modules/.bin/kyt build
 ```
 
-1. [`setup`](/docs/commands.md#setup) sets up kyt and installs a specified [starter-kyt](/docs/Starterkyts.md)
+1. [starter-kyt](/docs/Starterkyts.md)
 2. [`dev`](/docs/commands.md#dev) starts up a development environment
 3. [`build`](/docs/commands.md#build) compiles server and client code for production use
 4. [`start`](/docs/commands.md#start) runs the production server
@@ -20,65 +20,6 @@ node_modules/.bin/kyt build
 7. [`lint`](/docs/commands.md#lint) lints src code using ESLint
 8. [`lint-style`](/docs/commands.md#lint-style) lints src code using StyleLint
 9. [`help`](/docs/commands.md#help) shows commands and their documentation
-
-## setup
-
-The `setup` command sets up your project with all the application files that you'll need to use kyt.
-
-1. Creates a new [kyt.config.js](/docs/kytConfig.md)
-2. Creates a .gitignore and .editorconfig
-3. Creates linter configurations -  .eslintrc.json and .stylelintrc.json files
-4. Adds kyt commands to npm scripts
-
-If kyt finds any files with duplicate names, it will back up your file before replacing it.
-
-### setup with a starter-kyt
-
-`setup` also allows you to plug a starter-kyt into your app.
-
-Running `kyt setup` will give you the option to install the [default starter-kyt.](https://github.com/NYTimes/kyt-starter-universal)
-
-You can also pass the `-r` flag with any starter-kyt git clone URL (any url that [git understands](https://git-scm.com/book/en/v2/Git-on-the-Server-Getting-Git-on-a-Server#_git_on_the_server) will work; generally this will be SSH or HTTPS):
-
-```bash
-# SSH
-kyt setup -r git@github.com:nytimes/kyt-starter-universal.git
-# HTTPS
-kyt setup -r https://github.com/NYTimes/kyt-starter-universal.git
-```
-
-*NOTE: cloning GitHub repositories over SSH requires you to have an SSH key set up; see GitHub's guide on setting that up [here](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)*
-
-`setup` will then:
-
-1. Copy configuration and src files into your project
-2. Install necessary npm packages
-3. Copy lint configurations into your project
-4. Add kyt commands to your npm scripts
-
-### Recommended starter-kyts
-
-#### [Universal React starter-kyt](https://github.com/NYTimes/kyt-starter-universal)
-This default starter-kyt is a good base for building advanced, universal React apps.
-
-```
-node_modules/.bin/kyt setup
-```
-
-#### [Static starter-kyt](https://github.com/NYTimes/kyt-starter-static)
-
-This starter-kyt is for creating client side React apps.
-Install by running:
-```
-node_modules/.bin/kyt setup -r https://github.com/NYTimes/kyt-starter-static.git
-```
-
-#### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
-Still a work in progress, but this starter-kyt will serve as the base for building advanced, universal Angular2 apps.
-
-```
-node_modules/.bin/kyt setup -r https://github.com/delambo/kyt-starter-universal-angular2.git
-```
 
 ## dev
 
@@ -140,7 +81,7 @@ See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
 ## lint
 
 The `lint` command lints all files in the `src/` directory using ESLint.
-During `setup`, an `.eslintrc.json` file is copied into the root of your app which extends kyt's base configuration.
+During `kyt-cli setup`, an `.eslintrc.json` file is copied into the root of your app which extends kyt's base configuration.
 You can add or update any rules in this file.
 
 kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/config/.eslintrc.base.json).
@@ -154,7 +95,7 @@ kyt lint -- --fix
 ## lint-style
 
 The `lint-style` command uses Stylelint to lint all files in the `src/` directory. By convention, it looks for files with a `.css` or `.scss` extension.
-During `setup`, a `.stylelintrc.json` is copied into the root of your app that extends kyt's base configuration, pre-configured with [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules. You can find kyt's base Stylelint configuration [here](/config/.stylelintrc.base.json). You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc.json`.
+During `kyt-cli setup`, a `.stylelintrc.json` is copied into the root of your app that extends kyt's base configuration, pre-configured with [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules. You can find kyt's base Stylelint configuration [here](/config/.stylelintrc.base.json). You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc.json`.
 
 ## proto
 

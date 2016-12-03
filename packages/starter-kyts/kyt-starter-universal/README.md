@@ -5,8 +5,9 @@ This starter-kyt should serve as the base for an advanced, server and client-ren
 
 ## Installation
 
-1. Create a new directory and install [kyt](https://github.com/NYTimes/kyt)
-2. `node_modules/.bin/kyt setup -r git@github.com:NYTimes/kyt-starter-universal.git`
+1. run `kyt-cli setup`
+2. select `yes` when prompted to setup with a starter-kyt
+3. select `universal` from the list of starter-kyts
 
 ## Tools
 
