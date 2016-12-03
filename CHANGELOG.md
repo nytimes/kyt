@@ -5,7 +5,7 @@
 
 ### BREAKING CHANGES
 
-#### Monorepo
+#### MONOREPO
 kyt is now a mono repo with several packages
 1. kyt-cli - A globally installed package for project setup
   - setup command now can create a new project directory with the -d flag.
@@ -17,7 +17,7 @@ kyt is now a mono repo with several packages
 3. kyt-utils - Shared kyt code. Not to be used independently
 4. starter-kyts - kyt-starter-static and kyt-starter-universal now live in the yt repo.
 
-e2e tests have been pulled to the top level and will be used to test all packages. 
+e2e tests have been pulled to the top level and will be used to test all packages.
 
 ## 0.3.0 (October 25, 2016)
 

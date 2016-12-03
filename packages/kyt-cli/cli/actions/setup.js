@@ -19,6 +19,7 @@ module.exports = (flags, args) => {
       process.exit(1);
     }
   };
+  // Creates project directory if one is specified
   if (args.directory) {
     logger.task(`Creating your new project at ${args.directory}`);
     let output = shell.mkdir(args.directory);
@@ -37,12 +38,13 @@ module.exports = (flags, args) => {
 
   const date = Date.now();
   const tmpRepo = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
+  // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir = tmpRepo;
   const repoURL = args.repository || 'https://github.com/NYTimes/kyt.git';
-  const removeTmpRepo = () => shell.rm('-rf', tmpRepo);
   let tempPackageJSON;
   let oldPackageJSON;
 
+  const removeTmpRepo = () => shell.rm('-rf', tmpRepo);
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
@@ -50,21 +52,34 @@ module.exports = (flags, args) => {
     process.exit();
   };
 
-  // Compare the Starter-kyt's package.json kyt.version
+  // Compare the starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
   const checkStarterKytVersion = (userPackageJSON) => {
-    const kytStarterVersion = (tempPackageJSON.kyt && tempPackageJSON.kyt.version) || null;
-    if (kytStarterVersion) {
+    const kytStarterPreferredVersion = (tempPackageJSON.kyt && tempPackageJSON.kyt.version) || null;
+    if (kytStarterPreferredVersion) {
       // Look everywhere for kyt
       const kytVersion =
         (userPackageJSON.devDependencies && userPackageJSON.devDependencies.kyt)
         || (userPackageJSON.dependencies && userPackageJSON.dependencies.kyt);
       if (semver.valid(kytVersion)) {
-        if (!semver.satisfies(kytVersion, kytStarterVersion)) {
+        if (!semver.satisfies(kytVersion, kytStarterPreferredVersion)) {
           // eslint-disable-next-line max-len
-          logger.warn(`${tempPackageJSON.name} requires kyt version ${kytStarterVersion} but kyt ${kytVersion} is installed.`);
+          logger.warn(`${tempPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`);
         }
       }
+    }
+  };
+
+  // Add kyt to list of dev dependencies if its not there
+  const addKytDevDependency = (packageJson) => {
+    // eslint-disable-next-line max-len
+    // check to see if kyt is in dependencies or devDependencies
+    if (!(packageJson.dependencies && packageJson.dependencies.kyt) &&
+        !(packageJson.devDependencies && packageJson.devDependencies.kyt)) {
+      const output = shell.exec('npm info kyt version');
+      const kytVersion = output.stdout.trim();
+      packageJson.devDependencies = packageJson.devDependencies || {};
+      packageJson.devDependencies.kyt = kytVersion;
     }
   };
 
@@ -93,14 +108,7 @@ module.exports = (flags, args) => {
       );
     }
 
-    // Add kyt to list of dev dependencies if its not there
-    // eslint-disable-next-line max-len
-    if (!packageJson.dependencies.kyt && !(packageJson.devDependencies && packageJson.devDependencies.kyt)) {
-      const output = shell.exec('npm info kyt version');
-      const kytVersion = output.stdout.trim();
-      packageJson.devDependencies = packageJson.devDependencies || {};
-      packageJson.devDependencies.kyt = kytVersion;
-    }
+    addKytDevDependency(packageJson);
 
     logger.task('Added new dependencies to package.json');
     return packageJson;
@@ -150,8 +158,8 @@ module.exports = (flags, args) => {
         }
       }
 
-      // If the command is from a Starter-kyt then
-      // we need to copy in the Starter-kyt value.
+      // If the command is from a starter-kyt then
+      // we need to copy in the starter-kyt value.
       if (tempScripts.indexOf(command) > -1) {
         packageJson.scripts[commandName] = tempPackageJSON.scripts[command];
       } else {
@@ -165,7 +173,7 @@ module.exports = (flags, args) => {
 
   // Add dependencies, scripts and other package to
   // the user's package.json configuration.
-  const updateUserPackageJSON = (defaultMode) => {
+  const updateUserPackageJSON = (existingProject) => {
     let userPackageJSON;
     // Create a package.json definition if
     // the user doesn't already have one.
@@ -181,9 +189,12 @@ module.exports = (flags, args) => {
     oldPackageJSON = Object.assign({}, userPackageJSON);
 
     // Add dependencies from starter-kyts
-    if (!defaultMode) {
+    if (!existingProject) {
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
       checkStarterKytVersion(userPackageJSON);
+    } else {
+      // exisitng projects should also have kyt as a devDependency
+      addKytDevDependency(userPackageJSON);
     }
     // Add scripts
     userPackageJSON = addPackageJsonScripts(userPackageJSON);
@@ -331,7 +342,7 @@ module.exports = (flags, args) => {
         const filePath = path.join(userRootPath, file);
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
-        if (['.gitignore', '.stylelintrc.json', '.eslintrc.json', '.editorconfig', 'kyt.config.js']
+        if (['.gitignore', '.stylelintrc.json', '.eslintrc.json', '.editorconfig', 'kyt.config.js', 'prototype.js']
               .indexOf(file) === -1 &&
             (shell.test('-f', filePath) || shell.test('-d', filePath))) {
           const fileBackup = path.join(userRootPath, `${file}-${date}-bak`);
@@ -355,12 +366,12 @@ module.exports = (flags, args) => {
       shell.mv(userPrototypePath, prototypeBackup);
       logger.info(`Backed up current prototype file to: ${prototypeBackup}`);
     }
-    // Copy the prototype file from the starter kit into the users repo
+    // Copy the prototype file from the starter-kyt into the users repo
     shell.cp(starterProto, userPrototypePath);
     logger.task('copied prototype.js file into root');
   };
 
-  // setup flow for starter-kyts
+  // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
     starterName = starterName || 'specified';
     logger.start(`Setting up the ${starterName} starter-kyt`);
@@ -395,18 +406,6 @@ module.exports = (flags, args) => {
     simpleGit.clone(repoURL, tmpRepo, {}, afterClone);
   };
 
-  // default setup flow
-  const defaultSetup = () => {
-    logger.start('Setting up kyt');
-    updateUserPackageJSON(true);
-    createEditorconfigLink();
-    createESLintFile();
-    createStylelintFile();
-    createKytConfig();
-    createGitignore();
-    logger.end('Done setting up kyt');
-  };
-
   const starterKytPrompt = () => {
     const question = [
       {
@@ -428,6 +427,8 @@ module.exports = (flags, args) => {
     });
   };
 
+  // Runs setup tasks for list of starter-kyts
+  // or flag specified starter-kyt
   const callStarterSetup = () => {
     if (args.repository) {
       starterKytSetup();
@@ -460,6 +461,18 @@ module.exports = (flags, args) => {
     }
   };
 
+  // setup tasks for setup in existing project
+  const existingProjectSetup = () => {
+    logger.start('Setting up kyt');
+    updateUserPackageJSON(true);
+    createEditorconfigLink();
+    createESLintFile();
+    createStylelintFile();
+    createKytConfig();
+    createGitignore();
+    logger.end('Done setting up kyt');
+  };
+
   // Selects type of setup
   const setupPrompt = () => {
     // Skip starter-kyt questions if they've already supplied a repo name
@@ -478,12 +491,15 @@ module.exports = (flags, args) => {
         if (answer.setupStarter) {
           srcPrompt();
         } else {
-          defaultSetup();
+          existingProjectSetup();
         }
       });
     }
   };
 
+  // Checks to see if user is running current version of kyt-cli
+  // Gives option to exit if version is old
+  // runs setup
   const checkCliVersionPrompt = () => {
     const currentVersion = cliPkgJson.version;
     const output = shell.exec('npm info kyt-cli version');
