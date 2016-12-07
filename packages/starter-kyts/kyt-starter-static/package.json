@@ -14,9 +14,6 @@
     "url": "https://github.com/nytimes/kyt-starter-static/issues"
   },
   "homepage": "https://github.com/nytimes/kyt-starter-static#readme",
-  "kyt": {
-    "version": "^0.3.0"
-  },
   "dependencies": {
     "html-webpack-plugin": "^2.22.0",
     "react": "^15.3.0",

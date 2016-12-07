@@ -11,6 +11,7 @@ const uniq = require('ramda').uniq;
 const cliPkgJson = require('../../package.json');
 
 module.exports = (flags, args) => {
+  logger.start('Setting up your new kyt project...');
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
   const checkAndBail = (code) => {
@@ -55,7 +56,10 @@ module.exports = (flags, args) => {
   // Compare the starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
   const checkStarterKytVersion = (userPackageJSON) => {
-    const kytStarterPreferredVersion = (tempPackageJSON.kyt && tempPackageJSON.kyt.version) || null;
+    const kytStarterPreferredVersion =
+        (tempPackageJSON.dependencies && tempPackageJSON.dependencies.kyt)
+      || (tempPackageJSON.devDependencies && tempPackageJSON.devDependencies.kyt)
+      || null;
     if (kytStarterPreferredVersion) {
       // Look everywhere for kyt
       const kytVersion =
@@ -68,16 +72,21 @@ module.exports = (flags, args) => {
         }
       }
     }
+    return kytStarterPreferredVersion;
   };
 
   // Add kyt to list of dev dependencies if its not there
-  const addKytDevDependency = (packageJson) => {
+  const addKytDevDependency = (packageJson, kytPrefVersion) => {
     // eslint-disable-next-line max-len
     // check to see if kyt is in dependencies or devDependencies
     if (!(packageJson.dependencies && packageJson.dependencies.kyt) &&
         !(packageJson.devDependencies && packageJson.devDependencies.kyt)) {
-      const output = shell.exec('npm info kyt version');
-      const kytVersion = output.stdout.trim();
+      let kytVersion = kytPrefVersion;
+      // If a version wasn't specified, install latest
+      if (!kytVersion) {
+        const output = shell.exec('npm info kyt version');
+        kytVersion = output.stdout.trim();
+      }
       packageJson.devDependencies = packageJson.devDependencies || {};
       packageJson.devDependencies.kyt = kytVersion;
     }
@@ -107,8 +116,6 @@ module.exports = (flags, args) => {
         tempDevDependencies
       );
     }
-
-    addKytDevDependency(packageJson);
 
     logger.task('Added new dependencies to package.json');
     return packageJson;
@@ -190,8 +197,9 @@ module.exports = (flags, args) => {
 
     // Add dependencies from starter-kyts
     if (!existingProject) {
+      const kytPrefVersion = checkStarterKytVersion(userPackageJSON);
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
-      checkStarterKytVersion(userPackageJSON);
+      addKytDevDependency(userPackageJSON, kytPrefVersion);
     } else {
       // exisitng projects should also have kyt as a devDependency
       addKytDevDependency(userPackageJSON);
@@ -374,7 +382,7 @@ module.exports = (flags, args) => {
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
     starterName = starterName || 'specified';
-    logger.start(`Setting up the ${starterName} starter-kyt`);
+    logger.task(`Setting up the ${starterName} starter-kyt`);
     const afterClone = (error) => {
       if (error) {
         logger.error('There was a problem cloning the repository');
