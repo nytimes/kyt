@@ -388,10 +388,6 @@ module.exports = (flags, args) => {
         logger.log(error);
         bailProcess();
       }
-      // TODO: REMOVE THIS WHEN THIS GOES TO MASTER
-      if (!args.repository) {
-        shell.exec('cd .kyt-tmp && git checkout monorepo');
-      }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
       updateUserPackageJSON(false);
