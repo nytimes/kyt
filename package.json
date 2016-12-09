@@ -1,93 +1,29 @@
 {
-  "name": "kyt",
-  "version": "0.3.0",
-  "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
-  "main": "",
-  "bin": {
-    "kyt": "cli/index.js"
-  },
-  "engines": {
-    "node": ">=6.1.0"
+  "private": true,
+  "version": "0.0.0",
+  "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
   },
   "scripts": {
-    "lint": "eslint .",
     "test": "jest --testPathPattern /__tests__/",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "test-watch": "jest --watch",
-    "test-coverage": "jest --coverage"
+    "lint": "packages/kyt-core/node_modules/.bin/eslint --config packages/kyt-core/.eslintrc.json --ignore-pattern **/node_modules --ignore-pattern packages/starter-kyts ./"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nytimes/kyt.git"
+    "url": "git+https://github.com/NYTimes/kyt.git"
   },
-  "author": "NYTimes",
+  "author": "",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/nytimes/kyt/issues"
+    "url": "https://github.com/NYTimes/kyt/issues"
   },
-  "homepage": "https://github.com/nytimes/kyt#readme",
+  "homepage": "https://github.com/NYTimes/kyt#readme",
   "dependencies": {
-    "assets-webpack-plugin": "3.4.0",
-    "autoprefixer": "6.5.0",
-    "babel-cli": "6.18.0",
-    "babel-core": "6.18.0",
-    "babel-jest": "16.0.0",
-    "babel-loader": "6.2.7",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.18.0",
-    "babel-polyfill": "6.16.0",
-    "babel-preset-latest": "6.16.0",
-    "chokidar": "1.6.0",
-    "commander": "2.9.0",
-    "css-loader": "0.25.0",
-    "detect-port": "1.0.1",
-    "eslint": "3.8.1",
-    "eslint-config-airbnb": "12.0.0",
-    "eslint-plugin-import": "1.16.0",
-    "eslint-plugin-json": "1.2.0",
-    "eslint-plugin-jsx-a11y": "2.2.3",
-    "eslint-plugin-react": "6.4.1",
-    "express": "4.14.0",
-    "extract-text-webpack-plugin": "2.0.0-beta.4",
-    "file-loader": "0.9.0",
-    "filesize": "3.3.0",
-    "glob": "7.1.0",
-    "gzip-size": "3.0.0",
-    "inquirer": "1.2.1",
-    "install": "0.8.1",
-    "jest": "16.0.1",
-    "json-loader": "0.5.4",
-    "node-sass": "3.10.1",
-    "nodemon": "1.10.2",
-    "postcss-loader": "1.0.0",
+    "jest": "16.0.2",
     "ps-tree": "1.1.0",
-    "ramda": "0.22.1",
-    "react-hot-loader": "3.0.0-beta.5",
-    "resolve": "^1.1.7",
-    "sass-loader": "4.0.2",
-    "semver": "5.3.0",
-    "shelljs": "0.7.4",
-    "simple-git": "1.52.0",
-    "strip-ansi": "3.0.1",
-    "style-loader": "0.13.1",
-    "stylelint": "7.5.0",
-    "stylelint-config-standard": "14.0.0",
-    "temp": "0.8.3",
-    "url-loader": "0.5.7",
-    "webpack": "2.1.0-beta.25",
-    "webpack-dev-middleware": "1.8.4",
-    "webpack-dev-server": "2.1.0-beta.6",
-    "webpack-hot-middleware": "2.13.0",
-    "webpack-merge": "0.14.1",
-    "webpack-node-externals": "1.5.4"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules",
-      "<rootDir>/coverage",
-      "<rootDir>/utils/jest"
-    ]
+    "shelljs": "0.7.5"
   }
 }
