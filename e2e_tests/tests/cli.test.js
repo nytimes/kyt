@@ -1,6 +1,6 @@
 const path = require('path');
 const shell = require('shelljs');
-const kill = require('../../utils/psKill');
+const kill = require('../utils/psKill');
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
@@ -22,10 +22,11 @@ describe('KYT CLI', () => {
   });
   it('sets up a starter-kyt', () => {
     const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
-    const output = shell.exec(`node_modules/.bin/kyt setup -r ${setupURL}`);
+    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
-    expect(setupArr.includes('🔥  Setting up starter-kyt')).toBe(true);
+    expect(setupArr.includes('🔥  Setting up your new kyt project...')).toBe(true);
+    expect(setupArr.includes('👍  Setting up the specified starter-kyt')).toBe(true);
     expect(setupArr.includes('👍  Added kyt scripts into your package.json scripts')).toBe(true);
     expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
     expect(setupArr.includes('👍  Installed new modules')).toBe(true);
@@ -49,6 +50,7 @@ describe('KYT CLI', () => {
     const userPackageJSON = require.requireActual('../../cli-test/package.json');
     const scripts = userPackageJSON.scripts;
     expect(scripts.dev).toBe('kyt dev');
+    expect(scripts.start).toBe('node build/server/main.js');
     expect(scripts.build).toBe('kyt build');
     expect(scripts.test).toBe('kyt test');
     expect(scripts.lint).toBe('kyt lint');
@@ -138,7 +140,7 @@ describe('KYT CLI', () => {
         resolve(testPass);
       });
       child.stdout.on('data', (data) => {
-        if (data.includes('Server running')) {
+        if (data.includes('node build/server/main.js')) {
           shell.exec('sleep 3');
           const output = shell.exec('curl -I localhost:3100');
           testPass = output.stdout.includes('200');

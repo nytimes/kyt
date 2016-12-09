@@ -1,0 +1,28 @@
+{
+  "name": "kyt-starter-static",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt-starter-static.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nytimes/kyt-starter-static/issues"
+  },
+  "homepage": "https://github.com/nytimes/kyt-starter-static#readme",
+  "dependencies": {
+    "html-webpack-plugin": "^2.22.0",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
+    "react-router": "^2.6.1"
+  },
+  "devDependencies": {
+    "kyt": "^0.3.0",
+    "enzyme": "^2.4.1",
+    "react-addons-test-utils": "^15.3.0"
+  }
+}
