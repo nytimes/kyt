@@ -1,7 +1,7 @@
 {
   "name": "kyt-utils",
   "version": "0.0.1-alpha.1",
-  "description": "",
+  "description": "A shared kyt utility library.",
   "main": "logger.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
