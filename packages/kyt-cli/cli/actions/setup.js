@@ -7,7 +7,6 @@ const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const uniq = require('ramda').uniq;
-// eslint-disable-next-line import/no-dynamic-require
 const cliPkgJson = require('../../package.json');
 
 module.exports = (flags, args) => {
@@ -38,7 +37,7 @@ module.exports = (flags, args) => {
   } = require('kyt-utils/paths')(); // eslint-disable-line
 
   const date = Date.now();
-  const tmpRepo = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
+  const tmpRepo = path.resolve(userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir = tmpRepo;
   const repoURL = args.repository || 'https://github.com/NYTimes/kyt.git';
