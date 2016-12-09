@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 jest.setMock('glob', {
   sync: jest.fn().mockReturnValueOnce(['filename']).mockReturnValue([]),
 });

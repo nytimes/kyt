@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 jest.mock('../../../utils/ifPortIsFreeDo');
 jest.mock('kyt-utils/paths');
 jest.mock('kyt-utils/logger');

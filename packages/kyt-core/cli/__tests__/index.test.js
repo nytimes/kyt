@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 jest.mock('../commands', () => {});
 
 it('bails when min node version is not met', () => {
