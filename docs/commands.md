@@ -141,7 +141,7 @@ See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
 
 #### Tests are hanging and/or `test-watch` is broken on OSX Sierra 
 
-See https://github.com/facebook/jest/issues/1767 for various workarounds, the most common of which are installing or reinstalling [Watchman](https://facebook.github.io/watchman/).
+See [facebook/jest#1767](https://github.com/facebook/jest/issues/1767) for various workarounds, the most common of which are installing or reinstalling [Watchman](https://facebook.github.io/watchman/).
 
 ## lint
 
