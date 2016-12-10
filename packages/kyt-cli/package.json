@@ -7,11 +7,9 @@
     "kyt-cli": "index.js"
   },
   "scripts": {
-    "test": "jest --testPathPattern /__tests__/"
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "jest": "16.0.2"
   },
   "dependencies": {
     "commander": "2.9.0",
