@@ -48,7 +48,7 @@ The `kyt test` command finds all files with `*.test.js` in the `/src` directory.
 
 ## Linting
 
-The `kyt lint` command finds all files with `.js` extension in `/src`
+The `kyt lint-script` command finds all files with `.js` extension in `/src`
 
 Specify lint rules with a `.eslintrc.json` file in the root of your project. [`setup`](/docs/commands.md#setup) will create this file for you.
 
