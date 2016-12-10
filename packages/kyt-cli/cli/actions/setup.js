@@ -506,16 +506,16 @@ module.exports = (flags, args) => {
   const checkCliVersionPrompt = () => {
     const currentVersion = cliPkgJson.version;
     const output = shell.exec('npm info kyt-cli version');
+    const latestVersion = output.stdout.trim();
     // If kyt-cli is up to date, proceed
-    // TODO: remove code check after cli is published
-    if (output.code !== 0 || !semver.lt(currentVersion, output.stdout.trim())) {
+    if (!semver.lt(currentVersion, latestVersion)) {
       setupPrompt();
     } else {
       const question = [
         {
           type: 'confirm',
           name: 'cliVersion',
-          message: 'There is a newer version of kyt-cli available. \n We recommend you upgrade before you continue. \n Would you like to proceed anyway?',
+          message: `You are running version ${currentVersion} of kyt-cli but the latest version is ${latestVersion} \n We recommend you upgrade before you continue. \n Would you like to proceed anyway?`,
           default: false,
         },
       ];
