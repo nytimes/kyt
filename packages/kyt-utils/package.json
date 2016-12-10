@@ -4,10 +4,8 @@
   "description": "A shared kyt utility library.",
   "main": "logger.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "jest": "16.0.2"
   },
   "author": "NYTimes",
   "license": "Apache-2.0"
