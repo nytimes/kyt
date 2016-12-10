@@ -3,6 +3,6 @@
 PACKAGES=( "" )
 ROOT=`pwd`
 
-for FILE in packages/*; do
-    [[ -d $FILE ]] && PACKAGES+=("$FILE")
+for DIR in packages/*; do
+    [[ -d $DIR ]] && PACKAGES+=("$DIR")
 done
