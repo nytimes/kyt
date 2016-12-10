@@ -53,15 +53,16 @@ describe('KYT CLI', () => {
     expect(scripts.start).toBe('node build/server/main.js');
     expect(scripts.build).toBe('kyt build');
     expect(scripts.test).toBe('kyt test');
-    expect(scripts.lint).toBe('kyt lint');
+    expect(scripts.lint).toBe('npm run lint-script && npm run lint-style');
     expect(scripts['lint-style']).toBe('kyt lint-style');
+    expect(scripts['lint-script']).toBe('kyt lint-script');
     expect(scripts.proto).toBe('kyt proto');
     expect(scripts['kyt:help']).toBe('kyt --help');
   });
 
   it('runs the lint command', () => {
     expect(true).toBe(true);
-    const output = shell.exec('npm run lint');
+    const output = shell.exec('npm run lint-script');
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
     expect(outputArr.includes('✅  Your JS looks great ✨')).toBe(true);

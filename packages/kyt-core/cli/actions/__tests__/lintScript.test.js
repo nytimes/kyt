@@ -21,7 +21,7 @@ jest.mock('shelljs', () => (
 describe('lint', () => {
   global.process.exit = jest.fn();
   const logger = require('kyt-utils/logger');
-  const lint = require('../lint');
+  const lint = require('../lintScript');
 
   beforeEach(() => {
     jest.resetModules();

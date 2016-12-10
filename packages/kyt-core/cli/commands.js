@@ -2,7 +2,7 @@
 const program = require('commander');
 const shell = require('shelljs');
 const devAction = require('./actions/dev');
-const lintAction = require('./actions/lint');
+const lintScriptAction = require('./actions/lintScript');
 const testAction = require('./actions/test');
 const buildAction = require('./actions/build');
 const protoAction = require('./actions/proto');
@@ -32,9 +32,9 @@ const loadConfigAndDo = (action, optionalConfig) => {
 };
 
 program
-  .command('lint')
+  .command('lint-script')
   .description('lints .js files in the ./src directory.')
-  .action(() => loadConfigAndDo(lintAction));
+  .action(() => loadConfigAndDo(lintScriptAction));
 
 program
   .command('dev')
@@ -83,6 +83,13 @@ program
   .description('deprecated')
   .action(() => {
     logger.error('kyt start is deprecated. \n Run the server with: node build/server/main.js');
+  });
+
+program
+  .command('lint')
+  .description('deprecated')
+  .action(() => {
+    logger.error('kyt lint is deprecated. \n Run lint-script to lint js files.');
   });
 
 program.parse(process.argv);
