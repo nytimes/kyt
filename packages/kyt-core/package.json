@@ -75,15 +75,5 @@
     "webpack-hot-middleware": "2.13.0",
     "webpack-merge": "0.14.1",
     "webpack-node-externals": "1.5.4"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "**/*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules",
-      "<rootDir>/coverage",
-      "<rootDir>/utils/jest"
-    ]
   }
 }
