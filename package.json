@@ -32,6 +32,6 @@
   "dependencies": {
     "ps-tree": "1.1.0",
     "shelljs": "0.7.5",
-    "jest": "17.0.3"
+    "jest": "16.0.1"
   }
 }
