@@ -7,13 +7,16 @@
     "doc": "docs"
   },
   "jest": {
-    "testPathIgnorePatterns": ["<rootDir>/packages/starter-kyts", "<rootDir>/e2e_tests"]
+    "testPathIgnorePatterns": [
+      "<rootDir>/packages/starter-kyts",
+      "<rootDir>/e2e_tests"
+    ]
   },
   "scripts": {
-    "test": "packages/kyt-core/node_modules/.bin/jest",
-    "test-watch": "packages/kyt-core/node_modules/.bin/jest --watch",
-    "test-coverage": "packages/kyt-core/node_modules/.bin/jest --coverage",
-    "e2e": "packages/kyt-core/node_modules/.bin/jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "test-coverage": "jest --coverage",
+    "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/kyt-core/node_modules/.bin/eslint --config packages/kyt-core/.eslintrc.json --ignore-pattern **/node_modules --ignore-pattern packages/starter-kyts ./"
   },
   "repository": {
@@ -28,6 +31,7 @@
   "homepage": "https://github.com/NYTimes/kyt#readme",
   "dependencies": {
     "ps-tree": "1.1.0",
-    "shelljs": "0.7.5"
+    "shelljs": "0.7.5",
+    "jest": "17.0.3"
   }
 }
