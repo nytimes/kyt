@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 jest.mock('kyt-utils/logger');
 
 const stylelintMock = {

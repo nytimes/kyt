@@ -7,10 +7,10 @@ const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const uniq = require('ramda').uniq;
-// eslint-disable-next-line import/no-dynamic-require
 const cliPkgJson = require('../../package.json');
 
 module.exports = (flags, args) => {
+  logger.start('Setting up your new kyt project...');
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
   const checkAndBail = (code) => {
@@ -37,7 +37,7 @@ module.exports = (flags, args) => {
   } = require('kyt-utils/paths')(); // eslint-disable-line
 
   const date = Date.now();
-  const tmpRepo = path.resolve(userRootPath, '\.kyt-tmp'); // eslint-disable-line no-useless-escape
+  const tmpRepo = path.resolve(userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir = tmpRepo;
   const repoURL = args.repository || 'https://github.com/NYTimes/kyt.git';
@@ -55,7 +55,10 @@ module.exports = (flags, args) => {
   // Compare the starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
   const checkStarterKytVersion = (userPackageJSON) => {
-    const kytStarterPreferredVersion = (tempPackageJSON.kyt && tempPackageJSON.kyt.version) || null;
+    const kytStarterPreferredVersion =
+        (tempPackageJSON.dependencies && tempPackageJSON.dependencies.kyt)
+      || (tempPackageJSON.devDependencies && tempPackageJSON.devDependencies.kyt)
+      || null;
     if (kytStarterPreferredVersion) {
       // Look everywhere for kyt
       const kytVersion =
@@ -68,16 +71,21 @@ module.exports = (flags, args) => {
         }
       }
     }
+    return kytStarterPreferredVersion;
   };
 
   // Add kyt to list of dev dependencies if its not there
-  const addKytDevDependency = (packageJson) => {
+  const addKytDevDependency = (packageJson, kytPrefVersion) => {
     // eslint-disable-next-line max-len
     // check to see if kyt is in dependencies or devDependencies
     if (!(packageJson.dependencies && packageJson.dependencies.kyt) &&
         !(packageJson.devDependencies && packageJson.devDependencies.kyt)) {
-      const output = shell.exec('npm info kyt version');
-      const kytVersion = output.stdout.trim();
+      let kytVersion = kytPrefVersion;
+      // If a version wasn't specified, install latest
+      if (!kytVersion) {
+        const output = shell.exec('npm info kyt version');
+        kytVersion = output.stdout.trim();
+      }
       packageJson.devDependencies = packageJson.devDependencies || {};
       packageJson.devDependencies.kyt = kytVersion;
     }
@@ -107,8 +115,6 @@ module.exports = (flags, args) => {
         tempDevDependencies
       );
     }
-
-    addKytDevDependency(packageJson);
 
     logger.task('Added new dependencies to package.json');
     return packageJson;
@@ -190,8 +196,9 @@ module.exports = (flags, args) => {
 
     // Add dependencies from starter-kyts
     if (!existingProject) {
+      const kytPrefVersion = checkStarterKytVersion(userPackageJSON);
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
-      checkStarterKytVersion(userPackageJSON);
+      addKytDevDependency(userPackageJSON, kytPrefVersion);
     } else {
       // exisitng projects should also have kyt as a devDependency
       addKytDevDependency(userPackageJSON);
@@ -374,16 +381,12 @@ module.exports = (flags, args) => {
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
     starterName = starterName || 'specified';
-    logger.start(`Setting up the ${starterName} starter-kyt`);
+    logger.task(`Setting up the ${starterName} starter-kyt`);
     const afterClone = (error) => {
       if (error) {
         logger.error('There was a problem cloning the repository');
         logger.log(error);
         bailProcess();
-      }
-      // TODO: REMOVE THIS WHEN THIS GOES TO MASTER
-      if (!args.repository) {
-        shell.exec('cd .kyt-tmp && git checkout monorepo');
       }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);

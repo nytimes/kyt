@@ -78,4 +78,11 @@ program
     logger.error('Setup is now part of kyt-cli. \n npm install -g kyt-cli');
   });
 
+program
+  .command('start')
+  .description('deprecated')
+  .action(() => {
+    logger.error('kyt start is deprecated. \n Run the server with: node build/server/main.js');
+  });
+
 program.parse(process.argv);

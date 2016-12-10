@@ -15,9 +15,6 @@
     "url": "https://github.com/nytm/wf-kyt-starter-universal/issues"
   },
   "homepage": "https://github.com/nytm/wf-kyt-starter-universal#readme",
-  "kyt": {
-    "version": "^0.3.0"
-  },
   "dependencies": {
     "compression": "^1.6.2",
     "express": "^4.14.0",

@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 const plugin = jest.fn();
 const webpackMock = jest.fn((obj) => {
   if (obj.error) throw new Error('test error');
