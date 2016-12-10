@@ -8,6 +8,7 @@ This starter-kyt should serve as the base for an advanced client-rendered React 
 2. select `yes` when prompted to setup with a starter-kyt
 3. select `static` from the list of starter-kyts
 
+
 ## Tools
 
 The following are some of the tools included in this starter-kyt:
