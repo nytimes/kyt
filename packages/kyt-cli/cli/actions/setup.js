@@ -124,9 +124,9 @@ module.exports = (flags, args) => {
   const addPackageJsonScripts = (packageJson) => {
     if (!packageJson.scripts) packageJson.scripts = {};
     let commands = [
-      'dev', 'build', 'start',
+      'dev', 'build', 'start', 'proto',
       'test', 'test-watch', 'test-coverage',
-      'lint', 'lint-style', 'proto',
+      'lint', 'lint-script', 'lint-style',
     ];
 
     // for commands that aren't 1:1 name:script
@@ -134,6 +134,7 @@ module.exports = (flags, args) => {
       start: 'node build/server/main.js',
       'test-watch': 'kyt test -- --watch',
       'test-coverage': 'kyt test -- --coverage',
+      lint: 'npm run lint-script && npm run lint-style',
     };
 
     // Merge the Starter-kyt script names into the list of commands.
