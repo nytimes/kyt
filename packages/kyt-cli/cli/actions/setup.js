@@ -197,7 +197,7 @@ module.exports = (flags, args) => {
 
     // Add dependencies from starter-kyts
     if (!existingProject) {
-      const kytPrefVersion = checkStarterKytVersion(userPackageJSON);
+      const kytPrefVersion = args.kytVersion || checkStarterKytVersion(userPackageJSON);
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
       addKytDevDependency(userPackageJSON, kytPrefVersion);
     } else {
