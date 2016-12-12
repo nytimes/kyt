@@ -1,6 +1,6 @@
 const babelJest = require('babel-jest');
 const fs = require('fs');
-const { userBabelrcPath, userRootPath } = require('../paths')();
+const { userBabelrcPath, userRootPath } = require('kyt-utils/paths')();
 const resolve = require('resolve');
 
 /**
