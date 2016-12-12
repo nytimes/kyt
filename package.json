@@ -10,9 +10,19 @@
     "testPathIgnorePatterns": [
       "<rootDir>/packages/starter-kyts",
       "<rootDir>/e2e_tests"
+    ],
+    "collectCoverageFrom": ["**/*.js"],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules",
+      "<rootDir>/packages/*/node_modules",
+      "<rootDir>/packages/*/starter-kyts",
+      "<rootDir>/coverage",
+      "<rootDir>/packages/kyt-core/utils/jest"
     ]
   },
   "scripts": {
+    "bootstrap": "./scripts/bootstrap.sh",
+    "update": "./scripts/install-modules.sh",
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",

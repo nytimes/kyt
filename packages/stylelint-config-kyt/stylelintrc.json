@@ -1,0 +1,9 @@
+{
+  "extends": "stylelint-config-standard",
+
+  "rules": {
+    "string-quotes": "single",
+    "selector-no-id": true,
+    "property-no-unknown": [true, {ignoreProperties: ["composes"]}]
+  }
+}
