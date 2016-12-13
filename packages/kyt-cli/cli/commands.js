@@ -1,6 +1,6 @@
 const program = require('commander');
 const setupAction = require('./actions/setup');
-const lsAction = require('./actions/lsStarterKyts');
+const listAction = require('./actions/list');
 
 const loadArgsAndDo = (action) => {
   const args = program.args.filter(item => typeof item === 'object');
@@ -18,9 +18,9 @@ program
   .action(() => loadArgsAndDo(setupAction));
 
 program
-  .command('ls-starter-kyts')
+  .command('list')
   .description('Lists availble supported starter-kyts')
-  .action(lsAction);
+  .action(listAction);
 
 
 program.parse(process.argv);
