@@ -1,5 +1,6 @@
 const babelJest = require('babel-jest');
 const fs = require('fs');
+const shell = require('shelljs');
 const { userBabelrcPath, userRootPath } = require('kyt-utils/paths')();
 const resolve = require('resolve');
 
@@ -38,9 +39,17 @@ const resolvePluginsPresets = (babelGroup) => {
   babelGroup.presets = (babelGroup.presets || []).map(resolver.bind(null, 'babel-preset'));
 };
 
-const userBabelrc = JSON.parse(fs.readFileSync(userBabelrcPath));
+let babelrc;
 
-resolvePluginsPresets(userBabelrc);
-Object.keys(userBabelrc.env || {}).forEach(env => resolvePluginsPresets(userBabelrc.env[env]));
+if (shell.test('-f', userBabelrcPath)) {
+  babelrc = JSON.parse(fs.readFileSync(userBabelrcPath));
+  resolvePluginsPresets(babelrc);
+  Object.keys(babelrc.env || {}).forEach(env => resolvePluginsPresets(babelrc.env[env]));
+} else {
+  // if the user hasn't defined a .babelrc, use the kyt default preset
+  babelrc = {
+    presets: [require.resolve('babel-preset-kyt-core')],
+  };
+}
 
-module.exports = babelJest.createTransformer(userBabelrc);
+module.exports = babelJest.createTransformer(babelrc);
