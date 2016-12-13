@@ -5,6 +5,12 @@ kyt-cli is a tool for creating new kyt projects.
 ## Install kyt-cli
 `npm install -g kyt-cli`
 
+
+## commands
+ - `kyt-cli setup`
+ - `kyt-cli list`
+
+## `setup` command
 The `setup` command sets up your project with all the application files that you'll need to use kyt:
 
 1. Creates a new [kyt.config.js](/docs/kytConfig.md)
@@ -20,7 +26,7 @@ It takes 2 options:
 - `-d` The name of the new project directory. If not specified kyt will install the project in your current working directory.
 - `-r` The github url for a starter-kyt. If not specified you will be prompted to select a starter-kyt from the supported list.
 
-## Setup a new project
+### Setup a new project
 `kyt-cli setup -d my-proj-name`
 
 kyt will provide you with a list of supported starter-kyts to install
@@ -34,9 +40,18 @@ The supported starter-kyts are:
 
 `kyt-cli setup -d my-proj-name -r https://github.com/starter-kyt-repo.git`
 
-## Setup an existing project
+### Setup an existing project
 Run `kyt-cli setup` in your project directory.
 Select `no` when prompted to setup with a starter-kyt.
+
+
+## `list` command
+The `list` command lists the supported and recommended starter-kyts.
+It includes:
+  - A description of best use cases
+  - Installation instructions
+
+`kyt-cli list`
 
 ### Recommended starter-kyts
 
