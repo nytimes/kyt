@@ -417,12 +417,12 @@ module.exports = (flags, args) => {
         type: 'list',
         name: 'starterChoice',
         message: 'Which starter-kyt would you like to install?', // eslint-disable-line
-        choices: Object.keys(starterKyts),
+        choices: Object.keys(starterKyts.supported),
         default: 0,
       },
     ];
     inquire.prompt(question).then((answer) => {
-      tmpDir = path.join(tmpRepo, starterKyts[answer.starterChoice].path);
+      tmpDir = path.join(tmpRepo, starterKyts.supported[answer.starterChoice].path);
       starterKytSetup(answer.starterChoice);
     });
   };

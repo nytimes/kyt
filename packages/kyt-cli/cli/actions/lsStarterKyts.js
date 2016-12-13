@@ -3,14 +3,25 @@ const logger = require('kyt-utils/logger');
 
 const log = console.log;
 
+const printStarter = (li, starter) => {
+  log(`${li}. The ${starter.displayName} starter-kyt:`);
+  log(`   ${starter.description}`);
+  log('    ℹ️  To install this starter-kyt: ');
+  log(`       ${starter.install}`);
+  log('\n');
+};
+
 module.exports = () => {
-  logger.start('Listing supported starter-kyts');
-  Object.keys(starterKyts).forEach((starter, index) => {
+  logger.start('Listing starter-kyts');
+  logger.task(`kyt supported starter-kyts: \n`);
+  Object.keys(starterKyts.supported).forEach((starterName, index) => {
     const li = index + 1;
-    log(`${li}. The ${starter} starter-kyt:`);
-    log(`   ${starterKyts[starter].description}`);
-    log('\n');
+    printStarter(li, starterKyts.supported[starterName]);
   });
-  logger.info('You can install these starter-kyts with kyt-cli setup');
+  logger.task(`Recommended starter-kyts:\n`);
+  Object.keys(starterKyts.recommended).forEach((starterName, index) => {
+    const li = index + 1;
+    printStarter(li, starterKyts.recommended[starterName]);
+  });
   logger.end('List complete');
 };
