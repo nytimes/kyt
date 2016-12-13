@@ -1,6 +1,6 @@
 {
   "extends": [
-    "./node_modules/kyt/config/.eslintrc.base.json"
+    "eslint-config-kyt"
   ],
 
   "env": {

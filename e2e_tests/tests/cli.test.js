@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const shell = require('shelljs');
 const kill = require('../utils/psKill');
 
@@ -6,6 +7,26 @@ const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
   it('installs kyt', () => {
+    // create test packages
+    shell.mkdir('test-packages');
+    shell.exec('cp -r ./packages/kyt-utils ./test-packages');
+    shell.exec('cp -r ./packages/kyt-core ./test-packages/');
+    shell.exec('cp -r ./packages/kyt-cli ./test-packages');
+    // Update package Json to point to local kyt-utils
+    const utilsPath = 'file:../kyt-utils';
+    const cliPkgPath = './test-packages/kyt-cli/package.json';
+    // eslint-disable-next-line import/no-unresolved, global-require
+    const cliPkg = require('../../test-packages/kyt-cli/package.json');
+
+    cliPkg.dependencies['kyt-utils'] = utilsPath;
+    fs.writeFileSync(cliPkgPath, JSON.stringify(cliPkg, null, 2));
+    const corePkgPath = './test-packages/kyt-core/package.json';
+    // eslint-disable-next-line import/no-unresolved, global-require
+    const corePkg = require('../../test-packages/kyt-core/package.json');
+
+    corePkg.dependencies['kyt-utils'] = utilsPath;
+    fs.writeFileSync(corePkgPath, JSON.stringify(corePkg, null, 2));
+    // create test directory
     if (shell.test('-d', 'cli-test')) {
       shell.rm('-rf', 'cli-test');
     }
@@ -16,7 +37,6 @@ describe('KYT CLI', () => {
     if (output.code !== 0) {
       process.exit();
     }
-
     expect(shell.test('-f', 'package.json')).toBe(true);
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
@@ -53,15 +73,16 @@ describe('KYT CLI', () => {
     expect(scripts.start).toBe('node build/server/main.js');
     expect(scripts.build).toBe('kyt build');
     expect(scripts.test).toBe('kyt test');
-    expect(scripts.lint).toBe('kyt lint');
+    expect(scripts.lint).toBe('npm run lint-script && npm run lint-style');
     expect(scripts['lint-style']).toBe('kyt lint-style');
+    expect(scripts['lint-script']).toBe('kyt lint-script');
     expect(scripts.proto).toBe('kyt proto');
     expect(scripts['kyt:help']).toBe('kyt --help');
   });
 
   it('runs the lint command', () => {
     expect(true).toBe(true);
-    const output = shell.exec('npm run lint');
+    const output = shell.exec('npm run lint-script');
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
     expect(outputArr.includes('✅  Your JS looks great ✨')).toBe(true);
@@ -189,9 +210,9 @@ describe('KYT CLI', () => {
     });
     return exec.then(test => expect(test).toBe(true));
   });
-
   afterAll(() => {
     shell.cd('..');
     shell.rm('-rf', 'cli-test');
+    shell.rm('-rf', 'test-packages');
   });
 });

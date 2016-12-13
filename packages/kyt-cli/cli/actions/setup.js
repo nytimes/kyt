@@ -124,9 +124,9 @@ module.exports = (flags, args) => {
   const addPackageJsonScripts = (packageJson) => {
     if (!packageJson.scripts) packageJson.scripts = {};
     let commands = [
-      'dev', 'build', 'start',
+      'dev', 'build', 'start', 'proto',
       'test', 'test-watch', 'test-coverage',
-      'lint', 'lint-style', 'proto',
+      'lint', 'lint-script', 'lint-style',
     ];
 
     // for commands that aren't 1:1 name:script
@@ -134,6 +134,7 @@ module.exports = (flags, args) => {
       start: 'node build/server/main.js',
       'test-watch': 'kyt test -- --watch',
       'test-coverage': 'kyt test -- --coverage',
+      lint: 'npm run lint-script && npm run lint-style',
     };
 
     // Merge the Starter-kyt script names into the list of commands.
@@ -196,7 +197,7 @@ module.exports = (flags, args) => {
 
     // Add dependencies from starter-kyts
     if (!existingProject) {
-      const kytPrefVersion = checkStarterKytVersion(userPackageJSON);
+      const kytPrefVersion = args.kytVersion || checkStarterKytVersion(userPackageJSON);
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
       addKytDevDependency(userPackageJSON, kytPrefVersion);
     } else {
@@ -506,16 +507,16 @@ module.exports = (flags, args) => {
   const checkCliVersionPrompt = () => {
     const currentVersion = cliPkgJson.version;
     const output = shell.exec('npm info kyt-cli version');
+    const latestVersion = output.stdout.trim();
     // If kyt-cli is up to date, proceed
-    // TODO: remove code check after cli is published
-    if (output.code !== 0 || !semver.lt(currentVersion, output.stdout.trim())) {
+    if (!semver.lt(currentVersion, latestVersion)) {
       setupPrompt();
     } else {
       const question = [
         {
           type: 'confirm',
           name: 'cliVersion',
-          message: 'There is a newer version of kyt-cli available. \n We recommend you upgrade before you continue. \n Would you like to proceed anyway?',
+          message: `You are running version ${currentVersion} of kyt-cli but the latest version is ${latestVersion} \n We recommend you upgrade before you continue. \n Would you like to proceed anyway?`,
           default: false,
         },
       ];
