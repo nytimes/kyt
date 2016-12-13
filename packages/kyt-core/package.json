@@ -31,6 +31,7 @@
     "babel-plugin-transform-react-jsx-source": "6.9.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.10",
     "babel-polyfill": "6.16.0",
+    "babel-preset-kyt-core": "0.1.0-alpha.1",
     "babel-preset-latest": "6.16.0",
     "babel-preset-react": "6.16.0",
     "chokidar": "1.6.0",
