@@ -27,7 +27,7 @@
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "packages/kyt-core/node_modules/.bin/eslint --config packages/kyt-core/.eslintrc.json --ignore-pattern **/node_modules --ignore-pattern packages/starter-kyts ./"
+    "lint": "packages/kyt-core/node_modules/.bin/eslint --config packages/kyt-core/.eslintrc.json --ignore-pattern **/node_modules --ignore-pattern packages/babel-presets --ignore-pattern packages/starter-kyts ./"
   },
   "repository": {
     "type": "git",
