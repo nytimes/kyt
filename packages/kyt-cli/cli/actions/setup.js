@@ -34,6 +34,7 @@ module.exports = (flags, args) => {
     userKytConfigPath,
     userNodeModulesPath,
     userPackageJSONPath,
+    userBabelrcPath,
   } = require('kyt-utils/paths')(); // eslint-disable-line
 
   const date = Date.now();
@@ -282,6 +283,17 @@ module.exports = (flags, args) => {
     logger.task('Created .editorconfig file');
   };
 
+  const createBabelrc = () => {
+    // back up existing .babelrc, if it exists
+    if (shell.test('-f', userBabelrcPath)) {
+      const mvTo = path.join(userRootPath, `.babelrc-${date}.bak`);
+      shell.mv(userBabelrcPath, mvTo);
+      logger.info(`Backed up current .babelrc to ${mvTo}`);
+    }
+    shell.cp(`${tmpDir}/.babelrc`, userBabelrcPath);
+    logger.task('Created .babelrc');
+  };
+
   // Copies the starter kyt kyt.config.js
   // to the user's base directory.
   const createKytConfig = () => {
@@ -389,11 +401,16 @@ module.exports = (flags, args) => {
         logger.log(error);
         bailProcess();
       }
+      if (!args.repository) {
+        // temporary - get the right version of the starter-kyts
+        shell.exec('cd .kyt-tmp && git checkout babelrc');
+      }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
       updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
+      createBabelrc();
       createStylelintFile();
       createEditorconfigLink();
       createKytConfig();
