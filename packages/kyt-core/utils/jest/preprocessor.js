@@ -17,13 +17,17 @@ const resolve = require('resolve');
  */
 const normalizeDep = (prefix, dep) => {
   let resolved;
-  if (dep.indexOf('babel') !== 0) {
-    try {
+  try {
+    if (dep.indexOf('babel') !== 0) {
       resolved = resolve.sync(`${prefix}-${dep}`, { basedir: userRootPath });
-    } catch (e) { /* eslint-disable no-empty */ }
+    }
+    return resolved || resolve.sync(dep, { basedir: userRootPath });
+  } catch (e) {
+    logger.error('Could not resolve dependency', dep);
+    logger.error('Error output', e);
+    logger.error('Exiting...');
+    return process.exit(1);
   }
-
-  return resolved || resolve.sync(dep, { basedir: userRootPath });
 };
 
 // Uses require.resolve to add the full paths to all of the plugins
