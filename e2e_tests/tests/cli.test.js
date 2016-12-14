@@ -2,7 +2,10 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const kill = require('../utils/psKill');
-const ypm = require('../../packages/kyt-utils/yarnOrNpm')();
+
+// Explicitly set to "npm" until yarn 0.18 (https://github.com/yarnpkg/yarn/pull/1498) is released
+// const ypm = require('../../packages/kyt-utils/yarnOrNpm')();
+const ypm = 'npm';
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
@@ -43,7 +46,7 @@ describe('KYT CLI', () => {
   });
   it('sets up a starter-kyt', () => {
     const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
-    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL}`);
+    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL} -p ${ypm}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
     expect(setupArr.includes('🔥  Setting up your new kyt project...')).toBe(true);
@@ -82,7 +85,6 @@ describe('KYT CLI', () => {
   });
 
   it('runs the lint command', () => {
-    expect(true).toBe(true);
     const output = shell.exec(`${ypm} run lint-script`);
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
@@ -90,7 +92,7 @@ describe('KYT CLI', () => {
   });
 
   it('runs the lint-style command', () => {
-    const output = shell.exec('node_modules/.bin/kyt lint-style');
+    const output = shell.exec(`${ypm} run lint-style`);
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
     expect(outputArr.includes('✅  Your styles look good! ✨')).toBe(true);

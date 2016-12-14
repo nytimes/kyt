@@ -8,10 +8,14 @@ const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const uniq = require('ramda').uniq;
 const cliPkgJson = require('../../package.json');
-const ypm = require('kyt-utils/yarnOrNpm')();
+const yarnOrNpm = require('kyt-utils/yarnOrNpm')();
 
 module.exports = (flags, args) => {
   logger.start('Setting up your new kyt project...');
+
+  // Selects package manager to use
+  const ypm = args.packageManager ? args.packageManager : yarnOrNpm;
+
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
   const checkAndBail = (code) => {
@@ -84,7 +88,7 @@ module.exports = (flags, args) => {
       let kytVersion = kytPrefVersion;
       // If a version wasn't specified, install latest
       if (!kytVersion) {
-        const output = shell.exec(`${ypm} info kyt version`);
+        const output = shell.exec('npm info kyt version');
         kytVersion = output.stdout.trim();
       }
       packageJson.devDependencies = packageJson.devDependencies || {};
