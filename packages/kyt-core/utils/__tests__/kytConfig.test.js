@@ -33,6 +33,7 @@ describe('kytConfig', () => {
     expect(typeof config.modifyWebpackConfig).toBe('function');
     expect(typeof config.modifyJestConfig).toBe('function');
 
+    expect(Object.isFrozen(config)).toBe(true);
     config.productionPublicPath = 'frozen!';
     expect(config.productionPublicPath).not.toBe('frozen!');
   });
