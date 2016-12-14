@@ -41,8 +41,7 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
-    // temporary, revert when https://github.com/NYTimes/kyt-starter-test/pull/1 is merged
-    const setupURL = 'https://github.com/jaredmcdonald/kyt-starter-test.git';
+    const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
     const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
