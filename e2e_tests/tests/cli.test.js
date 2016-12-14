@@ -1,12 +1,33 @@
 const path = require('path');
+const fs = require('fs');
 const shell = require('shelljs');
-const kill = require('../../utils/psKill');
-const ypm = require('../../utils/yarnOrNpm')();
+const kill = require('../utils/psKill');
+const ypm = require('../../packages/kyt-utils/yarnOrNpm')();
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
   it('installs kyt', () => {
+    // create test packages
+    shell.mkdir('test-packages');
+    shell.exec('cp -r ./packages/kyt-utils ./test-packages');
+    shell.exec('cp -r ./packages/kyt-core ./test-packages/');
+    shell.exec('cp -r ./packages/kyt-cli ./test-packages');
+    // Update package Json to point to local kyt-utils
+    const utilsPath = 'file:../kyt-utils';
+    const cliPkgPath = './test-packages/kyt-cli/package.json';
+    // eslint-disable-next-line import/no-unresolved, global-require
+    const cliPkg = require('../../test-packages/kyt-cli/package.json');
+
+    cliPkg.dependencies['kyt-utils'] = utilsPath;
+    fs.writeFileSync(cliPkgPath, JSON.stringify(cliPkg, null, 2));
+    const corePkgPath = './test-packages/kyt-core/package.json';
+    // eslint-disable-next-line import/no-unresolved, global-require
+    const corePkg = require('../../test-packages/kyt-core/package.json');
+
+    corePkg.dependencies['kyt-utils'] = utilsPath;
+    fs.writeFileSync(corePkgPath, JSON.stringify(corePkg, null, 2));
+    // create test directory
     if (shell.test('-d', 'cli-test')) {
       shell.rm('-rf', 'cli-test');
     }
@@ -17,19 +38,16 @@ describe('KYT CLI', () => {
     if (output.code !== 0) {
       process.exit(output.code);
     }
-
     expect(shell.test('-f', 'package.json')).toBe(true);
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
-    let setupURL = 'git@github.com:NYTimes/kyt-starter-test.git';
-    if (process.env.TEST_TOKEN) {
-      setupURL = `https://${process.env.TEST_TOKEN}@github.com/NYTimes/kyt-starter-test.git`;
-    }
-    const output = shell.exec(`node_modules/.bin/kyt setup -r ${setupURL}`);
+    const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
+    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
-    expect(setupArr.includes('🔥  Setting up starter-kyt')).toBe(true);
+    expect(setupArr.includes('🔥  Setting up your new kyt project...')).toBe(true);
+    expect(setupArr.includes('👍  Setting up the specified starter-kyt')).toBe(true);
     expect(setupArr.includes('👍  Added kyt scripts into your package.json scripts')).toBe(true);
     expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
     expect(setupArr.includes('👍  Installed new modules')).toBe(true);
@@ -53,17 +71,19 @@ describe('KYT CLI', () => {
     const userPackageJSON = require.requireActual('../../cli-test/package.json');
     const scripts = userPackageJSON.scripts;
     expect(scripts.dev).toBe('kyt dev');
+    expect(scripts.start).toBe('node build/server/main.js');
     expect(scripts.build).toBe('kyt build');
     expect(scripts.test).toBe('kyt test');
-    expect(scripts.lint).toBe('kyt lint');
+    expect(scripts.lint).toBe('npm run lint-script && npm run lint-style');
     expect(scripts['lint-style']).toBe('kyt lint-style');
+    expect(scripts['lint-script']).toBe('kyt lint-script');
     expect(scripts.proto).toBe('kyt proto');
     expect(scripts['kyt:help']).toBe('kyt --help');
   });
 
   it('runs the lint command', () => {
     expect(true).toBe(true);
-    const output = shell.exec(`${ypm} run lint`);
+    const output = shell.exec(`${ypm} run lint-script`);
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
     expect(outputArr.includes('✅  Your JS looks great ✨')).toBe(true);
@@ -90,57 +110,110 @@ describe('KYT CLI', () => {
     expect(shell.test('-d', 'build/public')).toBe(true);
   });
 
+  it('runs the build command and exits on SIGINT', () => {
+    const exec = new Promise((resolve, reject) => {
+      let sentKill = false;
+      let finishedBuild = false;
+      const child = shell.exec('npm run build', () => {
+        resolve(finishedBuild);
+      });
+      child.stdout.on('data', (data) => {
+        if (data.includes('✅ Done building')) {
+          finishedBuild = true;
+          reject('Unexpected build finish');
+        }
+        if (!sentKill) {
+          sentKill = true;
+          kill(child.pid, 'SIGINT');
+        }
+      });
+    });
+    return exec.then(finishedBuild => expect(finishedBuild).toBe(false));
+  });
+
+  it('runs the dev command and exits on SIGINT', () => {
+    const exec = new Promise((resolve, reject) => {
+      let sentKill = false;
+      let finishedBuild = false;
+      const child = shell.exec('npm run dev', () => {
+        resolve(finishedBuild);
+      });
+      child.stdout.on('data', (data) => {
+        if (data.includes('✅ Development started')) {
+          finishedBuild = true;
+          reject('Unexpected build finish');
+        }
+        if (!sentKill) {
+          sentKill = true;
+          kill(child.pid, 'SIGINT');
+        }
+      });
+    });
+    return exec.then(finishedBuild => expect(finishedBuild).toBe(false));
+  });
   // eslint-disable-next-line
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
 
-  it('starts the app', (done) => {
+  it('starts the app', () => {
+    let testPass;
     shell.exec(`${ypm} run build`);
-    const child = shell.exec(`${ypm} run start`, () => {
-      done();
+    const exec = new Promise((resolve) => {
+      const child = shell.exec(`${ypm} run start`, () => {
+        resolve(testPass);
+      });
+      child.stdout.on('data', (data) => {
+        if (data.includes('node build/server/main.js')) {
+          shell.exec('sleep 3');
+          const output = shell.exec('curl -I localhost:3100');
+          testPass = output.stdout.includes('200');
+          kill(child.pid);
+        }
+      });
     });
-    child.stdout.on('data', (data) => {
-      if (data.includes('Server running')) {
-        shell.exec('sleep 3');
-        const output = shell.exec('curl -I localhost:3100');
-        expect(output.includes('200'));
-        kill(child.pid);
-      }
-    });
+    return exec.then(test => expect(test).toBe(true));
   });
 
 
-  it('dev', (done) => {
-    const child = shell.exec(`${ypm} run dev`, () => {
-      done();
+  it('dev', () => {
+    let testPass;
+    const exec = new Promise((resolve) => {
+      const child = shell.exec(`${ypm} run dev`, () => {
+        resolve(testPass);
+      });
+      child.stdout.on('data', (data) => {
+        if (data.includes('✅  Development started')) {
+          shell.exec('sleep 2');
+          const output = shell.exec('curl -I localhost:3100');
+          testPass = output.stdout.includes('200');
+          kill(child.pid);
+        }
+      });
     });
-    child.stdout.on('data', (data) => {
-      if (data.includes('✅  Development started')) {
-        shell.exec('sleep 2');
-        const output = shell.exec('curl -I localhost:3100');
-        expect(output.includes('200'));
-        kill(child.pid);
-      }
-    });
+    return exec.then(test => expect(test).toBe(true));
   });
 
-  it('proto', (done) => {
-    const child = shell.exec(`${ypm} run proto`, () => {
-      done();
+  it('proto', () => {
+    const exec = new Promise((resolve) => {
+      let testPass;
+      const child = shell.exec(`${ypm} run proto`, () => {
+        resolve(testPass);
+      });
+      let stillAlive = true;
+      child.stdout.on('data', (data) => {
+        if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
+          stillAlive = false;
+          shell.exec('sleep 5');
+          const output = shell.exec('curl -I localhost:3102/prototype/');
+          testPass = output.stdout.includes('404');
+          kill(child.pid);
+        }
+      });
     });
-    let stillAlive = true;
-    child.stdout.on('data', (data) => {
-      if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
-        stillAlive = false;
-        shell.exec('sleep 2');
-        const output = shell.exec('curl -I localhost:3102/prototype');
-        expect(output.includes('200'));
-        kill(child.pid);
-      }
-    });
+    return exec.then(test => expect(test).toBe(true));
   });
-
   afterAll(() => {
     shell.cd('..');
     shell.rm('-rf', 'cli-test');
+    shell.rm('-rf', 'test-packages');
   });
 });

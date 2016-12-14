@@ -42,8 +42,13 @@ in `kyt.config.js`
 ```javascript   
 modifyWebpackConfig: (baseConfig, options) => {
 
-  baseConfig.postcss.push(
-    require('precss')()
+  baseConfig.plugins.push(
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [require('postcss-cssnext')],
+        context: '/',
+      },
+    })
   );
 
   return baseConfig;
@@ -55,8 +60,8 @@ in kyt.config.js
 ```javascript
 modifyWebpackConfig: (baseConfig, options) => {
 
-  const babelLoader = baseConfig.module.loaders.find(loader => loader.loader === 'babel-loader');
-  babelLoader.query.plugins.push(path.resolve('./path/to/my/plugin'));
+  const babelLoader = baseConfig.module.rules.find(loader => loader.loader === 'babel-loader');
+  babelLoader.options.plugins.push(path.resolve('./path/to/my/plugin'));
 
   return baseConfig;
 }

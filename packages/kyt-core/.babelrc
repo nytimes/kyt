@@ -1,0 +1,19 @@
+{
+  "presets": ["react", ["latest", { "modules": false }]],
+  "env": {
+    "development": {
+      "plugins": ["transform-react-jsx-source"]
+    },
+    "production": {
+      "plugins": [
+        "transform-react-remove-prop-types",
+        "transform-react-constant-elements"
+      ]
+    },
+    "test": {
+      "plugins": [
+        ["transform-es2015-modules-commonjs", { "loose": true }]
+      ]
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "name": "kyt",
+  "version": "0.3.0",
+  "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
+  "main": "",
+  "bin": {
+    "kyt": "cli/index.js"
+  },
+  "engines": {
+    "node": ">=6.1.0"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt.git"
+  },
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nytimes/kyt/issues"
+  },
+  "homepage": "https://github.com/nytimes/kyt#readme",
+  "dependencies": {
+    "assets-webpack-plugin": "3.4.0",
+    "autoprefixer": "6.5.0",
+    "babel-cli": "6.18.0",
+    "babel-core": "6.18.0",
+    "babel-jest": "16.0.0",
+    "babel-loader": "6.2.7",
+    "babel-plugin-transform-react-constant-elements": "6.9.1",
+    "babel-plugin-transform-react-jsx-source": "6.9.0",
+    "babel-plugin-transform-react-remove-prop-types": "0.2.10",
+    "babel-polyfill": "6.16.0",
+    "babel-preset-latest": "6.16.0",
+    "babel-preset-react": "6.16.0",
+    "chokidar": "1.6.0",
+    "commander": "2.9.0",
+    "css-loader": "0.25.0",
+    "detect-port": "1.0.1",
+    "eslint-config-kyt": "0.0.1",
+    "express": "4.14.0",
+    "extract-text-webpack-plugin": "2.0.0-beta.4",
+    "file-loader": "0.9.0",
+    "filesize": "3.3.0",
+    "glob": "7.1.0",
+    "gzip-size": "3.0.0",
+    "inquirer": "1.2.1",
+    "install": "0.8.1",
+    "jest": "16.0.1",
+    "json-loader": "0.5.4",
+    "kyt-utils": "0.0.1-alpha.1",
+    "node-sass": "3.10.1",
+    "nodemon": "1.10.2",
+    "postcss-loader": "1.0.0",
+    "ps-tree": "1.1.0",
+    "ramda": "0.22.1",
+    "react-hot-loader": "3.0.0-beta.5",
+    "sass-loader": "4.0.2",
+    "shelljs": "0.7.5",
+    "strip-ansi": "3.0.1",
+    "style-loader": "0.13.1",
+    "stylelint-config-kyt": "0.0.1",
+    "temp": "0.8.3",
+    "url-loader": "0.5.7",
+    "webpack": "2.1.0-beta.25",
+    "webpack-dev-middleware": "1.8.4",
+    "webpack-dev-server": "2.1.0-beta.6",
+    "webpack-hot-middleware": "2.13.0",
+    "webpack-merge": "0.14.1",
+    "webpack-node-externals": "1.5.4"
+  }
+}

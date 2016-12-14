@@ -11,5 +11,4 @@ before_install:
   - sudo apt-get install -y -qq yarn
 install:
   - yarn
-script:
-  - yarn run lint && yarn test && yarn run e2e
+script: cd packages/kyt-core && yarn install && cd ../kyt-cli && yarn install && cd ../kyt-utils && yarn install && cd ../.. && yarn run lint && yarn install && yarn test && yarn run e2e
