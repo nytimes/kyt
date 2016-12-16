@@ -1,6 +1,6 @@
 # babel-preset-kyt-react
 
-An opinionated [Babel preset](https://babeljs.io/docs/plugins/#presets) for React applications, best used with kyt.
+An opinionated [Babel preset](https://babeljs.io/docs/plugins/#presets) for React applications, best used with [kyt](https://github.com/NYTimes/kyt).
 
 Includes [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core).
 
