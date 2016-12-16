@@ -67,7 +67,7 @@ in .babelrc
 ```json
 {
   "presets": ["kyt-core"],
-  "plugins: ["my-babel-plugin"]
+  "plugins": ["my-babel-plugin"]
 }
 ```
 Check out the current [Babel configuration](/.babelrc).
