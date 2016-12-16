@@ -1,15 +1,16 @@
-const jest = require('../jest');
+// can't call this `jest` because that's a global in tests
+const jestConfig = require('../jest');
 
-it('jest() returns a jest config', () => {
+it('jestConfig() returns a jest config', () => {
   const rootDir = 'rootDir';
-  const jestConfig = jest(rootDir);
+  const config = jestConfig(rootDir);
 
-  expect(typeof jestConfig).toBe('object');
-  expect(jestConfig.moduleNameMapper).toBeDefined();
-  expect(jestConfig.scriptPreprocessor).toBeDefined();
-  expect(jestConfig.testPathIgnorePatterns).toBeDefined();
-  expect(jestConfig.testEnvironment).toBeDefined();
-  expect(jestConfig.testRegex).toBeDefined();
-  expect(jestConfig.collectCoverageFrom).toBeDefined();
-  expect(jestConfig.rootDir).toBe(rootDir);
+  expect(typeof config).toBe('object');
+  expect(config.moduleNameMapper).toBeDefined();
+  expect(config.scriptPreprocessor).toBeDefined();
+  expect(config.testPathIgnorePatterns).toBeDefined();
+  expect(config.testEnvironment).toBeDefined();
+  expect(config.testRegex).toBeDefined();
+  expect(config.collectCoverageFrom).toBeDefined();
+  expect(config.rootDir).toBe(rootDir);
 });

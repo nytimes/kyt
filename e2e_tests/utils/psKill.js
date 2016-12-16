@@ -3,7 +3,7 @@ const psTree = require('ps-tree');
 // Loops through processes and kills them
 module.exports = (pid, signal, callback) => {
   signal = signal || 'SIGKILL';
-  callback = callback || function () {};
+  callback = callback || function noop() {};
   psTree(pid, (err, children) => {
     let arr = [pid].concat(
       children.map(p => p.PID)

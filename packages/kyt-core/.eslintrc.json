@@ -1,5 +1,0 @@
-{
-  "extends": [
-    "./config/.eslintrc.base.json"
-  ]
-}

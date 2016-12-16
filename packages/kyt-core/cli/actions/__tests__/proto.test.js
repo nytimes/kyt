@@ -6,7 +6,7 @@ jest.mock('kyt-utils/logger');
 jest.mock('shelljs');
 
 const listen = jest.fn();
-jest.setMock('webpack-dev-server', () => ({ listen }));
+jest.setMock('webpack-dev-server', jest.fn(() => ({ listen })));
 
 const config = {
   modifyWebpackConfig: jest.fn(c => c),
