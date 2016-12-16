@@ -5,7 +5,7 @@ var reactTransformInline = require('babel-plugin-transform-react-inline-elements
 var reactTransformJsxSource = require('babel-plugin-transform-react-jsx-source');
 var babelPresetKytCore = require('babel-preset-kyt-core');
 
-module.exports = function(context, opts) {
+module.exports = function getPresetReact(context, opts) {
   opts = opts || {};
   return {
     presets: [
