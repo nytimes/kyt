@@ -2,11 +2,10 @@
   "name": "kyt-utils",
   "version": "0.0.1-alpha.1",
   "description": "A shared kyt utility library.",
-  "main": "logger.js",
-  "scripts": {
-  },
-  "devDependencies": {
-  },
   "author": "NYTimes",
-  "license": "Apache-2.0"
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-utils",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
+  "main": "logger.js"
 }

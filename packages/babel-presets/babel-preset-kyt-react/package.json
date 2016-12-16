@@ -1,10 +1,13 @@
 {
   "name": "babel-preset-kyt-react",
   "version": "0.1.0-alpha.1",
-  "description": "an opinionated babel preset for react apps, best used with kyt",
+  "description": "An opinionated babel preset for react apps, best used with kyt.",
   "main": "lib/index.js",
   "author": "NYTimes",
   "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-babel-preset-react",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "babel-plugin-transform-react-constant-elements": "6.9.1",
     "babel-plugin-transform-react-inline-elements": "^6.8.0",
