@@ -2,24 +2,17 @@
   "name": "kyt",
   "version": "0.3.0",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
-  "main": "",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-core",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
   "bin": {
     "kyt": "cli/index.js"
   },
   "engines": {
     "node": ">=6.1.0"
   },
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nytimes/kyt.git"
-  },
-  "author": "NYTimes",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/nytimes/kyt/issues"
-  },
-  "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "assets-webpack-plugin": "3.4.0",
     "autoprefixer": "6.5.0",
@@ -64,5 +57,6 @@
     "webpack-hot-middleware": "2.13.0",
     "webpack-merge": "0.14.1",
     "webpack-node-externals": "1.5.4"
-  }
+  },
+  "keywords": ["kyt", "core", "kyt-core"]
 }
