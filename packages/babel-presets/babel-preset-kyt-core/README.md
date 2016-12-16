@@ -1,6 +1,6 @@
 # babel-preset-kyt-core
 
-kyt's default [Babel preset](https://babeljs.io/docs/plugins/#presets).
+An opinionated [Babel preset](https://babeljs.io/docs/plugins/#presets), best used with [kyt](https://github.com/NYTimes/kyt).
 
 ## Options
 
