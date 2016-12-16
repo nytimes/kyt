@@ -63,7 +63,7 @@ As of v0.4.0, kyt respects user `.babelrc` files.
 npm i --save-dev my-babel-plugin
 ```
 
-in .babelrc
+in `.babelrc`
 ```json
 {
   "presets": ["kyt-core"],
