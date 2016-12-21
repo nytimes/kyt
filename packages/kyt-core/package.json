@@ -2,24 +2,17 @@
   "name": "kyt",
   "version": "0.3.0",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
-  "main": "",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-core",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
   "bin": {
     "kyt": "cli/index.js"
   },
   "engines": {
     "node": ">=6.1.0"
   },
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nytimes/kyt.git"
-  },
-  "author": "NYTimes",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/nytimes/kyt/issues"
-  },
-  "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "assets-webpack-plugin": "3.4.0",
     "autoprefixer": "6.5.0",
@@ -27,12 +20,8 @@
     "babel-core": "6.18.0",
     "babel-jest": "16.0.0",
     "babel-loader": "6.2.7",
-    "babel-plugin-transform-react-constant-elements": "6.9.1",
-    "babel-plugin-transform-react-jsx-source": "6.9.0",
-    "babel-plugin-transform-react-remove-prop-types": "0.2.10",
     "babel-polyfill": "6.16.0",
-    "babel-preset-latest": "6.16.0",
-    "babel-preset-react": "6.16.0",
+    "babel-preset-kyt-core": "0.1.0-alpha.1",
     "chokidar": "1.6.0",
     "commander": "2.9.0",
     "css-loader": "0.25.0",
@@ -68,5 +57,6 @@
     "webpack-hot-middleware": "2.13.0",
     "webpack-merge": "0.14.1",
     "webpack-node-externals": "1.5.4"
-  }
+  },
+  "keywords": ["kyt", "core", "kyt-core"]
 }

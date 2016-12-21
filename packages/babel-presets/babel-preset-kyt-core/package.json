@@ -1,0 +1,18 @@
+{
+  "name": "babel-preset-kyt-core",
+  "version": "0.1.0-alpha.1",
+  "description": "An opinionated babel preset, best used with kyt",
+  "main": "lib/index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-babel-preset-core",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
+  "dependencies": {
+    "babel-plugin-transform-es2015-modules-commonjs": "6.16.0",
+    "babel-plugin-transform-runtime": "6.15.0",
+    "babel-preset-latest": "6.16.0"
+  },
+  "keywords": ["babel", "babel-preset", "kyt"],
+  "files": ["lib"]
+}

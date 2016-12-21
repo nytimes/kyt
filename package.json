@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
   "main": "index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
   "directories": {
     "doc": "docs"
   },
@@ -27,18 +32,8 @@
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "packages/kyt-core/node_modules/.bin/eslint --config packages/kyt-core/.eslintrc.json --ignore-pattern **/node_modules --ignore-pattern packages/starter-kyts ./"
+    "lint": "packages/eslint-config-kyt/node_modules/.bin/eslint ./"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NYTimes/kyt.git"
-  },
-  "author": "",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/NYTimes/kyt/issues"
-  },
-  "homepage": "https://github.com/NYTimes/kyt#readme",
   "dependencies": {
     "ps-tree": "1.1.0",
     "shelljs": "0.7.5",

@@ -1,0 +1,6 @@
+{
+  "rules": {
+    "no-var": 0,
+    "import/no-unresolved": 0
+  }
+}

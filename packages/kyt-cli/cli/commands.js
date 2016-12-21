@@ -1,5 +1,6 @@
 const program = require('commander');
 const setupAction = require('./actions/setup');
+const listAction = require('./actions/list');
 
 const loadArgsAndDo = (action) => {
   const args = program.args.filter(item => typeof item === 'object');
@@ -15,6 +16,11 @@ program
   .option('-r, --repository [address]', 'Optional: Github repository address')
   .option('-k, --kyt-version [version]', 'Optional: Version of kyt-core to install')
   .action(() => loadArgsAndDo(setupAction));
+
+program
+  .command('list')
+  .description('Lists availble supported starter-kyts')
+  .action(listAction);
 
 
 program.parse(process.argv);
