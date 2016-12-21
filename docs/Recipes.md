@@ -56,14 +56,18 @@ modifyWebpackConfig: (baseConfig, options) => {
 ```    
 
 ## Add Babel Plugins and Presets
-in kyt.config.js
-```javascript
-modifyWebpackConfig: (baseConfig, options) => {
 
-  const babelLoader = baseConfig.module.rules.find(loader => loader.loader === 'babel-loader');
-  babelLoader.options.plugins.push(path.resolve('./path/to/my/plugin'));
+As of v0.4.0, kyt respects user `.babelrc` files.
 
-  return baseConfig;
+```bash
+npm i --save-dev my-babel-plugin
+```
+
+in `.babelrc`
+```json
+{
+  "presets": ["kyt-core"],
+  "plugins": ["my-babel-plugin"]
 }
 ```
 Check out the current [Babel configuration](/.babelrc).

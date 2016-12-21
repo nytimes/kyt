@@ -106,6 +106,8 @@ See the [kyt config docs](/docs/kytConfig.md) for instructions.
 kyt uses Webpack to compile src code and run tests.
 See our [recipes](/docs/Recipes.md) for extending configuration.
 
+To configure Babel, kyt respects `.babelrc` files defined at the root of user projects, and provides [presets](/packages/babel-presets) to provide opinionated configurations. (If no `.babelrc` is defined in the user project, [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core) is used.)
+
 ## starter-kyts
 
 While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt-cli `setup` command installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
