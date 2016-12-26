@@ -13,10 +13,19 @@ Please make sure all PRs are:
 3. Connected to an issue
 
 ### kyt local development
-We recommend forking kyt and creating a test project with a starter-kyt for local development.
+
+1. Fork and clone kyt
+2. Run `npm run bootstrap` to install the packages in the monorepo. You can also run `update` to reinstall.
+
+We recommend creating a local project with a starter-kyt for testing.
 
 ### Testing kyt
-Instructions TK
+The top level `test` command can be run from the root of the repository and will run all jest tests in the packages.
+
+The e2e tests are located in the e2e folder and can be run from the root of the repo with `npm run e2e`
+
+## Linting kyt
+The monorepo has a top level `lint` command which runs lint for all the packages.
 
 ## Create an RFC
 
