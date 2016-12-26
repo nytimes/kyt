@@ -6,9 +6,6 @@ function Tools() {
   return (
     <ul>
       <li className={styles.tool}>
-        <a href="https://expressjs.com/">Express</a> - server-side rendering
-      </li>
-      <li className={styles.tool}>
         <a href="https://facebook.github.io/react/">React</a> - component library
       </li>
       <li className={styles.tool}>
