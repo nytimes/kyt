@@ -21,10 +21,11 @@ The `setup` command sets up your project with all the application files that you
 
 If kyt finds any files with duplicate names, it will back up your file before replacing it.
 
-It takes 2 options:
+It takes 3 options:
 
 - `-d` The name of the new project directory. If not specified kyt will install the project in your current working directory.
 - `-r` The github url for a starter-kyt. If not specified you will be prompted to select a starter-kyt from the supported list.
+- `-k` For local development purproses, you can override the version of kyt to be installed by passing in a new version number or a file path eg. `file:../../my-local-kyt`
 
 ### Setup a new project
 `kyt-cli setup -d my-proj-name`
