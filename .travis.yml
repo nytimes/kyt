@@ -1,4 +1,4 @@
 language: node_js
 node_js:
   - 6.0
-script: yarn run yarn-update && yarn run lint && yarn test && yarn run e2e
+script: yarn run update && yarn run lint && yarn test && yarn run e2e
