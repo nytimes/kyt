@@ -30,6 +30,7 @@
   "scripts": {
     "bootstrap": "./scripts/bootstrap.sh",
     "update": "./scripts/install-modules.sh",
+    "yarn-update": "./scripts/yarn-install-modules.sh",
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
