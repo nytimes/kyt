@@ -14,6 +14,7 @@
   "jest": {
     "testPathIgnorePatterns": [
       "<rootDir>/packages/starter-kyts",
+      "<rootDir>/packages/kyt-core/cli/actions/test.js",
       "<rootDir>/e2e_tests"
     ],
     "collectCoverageFrom": [
