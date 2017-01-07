@@ -11,7 +11,7 @@
   "dependencies": {
     "babel-plugin-transform-es2015-modules-commonjs": "6.16.0",
     "babel-plugin-transform-runtime": "6.15.0",
-    "babel-preset-latest": "6.16.0"
+    "babel-preset-env": "1.1.6"
   },
   "keywords": ["babel", "babel-preset", "kyt"],
   "files": ["lib"]
