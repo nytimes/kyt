@@ -2,19 +2,20 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const kill = require('../utils/psKill');
-
-// Explicitly set to "npm" until yarn 0.18 (https://github.com/yarnpkg/yarn/pull/1498) is released
-// const ypm = require('../../packages/kyt-utils/yarnOrNpm')();
-const ypm = 'npm';
+const ypm = require('../../packages/kyt-cli/utils/yarnOrNpm')();
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
+  beforeAll(() => {
+    shell.rm('-rf', 'cli-test');
+    shell.rm('-rf', 'test-packages');
+  });
   it('installs kyt', () => {
     // create test packages
     shell.mkdir('test-packages');
     shell.exec('cp -r ./packages/kyt-utils ./test-packages');
-    shell.exec('cp -r ./packages/kyt-core ./test-packages/');
+    shell.exec('cp -r ./packages/kyt-core ./test-packages');
     shell.exec('cp -r ./packages/kyt-cli ./test-packages');
     // Update package Json to point to local kyt-utils
     const utilsPath = 'file:../kyt-utils';

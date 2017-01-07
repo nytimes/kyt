@@ -6,9 +6,10 @@ const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
+const starterKyts = require('../../config/starterKyts');
 const uniq = require('ramda').uniq;
 const cliPkgJson = require('../../package.json');
-const yarnOrNpm = require('kyt-utils/yarnOrNpm')();
+const yarnOrNpm = require('../../utils/yarnOrNpm')();
 
 module.exports = (flags, args) => {
   logger.start('Setting up your new kyt project...');
@@ -435,17 +436,12 @@ module.exports = (flags, args) => {
         type: 'list',
         name: 'starterChoice',
         message: 'Which starter-kyt would you like to install?', // eslint-disable-line
-        choices: ['Universal', 'Static'],
+        choices: Object.keys(starterKyts.supported),
         default: 0,
       },
     ];
     inquire.prompt(question).then((answer) => {
-      if (answer.starterChoice === 'Universal') {
-        tmpDir = path.join(tmpRepo, '/packages/starter-kyts/kyt-starter-universal/');
-      }
-      if (answer.starterChoice === 'Static') {
-        tmpDir = path.join(tmpRepo, '/packages/starter-kyts/kyt-starter-static/');
-      }
+      tmpDir = path.join(tmpRepo, starterKyts.supported[answer.starterChoice].path);
       starterKytSetup(answer.starterChoice);
     });
   };

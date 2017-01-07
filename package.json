@@ -3,6 +3,11 @@
   "version": "0.0.0",
   "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
   "main": "index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
   "directories": {
     "doc": "docs"
   },
@@ -11,7 +16,9 @@
       "<rootDir>/packages/starter-kyts",
       "<rootDir>/e2e_tests"
     ],
-    "collectCoverageFrom": ["**/*.js"],
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules",
       "<rootDir>/packages/*/node_modules",
@@ -26,22 +33,12 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
-    "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
+    "e2e": "jest -i --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/eslint-config-kyt/node_modules/.bin/eslint ./"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/NYTimes/kyt.git"
-  },
-  "author": "",
-  "license": "Apache-2.0",
-  "bugs": {
-    "url": "https://github.com/NYTimes/kyt/issues"
-  },
-  "homepage": "https://github.com/NYTimes/kyt#readme",
   "dependencies": {
+    "jest": "18.1.0",
     "ps-tree": "1.1.0",
-    "shelljs": "0.7.5",
-    "jest": "16.0.1"
+    "shelljs": "0.7.5"
   }
 }
