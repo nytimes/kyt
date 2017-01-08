@@ -394,8 +394,12 @@ module.exports = (flags, args) => {
 
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
-    starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
+    starterName = starterName || 'specified';
+    if (args.repositoryPath || starterName) {
+      tmpDir = path.resolve(tmpDir, args.repositoryPath || starterKyts.supported[starterName].path);
+      console.log(tmpDir);
+    }
     const afterClone = (error) => {
       if (error) {
         logger.error('There was a problem cloning the repository');
@@ -435,7 +439,6 @@ module.exports = (flags, args) => {
       },
     ];
     inquire.prompt(question).then((answer) => {
-      tmpDir = path.join(tmpRepo, starterKyts.supported[answer.starterChoice].path);
       starterKytSetup(answer.starterChoice);
     });
   };

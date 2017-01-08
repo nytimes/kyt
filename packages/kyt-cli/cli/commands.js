@@ -12,9 +12,10 @@ const loadArgsAndDo = (action) => {
 program
   .command('setup')
   .description('Generate a project from a github url to get started.')
-  .option('-d, --directory <path>', 'Optional: Directory for your project. Defaults to your current working directory.')
+  .option('-d, --directory <path>', 'Optional: Creates the given directory name and installs there. Defaults to your current working directory.')
   .option('-r, --repository [address]', 'Optional: Github repository address')
   .option('-k, --kyt-version [version]', 'Optional: Version of kyt-core to install')
+  .option('--repository-path [path]', 'Optional: path within a repository for the main starter kyt directory. Default is the root directory of a git clone.')
   .action(() => loadArgsAndDo(setupAction));
 
 program
