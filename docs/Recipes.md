@@ -1,9 +1,19 @@
-# kyt recipes
-Easy ways to extend kyt
+# kyt Recipes
 
-## Use Options in `modifyWebpackConfig`
+Easy ways to extend kyt.
 
-The `modifyWebpackConfig` function is called any time a Webpack config is used.
+## Table of Contents
+
+  1. [Extend Webpack Configuration](#extend-webpack-configuration)
+  1. [Add Webpack Aliases](#add-webpack-aliases)
+  1. [Add PostCSS Plugins](#add-postcss-plugins)
+  1. [Add Babel Plugins and Presets](#add-babel-plugins-and-presets)
+  1. [Add always-mocked modules to Jest configuration](add-always-mocked-modules-to-jest-configuration)
+
+## Extend Webpack Configuration
+
+In kyt.config.js, the [`modifyWebpackConfig`](/docs/kytConfig#modifyWebpackConfig) function is called any time a Webpack config is used.
+
 It's called with two parameters:
 1. baseConfig: The current Webpack config
 2. options: an object of useful data for editing configuration
@@ -24,8 +34,8 @@ if (options.type === 'client') {
 }
 ```
 
-
 ## Add Webpack Aliases
+
 In `kyt.config.js`
 
 ```javascript
@@ -38,6 +48,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 ```
 
 ## Add PostCSS Plugins
+
 in `kyt.config.js`
 ```javascript   
 modifyWebpackConfig: (baseConfig, options) => {
@@ -73,6 +84,7 @@ in `.babelrc`
 Check out the current [Babel configuration](/.babelrc).
 
 ## Add always-mocked modules to Jest configuration
+
 in `kyt.config.js`
 ```javascript
 modifyJestConfig: (baseConfig) => {
