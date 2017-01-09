@@ -395,11 +395,11 @@ module.exports = (flags, args) => {
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
     logger.task(`Setting up the ${starterName} starter-kyt`);
-    starterName = starterName || 'specified';
     if (args.repositoryPath || starterName) {
       tmpDir = path.resolve(tmpDir, args.repositoryPath || starterKyts.supported[starterName].path);
       console.log(tmpDir);
     }
+    starterName = starterName || 'specified';
     const afterClone = (error) => {
       if (error) {
         logger.error('There was a problem cloning the repository');
