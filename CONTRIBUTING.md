@@ -13,42 +13,6 @@ Please make sure all PRs are:
 2. tested (npm test)
 3. Connected to an issue
 
-### kyt local development
-
-Since kyt is a monorepo, it can be tricky to test local changes across packages. The following commands can assist in bootstrapping your local kyt repository:
-
-#### bootstrap
-
-Bootstrap` will set you up with a clean slate. Every time it is run, it will remove and re-install the node_modules across all of the kyt packages. It will also link `kyt-cli` so you can run it locally on the command line.
-
-From the root of kyt, run:
-
-`npm run bootstrap`
-
-#### update
-
-Update is useful after you pull down kyt with some minor changes. It will call `npm install` on all of the packages in the repository. For complicated changes to the repository, it is best to use `bootstrap`.
-
-From the root of kyt, run:
-
-`npm run update`
-
-#### Testing local kyt-core changes
-
-It is a common workflow to make changes to kyt-core and test them with `kyt-cli setup`. To get around installing the latest kyt-core, there's an option in setup where you can specify which version of kyt you want to reference. For instance, by executing the following locally, you can setup a directory called test and install your local version of kyt-core:
-
-`kyt-cli setup -d test -k file:../kyt/packages/kyt-core`
-
-#### Testing local starter-kyt changes
-
-To test setting up/installing local starter kyts, you need to specify the `--repository-path` option. The following command will create a test directory and install the given local kyt repository and reference the starter kyt using the given repository path.
-
-`kyt-cli setup -d test -r kyt/.git --repository-path packages/starter-kyts/kyt-starter-static`
-
-### Testing kyt
-
-More instructions TK
-
 ## Create an RFC
 
 If you want to propose a large feature idea or architecture change you should consider submitting an RFC. It's often helpful to get feedback on your concept in an issue before starting the RFC. RFCs are an evolving process in the kyt repository so expect a lot of changes and guidelines in the future. You can find the kyt RFC template [here](/rfc/template.md).
@@ -57,3 +21,39 @@ If you want to propose a large feature idea or architecture change you should co
 
 Have a great idea for a boilerplate? Build it on top of kyt and let us know about it. Directions are [here](/docs/Starterkyts.md).
 We feature [recommended starter-kyts](/docs/commands.md#recommended-starter-kyts)
+
+## kyt local development
+
+Since kyt is a monorepo, it can be tricky to test local changes across packages. The following commands can assist in bootstrapping your local kyt repository:
+
+### bootstrap
+
+Bootstrap` will set you up with a clean slate. Every time it is run, it will remove and re-install the node_modules across all of the kyt packages. It will also link `kyt-cli` so you can run it locally on the command line.
+
+From the root of kyt, run:
+
+`npm run bootstrap`
+
+### update
+
+Update is useful after you pull down kyt with some minor changes. It will call `npm install` on all of the packages in the repository. For complicated changes to the repository, it is best to use `bootstrap`.
+
+From the root of kyt, run:
+
+`npm run update`
+
+### Testing local kyt-core changes
+
+It is a common workflow to make changes to kyt-core and test them with `kyt-cli setup`. To get around installing the latest kyt-core, there's an option in setup where you can specify which version of kyt you want to reference. For instance, by executing the following locally, you can setup a directory called test and install your local version of kyt-core:
+
+`kyt-cli setup -d test -k file:../kyt/packages/kyt-core`
+
+### Testing local starter-kyt changes
+
+To test setting up/installing local starter kyts, you need to specify the `--repository-path` option. The following command will create a test directory and install the given local kyt repository and reference the starter kyt using the given repository path.
+
+`kyt-cli setup -d test -r kyt/.git --repository-path packages/starter-kyts/kyt-starter-static`
+
+### Testing kyt
+
+More instructions TK
