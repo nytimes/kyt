@@ -6,14 +6,14 @@
   "scripts": {},
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nytimes/kyt/kyt-starter-static.git"
+    "url": "git+https://github.com/nytimes/kyt/packages/kyt-starter-static.git"
   },
   "author": "",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/nytimes/kyt/issues"
   },
-  "homepage": "https://github.com/nytimes/packages/kyt-starter-static#readme",
+  "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
   "kyt": {
     "files": [".babelrc"]
   },
