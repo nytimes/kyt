@@ -396,7 +396,6 @@ module.exports = (flags, args) => {
   const starterKytSetup = (starterName) => {
     if (args.repositoryPath || starterName) {
       tmpDir = path.resolve(tmpDir, args.repositoryPath || starterKyts.supported[starterName].path);
-      console.log(tmpDir);
     }
     starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
