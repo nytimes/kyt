@@ -400,6 +400,9 @@ module.exports = (flags, args) => {
 
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
+    if (args.repositoryPath || starterName) {
+      tmpDir = path.resolve(tmpDir, args.repositoryPath || starterKyts.supported[starterName].path);
+    }
     starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
     const afterClone = (error) => {
@@ -441,7 +444,6 @@ module.exports = (flags, args) => {
       },
     ];
     inquire.prompt(question).then((answer) => {
-      tmpDir = path.join(tmpRepo, starterKyts.supported[answer.starterChoice].path);
       starterKytSetup(answer.starterChoice);
     });
   };
