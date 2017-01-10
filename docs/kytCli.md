@@ -21,11 +21,12 @@ The `setup` command sets up your project with all the application files that you
 
 If kyt finds any files with duplicate names, it will back up your file before replacing it.
 
-It takes 3 options:
+`setup` takes the following optional commands:
 
 - `-d` The name of the new project directory. If not specified kyt will install the project in your current working directory.
-- `-r` The github url for a starter-kyt. If not specified you will be prompted to select a starter-kyt from the supported list.
-- `-k` For local development purproses, you can override the version of kyt to be installed by passing in a new version number or a file path eg. `file:../../my-local-kyt`
+- `-r` The Github url for a starter-kyt. If not specified you will be prompted to select a starter-kyt from the supported list.
+- `-k` For local development purposes, you can override the version of kyt to be installed by passing in a new version number or a file path eg. `file:../../my-local-kyt`
+- `-p` The package manager to use, either `npm` or `yarn`. If not specified, defaults to `yarn` if it's installed globally, otherwise `npm` will be used.
 
 ### Setup a new project
 `kyt-cli setup -d my-proj-name`
@@ -60,7 +61,7 @@ It includes:
 This default starter-kyt is a good base for building advanced, universal React apps.
 
 ```
-node_modules/.bin/kyt setup
+kyt-cli setup
 ```
 
 #### [Static starter-kyt](/packages/starter-kyts/kyt-starter-static)
@@ -68,12 +69,12 @@ node_modules/.bin/kyt setup
 This starter-kyt is for creating client side React apps.
 Install by running:
 ```
-node_modules/.bin/kyt setup -r https://github.com/NYTimes/kyt-starter-static.git
+kyt-cli setup -r https://github.com/NYTimes/kyt-starter-static.git
 ```
 
 #### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
 Still a work in progress, but this starter-kyt will serve as the base for building advanced, universal Angular2 apps.
 
 ```
-node_modules/.bin/kyt setup -r https://github.com/delambo/kyt-starter-universal-angular2.git
+kyt-cli setup -r https://github.com/delambo/kyt-starter-universal-angular2.git
 ```
