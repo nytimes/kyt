@@ -12,11 +12,10 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
-2. Create a directory and initialize npm - `npm init`
-3. `npm install -g kyt-cli`
-4. `kyt-cli setup -d my-kyt-project` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/kytCli.md).
-5. `npm run dev`
-6. Check out `http://localhost:3000`
+2. `npm install -g kyt-cli`
+3. `kyt-cli setup -d my-kyt-project` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/docs/kytCli.md). (Note: if you have yarn installed this will install your project [using yarn](/docs/kytCli.md))
+4. `npm run dev`
+5. Check out `http://localhost:3000`
 
 
 ## How it Works
@@ -47,7 +46,7 @@ kyt-cli is a utility for bootstrapping kyt projects. It can be installed globall
 
 `kyt-cli setup`
 
-See the [kyt-cli](/docs/kytCli.md) documentation for more details. 
+See the [kyt-cli](/docs/kytCli.md) documentation for more details.
 
 ## Command line
 
@@ -110,7 +109,7 @@ To configure Babel, kyt respects `.babelrc` files defined at the root of user pr
 
 ## starter-kyts
 
-While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The kyt-cli `setup` command installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
+While kyt can be easily integrated into new or existing Node projects, it is even more powerful when used with a starter-kyt. A starter-kyt offers the benefits of boilerplates while minimizing the amount of new tools to learn and maintain. The `kyt-cli setup` command installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
 
 See our recommended list of [starter-kyts](/docs/kytCli.md#recommended-starter-kyts).
 

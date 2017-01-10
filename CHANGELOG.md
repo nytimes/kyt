@@ -53,6 +53,9 @@ Lint commands are now  as follows:
 - Support babel plugins w/o prefix [#303](https://github.com/NYTimes/kyt/issues/303)
 - Bootstrap scripts for local development [#341](https://github.com/NYTimes/kyt/pull/341)
 
+#### Yarn Support
+kyt-cli now supports setting up projects using yarn.[#270](https://github.com/NYTimes/kyt/pull/270)
+
 
 ### Tooling updates
 - Updated PostCSS loader [#295](https://github.com/NYTimes/kyt/pull/295)
