@@ -17,9 +17,6 @@ describe('KYT CLI', () => {
     shell.exec('cp -r ./packages/kyt-utils ./test-packages');
     shell.exec('cp -r ./packages/kyt-core ./test-packages');
     shell.exec('cp -r ./packages/kyt-cli ./test-packages');
-    shell.exec('rm ./test-packages/kyt-utils/yarn.lock');
-    shell.exec('rm ./test-packages/kyt-core/yarn.lock');
-    shell.exec('rm ./test-packages/kyt-cli/yarn.lock');
     shell.exec('rm -rf ./test-packages/kyt-utils/node_modules/');
     shell.exec('rm -rf ./test-packages/kyt-core/node_modules/');
     shell.exec('rm -rf ./test-packages/kyt-cli/node_modules/');
