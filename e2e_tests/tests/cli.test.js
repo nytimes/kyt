@@ -17,6 +17,12 @@ describe('KYT CLI', () => {
     shell.exec('cp -r ./packages/kyt-utils ./test-packages');
     shell.exec('cp -r ./packages/kyt-core ./test-packages');
     shell.exec('cp -r ./packages/kyt-cli ./test-packages');
+    shell.exec('rm ./test-packages/kyt-utils/yarn.lock');
+    shell.exec('rm ./test-packages/kyt-core/yarn.lock');
+    shell.exec('rm ./test-packages/kyt-cli/yarn.lock');
+    shell.exec('rm -rf ./test-packages/kyt-utils/node_modules/');
+    shell.exec('rm -rf ./test-packages/kyt-core/node_modules/');
+    shell.exec('rm -rf ./test-packages/kyt-cli/node_modules/');
     // Update package Json to point to local kyt-utils
     const utilsPath = 'file:../kyt-utils';
     const cliPkgPath = './test-packages/kyt-cli/package.json';
@@ -80,7 +86,7 @@ describe('KYT CLI', () => {
     expect(scripts.start).toBe('node build/server/main.js');
     expect(scripts.build).toBe('kyt build');
     expect(scripts.test).toBe('kyt test');
-    expect(scripts.lint).toBe('npm run lint-script && npm run lint-style');
+    expect(scripts.lint).toBe(`${ypm} run lint-script && ${ypm} run lint-style`);
     expect(scripts['lint-style']).toBe('kyt lint-style');
     expect(scripts['lint-script']).toBe('kyt lint-script');
     expect(scripts.proto).toBe('kyt proto');
@@ -119,7 +125,7 @@ describe('KYT CLI', () => {
     const exec = new Promise((resolve, reject) => {
       let sentKill = false;
       let finishedBuild = false;
-      const child = shell.exec('npm run build', () => {
+      const child = shell.exec(`${ypm} run build`, () => {
         resolve(finishedBuild);
       });
       child.stdout.on('data', (data) => {
@@ -140,7 +146,7 @@ describe('KYT CLI', () => {
     const exec = new Promise((resolve, reject) => {
       let sentKill = false;
       let finishedBuild = false;
-      const child = shell.exec('npm run dev', () => {
+      const child = shell.exec(`${ypm} run dev`, () => {
         resolve(finishedBuild);
       });
       child.stdout.on('data', (data) => {

@@ -141,7 +141,7 @@ module.exports = (flags, args) => {
       start: 'node build/server/main.js',
       'test-watch': 'kyt test -- --watch',
       'test-coverage': 'kyt test -- --coverage',
-      lint: 'npm run lint-script && npm run lint-style',
+      lint: `${ypm} run lint-script && ${ypm} run lint-style`,
     };
 
     // Merge the Starter-kyt script names into the list of commands.
