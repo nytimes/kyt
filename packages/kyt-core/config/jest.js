@@ -7,9 +7,9 @@ const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', 
 module.exports = (rootDir, aliases = {}) => ({
   moduleNameMapper: Object.assign(
     {
-      '^[./a-zA-Z0-9$_-]+\\.(jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$':
+      '\\.(jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$':
           resolveFromUtils('file.stub'),
-      '^[./a-zA-Z0-9$_-]+\\.(css|scss)$':
+      '\\.(css|scss)$':
           resolveFromUtils('style.stub'),
       // when this is removed from the base webpack config, we can likely
       // remove the runtime and include the polyfill in the test environment
