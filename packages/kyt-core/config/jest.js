@@ -7,7 +7,7 @@ const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', 
 module.exports = (rootDir, aliases = {}) => ({
   moduleNameMapper: Object.assign(
     {
-      '\\.(jpg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm)$':
+      '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
           resolveFromUtils('file.stub'),
       '\\.(css|scss)$':
           resolveFromUtils('style.stub'),
