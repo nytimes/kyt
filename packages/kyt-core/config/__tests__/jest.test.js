@@ -24,16 +24,16 @@ it('jestConfig().moduleNameMapper matches by extension', () => {
 
   const matchers = Object
     .keys(config.moduleNameMapper)
-    .map((k) => new RegExp(k))
+    .map((k) => new RegExp(k));
 
   const cssPath = './styles.css';
   const globalCssPath = 'style!css!./styles.css';
   const jpgPath = './cats.jpg';
   const jpgPathWithWebpackLoader = 'my-loader!./cats.jpg';
 
-  expect(matchers.some((matcher) => cssPath.match(matcher))).toBeTruthy();
-  expect(matchers.some((matcher) => globalCssPath.match(matcher))).toBeTruthy();
-  expect(matchers.some((matcher) => jpgPath.match(matcher))).toBeTruthy();
-  expect(matchers.some((matcher) => jpgPathWithWebpackLoader.match(matcher))).toBeTruthy();
+  expect(matchers.some(matcher => cssPath.match(matcher))).toBeTruthy();
+  expect(matchers.some(matcher => globalCssPath.match(matcher))).toBeTruthy();
+  expect(matchers.some(matcher => jpgPath.match(matcher))).toBeTruthy();
+  expect(matchers.some(matcher => jpgPathWithWebpackLoader.match(matcher))).toBeTruthy();
 });
 
