@@ -24,7 +24,7 @@ it('jestConfig().moduleNameMapper matches by extension', () => {
 
   const matchers = Object
     .keys(config.moduleNameMapper)
-    .map((k) => new RegExp(k));
+    .map(k => new RegExp(k));
 
   const cssPath = './styles.css';
   const globalCssPath = 'style!css!./styles.css';
