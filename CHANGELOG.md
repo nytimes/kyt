@@ -69,6 +69,7 @@ kyt-cli now supports setting up projects using yarn.[#270](https://github.com/NY
 - Fixes bug where e2e tests were silently failing [#326](https://github.com/NYTimes/kyt/pull/326)
 - Fixes bug where test command wasn't written if an npm default existed [#293](https://github.com/NYTimes/kyt/pull/293)
 - Catch SIGINT for all commands [#332](https://github.com/NYTimes/kyt/pull/332)
+- Fixes bug where Jest moduleNameMappers didn't match imports with specific Webpack loaders [#363](https://github.com/NYTimes/kyt/pull/363)
 
 
 ## 0.3.0 (October 25, 2016)
