@@ -11,6 +11,9 @@ const kytConfigFn = require('./../utils/kytConfig');
 const logger = require('kyt-utils/logger');
 const { userPackageJSONPath } = require('kyt-utils/paths')();
 
+// Comment the following to see verbose shell ouput.
+shell.config.silent = true;
+
 // Kill the process if the user did not run
 // the command from the root of their project.
 if (!shell.test('-f', userPackageJSONPath)) {
