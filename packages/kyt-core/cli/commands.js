@@ -68,7 +68,7 @@ program
 
 program
   .command('proto')
-  .description('Start a prorotype dev server.')
+  .description('Start a prototype dev server.')
   .action(() => loadConfigAndDo(protoAction));
 
 program
