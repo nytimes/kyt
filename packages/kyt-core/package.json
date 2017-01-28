@@ -33,6 +33,7 @@
     "filesize": "3.3.0",
     "glob": "7.1.0",
     "gzip-size": "3.0.0",
+    "identity-obj-proxy": "3.0.0",
     "inquirer": "1.2.1",
     "install": "0.8.1",
     "jest": "16.0.1",
@@ -58,5 +59,9 @@
     "webpack-merge": "0.14.1",
     "webpack-node-externals": "1.5.4"
   },
-  "keywords": ["kyt", "core", "kyt-core"]
+  "keywords": [
+    "kyt",
+    "core",
+    "kyt-core"
+  ]
 }

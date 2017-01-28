@@ -16,6 +16,7 @@ module.exports = (config, flags) => {
   logger.info(`Using ESLint file: ${configFile}`);
 
   const lint = () => {
+    shell.config.silent = false;
     const eslintLib = require.resolve('eslint');
     const eslint = eslintLib.replace(/(.*)(lib\/api\.js)/, '$1bin/eslint.js');
 

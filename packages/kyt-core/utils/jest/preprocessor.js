@@ -18,7 +18,8 @@ const resolve = require('resolve');
 const normalizeDep = (prefix, dep) => {
   let resolved;
   try {
-    if (dep.indexOf('babel') !== 0) {
+    // Prefix babel when babel doesn't exist
+    if (dep.indexOf('babel') < 0) {
       resolved = resolve.sync(`${prefix}-${dep}`, { basedir: userRootPath });
     }
     return resolved || resolve.sync(dep, { basedir: userRootPath });
