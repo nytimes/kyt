@@ -9,6 +9,9 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 
 [![Build Status](https://travis-ci.org/NYTimes/kyt.svg?branch=master)](https://travis-ci.org/NYTimes/kyt) [![Dependency Status](https://david-dm.org/NYTimes/kyt.svg)](https://david-dm.org/NYTimes/kyt) [![npm](https://img.shields.io/npm/v/kyt.svg)](https://www.npmjs.com/package/kyt)
 
+## Upgrading to 0.4.0
+Check out our [migration guide](/docs/migration-guides/0.3-0.4.md) and [changelog](/CHANGELOG.md)
+
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
