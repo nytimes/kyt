@@ -22,7 +22,6 @@
     "react-router": "^2.6.1"
   },
   "devDependencies": {
-    "kyt": "^0.3.0",
     "enzyme": "^2.4.1",
     "react-addons-test-utils": "^15.3.0"
   }
