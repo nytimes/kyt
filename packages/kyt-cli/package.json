@@ -1,6 +1,6 @@
 {
   "name": "kyt-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "CLI for setting up kyt projects.",
   "main": "index.js",
   "bin": {
