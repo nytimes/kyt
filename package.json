@@ -35,6 +35,7 @@
     "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
+    "clean-e2e": "yarn cache clean && yarn run e2e",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/eslint-config-kyt/node_modules/.bin/eslint ./"
   },
