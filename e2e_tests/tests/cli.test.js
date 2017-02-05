@@ -81,7 +81,6 @@ describe('KYT CLI', () => {
     return exec.then((test) => {
       expect(test.code).toBe(0);
       const setupArr = test.output.split('\n');
-      expect(setupArr.includes('🔥  Setting up your new kyt project...')).toBe(true);
       expect(setupArr.includes('👍  Added kyt scripts into your package.json scripts')).toBe(true);
       expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
       expect(setupArr.includes('👍  Installed new modules')).toBe(true);

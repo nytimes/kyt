@@ -12,8 +12,8 @@ const cliPkgJson = require('../../package.json');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
 
 module.exports = (flags, args) => {
-  logger.start('Setting up your new kyt project...');
-
+  logger.start('Let\'s set up your new kyt project...');
+  logger.log('✨  Answer a few questions to get started  ✨ \n');
   // Selects package manager to use
   let ypm;
 
@@ -403,7 +403,8 @@ module.exports = (flags, args) => {
       createGitignore();
       copyStarterKytFiles();
       removeTmpRepo();
-      logger.end(`Done adding starter kyt: ${repoURL}`);
+      const kytName = starterName || repoURL;
+      logger.end(`Done adding starter kyt: ${kytName}  ✨`);
     };
 
     // First, clean any old cloned repositories.
@@ -453,6 +454,14 @@ module.exports = (flags, args) => {
         type: 'input',
         name: 'repoUrl',
         message: 'Enter your Repo URL (https or ssh)',
+        validate: (answer) => {
+          const httpsPass = answer.match(/^https:\/\/.*.git$/);
+          const sshPass = answer.match(/^git@github.com:.*.git$/);
+          if (httpsPass || sshPass) {
+            return true;
+          }
+          return 'Please enter a valid repo url';
+        },
       },
     ];
     inquire.prompt(question).then((answer) => {
