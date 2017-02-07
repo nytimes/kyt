@@ -1,6 +1,7 @@
 {
   "name": "stylelint-config-kyt",
-  "version": "0.0.1",
+  "version": "0.1.1",
+  "main": "stylelintrc.json",
   "description": "StyleLint configuration for kyt projects.",
   "author": "NYTimes",
   "license": "Apache-2.0",

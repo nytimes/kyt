@@ -21,7 +21,7 @@ The following are some of the tools included in this starter-kyt:
 
 ## Notes on implementation
 
-- You will find a `src/index.ejs` file which gets compiled to an html fileby the html webpack plugin. See more for configuration in the kyt.config.js. After a build, kyt will copy the html build into `build/public`.
+- You will find a `src/index.ejs` file which gets compiled to an html file by the html webpack plugin. See more for configuration in the kyt.config.js. After a build, kyt will copy the html build into `build/public`.
 
 - As a performance optimization, React Router routes are loaded dynamically and chunked separately using the ES2015 `System.import` directive. See more about  [Webpack 2 support](https://gist.github.com/sokra/27b24881210b56bbaff7#code-splitting-with-es6) and [dynamic routing](https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md).
 
