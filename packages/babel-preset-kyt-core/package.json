@@ -13,6 +13,12 @@
     "babel-plugin-transform-runtime": "6.15.0",
     "babel-preset-latest": "6.16.0"
   },
-  "keywords": ["babel", "babel-preset", "kyt"],
-  "files": ["lib"]
+  "keywords": [
+    "babel",
+    "babel-preset",
+    "kyt"
+  ],
+  "files": [
+    "lib"
+  ]
 }

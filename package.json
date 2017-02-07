@@ -13,7 +13,7 @@
   },
   "jest": {
     "testPathIgnorePatterns": [
-      "<rootDir>/packages/starter-kyts",
+      "<rootDir>/packages/kyt-starter-*",
       "<rootDir>/packages/kyt-core/cli/actions/test.js",
       "<rootDir>/e2e_tests"
     ],
@@ -23,21 +23,20 @@
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules",
       "<rootDir>/packages/*/node_modules",
-      "<rootDir>/packages/*/starter-kyts",
+      "<rootDir>/packages/kyt-starter-*",
       "<rootDir>/coverage",
       "<rootDir>/packages/kyt-core/utils/jest"
     ]
   },
   "scripts": {
-    "bootstrap": "./scripts/bootstrap.sh",
-    "update": "./scripts/install-modules.sh",
-    "yarn-update": "./scripts/yarn-install-modules.sh",
-    "test": "jest",
+    "bootstrap": "node bootstrap.js",
+    "update": "type=install npm run bootstrap",
+    "test": "jest && cd packages/kyt-starter-universal && node_modules/kyt/cli/index.js test && cd  ../kyt-starter-static && node_modules/kyt/cli/index.js test",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "clean-e2e": "yarn cache clean && yarn run e2e",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "packages/eslint-config-kyt/node_modules/.bin/eslint ./"
+    "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },
   "dependencies": {
     "jest": "18.1.0",
