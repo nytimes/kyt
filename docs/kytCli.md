@@ -21,7 +21,7 @@ The `setup` command sets up your project with all the application files that you
 
 If kyt finds any files with duplicate names, it will back up your file before replacing it.
 
-`setup` takes the following optional commands:
+`setup` takes you through the process of creating a new kyt project with a set of interactive questions. If you wish to automate this process you can use these optional flags:
 
 - `-d` The name of the new project directory. If not specified kyt will install the project in your current working directory.
 - `-r` The Github url for a starter-kyt. If not specified you will be prompted to select a starter-kyt from the supported list.
@@ -29,22 +29,23 @@ If kyt finds any files with duplicate names, it will back up your file before re
 - `-p` The package manager to use, either `npm` or `yarn`. If not specified, defaults to `yarn` if it's installed globally, otherwise `npm` will be used.
 
 ### Setup a new project
-`kyt-cli setup -d my-proj-name`
+`kyt-cli setup`
 
 kyt will provide you with a list of supported starter-kyts to install
 
 The supported starter-kyts are:
 
-- [kyt-starter-universal](/packages/starter-kyts/kyt-starter-universal)
-- [kyt-starter-static](/packages/starter-kyts/kyt-starter-static)
+- [kyt-starter-universal](/packages/kyt-starter-universal)
+- [kyt-starter-static](/packages/kyt-starter-static)
 
 ### Setup a starter-kyt from github
 
-`kyt-cli setup -d my-proj-name -r https://github.com/starter-kyt-repo.git`
+`kyt-cli setup`
+Select `I have my own url` when prompted to set up a starter-kyt
 
 ### Setup an existing project
 Run `kyt-cli setup` in your project directory.
-Select `no` when prompted to setup with a starter-kyt.
+Select `I don't want a starter-kyt` when prompted to setup with a starter-kyt.
 
 
 ## `list` command
@@ -60,21 +61,26 @@ It includes:
 #### [Universal React starter-kyt](/packages/starter-kyts/kyt-starter-universal)
 This default starter-kyt is a good base for building advanced, universal React apps.
 
+Install by running:
 ```
 kyt-cli setup
 ```
+and select `universal`
 
 #### [Static starter-kyt](/packages/starter-kyts/kyt-starter-static)
 
 This starter-kyt is for creating client side React apps.
 Install by running:
 ```
-kyt-cli setup -r https://github.com/NYTimes/kyt-starter-static.git
+kyt-cli setup
 ```
+and select `static`
 
 #### [Universal Angular2 starter-kyt](https://github.com/delambo/kyt-starter-universal-angular2)
 Still a work in progress, but this starter-kyt will serve as the base for building advanced, universal Angular2 apps.
 
 ```
-kyt-cli setup -r https://github.com/delambo/kyt-starter-universal-angular2.git
+kyt-cli setup
 ```
+Select `I have my own url`
+and paste https://github.com/delambo/kyt-starter-universal-angular2.git
