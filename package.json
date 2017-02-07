@@ -36,7 +36,7 @@
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "packages/eslint-config-kyt/node_modules/.bin/eslint ./"
+    "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },
   "dependencies": {
     "jest": "18.1.0",
