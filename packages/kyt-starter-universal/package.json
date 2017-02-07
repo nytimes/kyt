@@ -24,7 +24,7 @@
   },
   "devDependencies": {
     "enzyme": "^2.4.1",
-    "kyt": "next",
+    "kyt": "0.3.0",
     "react-addons-test-utils": "^15.3.0"
   }
 }

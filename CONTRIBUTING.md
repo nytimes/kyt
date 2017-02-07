@@ -34,7 +34,7 @@ There are commands for bootstrapping, testing and linting all of the monorepo pa
 
 ### bootstrap
 
-Bootstrap` will set you up with a clean slate. Every time it is run, it will remove and re-install the node_modules across all of the packages, npm link `kyt-cli` and `kyt` so you can run them locally on the command line, and symlink local monorepo dependencies..
+Bootstrap will set you up with a clean slate. Every time it is run, it will remove and re-install the node_modules across all of the packages, npm link `kyt-cli` and `kyt` so you can run them locally on the command line, and symlink local monorepo dependencies..
 
 From the root of kyt, run:
 
