@@ -1,5 +1,9 @@
 
-## 0.4.0 (TBD)
+# `kyt` Changelog
+
+`kyt-cli` has a separate Changelog [here](/packages/kyt-cli/CHANGELOG.md).
+
+## 0.4.0
 
 ### BREAKING CHANGES
 

@@ -12,10 +12,10 @@ This is an extension of the Airbnb [**JavaScript**](https://github.com/airbnb/ja
 
 ## Install
 
-Note, most starter-kyts and `kyt-cli setup` will install this package automatically and setup a base configuration file.
+Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
 
-1. Install the _eslint-config-kyt_ node module:  
-  `npm install eslint-config-kyt --save-dev`
+1. Install the _eslint-config-kyt_ node module and its dependencies:  
+  `npm install eslint eslint-config-kyt eslint-config-airbnb eslint-plugin-import eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-react --save-dev`
 2. Copy the following into an `.eslintrc` in your project:  
 ```js
 {
@@ -50,4 +50,14 @@ Note, most starter-kyts and `kyt-cli setup` will install this package automatica
 
 ## Changelog
 
-**v0.0.1** - 12/08/16 - life
+**0.2.0** - 02/07/17
+
+### BREAKING CHANGES
+
+`dependencies` were converted to `peerDependencies` and `kyt` now includes the dependencies. If you're using `kyt`, then an `npm install` should be enough. If you installed this package as a standalone extension then you'll need to follow the Installation instructions and `npm install` the named dependencies.
+
+### FEATURES
+
+### FIXES
+
+**0.0.1 - 0.1.0 ** - 12/08/16 - life
