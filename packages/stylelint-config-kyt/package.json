@@ -1,13 +1,14 @@
 {
   "name": "stylelint-config-kyt",
-  "version": "0.0.1",
+  "version": "0.1.1",
+  "main": "stylelintrc.json",
   "description": "StyleLint configuration for kyt projects.",
   "author": "NYTimes",
   "license": "Apache-2.0",
   "repository": "git+https://github.com/nytimes/kyt/packages/stylelint-config-kyt",
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
-  "dependencies": {
+  "peerDependencies": {
     "stylelint": "7.5.0",
     "stylelint-config-standard": "14.0.0"
   },

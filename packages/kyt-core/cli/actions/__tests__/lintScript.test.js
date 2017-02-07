@@ -15,6 +15,9 @@ jest.mock('shelljs', () => (
       stdout: '',
       code: 0,
     }),
+    config: {
+      silent: false,
+    },
   }
 ));
 

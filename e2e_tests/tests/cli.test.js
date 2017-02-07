@@ -2,16 +2,24 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const kill = require('../utils/psKill');
+const ypm = require('../../packages/kyt-cli/utils/yarnOrNpm')();
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
+  beforeAll(() => {
+    shell.rm('-rf', 'cli-test');
+    shell.rm('-rf', 'test-packages');
+  });
   it('installs kyt', () => {
     // create test packages
     shell.mkdir('test-packages');
     shell.exec('cp -r ./packages/kyt-utils ./test-packages');
-    shell.exec('cp -r ./packages/kyt-core ./test-packages/');
+    shell.exec('cp -r ./packages/kyt-core ./test-packages');
     shell.exec('cp -r ./packages/kyt-cli ./test-packages');
+    shell.exec('rm -rf ./test-packages/kyt-utils/node_modules/');
+    shell.exec('rm -rf ./test-packages/kyt-core/node_modules/');
+    shell.exec('rm -rf ./test-packages/kyt-cli/node_modules/');
     // Update package Json to point to local kyt-utils
     const utilsPath = 'file:../kyt-utils';
     const cliPkgPath = './test-packages/kyt-cli/package.json';
@@ -33,16 +41,16 @@ describe('KYT CLI', () => {
     shell.mkdir('cli-test');
     shell.cd('cli-test');
     shell.cp(pkgJsonPath, 'package.json');
-    const output = shell.exec('npm install');
+    const output = shell.exec(`${ypm} install`);
     if (output.code !== 0) {
-      process.exit();
+      process.exit(output.code);
     }
     expect(shell.test('-f', 'package.json')).toBe(true);
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
   it('sets up a starter-kyt', () => {
     const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
-    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL}`);
+    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL} -p ${ypm}`);
     expect(output.code).toBe(0);
     const setupArr = output.stdout.split('\n');
     expect(setupArr.includes('🔥  Setting up your new kyt project...')).toBe(true);
@@ -83,27 +91,26 @@ describe('KYT CLI', () => {
   });
 
   it('runs the lint command', () => {
-    expect(true).toBe(true);
-    const output = shell.exec('npm run lint-script');
+    const output = shell.exec(`${ypm} run lint-script`);
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
     expect(outputArr.includes('✅  Your JS looks great ✨')).toBe(true);
   });
 
   it('runs the lint-style command', () => {
-    const output = shell.exec('node_modules/.bin/kyt lint-style');
+    const output = shell.exec(`${ypm} run lint-style`);
     expect(output.code).toBe(0);
     const outputArr = output.stdout.split('\n');
     expect(outputArr.includes('✅  Your styles look good! ✨')).toBe(true);
   });
 
   it('runs the tests command', () => {
-    const output = shell.exec('npm run test');
+    const output = shell.exec(`${ypm} run test`);
     expect(output.code).toBe(0);
   });
 
   it('runs the build command', () => {
-    const output = shell.exec('npm run build');
+    const output = shell.exec(`${ypm} run build`);
     expect(output.code).toBe(0);
     expect(shell.test('-d', 'build')).toBe(true);
     expect(shell.test('-d', 'build/server')).toBe(true);
@@ -115,7 +122,7 @@ describe('KYT CLI', () => {
     const exec = new Promise((resolve, reject) => {
       let sentKill = false;
       let finishedBuild = false;
-      const child = shell.exec('npm run build', () => {
+      const child = shell.exec(`${ypm} run build`, () => {
         resolve(finishedBuild);
       });
       child.stdout.on('data', (data) => {
@@ -136,7 +143,7 @@ describe('KYT CLI', () => {
     const exec = new Promise((resolve, reject) => {
       let sentKill = false;
       let finishedBuild = false;
-      const child = shell.exec('npm run dev', () => {
+      const child = shell.exec(`${ypm} run dev`, () => {
         resolve(finishedBuild);
       });
       child.stdout.on('data', (data) => {
@@ -157,9 +164,9 @@ describe('KYT CLI', () => {
 
   it('starts the app', () => {
     let testPass;
-    shell.exec('npm run build');
+    shell.exec(`${ypm} run build`);
     const exec = new Promise((resolve) => {
-      const child = shell.exec('npm run start', () => {
+      const child = shell.exec(`${ypm} run start`, () => {
         resolve(testPass);
       });
       child.stdout.on('data', (data) => {
@@ -178,7 +185,7 @@ describe('KYT CLI', () => {
   it('dev', () => {
     let testPass;
     const exec = new Promise((resolve) => {
-      const child = shell.exec('npm run dev', () => {
+      const child = shell.exec(`${ypm} run dev`, () => {
         resolve(testPass);
       });
       child.stdout.on('data', (data) => {
@@ -196,7 +203,7 @@ describe('KYT CLI', () => {
   it('proto', () => {
     const exec = new Promise((resolve) => {
       let testPass;
-      const child = shell.exec('npm run proto', () => {
+      const child = shell.exec(`${ypm} run proto`, () => {
         resolve(testPass);
       });
       let stillAlive = true;
