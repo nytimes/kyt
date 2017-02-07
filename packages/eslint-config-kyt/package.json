@@ -16,5 +16,10 @@
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "6.4.1"
   },
-  "keywords": ["kyt", "eslint", "config", "eslint-config"]
+  "keywords": [
+    "kyt",
+    "eslint",
+    "config",
+    "eslint-config"
+  ]
 }

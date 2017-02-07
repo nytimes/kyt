@@ -12,5 +12,10 @@
     "stylelint": "7.5.0",
     "stylelint-config-standard": "14.0.0"
   },
-  "keywords": ["kyt", "stylelint", "config", "stylelint-config"]
+  "keywords": [
+    "kyt",
+    "stylelint",
+    "config",
+    "stylelint-config"
+  ]
 }

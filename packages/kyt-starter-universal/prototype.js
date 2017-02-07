@@ -11,6 +11,6 @@ import Home from './src/components/Home';
 // Attach the component to the root.
 const rootEl = document.getElementById('root');
 ReactDom.render(
-  <Home/>,
+  <Home />,
   rootEl
 );

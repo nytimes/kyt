@@ -24,15 +24,21 @@ We feature [recommended starter-kyts](/docs/commands.md#recommended-starter-kyts
 
 ## kyt local development
 
-Since kyt is a monorepo, it can be tricky to test local changes across packages. The following commands can assist in bootstrapping your local kyt repository:
+To setup kyt for local development, install `yarn` and run the following:
+
+```
+git clone git@github.com:NYTimes/kyt.git
+yarn run bootstrap
+```
+There are commands for bootstrapping, testing and linting all of the monorepo packages in the root directory package.json file. 
 
 ### bootstrap
 
-Bootstrap` will set you up with a clean slate. Every time it is run, it will remove and re-install the node_modules across all of the kyt packages. It will also link `kyt-cli` so you can run it locally on the command line.
+Bootstrap will set you up with a clean slate. Every time it is run, it will remove and re-install the node_modules across all of the packages, npm link `kyt-cli` and `kyt` so you can run them locally on the command line, and symlink local monorepo dependencies..
 
 From the root of kyt, run:
 
-`npm run bootstrap`
+`yarn run bootstrap`
 
 ### update
 
@@ -40,7 +46,7 @@ Update is useful after you pull down kyt with some minor changes. It will call `
 
 From the root of kyt, run:
 
-`npm run update`
+`yarn run update`
 
 ### Testing local kyt-core changes
 
@@ -52,7 +58,7 @@ It is a common workflow to make changes to kyt-core and test them with `kyt-cli 
 
 To test setting up/installing local starter kyts, you need to specify the `--repository-path` option. The following command will create a test directory and install the given local kyt repository and reference the starter kyt using the given repository path.
 
-`kyt-cli setup -d test -r kyt/.git --repository-path packages/starter-kyts/kyt-starter-static`
+`kyt-cli setup -d test -r kyt/.git --repository-path packages/kyt-starter-static`
 
 ### Testing kyt
 
