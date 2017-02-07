@@ -17,10 +17,10 @@ This is an extension of [config-standard](https://github.com/stylelint/stylelint
 
 ## Install
 
-Note, most starter-kyts and `kyt-cli setup` will install this package automatically and setup a base configuration file.
+Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
 
 1. Install the _stylelint-config-kyt_ node module:  
-  `npm install stylelint-config-nyt --save-dev`
+  `npm install stylelint stylelint-config-kyt stylelint-config-standard --save-dev`
 2. Add an extension to your Stylelint configuration:  
 ```js
 {
@@ -138,5 +138,15 @@ Default values can be used when it's convenient
 
 ## Changelog
 
-**v0.0.1** - 12/08/16 - life
+**0.2.0** - 02/07/17
+
+### BREAKING CHANGES
+
+`dependencies` were converted to `peerDependencies` and `kyt` now includes the dependencies. If you're using `kyt`, then an `npm install` should be enough. If you installed this package as a standalone extension then you'll need to follow the Installation instructions and `npm install` the named dependencies.
+
+### FEATURES
+
+### FIXES
+
+**0.0.1 - 0.1.0 ** - 12/08/16 - life
 
