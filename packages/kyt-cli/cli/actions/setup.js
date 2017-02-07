@@ -381,8 +381,11 @@ module.exports = (flags, args) => {
     if (args.repositoryPath || starterName) {
       tmpDir = path.join(tmpDir, args.repositoryPath || starterKyts.supported[starterName].path);
     }
+
+    const kytName = starterName || repoURL;
     starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
+
     const afterClone = (error) => {
       if (error) {
         logger.error('There was a problem cloning the repository');
@@ -403,7 +406,6 @@ module.exports = (flags, args) => {
       createGitignore();
       copyStarterKytFiles();
       removeTmpRepo();
-      const kytName = starterName || repoURL;
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
     };
 
@@ -448,31 +450,36 @@ module.exports = (flags, args) => {
     logger.end('Done setting up kyt');
   };
 
-  const getRepoUrl = () => {
-    const question = [
-      {
-        type: 'input',
-        name: 'repoUrl',
-        message: 'Enter your Repo URL (https or ssh)',
-        validate: (answer) => {
-          const httpsPass = answer.match(/^https:\/\/.*.git$/);
-          const sshPass = answer.match(/^git@github.com:.*.git$/);
-          if (httpsPass || sshPass) {
-            return true;
-          }
-          return 'Please enter a valid repo url';
+  const getRepoUrl = (repositoryArg) => {
+    if (repositoryArg) {
+      repoURL = repositoryArg;
+      srcPrompt();
+    } else {
+      const question = [
+        {
+          type: 'input',
+          name: 'repoUrl',
+          message: 'Enter your Repo URL (https or ssh)',
+          validate: (answer) => {
+            const httpsPass = answer.match(/^https:\/\/.*.git$/);
+            const sshPass = answer.match(/^git@github.com:.*.git$/);
+            if (httpsPass || sshPass) {
+              return true;
+            }
+            return 'Please enter a valid repo url';
+          },
         },
-      },
-    ];
-    inquire.prompt(question).then((answer) => {
-      if (answer.repoUrl !== '') {
-        repoURL = answer.repoUrl;
-        srcPrompt();
-      } else {
-        logger.error('You did not enter a valid url. exiting...');
-        process.exit(1);
-      }
-    });
+      ];
+      inquire.prompt(question).then((answer) => {
+        if (answer.repoUrl !== '') {
+          repoURL = answer.repoUrl;
+          srcPrompt();
+        } else {
+          logger.error('You did not enter a valid url. exiting...');
+          process.exit(1);
+        }
+      });
+    }
   };
 
   const createDir = (dirName) => {
@@ -501,11 +508,11 @@ module.exports = (flags, args) => {
 
   // Runs through setup questions
   const setupPrompt = () => {
-    const list = Object.keys(starterKyts.supported);
+    const skList = Object.keys(starterKyts.supported);
     const ownRepo = 'I have my own url';
     const exist = 'I don\'t want a starter-kyt';
-    list.push(ownRepo);
-    list.push(exist);
+    skList.push(ownRepo);
+    skList.push(exist);
     const ypmQ = {
       type: 'list',
       name: 'ypm',
@@ -513,37 +520,43 @@ module.exports = (flags, args) => {
       choices: ['yarn', 'npm'],
       default: 0,
     };
-    const questions = [
-      {
-        type: 'input',
-        name: 'dirName',
-        message: 'Enter a new directory name. To install in current directory, leave blank.',
-      },
-      {
-        type: 'list',
-        name: 'starterChoice',
-        message: 'Choose a starter-kyt:', // eslint-disable-line
-        choices: list,
-        default: 0,
-      },
-    ];
-    if (yarnOrNpm === 'yarn') questions.unshift(ypmQ);
+    const dirNameQ = {
+      type: 'input',
+      name: 'dirName',
+      message: 'Enter a new directory name. To install in current directory, leave blank.',
+    };
+
+    const skQ = {
+      type: 'list',
+      name: 'starterChoice',
+      message: 'Choose a starter-kyt:', // eslint-disable-line
+      choices: skList,
+      default: 0,
+    };
+    const questions = [];
+
+    // Check to see if yarn is installed or user has specified flag
+    if (yarnOrNpm === 'yarn' && !args.packageManager) questions.push(ypmQ);
+    ypm = args.packageManager ? args.packageManager : yarnOrNpm;
+    if (!args.directory) questions.push(dirNameQ);
+    if (!args.repository) questions.push(skQ);
+
     inquire.prompt(questions).then((answer) => {
       // question 1
-      ypm = answer.ypm || yarnOrNpm;
+      ypm = answer.ypm || ypm;
       // question 2
       // Create new directory and set up path strings
-      createDir(answer.dirName);
+      createDir(args.directory || answer.dirName);
       setupPaths();
       // question 3
       const choice = answer.starterChoice;
-      if (starterKyts.supported[choice]) {
+      if (choice === ownRepo || args.repository) {
+        // add repo question then move on to src prompt
+        getRepoUrl(args.repository);
+      } else if (starterKyts.supported[choice]) {
         srcPrompt(choice);
       } else if (choice === exist) {
         existingProjectSetup();
-      } else if (choice === ownRepo) {
-        // add repo question then move on to src prompt
-        getRepoUrl();
       }
     });
   };
