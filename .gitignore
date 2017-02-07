@@ -36,5 +36,5 @@ cli-test
 test-packages
 
 # Local stuff
-#packages/kyt-starter-static/build
-#packages/kyt-starter-universal/build
+packages/kyt-starter-static/build
+packages/kyt-starter-universal/build
