@@ -34,6 +34,7 @@
     "test": "jest && cd packages/kyt-starter-universal && node_modules/kyt/cli/index.js test && cd  ../kyt-starter-static && node_modules/kyt/cli/index.js test",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
+    "clean-e2e": "yarn cache clean && yarn run e2e",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },

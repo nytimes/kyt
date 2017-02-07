@@ -48,23 +48,50 @@ describe('KYT CLI', () => {
     expect(shell.test('-f', 'package.json')).toBe(true);
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
+  window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
   it('sets up a starter-kyt', () => {
-    const setupURL = 'https://github.com/NYTimes/kyt-starter-test.git';
-    const output = shell.exec(`node_modules/.bin/kyt-cli setup -r ${setupURL} -p ${ypm}`);
-    expect(output.code).toBe(0);
-    const setupArr = output.stdout.split('\n');
-    expect(setupArr.includes('🔥  Setting up your new kyt project...')).toBe(true);
-    expect(setupArr.includes('👍  Setting up the specified starter-kyt')).toBe(true);
-    expect(setupArr.includes('👍  Added kyt scripts into your package.json scripts')).toBe(true);
-    expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
-    expect(setupArr.includes('👍  Installed new modules')).toBe(true);
-    expect(setupArr.includes('👍  Created .eslintrc.json file')).toBe(true);
-    expect(setupArr.includes('👍  Created .stylelintrc.json file')).toBe(true);
-    expect(setupArr.includes('👍  Created kyt.config.js file')).toBe(true);
-    expect(setupArr.includes('👍  Created .editorconfig file')).toBe(true);
-    expect(setupArr.includes('👍  Created .babelrc')).toBe(true);
-    expect(setupArr.includes('👍  Created .gitignore file')).toBe(true);
-    expect(setupArr.includes('👍  Created src directory')).toBe(true);
+    const exec = new Promise((resolve) => {
+      const child = shell.exec('node_modules/.bin/kyt-cli setup', (code, stdout) => {
+        resolve({ code, output: stdout });
+      });
+      let skdone = false;
+      let chooseDone = false;
+      let ypmDone = false;
+      child.stdout.on('data', (data) => {
+        if (data.includes('Choose an installer')) {
+          if (!ypmDone) {
+            child.stdin.write('\n');
+            ypmDone = true;
+          }
+        }
+        if (data.includes('Enter a new directory name.')) {
+          if (!skdone) {
+            child.stdin.write('\n');
+            skdone = true;
+          }
+        }
+        if (data.includes('Choose a starter-kyt')) {
+          if (!chooseDone) {
+            child.stdin.write('\n');
+            chooseDone = true;
+          }
+        }
+      });
+    });
+    return exec.then((test) => {
+      expect(test.code).toBe(0);
+      const setupArr = test.output.split('\n');
+      expect(setupArr.includes('👍  Added kyt scripts into your package.json scripts')).toBe(true);
+      expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
+      expect(setupArr.includes('👍  Installed new modules')).toBe(true);
+      expect(setupArr.includes('👍  Created .eslintrc.json file')).toBe(true);
+      expect(setupArr.includes('👍  Created .stylelintrc.json file')).toBe(true);
+      expect(setupArr.includes('👍  Created kyt.config.js file')).toBe(true);
+      expect(setupArr.includes('👍  Created .editorconfig file')).toBe(true);
+      expect(setupArr.includes('👍  Created .babelrc')).toBe(true);
+      expect(setupArr.includes('👍  Created .gitignore file')).toBe(true);
+      expect(setupArr.includes('👍  Created src directory')).toBe(true);
+    });
   });
   it('sets up with the correct files', () => {
     expect(shell.test('-d', 'src')).toBe(true);
@@ -172,7 +199,7 @@ describe('KYT CLI', () => {
       child.stdout.on('data', (data) => {
         if (data.includes('node build/server/main.js')) {
           shell.exec('sleep 3');
-          const output = shell.exec('curl -I localhost:3100');
+          const output = shell.exec('curl -I localhost:3000');
           testPass = output.stdout.includes('200');
           kill(child.pid);
         }
@@ -190,8 +217,8 @@ describe('KYT CLI', () => {
       });
       child.stdout.on('data', (data) => {
         if (data.includes('✅  Development started')) {
-          shell.exec('sleep 2');
-          const output = shell.exec('curl -I localhost:3100');
+          shell.exec('sleep 5');
+          const output = shell.exec('curl -I localhost:3000');
           testPass = output.stdout.includes('200');
           kill(child.pid);
         }
@@ -211,7 +238,7 @@ describe('KYT CLI', () => {
         if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
           stillAlive = false;
           shell.exec('sleep 5');
-          const output = shell.exec('curl -I localhost:3102/prototype/');
+          const output = shell.exec('curl -I localhost:3002/prototype/');
           testPass = output.stdout.includes('404');
           kill(child.pid);
         }
