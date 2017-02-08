@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kyt",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "ESLint configuration for kyt projects.",
   "main": "eslintrc.json",
   "author": "NYTimes",
@@ -16,5 +16,10 @@
     "eslint-plugin-jsx-a11y": "2.2.3",
     "eslint-plugin-react": "6.4.1"
   },
-  "keywords": ["kyt", "eslint", "config", "eslint-config"]
+  "keywords": [
+    "kyt",
+    "eslint",
+    "config",
+    "eslint-config"
+  ]
 }

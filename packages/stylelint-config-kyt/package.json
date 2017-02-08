@@ -1,6 +1,6 @@
 {
   "name": "stylelint-config-kyt",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "stylelintrc.json",
   "description": "StyleLint configuration for kyt projects.",
   "author": "NYTimes",
@@ -12,5 +12,10 @@
     "stylelint": "7.5.0",
     "stylelint-config-standard": "14.0.0"
   },
-  "keywords": ["kyt", "stylelint", "config", "stylelint-config"]
+  "keywords": [
+    "kyt",
+    "stylelint",
+    "config",
+    "stylelint-config"
+  ]
 }
