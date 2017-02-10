@@ -24,7 +24,7 @@ module.exports = (config, flags) => {
   let clientCompiler;
   let serverCompiler;
   const { clientConfig, serverConfig } = buildConfigs(config);
-  const { clientURL, serverURL, reactHotLoader, hasServer } = config;
+  const { clientURL, serverURL, reactHotLoader, hasServer, additionalServerPaths } = config;
 
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
@@ -78,15 +78,14 @@ module.exports = (config, flags) => {
   // Compile Server Webpack Config
   if (hasServer) {
     // Watch the server files and recompile and restart on changes.
-    const watcher = chokidar.watch([serverSrcPath]);
-    watcher.on('ready', () => {
-      watcher
-        .on('add', compileServer)
-        .on('addDir', compileServer)
-        .on('change', compileServer)
-        .on('unlink', compileServer)
-        .on('unlinkDir', compileServer);
-    });
+    // Don't use array of paths on watch due to issues with ready event not getting fired
+    const watcher = chokidar.watch([serverSrcPath].concat(additionalServerPaths || []), { ignoreInitial: true });
+    watcher
+      .on('add', compileServer)
+      .on('addDir', compileServer)
+      .on('change', compileServer)
+      .on('unlink', compileServer)
+      .on('unlinkDir', compileServer);
 
     const startServerOnce = once(() => {
       ifPortIsFreeDo(serverURL.port, startServer);
