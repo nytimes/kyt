@@ -59,7 +59,7 @@ module.exports = (flags, args) => {
   };
 
   // Add kyt to list of dev dependencies if its not there
-  const addKytDevDependency = (packageJson, kytPrefVersion) => {
+  const addKytDependency = (packageJson, kytPrefVersion) => {
     // eslint-disable-next-line max-len
     // check to see if kyt is in dependencies or devDependencies
     if (!(packageJson.dependencies && packageJson.dependencies.kyt) &&
@@ -70,8 +70,8 @@ module.exports = (flags, args) => {
         const output = shell.exec('npm info kyt version');
         kytVersion = output.stdout.trim();
       }
-      packageJson.devDependencies = packageJson.devDependencies || {};
-      packageJson.devDependencies.kyt = kytVersion;
+      packageJson.dependencies = packageJson.dependencies || {};
+      packageJson.dependencies.kyt = kytVersion;
     }
   };
 
@@ -184,10 +184,10 @@ module.exports = (flags, args) => {
     if (!existingProject) {
       const kytPrefVersion = args.kytVersion || checkStarterKytVersion(userPackageJSON);
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
-      addKytDevDependency(userPackageJSON, kytPrefVersion);
+      addKytDependency(userPackageJSON, kytPrefVersion);
     } else {
       // exisitng projects should also have kyt as a devDependency
-      addKytDevDependency(userPackageJSON);
+      addKytDependency(userPackageJSON);
     }
     // Add scripts
     userPackageJSON = addPackageJsonScripts(userPackageJSON);
