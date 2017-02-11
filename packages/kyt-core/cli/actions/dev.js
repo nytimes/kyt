@@ -77,9 +77,10 @@ module.exports = (config, flags) => {
 
   // Compile Server Webpack Config
   if (hasServer) {
+    const paths = [serverSrcPath].concat(additionalServerPaths || []);
     // Watch the server files and recompile and restart on changes.
     // Don't use array of paths on watch due to issues with ready event not getting fired
-    const watcher = chokidar.watch([serverSrcPath].concat(additionalServerPaths || []), { ignoreInitial: true });
+    const watcher = chokidar.watch(paths, { ignoreInitial: true });
     watcher
       .on('add', compileServer)
       .on('addDir', compileServer)
