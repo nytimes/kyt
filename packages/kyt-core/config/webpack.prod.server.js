@@ -8,7 +8,11 @@ const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
 const cssStyleLoaders = [
   {
     loader: 'css-loader/locals',
-    options: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+    options: {
+      modules: true,
+      localIdentName: '[name]-[local]--[hash:base64:5]',
+      minimize: '-autoprefixer',
+    },
   },
   'postcss',
 ];
