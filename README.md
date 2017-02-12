@@ -15,7 +15,7 @@ Check out our [migration guide](/docs/migration-guides/0.3-0.4.md) and [changelo
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
 2. `npm install -g kyt-cli`
-3. `kyt-cli setup -d my-kyt-project` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/packages/kyt-cli/README.md). (Note: if you have yarn installed this will install your project [using yarn](/packages/kyt-cli/README.md))
+3. `kyt-cli setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/packages/kyt-cli/README.md).
 4. `npm run dev`
 5. Check out `http://localhost:3000`
 
@@ -107,7 +107,7 @@ See the [kyt config docs](/docs/kytConfig.md) for instructions.
 kyt uses Webpack to compile src code and run tests.
 See our [recipes](/docs/Recipes.md) for extending configuration.
 
-To configure Babel, kyt respects `.babelrc` files defined at the root of user projects, and provides [presets](/packages/babel-presets) to provide opinionated configurations. (If no `.babelrc` is defined in the user project, [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core) is used.)
+To configure Babel, kyt respects `.babelrc` files defined at the root of user projects, and provides [presets](/packages/babel-preset-kyt-react) to provide opinionated configurations. (If no `.babelrc` is defined in the user project, [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core) is used.)
 
 ## starter-kyts
 

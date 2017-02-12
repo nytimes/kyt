@@ -11,7 +11,7 @@
 kyt is now a monorepo with several packages
 1. kyt-cli - A globally installed package for project setup
   - setup command now can create a new project directory with the -d flag.
-    `kyt-cli setup -d myDirectory`
+    `kyt-cli setup`
   - setup now supports copying devDependencies from starter-kyts
   - `setup` accepts a kyt version flag to help with local development [#343](https://github.com/NYTimes/kyt/pull/343)
   - kyt-cli includes a `list` command which lists information about supported and recommended starter-kyts [#340](https://github.com/NYTimes/kyt/pull/340)
@@ -27,16 +27,17 @@ e2e tests have been pulled to the top level and will be used to test all package
 kyt now supports having your own .babelrc file in your project.
 
 kyt has two presets:
-- [babel-preset-core] (/packages/babel-presets/babel-preset-kyt-core) included as the default for kyt
-- [babel-preset-react] (/packages/babel-presets/babel-preset-kyt-react) included with react starter-kyts
+- [babel-preset-core] (/packages/babel-preset-kyt-core) included as the default for kyt
+- [babel-preset-react] (/packages/babel-preset-kyt-react) included with react starter-kyts
 
 To update an existing kyt project:
-- If your project uses react you'll want to create a .babelrc that points to the react preset. [This one](/packages/starter-kyts/kyt-starter-universal/.babelrc) should work.
+- If your project uses react you'll want to create a .babelrc that points to the react preset. [This one](/packages/kyt-starter-universal/.babelrc) should work.
 - If you currently make babel plugin or preset changes via `modifyWebpackConfig`, checkout out the updated [recipe](/docs/Recipes.md)
 
 
 #### Linter configs
 kyt's linter configs are now packaged as separate configs [#344](https://github.com/NYTimes/kyt/pull/344)
+[#380](https://github.com/NYTimes/kyt/pull/380)
 To update: copy the new linter files into the root of your project.
 [.eslintrc.json](/packages/kyt-cli/config/user/.eslintrc.base.json)
 [.stylelintrc.json](/packages/kyt-cli/config/user/.stylelintrc.json)
@@ -56,6 +57,8 @@ Lint commands are now  as follows:
 ### FEATURES
 - Support babel plugins w/o prefix [#303](https://github.com/NYTimes/kyt/issues/303)
 - Bootstrap scripts for local development [#341](https://github.com/NYTimes/kyt/pull/341)
+[#377](https://github.com/NYTimes/kyt/pull/377)
+- kyt-cli now supports a fully interactive setup in addition to cli args. [#378](https://github.com/NYTimes/kyt/pull/378)
 
 #### Yarn Support
 kyt-cli now supports setting up projects using yarn.[#270](https://github.com/NYTimes/kyt/pull/270)
@@ -74,6 +77,7 @@ kyt-cli now supports setting up projects using yarn.[#270](https://github.com/NY
 - Fixes bug where test command wasn't written if an npm default existed [#293](https://github.com/NYTimes/kyt/pull/293)
 - Catch SIGINT for all commands [#332](https://github.com/NYTimes/kyt/pull/332)
 - Fixes bug where Jest moduleNameMappers didn't match imports with specific Webpack loaders [#363](https://github.com/NYTimes/kyt/pull/363)
+- Fixes bug where style-lint only supported one file name [#383](https://github.com/NYTimes/kyt/pull/383)
 
 
 ## 0.3.0 (October 25, 2016)

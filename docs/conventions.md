@@ -56,3 +56,6 @@ Specify lint rules with a `.eslintrc.json` file in the root of your project. [`s
 The `kyt lint-style` command finds all files with `.css` and `.scss` extensions in `/src`
 
 Specify lint rules with a `.stylelintrc.json` file in the root of your project. [`setup`](/packages/kyt-cli/README.md) will create this file for you.
+
+## .babelrc
+Making changes to babel settings should be done by creating a `.babelrc` file

@@ -66,6 +66,21 @@ modifyWebpackConfig: (baseConfig, options) => {
 }
 ```    
 
+## Update browser list for autoprefixer
+```javascript
+modifyWebpackConfig: (baseConfig, options) => {
+  baseConfig.plugins.push(
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer({ browsers: ['last 2 versions', 'ios 8'] })],
+        context: '/',
+      },
+    })
+  );
+  return baseConfig;
+}
+```
+
 ## Add Babel Plugins and Presets
 
 As of v0.4.0, kyt respects user `.babelrc` files.

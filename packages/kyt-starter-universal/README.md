@@ -6,8 +6,7 @@ This starter-kyt should serve as the base for an advanced, server and client-ren
 ## Installation
 
 1. run `kyt-cli setup`
-2. select `yes` when prompted to setup with a starter-kyt
-3. select `universal` from the list of starter-kyts
+2. select `universal` from the list of starter-kyts
 
 ## Tools
 
