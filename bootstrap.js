@@ -41,7 +41,7 @@ packages.forEach((pkg) => {
   const dependencies = Object.assign({}, packageJSON.dependencies, packageJSON.devDependencies);
   packages.forEach((spkg) => {
     if (dependencies.hasOwnProperty(spkg.name)) { // eslint-disable-line no-prototype-builtins
-      const to = path.join(spkg.path, 'node_modules', spkg.name);
+      const to = path.join(pkg.path, 'node_modules', spkg.name);
       shell.rm('-rf', to);
       shell.ln('-sf', spkg.path, to);
       logTask(`symlinked:\n${to} -> ${spkg.path}\n`);

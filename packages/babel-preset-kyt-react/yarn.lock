@@ -458,9 +458,9 @@ babel-preset-es2017@^6.16.0:
     babel-plugin-syntax-trailing-function-commas "^6.22.0"
     babel-plugin-transform-async-to-generator "^6.22.0"
 
-babel-preset-kyt-core@0.1.0-alpha.1:
-  version "0.1.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/babel-preset-kyt-core/-/babel-preset-kyt-core-0.1.0-alpha.1.tgz#dc20288cbeca43f3266dc79b25f5527e8f00e909"
+babel-preset-kyt-core@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-kyt-core/-/babel-preset-kyt-core-0.1.0.tgz#4961c14e2420c4e0d37143c935ba61ec2c16c4d8"
   dependencies:
     babel-plugin-transform-es2015-modules-commonjs "6.16.0"
     babel-plugin-transform-runtime "6.15.0"
@@ -545,8 +545,8 @@ core-js@^2.4.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.4.1.tgz#4de911e667b0eae9124e34254b53aea6fc618d3e"
 
 debug@^2.2.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.0.tgz#bc596bcabe7617f11d9fa15361eded5608b8499b"
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
   dependencies:
     ms "0.7.2"
 

@@ -117,20 +117,6 @@ describe('KYT CLI', () => {
     expect(scripts['kyt:help']).toBe('kyt --help');
   });
 
-  it('runs the lint command', () => {
-    const output = shell.exec(`${ypm} run lint-script`);
-    expect(output.code).toBe(0);
-    const outputArr = output.stdout.split('\n');
-    expect(outputArr.includes('✅  Your JS looks great ✨')).toBe(true);
-  });
-
-  it('runs the lint-style command', () => {
-    const output = shell.exec(`${ypm} run lint-style`);
-    expect(output.code).toBe(0);
-    const outputArr = output.stdout.split('\n');
-    expect(outputArr.includes('✅  Your styles look good! ✨')).toBe(true);
-  });
-
   it('runs the tests command', () => {
     const output = shell.exec(`${ypm} run test`);
     expect(output.code).toBe(0);
