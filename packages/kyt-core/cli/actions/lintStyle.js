@@ -12,7 +12,7 @@ module.exports = () => {
   };
 
   // Check to see if stylelint file exists and use base config as a backup.
-  const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc.json`);
+  const stylelintrc = glob.sync(`${userRootPath}/.stylelintrc*`);
   const configFile = stylelintrc.length
       ? stylelintrc[0]
       : path.join(__dirname, '../../config/.stylelintrc.base.json');
