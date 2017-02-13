@@ -13,6 +13,23 @@ Please make sure all PRs are:
 2. tested (npm test)
 3. Connected to an issue
 
+### kyt local development
+
+Optional: We recommend installing `yarn` to speed up local development.
+
+1. Fork and clone kyt
+2. Run `npm run bootstrap` to install the packages in the monorepo. You can also run `update` to reinstall.
+
+We recommend creating a local project with a starter-kyt for testing.
+
+### Testing kyt
+The top level `test` command can be run from the root of the repository and will run all jest tests in the packages.
+
+The e2e tests are located in the e2e folder and can be run from the root of the repo with `npm run e2e`
+
+## Linting kyt
+The monorepo has a top level `lint` command which runs lint for all the packages.
+
 ## Create an RFC
 
 If you want to propose a large feature idea or architecture change you should consider submitting an RFC. It's often helpful to get feedback on your concept in an issue before starting the RFC. RFCs are an evolving process in the kyt repository so expect a lot of changes and guidelines in the future. You can find the kyt RFC template [here](/rfc/template.md).
@@ -30,7 +47,7 @@ To setup kyt for local development, install `yarn` and run the following:
 git clone git@github.com:NYTimes/kyt.git
 yarn run bootstrap
 ```
-There are commands for bootstrapping, testing and linting all of the monorepo packages in the root directory package.json file. 
+There are commands for bootstrapping, testing and linting all of the monorepo packages in the root directory package.json file.
 
 ### bootstrap
 
@@ -42,7 +59,7 @@ From the root of kyt, run:
 
 ### update
 
-Update is useful after you pull down kyt with some minor changes. It will call `npm install` on all of the packages in the repository. For complicated changes to the repository, it is best to use `bootstrap`.
+Update is useful after you pull down kyt with some minor changes. It will call `yarn install` on all of the packages in the repository. For complicated changes to the repository, it is best to use `bootstrap`.
 
 From the root of kyt, run:
 
@@ -50,7 +67,7 @@ From the root of kyt, run:
 
 ### Testing local kyt-core changes
 
-It is a common workflow to make changes to kyt-core and test them with `kyt-cli setup`. To get around installing the latest kyt-core, there's an option in setup where you can specify which version of kyt you want to reference. For instance, by executing the following locally, you can setup a directory called test and install your local version of kyt-core:
+It is a common workflow to make changes to kyt-core and test them with `kyt-cli setup`. To get around installing the latest kyt-core, there's an option in setup to specify which version of kyt you want to reference. For instance, by executing the following locally, you can setup a directory called test and install your local version of kyt-core:
 
 `kyt-cli setup -d test -k file:../kyt/packages/kyt-core`
 

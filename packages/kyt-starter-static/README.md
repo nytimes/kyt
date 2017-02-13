@@ -4,8 +4,9 @@ This starter-kyt should serve as the base for an advanced client-rendered React 
 
 ## Installation
 
-1. Create a new directory and install [kyt](https://github.com/NYTimes/kyt)
-2. `node_modules/.bin/kyt setup -r git@github.com:nytimes/kyt-starter-static.git`
+1. run `kyt-cli setup`
+2. select `static` from the list of starter-kyts
+
 
 ## Tools
 
