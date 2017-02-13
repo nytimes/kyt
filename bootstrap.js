@@ -28,9 +28,18 @@ const packages = fs.readdirSync('packages').reduce((pkgs, pkg) => {
 
 console.log(`\n🔥  Bootstrapping\n`);
 
-// Install the root package.json first so that we can use shelljs.
+// Install the root package.json first so that we can use shelljs/semver.
 installPackage(process.cwd());
 const shell = require('shelljs');
+const semver = require('semver');
+
+// Make sure that we're all using the same version of yarn.
+const yarnVersionRequirement = '^0.19.0';
+const yarnVersion = shell.exec('yarn --version').stdout;
+if (!semver.satisfies(yarnVersion, yarnVersionRequirement)) {
+  console.log('❌  update your version of yarn:', `npm i yarn@${yarnVersionRequirement} -g`);
+  process.exit(1);
+}
 
 // Install all of the monorepo packages.
 packages.forEach(pkg => installPackage(pkg.path));
