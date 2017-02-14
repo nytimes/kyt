@@ -8,7 +8,7 @@ import RouterContext from 'react-router/lib/RouterContext';
 import createMemoryHistory from 'react-router/lib/createMemoryHistory';
 import match from 'react-router/lib/match';
 import template from './template';
-import routes from '../routes';
+import routes from '../routes'; // eslint-disable-line import/no-named-as-default,import/no-named-as-default-member
 
 const clientAssets = require(KYT.ASSETS_MANIFEST); // eslint-disable-line import/no-dynamic-require
 const app = express();
