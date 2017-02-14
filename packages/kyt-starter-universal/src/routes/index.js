@@ -15,7 +15,7 @@ const importHome = (nextState, cb) => {
 };
 
 const importTools = (nextState, cb) => {
-  import('../components/Tools') // eslint-disable-line
+  import('../components/Tools')
     .then(module => cb(null, module.default))
     .catch((e) => { throw e; });
 };
