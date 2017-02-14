@@ -22,6 +22,7 @@
     "react-router": "^2.6.1"
   },
   "devDependencies": {
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "enzyme": "^2.4.1",
     "kyt": "0.4.0",
     "react-addons-test-utils": "^15.3.0"

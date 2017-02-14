@@ -10,7 +10,7 @@ const cssStyleLoaders = [
     loader: 'css-loader/locals',
     options: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
-  'postcss',
+  'postcss-loader',
 ];
 
 module.exports = options => ({
@@ -43,7 +43,7 @@ module.exports = options => ({
       },
       {
         test: /\.scss$/,
-        use: clone(cssStyleLoaders).concat('sass'),
+        use: clone(cssStyleLoaders).concat('sass-loader'),
       },
     ],
   },
