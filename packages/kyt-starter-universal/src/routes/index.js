@@ -9,13 +9,13 @@ import App from '../components/App';
 // https://webpack.js.org/guides/migrating/#code-splitting-with-es2015
 
 const importHome = (nextState, cb) => {
-  import('../components/Home') // eslint-disable-line import/no-named-as-default
+  import('../components/Home')
     .then(module => cb(null, module.default))
     .catch((e) => { throw e; });
 };
 
 const importTools = (nextState, cb) => {
-  import('../components/Tools') // eslint-disable-line import/no-named-as-default
+  import('../components/Tools') // eslint-disable-line
     .then(module => cb(null, module.default))
     .catch((e) => { throw e; });
 };
