@@ -17,8 +17,10 @@ module.exports = function getPresetCore(context, opts) {
     presets: [[babelPresetLatest, { modules: false }]],
 
     // provide the ability to opt into babel-plugin-transform-runtime inclusion
-    plugins: [opts.includeRuntime === true && babelTransformRuntime].filter(Boolean)
-      .push(babelSyntaxDynamicImport),
+    plugins: [
+      opts.includeRuntime === true && babelTransformRuntime,
+      babelSyntaxDynamicImport,
+    ].filter(Boolean),
 
     env: {
       test: {
