@@ -15,7 +15,6 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
   "dependencies": {
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-kyt-react": "0.1.1",
     "html-webpack-plugin": "^2.22.0",
     "react": "^15.3.0",

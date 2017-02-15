@@ -1,4 +1,3 @@
 {
-  "presets": ["kyt-react"],
-  "plugins": ["syntax-dynamic-import"]
+  "presets": ["kyt-react"]
 }
