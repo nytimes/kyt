@@ -25,6 +25,7 @@ module.exports = (flags, args) => {
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir;
   let repoURL = 'https://github.com/NYTimes/kyt.git';
+  let localPath = args.localPath;
   let tempPackageJSON;
   let oldPackageJSON;
 
@@ -378,11 +379,11 @@ module.exports = (flags, args) => {
 
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
-    if (args.repositoryPath || starterName) {
-      tmpDir = path.join(tmpDir, args.repositoryPath || starterKyts.supported[starterName].path);
+    if (starterName) {
+      tmpDir = path.join(tmpDir, starterKyts.supported[starterName].path);
     }
 
-    const kytName = starterName || repoURL;
+    const kytName = starterName || localPath || repoURL;
     starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
 
@@ -411,7 +412,13 @@ module.exports = (flags, args) => {
 
     // First, clean any old cloned repositories.
     removeTmpRepo();
-    simpleGit.clone(repoURL, tmpRepo, {}, afterClone);
+
+    if (localPath) {
+      shell.cp('-r', localPath, tmpRepo);
+      afterClone();
+    } else {
+      simpleGit.clone(repoURL, tmpRepo, {}, afterClone);
+    }
   };
 
   // Checks to see if user would like src backed up before continuing
@@ -539,12 +546,16 @@ module.exports = (flags, args) => {
     if (yarnOrNpm === 'yarn' && !args.packageManager) questions.push(ypmQ);
     ypm = args.packageManager ? args.packageManager : yarnOrNpm;
     if (!args.directory) questions.push(dirNameQ);
-    if (!args.repository) questions.push(skQ);
+    if (!args.repository && !localPath) questions.push(skQ);
 
     inquire.prompt(questions).then((answer) => {
       // question 1
       ypm = answer.ypm || ypm;
       // question 2
+      // Save Local directory Path before moving to new directory
+      if (localPath) {
+        localPath = path.join(process.cwd(), localPath);
+      }
       // Create new directory and set up path strings
       createDir(args.directory || answer.dirName);
       setupPaths();
@@ -553,7 +564,7 @@ module.exports = (flags, args) => {
       if (choice === ownRepo || args.repository) {
         // add repo question then move on to src prompt
         getRepoUrl(args.repository);
-      } else if (starterKyts.supported[choice]) {
+      } else if (starterKyts.supported[choice] || localPath) {
         srcPrompt(choice);
       } else if (choice === exist) {
         existingProjectSetup();

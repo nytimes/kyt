@@ -73,9 +73,11 @@ It is a common workflow to make changes to kyt-core and test them with `kyt-cli 
 
 ### Testing local starter-kyt changes
 
-To test setting up/installing local starter kyts, you need to specify the `--repository-path` option. The following command will create a test directory and install the given local kyt repository and reference the starter kyt using the given repository path.
+To test setting up/installing local starter-kyts, you need to specify the `--local-path` option. This allows you to install a starter-kyt locally by copying rather than cloning from git.
 
-`kyt-cli setup -d test -r kyt/.git --repository-path packages/kyt-starter-static`
+`--local-path` should be a path written relative to where you run your command
+
+`kyt-cli setup -d test  --local-path /path/to/my-local-starter-kyt-dir`
 
 ### Testing kyt
 
