@@ -1,6 +1,7 @@
 
 // Production webpack config for server code
 
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const clone = require('ramda').clone;
 const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
@@ -48,4 +49,7 @@ module.exports = options => ({
     ],
   },
 
+  plugins: [
+    new webpack.BannerPlugin('require("source-map-support").install();', { raw: true, entryOnly: false }),
+  ],
 });
