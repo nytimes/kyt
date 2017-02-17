@@ -34,7 +34,7 @@ const shell = require('shelljs');
 const semver = require('semver');
 
 // Make sure that we're all using the same version of yarn.
-const yarnVersionRequirement = '>=0.19.0';
+const yarnVersionRequirement = '>=0.20.0';
 const yarnVersion = shell.exec('yarn --version').stdout;
 if (!semver.satisfies(yarnVersion, yarnVersionRequirement)) {
   console.log('❌  update your version of yarn:', `npm i yarn@${yarnVersionRequirement} -g`);
