@@ -1,5 +1,5 @@
 
-// Command to run prorotype dev server
+// Command to run prototype dev server
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');

@@ -1,9 +1,19 @@
-# kyt recipes
-Easy ways to extend kyt
+# kyt Recipes
 
-## Use Options in `modifyWebpackConfig`
+Easy ways to extend kyt.
 
-The `modifyWebpackConfig` function is called any time a Webpack config is used.
+## Table of Contents
+
+  1. [Extend Webpack Configuration](#extend-webpack-configuration)
+  1. [Add Webpack Aliases](#add-webpack-aliases)
+  1. [Add PostCSS Plugins](#add-postcss-plugins)
+  1. [Add Babel Plugins and Presets](#add-babel-plugins-and-presets)
+  1. [Add always-mocked modules to Jest configuration](add-always-mocked-modules-to-jest-configuration)
+
+## Extend Webpack Configuration
+
+In kyt.config.js, the [`modifyWebpackConfig`](/docs/kytConfig#modifyWebpackConfig) function is called any time a Webpack config is used.
+
 It's called with two parameters:
 1. baseConfig: The current Webpack config
 2. options: an object of useful data for editing configuration
@@ -24,8 +34,8 @@ if (options.type === 'client') {
 }
 ```
 
-
 ## Add Webpack Aliases
+
 In `kyt.config.js`
 
 ```javascript
@@ -38,6 +48,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 ```
 
 ## Add PostCSS Plugins
+
 in `kyt.config.js`
 ```javascript   
 modifyWebpackConfig: (baseConfig, options) => {
@@ -55,20 +66,40 @@ modifyWebpackConfig: (baseConfig, options) => {
 }
 ```    
 
-## Add Babel Plugins and Presets
-in kyt.config.js
+## Update browser list for autoprefixer
 ```javascript
 modifyWebpackConfig: (baseConfig, options) => {
-
-  const babelLoader = baseConfig.module.rules.find(loader => loader.loader === 'babel-loader');
-  babelLoader.options.plugins.push(path.resolve('./path/to/my/plugin'));
-
+  baseConfig.plugins.push(
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer({ browsers: ['last 2 versions', 'ios 8'] })],
+        context: '/',
+      },
+    })
+  );
   return baseConfig;
+}
+```
+
+## Add Babel Plugins and Presets
+
+As of v0.4.0, kyt respects user `.babelrc` files.
+
+```bash
+npm i --save-dev my-babel-plugin
+```
+
+in `.babelrc`
+```json
+{
+  "presets": ["kyt-core"],
+  "plugins": ["my-babel-plugin"]
 }
 ```
 Check out the current [Babel configuration](/.babelrc).
 
 ## Add always-mocked modules to Jest configuration
+
 in `kyt.config.js`
 ```javascript
 modifyJestConfig: (baseConfig) => {

@@ -59,7 +59,7 @@ module.exports = (options) => {
       rules: [
         {
           test: /\.html$/,
-          loader: 'file?name=[name].[ext]',
+          loader: 'file-loader?name=[name].[ext]',
         },
         {
           test: /\.(jpg|jpeg|png|gif|eot|svg|ttf|woff|woff2)$/,
