@@ -4,7 +4,7 @@
 
 const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
-const clone = require('ramda').clone;
+const clone = require('lodash.clonedeep');
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
