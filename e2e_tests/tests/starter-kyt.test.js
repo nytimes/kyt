@@ -15,42 +15,42 @@ describe('starter kyts', () => {
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000; // eslint-disable-line no-undef
 
     it('should start a dev server on :3000', () => {
-      let htmlOutput;
+      let outputTest;
       const run = new Promise((resolve) => {
         const child = shell.exec('node_modules/kyt/cli/index.js dev', () => {
-          resolve(htmlOutput);
+          resolve(outputTest);
         });
         child.stdout.on('data', (data) => {
           if (data.includes('✅  Development started')) {
             shell.exec('sleep 5');
-            const output = shell.exec('curl -sb -o "" localhost:3000');
-            htmlOutput = output.stdout;
+            const output = shell.exec('curl -I localhost:3000');
+            outputTest = output.stdout.includes('200');
             kill(child.pid);
           }
         });
       });
-      return run.then(output => expect(output).toMatchSnapshot());
+      return run.then(test => expect(test).toBe(true));
     });
 
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 400000; // eslint-disable-line no-undef
 
     it('should build and run', () => {
-      let htmlOutput;
+      let outputTest;
       shell.exec('node_modules/kyt/cli/index.js build');
       const run = new Promise((resolve) => {
         const child = shell.exec('node build/server/main.js', () => {
-          resolve(htmlOutput);
+          resolve(outputTest);
         });
         child.stdout.on('data', (data) => {
           if (data.includes('✅  server started on port: 3000')) {
             shell.exec('sleep 5');
-            const output = shell.exec('curl -sb -o "" localhost:3000');
-            htmlOutput = output.stdout;
+            const output = shell.exec('curl -I localhost:3000');
+            outputTest = output.stdout.includes('200');
             kill(child.pid);
           }
         });
       });
-      return run.then(output => expect(output).toMatchSnapshot());
+      return run.then(test => expect(test).toBe(true));
     });
 
     afterAll(() => {
@@ -67,28 +67,28 @@ describe('starter kyts', () => {
     window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 300000; // eslint-disable-line no-undef
 
     it('should start a server on :3001', () => {
-      let htmlOutput;
+      let outputTest;
       const run = new Promise((resolve) => {
         const child = shell.exec('node_modules/kyt/cli/index.js dev', () => {
-          resolve(htmlOutput);
+          resolve(outputTest);
         });
         child.stdout.on('data', (data) => {
           if (data.includes('✅  Client started')) {
             shell.exec('sleep 5');
             const output = shell.exec('curl -sb -o "" localhost:3001');
-            htmlOutput = output.stdout;
+            outputTest = output.stdout.includes('<html>');
             kill(child.pid);
           }
         });
       });
-      return run.then(output => expect(output).toMatchSnapshot());
+      return run.then(test => expect(test).toBe(true));
     });
 
     it('should build', () => {
       const output = shell.exec('node_modules/kyt/cli/index.js build');
       expect(output.stdout.includes('✅  Done building')).toBe(true);
       const htmlOutput = fs.readFileSync('build/public/index.html', 'utf8');
-      expect(htmlOutput).toMatchSnapshot();
+      expect(htmlOutput.includes('<html>')).toBe(true);
     });
 
     afterAll(() => {
