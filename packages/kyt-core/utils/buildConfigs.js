@@ -5,6 +5,8 @@
 const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
 const clone = require('ramda').clone;
+const shell = require('shelljs');
+const { userBabelrcPath } = require('kyt-utils/paths')();
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
@@ -42,6 +44,11 @@ module.exports = (config, environment = 'development') => {
   }
 
   const serverOptions = merge(clientOptions, { type: 'server' });
+
+  const hasBabelrc = shell.test('-f', userBabelrcPath);
+  if (!hasBabelrc) {
+    logger.info('No user .babelrc found. Using kyt default babel preset...');
+  }
 
   // Merge options with static webpack configs
   clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
