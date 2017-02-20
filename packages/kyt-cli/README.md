@@ -36,8 +36,8 @@ If kyt finds any files with duplicate names, it will back up your file before re
 
 kyt will provide you with a list of supported starter-kyts to install. The supported starter-kyts are:
 
-- [kyt-starter-universal](/packages/starter-kyts/kyt-starter-universal)
-- [kyt-starter-static](/packages/starter-kyts/kyt-starter-static)
+- [kyt-starter-universal](/packages/kyt-starter-universal)
+- [kyt-starter-static](/packages/kyt-starter-static)
 
 ## `list` command
 The `list` command lists the supported and recommended starter-kyts.
@@ -49,13 +49,13 @@ It includes:
 
 ### Recommended starter-kyts
 
-#### [Universal React starter-kyt](/packages/starter-kyts/kyt-starter-universal)
+#### [Universal React starter-kyt](/packages/kyt-starter-universal)
 This default starter-kyt is a good base for building advanced, universal React apps.
 
 ## Setup a new project
 `kyt-cli setup`
 
-#### [Static starter-kyt](/packages/starter-kyts/kyt-starter-static)
+#### [Static starter-kyt](/packages/kyt-starter-static)
 
 `kyt-cli setup`
 Select `I have my own url` when prompted to set up a starter-kyt
