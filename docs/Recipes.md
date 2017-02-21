@@ -39,7 +39,7 @@ if (options.type === 'client') {
 In `kyt.config.js`
 
 ```javascript
-modifyWebpackConfig: (baseConfig, options) => {
+modifyWebpackConfig: (baseConfig, options, webpack) => {
   baseConfig.resolve.alias = {
     'myAliasFolder': path.resolve(process.cwd(), './src/path/to/my/folder'),
   }
@@ -51,7 +51,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 in `kyt.config.js`
 ```javascript   
-modifyWebpackConfig: (baseConfig, options) => {
+modifyWebpackConfig: (baseConfig, options, webpack) => {
 
   baseConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
@@ -68,7 +68,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 ## Update browser list for autoprefixer
 ```javascript
-modifyWebpackConfig: (baseConfig, options) => {
+modifyWebpackConfig: (baseConfig, options, webpack) => {
   baseConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       options: {
