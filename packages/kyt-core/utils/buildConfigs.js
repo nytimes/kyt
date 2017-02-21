@@ -5,6 +5,7 @@
 const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
 const clone = require('ramda').clone;
+const webpack = require('webpack')
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
@@ -49,8 +50,8 @@ module.exports = (config, environment = 'development') => {
 
   // Modify via userland config
   try {
-    clientConfig = config.modifyWebpackConfig(clone(clientConfig), clientOptions);
-    serverConfig = config.modifyWebpackConfig(clone(serverConfig), serverOptions);
+    clientConfig = config.modifyWebpackConfig(clone(clientConfig), clientOptions, webpack);
+    serverConfig = config.modifyWebpackConfig(clone(serverConfig), serverOptions, webpack);
   } catch (error) {
     logger.error('Error in your kyt.config.js modifyWebpackConfig():', error);
     process.exit(1);
