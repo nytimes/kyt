@@ -16,14 +16,14 @@
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
   "dependencies": {
     "babel-preset-kyt-react": "0.1.1",
-    "html-webpack-plugin": "^2.22.0",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
-    "react-router": "^2.6.1"
+    "html-webpack-plugin": "2.22.0",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "react-router": "2.6.1"
   },
   "devDependencies": {
-    "enzyme": "^2.4.1",
+    "enzyme": "2.4.1",
     "kyt": "0.4.0",
-    "react-addons-test-utils": "^15.3.0"
+    "react-addons-test-utils": "15.3.0"
   }
 }

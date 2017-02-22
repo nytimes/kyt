@@ -16,15 +16,15 @@
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "dependencies": {
     "babel-preset-kyt-react": "0.1.1",
-    "compression": "^1.6.2",
-    "express": "^4.14.0",
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
-    "react-router": "^2.6.1"
+    "compression": "1.6.2",
+    "express": "4.14.0",
+    "react": "15.3.0",
+    "react-dom": "15.3.0",
+    "react-router": "2.6.1"
   },
   "devDependencies": {
-    "enzyme": "^2.4.1",
+    "enzyme": "2.4.1",
     "kyt": "0.4.0",
-    "react-addons-test-utils": "^15.3.0"
+    "react-addons-test-utils": "15.3.0"
   }
 }
