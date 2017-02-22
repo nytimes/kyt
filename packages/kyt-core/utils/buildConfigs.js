@@ -2,10 +2,11 @@
 // Compiles the {server, client} configurations
 // For use by the client and server compilers.
 
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
 const clone = require('ramda').clone;
-const webpack = require('webpack')
+
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
