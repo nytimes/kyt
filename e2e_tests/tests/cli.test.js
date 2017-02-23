@@ -1,4 +1,5 @@
 const shell = require('shelljs');
+const path = require('path');
 const kill = require('../utils/psKill');
 const ypm = require('../../packages/kyt-cli/utils/yarnOrNpm')();
 
@@ -67,7 +68,7 @@ describe('KYT CLI', () => {
 
   it('sets up the package json scripts', () => {
     // eslint-disable-next-line import/no-unresolved
-    const userPackageJSON = require.requireActual('../../cli-test/package.json');
+    const userPackageJSON = require.requireActual(path.join(process.cwd(), 'package.json'));
     const scripts = userPackageJSON.scripts;
     expect(scripts.dev).toBe('kyt dev');
     expect(scripts.start).toBe('node build/server/main.js');
