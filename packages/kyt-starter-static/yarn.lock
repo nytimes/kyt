@@ -1264,9 +1264,9 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-clean-css@3.4.x:
-  version "3.4.25"
-  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-3.4.25.tgz#9e9a52d5c1e6bc5123e1b2783fa65fe958946ede"
+clean-css@4.0.x:
+  version "4.0.7"
+  resolved "https://registry.yarnpkg.com/clean-css/-/clean-css-4.0.7.tgz#d8fa8b4d87a125f38fa3d64afc59abfc68ba7790"
   dependencies:
     commander "2.8.x"
     source-map "0.4.x"
@@ -2901,9 +2901,9 @@ html-entities@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/html-entities/-/html-entities-1.2.0.tgz#41948caf85ce82fed36e4e6a0ed371a6664379e2"
 
-html-minifier@^2.1.6:
-  version "2.1.7"
-  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-2.1.7.tgz#9051d6fcbbcf214ed307e1ad74f432bb9ad655cc"
+html-minifier@^3.2.3:
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/html-minifier/-/html-minifier-3.3.3.tgz#5e85516b2aff3c3fb9bda351879375868386d6f6"
   dependencies:
     change-case "3.0.x"
     clean-css "3.4.x"

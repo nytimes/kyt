@@ -1,0 +1,5 @@
+{
+  "scripts": {
+    "test": "kyt test -- --testNamePattern \\.blah.js$"
+  }
+}

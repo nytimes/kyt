@@ -8,13 +8,9 @@ const webpack = require('webpack');
 const shell = require('shelljs');
 const autoprefixer = require('autoprefixer');
 const { buildPath, userNodeModulesPath, userBabelrcPath } = require('kyt-utils/paths')();
-const logger = require('kyt-utils/logger');
 
 module.exports = (options) => {
   const hasBabelrc = shell.test('-f', userBabelrcPath);
-  if (!hasBabelrc) {
-    logger.warn('No user .babelrc found. Using kyt default babel preset...');
-  }
 
   return {
     node: {
