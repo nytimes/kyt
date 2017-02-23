@@ -8,50 +8,15 @@ const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
   beforeAll(() => {
-    shell.rm('-rf', 'cli-test');
-    shell.rm('-rf', 'test-packages');
+    shell.mkdir('stage-cli');
+    shell.cd('stage-cli');
   });
-  it('installs kyt', () => {
-    // create test packages
-    shell.mkdir('test-packages');
-    shell.exec('cp -r ./packages/kyt-utils ./test-packages');
-    shell.exec('cp -r ./packages/kyt-core ./test-packages');
-    shell.exec('cp -r ./packages/kyt-cli ./test-packages');
-    shell.exec('rm -rf ./test-packages/kyt-utils/node_modules/');
-    shell.exec('rm -rf ./test-packages/kyt-core/node_modules/');
-    shell.exec('rm -rf ./test-packages/kyt-cli/node_modules/');
-    // Update package Json to point to local kyt-utils
-    const utilsPath = 'file:../kyt-utils';
-    const cliPkgPath = './test-packages/kyt-cli/package.json';
-    // eslint-disable-next-line import/no-unresolved, global-require
-    const cliPkg = require('../../test-packages/kyt-cli/package.json');
 
-    cliPkg.dependencies['kyt-utils'] = utilsPath;
-    fs.writeFileSync(cliPkgPath, JSON.stringify(cliPkg, null, 2));
-    const corePkgPath = './test-packages/kyt-core/package.json';
-    // eslint-disable-next-line import/no-unresolved, global-require
-    const corePkg = require('../../test-packages/kyt-core/package.json');
-
-    corePkg.dependencies['kyt-utils'] = utilsPath;
-    fs.writeFileSync(corePkgPath, JSON.stringify(corePkg, null, 2));
-    // create test directory
-    if (shell.test('-d', 'cli-test')) {
-      shell.rm('-rf', 'cli-test');
-    }
-    shell.mkdir('cli-test');
-    shell.cd('cli-test');
-    shell.cp(pkgJsonPath, 'package.json');
-    const output = shell.exec(`${ypm} install`);
-    if (output.code !== 0) {
-      process.exit(output.code);
-    }
-    expect(shell.test('-f', 'package.json')).toBe(true);
-    expect(shell.test('-d', 'node_modules')).toBe(true);
-  });
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
+
   it('sets up a starter-kyt', () => {
     const exec = new Promise((resolve) => {
-      const child = shell.exec('node_modules/.bin/kyt-cli setup', (code, stdout) => {
+      const child = shell.exec('../packages/kyt-cli/index.js setup', (code, stdout) => {
         resolve({ code, output: stdout });
       });
       let skdone = false;
@@ -93,6 +58,7 @@ describe('KYT CLI', () => {
       expect(setupArr.includes('👍  Created src directory')).toBe(true);
     });
   });
+
   it('sets up with the correct files', () => {
     expect(shell.test('-d', 'src')).toBe(true);
     expect(shell.test('-f', 'kyt.config.js')).toBe(true);
@@ -102,6 +68,7 @@ describe('KYT CLI', () => {
     expect(shell.test('-f', '.stylelintrc.json')).toBe(true);
     expect(shell.test('-f', 'prototype.js')).toBe(true);
   });
+
   it('sets up the package json scripts', () => {
     // eslint-disable-next-line import/no-unresolved
     const userPackageJSON = require.requireActual('../../cli-test/package.json');
@@ -221,7 +188,7 @@ describe('KYT CLI', () => {
       });
       let stillAlive = true;
       child.stdout.on('data', (data) => {
-        if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
+        if (data.includes('✅  webpack-dev-server http://localhost:3002/prototype') && stillAlive) {
           stillAlive = false;
           shell.exec('sleep 5');
           const output = shell.exec('curl -I localhost:3002/prototype/');
@@ -232,9 +199,9 @@ describe('KYT CLI', () => {
     });
     return exec.then(test => expect(test).toBe(true));
   });
+
   afterAll(() => {
     shell.cd('..');
-    shell.rm('-rf', 'cli-test');
-    shell.rm('-rf', 'test-packages');
+    shell.rm('-rf', 'stage-cli');
   });
 });
