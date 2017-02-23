@@ -1,6 +1,8 @@
 /* eslint-disable no-console */
 // Merges base and user kyt config
 
+require('babel-register');
+
 const path = require('path');
 const shell = require('shelljs');
 const mergeAll = require('ramda').mergeAll;
