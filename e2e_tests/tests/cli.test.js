@@ -1,7 +1,5 @@
 const shell = require('shelljs');
 const path = require('path');
-const kill = require('../utils/psKill');
-const ypm = require('../../packages/kyt-cli/utils/yarnOrNpm')();
 
 describe('KYT CLI', () => {
   beforeAll(() => {
