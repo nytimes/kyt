@@ -1,5 +1,5 @@
-const path = require('path');
 const shell = require('shelljs');
+const util = require('../fixtures/util');
 
 shell.config.silent = true;
 
@@ -7,28 +7,20 @@ const stageName = 'stage-script';
 const getUsingLine = outputArr => outputArr.find(line => line.indexOf('Using ESLint file') > -1);
 
 describe('kyt lint-script', () => {
-  beforeEach(() => {
-    shell.mkdir(stageName);
-    shell.cd(stageName);
-    shell.ln('-s',
-      path.join(process.cwd(), '../packages/kyt-core/node_modules'),
-      path.join(process.cwd(), 'node_modules'));
-  });
-
   it('should exit the process with code 0 on lint success', () => {
-    shell.cp('-R', '../e2e_tests/fixtures/lintScript-default/.', '.');
+    util.setupStageWithFixture(stageName, 'lintScript-default');
     const output = shell.exec('npm run lint-script');
     expect(output.code).toBe(0);
   });
 
   it('should exit the process with code 1 on lint failure', () => {
-    shell.cp('-R', '../e2e_tests/fixtures/lintScript-fail/.', '.');
+    util.setupStageWithFixture(stageName, 'lintScript-fail');
     const output = shell.exec('npm run lint-script');
     expect(output.code).toBe(1);
   });
 
   it('should bedazzle user on lint success', () => {
-    shell.cp('-R', '../e2e_tests/fixtures/lintScript-default/.', '.');
+    util.setupStageWithFixture(stageName, 'lintScript-default');
     const output = shell.exec('npm run lint-script');
     const outputArr = output.stdout.split('\n');
     expect(output.code).toBe(0);
@@ -36,7 +28,7 @@ describe('kyt lint-script', () => {
   });
 
   it('should support a user .eslintrc with extension', () => {
-    shell.cp('-R', '../e2e_tests/fixtures/lintScript-user-rc-with-ext/.', '.');
+    util.setupStageWithFixture(stageName, 'lintScript-user-rc-with-ext');
     const output = shell.exec('npm run lint-script');
     const outputArr = output.stdout.split('\n');
     const usingLine = getUsingLine(outputArr);
@@ -45,7 +37,7 @@ describe('kyt lint-script', () => {
   });
 
   it('should support a user .eslintrc', () => {
-    shell.cp('-R', '../e2e_tests/fixtures/lintScript-user-rc/.', '.');
+    util.setupStageWithFixture(stageName, 'lintScript-user-rc');
     const output = shell.exec('npm run lint-script');
     const outputArr = output.stdout.split('\n');
     const usingLine = getUsingLine(outputArr);
@@ -54,7 +46,6 @@ describe('kyt lint-script', () => {
   });
 
   afterEach(() => {
-    shell.cd('..');
-    shell.rm('-rf', stageName);
+    util.teardownStage(stageName);
   });
 });
