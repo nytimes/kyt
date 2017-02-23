@@ -5,7 +5,7 @@
   "main": "eslintrc.json",
   "author": "NYTimes",
   "license": "Apache-2.0",
-  "repository": "git+https://github.com/nytimes/kyt/packages/eslint-config-nyt",
+  "repository": "git+https://github.com/nytimes/kyt/packages/eslint-config-kyt",
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "peerDependencies": {

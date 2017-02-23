@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const AssetsPlugin = require('assets-webpack-plugin');
 const { clientSrcPath, assetsBuildPath, buildPath } = require('kyt-utils/paths')();
 
-const cssLoader = 'css-loader?modules&sourceMap&localIdentName=[name]-[local]--[hash:base64:5]!postcss-loader';
+const cssLoader = 'css-loader?modules&sourceMap&minimize&-autoprefixer&localIdentName=[name]-[local]--[hash:base64:5]!postcss-loader';
 
 module.exports = options => ({
   target: 'web',

@@ -53,5 +53,6 @@ module.exports = options => ({
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
+    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: true }),
   ],
 });

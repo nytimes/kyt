@@ -1,6 +1,7 @@
 
 // Production webpack config for server code
 
+const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const clone = require('ramda').clone;
 const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
@@ -8,7 +9,11 @@ const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
 const cssStyleLoaders = [
   {
     loader: 'css-loader/locals',
-    options: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+    options: {
+      modules: true,
+      localIdentName: '[name]-[local]--[hash:base64:5]',
+      minimize: '-autoprefixer',
+    },
   },
   'postcss-loader',
 ];
@@ -48,4 +53,7 @@ module.exports = options => ({
     ],
   },
 
+  plugins: [
+    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: true }),
+  ],
 });
