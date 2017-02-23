@@ -1,10 +1,6 @@
-const path = require('path');
-const fs = require('fs');
 const shell = require('shelljs');
 const kill = require('../utils/psKill');
 const ypm = require('../../packages/kyt-cli/utils/yarnOrNpm')();
-
-const pkgJsonPath = path.join(__dirname, './../pkg.json');
 
 describe('KYT CLI', () => {
   beforeAll(() => {
