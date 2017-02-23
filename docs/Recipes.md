@@ -41,7 +41,7 @@ In `kyt.config.js`
 ```javascript
 modifyWebpackConfig: (baseConfig, options) => {
   baseConfig.resolve.alias = {
-    'myAliasFolder': path.resolve(process.cwd(), './src/path/to/my/folder'),
+    'myAliasFolder': require('path').resolve(process.cwd(), './src/path/to/my/folder'),
   }
   return baseConfig;
 }
@@ -109,7 +109,7 @@ modifyJestConfig: (baseConfig) => {
   // always mock Relay (react-relay) for tests
   jestConfig.moduleNameMapper = Object.assign({}, jestConfig.moduleNameMapper,
     {
-      'react-relay': path.resolve(__dirname, '__mocks__/react-relay.js'),
+      'react-relay': require('path').resolve(__dirname, '__mocks__/react-relay.js'),
     }
   );
 
