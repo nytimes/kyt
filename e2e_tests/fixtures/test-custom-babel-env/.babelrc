@@ -1,0 +1,12 @@
+{
+    
+  "presets": [["babel-preset-latest", { "modules": false }]],
+
+  "env": {
+    "custom": {
+      "plugins": [
+        ["babel-plugin-transform-es2015-modules-commonjs", { "loose": true }]
+      ]
+    }
+  }
+}

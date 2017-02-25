@@ -52,7 +52,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 in `kyt.config.js`
 ```javascript   
 modifyWebpackConfig: (baseConfig, options) => {
-
+  const webpack = require('webpack');
   baseConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       options: {
@@ -69,10 +69,11 @@ modifyWebpackConfig: (baseConfig, options) => {
 ## Update browser list for autoprefixer
 ```javascript
 modifyWebpackConfig: (baseConfig, options) => {
+  const webpack = require('webpack');
   baseConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       options: {
-        postcss: [autoprefixer({ browsers: ['last 2 versions', 'ios 8'] })],
+        postcss: [require('autoprefixer')({ browsers: ['last 2 versions', 'ios 8'] })],
         context: '/',
       },
     })

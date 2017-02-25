@@ -1,16 +1,18 @@
 const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
-const kill = require('../utils/psKill');
 const ypm = require('../../packages/kyt-cli/utils/yarnOrNpm')();
 
 const pkgJsonPath = path.join(__dirname, './../pkg.json');
+
+shell.config.silent = true;
 
 describe('KYT CLI', () => {
   beforeAll(() => {
     shell.rm('-rf', 'cli-test');
     shell.rm('-rf', 'test-packages');
   });
+
   it('installs kyt', () => {
     // create test packages
     shell.mkdir('test-packages');
@@ -48,7 +50,9 @@ describe('KYT CLI', () => {
     expect(shell.test('-f', 'package.json')).toBe(true);
     expect(shell.test('-d', 'node_modules')).toBe(true);
   });
+
   window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
+
   it('sets up a starter-kyt', () => {
     const exec = new Promise((resolve) => {
       const child = shell.exec('node_modules/.bin/kyt-cli setup', (code, stdout) => {
@@ -93,6 +97,7 @@ describe('KYT CLI', () => {
       expect(setupArr.includes('👍  Created src directory')).toBe(true);
     });
   });
+
   it('sets up with the correct files', () => {
     expect(shell.test('-d', 'src')).toBe(true);
     expect(shell.test('-f', 'kyt.config.js')).toBe(true);
@@ -102,6 +107,7 @@ describe('KYT CLI', () => {
     expect(shell.test('-f', '.stylelintrc.json')).toBe(true);
     expect(shell.test('-f', 'prototype.js')).toBe(true);
   });
+
   it('sets up the package json scripts', () => {
     // eslint-disable-next-line import/no-unresolved
     const userPackageJSON = require.requireActual('../../cli-test/package.json');
@@ -117,121 +123,25 @@ describe('KYT CLI', () => {
     expect(scripts['kyt:help']).toBe('kyt --help');
   });
 
-  it('runs the tests command', () => {
-    const output = shell.exec(`${ypm} run test`);
-    expect(output.code).toBe(0);
-  });
-
-  it('runs the build command', () => {
-    const output = shell.exec(`${ypm} run build`);
-    expect(output.code).toBe(0);
-    expect(shell.test('-d', 'build')).toBe(true);
-    expect(shell.test('-d', 'build/server')).toBe(true);
-    expect(shell.test('-f', 'build/publicAssets.json')).toBe(true);
-    expect(shell.test('-d', 'build/public')).toBe(true);
-  });
-
-  it('runs the build command and exits on SIGINT', () => {
-    const exec = new Promise((resolve, reject) => {
-      let sentKill = false;
-      let finishedBuild = false;
-      const child = shell.exec(`${ypm} run build`, () => {
-        resolve(finishedBuild);
-      });
-      child.stdout.on('data', (data) => {
-        if (data.includes('✅ Done building')) {
-          finishedBuild = true;
-          reject('Unexpected build finish');
-        }
-        if (!sentKill) {
-          sentKill = true;
-          kill(child.pid, 'SIGINT');
-        }
-      });
-    });
-    return exec.then(finishedBuild => expect(finishedBuild).toBe(false));
-  });
-
-  it('runs the dev command and exits on SIGINT', () => {
-    const exec = new Promise((resolve, reject) => {
-      let sentKill = false;
-      let finishedBuild = false;
-      const child = shell.exec(`${ypm} run dev`, () => {
-        resolve(finishedBuild);
-      });
-      child.stdout.on('data', (data) => {
-        if (data.includes('✅ Development started')) {
-          finishedBuild = true;
-          reject('Unexpected build finish');
-        }
-        if (!sentKill) {
-          sentKill = true;
-          kill(child.pid, 'SIGINT');
-        }
-      });
-    });
-    return exec.then(finishedBuild => expect(finishedBuild).toBe(false));
-  });
-  // eslint-disable-next-line
-  window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
-
-  it('starts the app', () => {
-    let testPass;
-    shell.exec(`${ypm} run build`);
-    const exec = new Promise((resolve) => {
-      const child = shell.exec(`${ypm} run start`, () => {
-        resolve(testPass);
-      });
-      child.stdout.on('data', (data) => {
-        if (data.includes('node build/server/main.js')) {
-          shell.exec('sleep 3');
-          const output = shell.exec('curl -I localhost:3000');
-          testPass = output.stdout.includes('200');
-          kill(child.pid);
-        }
-      });
-    });
-    return exec.then(test => expect(test).toBe(true));
-  });
-
-
-  it('dev', () => {
-    let testPass;
-    const exec = new Promise((resolve) => {
-      const child = shell.exec(`${ypm} run dev`, () => {
-        resolve(testPass);
-      });
-      child.stdout.on('data', (data) => {
-        if (data.includes('✅  Development started')) {
-          shell.exec('sleep 5');
-          const output = shell.exec('curl -I localhost:3000');
-          testPass = output.stdout.includes('200');
-          kill(child.pid);
-        }
-      });
-    });
-    return exec.then(test => expect(test).toBe(true));
-  });
-
-  it('proto', () => {
-    const exec = new Promise((resolve) => {
-      let testPass;
-      const child = shell.exec(`${ypm} run proto`, () => {
-        resolve(testPass);
-      });
-      let stillAlive = true;
-      child.stdout.on('data', (data) => {
-        if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
-          stillAlive = false;
-          shell.exec('sleep 5');
-          const output = shell.exec('curl -I localhost:3002/prototype/');
-          testPass = output.stdout.includes('404');
-          kill(child.pid);
-        }
-      });
-    });
-    return exec.then(test => expect(test).toBe(true));
-  });
+  // it('proto', () => {
+  //   const exec = new Promise((resolve) => {
+  //     let testPass;
+  //     const child = shell.exec(`${ypm} run proto`, () => {
+  //       resolve(testPass);
+  //     });
+  //     let stillAlive = true;
+  //     child.stdout.on('data', (data) => {
+  //       if (data.includes('webpack: bundle is now VALID.') && stillAlive) {
+  //         stillAlive = false;
+  //         shell.exec('sleep 5');
+  //         const output = shell.exec('curl -I localhost:3002/prototype/');
+  //         testPass = output.stdout.includes('404');
+  //         kill(child.pid);
+  //       }
+  //     });
+  //   });
+  //   return exec.then(test => expect(test).toBe(true));
+  // });
   afterAll(() => {
     shell.cd('..');
     shell.rm('-rf', 'cli-test');
