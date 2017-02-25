@@ -30,7 +30,7 @@ module.exports = options => ({
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
-          fallback: 'style',
+          fallback: 'style-loader',
           use: cssLoader,
         }),
       },
