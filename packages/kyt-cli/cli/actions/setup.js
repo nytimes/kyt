@@ -554,7 +554,7 @@ module.exports = (flags, args) => {
       // question 2
       // Save Local directory Path before moving to new directory
       if (localPath) {
-        localPath = path.join(process.cwd(), localPath);
+        localPath = path.resolve(localPath);
       }
       // Create new directory and set up path strings
       createDir(args.directory || answer.dirName);
