@@ -17,7 +17,8 @@ module.exports = (rootDir, aliases = {}) => ({
     },
     aliases
   ),
-  scriptPreprocessor: resolveFromUtils('preprocessor'),
+  transform: { '.*': resolveFromUtils('preprocessor') },
+  snapshotSerializers: ['enzyme-to-json/serializer'],
   testPathIgnorePatterns: ['<rootDir>/(build|docs|node_modules|images)/'],
   testEnvironment: 'node',
   testRegex: '\\.test.js$',

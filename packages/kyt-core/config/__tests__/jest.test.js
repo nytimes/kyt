@@ -7,7 +7,8 @@ it('jestConfig() returns a jest config', () => {
 
   expect(typeof config).toBe('object');
   expect(config.moduleNameMapper).toBeDefined();
-  expect(config.scriptPreprocessor).toBeDefined();
+  expect(config.transform).toBeDefined();
+  expect(config.snapshotSerializers).toBeDefined();
   expect(config.testPathIgnorePatterns).toBeDefined();
   expect(config.testEnvironment).toBeDefined();
   expect(config.testRegex).toBeDefined();
@@ -36,4 +37,3 @@ it('jestConfig().moduleNameMapper matches by extension', () => {
   expect(matchers.some(matcher => jpgPath.match(matcher))).toBeTruthy();
   expect(matchers.some(matcher => jpgPathWithWebpackLoader.match(matcher))).toBeTruthy();
 });
-
