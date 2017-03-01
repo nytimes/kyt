@@ -8,7 +8,7 @@ module.exports = {
     },
     static: {
       displayName: 'Static',
-      path: '/packages/kyt-starter-static/',
+      path: '/node_modules/starter-src/',
       description: 'This starter-kyt should serve as the base for an advanced client-rendered React app.',
       install: 'Select static in kyt-cli setup',
     },
