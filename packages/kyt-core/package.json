@@ -28,7 +28,7 @@
     "detect-port": "1.0.1",
     "eslint": "3.16.1",
     "eslint-config-airbnb": "14.1.0",
-    "eslint-config-kyt": "0.3.0",
+    "eslint-config-kyt": "0.2.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
