@@ -421,7 +421,11 @@ module.exports = (flags, args) => {
       shell.cd(tmpRepo);
       const fakePkgPath = `${tmpRepo}/package.json`;
       fs.writeFileSync(fakePkgPath, JSON.stringify(fakePackageJson, null, 2));
-      const output = shell.exec(`npm install ${npmName}`);
+      let iCmd = 'npm install';
+      if (ypm === 'yarn') {
+        iCmd = 'yarn add';
+      }
+      const output = shell.exec(`${iCmd} ${npmName}`);
       if (output.code !== 0) {
         throw output.stderr;
       }
