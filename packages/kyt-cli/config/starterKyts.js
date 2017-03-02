@@ -2,13 +2,15 @@ module.exports = {
   supported: {
     universal: {
       displayName: 'Universal',
-      path: '/packages/kyt-starter-universal/',
+      npmName: 'kyt-starter-universal',
+      path: '/node_modules/kyt-starter-universal/starter-src',
       description: 'This starter-kyt should serve as the base for an advanced, server and client-rendered (isomorphic) React app.',
       install: 'Select universal in kyt-cli setup',
     },
     static: {
       displayName: 'Static',
-      path: '/node_modules/starter-src/',
+      npmName: 'kyt-starter-static',
+      path: '/node_modules/kyt-starter-static/starter-src',
       description: 'This starter-kyt should serve as the base for an advanced client-rendered React app.',
       install: 'Select static in kyt-cli setup',
     },

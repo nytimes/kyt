@@ -16,7 +16,6 @@ module.exports = (flags, args) => {
   logger.log('✨  Answer a few questions to get started  ✨ \n');
   // Selects package manager to use
   let ypm;
-
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
   let paths = {};
@@ -28,7 +27,7 @@ module.exports = (flags, args) => {
   let localPath = args.localPath;
   let tempPackageJSON;
   let oldPackageJSON;
-
+  const fakePackageJson = { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
   const removeTmpRepo = () => shell.rm('-rf', tmpRepo);
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
@@ -174,8 +173,7 @@ module.exports = (flags, args) => {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       userPackageJSON = require(paths.userPackageJSONPath);
     } else {
-      userPackageJSON =
-        { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
+      userPackageJSON = fakePackageJson;
       logger.task('Creating a new package.json. You should fill it in.');
     }
     // Clone the package.json so that we have a backup.
@@ -379,17 +377,19 @@ module.exports = (flags, args) => {
 
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
+    let npmName = null;
     if (starterName) {
       tmpDir = path.join(tmpDir, starterKyts.supported[starterName].path);
+      npmName = starterKyts.supported[starterName].npmName;
     }
 
     const kytName = starterName || localPath || repoURL;
     starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
 
-    const afterClone = (error) => {
+    const afterCopy = (error) => {
       if (error) {
-        logger.error('There was a problem cloning the repository');
+        logger.error('There was a problem downloading the starter-kyt');
         logger.log(error);
         bailProcess();
       }
@@ -414,10 +414,21 @@ module.exports = (flags, args) => {
     removeTmpRepo();
 
     if (localPath) {
-      shell.cp('-r', localPath, tmpRepo);
-      afterClone();
+      shell.exec(`cp -R ${localPath} ${tmpRepo}`);
+      afterCopy();
+    } else if (npmName) {
+      shell.mkdir(tmpRepo);
+      shell.cd(tmpRepo);
+      const fakePkgPath = `${tmpRepo}/package.json`;
+      fs.writeFileSync(fakePkgPath, JSON.stringify(fakePackageJson, null, 2));
+      const output = shell.exec(`npm install ${npmName}`);
+      if (output.code !== 0) {
+        throw output.stderr;
+      }
+      shell.cd('..');
+      afterCopy();
     } else {
-      simpleGit.clone(repoURL, tmpRepo, {}, afterClone);
+      simpleGit.clone(repoURL, tmpRepo, {}, afterCopy);
     }
   };
 
