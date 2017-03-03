@@ -50,6 +50,7 @@ describe('dev', () => {
       express,
       express.use,
       express.listen,
+      express.static,
       ifPortIsFreeDo,
       webpackCompiler,
       buildConfigs,
@@ -165,6 +166,8 @@ describe('dev', () => {
       'should not set up chokidar watchers');
     assert.equal(ifPortIsFreeDo.mock.calls.length, 1,
       'should only call ifPortIsFreeDo once');
+    assert.equal(express.static.mock.calls.length, 1,
+      'should call express.static once');
   });
 
   it('handles multiple server entries', () => {
