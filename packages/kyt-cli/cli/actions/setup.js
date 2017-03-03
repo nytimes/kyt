@@ -20,7 +20,7 @@ module.exports = (flags, args) => {
   shell.config.silent = true;
   let paths = {};
   const date = Date.now();
-  let tmpRepo;
+  let tmpStarter;
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir;
   let repoURL = 'https://github.com/NYTimes/kyt.git';
@@ -28,11 +28,11 @@ module.exports = (flags, args) => {
   let tempPackageJSON;
   let oldPackageJSON;
   const fakePackageJson = { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
-  const removeTmpRepo = () => shell.rm('-rf', tmpRepo);
+  const removeTmpStarter = () => shell.rm('-rf', tmpStarter);
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
-    removeTmpRepo();
+    removeTmpStarter();
     process.exit();
   };
 
@@ -406,20 +406,20 @@ module.exports = (flags, args) => {
       createSrcDirectory();
       createGitignore();
       copyStarterKytFiles();
-      removeTmpRepo();
+      removeTmpStarter();
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
     };
 
     // First, clean any old cloned repositories.
-    removeTmpRepo();
+    removeTmpStarter();
 
     if (localPath) {
-      shell.exec(`cp -R ${localPath} ${tmpRepo}`);
+      shell.exec(`cp -R ${localPath} ${tmpStarter}`);
       afterCopy();
     } else if (npmName) {
-      shell.mkdir(tmpRepo);
-      shell.cd(tmpRepo);
-      const fakePkgPath = `${tmpRepo}/package.json`;
+      shell.mkdir(tmpStarter);
+      shell.cd(tmpStarter);
+      const fakePkgPath = `${tmpStarter}/package.json`;
       fs.writeFileSync(fakePkgPath, JSON.stringify(fakePackageJson, null, 2));
       let iCmd = 'npm install';
       if (ypm === 'yarn') {
@@ -432,7 +432,7 @@ module.exports = (flags, args) => {
       shell.cd('..');
       afterCopy();
     } else {
-      simpleGit.clone(repoURL, tmpRepo, {}, afterCopy);
+      simpleGit.clone(repoURL, tmpStarter, {}, afterCopy);
     }
   };
 
@@ -522,9 +522,9 @@ module.exports = (flags, args) => {
 
   const setupPaths = () => {
     paths = require('kyt-utils/paths')(); // eslint-disable-line
-    tmpRepo = path.resolve(paths.userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
+    tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
     // For passed starter-kyts the root of the starter-kyt is the root of the repo
-    tmpDir = tmpRepo;
+    tmpDir = tmpStarter;
     repoURL = 'https://github.com/NYTimes/kyt.git';
   };
 
