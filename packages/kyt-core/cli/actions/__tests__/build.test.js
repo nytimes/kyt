@@ -5,6 +5,7 @@ const shell = {
   mkdir: jest.fn(),
   test: jest.fn(() => true).mockReturnValueOnce(true).mockReturnValueOnce(false),
   cp: jest.fn(),
+  rm: jest.fn()
 };
 
 jest.setMock('shelljs', shell);
