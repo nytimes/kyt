@@ -2,10 +2,14 @@
 
 ## Master
 
+## 0.2.0 (March 3, 2017)
+
 ### BREAKING CHANGES
+
 - Replaces `--repository-path` with  `--local-path` which allows developers to copy local starter-kyts
 
 ### FEATURES
+
 - Installs versioned supported starter-kyts via npm.
 
 
