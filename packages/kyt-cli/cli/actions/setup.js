@@ -16,24 +16,23 @@ module.exports = (flags, args) => {
   logger.log('✨  Answer a few questions to get started  ✨ \n');
   // Selects package manager to use
   let ypm;
-
   // Comment the following to see verbose shell ouput.
   shell.config.silent = true;
   let paths = {};
   const date = Date.now();
-  let tmpRepo;
+  let tmpStarter;
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir;
   let repoURL = 'https://github.com/NYTimes/kyt.git';
   let localPath = args.localPath;
   let tempPackageJSON;
   let oldPackageJSON;
-
-  const removeTmpRepo = () => shell.rm('-rf', tmpRepo);
+  const fakePackageJson = { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
+  const removeTmpStarter = () => shell.rm('-rf', tmpStarter);
   const bailProcess = (error) => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
-    removeTmpRepo();
+    removeTmpStarter();
     process.exit();
   };
 
@@ -174,8 +173,7 @@ module.exports = (flags, args) => {
       // eslint-disable-next-line global-require,import/no-dynamic-require
       userPackageJSON = require(paths.userPackageJSONPath);
     } else {
-      userPackageJSON =
-        { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
+      userPackageJSON = fakePackageJson;
       logger.task('Creating a new package.json. You should fill it in.');
     }
     // Clone the package.json so that we have a backup.
@@ -379,17 +377,19 @@ module.exports = (flags, args) => {
 
   // setup tasks for starter-kyts
   const starterKytSetup = (starterName) => {
+    let npmName = null;
     if (starterName) {
       tmpDir = path.join(tmpDir, starterKyts.supported[starterName].path);
+      npmName = starterKyts.supported[starterName].npmName;
     }
 
     const kytName = starterName || localPath || repoURL;
     starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
 
-    const afterClone = (error) => {
+    const afterCopy = (error) => {
       if (error) {
-        logger.error('There was a problem cloning the repository');
+        logger.error('There was a problem downloading the starter-kyt');
         logger.log(error);
         bailProcess();
       }
@@ -406,18 +406,33 @@ module.exports = (flags, args) => {
       createSrcDirectory();
       createGitignore();
       copyStarterKytFiles();
-      removeTmpRepo();
+      removeTmpStarter();
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
     };
 
     // First, clean any old cloned repositories.
-    removeTmpRepo();
+    removeTmpStarter();
 
     if (localPath) {
-      shell.cp('-r', localPath, tmpRepo);
-      afterClone();
+      shell.exec(`cp -R ${localPath} ${tmpStarter}`);
+      afterCopy();
+    } else if (npmName) {
+      shell.mkdir(tmpStarter);
+      shell.cd(tmpStarter);
+      const fakePkgPath = `${tmpStarter}/package.json`;
+      fs.writeFileSync(fakePkgPath, JSON.stringify(fakePackageJson, null, 2));
+      let iCmd = 'npm install';
+      if (ypm === 'yarn') {
+        iCmd = 'yarn add';
+      }
+      const output = shell.exec(`${iCmd} ${npmName}`);
+      if (output.code !== 0) {
+        throw output.stderr;
+      }
+      shell.cd('..');
+      afterCopy();
     } else {
-      simpleGit.clone(repoURL, tmpRepo, {}, afterClone);
+      simpleGit.clone(repoURL, tmpStarter, {}, afterCopy);
     }
   };
 
@@ -507,9 +522,9 @@ module.exports = (flags, args) => {
 
   const setupPaths = () => {
     paths = require('kyt-utils/paths')(); // eslint-disable-line
-    tmpRepo = path.resolve(paths.userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
+    tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
     // For passed starter-kyts the root of the starter-kyt is the root of the repo
-    tmpDir = tmpRepo;
+    tmpDir = tmpStarter;
     repoURL = 'https://github.com/NYTimes/kyt.git';
   };
 
