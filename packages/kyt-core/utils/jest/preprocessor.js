@@ -53,7 +53,6 @@ if (shell.test('-f', userBabelrcPath)) {
   Object.keys(babelrc.env || {}).forEach(env => resolvePluginsPresets(babelrc.env[env]));
 } else {
   // if the user hasn't defined a .babelrc, use the kyt default preset
-  logger.warn('No user .babelrc found. Using kyt default babel preset...');
   babelrc = {
     presets: [require.resolve('babel-preset-kyt-core')],
   };
