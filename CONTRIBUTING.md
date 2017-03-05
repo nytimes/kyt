@@ -12,6 +12,7 @@ Please make sure all PRs are:
 1. linted (npm run lint)
 2. tested (npm test)
 3. Connected to an issue
+4. Update the [CHANGELOG](/CHANGELOG.md) (for MASTER) to reflect your PR changes.
 
 ### kyt local development
 

@@ -16,16 +16,20 @@ const installPackage = (at) => {
 };
 
 const packages = fs.readdirSync('packages').reduce((pkgs, pkg) => {
-  const packagePath = path.join(process.cwd(), 'packages', pkg);
+  let packagePath = path.join(process.cwd(), 'packages', pkg);
   const packageJSON = path.join(packagePath, 'package.json');
   try {
     if (fs.statSync(packagePath).isDirectory() && fs.statSync(packageJSON).isFile()) {
-      pkgs.push({ path: packagePath, name: require(packageJSON).name });
+      // update path for starter-kyts
+      const packageName = require(packageJSON).name;
+      if (packageName.includes('starter')) {
+        packagePath = path.join(packagePath, 'starter-src');
+      }
+      pkgs.push({ path: packagePath, name: packageName });
     }
   } catch (e) { return pkgs; }
   return pkgs;
 }, []);
-
 console.log(`\n🔥  Bootstrapping\n`);
 
 // Install the root package.json first so that we can use shelljs/semver.
