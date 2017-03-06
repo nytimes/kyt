@@ -12,5 +12,5 @@ import Home from './src/components/Home';
 const rootEl = document.getElementById('root');
 ReactDom.render(
   <Home />,
-  rootEl
+  rootEl,
 );

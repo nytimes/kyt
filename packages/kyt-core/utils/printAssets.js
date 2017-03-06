@@ -27,11 +27,11 @@ module.exports = (stats, clientConfig) => {
   assets.sort((a, b) => b.size - a.size);
 
   const longestSizeLabelLength = Reflect.apply(Math.max, null,
-    assets.map(a => stripAnsi(a.sizeLabel).length)
+    assets.map(a => stripAnsi(a.sizeLabel).length),
   );
 
   const longestGzSizeLabelLength = Reflect.apply(Math.max, null,
-    assets.map(a => stripAnsi(a.gzSizeLabel).length)
+    assets.map(a => stripAnsi(a.gzSizeLabel).length),
   );
 
   const addLabelPadding = (label, longestLength) => {

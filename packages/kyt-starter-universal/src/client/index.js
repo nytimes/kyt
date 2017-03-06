@@ -11,7 +11,7 @@ const mount = (RootComponent) => {
     <AppContainer>
       <RootComponent />
     </AppContainer>,
-    root
+    root,
   );
 };
 
