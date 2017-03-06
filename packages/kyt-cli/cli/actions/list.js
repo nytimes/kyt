@@ -13,12 +13,12 @@ const printStarter = (li, starter) => {
 
 module.exports = () => {
   logger.start('Listing starter-kyts');
-  logger.task(`kyt supported starter-kyts: \n`);
+  logger.task('kyt supported starter-kyts: \n');
   Object.keys(starterKyts.supported).forEach((starterName, index) => {
     const li = index + 1;
     printStarter(li, starterKyts.supported[starterName]);
   });
-  logger.task(`Recommended starter-kyts:\n`);
+  logger.task('Recommended starter-kyts:\n');
   Object.keys(starterKyts.recommended).forEach((starterName, index) => {
     const li = index + 1;
     printStarter(li, starterKyts.recommended[starterName]);

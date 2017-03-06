@@ -4,7 +4,7 @@ const psTree = require('ps-tree');
 module.exports = (pid, signal = 'SIGKILL', callback) => {
   psTree(pid, (err, children) => {
     let arr = [pid].concat(
-      children.map(p => p.PID)
+      children.map(p => p.PID),
     );
     arr = arr.filter((item, poss) => arr.indexOf(item) === poss);
     arr.forEach((tpid) => {

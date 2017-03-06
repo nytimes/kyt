@@ -26,7 +26,7 @@ const packages = fs.readdirSync('packages').reduce((pkgs, pkg) => {
   return pkgs;
 }, []);
 
-console.log(`\n🔥  Bootstrapping\n`);
+console.log('\n🔥  Bootstrapping\n');
 
 // Install the root package.json first so that we can use shelljs/semver.
 installPackage(process.cwd());
@@ -64,4 +64,4 @@ logTask('npm-linked kyt-cli\n');
 shell.exec('npm link', { cwd: path.join(process.cwd(), 'packages', 'kyt-core') });
 logTask('npm-linked kyt');
 
-console.log(`\n✅  strapped\n`);
+console.log('\n✅  strapped\n');
