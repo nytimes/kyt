@@ -21,6 +21,9 @@ and export an object with the following options.
 
 
 ## modifyWebpackConfig
+
+_In an attempt to gather feedback to set future priorities, we're running a brief user survey asking: [what are you using `modifyWebpackConfig` for?](https://github.com/NYTimes/kyt/issues/TODO)_
+
 `modifyWebpackConfig` is an optional callback you can define to edit the Webpack config for each part of development.
 This allows you to add new babel-plugins, modify Webpack loaders, etc.
 

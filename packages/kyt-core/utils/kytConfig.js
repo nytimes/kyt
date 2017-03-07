@@ -41,6 +41,11 @@ module.exports = (optionalConfig) => {
 
   config = mergeAll([{}, baseConfig, config]);
 
+  if (typeof config.modifyWebpackConfig === 'function') {
+    logger.info('What are you doing in your modifyWebpackConfig?');
+    logger.info('Let us know: https://github.com/NYTimes/kyt/issues/TODO');
+  }
+
   // Create default identity functions for modify functions
   ['modifyWebpackConfig', 'modifyJestConfig'].forEach((m) => {
     if (typeof config[m] !== 'function') {
