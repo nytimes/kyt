@@ -1,7 +1,7 @@
 
 // Command to run tests with Jest
 
-const clone = require('lodash.cloneDeep');
+const clone = require('lodash.clonedeep');
 const jest = require('jest');
 const shell = require('shelljs');
 const jestConfigBuilder = require('../../config/jest');
