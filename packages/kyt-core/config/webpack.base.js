@@ -65,10 +65,6 @@ module.exports = (options) => {
           },
         },
         {
-          test: /\.json$/,
-          loader: 'json-loader',
-        },
-        {
           test: /\.(js|jsx)$/,
           loader: 'babel-loader',
           exclude: [
@@ -77,7 +73,7 @@ module.exports = (options) => {
           ],
           // babel configuration should come from presets defined in the user's
           // .babelrc, unless there's a specific reason why it has to be put in
-          // the webpack loader query
+          // the webpack loader options
           options: Object.assign({
             // this is a loader-specific option and can't be put in a babel preset
             cacheDirectory: false,

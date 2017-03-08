@@ -12,6 +12,12 @@
     "json"
   ],
 
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false
+  },
+
   "globals": {
     "KYT": true
   },
