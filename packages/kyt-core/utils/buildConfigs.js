@@ -4,7 +4,7 @@
 
 const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
-const clone = require('ramda').clone;
+const clone = require('lodash.clone');
 const shell = require('shelljs');
 const { userBabelrcPath } = require('kyt-utils/paths')();
 // base configs

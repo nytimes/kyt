@@ -3,7 +3,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const clone = require('ramda').clone;
+const clone = require('lodash.clonedeep');
 const { userPrototypePath, prototypeBuildPath, srcPath } = require('kyt-utils/paths')();
 
 const cssStyleLoaders = [
