@@ -43,7 +43,7 @@ module.exports = (optionalConfig) => {
 
   if (typeof config.modifyWebpackConfig === 'function') {
     logger.info('What are you doing in your modifyWebpackConfig?');
-    logger.info('Let us know: https://github.com/NYTimes/kyt/issues/TODO');
+    logger.info('Let us know: https://github.com/NYTimes/kyt/issues/432');
   }
 
   // Create default identity functions for modify functions
