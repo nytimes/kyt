@@ -7,6 +7,20 @@
 
 ### `stylelint-config-kyt` upgrade. The upgrade involved updating the internal dependencies. Check out the changelog [here](/packages/stylelint-config-kyt/CHANGELOG.md).
 
+
+## 0.4.1 (March 03, 2017)
+
+### FEATURES
+
+Adds server side source maps #402. You can remove `source-map-support` from your projects if you registered it in your server side code.
+
+### BUGFIXES
+
+Made `src/public` directory accessible in `noServer=true` projects #427.
+
+Fixes autoprefixer bug where deprecated bugs were getting removed by the minimizer #390.
+
+
 ## 0.4.0 (February 13, 2017)
 
 ### BREAKING CHANGES
@@ -38,7 +52,6 @@ To update an existing kyt project:
 - If your project uses react you'll want to create a .babelrc that points to the react preset. [This one](/packages/kyt-starter-universal/.babelrc) should work.
 - If you currently make babel plugin or preset changes via `modifyWebpackConfig`, checkout out the updated [recipe](/docs/Recipes.md)
 
-
 #### Linter configs
 kyt's linter configs are now packaged as separate configs [#344](https://github.com/NYTimes/kyt/pull/344)
 [#380](https://github.com/NYTimes/kyt/pull/380)
@@ -46,14 +59,12 @@ To update: copy the new linter files into the root of your project.
 [.eslintrc.json](/packages/kyt-cli/config/user/.eslintrc.base.json)
 [.stylelintrc.json](/packages/kyt-cli/config/user/.stylelintrc.json)
 
-
 #### New Lint commands [#339](https://github.com/NYTimes/kyt/pull/339)
 Lint commands are now  as follows:
 - `kyt lint-script` for JS
 - `kyt lint-style` for CSS/Sass
 - `npm run lint` runs both commands (installed by `kyt-cli` setup)
 `kyt lint` is deprecated
-
 
 #### `kyt start` is deprecated
 `kyt-cli setup` creates an `npm run start` command to run the server
