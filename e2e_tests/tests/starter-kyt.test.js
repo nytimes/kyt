@@ -4,12 +4,12 @@ const kill = require('../utils/psKill');
 const path = require('path');
 const fs = require('fs');
 
-shell.config.silent = true;
+// shell.config.silent = true;
 
 describe('starter kyts', () => {
   describe('kyt-starter-universal', () => {
     beforeAll(() => {
-      shell.cd(path.join(util.rootDir, 'packages/kyt-starter-universal'));
+      shell.cd(path.join(util.rootDir, 'packages/kyt-starter-universal/starter-src'));
     });
 
     jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000; // eslint-disable-line no-undef
@@ -61,7 +61,7 @@ describe('starter kyts', () => {
 
   describe('kyt-starter-static', () => {
     beforeAll(() => {
-      shell.cd(path.join(util.rootDir, 'packages/kyt-starter-static'));
+      shell.cd(path.join(util.rootDir, 'packages/kyt-starter-static/starter-src'));
     });
 
     window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 300000; // eslint-disable-line no-undef

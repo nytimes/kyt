@@ -9,6 +9,7 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
+    "babel-plugin-syntax-dynamic-import": "6.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.16.0",
     "babel-plugin-transform-runtime": "6.15.0",
     "babel-preset-latest": "6.16.0"
