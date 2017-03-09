@@ -16,7 +16,7 @@ program
   .option('-r, --repository [address]', 'Optional: Github repository address')
   .option('-k, --kyt-version [version]', 'Optional: Version of kyt-core to install')
   .option('-p, --package-manager <npm|yarn>', 'Optional: Specify which package manager to use (npm or yarn). Defaults to yarn if it is installed globally.')
-  .option('--repository-path [path]', 'Optional: path within a repository for the main starter kyt directory. Default is the root directory of a git clone.')
+  .option('--local-path [path]', 'Optional: Local path for a starter-kyt. For copying local starter-kyts for testing.')
   .action(() => loadArgsAndDo(setupAction));
 
 program

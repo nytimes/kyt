@@ -4,9 +4,10 @@
 
 const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
-const clone = require('ramda').clone;
+const clone = require('lodash.clonedeep');
 const shell = require('shelljs');
 const { userBabelrcPath } = require('kyt-utils/paths')();
+
 // base configs
 const baseConfig = require('../config/webpack.base');
 // dev configs
@@ -72,7 +73,7 @@ module.exports = (config, environment = 'development') => {
   // A "main" entry is required in the server config.
   if (!serverConfig.entry.main) {
     logger.error(
-      'A main entry is required in the server configuration. Found: ', serverConfig.entry,
+      'A main entry is required in the server configuration. Found: ', serverConfig.entry
     );
     process.exit(1);
   }
