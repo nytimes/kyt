@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-kyt",
+
+  "rules": {
+  }
+}

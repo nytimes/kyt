@@ -8,7 +8,6 @@ it('jestConfig() returns a jest config', () => {
   expect(typeof config).toBe('object');
   expect(config.moduleNameMapper).toBeDefined();
   expect(config.transform).toBeDefined();
-  expect(config.snapshotSerializers).toBeDefined();
   expect(config.testPathIgnorePatterns).toBeDefined();
   expect(config.testEnvironment).toBeDefined();
   expect(config.testRegex).toBeDefined();
