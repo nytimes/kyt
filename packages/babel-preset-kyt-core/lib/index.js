@@ -3,8 +3,7 @@ var babelTransformRuntime = require('babel-plugin-transform-runtime');
 var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
 var babelSyntaxDynamicImport = require('babel-plugin-syntax-dynamic-import');
 
-module.exports = function getPresetCore(context, opts) {
-  opts = opts || {};
+module.exports = function getPresetCore(context, opts = {}) {
   return {
     // modules are handled by webpack, don't transform them
     presets: [[babelPresetEnv, { modules: false }]],
