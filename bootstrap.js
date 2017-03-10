@@ -7,7 +7,7 @@ const type = process.env.type || 'upgrade'; // yarn update types
 const logTask = msg => console.log(`👍  ${msg}`);
 
 const installPackage = (at) => {
-  const result = spawn('yarn', [type], { stdio: 'inherit', cwd: at });
+  const result = spawn('yarn', [type, '--force'], { stdio: 'inherit', cwd: at });
   if (result.error) {
     console.log(result.error);
     process.exit(1);
