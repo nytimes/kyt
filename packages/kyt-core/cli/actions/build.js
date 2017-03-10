@@ -19,7 +19,7 @@ module.exports = (config) => {
   } = buildConfigs(config, 'production');
 
   // Clean the build directory.
-  if (shell.exec(`rm -rf ${buildPath}`).code === 0) {
+  if (shell.rm('-rf', buildPath).code === 0) {
     shell.mkdir(buildPath);
     logger.task('Cleaned ./build');
   }
