@@ -1604,8 +1604,8 @@ debug@2.2.0, debug@~2.2.0:
     ms "0.7.1"
 
 debug@^2.1.1, debug@^2.2.0:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.2.tgz#dfa96a861ee9b8c2f29349b3bcc41aa599a71e0f"
   dependencies:
     ms "0.7.2"
 
@@ -1966,9 +1966,9 @@ eslint-config-airbnb@14.1.0:
   dependencies:
     eslint-config-airbnb-base "^11.1.0"
 
-eslint-config-kyt@0.3.0-beta.1:
-  version "0.3.0-beta.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-kyt/-/eslint-config-kyt-0.3.0-beta.1.tgz#1fdea7912ea0f57f1370462f1b4493ec2d208453"
+eslint-config-kyt@0.3.0-beta.2:
+  version "0.3.0-beta.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-kyt/-/eslint-config-kyt-0.3.0-beta.2.tgz#2157f705f715ba1a760d862017d5a8ecff1e416b"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
