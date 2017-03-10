@@ -2492,7 +2492,7 @@ glob-parent@^2.0.0:
   dependencies:
     is-glob "^2.0.0"
 
-glob@7.1.0, glob@^7.0.0, glob@^7.0.3, glob@^7.0.5:
+glob@7.1.0, glob@^7.0.0, glob@^7.0.3:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.0.tgz#36add856d746d0d99e4cc2797bba1ae2c67272fd"
   dependencies:
@@ -2513,7 +2513,7 @@ glob@^5.0.15, glob@^5.0.5:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.1.1, glob@~7.1.1:
+glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.1.tgz#805211df04faaf1c63a3600306cdf5ade50b2ec8"
   dependencies:
@@ -5942,8 +5942,8 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
 uglify-js@^2.6, uglify-js@^2.7.5:
-  version "2.8.10"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.10.tgz#bd0be568369f7be8cad2a4161fa90ada118ef73a"
+  version "2.8.11"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.11.tgz#11a51c43d810b47bc00aee4d512cb3947ddd1ac4"
   dependencies:
     source-map "~0.5.1"
     uglify-to-browserify "~1.0.0"

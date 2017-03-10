@@ -1946,8 +1946,8 @@ type-check@~0.3.2:
     prelude-ls "~1.1.2"
 
 uglify-js@^2.6:
-  version "2.8.10"
-  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.10.tgz#bd0be568369f7be8cad2a4161fa90ada118ef73a"
+  version "2.8.11"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-2.8.11.tgz#11a51c43d810b47bc00aee4d512cb3947ddd1ac4"
   dependencies:
     source-map "~0.5.1"
     uglify-to-browserify "~1.0.0"
