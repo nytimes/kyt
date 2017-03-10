@@ -17,7 +17,7 @@ module.exports = (rootDir, aliases = {}) => ({
     },
     aliases
   ),
-  scriptPreprocessor: resolveFromUtils('preprocessor'),
+  transform: { '.*': resolveFromUtils('preprocessor') },
   testPathIgnorePatterns: ['<rootDir>/(build|docs|node_modules|images)/'],
   testEnvironment: 'node',
   testRegex: '\\.test.js$',
