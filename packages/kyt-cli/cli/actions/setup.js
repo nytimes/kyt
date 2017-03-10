@@ -89,14 +89,14 @@ module.exports = (flags, args) => {
 
     packageJson.dependencies = Object.assign(
       packageJson.dependencies || {},
-      tempDependencies,
+      tempDependencies
     );
 
     // Copies over dev dependencies
     if (tempDevDependencies) {
       packageJson.devDependencies = Object.assign(
         packageJson.devDependencies || {},
-        tempDevDependencies,
+        tempDevDependencies
       );
     }
 

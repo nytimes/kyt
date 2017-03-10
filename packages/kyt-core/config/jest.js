@@ -15,7 +15,7 @@ module.exports = (rootDir, aliases = {}) => ({
       // remove the runtime and include the polyfill in the test environment
       'babel-runtime': require.resolve('babel-plugin-transform-runtime'),
     },
-    aliases,
+    aliases
   ),
   scriptPreprocessor: resolveFromUtils('preprocessor'),
   testPathIgnorePatterns: ['<rootDir>/(build|docs|node_modules|images)/'],
