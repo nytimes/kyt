@@ -3,7 +3,7 @@
 
 const path = require('path');
 const shell = require('shelljs');
-const mergeAll = require('ramda').mergeAll;
+const merge = require('lodash.merge');
 const logger = require('kyt-utils/logger');
 const { userRootPath, userKytConfigPath } = require('kyt-utils/paths')();
 const url = require('url');
@@ -39,7 +39,7 @@ module.exports = (optionalConfig) => {
     }
   }
 
-  config = mergeAll([{}, baseConfig, config]);
+  config = merge({}, baseConfig, config);
 
   if (typeof config.modifyWebpackConfig === 'function') {
     logger.info('What are you doing in your modifyWebpackConfig?');
