@@ -47,5 +47,5 @@ app.get('*', (request, response) => {
 });
 
 app.listen(port, () => {
-  console.log(`✅  server started on port: ${port}`);
+  console.log(`✅  server started on port: ${port}`); // eslint-disable-line no-console
 });
