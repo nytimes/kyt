@@ -3,6 +3,11 @@
 
 `kyt-cli` has a separate Changelog [here](/packages/kyt-cli/CHANGELOG.md).
 
+## master
+
+### `stylelint-config-kyt` upgrade. The upgrade involved updating the internal dependencies. Check out the changelog [here](/packages/stylelint-config-kyt/CHANGELOG.md).
+
+
 ## 0.4.1 (March 03, 2017)
 
 ### FEATURES
