@@ -42,6 +42,8 @@ Developers design their own architecture, choosing the tools they need for rende
 For advanced use cases, kyt enables developers to add additional tools and configuration.
 See our [config override instructions](/docs/kytConfig.md#modifywebpackconfig) for details, and our [recipes](/docs/Recipes.md) for examples.
 
+_In an attempt to gather feedback to set future priorities, we're running a brief user survey asking: [what are you using `modifyWebpackConfig` for?](https://github.com/NYTimes/kyt/issues/432)_
+
 
 ## Setting up a kyt project
 kyt-cli is a utility for bootstrapping kyt projects. It can be installed globally and run to create a new project or integrate kyt with an existing project.
