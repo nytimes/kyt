@@ -3,7 +3,7 @@
 
 const webpack = require('webpack');
 const AssetsPlugin = require('assets-webpack-plugin');
-const clone = require('ramda').clone;
+const clone = require('lodash.clonedeep');
 const { clientSrcPath, buildPath, assetsBuildPath } = require('kyt-utils/paths')();
 
 const cssStyleLoaders = [
