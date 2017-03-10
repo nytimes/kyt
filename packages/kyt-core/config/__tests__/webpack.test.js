@@ -60,6 +60,5 @@ describe('webpack.base', () => {
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
     expect(babelLoader.options.presets.length).toBe(1);
     expect(babelLoader.options.presets[0]).toMatch(/babel-preset-kyt-core/);
-    expect(logger.warn).toHaveBeenCalledWith('No user .babelrc found. Using kyt default babel preset...');
   });
 });

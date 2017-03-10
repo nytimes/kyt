@@ -12,6 +12,7 @@ Please make sure all PRs are:
 1. linted (npm run lint)
 2. tested (npm test)
 3. Connected to an issue
+4. Update the [CHANGELOG](/CHANGELOG.md) (for MASTER) to reflect your PR changes.
 
 ### kyt local development
 
@@ -73,9 +74,10 @@ It is a common workflow to make changes to kyt-core and test them with `kyt-cli 
 
 ### Testing local starter-kyt changes
 
-To test setting up/installing local starter kyts, you need to specify the `--repository-path` option. The following command will create a test directory and install the given local kyt repository and reference the starter kyt using the given repository path.
+To test setting up/installing local starter-kyts, you need to specify the `--local-path` option. This allows you to install a starter-kyt locally by copying rather than cloning from git.
 
-`kyt-cli setup -d test -r kyt/.git --repository-path packages/kyt-starter-static`
+
+`kyt-cli setup -d test  --local-path /path/to/my-local-starter-kyt-dir`
 
 ### Testing kyt
 

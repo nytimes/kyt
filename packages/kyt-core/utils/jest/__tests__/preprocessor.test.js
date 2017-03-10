@@ -69,7 +69,6 @@ describe('jest preprocessor', () => {
     expect(fs.readFileSync).not.toHaveBeenCalled();
     expect(babelJest.createTransformer.mock.calls.length).toBe(1);
     expect(babelJest.createTransformer.mock.calls[0][0].presets.length).toBe(1);
-    expect(logger.warn).toHaveBeenCalledWith('No user .babelrc found. Using kyt default babel preset...');
     expect(logger.error).not.toHaveBeenCalled();
     expect(global.process.exit).not.toHaveBeenCalled();
     expect(babelJest.createTransformer.mock.calls[0][0].presets[0])

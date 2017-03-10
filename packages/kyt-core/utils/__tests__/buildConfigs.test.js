@@ -13,6 +13,9 @@ const devServerConfig = jest.fn(() => ({
   entry: { main: 'something' },
 }));
 const baseConfig = jest.fn(() => ({}));
+const logger = {
+  info: jest.fn(),
+};
 
 // for now just mock these
 jest.setMock('../../config/webpack.dev.client', devClientConfig);
@@ -20,6 +23,8 @@ jest.setMock('../../config/webpack.dev.server', devServerConfig);
 jest.setMock('../../config/webpack.prod.client', prodClientConfig);
 jest.setMock('../../config/webpack.prod.server', prodServerConfig);
 jest.setMock('../../config/webpack.base', baseConfig);
+
+jest.setMock('kyt-utils/logger', logger);
 
 const stubConfig = {
   modifyWebpackConfig: jest.fn(c => c),
@@ -41,6 +46,9 @@ describe('buildConfigs', () => {
 
   it('should call the userland modifyWebpackConfig', () => {
     const built = buildConfigs(stubConfig);
+
+    expect(logger.info)
+      .toHaveBeenCalledWith('No user .babelrc found. Using kyt default babel preset...');
 
     // for client
     const clientCall = stubConfig.modifyWebpackConfig.mock.calls[0];
