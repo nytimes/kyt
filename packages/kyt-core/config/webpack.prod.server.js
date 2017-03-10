@@ -15,7 +15,7 @@ const cssStyleLoaders = [
       minimize: '-autoprefixer',
     },
   },
-  'postcss',
+  'postcss-loader',
 ];
 
 module.exports = options => ({
@@ -48,7 +48,7 @@ module.exports = options => ({
       },
       {
         test: /\.scss$/,
-        use: clone(cssStyleLoaders).concat('sass'),
+        use: clone(cssStyleLoaders).concat('sass-loader'),
       },
     ],
   },
