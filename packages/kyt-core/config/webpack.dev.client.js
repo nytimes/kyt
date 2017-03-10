@@ -7,12 +7,12 @@ const clone = require('ramda').clone;
 const { clientSrcPath, buildPath, assetsBuildPath } = require('kyt-utils/paths')();
 
 const cssStyleLoaders = [
-  'style',
+  'style-loader',
   {
-    loader: 'css',
+    loader: 'css-loader',
     options: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
-  'postcss',
+  'postcss-loader',
 ];
 
 module.exports = (options) => {
@@ -56,13 +56,13 @@ module.exports = (options) => {
         },
         {
           test: /\.scss$/,
-          use: clone(cssStyleLoaders).concat('sass'),
+          use: clone(cssStyleLoaders).concat('sass-loader'),
         },
       ],
     },
 
     plugins: [
-      new webpack.NoErrorsPlugin(),
+      new webpack.NoEmitOnErrorsPlugin(),
 
       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
 
