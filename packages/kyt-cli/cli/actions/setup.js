@@ -7,7 +7,7 @@ const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const starterKyts = require('../../config/starterKyts');
-const uniq = require('ramda').uniq;
+const uniq = require('lodash.uniq');
 const cliPkgJson = require('../../package.json');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
 
