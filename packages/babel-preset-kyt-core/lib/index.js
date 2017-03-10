@@ -1,6 +1,7 @@
 var babelPresetEnv = require('babel-preset-env');
 var babelTransformRuntime = require('babel-plugin-transform-runtime');
 var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
+var babelSyntaxDynamicImport = require('babel-plugin-syntax-dynamic-import');
 
 module.exports = function getPresetCore(context, opts) {
   opts = opts || {};
@@ -9,7 +10,10 @@ module.exports = function getPresetCore(context, opts) {
     presets: [[babelPresetEnv, { modules: false }]],
 
     // provide the ability to opt into babel-plugin-transform-runtime inclusion
-    plugins: [opts.includeRuntime === true && babelTransformRuntime].filter(Boolean),
+    plugins: [
+      opts.includeRuntime === true && babelTransformRuntime,
+      babelSyntaxDynamicImport,
+    ].filter(Boolean),
 
     env: {
       test: {

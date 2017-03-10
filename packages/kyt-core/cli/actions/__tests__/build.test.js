@@ -5,6 +5,7 @@ const shell = {
   mkdir: jest.fn(),
   test: jest.fn(() => true).mockReturnValueOnce(true).mockReturnValueOnce(false),
   cp: jest.fn(),
+  rm: jest.fn(() => ({ code: 0 })),
 };
 
 jest.setMock('shelljs', shell);
@@ -49,7 +50,7 @@ describe('build', () => {
     assert.deepEqual(buildConfigs.mock.calls, [[testConfig, 'production']],
       'builds production configuration');
 
-    assert.ok(/^rm -rf/.test(shell.exec.mock.calls[0][0]),
+    assert.deepEqual(shell.rm.mock.calls[0], ['-rf', buildPath],
       'should clean build directory...');
     assert.deepEqual(shell.mkdir.mock.calls[0], [buildPath],
       'should recreate build directory');

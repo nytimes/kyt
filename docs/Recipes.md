@@ -8,7 +8,7 @@ Easy ways to extend kyt.
   1. [Add Webpack Aliases](#add-webpack-aliases)
   1. [Add PostCSS Plugins](#add-postcss-plugins)
   1. [Add Babel Plugins and Presets](#add-babel-plugins-and-presets)
-  1. [Add always-mocked modules to Jest configuration](add-always-mocked-modules-to-jest-configuration)
+  1. [Add always-mocked modules to Jest configuration](#add-always-mocked-modules-to-jest-configuration)
 
 ## Extend Webpack Configuration
 
@@ -41,7 +41,7 @@ In `kyt.config.js`
 ```javascript
 modifyWebpackConfig: (baseConfig, options) => {
   baseConfig.resolve.alias = {
-    'myAliasFolder': path.resolve(process.cwd(), './src/path/to/my/folder'),
+    'myAliasFolder': require('path').resolve(process.cwd(), './src/path/to/my/folder'),
   }
   return baseConfig;
 }
@@ -52,7 +52,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 in `kyt.config.js`
 ```javascript   
 modifyWebpackConfig: (baseConfig, options) => {
-
+  const webpack = require('webpack');
   baseConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       options: {
@@ -69,10 +69,11 @@ modifyWebpackConfig: (baseConfig, options) => {
 ## Update browser list for autoprefixer
 ```javascript
 modifyWebpackConfig: (baseConfig, options) => {
+  const webpack = require('webpack');
   baseConfig.plugins.push(
     new webpack.LoaderOptionsPlugin({
       options: {
-        postcss: [autoprefixer({ browsers: ['last 2 versions', 'ios 8'] })],
+        postcss: [require('autoprefixer')({ browsers: ['last 2 versions', 'ios 8'] })],
         context: '/',
       },
     })
@@ -108,7 +109,7 @@ modifyJestConfig: (baseConfig) => {
   // always mock Relay (react-relay) for tests
   jestConfig.moduleNameMapper = Object.assign({}, jestConfig.moduleNameMapper,
     {
-      'react-relay': path.resolve(__dirname, '__mocks__/react-relay.js'),
+      'react-relay': require('path').resolve(__dirname, '__mocks__/react-relay.js'),
     }
   );
 

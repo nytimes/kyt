@@ -8,13 +8,9 @@ const webpack = require('webpack');
 const shell = require('shelljs');
 const autoprefixer = require('autoprefixer');
 const { buildPath, userNodeModulesPath, userBabelrcPath } = require('kyt-utils/paths')();
-const logger = require('kyt-utils/logger');
 
 module.exports = (options) => {
   const hasBabelrc = shell.test('-f', userBabelrcPath);
-  if (!hasBabelrc) {
-    logger.warn('No user .babelrc found. Using kyt default babel preset...');
-  }
 
   return {
     node: {
@@ -69,10 +65,6 @@ module.exports = (options) => {
           },
         },
         {
-          test: /\.json$/,
-          loader: 'json-loader',
-        },
-        {
           test: /\.(js|jsx)$/,
           loader: 'babel-loader',
           exclude: [
@@ -81,7 +73,7 @@ module.exports = (options) => {
           ],
           // babel configuration should come from presets defined in the user's
           // .babelrc, unless there's a specific reason why it has to be put in
-          // the webpack loader query
+          // the webpack loader options
           options: Object.assign({
             // this is a loader-specific option and can't be put in a babel preset
             cacheDirectory: false,
