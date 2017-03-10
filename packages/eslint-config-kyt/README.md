@@ -50,6 +50,21 @@ Note, installing `kyt` or setting up a starter-kyt will install this package aut
 
 ## Changelog
 
+**0.3.0** - 02/28/17
+
+This release upgrades linter dependencies, fixing (among other things) `no-unused-prop-types` false positives:
+- _eslint_ from [3.8.1 to 3.16.1](https://github.com/eslint/eslint/blob/master/CHANGELOG.md)
+- _eslint-config-airbnb_ from [12.0.0 to 14.1.0](https://github.com/airbnb/javascript/blob/master/packages/eslint-config-airbnb/CHANGELOG.md)
+- _eslint-plugin-import_ from [1.16.0 to 2.2.0](https://github.com/benmosher/eslint-plugin-import/blob/master/CHANGELOG.md)
+- _eslint-plugin-jsxa11y_ from [2.2.3 to 4.0.0](https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/CHANGELOG.md)
+- _eslint-plugin-react_ from [6.4.1 to 6.10.0](https://github.com/yannickcr/eslint-plugin-react/blob/master/CHANGELOG.md)
+
+### BREAKING CHANGES
+
+### FEATURES
+
+### FIXES
+
 **0.2.0** - 02/07/17
 
 ### BREAKING CHANGES
