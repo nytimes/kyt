@@ -1,7 +1,15 @@
 /* eslint-disable import/no-dynamic-require,global-require, no-console */
 const fs = require('fs');
 const path = require('path');
-const spawn = require('child_process').spawnSync;
+
+// Ensure top-level is installed
+let shell;
+try {
+  shell = require('shelljs');
+} catch (e) {
+  console.log("👉 Please be sure to 'npm install' or 'yarn install' in the root kyt/ directory before running 'clean'");
+  return;
+}
 
 const logTask = msg => console.log(`👍  ${msg}`);
 
@@ -28,15 +36,6 @@ const getPackages = () => fs.readdirSync('packages').reduce((pkgs, pkg) => {
   } catch (e) { return pkgs; }
   return pkgs;
 }, []);
-
-// Ensure top-level is installed
-let shell;
-try {
-  shell = require('shelljs')
-} catch(e) {
-  console.log(`👉 Please be sure to 'npm install' or 'yarn install' in the root kyt/ directory before running 'clean'`);
-  return;
-}
 
 // Start cleaning
 console.log('\n🛁 Cleaning...\n');
