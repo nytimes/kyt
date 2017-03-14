@@ -22,3 +22,9 @@ To use in your project:
 *(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) for Babel preset options)*
 
 - `coreOptions` (`Object`) - options object to pass through to `babel-preset-kyt-core`; default `{}`
+
+## CHANGELOG
+
+### `0.2.0-rc`
+
+- Updates `babel-preset-kyt-core` to `0.2.0-rc.1` to allow parsing of [dynamic `import()`](https://webpack.js.org/guides/code-splitting-import/#dynamic-import).

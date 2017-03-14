@@ -22,7 +22,7 @@
     "babel-jest": "19.0.0",
     "babel-loader": "6.3.2",
     "babel-polyfill": "6.16.0",
-    "babel-preset-kyt-core": "0.1.0",
+    "babel-preset-kyt-core": "0.2.0-rc.1",
     "chokidar": "1.6.0",
     "commander": "2.9.0",
     "css-loader": "0.26.1",
