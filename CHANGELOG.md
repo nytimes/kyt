@@ -3,10 +3,34 @@
 
 `kyt-cli` has a separate Changelog [here](/packages/kyt-cli/CHANGELOG.md).
 
-## master
+## Master
 
-### `stylelint-config-kyt` upgrade. The upgrade involved updating the internal dependencies. Check out the changelog [here](/packages/stylelint-config-kyt/CHANGELOG.md).
+## 0.5.0-rc1
 
+### BREAKING CHANGES
+
+### Webpack 2.2 upgrade
+Upgrade to final version of Webpack 2.2 See the [migration guide](/docs/migration-guides/0.4-0.5.md) for more details [#403](https://github.com/NYTimes/kyt/pull/403)
+### `stylelint-config-kyt` upgrade.
+ The upgrade involved updating the internal dependencies. Check out the changelog [here](/packages/stylelint-config-kyt/README.md).
+### `eslint-config-kyt` upgrade.
+Check out the changelog [here](/packages/eslint-config-kyt/README.md).
+### Jest 19 Upgrade
+Upgrade from Jest 16 [#422](https://github.com/NYTimes/kyt/pull/422)
+Check out the [migration guide](/docs/migration-guides/0.4-0.5.md) for more details
+
+
+### FEATURES
+- Adds User survey link for modifyWebpackConfig [#433](https://github.com/NYTimes/kyt/pull/433)
+- Version starter-kyts with npm [#425](https://github.com/NYTimes/kyt/pull/425)
+- Add additional functional tests [#405](https://github.com/NYTimes/kyt/pull/405)
+- Add source-map-support plugin [#402](https://github.com/NYTimes/kyt/pull/402)
+
+### BUGFIXES
+- Removes transform runtime plugin from Jest Config [#414](https://github.com/NYTimes/kyt/pull/414)
+- Switch out Ramda for Lodash [#431](https://github.com/NYTimes/kyt/pull/431)
+- Add missing require statments to recipe docs [#415](https://github.com/NYTimes/kyt/pull/415) and [#410](https://github.com/NYTimes/kyt/pull/410)
+- Fix bug with build on windows where old build directory wasn't deleted [#429](https://github.com/NYTimes/kyt/pull/429)
 
 ## 0.4.1 (March 03, 2017)
 
