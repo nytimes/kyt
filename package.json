@@ -31,6 +31,7 @@
   "scripts": {
     "bootstrap": "node bootstrap.js",
     "update": "type=install npm run bootstrap",
+    "clean": "node clean.js",
     "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/kyt/cli/index.js test && cd  ../../kyt-starter-static/starter-src && node_modules/kyt/cli/index.js test",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
