@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-kyt-core",
-  "version": "0.1.0",
+  "version": "0.2.0-rc.1",
   "description": "An opinionated babel preset, best used with kyt",
   "main": "lib/index.js",
   "author": "NYTimes",
