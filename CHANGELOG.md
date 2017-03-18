@@ -7,30 +7,33 @@
 
 ## 0.5.0-rc1
 
+[0.4.x-0.5.0 Migration guide](/docs/migration-guides/0.4-0.5.md).
+
 ### BREAKING CHANGES
 
-### Webpack 2.2 upgrade
-Upgrade to final version of Webpack 2.2 See the [migration guide](/docs/migration-guides/0.4-0.5.md) for more details [#403](https://github.com/NYTimes/kyt/pull/403)
-### `stylelint-config-kyt` upgrade.
- The upgrade involved updating the internal dependencies. Check out the changelog [here](/packages/stylelint-config-kyt/README.md).
-### `eslint-config-kyt` upgrade.
-Check out the changelog [here](/packages/eslint-config-kyt/README.md).
-### Jest 19 Upgrade
-Upgrade from Jest 16 [#422](https://github.com/NYTimes/kyt/pull/422)
-Check out the [migration guide](/docs/migration-guides/0.4-0.5.md) for more details
+#### Webpack 2.2 upgrade
+Upgraded to final version of Webpack 2.
 
+#### StyleLint upgrade.
+ The upgrade involved updating the internal dependencies. Check out the changelog [here](/packages/stylelint-config-kyt/README.md).
+
+#### ESLint upgrade.
+The upgrade involved updating the internal dependencies. Check out the changelog [here](/packages/eslint-config-kyt/README.md).
+
+#### Jest 19 Upgrade
+Upgrade from Jest 16 [#422](https://github.com/NYTimes/kyt/pull/422)
 
 ### FEATURES
 - Adds User survey link for modifyWebpackConfig [#433](https://github.com/NYTimes/kyt/pull/433)
-- Version starter-kyts with npm [#425](https://github.com/NYTimes/kyt/pull/425)
-- Add additional functional tests [#405](https://github.com/NYTimes/kyt/pull/405)
-- Add source-map-support plugin [#402](https://github.com/NYTimes/kyt/pull/402)
+- Adds starter-kyt versioning with npm [#425](https://github.com/NYTimes/kyt/pull/425)
+- Adds additional functional tests [#405](https://github.com/NYTimes/kyt/pull/405)
+- Adds source-map-support plugin [#402](https://github.com/NYTimes/kyt/pull/402)
 
 ### BUGFIXES
 - Removes transform runtime plugin from Jest Config [#414](https://github.com/NYTimes/kyt/pull/414)
-- Switch out Ramda for Lodash [#431](https://github.com/NYTimes/kyt/pull/431)
-- Add missing require statments to recipe docs [#415](https://github.com/NYTimes/kyt/pull/415) and [#410](https://github.com/NYTimes/kyt/pull/410)
-- Fix bug with build on windows where old build directory wasn't deleted [#429](https://github.com/NYTimes/kyt/pull/429)
+- Replaces Ramda with Lodash [#431](https://github.com/NYTimes/kyt/pull/431)
+- Adds missing require statments to recipe docs [#415](https://github.com/NYTimes/kyt/pull/415) and [#410](https://github.com/NYTimes/kyt/pull/410)
+- Fixes bug with build on windows where old build directory wasn't deleted [#429](https://github.com/NYTimes/kyt/pull/429)
 
 ## 0.4.1 (March 03, 2017)
 
@@ -46,6 +49,8 @@ Fixes autoprefixer bug where deprecated bugs were getting removed by the minimiz
 
 
 ## 0.4.0 (February 13, 2017)
+
+[0.3.x-0.4.0 Migration guide](/docs/migration-guides/0.3-0.4.md).
 
 ### BREAKING CHANGES
 
