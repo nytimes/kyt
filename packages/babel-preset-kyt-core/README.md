@@ -23,3 +23,9 @@ To install:
 *(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) for Babel preset options)*
 
 - `includeRuntime` (`Boolean`) - whether or not to include [`babel-plugin-transform-runtime`](https://www.npmjs.com/package/babel-plugin-transform-runtime); default: `false`
+
+## CHANGELOG
+
+### `0.2.0-rc.*
+
+- Includes [`babel-plugin-syntax-dynamic-import`](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to allow parsing of [dynamic `import()`](https://webpack.js.org/guides/code-splitting-import/#dynamic-import).
