@@ -6,8 +6,22 @@ const logger = {
   warn: jest.fn(),
 };
 
+const webpack = {
+  LoaderOptionsPlugin: jest.fn(),
+  optimize: {
+    UglifyJsPlugin: jest.fn(),
+    LimitChunkCountPlugin: jest.fn(),
+  },
+  BannerPlugin: jest.fn(),
+  NoEmitOnErrorsPlugin: jest.fn(),
+  HotModuleReplacementPlugin: jest.fn(),
+  DefinePlugin: jest.fn(),
+};
+
 jest.setMock('shelljs', shell);
 jest.setMock('kyt-utils/logger', logger);
+jest.setMock('webpack', webpack);
+
 
 const devClientConfig = require('../webpack.dev.client');
 const devServerConfig = require('../webpack.dev.server');
