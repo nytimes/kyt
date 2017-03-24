@@ -801,9 +801,9 @@ babel-preset-jest@^19.0.0:
   dependencies:
     babel-plugin-jest-hoist "^19.0.0"
 
-babel-preset-kyt-core@0.2.0-rc.1:
-  version "0.2.0-rc.1"
-  resolved "https://registry.yarnpkg.com/babel-preset-kyt-core/-/babel-preset-kyt-core-0.2.0-rc.1.tgz#e23d9b676003751c95b8d55e34556106d7b39b66"
+babel-preset-kyt-core@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-kyt-core/-/babel-preset-kyt-core-0.2.0.tgz#6f06fd1293613fd972cfaebadf563ae8d66de25d"
   dependencies:
     babel-plugin-syntax-dynamic-import "6.18.0"
     babel-plugin-transform-es2015-modules-commonjs "6.16.0"
@@ -1283,10 +1283,10 @@ commondir@^1.0.1:
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
 
 compressible@~2.0.8:
-  version "2.0.9"
-  resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.9.tgz#6daab4e2b599c2770dd9e21e7a891b1c5a755425"
+  version "2.0.10"
+  resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.10.tgz#feda1c7f7617912732b29bf8cf26252a20b9eecd"
   dependencies:
-    mime-db ">= 1.24.0 < 2"
+    mime-db ">= 1.27.0 < 2"
 
 compression@^1.5.2:
   version "1.6.2"
@@ -1568,8 +1568,8 @@ d@1:
     es5-ext "^0.10.9"
 
 damerau-levenshtein@^1.0.0:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.3.tgz#ae4f4ce0b62acae10ff63a01bb08f652f5213af2"
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
 
 dashdash@^1.12.0:
   version "1.14.1"
@@ -1950,9 +1950,9 @@ eslint-config-airbnb@14.1.0:
   dependencies:
     eslint-config-airbnb-base "^11.1.0"
 
-eslint-config-kyt@0.3.0-beta.2:
-  version "0.3.0-beta.2"
-  resolved "https://registry.yarnpkg.com/eslint-config-kyt/-/eslint-config-kyt-0.3.0-beta.2.tgz#2157f705f715ba1a760d862017d5a8ecff1e416b"
+eslint-config-kyt@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-kyt/-/eslint-config-kyt-0.3.0.tgz#f4705ab494ffc1491d1ba9c30ebbe52fc349ae91"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
@@ -3880,15 +3880,15 @@ miller-rabin@^4.0.0:
     bn.js "^4.0.0"
     brorand "^1.0.1"
 
-"mime-db@>= 1.24.0 < 2", mime-db@~1.26.0:
-  version "1.26.0"
-  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.26.0.tgz#eaffcd0e4fc6935cf8134da246e2e6c35305adff"
+"mime-db@>= 1.27.0 < 2", mime-db@~1.27.0:
+  version "1.27.0"
+  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1"
 
 mime-types@^2.1.12, mime-types@~2.1.11, mime-types@~2.1.13, mime-types@~2.1.7:
-  version "2.1.14"
-  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.14.tgz#f7ef7d97583fcaf3b7d282b6f8b5679dab1e94ee"
+  version "2.1.15"
+  resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.15.tgz#a4ebf5064094569237b8cf70046776d09fc92aed"
   dependencies:
-    mime-db "~1.26.0"
+    mime-db "~1.27.0"
 
 mime@1.2.x:
   version "1.2.11"
@@ -5643,9 +5643,9 @@ stylehacks@^2.3.0:
     text-table "^0.2.0"
     write-file-stdout "0.0.2"
 
-stylelint-config-kyt@0.3.0-beta.1:
-  version "0.3.0-beta.1"
-  resolved "https://registry.yarnpkg.com/stylelint-config-kyt/-/stylelint-config-kyt-0.3.0-beta.1.tgz#40eaaab68662cdc31b58356a245b31a684965393"
+stylelint-config-kyt@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/stylelint-config-kyt/-/stylelint-config-kyt-0.3.0.tgz#062280d53c251b943a77d3f26e8a9b86a3973384"
 
 stylelint-config-standard@16.0.0:
   version "16.0.0"
