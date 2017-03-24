@@ -53,7 +53,7 @@ Note, installing `kyt` or setting up a starter-kyt will install this package aut
 
 ## Changelog
 
-**0.3.0** - 02/28/17
+**0.3.0** - 03/23/17
 
 This release upgrades linter dependencies, fixing (among other things) `no-unused-prop-types` false positives:
 - _eslint_ from [3.8.1 to 3.16.1](https://github.com/eslint/eslint/blob/master/CHANGELOG.md)
