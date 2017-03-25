@@ -34,7 +34,11 @@ describe('webpackCompiler', () => {
     });
 
     it('then displays any warnings', () => {
-      pluginDone({ hasErrors: () => false, hasWarnings: () => true });
+      pluginDone({
+        hasErrors: () => false,
+        hasWarnings: () => true,
+        toJson: () => ({ warnings: [] }),
+      });
       expect(logger.warn).toBeCalled();
     });
 
