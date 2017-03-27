@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.5.1 - 3/27/17
+
+Upgrades eslint to version 3.18 to get around an error. Read more [here](/packages/eslint-config-kyt/README.md).
+
 ## 0.5.0 - 3/23/17
 
 [0.4.x-0.5.0 Migration guide](/docs/migration-guides/0.4-0.5.md).
