@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kyt",
-  "version": "0.3.0-beta.2",
+  "version": "0.3.1",
   "description": "ESLint configuration for kyt projects.",
   "main": "eslintrc.json",
   "author": "NYTimes",
@@ -9,7 +9,7 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "peerDependencies": {
-    "eslint": "3.17.1",
+    "eslint": "3.18.0",
     "eslint-config-airbnb": "14.1.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-json": "1.2.0",

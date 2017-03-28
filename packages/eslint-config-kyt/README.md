@@ -32,6 +32,9 @@ Note, installing `kyt` or setting up a starter-kyt will install this package aut
 
 **[11.2 _Don't use generators for now._](https://github.com/airbnb/javascript#generators--nope)** - This eslint rule has been overridden. It is ok to use generators in node.js but it is advised not to use them on the client-side.
 
+**[19.2 Additional trailing comma: Yup. eslint: comma-dangle](https://github.com/airbnb/javascript#commas--dangling)** - This eslint rule is overridden for functions to work with older versions of node.
+
+
 ## React Overrides
 
 **[Ordering](https://github.com/airbnb/javascript/tree/master/react#ordering)** - Nah.
@@ -50,7 +53,24 @@ Note, installing `kyt` or setting up a starter-kyt will install this package aut
 
 ## Changelog
 
-**0.3.0** - 02/28/17
+**0.3.1** - 03/27/17
+
+Upgrades eslint to version [3.18](https://github.com/eslint/eslint/blob/master/CHANGELOG.md) for fix below.
+
+### BREAKING CHANGES
+
+### FEATURES
+
+### FIXES
+
+Fixes the following error:
+```
+Configuration for rule "no-unused-expressions" is invalid:
+Value "data["0"].allowTaggedTemplates" has additional properties.
+```
+More here: https://github.com/eslint/eslint/issues/7632
+
+**0.3.0** - 03/23/17
 
 This release upgrades linter dependencies, fixing (among other things) `no-unused-prop-types` false positives:
 - _eslint_ from [3.8.1 to 3.16.1](https://github.com/eslint/eslint/blob/master/CHANGELOG.md)

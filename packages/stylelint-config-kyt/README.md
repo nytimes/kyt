@@ -138,7 +138,7 @@ Default values can be used when it's convenient
 
 ## Changelog
 
-**0.3.0** - 02/26/17
+**0.3.0** - 03/23/17
 
 This release upgrades Stylelint from [7.5.0 to 7.9.0](https://github.com/stylelint/stylelint/blob/master/CHANGELOG.md) and stylelint-config-standard from [14.0.0 to 16.0.0](https://github.com/stylelint/stylelint-config-standard/blob/master/CHANGELOG.md).
 
@@ -159,4 +159,3 @@ This release upgrades Stylelint from [7.5.0 to 7.9.0](https://github.com/styleli
 ### FIXES
 
 **0.0.1 - 0.1.0 ** - 12/08/16 - life
-
