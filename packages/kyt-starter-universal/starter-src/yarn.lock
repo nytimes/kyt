@@ -1424,7 +1424,7 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
 
-concat-stream@^1.4.6, concat-stream@^1.4.7:
+concat-stream@^1.4.7, concat-stream@^1.5.2:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/concat-stream/-/concat-stream-1.6.0.tgz#0aac662fd52be78964d5532f694784e70110acf7"
   dependencies:
@@ -1824,6 +1824,13 @@ doctrine@1.5.0, doctrine@^1.2.2:
     esutils "^2.0.2"
     isarray "^1.0.0"
 
+doctrine@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.0.0.tgz#c73d8d2909d22291e1a007a395804da8b665fe63"
+  dependencies:
+    esutils "^2.0.2"
+    isarray "^1.0.0"
+
 doiuse@^2.4.1:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/doiuse/-/doiuse-2.6.0.tgz#1892d10b61a9a356addbf2b614933e81f8bb3834"
@@ -2099,9 +2106,9 @@ eslint-config-airbnb@14.1.0:
   dependencies:
     eslint-config-airbnb-base "^11.1.0"
 
-eslint-config-kyt@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/eslint-config-kyt/-/eslint-config-kyt-0.3.0.tgz#f4705ab494ffc1491d1ba9c30ebbe52fc349ae91"
+eslint-config-kyt@0.3.1:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/eslint-config-kyt/-/eslint-config-kyt-0.3.1.tgz#f43d15868c26ad739b2ab8e3ea2687c6e9e6fb86"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
@@ -2160,17 +2167,18 @@ eslint-plugin-react@6.10.0:
     jsx-ast-utils "^1.3.4"
     object.assign "^4.0.4"
 
-eslint@3.17.1:
-  version "3.17.1"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.17.1.tgz#b80ae12d9c406d858406fccda627afce33ea10ea"
+eslint@3.18.0:
+  version "3.18.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-3.18.0.tgz#647e985c4ae71502d20ac62c109f66d5104c8a4b"
   dependencies:
     babel-code-frame "^6.16.0"
     chalk "^1.1.3"
-    concat-stream "^1.4.6"
+    concat-stream "^1.5.2"
     debug "^2.1.1"
-    doctrine "^1.2.2"
+    doctrine "^2.0.0"
     escope "^3.6.0"
     espree "^3.4.0"
+    esquery "^1.0.0"
     estraverse "^4.2.0"
     esutils "^2.0.2"
     file-entry-cache "^2.0.0"
@@ -2214,6 +2222,12 @@ esprima@^3.1.1:
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-3.1.3.tgz#fdca51cee6133895e3c88d535ce49dbff62a4633"
 
+esquery@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/esquery/-/esquery-1.0.0.tgz#cfba8b57d7fba93f17298a8a006a04cda13d80fa"
+  dependencies:
+    estraverse "^4.0.0"
+
 esrecurse@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/esrecurse/-/esrecurse-4.1.0.tgz#4713b6536adf7f2ac4f327d559e7756bff648220"
@@ -2225,7 +2239,7 @@ estraverse@^1.9.1:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-1.9.3.tgz#af67f2dc922582415950926091a4005d29c9bb44"
 
-estraverse@^4.1.1, estraverse@^4.2.0:
+estraverse@^4.0.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
 
@@ -3724,9 +3738,9 @@ kyt-utils@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/kyt-utils/-/kyt-utils-0.1.0.tgz#69d29f48649053e61466f05264624e5d48da437f"
 
-kyt@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.5.0.tgz#bc4ddcfa7e3291057982b37937b236d45fb4cb26"
+kyt@0.5.1:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.5.1.tgz#705777a4dba6b59ee3fdecb4d695ca117a401f95"
   dependencies:
     assets-webpack-plugin "3.5.1"
     autoprefixer "6.5.0"
@@ -3741,9 +3755,9 @@ kyt@0.5.0:
     commander "2.9.0"
     css-loader "0.26.1"
     detect-port "1.0.1"
-    eslint "3.17.1"
+    eslint "3.18.0"
     eslint-config-airbnb "14.1.0"
-    eslint-config-kyt "0.3.0"
+    eslint-config-kyt "0.3.1"
     eslint-plugin-import "2.2.0"
     eslint-plugin-json "1.2.0"
     eslint-plugin-jsx-a11y "4.0.0"
