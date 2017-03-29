@@ -138,6 +138,11 @@ Default values can be used when it's convenient
 
 ## Changelog
 
+**0.3.1** - 03/28/17
+This release ensures using CSS modules selectors such as :global and :local
+don't trigger invalid stylelint errors. Useful when using libraries such as
+react-addons-css-transition-group.
+
 **0.3.0** - 03/23/17
 
 This release upgrades Stylelint from [7.5.0 to 7.9.0](https://github.com/stylelint/stylelint/blob/master/CHANGELOG.md) and stylelint-config-standard from [14.0.0 to 16.0.0](https://github.com/stylelint/stylelint-config-standard/blob/master/CHANGELOG.md).
