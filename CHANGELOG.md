@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.5.2 - 3/28/17
+
+Adds Stylelint rule exceptions for common CSS Modules syntax, like `:global`, `:local`, etc. See more [here](/packages/stylelint-config-kyt/README.md).
+
 ## 0.5.1 - 3/27/17
 
 Upgrades eslint to version 3.18 to get around an error. Read more [here](/packages/eslint-config-kyt/README.md).
