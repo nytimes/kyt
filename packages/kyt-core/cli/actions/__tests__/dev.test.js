@@ -170,7 +170,6 @@ describe('dev', () => {
       'should call express.static once');
     assert.equal(express.use.mock.calls.length, 4,
       'should set up four express middlewares');
-
   });
 
   it('handles multiple server entries', () => {
