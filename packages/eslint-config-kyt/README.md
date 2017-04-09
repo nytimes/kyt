@@ -53,6 +53,18 @@ Note, installing `kyt` or setting up a starter-kyt will install this package aut
 
 ## Changelog
 
+**0.3.2** - 04/09/17
+
+Upgrades eslint to version [3.19](https://github.com/eslint/eslint/blob/master/CHANGELOG.md) for fix below.
+
+### BREAKING CHANGES
+
+### FEATURES
+
+### FIXES
+
+- fixes `no-restricted-syntax` error in linter [#459](https://github.com/NYTimes/kyt/pull/459).
+
 **0.3.1** - 03/27/17
 
 Upgrades eslint to version [3.18](https://github.com/eslint/eslint/blob/master/CHANGELOG.md) for fix below.
