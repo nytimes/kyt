@@ -138,6 +138,10 @@ Default values can be used when it's convenient
 
 ## Changelog
 
+**Master**
+
+- Remove `at-rule-no-unknown` so all sass syntax is supported. 
+
 **0.3.1** - 03/28/17
 This release ensures using CSS modules selectors such as :global and :local
 don't trigger invalid stylelint errors. Useful when using libraries such as
