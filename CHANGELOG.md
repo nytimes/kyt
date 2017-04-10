@@ -5,15 +5,25 @@
 
 ## Master
 
-## 0.5.2 - 3/28/17
+## 0.5.3 - 04/09/17
+
+### FEATURES
+
+- adds history api fallback to `dev` command for projects that use `hasServer=false` [#457](https://github.com/NYTimes/kyt/issues/457). Read more about how this affects the static starter kyt in the [notes on implementation section](/packages/kyt-starter-static#notes-on-implementation).
+
+### BUGFIXES
+
+- fixes `no-restricted-syntax` error in linter [#459](https://github.com/NYTimes/kyt/pull/459). Read more [here](/packages/eslint-config-kyt/README.md#changelog).
+
+## 0.5.2 - 03/28/17
 
 Adds Stylelint rule exceptions for common CSS Modules syntax, like `:global`, `:local`, etc. See more [here](/packages/stylelint-config-kyt/README.md).
 
-## 0.5.1 - 3/27/17
+## 0.5.1 - 03/27/17
 
 Upgrades eslint to version 3.18 to get around an error. Read more [here](/packages/eslint-config-kyt/README.md).
 
-## 0.5.0 - 3/23/17
+## 0.5.0 - 03/23/17
 
 [0.4.x-0.5.0 Migration guide](/docs/migration-guides/0.4-0.5.md).
 
