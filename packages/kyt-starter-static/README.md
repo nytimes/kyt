@@ -26,6 +26,8 @@ The following are some of the tools included in this starter-kyt:
 
 - Assets from `src/public` are accessible from `/` in both `dev` and production (`build`).
 
+- Note, if your site uses routes, `dev` is configured with the [history api fallback](https://github.com/bripkens/connect-history-api-fallback) to support routing. In production (after a `build`), you will need to setup an edge/server, like nginx or Varnish, to forward routed requests to your `build/index.html`.
+
 ## How To Contribute
 Want to build your own starter-kyt?
 See directions [here](https://github.com/NYTimes/kyt/docs/Starterkyts.md).

@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -30,7 +30,7 @@
     "detect-port": "1.0.1",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
-    "eslint-config-kyt": "0.3.1",
+    "eslint-config-kyt": "0.3.2",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
