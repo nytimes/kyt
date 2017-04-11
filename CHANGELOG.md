@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.5.4 - 04/10/17
+
+Removes `at-rule-no-unknown` from stylelint configuration [#462](https://github.com/NYTimes/kyt/pull/462).
+
 ## 0.5.3 - 04/09/17
 
 ### FEATURES
