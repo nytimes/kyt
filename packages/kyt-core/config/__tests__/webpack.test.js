@@ -78,6 +78,6 @@ describe('webpack.base', () => {
   });
   it('sets up a DefinePlugin entry for options.type', () => {
     baseConfig({ clientURL: {}, publicPath: '/', type: 'foo' });
-    expect(webpack.DefinePlugin.mock.calls[0][0].KYT.BUNDLE_TYPE).toBe('"foo"');
+    expect(webpack.DefinePlugin.mock.calls[0][0].KYT.EXECUTION_ENVIRONMENT).toBe('"foo"');
   });
 });
