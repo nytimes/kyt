@@ -38,6 +38,7 @@ module.exports = (options) => {
           CLIENT_PORT: JSON.stringify((options.clientURL && options.clientURL.port) || ''),
           PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
           PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
+          BUNDLE_TYPE: JSON.stringify(options.type || ''),
           ASSETS_MANIFEST:
               JSON.stringify(path.join(buildPath || '', options.clientAssetsFile || '')),
         },
