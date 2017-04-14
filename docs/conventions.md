@@ -36,6 +36,7 @@ kyt sets several global variables with useful information about the app environm
 * `KYT.PUBLIC_PATH` Full path for static assets server
 * `KYT.PUBLIC_DIR` Relative path to the public directory
 * `KYT.ASSETS_MANIFEST` Object with build assets paths
+* `KYT.BUNDLE_TYPE` Where this code is running: `"server"` or `"client"`
 
 For examples of how to use these environment variables, checkout out the simple React [starter-kyt](https://github.com/nytimes/kyt-starter)
 
