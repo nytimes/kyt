@@ -77,7 +77,7 @@ describe('webpack.base', () => {
     expect(babelLoader.options.presets[0]).toMatch(/babel-preset-kyt-core/);
   });
   it('sets up a DefinePlugin entry for options.type', () => {
-    const config = baseConfig({ clientURL: {}, publicPath: '/', type: 'foo' });
+    baseConfig({ clientURL: {}, publicPath: '/', type: 'foo' });
     expect(webpack.DefinePlugin.mock.calls[0][0].KYT.BUNDLE_TYPE).toBe('"foo"');
   });
 });
