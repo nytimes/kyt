@@ -165,7 +165,6 @@ module.exports = (flags, args) => {
   // Add dependencies, scripts and other package to
   // the user's package.json configuration.
   const updateUserPackageJSON = (existingProject) => {
-    shell.exec('pwd');
     let userPackageJSON;
     // Create a package.json definition if
     // the user doesn't already have one.
@@ -197,7 +196,8 @@ module.exports = (flags, args) => {
   // Cleans and reinstalls node modules.
   const installUserDependencies = () => {
     logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
-    const result = shell.exec(`rm -rf ${paths.userNodeModulesPath} && ${ypm} install`);
+    shell.rm('-rf', paths.userNodeModulesPath);
+    const result = shell.exec(`${ypm} install`);
     if (result.code !== 0) {
       fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
       logger.error('An error occurred when trying to install node modules', result.stderr);
