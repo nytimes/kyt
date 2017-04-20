@@ -47,3 +47,9 @@
     "shelljs": "0.7.5"
   }
 }
+
+/*
+kyt lint-script - lints scripts
+kyt lint-style - lints stylesheets
+kyt lint - lints scripts and stylesheets
+*/
