@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.5.5 - 04/22/17
+
+Updates `babel-loader` and `css-loader` to newer versions which solves deprecation warnings showing up when running a Webpack build [#56](https://github.com/webpack/loader-utils/issues/56).
+
 ## 0.5.4 - 04/10/17
 
 Removes `at-rule-no-unknown` from stylelint configuration [#462](https://github.com/NYTimes/kyt/pull/462).
