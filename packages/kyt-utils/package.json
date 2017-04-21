@@ -7,5 +7,8 @@
   "repository": "git+https://github.com/nytimes/kyt/packages/kyt-utils",
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
-  "main": "logger.js"
+  "main": "logger.js",
+  "dependencies": {
+    "shelljs": "0.7.5"
+  }
 }
