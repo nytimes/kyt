@@ -27,7 +27,7 @@ const handleCollectCoverageFromPatternFlag = (flags) => {
         index !== collectCoverageFromPatternFlagIndex
       )),
       '--coverage',
-      `--collectCoverageFrom=${flags[pathOrPatternIndex]}`
+      `--collectCoverageFrom=${flags[pathOrPatternIndex]}`,
     ];
   }
 
