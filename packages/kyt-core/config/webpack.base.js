@@ -8,6 +8,7 @@ const webpack = require('webpack');
 const shell = require('shelljs');
 const autoprefixer = require('autoprefixer');
 const { buildPath, userNodeModulesPath, userBabelrcPath } = require('kyt-utils/paths')();
+const fileExtensions = require('./fileExtensions');
 
 module.exports = (options) => {
   const hasBabelrc = shell.test('-f', userBabelrcPath);
@@ -59,7 +60,7 @@ module.exports = (options) => {
           loader: 'file-loader?name=[name].[ext]',
         },
         {
-          test: /\.(jpg|jpeg|png|gif|eot|svg|ttf|woff|woff2)$/,
+          test: new RegExp(fileExtensions),
           loader: 'url-loader',
           options: {
             limit: 20000,
