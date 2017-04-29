@@ -1,6 +1,6 @@
 
 import React from 'react';
-import Router from 'react-router/lib/BrowserRouter';
+import {BrowserRouter as Router} from 'react-router';
 import routes from '../routes';
 
 // We need a Root component for React Hot Loading.
