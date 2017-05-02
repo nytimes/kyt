@@ -5,6 +5,12 @@
 
 ## Master
 
+## 0.5.5 - 05/02/17
+- Fixes bug in IE11, moves 'react-hot-loader/patch' after 'babel-polyfill'.[#473](https://github.com/NYTimes/kyt/pull/473)
+- Fixes history api for static starter-kyt [#468](https://github.com/NYTimes/kyt/pull/468)
+- Adds `.ico` to file stub [#475](https://github.com/NYTimes/kyt/pull/475)
+- Adds KYT.EXECUTION_ENVIRONMENT global [#465](https://github.com/NYTimes/kyt/pull/465)
+
 ## 0.5.4 - 04/10/17
 
 Removes `at-rule-no-unknown` from stylelint configuration [#462](https://github.com/NYTimes/kyt/pull/462).
