@@ -5,9 +5,11 @@
 
 ## Master
 
-## 0.5.5 - 04/22/17
-
-Updates `babel-loader` and `css-loader` to newer versions which solves deprecation warnings showing up when running a Webpack build [#56](https://github.com/webpack/loader-utils/issues/56).
+## 0.5.5 - 05/02/17
+- Fixes bug in IE11, moves 'react-hot-loader/patch' after 'babel-polyfill'.[#473](https://github.com/NYTimes/kyt/pull/473)
+- Fixes history api for static starter-kyt [#468](https://github.com/NYTimes/kyt/pull/468)
+- Adds `.ico` to file stub [#475](https://github.com/NYTimes/kyt/pull/475)
+- Adds KYT.EXECUTION_ENVIRONMENT global [#465](https://github.com/NYTimes/kyt/pull/465)
 
 ## 0.5.4 - 04/10/17
 

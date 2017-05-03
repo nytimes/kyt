@@ -43,12 +43,13 @@ module.exports = (config, flags) => {
     const app = express();
     const webpackDevMiddleware = devMiddleware(clientCompiler, devOptions);
 
-    app.use(webpackDevMiddleware);
-    app.use(hotMiddleware(clientCompiler));
     if (!hasServer) {
       app.use(history());
       app.use(express.static(publicSrcPath));
     }
+    app.use(webpackDevMiddleware);
+    app.use(hotMiddleware(clientCompiler));
+
     app.listen(clientURL.port, clientURL.hostname);
   };
 
