@@ -15,7 +15,7 @@ This is an extension of the Airbnb [**JavaScript**](https://github.com/airbnb/ja
 Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
 
 1. Install the _eslint-config-kyt_ node module and its dependencies:  
-  `npm install eslint eslint-config-kyt eslint-config-airbnb eslint-plugin-import eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-react --save-dev`
+  `npm install eslint prettier eslint-config-kyt eslint-config-airbnb eslint-plugin-import eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-prettier eslint-plugin-prettier --save-dev`
 2. Copy the following into an `.eslintrc` in your project:  
 ```js
 {

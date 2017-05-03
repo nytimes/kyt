@@ -1,6 +1,7 @@
 {
   "extends": [
-    "airbnb"
+    "airbnb",
+    "prettier"
   ],
 
   "env": {
@@ -9,7 +10,8 @@
   },
 
   "plugins": [
-    "json"
+    "json",
+    "prettier"
   ],
 
   "parser": "babel-eslint",
@@ -42,6 +44,11 @@
       "imports": "always-multiline",
       "exports": "always-multiline",
       "functions": "never"
+    }],
+    "prettier/prettier": ["error", {
+      "printWidth": 100,
+      "singleQuote": true,
+      "trailingComma": "es5"
     }]
   }
 }

@@ -11,10 +11,13 @@
   "peerDependencies": {
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
+    "eslint-config-prettier": "^1.7.0",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
-    "eslint-plugin-react": "6.10.0"
+    "eslint-plugin-prettier": "^2.0.1",
+    "eslint-plugin-react": "6.10.0",
+    "prettier": "^1.3.0"
   },
   "keywords": [
     "kyt",
