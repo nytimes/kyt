@@ -1,7 +1,6 @@
 
 import React from 'react';
 import Route from 'react-router/lib/Route';
-import IndexRoute from 'react-router/lib/IndexRoute';
 import App from '../components/App';
 
 // Webpack 2 supports ES2015 `import()` by auto-
@@ -24,7 +23,7 @@ const importTools = (nextState, cb) => {
 // https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md
 const routes = (
   <Route path="/" component={App}>
-    <IndexRoute getComponent={importHome} />
+    <Route exact path="/" getComponent={importHome} />
     <Route path="tools" getComponent={importTools} />
   </Route>
 );

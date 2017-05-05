@@ -1,4 +1,5 @@
 const path = require('path');
+const fileExtensions = require('./fileExtensions');
 
 const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', file);
 
@@ -7,10 +8,8 @@ const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', 
 module.exports = (rootDir, aliases = {}) => ({
   moduleNameMapper: Object.assign(
     {
-      '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-          resolveFromUtils('file.stub'),
-      '^[./a-zA-Z0-9!&$_-]+\\.(css|scss)$':
-          'identity-obj-proxy',
+      [fileExtensions]: resolveFromUtils('file.stub'),
+      '^[./a-zA-Z0-9!&$_-]+\\.(css|scss)$': 'identity-obj-proxy',
     },
     aliases
   ),
