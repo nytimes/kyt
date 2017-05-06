@@ -5,7 +5,7 @@ import routes from '../routes';
 // We need a Root component for React Hot Loading.
 function Root() {
   return (
-    <Router routes={routes} />
+    <BrowserRouter routes={routes} />
   );
 }
 
