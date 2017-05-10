@@ -1,9 +1,19 @@
 
-import React, { PropTypes } from 'react';
-import Link from 'react-router/lib/Link';
+import React from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 import styles from './styles.scss';
+import Home from '../Home';
+import Tools from '../Tools';
 
-function App({ children }) {
+// Unfortunately, HMR breaks when we dynamically resolve
+// routes so we need to require them here as a workaround.
+// https://github.com/gaearon/react-hot-loader/issues/288
+if (module.hot) {
+    require('../Home');    // eslint-disable-line global-require
+    require('../Tools');   // eslint-disable-line global-require
+}
+
+function App() {
   return (
     <div>
       <i className={styles.logo} />
@@ -16,14 +26,13 @@ function App({ children }) {
         </li>
       </ul>
       <div className={styles.content}>
-        {children}
+        <Switch>
+            <Route exact path ="/" component={Home} />
+            <Route path="tools" component={Tools} />
+        </Switch>
       </div>
     </div>
   );
 }
-
-App.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default App;

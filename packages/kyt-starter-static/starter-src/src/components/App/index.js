@@ -1,9 +1,19 @@
 
-import React, { PropTypes } from 'react';
-import Link from 'react-router/lib/Link';
+import React from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
 import styles from './styles.scss';
+import Home from '../Home';
+import Tools from '../Tools';
 
-function App({ children }) {
+// Unfortunately, HMR breaks when we dynamically resolve
+// routes so we need to require them here as a workaround.
+// https://github.com/gaearon/react-hot-loader/issues/288
+if (module.hot) {
+    require('../Home');    // eslint-disable-line global-require
+    require('../Tools');   // eslint-disable-line global-require
+}
+
+function App() {
   return (
     <div>
       <i className={styles.logo} />
@@ -16,14 +26,22 @@ function App({ children }) {
         </li>
       </ul>
       <div className={styles.content}>
-        {children}
+          {/*React Router 4 allows you to embed routes directly*/}
+        <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="tools" component={Tools} />
+        </Switch>
       </div>
     </div>
   );
 }
 
-App.propTypes = {
-  children: PropTypes.node.isRequired,
-};
+// Unfortunately, HMR breaks when we dynamically resolve
+// routes so we need to require them here as a workaround.
+// https://github.com/gaearon/react-hot-loader/issues/288
+if (module.hot) {
+    require('../components/Home');    // eslint-disable-line global-require
+    require('../components/Tools');   // eslint-disable-line global-require
+}
 
 export default App;
