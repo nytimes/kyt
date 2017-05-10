@@ -1,13 +1,11 @@
-
 import React from 'react';
-import { Route } from 'react-router-dom'
-import App from '../components/App';
+import { Route, Switch } from 'react-router-dom';
+import Home from '../components/Home';
+import Tools from '../components/Tools';
 
-//TODO: Merge with Root.js?
-// We use `getComponent` to dynamically load routes.
-// https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md
-const routes = (
-  <Route path="/" component={App} />
+export default (
+  <Switch>
+    <Route exact path="/" component={Home} />
+    <Route path="tools" component={Tools} />
+  </Switch>
 );
-
-export default routes;

@@ -1,19 +1,10 @@
 
 import React from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styles from './styles.scss';
-import Home from '../Home';
-import Tools from '../Tools';
+import Routes from '../../routes/';
 
-// Unfortunately, HMR breaks when we dynamically resolve
-// routes so we need to require them here as a workaround.
-// https://github.com/gaearon/react-hot-loader/issues/288
-if (module.hot) {
-    require('../Home');    // eslint-disable-line global-require
-    require('../Tools');   // eslint-disable-line global-require
-}
-
-function App() {
+export default function App() {
   return (
     <div>
       <i className={styles.logo} />
@@ -26,13 +17,9 @@ function App() {
         </li>
       </ul>
       <div className={styles.content}>
-        <Switch>
-            <Route exact path ="/" component={Home} />
-            <Route path="tools" component={Tools} />
-        </Switch>
+        { Routes }
       </div>
     </div>
   );
 }
 
-export default App;
