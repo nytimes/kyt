@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "dependencies": {
-    "babel-preset-kyt-react": "0.2.1-env-beta.1",
+    "babel-preset-kyt-react": "0.2.1-env-beta.2",
     "compression": "1.6.2",
     "express": "4.14.0",
     "react": "15.3.0",
@@ -23,7 +23,7 @@
   },
   "devDependencies": {
     "enzyme": "2.4.1",
-    "kyt": "0.5.2-env-beta.1",
+    "kyt": "0.5.6-env-beta.2",
     "react-addons-test-utils": "15.3.0"
   }
 }

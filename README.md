@@ -72,7 +72,6 @@ Here are the available commands:
 
 * [`dev`](/docs/commands.md#dev) starts a development environment
 * [`build`](/docs/commands.md#build) compiles server and client code for production use
-* [`start`](/docs/commands.md#start) runs production code
 * [`test`](/docs/commands.md#test) runs all tests in /src
 * [`proto`](/docs/commands.md#proto) starts the prototyping app
 * [`lint`](/docs/commands.md#lint) lints src code using ESLint

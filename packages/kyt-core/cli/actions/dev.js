@@ -7,6 +7,7 @@ const express = require('express');
 const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
+const history = require('connect-history-api-fallback');
 const nodemon = require('nodemon');
 const once = require('lodash.once');
 const logger = require('kyt-utils/logger');
@@ -42,9 +43,13 @@ module.exports = (config, flags) => {
     const app = express();
     const webpackDevMiddleware = devMiddleware(clientCompiler, devOptions);
 
+    if (!hasServer) {
+      app.use(history());
+      app.use(express.static(publicSrcPath));
+    }
     app.use(webpackDevMiddleware);
     app.use(hotMiddleware(clientCompiler));
-    if (!hasServer) app.use(express.static(publicSrcPath));
+
     app.listen(clientURL.port, clientURL.hostname);
   };
 
