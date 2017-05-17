@@ -1,10 +1,9 @@
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { PropTypes } from 'react';
+import Link from 'react-router/lib/Link';
 import styles from './styles.scss';
-import Routes from '../../routes/';
 
-export default function App() {
+function App({ children }) {
   return (
     <div>
       <i className={styles.logo} />
@@ -17,9 +16,14 @@ export default function App() {
         </li>
       </ul>
       <div className={styles.content}>
-        { Routes }
+        {children}
       </div>
     </div>
   );
 }
 
+App.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default App;
