@@ -7,8 +7,8 @@ import Tools from '../components/Tools';
 // routes so we need to require them here as a workaround.
 // https://github.com/gaearon/react-hot-loader/issues/288
 if (module.hot) {
-    require('../Home');    // eslint-disable-line global-require
-    require('../Tools');   // eslint-disable-line global-require
+  require('../components/Home');    // eslint-disable-line global-require
+  require('../components/Home');   // eslint-disable-line global-require
 }
 
 export default (
