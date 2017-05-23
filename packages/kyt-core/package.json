@@ -34,7 +34,7 @@
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-json": "1.2.0",
     "eslint-plugin-jsx-a11y": "5.0.3",
-    "eslint-plugin-react": "6.10.0",
+    "eslint-plugin-react": "7.0.1",
     "express": "4.14.0",
     "extract-text-webpack-plugin": "2.0.0-rc.3",
     "file-loader": "0.10.0",
