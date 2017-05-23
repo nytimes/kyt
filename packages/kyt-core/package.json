@@ -29,7 +29,7 @@
     "css-loader": "0.26.1",
     "detect-port": "1.0.1",
     "eslint": "3.19.0",
-    "eslint-config-airbnb": "14.1.0",
+    "eslint-config-airbnb": "15.0.1",
     "eslint-config-kyt": "0.3.2",
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-json": "1.2.0",
