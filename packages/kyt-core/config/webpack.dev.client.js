@@ -2,8 +2,9 @@
 // Development webpack config for client code
 
 const webpack = require('webpack');
-const AssetsPlugin = require('assets-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const clone = require('lodash.clonedeep');
+const path = require('path');
 const { clientSrcPath, buildPath, assetsBuildPath } = require('kyt-utils/paths')();
 
 const cssStyleLoaders = [
@@ -68,9 +69,13 @@ module.exports = (options) => {
 
       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
 
-      new AssetsPlugin({
-        filename: options.clientAssetsFile,
-        path: buildPath,
+      new WebpackAssetsManifest({
+        output: path.join(buildPath, options.clientAssetsFile),
+        space: 2,
+        writeToDisk: true,
+        fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
+        merge: false,
+        publicPath: options.publicPath,
       }),
 
       new webpack.HotModuleReplacementPlugin(),

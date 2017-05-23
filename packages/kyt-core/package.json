@@ -14,7 +14,6 @@
     "node": ">=6.1.0"
   },
   "dependencies": {
-    "assets-webpack-plugin": "3.5.1",
     "autoprefixer": "6.5.0",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.0",
@@ -64,7 +63,8 @@
     "stylelint-config-standard": "16.0.0",
     "temp": "0.8.3",
     "url-loader": "0.5.7",
-    "webpack": "2.2.1",
+    "webpack": "2.5.1",
+    "webpack-assets-manifest": "0.6.2",
     "webpack-dev-middleware": "1.10.0",
     "webpack-dev-server": "2.3.0",
     "webpack-hot-middleware": "2.13.0",

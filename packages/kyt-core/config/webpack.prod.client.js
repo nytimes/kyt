@@ -3,8 +3,9 @@
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const AssetsPlugin = require('assets-webpack-plugin');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const { clientSrcPath, assetsBuildPath, buildPath } = require('kyt-utils/paths')();
+const path = require('path');
 
 const cssLoader = 'css-loader?modules&sourceMap&minimize&-autoprefixer&localIdentName=[name]-[local]--[hash:base64:5]!postcss-loader';
 
@@ -66,9 +67,30 @@ module.exports = options => ({
       sourceMap: true,
     }),
 
-    new AssetsPlugin({
-      filename: options.clientAssetsFile,
-      path: buildPath,
+    new WebpackAssetsManifest({
+      output: path.join(buildPath, options.clientAssetsFile),
+      space: 2,
+      writeToDisk: true,
+      fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
+      merge: false,
+      publicPath: options.publicPath,
     }),
+
+    // Modules should get deterministic ids so that they don't change between builds
+    new webpack.HashedModuleIdsPlugin(),
+
+    // Extract all 3rd party modules into a separate chunk
+    // Only include vendor modules as needed,
+    // https://github.com/webpack/webpack/issues/2372#issuecomment-213149173
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: ({ resource }) => /node_modules/.test(resource),
+    }),
+
+    // Generate a 'manifest' chunk to be inlined
+    new webpack.optimize.CommonsChunkPlugin({ name: 'manifest' }),
+
+    // Merge bundles that would otherwise be negligibly small
+    new webpack.optimize.AggressiveMergingPlugin(),
   ],
 });
