@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.6.0-alpha.1 - 05/23/17
+
+- Upgrades webpack and loaders [#482](https://github.com/NYTimes/kyt/pull/482)
+
 ## 0.5.5 - 05/02/17
 - Fixes bug in IE11, moves 'react-hot-loader/patch' after 'babel-polyfill'.[#473](https://github.com/NYTimes/kyt/pull/473)
 - Fixes history api for static starter-kyt [#468](https://github.com/NYTimes/kyt/pull/468)
