@@ -57,8 +57,8 @@ acorn@^3.0.4:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-3.3.0.tgz#45e37fb39e8da3f25baee3ff5369e2bb5f22017a"
 
 acorn@^4.0.3, acorn@^4.0.4:
-  version "4.0.11"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.11.tgz#edcda3bd937e7556410d42ed5860f67399c794c0"
+  version "4.0.13"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-4.0.13.tgz#105495ae5361d697bd195c825192e1ad7f253787"
 
 acorn@^5.0.1:
   version "5.0.3"
@@ -3750,8 +3750,8 @@ kyt-utils@0.1.0:
   resolved "https://registry.yarnpkg.com/kyt-utils/-/kyt-utils-0.1.0.tgz#69d29f48649053e61466f05264624e5d48da437f"
 
 kyt@^0.5.3:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.5.5.tgz#148b699edccfd8847f66578de38f661ed0440c1f"
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.5.6.tgz#2f956b6d820d836bded8ac428e252f03cc94b458"
   dependencies:
     assets-webpack-plugin "3.5.1"
     autoprefixer "6.5.0"
