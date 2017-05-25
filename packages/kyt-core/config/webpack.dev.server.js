@@ -5,13 +5,14 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const clone = require('lodash.clonedeep');
 const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
+const postcssLoader = require('../utils/getPostcssLoader');
 
 const cssStyleLoaders = [
   {
     loader: 'css-loader/locals',
     options: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
-  'postcss-loader',
+  postcssLoader,
 ];
 
 module.exports = options => ({
