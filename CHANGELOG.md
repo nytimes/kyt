@@ -5,7 +5,7 @@
 
 ## Master
 
-## 0.6.0-alpha.1 - 05/23/17
+## 0.6.0-alpha.3 - 05/25/17
 
 - Upgrades webpack and loaders [#482](https://github.com/NYTimes/kyt/pull/482)
 
