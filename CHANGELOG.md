@@ -5,9 +5,6 @@
 
 ## Master
 
-
-### BREAKING CHANGES
-
 - Adds vendor bundling [#487](https://github.com/NYTimes/kyt/pull/487)
 
 ## 0.6.0-alpha.3 - 05/25/17
