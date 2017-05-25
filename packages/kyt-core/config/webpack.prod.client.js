@@ -4,10 +4,21 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const clone = require('lodash.clonedeep');
+const postcssLoader = require('../utils/getPostcssLoader');
 const { clientSrcPath, assetsBuildPath, buildPath } = require('kyt-utils/paths')();
 const path = require('path');
 
-const cssLoader = 'css-loader?modules&sourceMap&minimize&-autoprefixer&localIdentName=[name]-[local]--[hash:base64:5]!postcss-loader';
+const cssStyleLoaders = [
+  {
+    loader: 'css-loader',
+    options: {
+      modules: true,
+      localIdentName: '[name]-[local]--[hash:base64:5]',
+    },
+  },
+  postcssLoader,
+];
 
 module.exports = options => ({
   target: 'web',
@@ -32,14 +43,14 @@ module.exports = options => ({
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: cssLoader,
+          use: cssStyleLoaders,
         }),
       },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: `${cssLoader}!sass-loader`,
+          use: clone(cssStyleLoaders).concat('sass-loader'),
         }),
       },
     ],

@@ -6,6 +6,7 @@ const WebpackAssetsManifest = require('webpack-assets-manifest');
 const clone = require('lodash.clonedeep');
 const path = require('path');
 const { clientSrcPath, buildPath, assetsBuildPath } = require('kyt-utils/paths')();
+const postcssLoader = require('../utils/getPostcssLoader');
 
 const cssStyleLoaders = [
   'style-loader',
@@ -13,7 +14,7 @@ const cssStyleLoaders = [
     loader: 'css-loader',
     options: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
-  'postcss-loader',
+  postcssLoader,
 ];
 
 module.exports = (options) => {

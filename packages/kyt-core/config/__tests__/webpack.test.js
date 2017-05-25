@@ -30,6 +30,7 @@ jest.setMock('shelljs', shell);
 jest.setMock('path', path);
 jest.setMock('kyt-utils/logger', logger);
 jest.setMock('webpack', webpack);
+jest.setMock('../../utils/getPostcssLoader', {});
 
 
 const devClientConfig = require('../webpack.dev.client');

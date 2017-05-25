@@ -6,7 +6,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const shell = require('shelljs');
-const autoprefixer = require('autoprefixer');
 const { buildPath, userNodeModulesPath, userBabelrcPath } = require('kyt-utils/paths')();
 const fileExtensions = require('./fileExtensions');
 
@@ -42,13 +41,6 @@ module.exports = (options) => {
           EXECUTION_ENVIRONMENT: JSON.stringify(options.type || ''),
           ASSETS_MANIFEST:
               JSON.stringify(path.join(buildPath || '', options.clientAssetsFile || '')),
-        },
-      }),
-
-      new webpack.LoaderOptionsPlugin({
-        options: {
-          postcss: [autoprefixer({ browsers: ['last 2 versions'] })],
-          context: '/',
         },
       }),
     ],
