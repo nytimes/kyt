@@ -3612,9 +3612,9 @@ known-css-properties@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.0.6.tgz#71a0b8fde1b6e3431c471efbc3d9733faebbcfbf"
 
-kyt-utils@0.1.1-alpha.3:
-  version "0.1.1-alpha.3"
-  resolved "https://registry.yarnpkg.com/kyt-utils/-/kyt-utils-0.1.1-alpha.3.tgz#a89ef0a8101453873bb5f9c12441468d73e6d2f5"
+kyt-utils@0.1.1-alpha.4:
+  version "0.1.1-alpha.4"
+  resolved "https://registry.yarnpkg.com/kyt-utils/-/kyt-utils-0.1.1-alpha.4.tgz#33408a62b2bf5520da22cc984a3f5242cf944ca8"
 
 latest-version@^1.0.0:
   version "1.0.1"
@@ -3949,11 +3949,7 @@ miller-rabin@^4.0.0:
     bn.js "^4.0.0"
     brorand "^1.0.1"
 
-"mime-db@>= 1.27.0 < 2":
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.28.0.tgz#fedd349be06d2865b7fc57d837c6de4f17d7ac3c"
-
-mime-db@~1.27.0:
+"mime-db@>= 1.27.0 < 2", mime-db@~1.27.0:
   version "1.27.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.27.0.tgz#820f572296bbd20ec25ed55e5b5de869e5436eb1"
 
