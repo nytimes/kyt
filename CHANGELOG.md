@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.6.0-rc.1 - 06/05/17
+
+- Updates webpack 2.6.0->2.6.1 to fix Promise bug on initialization
+
 ## 0.6.0-alpha.5 - 05/30/17
 
 - rolls file-loader back to 0.10.1 (problem where `outputPath` is used in final path)
