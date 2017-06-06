@@ -2548,9 +2548,9 @@ file-entry-cache@^2.0.0:
     flat-cache "^1.2.1"
     object-assign "^4.0.1"
 
-file-loader@0.11.1:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-0.11.1.tgz#6b328ee1234a729e4e47d36375dd6d35c0e1db84"
+file-loader@0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/file-loader/-/file-loader-0.10.1.tgz#815034119891fc6441fb5a64c11bc93c22ddd842"
   dependencies:
     loader-utils "^1.0.2"
 
@@ -2765,7 +2765,7 @@ glob-parent@^2.0.0:
   dependencies:
     is-glob "^2.0.0"
 
-glob@7.1.0, glob@^7.0.0, glob@^7.0.3, glob@^7.0.5:
+glob@7.1.0, glob@^7.0.0, glob@^7.0.3:
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.0.tgz#36add856d746d0d99e4cc2797bba1ae2c67272fd"
   dependencies:
@@ -2786,7 +2786,7 @@ glob@^5.0.5:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@^7.1.1, glob@~7.1.1:
+glob@^7.0.5, glob@^7.1.1, glob@~7.1.1:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
   dependencies:
@@ -3929,13 +3929,13 @@ known-css-properties@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/known-css-properties/-/known-css-properties-0.0.6.tgz#71a0b8fde1b6e3431c471efbc3d9733faebbcfbf"
 
-kyt-utils@0.1.1-alpha.4:
-  version "0.1.1-alpha.4"
-  resolved "https://registry.yarnpkg.com/kyt-utils/-/kyt-utils-0.1.1-alpha.4.tgz#33408a62b2bf5520da22cc984a3f5242cf944ca8"
+kyt-utils@0.1.1-alpha.5:
+  version "0.1.1-alpha.5"
+  resolved "https://registry.yarnpkg.com/kyt-utils/-/kyt-utils-0.1.1-alpha.5.tgz#f41eb29923751f833ea59f5f813312ef8299988d"
 
-kyt@0.6.0-alpha.4:
-  version "0.6.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.6.0-alpha.4.tgz#39c241fe663a5fd9736f58cbd6f21bad563e0ebd"
+kyt@0.6.0-alpha.5:
+  version "0.6.0-alpha.5"
+  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.6.0-alpha.5.tgz#3d42715e74da3540ce6ae1219e28eff8b64e3548"
   dependencies:
     autoprefixer "7.1.1"
     babel-cli "6.18.0"
@@ -3959,7 +3959,7 @@ kyt@0.6.0-alpha.4:
     eslint-plugin-react "6.10.0"
     express "4.14.0"
     extract-text-webpack-plugin "2.1.0"
-    file-loader "0.11.1"
+    file-loader "0.10.1"
     filesize "3.3.0"
     glob "7.1.0"
     gzip-size "3.0.0"
@@ -3967,7 +3967,7 @@ kyt@0.6.0-alpha.4:
     inquirer "1.2.1"
     install "0.8.1"
     jest "19.0.2"
-    kyt-utils "0.1.1-alpha.4"
+    kyt-utils "0.1.1-alpha.5"
     lodash.clonedeep "4.5.0"
     lodash.merge "4.6.0"
     lodash.once "4.1.1"
