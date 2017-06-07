@@ -5,21 +5,12 @@
 
 ## Master
 
-## 0.6.0-rc.1 - 06/05/17
+## 0.6.0 - 06/07/17
 
-- Updates webpack 2.6.0->2.6.1 to fix Promise bug on initialization
-
-## 0.6.0-alpha.5 - 05/30/17
-
-- rolls file-loader back to 0.10.1 (problem where `outputPath` is used in final path)
-
-## 0.6.0-alpha.4 - 05/25/17
-
-- Adds vendor bundling [#487](https://github.com/NYTimes/kyt/pull/487)
-
-## 0.6.0-alpha.3 - 05/25/17
+[0.5.x-0.6.0 Migration guide](/docs/migration-guides/0.5-0.6.md).
 
 - Upgrades webpack and loaders [#482](https://github.com/NYTimes/kyt/pull/482)
+- Adds vendor bundling [#487](https://github.com/NYTimes/kyt/pull/487)
 
 ## 0.5.5 - 05/02/17
 - Fixes bug in IE11, moves 'react-hot-loader/patch' after 'babel-polyfill'.[#473](https://github.com/NYTimes/kyt/pull/473)
