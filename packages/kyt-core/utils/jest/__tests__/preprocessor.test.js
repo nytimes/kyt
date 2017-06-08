@@ -71,8 +71,9 @@ describe('jest preprocessor', () => {
     expect(babelJest.createTransformer.mock.calls[0][0].presets.length).toBe(1);
     expect(logger.error).not.toHaveBeenCalled();
     expect(global.process.exit).not.toHaveBeenCalled();
-    expect(babelJest.createTransformer.mock.calls[0][0].presets[0])
-      .toMatch(/babel-preset-kyt-core/);
+    expect(babelJest.createTransformer.mock.calls[0][0].presets[0]).toMatch(
+      /babel-preset-kyt-core/
+    );
   });
 
   it('errors and exits if a plugin or preset is not resolvable', () => {
@@ -83,10 +84,15 @@ describe('jest preprocessor', () => {
     };
     fs.readFileSync.mockImplementationOnce(() => JSON.stringify(fakeBabelrc));
     const err = new Error('fake error');
-    resolve.sync.mockImplementationOnce(() => { throw err; });
+    resolve.sync.mockImplementationOnce(() => {
+      throw err;
+    });
     // eslint-disable-next-line global-require, import/newline-after-import
     require('../preprocessor');
-    expect(logger.error).toHaveBeenCalledWith('Could not resolve dependency', 'babel-plugin-my-whatever-plugin');
+    expect(logger.error).toHaveBeenCalledWith(
+      'Could not resolve dependency',
+      'babel-plugin-my-whatever-plugin'
+    );
     expect(logger.error).toHaveBeenCalledWith('Error output', err);
     expect(logger.error).toHaveBeenCalledWith('Exiting...');
     expect(process.exit).toHaveBeenCalledWith(1);

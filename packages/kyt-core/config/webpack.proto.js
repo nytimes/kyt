@@ -1,4 +1,3 @@
-
 // Prototype config
 
 const path = require('path');
@@ -15,8 +14,7 @@ const cssStyleLoaders = [
   'postcss-loader',
 ];
 
-
-module.exports = (options) => {
+module.exports = options => {
   const publicRoot = `http://localhost:${options.port}`;
   const publicPath = `${publicRoot}/prototype`;
 
@@ -48,10 +46,7 @@ module.exports = (options) => {
       ],
     },
 
-    plugins: [
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.NoEmitOnErrorsPlugin(),
-    ],
+    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()],
 
     devServer: {
       publicPath,

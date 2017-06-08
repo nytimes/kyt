@@ -1,4 +1,3 @@
-
 // Command to build production code
 
 const shell = require('shelljs');
@@ -8,15 +7,12 @@ const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
 const { buildPath, publicBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 
-module.exports = (config) => {
+module.exports = config => {
   logger.start('Starting production build...');
 
   let serverCompiler;
 
-  const {
-    clientConfig,
-    serverConfig,
-  } = buildConfigs(config, 'production');
+  const { clientConfig, serverConfig } = buildConfigs(config, 'production');
 
   // Clean the build directory.
   if (shell.rm('-rf', buildPath).code === 0) {
@@ -38,14 +34,14 @@ module.exports = (config) => {
 
   // Compiles server code using the prod.server config
   const buildServer = () => {
-    serverCompiler = webpackCompiler(serverConfig, (stats) => {
+    serverCompiler = webpackCompiler(serverConfig, stats => {
       if (stats.hasErrors()) process.exit(1);
       logger.end('Done building');
     });
     serverCompiler.run(() => undefined);
   };
 
-  const clientCompiler = webpackCompiler(clientConfig, (stats) => {
+  const clientCompiler = webpackCompiler(clientConfig, stats => {
     if (stats.hasErrors()) process.exit(1);
     logger.info('Assets:');
     printAssets(stats, clientConfig);

@@ -15,7 +15,7 @@ describe('getPostcssLoader', () => {
     expect(loader.options.plugins[0]).toBe('no');
   });
 
-  it('should use the user\'s postcss.config.js if it exists', () => {
+  it("should use the user's postcss.config.js if it exists", () => {
     jest.setMock('shelljs', { test: () => ({ code: 0 }) });
     const loader = require('../getPostcssLoader.js');
     expect(loader.options.plugins[0]).toBe('yeah');

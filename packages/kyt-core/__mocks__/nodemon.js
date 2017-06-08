@@ -1,7 +1,8 @@
 const on = jest.fn(() => ({ on }));
 const once = jest.fn(() => ({ on }));
 const nodemonMock = jest.fn(() => ({
-  once, on,
+  once,
+  on,
 }));
 
 module.exports = nodemonMock;

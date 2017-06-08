@@ -47,7 +47,9 @@ describe('logger', () => {
       const nLogCalls = newlineMethods.includes(method) ? 4 : 2;
       logger[method]('here is some text', 'and a second string argument');
       logger[method]('here is some text', { description: 'and a second argument' });
-      expect(global.console.log).toBeCalledWith(`${expectedPrefix}here is some text\nand a second string argument`);
+      expect(global.console.log).toBeCalledWith(
+        `${expectedPrefix}here is some text\nand a second string argument`
+      );
       expect(global.console.log.mock.calls.length).toEqual(nLogCalls);
       expect(global.console.dir.mock.calls.length).toBe(1);
     });

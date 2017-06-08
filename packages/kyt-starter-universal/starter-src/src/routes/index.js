@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Route from 'react-router/lib/Route';
 import IndexRoute from 'react-router/lib/IndexRoute';
@@ -11,13 +10,17 @@ import App from '../components/App';
 const importHome = (nextState, cb) => {
   import(/* webpackChunkName: "home" */ '../components/Home')
     .then(module => cb(null, module.default))
-    .catch((e) => { throw e; });
+    .catch(e => {
+      throw e;
+    });
 };
 
 const importTools = (nextState, cb) => {
-  import(/* webpackChunkName: "tools" */'../components/Tools')
+  import(/* webpackChunkName: "tools" */ '../components/Tools')
     .then(module => cb(null, module.default))
-    .catch((e) => { throw e; });
+    .catch(e => {
+      throw e;
+    });
 };
 
 // We use `getComponent` to dynamically load routes.
@@ -33,8 +36,8 @@ const routes = (
 // routes so we need to require them here as a workaround.
 // https://github.com/gaearon/react-hot-loader/issues/288
 if (module.hot) {
-  require('../components/Home');    // eslint-disable-line global-require
-  require('../components/Tools');   // eslint-disable-line global-require
+  require('../components/Home'); // eslint-disable-line global-require
+  require('../components/Tools'); // eslint-disable-line global-require
 }
 
 export default routes;

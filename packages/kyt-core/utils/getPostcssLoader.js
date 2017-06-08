@@ -11,8 +11,8 @@ if (userHasPostcssConfig) {
   // eslint-disable-next-line global-require,import/no-dynamic-require
   const userPostcssConfig = require(userPostcssConfigPath);
   postcssConfig.options = typeof userPostcssConfig === 'function'
-      ? userPostcssConfig()
-      : userPostcssConfig;
+    ? userPostcssConfig()
+    : userPostcssConfig;
 } else {
   postcssConfig.options = kytPostcssConfig;
 }

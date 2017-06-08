@@ -14,6 +14,7 @@ const CLIEngine = () => ({
 const eslintMock = { CLIEngine };
 
 module.exports = eslintMock;
-module.exports.__setExecuteOnFiles = (newVals) => { // eslint-disable-line no-underscore-dangle
+// eslint-disable-next-line no-underscore-dangle
+module.exports.__setExecuteOnFiles = newVals => {
   customExecuteOnFiles = Object.assign({}, customExecuteOnFiles, newVals);
 };

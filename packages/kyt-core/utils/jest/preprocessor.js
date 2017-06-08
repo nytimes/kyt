@@ -33,7 +33,7 @@ const normalizeDep = (prefix, dep) => {
 
 // Uses require.resolve to add the full paths to all of the plugins
 // and presets, making sure that we handle the new array syntax.
-const resolvePluginsPresets = (babelGroup) => {
+const resolvePluginsPresets = babelGroup => {
   const resolver = (prefix, dep) => {
     if (typeof dep === 'object') {
       dep[0] = normalizeDep(prefix, dep[0]);

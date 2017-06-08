@@ -1,4 +1,3 @@
-
 const logger = console;
 const write = (status, text, verbose) => {
   let textToLog = '';
@@ -30,27 +29,27 @@ const write = (status, text, verbose) => {
   if (logObject) logger.dir(verbose, { depth: 15 });
 };
 // Printing any statements
-const log = (text) => {
+const log = text => {
   logger.log(text);
 };
 
 // Starting a process
-const start = (text) => {
+const start = text => {
   write('start', text);
 };
 
 // Ending a process
-const end = (text) => {
+const end = text => {
   write('end', text);
 };
 
 // Tasks within a process
-const task = (text) => {
+const task = text => {
   write('task', text);
 };
 
 // Info about a process task
-const info = (text) => {
+const info = text => {
   write('info', text);
 };
 

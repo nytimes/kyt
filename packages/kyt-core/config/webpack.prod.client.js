@@ -1,4 +1,3 @@
-
 // Production webpack config for client code
 
 const webpack = require('webpack');
