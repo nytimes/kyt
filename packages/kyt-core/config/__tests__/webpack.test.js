@@ -32,7 +32,6 @@ jest.setMock('kyt-utils/logger', logger);
 jest.setMock('webpack', webpack);
 jest.setMock('../../utils/getPostcssLoader', {});
 
-
 const devClientConfig = require('../webpack.dev.client');
 const devServerConfig = require('../webpack.dev.server');
 const prodClientConfig = require('../webpack.prod.client');
@@ -72,7 +71,7 @@ describe('webpack.base', () => {
     logger.warn.mockClear();
     webpack.DefinePlugin.mockClear();
   });
-  it('doesn\'t set up a babel preset if a .babelrc exists', () => {
+  it("doesn't set up a babel preset if a .babelrc exists", () => {
     shell.test.mockImplementationOnce(() => true);
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');

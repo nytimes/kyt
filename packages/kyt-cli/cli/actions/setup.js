@@ -1,4 +1,3 @@
-
 const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
@@ -12,7 +11,7 @@ const cliPkgJson = require('../../package.json');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
 
 module.exports = (flags, args) => {
-  logger.start('Let\'s set up your new kyt project...');
+  logger.start("Let's set up your new kyt project...");
   logger.log('✨  Answer a few questions to get started  ✨ \n');
   // Selects package manager to use
   let ypm;
@@ -27,9 +26,16 @@ module.exports = (flags, args) => {
   let localPath = args.localPath;
   let tempPackageJSON;
   let oldPackageJSON;
-  const fakePackageJson = { name: '', version: '1.0.0', description: '', main: '', author: '', license: '' };
+  const fakePackageJson = {
+    name: '',
+    version: '1.0.0',
+    description: '',
+    main: '',
+    author: '',
+    license: '',
+  };
   const removeTmpStarter = () => shell.rm('-rf', tmpStarter);
-  const bailProcess = (error) => {
+  const bailProcess = error => {
     logger.error(`Failed to setup: ${repoURL}`);
     if (error) logger.log(error);
     removeTmpStarter();
@@ -38,20 +44,22 @@ module.exports = (flags, args) => {
 
   // Compare the starter-kyt's package.json kyt.version
   // configuration to make sure kyt is an expected version.
-  const checkStarterKytVersion = (userPackageJSON) => {
+  const checkStarterKytVersion = userPackageJSON => {
     const kytStarterPreferredVersion =
-        (tempPackageJSON.dependencies && tempPackageJSON.dependencies.kyt)
-      || (tempPackageJSON.devDependencies && tempPackageJSON.devDependencies.kyt)
-      || null;
+      (tempPackageJSON.dependencies && tempPackageJSON.dependencies.kyt) ||
+      (tempPackageJSON.devDependencies && tempPackageJSON.devDependencies.kyt) ||
+      null;
     if (kytStarterPreferredVersion) {
       // Look everywhere for kyt
       const kytVersion =
-        (userPackageJSON.devDependencies && userPackageJSON.devDependencies.kyt)
-        || (userPackageJSON.dependencies && userPackageJSON.dependencies.kyt);
+        (userPackageJSON.devDependencies && userPackageJSON.devDependencies.kyt) ||
+        (userPackageJSON.dependencies && userPackageJSON.dependencies.kyt);
       if (semver.valid(kytVersion)) {
         if (!semver.satisfies(kytVersion, kytStarterPreferredVersion)) {
           // eslint-disable-next-line max-len
-          logger.warn(`${tempPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`);
+          logger.warn(
+            `${tempPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
+          );
         }
       }
     }
@@ -62,8 +70,10 @@ module.exports = (flags, args) => {
   const addKytDependency = (packageJson, kytPrefVersion) => {
     // eslint-disable-next-line max-len
     // check to see if kyt is in dependencies or devDependencies
-    if (!(packageJson.dependencies && packageJson.dependencies.kyt) &&
-        !(packageJson.devDependencies && packageJson.devDependencies.kyt)) {
+    if (
+      !(packageJson.dependencies && packageJson.dependencies.kyt) &&
+      !(packageJson.devDependencies && packageJson.devDependencies.kyt)
+    ) {
       let kytVersion = kytPrefVersion;
       // If a version wasn't specified, install latest
       if (!kytVersion) {
@@ -76,7 +86,7 @@ module.exports = (flags, args) => {
   };
 
   // Adds dependencies from the starter-kyts package.json
-  const updatePackageJSONDependencies = (packageJson) => {
+  const updatePackageJSONDependencies = packageJson => {
     const tempDependencies = tempPackageJSON.dependencies || {};
     const tempDevDependencies = tempPackageJSON.devDependencies || {};
     // In case the starter kyt used `kyt` as a dependency.
@@ -87,10 +97,7 @@ module.exports = (flags, args) => {
       Reflect.deleteProperty(tempDevDependencies, 'kyt');
     }
 
-    packageJson.dependencies = Object.assign(
-      packageJson.dependencies || {},
-      tempDependencies
-    );
+    packageJson.dependencies = Object.assign(packageJson.dependencies || {}, tempDependencies);
 
     // Copies over dev dependencies
     if (tempDevDependencies) {
@@ -105,12 +112,19 @@ module.exports = (flags, args) => {
   };
 
   // Adds kyt and Starter-kyt commands as npm scripts
-  const addPackageJsonScripts = (packageJson) => {
+  const addPackageJsonScripts = packageJson => {
     if (!packageJson.scripts) packageJson.scripts = {};
     let commands = [
-      'dev', 'build', 'start', 'proto',
-      'test', 'test-watch', 'test-coverage',
-      'lint', 'lint-script', 'lint-style',
+      'dev',
+      'build',
+      'start',
+      'proto',
+      'test',
+      'test-watch',
+      'test-coverage',
+      'lint',
+      'lint-script',
+      'lint-style',
     ];
 
     // for commands that aren't 1:1 name:script
@@ -123,7 +137,7 @@ module.exports = (flags, args) => {
 
     // Merge the Starter-kyt script names into the list of commands.
     const tempScripts =
-        (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
+      (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
     if (tempScripts.length) {
       commands = uniq(commands.concat(tempScripts));
     }
@@ -131,7 +145,7 @@ module.exports = (flags, args) => {
     // This is the default test script added by 'npm init'.
     const npmInitDefaultTestScript = 'echo "Error: no test specified" && exit 1';
 
-    commands.forEach((command) => {
+    commands.forEach(command => {
       let commandName = command;
 
       // If the command already exists, we namespace it with "kyt:".
@@ -144,7 +158,10 @@ module.exports = (flags, args) => {
 
         // Prefix except for when the command is 'test' and the script is
         // the default from 'npm init'.
-        if (commandName !== 'test' || packageJson.scripts[commandName] !== npmInitDefaultTestScript) {
+        if (
+          commandName !== 'test' ||
+          packageJson.scripts[commandName] !== npmInitDefaultTestScript
+        ) {
           commandName = `kyt:${commandName}`;
         }
       }
@@ -164,7 +181,7 @@ module.exports = (flags, args) => {
 
   // Add dependencies, scripts and other package to
   // the user's package.json configuration.
-  const updateUserPackageJSON = (existingProject) => {
+  const updateUserPackageJSON = existingProject => {
     shell.exec('pwd');
     let userPackageJSON;
     // Create a package.json definition if
@@ -192,7 +209,6 @@ module.exports = (flags, args) => {
     userPackageJSON = addPackageJsonScripts(userPackageJSON);
     fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(userPackageJSON, null, 2));
   };
-
 
   // Cleans and reinstalls node modules.
   const installUserDependencies = () => {
@@ -341,14 +357,22 @@ module.exports = (flags, args) => {
   const copyStarterKytFiles = () => {
     const kytStarterFiles = (tempPackageJSON.kyt && tempPackageJSON.kyt.files) || [];
     if (kytStarterFiles.length) {
-      kytStarterFiles.forEach((file) => {
+      kytStarterFiles.forEach(file => {
         const tempFilePath = path.join(tmpDir, file);
         const filePath = path.join(paths.userRootPath, file);
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
-        if (['.gitignore', '.stylelintrc.json', '.eslintrc.json', '.editorconfig', 'kyt.config.js', 'prototype.js']
-              .indexOf(file) === -1 &&
-            (shell.test('-f', filePath) || shell.test('-d', filePath))) {
+        if (
+          [
+            '.gitignore',
+            '.stylelintrc.json',
+            '.eslintrc.json',
+            '.editorconfig',
+            'kyt.config.js',
+            'prototype.js',
+          ].indexOf(file) === -1 &&
+          (shell.test('-f', filePath) || shell.test('-d', filePath))
+        ) {
           const fileBackup = path.join(paths.userRootPath, `${file}-${date}-bak`);
           shell.mv(filePath, fileBackup);
           logger.info(`Backed up current ${file} to: ${fileBackup}`);
@@ -376,7 +400,7 @@ module.exports = (flags, args) => {
   };
 
   // setup tasks for starter-kyts
-  const starterKytSetup = (starterName) => {
+  const starterKytSetup = starterName => {
     let npmName = null;
     if (starterName) {
       tmpDir = path.join(tmpDir, starterKyts.supported[starterName].path);
@@ -387,7 +411,7 @@ module.exports = (flags, args) => {
     starterName = starterName || 'specified';
     logger.task(`Setting up the ${starterName} starter-kyt`);
 
-    const afterCopy = (error) => {
+    const afterCopy = error => {
       if (error) {
         logger.error('There was a problem downloading the starter-kyt');
         logger.log(error);
@@ -437,7 +461,7 @@ module.exports = (flags, args) => {
   };
 
   // Checks to see if user would like src backed up before continuing
-  const srcPrompt = (starterChoice) => {
+  const srcPrompt = starterChoice => {
     // Check if src already exists
     if (shell.test('-d', paths.srcPath)) {
       const question = [
@@ -448,7 +472,7 @@ module.exports = (flags, args) => {
           default: true,
         },
       ];
-      inquire.prompt(question).then((answer) => {
+      inquire.prompt(question).then(answer => {
         if (answer.srcBackup) {
           starterKytSetup(starterChoice);
         } else {
@@ -472,7 +496,7 @@ module.exports = (flags, args) => {
     logger.end('Done setting up kyt');
   };
 
-  const getRepoUrl = (repositoryArg) => {
+  const getRepoUrl = repositoryArg => {
     if (repositoryArg) {
       repoURL = repositoryArg;
       srcPrompt();
@@ -482,7 +506,7 @@ module.exports = (flags, args) => {
           type: 'input',
           name: 'repoUrl',
           message: 'Enter your Repo URL (https or ssh)',
-          validate: (answer) => {
+          validate: answer => {
             const httpsPass = answer.match(/^https:\/\/.*.git$/);
             const sshPass = answer.match(/^git@github.com:.*.git$/);
             if (httpsPass || sshPass) {
@@ -492,7 +516,7 @@ module.exports = (flags, args) => {
           },
         },
       ];
-      inquire.prompt(question).then((answer) => {
+      inquire.prompt(question).then(answer => {
         if (answer.repoUrl !== '') {
           repoURL = answer.repoUrl;
           srcPrompt();
@@ -504,9 +528,9 @@ module.exports = (flags, args) => {
     }
   };
 
-  const createDir = (dirName) => {
+  const createDir = dirName => {
     if (dirName === '') return;
-    const checkAndBail = (code) => {
+    const checkAndBail = code => {
       if (code) {
         logger.error(`Unable to create directory ${dirName}. Exiting...`);
         process.exit(1);
@@ -532,7 +556,7 @@ module.exports = (flags, args) => {
   const setupPrompt = () => {
     const skList = Object.keys(starterKyts.supported);
     const ownRepo = 'I have my own url';
-    const exist = 'I don\'t want a starter-kyt';
+    const exist = "I don't want a starter-kyt";
     skList.push(ownRepo);
     skList.push(exist);
     const ypmQ = {
@@ -563,7 +587,7 @@ module.exports = (flags, args) => {
     if (!args.directory) questions.push(dirNameQ);
     if (!args.repository && !localPath) questions.push(skQ);
 
-    inquire.prompt(questions).then((answer) => {
+    inquire.prompt(questions).then(answer => {
       // question 1
       ypm = answer.ypm || ypm;
       // question 2
@@ -606,7 +630,7 @@ module.exports = (flags, args) => {
           default: false,
         },
       ];
-      inquire.prompt(question).then((answer) => {
+      inquire.prompt(question).then(answer => {
         if (answer.cliVersion) {
           setupPrompt();
         } else {

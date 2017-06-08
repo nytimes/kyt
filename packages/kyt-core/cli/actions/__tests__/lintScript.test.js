@@ -9,17 +9,15 @@ jest.setMock('path', {
 jest.mock('kyt-utils/logger');
 jest.mock('kyt-utils/paths');
 
-jest.mock('shelljs', () => (
-  {
-    exec: () => ({
-      stdout: '',
-      code: 0,
-    }),
-    config: {
-      silent: false,
-    },
-  }
-));
+jest.mock('shelljs', () => ({
+  exec: () => ({
+    stdout: '',
+    code: 0,
+  }),
+  config: {
+    silent: false,
+  },
+}));
 
 describe('lint', () => {
   global.process.exit = jest.fn();

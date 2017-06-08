@@ -1,4 +1,3 @@
-
 // Production webpack config for server code
 
 const webpack = require('webpack');
@@ -51,6 +50,10 @@ module.exports = options => ({
   },
 
   plugins: [
-    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: true }),
+    new webpack.BannerPlugin({
+      banner: 'require("source-map-support").install();',
+      raw: true,
+      entryOnly: true,
+    }),
   ],
 });

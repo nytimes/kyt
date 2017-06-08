@@ -3,7 +3,8 @@
 jest.mock('kyt-utils/logger');
 
 const stylelintMock = {
-  lint: jest.fn()
+  lint: jest
+    .fn()
     .mockReturnValueOnce(new Promise(resolve => resolve({})))
     .mockReturnValueOnce(new Promise((resolve, reject) => reject({ stack: 'mockError' }))),
 };

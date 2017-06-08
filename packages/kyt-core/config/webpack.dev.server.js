@@ -1,4 +1,3 @@
-
 // Development webpack config for server code
 
 const webpack = require('webpack');
@@ -48,12 +47,15 @@ module.exports = options => ({
         use: clone(cssStyleLoaders).concat('sass-loader'),
       },
     ],
-
   },
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: true }),
+    new webpack.BannerPlugin({
+      banner: 'require("source-map-support").install();',
+      raw: true,
+      entryOnly: true,
+    }),
   ],
 });

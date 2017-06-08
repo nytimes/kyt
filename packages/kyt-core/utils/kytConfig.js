@@ -8,7 +8,7 @@ const logger = require('kyt-utils/logger');
 const { userRootPath, userKytConfigPath } = require('kyt-utils/paths')();
 const url = require('url');
 
-module.exports = (optionalConfig) => {
+module.exports = optionalConfig => {
   let config;
 
   // base config options
@@ -47,7 +47,7 @@ module.exports = (optionalConfig) => {
   }
 
   // Create default identity functions for modify functions
-  ['modifyWebpackConfig', 'modifyJestConfig'].forEach((m) => {
+  ['modifyWebpackConfig', 'modifyJestConfig'].forEach(m => {
     if (typeof config[m] !== 'function') {
       config[m] = c => c;
     }

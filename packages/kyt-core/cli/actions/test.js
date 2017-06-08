@@ -1,4 +1,3 @@
-
 // Command to run tests with Jest
 
 const clone = require('lodash.clonedeep');
@@ -7,7 +6,6 @@ const shell = require('shelljs');
 const jestConfigBuilder = require('../../config/jest');
 const { srcPath } = require('kyt-utils/paths')();
 const buildConfigs = require('../../utils/buildConfigs');
-
 
 module.exports = (config, flags) => {
   // Comment the following to see verbose shell ouput.

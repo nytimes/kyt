@@ -16,11 +16,11 @@ describe('starter kyts', () => {
 
     it('should start a dev server on :3000', () => {
       let outputTest;
-      const run = new Promise((resolve) => {
+      const run = new Promise(resolve => {
         const child = shell.exec('node_modules/kyt/cli/index.js dev', () => {
           resolve(outputTest);
         });
-        child.stdout.on('data', (data) => {
+        child.stdout.on('data', data => {
           if (data.includes('✅  Development started')) {
             shell.exec('sleep 5');
             const output = shell.exec('curl -I localhost:3000');
@@ -37,11 +37,11 @@ describe('starter kyts', () => {
     it('should build and run', () => {
       let outputTest;
       shell.exec('node_modules/kyt/cli/index.js build');
-      const run = new Promise((resolve) => {
+      const run = new Promise(resolve => {
         const child = shell.exec('node build/server/main.js', () => {
           resolve(outputTest);
         });
-        child.stdout.on('data', (data) => {
+        child.stdout.on('data', data => {
           if (data.includes('✅  server started on port: 3000')) {
             shell.exec('sleep 5');
             const output = shell.exec('curl -I localhost:3000');
@@ -68,11 +68,11 @@ describe('starter kyts', () => {
 
     it('should start a server on :3001', () => {
       let outputTest;
-      const run = new Promise((resolve) => {
+      const run = new Promise(resolve => {
         const child = shell.exec('node_modules/kyt/cli/index.js dev', () => {
           resolve(outputTest);
         });
-        child.stdout.on('data', (data) => {
+        child.stdout.on('data', data => {
           if (data.includes('✅  Client started')) {
             shell.exec('sleep 5');
             const output = shell.exec('curl -sb -o "" localhost:3001');
