@@ -37,8 +37,10 @@ app.get('*', (request, response) => {
       // the components and assets into the template.
       response.status(200).send(template({
         root: renderToString(<RouterContext {...renderProps} />),
-        jsBundle: clientAssets.main.js,
-        cssBundle: clientAssets.main.css,
+        manifestJSBundle: clientAssets['manifest.js'],
+        mainJSBundle: clientAssets['main.js'],
+        vendorJSBundle: clientAssets['vendor.js'],
+        mainCSSBundle: clientAssets['main.css'],
       }));
     } else {
       response.status(404).send('Not found');
