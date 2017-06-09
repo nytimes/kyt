@@ -16,7 +16,7 @@
   "dependencies": {
     "babel-preset-kyt-react": "0.2.0",
     "compression": "1.6.2",
-    "express": "4.14.0",
+    "express": "4.15.3",
     "react": "15.3.0",
     "react-dom": "15.3.0",
     "react-router": "2.6.1"
