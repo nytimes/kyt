@@ -19,10 +19,7 @@ const packages = fs.readdirSync('packages').reduce((pkgs, pkg) => {
   let packagePath = path.join(process.cwd(), 'packages', pkg);
   const packageJSON = path.join(packagePath, 'package.json');
   try {
-    if (
-      fs.statSync(packagePath).isDirectory() &&
-      fs.statSync(packageJSON).isFile()
-    ) {
+    if (fs.statSync(packagePath).isDirectory() && fs.statSync(packageJSON).isFile()) {
       // update path for starter-kyts
       const packageName = require(packageJSON).name;
       if (packageName.includes('starter')) {
@@ -47,10 +44,7 @@ const semver = require('semver');
 const yarnVersionRequirement = '>=0.20.0';
 const yarnVersion = shell.exec('yarn --version').stdout;
 if (!semver.satisfies(yarnVersion, yarnVersionRequirement)) {
-  console.log(
-    '❌  update your version of yarn:',
-    `npm i yarn@${yarnVersionRequirement} -g`
-  );
+  console.log('❌  update your version of yarn:', `npm i yarn@${yarnVersionRequirement} -g`);
   process.exit(1);
 }
 
@@ -60,11 +54,7 @@ packages.forEach(pkg => installPackage(pkg.path));
 // Symlink monorepo package dependencies to local packages.
 packages.forEach(pkg => {
   const packageJSON = require(path.join(pkg.path, 'package.json'));
-  const dependencies = Object.assign(
-    {},
-    packageJSON.dependencies,
-    packageJSON.devDependencies
-  );
+  const dependencies = Object.assign({}, packageJSON.dependencies, packageJSON.devDependencies);
   packages.forEach(spkg => {
     // eslint-disable-next-line no-prototype-builtins
     if (dependencies.hasOwnProperty(spkg.name)) {
