@@ -37,7 +37,7 @@ const stringLiteralEntryOptions = {
 
 let options = defaultOptions;
 
-const configureOptionsType = (type) => {
+const configureOptionsType = type => {
   if (type === 'multiEntry') options = multiEntryOptions;
   else if (type === 'stringEntry') options = stringLiteralEntryOptions;
   else options = defaultOptions;

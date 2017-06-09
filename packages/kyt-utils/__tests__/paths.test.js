@@ -2,7 +2,8 @@ describe('paths', () => {
   const paths = require('../paths')(); // eslint-disable-line global-require
 
   it('exports the expected properties', () => {
-    ['userRootPath',
+    [
+      'userRootPath',
       'srcPath',
       'buildPath',
       'publicBuildPath',
@@ -18,7 +19,7 @@ describe('paths', () => {
       'userKytConfigPath',
       'userNodeModulesPath',
       'userPackageJSONPath',
-    ].forEach((p) => {
+    ].forEach(p => {
       expect(paths[p]).toBeDefined();
     });
   });

@@ -6,7 +6,7 @@ const spawn = require('child_process').spawnSync;
 const type = process.env.type || 'upgrade'; // yarn update types
 const logTask = msg => console.log(`👍  ${msg}`);
 
-const installPackage = (at) => {
+const installPackage = at => {
   const result = spawn('yarn', [type], { stdio: 'inherit', cwd: at });
   if (result.error) {
     console.log(result.error);
@@ -27,7 +27,9 @@ const packages = fs.readdirSync('packages').reduce((pkgs, pkg) => {
       }
       pkgs.push({ path: packagePath, name: packageName });
     }
-  } catch (e) { return pkgs; }
+  } catch (e) {
+    return pkgs;
+  }
   return pkgs;
 }, []);
 
@@ -50,11 +52,12 @@ if (!semver.satisfies(yarnVersion, yarnVersionRequirement)) {
 packages.forEach(pkg => installPackage(pkg.path));
 
 // Symlink monorepo package dependencies to local packages.
-packages.forEach((pkg) => {
+packages.forEach(pkg => {
   const packageJSON = require(path.join(pkg.path, 'package.json'));
   const dependencies = Object.assign({}, packageJSON.dependencies, packageJSON.devDependencies);
-  packages.forEach((spkg) => {
-    if (dependencies.hasOwnProperty(spkg.name)) { // eslint-disable-line no-prototype-builtins
+  packages.forEach(spkg => {
+    // eslint-disable-next-line no-prototype-builtins
+    if (dependencies.hasOwnProperty(spkg.name)) {
       const to = path.join(pkg.path, 'node_modules', spkg.name);
       shell.rm('-rf', to);
       shell.ln('-sf', spkg.path, to);
@@ -64,9 +67,13 @@ packages.forEach((pkg) => {
 });
 
 // npm link kyt-cli and kyt
-shell.exec('npm link', { cwd: path.join(process.cwd(), 'packages', 'kyt-cli') });
+shell.exec('npm link', {
+  cwd: path.join(process.cwd(), 'packages', 'kyt-cli'),
+});
 logTask('npm-linked kyt-cli\n');
-shell.exec('npm link', { cwd: path.join(process.cwd(), 'packages', 'kyt-core') });
+shell.exec('npm link', {
+  cwd: path.join(process.cwd(), 'packages', 'kyt-core'),
+});
 logTask('npm-linked kyt');
 
 console.log('\n✅  strapped\n');

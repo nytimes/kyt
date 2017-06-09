@@ -1,4 +1,3 @@
-
 // Compiles the {server, client} configurations
 // For use by the client and server compilers.
 
@@ -73,7 +72,8 @@ module.exports = (config, environment = 'development') => {
   // A "main" entry is required in the server config.
   if (!serverConfig.entry.main) {
     logger.error(
-      'A main entry is required in the server configuration. Found: ', serverConfig.entry
+      'A main entry is required in the server configuration. Found: ',
+      serverConfig.entry
     );
     process.exit(1);
   }

@@ -41,7 +41,17 @@
   },
   "dependencies": {
     "babel-eslint": "^7.1.1",
-    "jest": "20.0.3",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-kyt": "file:packages/eslint-config-kyt",
+    "eslint-config-prettier": "^2.1.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-json": "^1.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-prettier": "^2.1.1",
+    "eslint-plugin-react": "^6.10.0",
+    "jest": "20.0.4",
+    "prettier": "^1.4.4",
     "ps-tree": "1.1.0",
     "semver": "5.3.0",
     "shelljs": "0.7.5"
