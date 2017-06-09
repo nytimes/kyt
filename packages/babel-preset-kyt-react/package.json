@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-kyt-react",
-  "version": "0.2.0",
+  "version": "0.2.1-env-beta.2",
   "description": "An opinionated babel preset for react apps, best used with kyt.",
   "main": "lib/index.js",
   "author": "NYTimes",
@@ -13,7 +13,7 @@
     "babel-plugin-transform-react-inline-elements": "6.8.0",
     "babel-plugin-transform-react-jsx-source": "6.9.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.10",
-    "babel-preset-kyt-core": "0.2.0",
+    "babel-preset-kyt-core": "0.2.1-env-beta.2",
     "babel-preset-react": "6.16.0"
   },
   "keywords": [

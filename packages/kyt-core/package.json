@@ -21,7 +21,7 @@
     "babel-jest": "19.0.0",
     "babel-loader": "6.3.2",
     "babel-polyfill": "6.16.0",
-    "babel-preset-kyt-core": "0.2.0",
+    "babel-preset-kyt-core": "0.2.1-env-beta.2",
     "chokidar": "1.6.0",
     "commander": "2.9.0",
     "connect-history-api-fallback": "1.3.0",
