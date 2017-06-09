@@ -1,4 +1,3 @@
-
 const path = require('path');
 
 module.exports = () => {
@@ -25,5 +24,6 @@ module.exports = () => {
     userNodeModulesPath: path.join(userRootPath, 'node_modules'),
     userPackageJSONPath: path.join(userRootPath, 'package.json'),
     userBabelrcPath: path.join(userRootPath, '.babelrc'),
+    userPostcssConfigPath: path.join(userRootPath, 'postcss.config.js'),
   };
 };

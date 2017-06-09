@@ -15,7 +15,7 @@ module.exports = (webpackConfig, cb) => {
   }
 
   // Handle errors in webpack build
-  webpackCompiler.plugin('done', (stats) => {
+  webpackCompiler.plugin('done', stats => {
     if (stats.hasErrors()) {
       logger.error(`${type} build failed\n`, stats.toString());
       logger.info('See webpack error above');
@@ -30,7 +30,6 @@ module.exports = (webpackConfig, cb) => {
       cb(stats);
     }
   });
-
 
   // Return the compiler
   return webpackCompiler;

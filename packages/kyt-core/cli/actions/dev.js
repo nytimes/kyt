@@ -1,4 +1,3 @@
-
 // Command to run development server
 
 const path = require('path');
@@ -54,9 +53,9 @@ module.exports = (config, flags) => {
   };
 
   const startServer = () => {
-    const serverPaths = Object
-      .keys(serverCompiler.options.entry)
-      .map(entry => path.join(serverCompiler.options.output.path, `${entry}.js`));
+    const serverPaths = Object.keys(serverCompiler.options.entry).map(entry =>
+      path.join(serverCompiler.options.output.path, `${entry}.js`)
+    );
     const mainPath = path.join(serverCompiler.options.output.path, 'main.js');
 
     nodemon({ script: mainPath, watch: serverPaths, nodeArgs: flags })
@@ -71,7 +70,7 @@ module.exports = (config, flags) => {
   const compileServer = () => serverCompiler.run(() => undefined);
 
   // Compile Client Webpack Config
-  clientCompiler = webpackCompiler(clientConfig, (stats) => {
+  clientCompiler = webpackCompiler(clientConfig, stats => {
     if (stats.hasErrors()) return;
     afterClientCompile();
     if (hasServer) {
@@ -97,7 +96,7 @@ module.exports = (config, flags) => {
     const startServerOnce = once(() => {
       ifPortIsFreeDo(serverURL.port, startServer);
     });
-    serverCompiler = webpackCompiler(serverConfig, (stats) => {
+    serverCompiler = webpackCompiler(serverConfig, stats => {
       if (stats.hasErrors()) return;
       startServerOnce();
     });

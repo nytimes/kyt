@@ -1,4 +1,3 @@
-
 // Prints webpack asset stats
 const fs = require('fs');
 const path = require('path');
@@ -9,9 +8,10 @@ const logger = require('kyt-utils/logger');
 
 module.exports = (stats, clientConfig) => {
   const assetPath = clientConfig.output.path;
-  const assets = stats.toJson().assets
-    .filter(asset => /\.(js|css)$/.test(asset.name))
-    .map((asset) => {
+  const assets = stats
+    .toJson()
+    .assets.filter(asset => /\.(js|css)$/.test(asset.name))
+    .map(asset => {
       const file = fs.readFileSync(path.resolve(assetPath, asset.name));
       const gzSize = gzipSize.sync(file);
       return {
@@ -26,11 +26,15 @@ module.exports = (stats, clientConfig) => {
 
   assets.sort((a, b) => b.size - a.size);
 
-  const longestSizeLabelLength = Reflect.apply(Math.max, null,
+  const longestSizeLabelLength = Reflect.apply(
+    Math.max,
+    null,
     assets.map(a => stripAnsi(a.sizeLabel).length)
   );
 
-  const longestGzSizeLabelLength = Reflect.apply(Math.max, null,
+  const longestGzSizeLabelLength = Reflect.apply(
+    Math.max,
+    null,
     assets.map(a => stripAnsi(a.gzSizeLabel).length)
   );
 
@@ -44,7 +48,7 @@ module.exports = (stats, clientConfig) => {
     return padded;
   };
 
-  assets.forEach((asset) => {
+  assets.forEach(asset => {
     const sizeLabel = addLabelPadding(asset.sizeLabel, longestSizeLabelLength);
     const gzSizeLabel = addLabelPadding(asset.gzSizeLabel, longestGzSizeLabelLength);
     logger.log(`    ${sizeLabel}    ${gzSizeLabel}    ${asset.folder + path.sep + asset.name}`);

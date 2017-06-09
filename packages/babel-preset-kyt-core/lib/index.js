@@ -16,9 +16,7 @@ module.exports = function getPresetCore(context, opts = {}) {
 
     env: {
       test: {
-        plugins: [
-          [babelTransformModules, { loose: true }],
-        ],
+        plugins: [[babelTransformModules, { loose: true }]],
       },
     },
   };

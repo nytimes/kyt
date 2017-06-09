@@ -1,4 +1,3 @@
-
 import express from 'express';
 import compression from 'compression';
 import path from 'path';
@@ -35,11 +34,15 @@ app.get('*', (request, response) => {
     } else if (renderProps) {
       // When a React Router route is matched then we render
       // the components and assets into the template.
-      response.status(200).send(template({
-        root: renderToString(<RouterContext {...renderProps} />),
-        jsBundle: clientAssets.main.js,
-        cssBundle: clientAssets.main.css,
-      }));
+      response.status(200).send(
+        template({
+          root: renderToString(<RouterContext {...renderProps} />),
+          manifestJSBundle: clientAssets['manifest.js'],
+          mainJSBundle: clientAssets['main.js'],
+          vendorJSBundle: clientAssets['vendor.js'],
+          mainCSSBundle: clientAssets['main.css'],
+        })
+      );
     } else {
       response.status(404).send('Not found');
     }

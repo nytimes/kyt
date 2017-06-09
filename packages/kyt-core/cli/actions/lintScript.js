@@ -1,4 +1,3 @@
-
 // Command to lint src code
 
 const shell = require('shelljs');
@@ -10,8 +9,8 @@ const { userRootPath } = require('kyt-utils/paths')();
 module.exports = (config, flags) => {
   const eslintrc = glob.sync(`${userRootPath}/.*eslintrc*`);
   const configFile = eslintrc.length
-      ? eslintrc[0]
-      : path.join(__dirname, '../../config/.eslintrc.base.json');
+    ? eslintrc[0]
+    : path.join(__dirname, '../../config/.eslintrc.base.json');
 
   logger.info(`Using ESLint file: ${configFile}`);
 
@@ -23,8 +22,9 @@ module.exports = (config, flags) => {
     const cmd = `${eslint} src/ -c ${configFile} --color ${flags.join(' ')}`;
     const output = shell.exec(cmd);
     if (output.code === 0) {
-      logger.end(`Your JS looks ${output.stdout === '' ? 'great ✨' :
-        'OK, though there were warnings 🤔👆'}`);
+      logger.end(
+        `Your JS looks ${output.stdout === '' ? 'great ✨' : 'OK, though there were warnings 🤔👆'}`
+      );
     }
 
     process.exit(output.code > 0 ? 1 : 0);

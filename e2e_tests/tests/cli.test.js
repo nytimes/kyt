@@ -40,7 +40,7 @@ describe('KYT CLI', () => {
     });
   };
   // Checks setup command output
-  const outputCheck = (setupArr) => {
+  const outputCheck = setupArr => {
     expect(setupArr.includes('👍  Added kyt scripts into your package.json scripts')).toBe(true);
     expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
     expect(setupArr.includes('👍  Installed new modules')).toBe(true);
@@ -57,14 +57,14 @@ describe('KYT CLI', () => {
 
   describe('setup for universal starter-kyt', () => {
     it('sets up a universal starter-kyt', () => {
-      const exec = new Promise((resolve) => {
+      const exec = new Promise(resolve => {
         const child = shell.exec('../packages/kyt-cli/index.js setup', (code, stdout) => {
           resolve({ code, output: stdout });
         });
         let skdone = false;
         let chooseDone = false;
         let ypmDone = false;
-        child.stdout.on('data', (data) => {
+        child.stdout.on('data', data => {
           if (data.includes('Choose an installer')) {
             if (!ypmDone) {
               child.stdin.write('\n');
@@ -85,7 +85,7 @@ describe('KYT CLI', () => {
           }
         });
       });
-      return exec.then((test) => {
+      return exec.then(test => {
         shell.cd('standard-starter');
         expect(test.code).toBe(0);
         const setupArr = test.output.split('\n');
@@ -104,7 +104,7 @@ describe('KYT CLI', () => {
 
   describe('setup for static starter-kyt', () => {
     it('sets up a static starter-kyt', () => {
-      const exec = new Promise((resolve) => {
+      const exec = new Promise(resolve => {
         shell.cd(rootPath);
         const child = shell.exec('../packages/kyt-cli/index.js setup', (code, stdout) => {
           resolve({ code, output: stdout });
@@ -112,7 +112,7 @@ describe('KYT CLI', () => {
         let skdone = false;
         let chooseDone = false;
         let ypmDone = false;
-        child.stdout.on('data', (data) => {
+        child.stdout.on('data', data => {
           if (data.includes('Choose an installer')) {
             if (!ypmDone) {
               child.stdin.write('\n');
@@ -133,7 +133,7 @@ describe('KYT CLI', () => {
           }
         });
       });
-      return exec.then((test) => {
+      return exec.then(test => {
         shell.cd('static-starter');
         expect(test.code).toBe(0);
         const setupArr = test.output.split('\n');
@@ -151,7 +151,7 @@ describe('KYT CLI', () => {
 
   describe('setup for starter-kyt from git repo', () => {
     it('sets up a static starter-kyt', () => {
-      const exec = new Promise((resolve) => {
+      const exec = new Promise(resolve => {
         shell.cd(rootPath);
         const child = shell.exec('../packages/kyt-cli/index.js setup', (code, stdout) => {
           resolve({ code, output: stdout });
@@ -160,7 +160,7 @@ describe('KYT CLI', () => {
         let chooseDone = false;
         let ypmDone = false;
         let repoDone = false;
-        child.stdout.on('data', (data) => {
+        child.stdout.on('data', data => {
           if (data.includes('Choose an installer')) {
             if (!ypmDone) {
               child.stdin.write('\n');
@@ -187,7 +187,7 @@ describe('KYT CLI', () => {
           }
         });
       });
-      return exec.then((test) => {
+      return exec.then(test => {
         shell.cd('git-starter');
         expect(test.code).toBe(0);
         const setupArr = test.output.split('\n');
@@ -205,15 +205,18 @@ describe('KYT CLI', () => {
 
   describe('setup for starter-kyt from a local path', () => {
     it('sets up a static starter-kyt', () => {
-      const exec = new Promise((resolve) => {
+      const exec = new Promise(resolve => {
         shell.cd(rootPath);
         const localPath = path.resolve(rootPath, '../packages/kyt-starter-universal/starter-src');
-        const child = shell.exec(`../packages/kyt-cli/index.js setup --local-path ${localPath}`, (code, stdout) => {
-          resolve({ code, output: stdout });
-        });
+        const child = shell.exec(
+          `../packages/kyt-cli/index.js setup --local-path ${localPath}`,
+          (code, stdout) => {
+            resolve({ code, output: stdout });
+          }
+        );
         let skdone = false;
         let ypmDone = false;
-        child.stdout.on('data', (data) => {
+        child.stdout.on('data', data => {
           if (data.includes('Choose an installer')) {
             if (!ypmDone) {
               child.stdin.write('\n');
@@ -228,7 +231,7 @@ describe('KYT CLI', () => {
           }
         });
       });
-      return exec.then((test) => {
+      return exec.then(test => {
         shell.cd('local-starter');
         expect(test.code).toBe(0);
         const setupArr = test.output.split('\n');

@@ -1,4 +1,3 @@
-
 // Command to run prototype dev server
 const webpack = require('webpack');
 const merge = require('webpack-merge');
@@ -10,7 +9,7 @@ const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
 const { userPrototypePath, publicSrcPath } = require('kyt-utils/paths')();
 
-module.exports = (config) => {
+module.exports = config => {
   const prototypeURL = config.prototypeURL;
   let server;
 

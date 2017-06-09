@@ -1,4 +1,3 @@
-
 // Base kyt config.
 // Edit these properties to make changes.
 

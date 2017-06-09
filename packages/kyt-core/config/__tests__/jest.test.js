@@ -22,9 +22,7 @@ it('jestConfig().moduleNameMapper matches by extension', () => {
   expect(typeof config).toBe('object');
   expect(config.moduleNameMapper).toBeDefined();
 
-  const matchers = Object
-    .keys(config.moduleNameMapper)
-    .map(k => new RegExp(k));
+  const matchers = Object.keys(config.moduleNameMapper).map(k => new RegExp(k));
 
   const cssPath = './styles.css';
   const globalCssPath = 'style!css!./styles.css';

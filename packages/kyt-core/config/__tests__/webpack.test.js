@@ -6,22 +6,31 @@ const logger = {
   warn: jest.fn(),
 };
 
+const path = {
+  join: jest.fn(),
+  resolve: jest.fn(),
+};
+
 const webpack = {
   LoaderOptionsPlugin: jest.fn(),
   optimize: {
     UglifyJsPlugin: jest.fn(),
     LimitChunkCountPlugin: jest.fn(),
+    CommonsChunkPlugin: jest.fn(),
+    AggressiveMergingPlugin: jest.fn(),
   },
   BannerPlugin: jest.fn(),
   NoEmitOnErrorsPlugin: jest.fn(),
   HotModuleReplacementPlugin: jest.fn(),
   DefinePlugin: jest.fn(),
+  HashedModuleIdsPlugin: jest.fn(),
 };
 
 jest.setMock('shelljs', shell);
+jest.setMock('path', path);
 jest.setMock('kyt-utils/logger', logger);
 jest.setMock('webpack', webpack);
-
+jest.setMock('../../utils/getPostcssLoader', {});
 
 const devClientConfig = require('../webpack.dev.client');
 const devServerConfig = require('../webpack.dev.server');
@@ -62,7 +71,7 @@ describe('webpack.base', () => {
     logger.warn.mockClear();
     webpack.DefinePlugin.mockClear();
   });
-  it('doesn\'t set up a babel preset if a .babelrc exists', () => {
+  it("doesn't set up a babel preset if a .babelrc exists", () => {
     shell.test.mockImplementationOnce(() => true);
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
