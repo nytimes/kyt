@@ -53,6 +53,12 @@ Note, installing `kyt` or setting up a starter-kyt will install this package aut
 
 ## Changelog
 
+**0.4.0-rc.1** - 06/08/17
+
+### BREAKING CHANGES
+
+- Adds Prettier which may be a breaking change as your files might need some minor linting updates. Install Prettier into your favorite editor and/or `npm run lint -- --fix` to apply the updates. If you manually installed, please note the new Prettier modules above that need to be installed.
+
 **0.3.2** - 04/09/17
 
 Upgrades eslint to version [3.19](https://github.com/eslint/eslint/blob/master/CHANGELOG.md) for fix below.

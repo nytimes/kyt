@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kyt",
-  "version": "0.3.2",
+  "version": "0.4.0-rc.2",
   "description": "ESLint configuration for kyt projects.",
   "main": "eslintrc.json",
   "author": "NYTimes",
