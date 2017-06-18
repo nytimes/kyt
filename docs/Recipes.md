@@ -49,38 +49,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 ## Add PostCSS Plugins
 
-in `kyt.config.js`
-```javascript   
-modifyWebpackConfig: (baseConfig, options) => {
-  const webpack = require('webpack');
-  baseConfig.plugins.push(
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [require('postcss-cssnext')],
-        context: '/',
-      },
-    })
-  );
-
-  return baseConfig;
-}
-```    
-
-## Update browser list for autoprefixer
-```javascript
-modifyWebpackConfig: (baseConfig, options) => {
-  const webpack = require('webpack');
-  baseConfig.plugins.push(
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [require('autoprefixer')({ browsers: ['last 2 versions', 'ios 8'] })],
-        context: '/',
-      },
-    })
-  );
-  return baseConfig;
-}
-```
+You can find the basic PostCSS configuration that kyt applies [here](/packages/kyt-core/config/postcss.config.js). To apply your own PostCSS configuration, add a postcss.config.js file to the root of your project with a custom configuration. Check out the [postcss.config.js documentation](https://github.com/postcss/postcss-loader#config) for more.
 
 ## Add Babel Plugins and Presets
 
