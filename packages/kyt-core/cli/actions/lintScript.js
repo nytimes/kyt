@@ -18,8 +18,11 @@ module.exports = (config, flags) => {
     shell.config.silent = false;
     const eslintLib = require.resolve('eslint');
     const eslint = eslintLib.replace(/(.*)(lib\/api\.js)/, '$1bin/eslint.js');
+    const sources = 'src/ kyt.config.js package.json';
+    const userFlags = `${flags.join(' ')}`;
+    const extensions = '--ext .js --ext .json';
 
-    const cmd = `${eslint} src/ -c ${configFile} --color ${flags.join(' ')}`;
+    const cmd = `${eslint} ${sources} -c ${configFile} --color ${userFlags} ${extensions}`;
     const output = shell.exec(cmd);
     if (output.code === 0) {
       logger.end(
