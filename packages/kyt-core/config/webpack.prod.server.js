@@ -9,7 +9,10 @@ const postcssLoader = require('../utils/getPostcssLoader');
 const cssStyleLoaders = [
   {
     loader: 'css-loader/locals',
-    options: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+    options: {
+      modules: true,
+      localIdentName: '[name]-[local]--[hash:base64:5]',
+    },
   },
   postcssLoader,
 ];
@@ -55,5 +58,8 @@ module.exports = options => ({
       raw: true,
       entryOnly: true,
     }),
+
+    // Scope Hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 });
