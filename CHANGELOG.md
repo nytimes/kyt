@@ -13,6 +13,10 @@
 
 - Adds Prettier. See more in the [eslint-config-kyt README](/packages/eslint-config-kyt/README.md#changelog).
 
+## 0.6.1 - 06/28/17
+
+- Fixes handling of user postcss.config.js override [#506](https://github.com/NYTimes/kyt/pull/506).
+
 ## 0.6.0 - 06/07/17
 
 [0.5.x-0.6.0 Migration guide](/docs/migration-guides/0.5-0.6.md).
