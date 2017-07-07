@@ -5,6 +5,11 @@
 
 ## Master
 
+## 0.7.0-rc.3 - 07/08/17
+
+- Upgrades eslint/prettier
+- Adds prettier-eslint cli
+
 ## 0.7.0-rc.2 - 06/08/17
 
 - Adds Prettier config/removes eslint react spacing rules
