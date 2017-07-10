@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kyt",
-  "version": "0.4.0-rc.3",
+  "version": "0.4.0",
   "description": "ESLint configuration for kyt projects.",
   "main": "eslintrc.json",
   "author": "NYTimes",
@@ -20,10 +20,5 @@
     "prettier": "1.5.2",
     "prettier-eslint-cli": "4.1.1"
   },
-  "keywords": [
-    "kyt",
-    "eslint",
-    "config",
-    "eslint-config"
-  ]
+  "keywords": ["kyt", "eslint", "config", "eslint-config"]
 }

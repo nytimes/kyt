@@ -5,18 +5,12 @@
 
 ## Master
 
-## 0.7.0-rc.3 - 07/08/17
+## 0.7.0 - 07/07/17
 
-- Upgrades eslint/prettier
-- Adds prettier-eslint cli
-
-## 0.7.0-rc.2 - 06/08/17
-
-- Adds Prettier config/removes eslint react spacing rules
-
-## 0.7.0-rc.1 - 06/08/17
+[0.6.x-0.7.0 Migration guide](/docs/migration-guides/0.6-0.7.md).
 
 - Adds Prettier. See more in the [eslint-config-kyt README](/packages/eslint-config-kyt/README.md#changelog).
+- Upgrades ESLint and Airbnb plugins. See more in the [eslint-config-kyt README](/packages/eslint-config-kyt/README.md#changelog).
 
 ## 0.6.1 - 06/28/17
 
