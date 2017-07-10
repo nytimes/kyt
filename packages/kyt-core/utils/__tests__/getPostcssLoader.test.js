@@ -10,13 +10,13 @@ describe('getPostcssLoader', () => {
   });
 
   it('should use the default postcss.config.js', () => {
-    jest.setMock('shelljs', { test: () => ({ code: 2 }) });
+    jest.setMock('fs', { existsSync: () => false });
     const loader = require('../getPostcssLoader.js');
     expect(loader.options.plugins[0]).toBe('no');
   });
 
   it("should use the user's postcss.config.js if it exists", () => {
-    jest.setMock('shelljs', { test: () => ({ code: 0 }) });
+    jest.setMock('fs', { existsSync: () => true });
     const loader = require('../getPostcssLoader.js');
     expect(loader.options.plugins[0]).toBe('yeah');
   });
