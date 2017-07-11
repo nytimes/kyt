@@ -20,5 +20,10 @@
     "prettier": "1.5.2",
     "prettier-eslint-cli": "4.1.1"
   },
-  "keywords": ["kyt", "eslint", "config", "eslint-config"]
+  "keywords": [
+    "kyt",
+    "eslint",
+    "config",
+    "eslint-config"
+  ]
 }

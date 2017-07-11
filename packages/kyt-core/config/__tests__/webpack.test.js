@@ -18,6 +18,7 @@ const webpack = {
     LimitChunkCountPlugin: jest.fn(),
     CommonsChunkPlugin: jest.fn(),
     AggressiveMergingPlugin: jest.fn(),
+    ModuleConcatenationPlugin: jest.fn(),
   },
   BannerPlugin: jest.fn(),
   NoEmitOnErrorsPlugin: jest.fn(),
