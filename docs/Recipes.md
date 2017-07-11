@@ -49,38 +49,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 ## Add PostCSS Plugins
 
-in `kyt.config.js`
-```javascript   
-modifyWebpackConfig: (baseConfig, options) => {
-  const webpack = require('webpack');
-  baseConfig.plugins.push(
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [require('postcss-cssnext')],
-        context: '/',
-      },
-    })
-  );
-
-  return baseConfig;
-}
-```    
-
-## Update browser list for autoprefixer
-```javascript
-modifyWebpackConfig: (baseConfig, options) => {
-  const webpack = require('webpack');
-  baseConfig.plugins.push(
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        postcss: [require('autoprefixer')({ browsers: ['last 2 versions', 'ios 8'] })],
-        context: '/',
-      },
-    })
-  );
-  return baseConfig;
-}
-```
+You can find the basic PostCSS configuration that kyt applies [here](/packages/kyt-core/config/postcss.config.js). To apply your own PostCSS configuration, add a postcss.config.js file to the root of your project with a custom configuration. Check out the [postcss.config.js documentation](https://github.com/postcss/postcss-loader#config) for more.
 
 ## Add Babel Plugins and Presets
 
@@ -115,4 +84,30 @@ modifyJestConfig: (baseConfig) => {
 
   return jestConfig;
 }
+```
+
+## Editor Configuration
+
+A kyt app should work with any editor but we recommend that you install and configure one of the following editors to work best with kyt's linters:
+
+### Atom
+
+1. go to atom preferences > `Install`
+1. Install `linter`
+1. Install `linter-eslint`
+1. Install `prettier-atom` - in the prettier atom Settings, check the `ESLint Integration` checkbox.
+1. Install `linter-stylelint`
+1. Make sure all packages are enabled. You may need to restart Atom.
+
+### VSCode
+
+1. go to View > Extensions
+1. Install `ESLint`
+1. Install `Prettier`
+1. to to Code > Preferences
+1. Change the following preferences to `true`:
+
+```
+"prettier.eslintIntegration": true,
+"editor.formatOnSave": true
 ```

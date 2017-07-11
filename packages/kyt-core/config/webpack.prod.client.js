@@ -102,5 +102,8 @@ module.exports = options => ({
 
     // Merge bundles that would otherwise be negligibly small
     new webpack.optimize.AggressiveMergingPlugin(),
+
+    // Scope Hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 });
