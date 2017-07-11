@@ -1,17 +1,17 @@
-
 // Development webpack config for server code
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const clone = require('lodash.clonedeep');
 const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
+const postcssLoader = require('../utils/getPostcssLoader');
 
 const cssStyleLoaders = [
   {
     loader: 'css-loader/locals',
     options: { modules: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
   },
-  'postcss-loader',
+  postcssLoader,
 ];
 
 module.exports = options => ({
@@ -47,12 +47,15 @@ module.exports = options => ({
         use: clone(cssStyleLoaders).concat('sass-loader'),
       },
     ],
-
   },
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: true }),
+    new webpack.BannerPlugin({
+      banner: 'require("source-map-support").install();',
+      raw: true,
+      entryOnly: true,
+    }),
   ],
 });

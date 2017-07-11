@@ -40,10 +40,21 @@
     "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },
   "dependencies": {
-    "babel-eslint": "^7.1.1",
-    "jest": "19.0.2",
+    "babel-eslint": "7.1.1",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "15.0.2",
+    "eslint-config-kyt": "file:packages/eslint-config-kyt",
+    "eslint-config-prettier": "2.3.0",
+    "eslint-plugin-import": "2.7.0",
+    "eslint-plugin-json": "1.2.0",
+    "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-prettier": "2.1.2",
+    "eslint-plugin-react": "7.1.0",
+    "jest": "20.0.4",
+    "prettier": "1.5.2",
+    "prettier-eslint-cli": "4.1.1",
     "ps-tree": "1.1.0",
     "semver": "5.3.0",
-    "shelljs": "0.7.5"
+    "shelljs": "0.7.8"
   }
 }

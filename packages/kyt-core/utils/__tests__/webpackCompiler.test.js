@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 
 const plugin = jest.fn();
-const webpackMock = jest.fn((obj) => {
+const webpackMock = jest.fn(obj => {
   if (obj.error) throw new Error('test error');
   return { plugin };
 });
@@ -55,7 +55,9 @@ describe('webpackCompiler', () => {
 
   it('bails on invalid wepback config', () => {
     global.process.exit = jest.fn();
-    try { webpackCompiler({ error: true }); } catch (x) {} // eslint-disable-line no-empty
+    try {
+      webpackCompiler({ error: true });
+    } catch (x) {} // eslint-disable-line no-empty
     expect(logger.error).toBeCalled();
     expect(global.process.exit).toBeCalled();
   });

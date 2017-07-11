@@ -1,4 +1,3 @@
-
 const program = require('commander');
 const shell = require('shelljs');
 const devAction = require('./actions/dev');
@@ -64,35 +63,23 @@ program
   .description('Run test files with Jest.')
   .action(() => loadConfigAndDo(testAction));
 
-program
-  .command('lint-style')
-  .description('')
-  .action(() => loadConfigAndDo(lintStyleAction));
+program.command('lint-style').description('').action(() => loadConfigAndDo(lintStyleAction));
 
 program
   .command('proto')
   .description('Start a prototype dev server.')
   .action(() => loadConfigAndDo(protoAction));
 
-program
-  .command('setup')
-  .description('deprecated')
-  .action(() => {
-    logger.error('Setup is now part of kyt-cli. \n npm install -g kyt-cli');
-  });
+program.command('setup').description('deprecated').action(() => {
+  logger.error('Setup is now part of kyt-cli. \n npm install -g kyt-cli');
+});
 
-program
-  .command('start')
-  .description('deprecated')
-  .action(() => {
-    logger.error('kyt start is deprecated. \n Run the server with: node build/server/main.js');
-  });
+program.command('start').description('deprecated').action(() => {
+  logger.error('kyt start is deprecated. \n Run the server with: node build/server/main.js');
+});
 
-program
-  .command('lint')
-  .description('deprecated')
-  .action(() => {
-    logger.error('kyt lint is deprecated. \n Run lint-script to lint js files.');
-  });
+program.command('lint').description('deprecated').action(() => {
+  logger.error('kyt lint is deprecated. \n Run lint-script to lint js files.');
+});
 
 program.parse(process.argv);

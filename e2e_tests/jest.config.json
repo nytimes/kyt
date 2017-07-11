@@ -1,5 +1,5 @@
 {
   "roots": [
-    "<rootDir>/e2e_tests/tests"
+    "<rootDir>/tests/"
   ]
 }

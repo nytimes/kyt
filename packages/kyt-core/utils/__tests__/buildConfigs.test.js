@@ -47,8 +47,9 @@ describe('buildConfigs', () => {
   it('should call the userland modifyWebpackConfig', () => {
     const built = buildConfigs(stubConfig);
 
-    expect(logger.info)
-      .toHaveBeenCalledWith('No user .babelrc found. Using kyt default babel preset...');
+    expect(logger.info).toHaveBeenCalledWith(
+      'No user .babelrc found. Using kyt default babel preset...'
+    );
 
     // for client
     const clientCall = stubConfig.modifyWebpackConfig.mock.calls[0];

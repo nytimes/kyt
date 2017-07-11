@@ -1,10 +1,10 @@
-
 // Production webpack config for server code
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const clone = require('lodash.clonedeep');
 const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
+const postcssLoader = require('../utils/getPostcssLoader');
 
 const cssStyleLoaders = [
   {
@@ -12,10 +12,9 @@ const cssStyleLoaders = [
     options: {
       modules: true,
       localIdentName: '[name]-[local]--[hash:base64:5]',
-      minimize: '-autoprefixer',
     },
   },
-  'postcss-loader',
+  postcssLoader,
 ];
 
 module.exports = options => ({
@@ -54,6 +53,13 @@ module.exports = options => ({
   },
 
   plugins: [
-    new webpack.BannerPlugin({ banner: 'require("source-map-support").install();', raw: true, entryOnly: true }),
+    new webpack.BannerPlugin({
+      banner: 'require("source-map-support").install();',
+      raw: true,
+      entryOnly: true,
+    }),
+
+    // Scope Hoisting
+    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 });

@@ -15,16 +15,10 @@ module.exports = function getPresetReact(context, opts) {
     ],
     env: {
       development: {
-        plugins: [
-          reactTransformJsxSource,
-        ],
+        plugins: [reactTransformJsxSource],
       },
       production: {
-        plugins: [
-          reactRemovePropTypes,
-          reactTransformConstant,
-          reactTransformInline,
-        ],
+        plugins: [reactRemovePropTypes, reactTransformConstant, reactTransformInline],
       },
     },
   };

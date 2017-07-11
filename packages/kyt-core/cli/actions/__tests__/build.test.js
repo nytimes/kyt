@@ -45,67 +45,87 @@ describe('build', () => {
 
     build(testConfig);
 
-    assert.deepEqual(logger.start.mock.calls, [['Starting production build...']],
-      'should log start');
-    assert.deepEqual(buildConfigs.mock.calls, [[testConfig, 'production']],
-      'builds production configuration');
+    assert.deepEqual(
+      logger.start.mock.calls,
+      [['Starting production build...']],
+      'should log start'
+    );
+    assert.deepEqual(
+      buildConfigs.mock.calls,
+      [[testConfig, 'production']],
+      'builds production configuration'
+    );
 
-    assert.deepEqual(shell.rm.mock.calls[0], ['-rf', buildPath],
-      'should clean build directory...');
-    assert.deepEqual(shell.mkdir.mock.calls[0], [buildPath],
-      'should recreate build directory');
-    assert.deepEqual(logger.task.mock.calls[0], ['Cleaned ./build'],
-      'should log that build was cleaned');
+    assert.deepEqual(shell.rm.mock.calls[0], ['-rf', buildPath], 'should clean build directory...');
+    assert.deepEqual(shell.mkdir.mock.calls[0], [buildPath], 'should recreate build directory');
+    assert.deepEqual(
+      logger.task.mock.calls[0],
+      ['Cleaned ./build'],
+      'should log that build was cleaned'
+    );
 
-    assert.deepEqual(shell.test.mock.calls[0], ['-d', publicSrcPath],
-      'should check public src path');
-    assert.deepEqual(shell.test.mock.calls[1], ['-d', buildPath],
-      'should check build path');
-    assert.equal(shell.mkdir.mock.calls[1], buildPath,
-      'should mkdir buildPath');
-    assert.deepEqual(shell.cp.mock.calls[0], ['-r', publicSrcPath, publicBuildPath],
-      'should copy public src to public build');
-    assert.deepEqual(logger.task.mock.calls[1], ['Copied /src/public to /build/public'],
-      'should log that it copied public src to public build');
+    assert.deepEqual(
+      shell.test.mock.calls[0],
+      ['-d', publicSrcPath],
+      'should check public src path'
+    );
+    assert.deepEqual(shell.test.mock.calls[1], ['-d', buildPath], 'should check build path');
+    assert.equal(shell.mkdir.mock.calls[1], buildPath, 'should mkdir buildPath');
+    assert.deepEqual(
+      shell.cp.mock.calls[0],
+      ['-r', publicSrcPath, publicBuildPath],
+      'should copy public src to public build'
+    );
+    assert.deepEqual(
+      logger.task.mock.calls[1],
+      ['Copied /src/public to /build/public'],
+      'should log that it copied public src to public build'
+    );
 
     // for client
-    assert.equal(webpackCompiler.mock.calls[0][0], 'clientConfig',
-      'should call webpackCompiler with clientConfig');
-    assert.ok(webpackCompiler.run.mock.calls.length > 0,
-      'should call webpackCompiler.run');
+    assert.equal(
+      webpackCompiler.mock.calls[0][0],
+      'clientConfig',
+      'should call webpackCompiler with clientConfig'
+    );
+    assert.ok(webpackCompiler.run.mock.calls.length > 0, 'should call webpackCompiler.run');
 
     // client stats
     const clientCallback = webpackCompiler.mock.calls[0][1];
-    assert.equal(typeof clientCallback, 'function',
-      'clientCallback should be a function');
+    assert.equal(typeof clientCallback, 'function', 'clientCallback should be a function');
     const stats = {
       hasErrors: jest.fn(),
     };
     clientCallback(stats);
-    assert.deepEqual(logger.info.mock.calls, [['Assets:']],
-      'should call logger.info');
-    assert.deepEqual(printAssets.mock.calls, [[stats, 'clientConfig']],
-      'should call printAssets');
+    assert.deepEqual(logger.info.mock.calls, [['Assets:']], 'should call logger.info');
+    assert.deepEqual(printAssets.mock.calls, [[stats, 'clientConfig']], 'should call printAssets');
 
     // for server
     const doneBuilding = webpackCompiler.mock.calls[1][1];
-    assert.equal(webpackCompiler.mock.calls[1][0], 'serverConfig',
-      'should call webpackCompiler with serverConfig second');
+    assert.equal(
+      webpackCompiler.mock.calls[1][0],
+      'serverConfig',
+      'should call webpackCompiler with serverConfig second'
+    );
 
     // done building server
     doneBuilding(stats);
-    assert.deepEqual(logger.end.mock.calls, [['Done building']],
-      'should log success');
+    assert.deepEqual(logger.end.mock.calls, [['Done building']], 'should log success');
   });
 
   it('builds correctly without a server', () => {
     build({ test: 'test', hasServer: false });
-    assert.equal(webpackCompiler.mock.calls[0][0], 'clientConfig',
-      'should call webpackCompiler with clientConfig');
-    assert.ok(webpackCompiler.run.mock.calls.length > 0,
-      'should call webpackCompiler.run');
-    assert.equal(webpackCompiler.mock.calls.length, 1,
-      'should not call webpackCompiler a second time for server');
+    assert.equal(
+      webpackCompiler.mock.calls[0][0],
+      'clientConfig',
+      'should call webpackCompiler with clientConfig'
+    );
+    assert.ok(webpackCompiler.run.mock.calls.length > 0, 'should call webpackCompiler.run');
+    assert.equal(
+      webpackCompiler.mock.calls.length,
+      1,
+      'should not call webpackCompiler a second time for server'
+    );
   });
 
   it('exits when the client build errors', () => {
