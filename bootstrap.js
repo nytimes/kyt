@@ -67,11 +67,11 @@ packages.forEach(pkg => {
 });
 
 // npm link kyt-cli and kyt
-shell.exec('npm unlink && npm link', {
+shell.exec('yarn  link', {
   cwd: path.join(process.cwd(), 'packages', 'kyt-cli'),
 });
 logTask('npm-linked kyt-cli\n');
-shell.exec('npm unlink && npm link', {
+shell.exec('yarn link', {
   cwd: path.join(process.cwd(), 'packages', 'kyt-core'),
 });
 logTask('npm-linked kyt');
