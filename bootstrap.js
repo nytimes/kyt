@@ -41,7 +41,7 @@ const shell = require('shelljs');
 const semver = require('semver');
 
 // Make sure that we're all using the same version of yarn.
-const yarnVersionRequirement = '>=0.20.0';
+const yarnVersionRequirement = '>=0.24.0';
 const yarnVersion = shell.exec('yarn --version').stdout;
 if (!semver.satisfies(yarnVersion, yarnVersionRequirement)) {
   console.log('❌  update your version of yarn:', `npm i yarn@${yarnVersionRequirement} -g`);
@@ -67,11 +67,11 @@ packages.forEach(pkg => {
 });
 
 // npm link kyt-cli and kyt
-shell.exec('npm link', {
+shell.exec('yarn  link', {
   cwd: path.join(process.cwd(), 'packages', 'kyt-cli'),
 });
 logTask('npm-linked kyt-cli\n');
-shell.exec('npm link', {
+shell.exec('yarn link', {
   cwd: path.join(process.cwd(), 'packages', 'kyt-core'),
 });
 logTask('npm-linked kyt');

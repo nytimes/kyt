@@ -45,6 +45,12 @@ describe('kyt lint-script', () => {
     expect(usingLine.endsWith(`${stageName}/.eslintrc`)).toBe(true);
   });
 
+  it('should test against the .json extension', () => {
+    util.setupStageWithFixture(stageName, 'lintScript-json-fail');
+    const output = shell.exec('npm run lint-script');
+    expect(output.code).toBe(1);
+  });
+
   afterEach(() => {
     util.teardownStage(stageName);
   });
