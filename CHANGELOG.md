@@ -5,6 +5,11 @@
 
 ## Master
 
+## 0.8.0-alpha.1 - 07/11/17
+
+- Upgrades jest to version 20
+- Upgrades webpack to version 3
+
 ## 0.7.0 - 07/07/17
 
 [0.6.x-0.7.0 Migration guide](/docs/migration-guides/0.6-0.7.md).
