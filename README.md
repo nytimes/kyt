@@ -17,7 +17,7 @@ Check out our [migration guide](/docs/migration-guides/0.4-0.5.md) and [changelo
 2. `npm install -g kyt-cli`
 3. `kyt-cli setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/packages/kyt-cli/README.md).
 4. `npm run dev`
-5. Check out `http://localhost:3000`
+5. Check out `http://localhost:3001`
 
 
 ## How it Works
