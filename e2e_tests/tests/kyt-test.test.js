@@ -30,6 +30,12 @@ describe('kyt test', () => {
     expect(output.code).toBe(0);
   });
 
+  it('should setup a global window/document', () => {
+    util.setupStageWithFixture(stageName, 'test-global-setup');
+    const output = shell.exec('npm run test');
+    expect(output.code).toBe(0);
+  });
+
   afterEach(() => {
     util.teardownStage(stageName);
   });

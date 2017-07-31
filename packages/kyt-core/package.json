@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "0.8.0-alpha.1",
+  "version": "0.8.0-alpha.2",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -46,6 +46,7 @@
     "inquirer": "1.2.1",
     "install": "0.8.1",
     "jest": "20.0.4",
+    "jsdom": "11.1.0",
     "kyt-utils": "0.1.1",
     "lodash.clonedeep": "4.5.0",
     "lodash.merge": "4.6.0",

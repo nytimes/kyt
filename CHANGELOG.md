@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.8.0-alpha.2 - 07/31/17
+
+- Adds jest test setup for global `document` and `window`
+
 ## 0.8.0-alpha.1 - 07/11/17
 
 - Upgrades jest to version 20

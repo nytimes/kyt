@@ -18,5 +18,6 @@ module.exports = (rootDir, aliases = {}) => ({
   testEnvironment: 'node',
   testRegex: '\\.test.js$',
   collectCoverageFrom: ['**/*.js'],
+  setupFiles: [resolveFromUtils('setup')],
   rootDir,
 });
