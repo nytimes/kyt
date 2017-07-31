@@ -11,6 +11,9 @@ const path = {
   resolve: jest.fn(),
 };
 
+const extractPlugin = jest.fn();
+extractPlugin.extract = jest.fn();
+
 const webpack = {
   LoaderOptionsPlugin: jest.fn(),
   optimize: {
@@ -32,6 +35,7 @@ jest.setMock('path', path);
 jest.setMock('kyt-utils/logger', logger);
 jest.setMock('webpack', webpack);
 jest.setMock('../../utils/getPostcssLoader', {});
+jest.setMock('extract-text-webpack-plugin', extractPlugin);
 
 const devClientConfig = require('../webpack.dev.client');
 const devServerConfig = require('../webpack.dev.server');
