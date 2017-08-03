@@ -2,7 +2,7 @@
 
 ## Master
 
-## 0.2.1-alpha.1 (July 11, 2017)
+## 0.2.1 (August 03, 2017)
 
 - Fixes windows `rm` bug [#469](https://github.com/NYTimes/kyt/pull/469)
 

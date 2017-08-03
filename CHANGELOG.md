@@ -5,14 +5,13 @@
 
 ## Master
 
-## 0.8.0-alpha.2 - 07/31/17
+## 0.8.0 08/03/17
 
+[0.7.x-0.8.0 Migration guide](/docs/migration-guides/0.7-0.8.md).
+
+- Upgrades webpack to version 3.1.0
+- Upgrades jest to version 20.0.4
 - Adds jest test setup for global `document` and `window`
-
-## 0.8.0-alpha.1 - 07/11/17
-
-- Upgrades jest to version 20
-- Upgrades webpack to version 3
 
 ## 0.7.0 - 07/07/17
 
