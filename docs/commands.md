@@ -66,6 +66,10 @@ Runs Jest with `--coverage`.
 You can update the Jest configuration by defining a `modifyJestConfig` function in your `kyt.config.js`.
 See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
 
+### test globals
+
+kyt will inject DOM globals, like `global.window` and `global.document` into every test. If you need to remove or add to the globals, then you can override the Jest [`setupFiles` configuration](https://github.com/NYTimes/kyt/blob/5c80c117ae98268187e178388ae3b17a14f84c12/packages/kyt-core/config/jest.js#L21) in your `modifyJestConfig` callback.
+
 ### Troubleshooting
 
 #### Tests are hanging and/or `test-watch` is broken on OSX Sierra

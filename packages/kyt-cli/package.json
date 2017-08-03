@@ -1,6 +1,6 @@
 {
   "name": "kyt-cli",
-  "version": "0.2.1-alpha.1",
+  "version": "0.2.1",
   "description": "CLI for setting up kyt projects.",
   "main": "index.js",
   "bin": {
@@ -20,9 +20,5 @@
     "shelljs": "0.7.8",
     "simple-git": "1.62.0"
   },
-  "keywords": [
-    "kyt",
-    "cli",
-    "kyt-cli"
-  ]
+  "keywords": ["kyt", "cli", "kyt-cli"]
 }
