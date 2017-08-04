@@ -3,13 +3,22 @@
 // https://github.com/survivejs/webpack-merge
 
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const shell = require('shelljs');
-const { buildPath, userNodeModulesPath, userBabelrcPath } = require('kyt-utils/paths')();
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const {
+  buildPath,
+  userNodeModulesPath,
+  userBabelrcPath,
+  publicSrcPath,
+} = require('kyt-utils/paths')();
 const fileExtensions = require('./fileExtensions');
 
 module.exports = options => {
   const hasBabelrc = shell.test('-f', userBabelrcPath);
+  const assetsFilePath = path.join(buildPath, options.clientAssetsFile);
+  let publicAssets = {};
 
   return {
     node: {
@@ -43,25 +52,69 @@ module.exports = options => {
           ),
         },
       }),
+
+      new WebpackAssetsManifest({
+        output: assetsFilePath,
+        space: 2,
+        writeToDisk: true,
+        fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
+        merge: true,
+        customize: (key, value) => {
+          const prependPublicPath = asset => `${options.publicPath || ''}${asset}`;
+          const removePublicDir = asset => asset.replace(/(.*)?public\//, '');
+
+          // For static assets that are only required by the server, we need to
+          // do some sophisticated work to make sure that their paths are correct.
+          if (options.type === 'server') {
+            // If the public assets manifest exists and we haven't already, load it.
+            if (fs.existsSync(assetsFilePath) && !Object.keys(publicAssets).length) {
+              // eslint-disable-next-line global-require,import/no-dynamic-require
+              publicAssets = require(assetsFilePath);
+            }
+
+            // Unfortunately, file-loader appends the `outputPath` (public directory path)
+            // so we need to remove it from the key and value.
+            key = removePublicDir(key);
+            if (publicAssets[key]) {
+              // If the key already exists in the manifest then we use it. This gets
+              // around a problem with including chunks from the server build.
+              value = publicAssets[key];
+            } else {
+              value = prependPublicPath(removePublicDir(value));
+            }
+          } else {
+            value = prependPublicPath(value);
+          }
+
+          return { key, value };
+        },
+      }),
     ],
 
     module: {
       rules: [
         {
-          test: /\.html$/,
-          loader: 'file-loader?name=[name].[ext]',
-        },
-        {
-          test: new RegExp(fileExtensions),
-          loader: 'url-loader',
-          options: {
-            limit: 20000,
+          test: asset => {
+            const extensions = new RegExp(fileExtensions);
+            const jsCSSExtensions = new RegExp('\\.(js|css)$');
+            const isFile = extensions.test(asset);
+            const isJSOrCSSInPublic = asset.includes('/src/public/') && jsCSSExtensions.test(asset);
+            return isFile || isJSOrCSSInPublic;
           },
+          loader: 'file-loader',
+          options:
+            options.environment === 'development'
+              ? {}
+              : {
+                  name: '[name]-[hash].[ext]',
+                  publicPath: options.publicPath,
+                  outputPath: asset => (options.type === 'server' ? `../public/${asset}` : asset),
+                },
         },
         {
           test: /\.(js|jsx)$/,
           loader: 'babel-loader',
-          exclude: [/node_modules/, buildPath],
+          exclude: [/node_modules/, buildPath, publicSrcPath],
           // babel configuration should come from presets defined in the user's
           // .babelrc, unless there's a specific reason why it has to be put in
           // the webpack loader options
