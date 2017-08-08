@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "0.9.0-alpha.1",
+  "version": "0.9.0-alpha.2",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -25,6 +25,7 @@
     "chokidar": "1.7.0",
     "commander": "2.9.0",
     "connect-history-api-fallback": "1.3.0",
+    "cors": "2.8.4",
     "css-loader": "0.28.2",
     "detect-port": "1.0.1",
     "eslint": "3.19.0",

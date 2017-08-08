@@ -6,6 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const shell = require('shelljs');
+const merge = require('lodash.merge');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const {
   buildPath,
@@ -15,10 +16,11 @@ const {
 } = require('kyt-utils/paths')();
 const fileExtensions = require('./fileExtensions');
 
+let clientAssets;
+
 module.exports = options => {
   const hasBabelrc = shell.test('-f', userBabelrcPath);
   const assetsFilePath = path.join(buildPath, options.clientAssetsFile);
-  let publicAssets = {};
 
   return {
     node: {
@@ -56,31 +58,32 @@ module.exports = options => {
       new WebpackAssetsManifest({
         output: assetsFilePath,
         space: 2,
-        writeToDisk: true,
         fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
-        merge: true,
+        writeToDisk: options.type === 'client',
+        done: manifest => {
+          // This plugin's `merge` doesn't work as expected. The "done" callback
+          // gets called for the client and server asset builds, in that order.
+          if (options.type === 'client') {
+            // Save the client assets for merging later.
+            clientAssets = manifest.toJSON();
+          } else {
+            // Merge the server assets into the client assets and write the result to disk.
+            const assets = merge({}, clientAssets, manifest.toJSON());
+            fs.writeFile(assetsFilePath, JSON.stringify(assets, null, '  '), 'utf8');
+          }
+        },
         customize: (key, value) => {
           const prependPublicPath = asset => `${options.publicPath || ''}${asset}`;
           const removePublicDir = asset => asset.replace(/(.*)?public\//, '');
 
-          // For static assets that are only required by the server, we need to
-          // do some sophisticated work to make sure that their paths are correct.
+          // Server asset files have "../public" prepended to them
+          // (see file-loader `outputPath`). We need to remove that.
           if (options.type === 'server') {
-            // If the public assets manifest exists and we haven't already, load it.
-            if (fs.existsSync(assetsFilePath) && !Object.keys(publicAssets).length) {
-              // eslint-disable-next-line global-require,import/no-dynamic-require
-              publicAssets = require(assetsFilePath);
-            }
-
-            // Unfortunately, file-loader appends the `outputPath` (public directory path)
-            // so we need to remove it from the key and value.
-            key = removePublicDir(key);
-            if (publicAssets[key]) {
-              // If the key already exists in the manifest then we use it. This gets
-              // around a problem with including chunks from the server build.
-              value = publicAssets[key];
-            } else {
+            if (value.startsWith('../public')) {
+              key = removePublicDir(key);
               value = prependPublicPath(removePublicDir(value));
+            } else {
+              return false;
             }
           } else {
             value = prependPublicPath(value);
@@ -102,14 +105,11 @@ module.exports = options => {
             return isFile || isJSOrCSSInPublic;
           },
           loader: 'file-loader',
-          options:
-            options.environment === 'development'
-              ? {}
-              : {
-                  name: '[name]-[hash].[ext]',
-                  publicPath: options.publicPath,
-                  outputPath: asset => (options.type === 'server' ? `../public/${asset}` : asset),
-                },
+          options: {
+            name: '[name]-[hash].[ext]',
+            publicPath: options.publicPath,
+            outputPath: asset => (options.type === 'server' ? `../public/${asset}` : asset),
+          },
         },
         {
           test: /\.(js|jsx)$/,
