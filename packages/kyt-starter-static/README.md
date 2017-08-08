@@ -33,3 +33,7 @@ Want to build your own starter-kyt?
 See directions [here](https://github.com/NYTimes/kyt/docs/Starterkyts.md).
 
 ## Changelog
+
+0.5.1 - 08/08/17
+
+- Fixes bug (regression from 0.3.0) where build would bake in the bundles/scripts in the wrong order. The errors from this bug may take different forms, but a good way to verify that this is working correctly is that after calling `kyt build` the `build/public/index.html` shows the bundled scripts in the following order: `manifest.js`, `vendor.js`, then `main.js`.
