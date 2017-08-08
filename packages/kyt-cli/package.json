@@ -20,5 +20,9 @@
     "shelljs": "0.7.8",
     "simple-git": "1.62.0"
   },
-  "keywords": ["kyt", "cli", "kyt-cli"]
+  "keywords": [
+    "kyt",
+    "cli",
+    "kyt-cli"
+  ]
 }
