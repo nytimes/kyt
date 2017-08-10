@@ -51,6 +51,12 @@ describe('kyt lint-script', () => {
     expect(output.code).toBe(1);
   });
 
+  it('should restrict imports from server', () => {
+    util.setupStageWithFixture(stageName, 'lintScript-server-import');
+    const output = shell.exec('npm run lint-script');
+    expect(output.code).toBe(1);
+  });
+
   afterEach(() => {
     util.teardownStage(stageName);
   });
