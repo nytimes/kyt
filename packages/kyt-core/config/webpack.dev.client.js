@@ -1,17 +1,19 @@
 // Development webpack config for client code
 
 const webpack = require('webpack');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
 const clone = require('lodash.clonedeep');
-const path = require('path');
-const { clientSrcPath, buildPath, assetsBuildPath } = require('kyt-utils/paths')();
+const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 
 const cssStyleLoaders = [
   'style-loader',
   {
     loader: 'css-loader',
-    options: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
+    options: {
+      modules: true,
+      sourceMap: true,
+      localIdentName: '[name]-[local]--[hash:base64:5]',
+    },
   },
   postcssLoader,
 ];
@@ -57,10 +59,12 @@ module.exports = options => {
         {
           test: /\.css$/,
           use: cssStyleLoaders,
+          exclude: [publicSrcPath],
         },
         {
           test: /\.scss$/,
           use: clone(cssStyleLoaders).concat('sass-loader'),
+          exclude: [publicSrcPath],
         },
       ],
     },
@@ -69,15 +73,6 @@ module.exports = options => {
       new webpack.NoEmitOnErrorsPlugin(),
 
       new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-
-      new WebpackAssetsManifest({
-        output: path.join(buildPath, options.clientAssetsFile),
-        space: 2,
-        writeToDisk: true,
-        fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
-        merge: false,
-        publicPath: options.publicPath,
-      }),
 
       new webpack.HotModuleReplacementPlugin(),
     ],

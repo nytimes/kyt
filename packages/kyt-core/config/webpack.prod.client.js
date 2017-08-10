@@ -2,11 +2,9 @@
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
 const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
-const { clientSrcPath, assetsBuildPath, buildPath } = require('kyt-utils/paths')();
-const path = require('path');
+const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 
 const cssStyleLoaders = [
   {
@@ -44,6 +42,7 @@ module.exports = options => ({
           fallback: 'style-loader',
           use: cssStyleLoaders,
         }),
+        exclude: [publicSrcPath],
       },
       {
         test: /\.scss$/,
@@ -51,6 +50,7 @@ module.exports = options => ({
           fallback: 'style-loader',
           use: clone(cssStyleLoaders).concat('sass-loader'),
         }),
+        exclude: [publicSrcPath],
       },
     ],
   },
@@ -75,15 +75,6 @@ module.exports = options => ({
         comments: false,
       },
       sourceMap: true,
-    }),
-
-    new WebpackAssetsManifest({
-      output: path.join(buildPath, options.clientAssetsFile),
-      space: 2,
-      writeToDisk: true,
-      fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
-      merge: false,
-      publicPath: options.publicPath,
     }),
 
     // Modules should get deterministic ids so that they don't change between builds

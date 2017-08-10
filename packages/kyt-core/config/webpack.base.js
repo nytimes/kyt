@@ -3,13 +3,24 @@
 // https://github.com/survivejs/webpack-merge
 
 const path = require('path');
+const fs = require('fs');
 const webpack = require('webpack');
 const shell = require('shelljs');
-const { buildPath, userNodeModulesPath, userBabelrcPath } = require('kyt-utils/paths')();
+const merge = require('lodash.merge');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const {
+  buildPath,
+  userNodeModulesPath,
+  userBabelrcPath,
+  publicSrcPath,
+} = require('kyt-utils/paths')();
 const fileExtensions = require('./fileExtensions');
+
+let clientAssets;
 
 module.exports = options => {
   const hasBabelrc = shell.test('-f', userBabelrcPath);
+  const assetsFilePath = path.join(buildPath, options.clientAssetsFile);
 
   return {
     node: {
@@ -43,25 +54,67 @@ module.exports = options => {
           ),
         },
       }),
+
+      new WebpackAssetsManifest({
+        output: assetsFilePath,
+        space: 2,
+        fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
+        writeToDisk: options.type === 'client',
+        done: manifest => {
+          // This plugin's `merge` doesn't work as expected. The "done" callback
+          // gets called for the client and server asset builds, in that order.
+          if (options.type === 'client') {
+            // Save the client assets for merging later.
+            clientAssets = manifest.toJSON();
+          } else {
+            // Merge the server assets into the client assets and write the result to disk.
+            const assets = merge({}, clientAssets, manifest.toJSON());
+            fs.writeFile(assetsFilePath, JSON.stringify(assets, null, '  '), 'utf8');
+          }
+        },
+        customize: (key, value) => {
+          const prependPublicPath = asset => `${options.publicPath || ''}${asset}`;
+          const removePublicDir = asset => asset.replace(/(.*)?public\//, '');
+
+          // Server asset files have "../public" prepended to them
+          // (see file-loader `outputPath`). We need to remove that.
+          if (options.type === 'server') {
+            if (value.startsWith('../public')) {
+              key = removePublicDir(key);
+              value = prependPublicPath(removePublicDir(value));
+            } else {
+              return false;
+            }
+          } else {
+            value = prependPublicPath(value);
+          }
+
+          return { key, value };
+        },
+      }),
     ],
 
     module: {
       rules: [
         {
-          test: /\.html$/,
-          loader: 'file-loader?name=[name].[ext]',
-        },
-        {
-          test: new RegExp(fileExtensions),
-          loader: 'url-loader',
+          test: asset => {
+            const extensions = new RegExp(fileExtensions);
+            const jsCSSExtensions = new RegExp('\\.(js|css)$');
+            const isFile = extensions.test(asset);
+            const isJSOrCSSInPublic = asset.includes('/src/public/') && jsCSSExtensions.test(asset);
+            return isFile || isJSOrCSSInPublic;
+          },
+          loader: 'file-loader',
           options: {
-            limit: 20000,
+            name: '[name]-[hash].[ext]',
+            publicPath: options.publicPath,
+            outputPath: asset => (options.type === 'server' ? `../public/${asset}` : asset),
           },
         },
         {
           test: /\.(js|jsx)$/,
           loader: 'babel-loader',
-          exclude: [/node_modules/, buildPath],
+          exclude: [/node_modules/, buildPath, publicSrcPath],
           // babel configuration should come from presets defined in the user's
           // .babelrc, unless there's a specific reason why it has to be put in
           // the webpack loader options

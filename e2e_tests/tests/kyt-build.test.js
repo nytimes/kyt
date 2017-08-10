@@ -1,5 +1,6 @@
 const shell = require('shelljs');
 const util = require('../fixtures/util');
+const fs = require('fs');
 
 shell.config.silent = true;
 
@@ -22,6 +23,21 @@ describe('kyt build', () => {
     expect(shell.ls('build/public/manifest-*.js').code).toBe(0);
     expect(shell.ls('build/public/main-*.js').code).toBe(0);
     expect(shell.ls('build/public/vendor-*.js').code).toBe(0);
+
+    // Should fingerprint client and server assets
+    expect(shell.ls('build/public/img-server-*.png').code).toBe(0);
+    expect(shell.ls('build/public/img-*.jpg').code).toBe(0);
+    expect(shell.ls('build/public/script-*.js').code).toBe(0);
+    expect(shell.ls('build/public/file-*.ico').code).toBe(0);
+
+    // Should produce asset manifest mappings for client and server assets and bundles
+    const manifest = JSON.parse(fs.readFileSync('build/publicAssets.json', 'utf8'));
+    expect(manifest['img-server.png']).toMatch(/img-server-.*\.png/);
+    expect(manifest['img.jpg']).toMatch(/img-.*\.jpg/);
+    expect(manifest['script.js']).toMatch(/script-.*\.js/);
+    expect(manifest['file.ico']).toMatch(/file-.*\.ico/);
+    expect(manifest['main.js']).toMatch(/main-.*\.js/);
+    expect(manifest['vendor.js']).toMatch(/vendor-.*\.js/);
 
     expect(output.code).toBe(0);
   });

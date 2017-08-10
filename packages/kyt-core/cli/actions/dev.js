@@ -3,6 +3,7 @@
 const path = require('path');
 const chokidar = require('chokidar');
 const express = require('express');
+const cors = require('cors');
 const shell = require('shelljs');
 const devMiddleware = require('webpack-dev-middleware');
 const hotMiddleware = require('webpack-hot-middleware');
@@ -13,7 +14,7 @@ const logger = require('kyt-utils/logger');
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
-const { buildPath, serverSrcPath, publicSrcPath } = require('kyt-utils/paths')();
+const { buildPath, serverSrcPath, publicSrcPath, publicBuildPath } = require('kyt-utils/paths')();
 
 module.exports = (config, flags) => {
   logger.start('Starting development build...');
@@ -43,12 +44,21 @@ module.exports = (config, flags) => {
     const webpackDevMiddleware = devMiddleware(clientCompiler, devOptions);
 
     if (!hasServer) {
+      // For client only apps, use history api fallback
+      // so all routes will be served from index.html.
       app.use(history());
-      app.use(express.static(publicSrcPath));
+    } else {
+      // Setup a static proxy for static assets that
+      // are imported by file-loader by the server.
+      app.use(cors());
+      app.use(express.static(publicBuildPath));
     }
+
+    // Setup a static proxy for the public source directory.
+    app.use(express.static(publicSrcPath));
+
     app.use(webpackDevMiddleware);
     app.use(hotMiddleware(clientCompiler));
-
     app.listen(clientURL.port, clientURL.hostname);
   };
 

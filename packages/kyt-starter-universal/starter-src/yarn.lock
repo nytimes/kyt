@@ -1589,6 +1589,13 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
 
+cors@2.8.4:
+  version "2.8.4"
+  resolved "https://registry.yarnpkg.com/cors/-/cors-2.8.4.tgz#2bd381f2eb201020105cd50ea59da63090694686"
+  dependencies:
+    object-assign "^4"
+    vary "^1"
+
 cosmiconfig@^2.1.0, cosmiconfig@^2.1.1:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/cosmiconfig/-/cosmiconfig-2.2.2.tgz#6173cebd56fac042c1f4390edf7af6c07c7cb892"
@@ -1995,11 +2002,7 @@ domain-browser@^1.1.1:
   version "1.1.7"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-1.1.7.tgz#867aa4b093faa05f1de08c06f4d7b21fdf8698bc"
 
-domelementtype@1:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.3.0.tgz#b17aed82e8ab59e52dd9c19b1756e0fc187204c2"
-
-domelementtype@~1.1.1:
+domelementtype@1, domelementtype@~1.1.1:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/domelementtype/-/domelementtype-1.1.3.tgz#bd28773e2642881aec51544924299c5cd822185b"
 
@@ -4011,9 +4014,9 @@ kyt-utils@0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/kyt-utils/-/kyt-utils-0.1.1.tgz#3a18d92ded0c4037267b571337c214e3cad58d53"
 
-kyt@0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.8.0.tgz#3159153c4607687c0ed2eb53ed33650ab31a978e"
+kyt@0.9.0-alpha.2:
+  version "0.9.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/kyt/-/kyt-0.9.0-alpha.2.tgz#741e51b03baba4cfddfc344aa115d0612b9f15a0"
   dependencies:
     autoprefixer "7.1.1"
     babel-cli "6.18.0"
@@ -4026,6 +4029,7 @@ kyt@0.8.0:
     chokidar "1.7.0"
     commander "2.9.0"
     connect-history-api-fallback "1.3.0"
+    cors "2.8.4"
     css-loader "0.28.2"
     detect-port "1.0.1"
     eslint "3.19.0"
@@ -4070,7 +4074,7 @@ kyt@0.8.0:
     temp "0.8.3"
     url-loader "0.5.8"
     webpack "3.1.0"
-    webpack-assets-manifest "0.6.2"
+    webpack-assets-manifest "0.7.0"
     webpack-dev-middleware "1.11.0"
     webpack-dev-server "2.5.1"
     webpack-hot-middleware "2.18.2"
@@ -4222,6 +4226,10 @@ lodash.find@^4.0:
 lodash.get@^4.0:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
+
+lodash.has@^4.0:
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/lodash.has/-/lodash.has-4.5.2.tgz#d19f4dc1095058cccbe2b0cdf4ee0fe4aa37c862"
 
 lodash.isarguments@^3.0.0:
   version "3.1.0"
@@ -4772,7 +4780,7 @@ object-assign@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-3.0.0.tgz#9bedd5ca0897949bca47e7ff408062d549f587f2"
 
-object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -6889,7 +6897,7 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "~1.0.0"
     spdx-expression-parse "~1.0.0"
 
-vary@~1.1.0, vary@~1.1.1:
+vary@^1, vary@~1.1.0, vary@~1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.1.tgz#67535ebb694c1d52257457984665323f587e8d37"
 
@@ -6959,13 +6967,14 @@ webidl-conversions@^4.0.0, webidl-conversions@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.1.tgz#8015a17ab83e7e1b311638486ace81da6ce206a0"
 
-webpack-assets-manifest@0.6.2:
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/webpack-assets-manifest/-/webpack-assets-manifest-0.6.2.tgz#1f8dd38a2d132474ce26e7d37dc894ba6ddf4b4f"
+webpack-assets-manifest@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/webpack-assets-manifest/-/webpack-assets-manifest-0.7.0.tgz#810971d4e4644f15de9fbf9910da1cae7f117fc4"
   dependencies:
     chalk "^1.0"
     lodash.find "^4.0"
     lodash.get "^4.0"
+    lodash.has "^4.0"
     lodash.keys "^4.0"
     lodash.merge "^4.0"
     lodash.pick "^4.0"

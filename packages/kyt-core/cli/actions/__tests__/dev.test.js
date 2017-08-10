@@ -102,7 +102,7 @@ describe('dev', () => {
     // start client
     assert.ok(devMiddleware.mock.calls.length > 0, 'should call devMiddleware');
     assert.ok(express.mock.calls.length > 0, 'should instantiate express');
-    assert.equal(express.use.mock.calls.length, 2, 'should set up two express middlewares');
+    assert.equal(express.use.mock.calls.length, 5, 'should set up two express middlewares');
     assert.deepEqual(
       express.listen.mock.calls,
       [[port, hostname]],

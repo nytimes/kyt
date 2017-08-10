@@ -5,6 +5,16 @@
 
 ## Master
 
+## 0.9.0-alpha.2 08/08/17
+
+- Fixes assets manifest merging by only merging server public assets
+- Fixes 404'ing server public assets in `dev` mode
+- Fixes static starter script order
+
+## 0.9.0-alpha.1 08/03/17
+
+- Adds static asset support [518](https://github.com/NYTimes/kyt/issues/518)
+
 ## 0.8.0 08/03/17
 
 [0.7.x-0.8.0 Migration guide](/docs/migration-guides/0.7-0.8.md).
