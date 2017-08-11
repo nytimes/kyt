@@ -18,7 +18,7 @@ node_modules/.bin/kyt build
 5. [`proto`](/docs/commands.md#proto) starts the prototyping app
 6. [`lint-script`](/docs/commands.md#lint-script) lints src code using ESLint
 7. [`lint-style`](/docs/commands.md#lint-style) lints src code using StyleLint
-8. [`help`](/docs/commands.md#help) shows commands and their documentation
+8. `--help` shows commands and their documentation
 
 ## dev
 
