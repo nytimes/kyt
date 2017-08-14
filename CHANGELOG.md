@@ -5,6 +5,10 @@
 
 ## Master
 
+## 0.9.0-alpha.3 08/10/17
+
+- Adds lint rule that restricts server imports. See more in [eslint-config-kyt 0.5.0 changelog](/packages/eslint-config-kyt/README.md#changelog).
+
 ## 0.9.0-alpha.2 08/08/17
 
 - Fixes assets manifest merging by only merging server public assets

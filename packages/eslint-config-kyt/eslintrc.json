@@ -1,19 +1,12 @@
 {
-  "extends": [
-    "airbnb",
-    "prettier",
-    "prettier/react"
-  ],
+  "extends": ["airbnb", "prettier", "prettier/react"],
 
   "env": {
     "jest": true,
     "browser": true
   },
 
-  "plugins": [
-    "json",
-    "prettier"
-  ],
+  "plugins": ["json", "prettier"],
 
   "parser": "babel-eslint",
   "parserOptions": {
@@ -32,25 +25,40 @@
     "constructor-super": 2,
     "no-this-before-super": 2,
     "prefer-spread": 2,
-    "no-warning-comments": [1, { "terms": ["todo", "fixme"], "location": "start" }],
+    "no-warning-comments": [
+      1,
+      { "terms": ["todo", "fixme"], "location": "start" }
+    ],
     "react/sort-comp": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/extensions": [1, { "js": "never" }],
     "react/require-extension": "off",
     "import/no-extraneous-dependencies": [0],
     "no-param-reassign": 0,
-    "comma-dangle": ["error", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "always-multiline",
-      "functions": "never"
-    }],
-    "prettier/prettier": ["error", {
-      "printWidth": 100,
-      "semi": true,
-      "singleQuote": true,
-      "trailingComma": "es5"
-    }]
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "import/no-restricted-paths": [
+      "error",
+      {
+        "zones": [{ "target": "./src", "from": "./src/server" }]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 100,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "es5"
+      }
+    ]
   }
 }
