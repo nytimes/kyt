@@ -1,5 +1,6 @@
 {
   "name": "kyt-starter-static-src",
+  "private": true,
   "description": "",
   "main": "index.js",
   "scripts": {},

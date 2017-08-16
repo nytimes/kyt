@@ -4,7 +4,7 @@ const kill = require('../utils/psKill');
 const path = require('path');
 const fs = require('fs');
 
-// shell.config.silent = true;
+shell.config.silent = true;
 
 describe('starter kyts', () => {
   describe('kyt-starter-universal', () => {
@@ -17,7 +17,7 @@ describe('starter kyts', () => {
     it('should start a dev server on :3000', () => {
       let outputTest;
       const run = new Promise(resolve => {
-        const child = shell.exec('node_modules/kyt/cli/index.js dev', () => {
+        const child = shell.exec('node_modules/.bin/kyt dev', () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
