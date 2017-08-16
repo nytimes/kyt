@@ -17,9 +17,7 @@
       "<rootDir>/packages/kyt-core/cli/actions/test.js",
       "<rootDir>/e2e_tests"
     ],
-    "collectCoverageFrom": [
-      "**/*.js"
-    ],
+    "collectCoverageFrom": ["**/*.js"],
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules",
       "<rootDir>/packages/*/node_modules",
@@ -37,7 +35,6 @@
     "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/kyt/cli/index.js test && cd  ../../kyt-starter-static/starter-src && node_modules/kyt/cli/index.js test",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
-    "clean-e2e": "yarn cache clean && yarn run e2e",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },
