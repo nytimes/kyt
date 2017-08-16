@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "0.9.0-alpha.3",
+  "version": "0.9.0-alpha.4",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -77,5 +77,9 @@
     "webpack-merge": "4.1.0",
     "webpack-node-externals": "1.6.0"
   },
-  "keywords": ["kyt", "core", "kyt-core"]
+  "keywords": [
+    "kyt",
+    "core",
+    "kyt-core"
+  ]
 }

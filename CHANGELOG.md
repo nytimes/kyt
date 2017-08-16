@@ -5,6 +5,11 @@
 
 ## Master
 
+## 0.9.0-alpha.4 08/14/17
+
+- Upgrades [node-sass from 4.5.0 to 4.5.3](https://github.com/sass/node-sass/releases) for Node 8 support.
+
+
 ## 0.9.0-alpha.3 08/10/17
 
 - Adds lint rule that restricts server imports. See more in [eslint-config-kyt 0.5.0 changelog](/packages/eslint-config-kyt/README.md#changelog).
