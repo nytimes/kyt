@@ -9,9 +9,6 @@ module.exports = {
     const stagePath = path.join(rootDir, stageName);
     shell.mkdir(stagePath);
     shell.exec(`cp -a ${rootDir}/e2e_tests/fixtures/${fixtureName}/. ${stagePath}/`);
-    shell.ln('-s',
-      path.join(rootDir, 'packages/kyt-core/node_modules'),
-      path.join(stagePath, 'node_modules'));
     shell.cd(stagePath);
   },
 

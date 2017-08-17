@@ -17,9 +17,7 @@
       "<rootDir>/packages/kyt-core/cli/actions/test.js",
       "<rootDir>/e2e_tests"
     ],
-    "collectCoverageFrom": [
-      "**/*.js"
-    ],
+    "collectCoverageFrom": ["**/*.js"],
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules",
       "<rootDir>/packages/*/node_modules",
@@ -29,32 +27,19 @@
     ]
   },
   "scripts": {
-    "bootstrap": "node bootstrap.js",
-    "update": "type=install npm run bootstrap",
-    "clean": "node clean.js",
+    "bootstrap": "npm i && lerna bootstrap && npm run install-starters",
+    "clean-bootstrap": "rm -rf node_modules && npm i && lerna clean && npm run bootstrap",
+    "install-starters": "cd packages/kyt-starter-universal/starter-src && npm i && npm link ../../kyt-core && cd ../../kyt-starter-static/starter-src && npm i && npm link ../../kyt-core",
+    "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
+    "publish-release": "lerna publish --exact --message",
     "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/kyt/cli/index.js test && cd  ../../kyt-starter-static/starter-src && node_modules/kyt/cli/index.js test",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
-    "clean-e2e": "yarn cache clean && yarn run e2e",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },
-  "dependencies": {
-    "babel-eslint": "7.1.1",
-    "eslint": "3.19.0",
-    "eslint-config-airbnb": "15.0.2",
-    "eslint-config-kyt": "file:packages/eslint-config-kyt",
-    "eslint-config-prettier": "2.3.0",
-    "eslint-plugin-import": "2.7.0",
-    "eslint-plugin-json": "1.2.0",
-    "eslint-plugin-jsx-a11y": "5.1.1",
-    "eslint-plugin-prettier": "2.1.2",
-    "eslint-plugin-react": "7.1.0",
-    "jest": "20.0.4",
-    "prettier": "1.5.2",
-    "prettier-eslint-cli": "4.1.1",
-    "ps-tree": "1.1.0",
-    "semver": "5.3.0",
-    "shelljs": "0.7.8"
-  }
+  "devDependencies": {
+    "lerna": "^2.0.0"
+  },
+  "dependencies": {}
 }

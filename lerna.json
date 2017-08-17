@@ -1,0 +1,12 @@
+{
+  "lerna": "2.0.0",
+  "packages": ["packages/*", "packages/**/starter-src"],
+  "commands": {
+    "bootstrap": {
+      "hoist": true,
+      "ignore": "kyt-starter-*"
+    }
+  },
+  "loglevel": "verbose",
+  "version": "independent"
+}

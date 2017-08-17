@@ -14,57 +14,44 @@ Please make sure all PRs are:
 3. Connected to an issue
 4. Update the [CHANGELOG](/CHANGELOG.md) (for MASTER) to reflect your PR changes.
 
-### kyt local development
-
-Optional: We recommend installing `yarn` to speed up local development.
-
-1. Fork and clone kyt
-2. Run `npm run bootstrap` to install the packages in the monorepo. You can also run `update` to reinstall.
-
-We recommend creating a local project with a starter-kyt for testing.
-
-### Testing kyt
-The top level `test` command can be run from the root of the repository and will run all jest tests in the packages.
-
-The e2e tests are located in the e2e folder and can be run from the root of the repo with `npm run e2e`
-
-## Linting kyt
-The monorepo has a top level `lint` command which runs lint for all the packages.
-
-## Create an RFC
+### Create an RFC
 
 If you want to propose a large feature idea or architecture change you should consider submitting an RFC. It's often helpful to get feedback on your concept in an issue before starting the RFC. RFCs are an evolving process in the kyt repository so expect a lot of changes and guidelines in the future. You can find the kyt RFC template [here](/rfc/template.md).
 
-## Build a starter-kyt
-
-Have a great idea for a boilerplate? Build it on top of kyt and let us know about it. Directions are [here](/docs/Starterkyts.md).
-We feature [recommended starter-kyts](/docs/commands.md#recommended-starter-kyts)
-
 ## kyt local development
 
-To setup kyt for local development, install `yarn` and run the following:
+We recommend installing `npm` version 5.3.0 or later: `npm i npm -g`
 
-```
-git clone git@github.com:NYTimes/kyt.git
-yarn run bootstrap
-```
-There are commands for bootstrapping, testing and linting all of the monorepo packages in the root directory package.json file.
+1. Fork and clone kyt
+2. Run `npm run bootstrap` to install the packages in the monorepo.
+
+[lerna](https://github.com/lerna/lerna) is used to manage the monorepo but most of the development commands should be exercised through root directory package.json scripts. The following are some useful npm scripts for development:
 
 ### bootstrap
 
-Bootstrap will set you up with a clean slate. Every time it is run, it will remove and re-install the node_modules across all of the packages, npm link `kyt-cli` and `kyt` so you can run them locally on the command line, and symlink local monorepo dependencies..
+`bootstrap` will install `node_modules` (hoisting most dependencies to the root `node_modules` directory) across all of the packages and symlink local package dependencies. Starter kyt sources (`starter-src/`) are fully installed (not hoisted) and `kyt` is linked.
 
 From the root of kyt, run:
 
-`yarn run bootstrap`
+`npm run bootstrap`
 
-### update
+### clean-bootstrap
 
-Update is useful after you pull down kyt with some minor changes. It will call `yarn install` on all of the packages in the repository. For complicated changes to the repository, it is best to use `bootstrap`.
+`clean-bootstrap` is useful after you make or pull down kyt with dependency changes. It will remove `node_modules` directories before calling `bootstrap`.
 
 From the root of kyt, run:
 
-`yarn run update`
+`npm run clean-bootstrap`
+
+### Test
+
+Unit tests for all packages in the monorepo can be run from the root of the repository: `npm run test`.
+
+Similarly, e2e tests, located in the `e2e` directory can be run from the root of the repository: `npm run e2e`
+
+### Lint
+
+The monorepo has a top level `lint` command which runs lint for all the packages: `npm run lint`
 
 ### Testing local kyt-core changes
 
@@ -79,6 +66,7 @@ To test setting up/installing local starter-kyts, you need to specify the `--loc
 
 `kyt-cli setup -d test  --local-path /path/to/my-local-starter-kyt-dir`
 
-### Testing kyt
+## Build a starter-kyt
 
-More instructions TK
+Have a great idea for a boilerplate? Build it on top of kyt and let us know about it. Directions are [here](/docs/Starterkyts.md).
+We feature [recommended starter-kyts](/docs/commands.md#recommended-starter-kyts)
