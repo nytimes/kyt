@@ -1,6 +1,6 @@
 {
-    
-  "presets": [["babel-preset-latest", { "modules": false }]],
+
+  "presets": [["babel-preset-env", { "modules": false }]],
 
   "env": {
     "custom": {

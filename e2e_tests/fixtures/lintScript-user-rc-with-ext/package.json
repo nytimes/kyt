@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "lint-script": "kyt lint-script"
+    "lint-script": "../packages/kyt-core/cli/index.js lint-script"
   }
 }

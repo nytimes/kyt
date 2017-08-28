@@ -4,7 +4,7 @@
   "commands": {
     "bootstrap": {
       "hoist": true,
-      "ignore": "kyt-starter-*"
+      "nohoist": ["webpack-hot-middleware", "babel-polyfill", "*-loader"]
     }
   },
   "loglevel": "verbose",
