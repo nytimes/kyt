@@ -14,6 +14,13 @@ module.exports = (webpackConfig, cb) => {
     process.exit();
   }
 
+  webpackCompiler.plugin('before-run', (comp, callback) => {
+    // Temporarily set the build type in the process.
+    // This is used by the babel-preset-kyt-core plugin.
+    process.env.KYT_ENV_TYPE = type.toLowerCase();
+    callback();
+  });
+
   // Handle errors in webpack build
   webpackCompiler.plugin('done', stats => {
     if (stats.hasErrors()) {
@@ -24,6 +31,9 @@ module.exports = (webpackConfig, cb) => {
     } else {
       logger.task(`${type} build successful`);
     }
+
+    // Remove the build type that we set in the "before-run" hook.
+    delete process.env.KYT_ENV_TYPE;
 
     // Call the callback on successful build
     if (cb) {
