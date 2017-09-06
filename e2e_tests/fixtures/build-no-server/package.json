@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "build": "kyt build"
+    "build": "../packages/kyt-core/cli/index.js build"
   }
 }

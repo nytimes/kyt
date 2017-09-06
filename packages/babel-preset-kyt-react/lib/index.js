@@ -11,7 +11,7 @@ module.exports = function getPresetReact(context, opts) {
     presets: [
       babelPresetReact,
       // pass options through to core preset
-      [babelPresetKytCore, opts.coreOptions || {}],
+      [babelPresetKytCore, opts || {}],
     ],
     env: {
       development: {

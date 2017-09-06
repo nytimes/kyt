@@ -17,7 +17,9 @@
       "<rootDir>/packages/kyt-core/cli/actions/test.js",
       "<rootDir>/e2e_tests"
     ],
-    "collectCoverageFrom": ["**/*.js"],
+    "collectCoverageFrom": [
+      "**/*.js"
+    ],
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules",
       "<rootDir>/packages/*/node_modules",
@@ -28,18 +30,19 @@
   },
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap && npm run install-starters",
-    "clean-bootstrap": "rm -rf node_modules && npm i && lerna clean && npm run bootstrap",
-    "install-starters": "cd packages/kyt-starter-universal/starter-src && npm i && npm link ../../kyt-core && cd ../../kyt-starter-static/starter-src && npm i && npm link ../../kyt-core",
+    "clean-bootstrap": "rm -rf node_modules && npm i && lerna clean --yes && npm run bootstrap",
+    "install-starters": "node tools/install-starters.js",
     "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
     "publish-release": "lerna publish --exact --message",
-    "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/kyt/cli/index.js test && cd  ../../kyt-starter-static/starter-src && node_modules/kyt/cli/index.js test",
+    "test": "jest",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },
   "devDependencies": {
-    "lerna": "^2.0.0"
+    "lerna": "^2.0.0",
+    "eslint-config-kyt": "file:packages/eslint-config-kyt"
   },
   "dependencies": {}
 }

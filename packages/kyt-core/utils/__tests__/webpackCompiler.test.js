@@ -19,11 +19,18 @@ describe('webpackCompiler', () => {
 
   describe('when called with valid webpack config', () => {
     const compiler = webpackCompiler({ test: 'config' }, cb);
-    const pluginDone = plugin.mock.calls[0][1];
+    const pluginBeforeRun = plugin.mock.calls[0][1];
+    const pluginDone = plugin.mock.calls[1][1];
 
-    it('calls webpack and defines a done function', () => {
+    it('calls webpack and defines a done and before-run function', () => {
       expect(logger.task).toBeCalledWith('Server webpack configuration compiled');
       expect(typeof pluginDone).toBe('function');
+      expect(typeof pluginBeforeRun).toBe('function');
+    });
+
+    it('sets the process KYT_ENV_TYPE before running', () => {
+      pluginBeforeRun({}, () => {});
+      expect(process.env.KYT_ENV_TYPE).toEqual('server');
     });
 
     it('then displays any errors', () => {
@@ -42,6 +49,11 @@ describe('webpackCompiler', () => {
       expect(logger.warn).toBeCalled();
     });
 
+    it('removes the process KYT_ENV_TYPE when done', () => {
+      pluginDone({ hasErrors: () => true, hasWarnings: () => true });
+      expect(process.env.KYT_ENV_TYPE).toEqual(undefined);
+    });
+
     it('calls the provided callback', () => {
       pluginDone({ hasErrors: () => false, hasWarnings: () => false });
       expect(logger.task).toBeCalledWith('Server build successful');
@@ -50,6 +62,17 @@ describe('webpackCompiler', () => {
 
     it('returns the webpackCompiler', () => {
       expect(compiler).toBeDefined();
+    });
+  });
+
+  describe('when called with a target=web, webpack config', () => {
+    plugin.mockReset();
+    webpackCompiler({ test: 'config', target: 'web' }, cb);
+    const pluginBeforeRun = plugin.mock.calls[0][1];
+
+    it('sets the process KYT_ENV_TYPE to client before running', () => {
+      pluginBeforeRun({}, () => {});
+      expect(process.env.KYT_ENV_TYPE).toEqual('client');
     });
   });
 

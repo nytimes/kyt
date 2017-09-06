@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`babel-preset-kyt-core should load default presets and plugins 1`] = `
+Object {
+  "env": Object {
+    "test": Object {
+      "plugins": Array [
+        Array [
+          "commonjs",
+          Object {
+            "loose": true,
+          },
+        ],
+      ],
+    },
+  },
+  "plugins": Array [
+    "import",
+  ],
+  "presets": Array [
+    Array [
+      "env",
+      Object {
+        "modules": false,
+        "targets": Object {
+          "browsers": Array [
+            ">1%",
+            "last 4 versions",
+            "not ie < 11",
+          ],
+        },
+        "uglify": true,
+      },
+    ],
+  ],
+}
+`;
