@@ -17,9 +17,7 @@
       "<rootDir>/packages/kyt-core/cli/actions/test.js",
       "<rootDir>/e2e_tests"
     ],
-    "collectCoverageFrom": [
-      "**/*.js"
-    ],
+    "collectCoverageFrom": ["**/*.js"],
     "coveragePathIgnorePatterns": [
       "<rootDir>/node_modules",
       "<rootDir>/packages/*/node_modules",
@@ -34,7 +32,7 @@
     "install-starters": "node tools/install-starters.js",
     "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
     "publish-release": "lerna publish --exact --message",
-    "test": "jest",
+    "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/.bin/kyt test && cd  ../../kyt-starter-static/starter-src && node_modules/.bin/kyt test",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",

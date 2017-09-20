@@ -2,8 +2,8 @@
 
 var babelPresetEnv = require('babel-preset-env');
 var babelTransformRuntime = require('babel-plugin-transform-runtime');
-var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
 var babelSyntaxDynamicImport = require('babel-plugin-syntax-dynamic-import');
+var merge = require('lodash.merge');
 
 module.exports = function getPresetCore(context, opts) {
   opts = opts || {};
@@ -12,8 +12,8 @@ module.exports = function getPresetCore(context, opts) {
 
   var clientEnvOptions = {
     modules: false,
-    uglify: true,
     targets: {
+      uglify: true,
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
     },
   };
@@ -26,28 +26,23 @@ module.exports = function getPresetCore(context, opts) {
   };
 
   // Derive the babel-preset-env options based on the type of environment
-  // we are in, client or server. Give the ability to users to override
+  // we are in, client, server or test. Give the ability to users to override
   // the default environments in their own configurations, for example:
   //
   //  "presets": [["kyt-core", {
   //    "envOptions": {
   //      "client": { ... },
-  //      "server": { ... }
+  //      "server": { ... },
+  //      "test": { ... }
   //    }
   //  }]]
   //
   if (process.env.KYT_ENV_TYPE === 'client') {
-    envOptions = Object.assign(
-      {},
-      clientEnvOptions,
-      userEnvOptions.client ? userEnvOptions.client : {}
-    );
+    envOptions = merge({}, clientEnvOptions, userEnvOptions.client ? userEnvOptions.client : {});
   } else if (process.env.KYT_ENV_TYPE === 'server') {
-    envOptions = Object.assign(
-      {},
-      serverEnvOptions,
-      userEnvOptions.server ? userEnvOptions.server : {}
-    );
+    envOptions = merge({}, serverEnvOptions, userEnvOptions.server ? userEnvOptions.server : {});
+  } else if (process.env.KYT_ENV_TYPE === 'test') {
+    envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
   } else {
     envOptions = clientEnvOptions;
   }
@@ -61,11 +56,5 @@ module.exports = function getPresetCore(context, opts) {
       opts.includeRuntime === true && babelTransformRuntime,
       babelSyntaxDynamicImport,
     ].filter(Boolean),
-
-    env: {
-      test: {
-        plugins: [[babelTransformModules, { loose: true }]],
-      },
-    },
   };
 };

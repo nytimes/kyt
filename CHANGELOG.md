@@ -5,6 +5,22 @@
 
 ## Master
 
+## 0.9.0-alpha.8 09/19/18
+
+- Fixes `test` command by removing babel `node` environment setting.
+
+## 0.9.0-alpha.7 09/19/18
+
+- Fixes `test` command which was broken after the 0.9.0-alpha.5 release.
+
+## 0.9.0-alpha.6 09/18/17
+
+- Fixes `babel-preset-kyt-core` bugs introduced in the 0.9.0-alpha.5 release.
+
+## 0.9.0-alpha.5 09/17/17
+
+- Adds `babel-preset-env` with smarter browser and node targeting.
+
 ## 0.9.0-alpha.4 08/14/17
 
 - Upgrades [node-sass from 4.5.0 to 4.5.3](https://github.com/sass/node-sass/releases) for Node 8 support.

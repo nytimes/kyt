@@ -25,6 +25,22 @@ To use in your project:
 
 ## CHANGELOG
 
+### `0.3.0-alpha.4` - 09/19/17
+
+- Removes default `node` environment when `KYT_ENV_TYPE=test`. See more in the [kyt-core 0.3.0 changelog](/packages/babel-preset-kyt-core/README.md#changelog).
+
+### `0.3.0-alpha.3` - 09/19/17
+
+- Adds `KYT_ENV_TYPE=test` support for `test` runs. You can pass a `test` override option into `envOptions`. See more in the [kyt-core 0.3.0 changelog](/packages/babel-preset-kyt-core/README.md#changelog).
+
+### `0.3.0-alpha.2` - 09/18/17
+
+- Fixes bugs introduced in the 0.3.0-alpha.1 `babel-preset-kyt-core` release. [For more](/packages/babel-preset-kyt-core/README.md#changelog).
+
+### `0.3.0-alpha.1` - 09/17/17
+
+- Updates `babel-preset-kyt-core` to `0.3.0` to take advantage of `babel-preset-env`. `babel-preset-kyt-react` passes down options to extend preset-env, so you can read more about the `envOptions` option in the [kyt-core 0.3.0 changelog](/packages/babel-preset-kyt-core/README.md#changelog).
+
 ### `0.2.0` - 03/23/17
 
 - Updates `babel-preset-kyt-core` to `0.2.0` to allow parsing of [dynamic `import()`](https://webpack.js.org/guides/code-splitting-import/#dynamic-import).
