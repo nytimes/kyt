@@ -3,10 +3,10 @@
 
   "rules": {
     "string-quotes": "single",
-    "selector-no-id": true,
+    "selector-max-id": 0,
     "property-no-unknown": [true, {"ignoreProperties": ["composes"]}],
     "selector-pseudo-class-no-unknown": [ true, {
-      "ignorePseudoClasses": ["export", "import", "global", "local"],
+      "ignorePseudoClasses": ["export", "import", "global", "local"]
     }]
   }
 }
