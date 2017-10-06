@@ -12,6 +12,7 @@ module.exports = function getPresetCore(context, opts) {
 
   var clientEnvOptions = {
     modules: false,
+    useBuiltIns: true,
     targets: {
       uglify: true,
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],

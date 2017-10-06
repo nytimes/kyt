@@ -23,7 +23,7 @@ module.exports = options => ({
   devtool: 'source-map',
 
   entry: {
-    main: ['babel-polyfill', `${clientSrcPath}/index.js`],
+    main: `${clientSrcPath}/index.js`,
   },
 
   output: {

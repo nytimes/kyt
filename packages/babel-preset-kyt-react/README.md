@@ -25,6 +25,10 @@ To use in your project:
 
 ## CHANGELOG
 
+### `0.3.0-alpha.5` - 10/03/17
+
+- Adds `babel-preset-kyt-core` dependency upgrade which adds `babel-preset-env` `useBuiltIns` option to take advantage of only polyfilling what's needed.
+
 ### `0.3.0-alpha.4` - 09/19/17
 
 - Removes default `node` environment when `KYT_ENV_TYPE=test`. See more in the [kyt-core 0.3.0 changelog](/packages/babel-preset-kyt-core/README.md#changelog).

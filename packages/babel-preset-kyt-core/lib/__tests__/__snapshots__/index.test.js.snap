@@ -18,6 +18,7 @@ Object {
           ],
           "uglify": true,
         },
+        "useBuiltIns": true,
       },
     ],
   ],

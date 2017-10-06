@@ -3,8 +3,7 @@
   "packages": ["packages/*", "packages/**/starter-src"],
   "commands": {
     "bootstrap": {
-      "hoist": true,
-      "nohoist": ["webpack-hot-middleware", "babel-polyfill", "*-loader"]
+      "hoist": true
     }
   },
   "loglevel": "verbose",

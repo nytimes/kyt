@@ -5,11 +5,15 @@
 
 ## Master
 
-## 0.9.0-alpha.8 09/19/18
+## 0.9.0-alpha.20 10/06/17
+
+- removes babel-polyfill from kyt which means that users that need polyfills have to install `babel-polyfill` as a `dependency` and manually import it at the top of `src/client/index.js`. Fortunately, `babel-preset-kyt-core` uses the `useBuiltIns` `babel-preset-env` option which will only include the polyfills for your targeted browsers.
+
+## 0.9.0-alpha.8 09/19/17
 
 - Fixes `test` command by removing babel `node` environment setting.
 
-## 0.9.0-alpha.7 09/19/18
+## 0.9.0-alpha.7 09/19/17
 
 - Fixes `test` command which was broken after the 0.9.0-alpha.5 release.
 

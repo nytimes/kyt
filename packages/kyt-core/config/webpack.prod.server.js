@@ -28,7 +28,7 @@ module.exports = options => ({
   externals: nodeExternals(),
 
   entry: {
-    main: ['babel-polyfill', `${serverSrcPath}/index.js`],
+    main: `${serverSrcPath}/index.js`,
   },
 
   output: {
