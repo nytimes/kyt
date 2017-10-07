@@ -21,8 +21,9 @@ module.exports = function getPresetCore(context, opts) {
 
   var serverEnvOptions = {
     modules: false,
+    useBuiltIns: true,
     targets: {
-      node: true,
+      node: 'current',
     },
   };
 

@@ -26,9 +26,13 @@ To install:
 
 ## CHANGELOG
 
+### `0.3.0-alpha.6` - 10/06/17
+
+- Adds `babel-preset-env` `useBuiltIns` option to take advantage of only polyfilling server builds. To take advantage of this functionality, you need to add `babel-polyfill` as a `dependency` and import it at the top of `src/server/index.js`.
+
 ### `0.3.0-alpha.5` - 10/03/17
 
-- Adds `babel-preset-env` `useBuiltIns` option to take advantage of only polyfilling what's needed. To take advantage of this funcitonality, you need to add `babel-polyfill` as a `dependency` and import it at the top of `src/client/index.js`.
+- Adds `babel-preset-env` `useBuiltIns` option to take advantage of only polyfilling what's needed. To take advantage of this functionality, you need to add `babel-polyfill` as a `dependency` and import it at the top of `src/client/index.js`.
 
 ### `0.3.0-alpha.4` - 09/19/17
 

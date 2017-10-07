@@ -15,7 +15,7 @@ describe('babel-preset-kyt-core', () => {
     process.env.KYT_ENV_TYPE = 'server';
     const presetKytCore = require('../index.js');
     const config = presetKytCore();
-    expect(config.presets[0][1].targets.node).toEqual(true);
+    expect(config.presets[0][1].targets.node).toEqual('current');
   });
 
   it('should override default preset-env configuration with `envOptions` when KYT_ENV_TYPE=client', () => {

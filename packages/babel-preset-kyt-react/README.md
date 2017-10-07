@@ -25,6 +25,10 @@ To use in your project:
 
 ## CHANGELOG
 
+### `0.3.0-alpha.6` - 10/06/17
+
+- Adds `babel-preset-kyt-core` dependency upgrade which adds `babel-preset-env` `useBuiltIns` option for server polyfilling.
+
 ### `0.3.0-alpha.5` - 10/03/17
 
 - Adds `babel-preset-kyt-core` dependency upgrade which adds `babel-preset-env` `useBuiltIns` option to take advantage of only polyfilling what's needed.
