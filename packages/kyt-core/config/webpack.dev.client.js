@@ -20,15 +20,11 @@ const cssStyleLoaders = [
 
 module.exports = options => {
   const main = [
-    'babel-polyfill',
     `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
     `${clientSrcPath}/index.js`,
   ];
 
-  // Because of an ie11 bug, 'react-hot-loader/patch' needs to come after 'babel-polyfill'
-  // https://github.com/facebook/react/issues/8379#issuecomment-273489824
-  if (options.reactHotLoader)
-    main.splice(main.indexOf('babel-polyfill') + 1, 0, 'react-hot-loader/patch');
+  if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
 
   return {
     target: 'web',

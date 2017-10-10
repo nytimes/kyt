@@ -21,6 +21,8 @@ module.exports = (config, flags) => {
   let jestConfig = jestConfigBuilder(srcPath, aliases);
   jestConfig = config.modifyJestConfig(clone(jestConfig));
 
+  process.env.KYT_ENV_TYPE = 'test';
+
   // Run Jest
   jest.run(['--config', JSON.stringify(jestConfig), ...flags]);
 };
