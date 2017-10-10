@@ -32,11 +32,11 @@ module.exports = options => {
 
     resolve: {
       extensions: ['.js', '.json'],
-      modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
+      modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules'), 'node_modules'],
     },
 
     resolveLoader: {
-      modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules')],
+      modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules'), 'node_modules'],
     },
 
     plugins: [
