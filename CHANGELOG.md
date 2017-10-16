@@ -5,48 +5,15 @@
 
 ## Master
 
-## 0.9.0-alpha.21 10/06/17
+## 0.9.0 10/16/17
 
-- adds `useBuiltIns` `babel-preset-env` option to server builds. If you need polyfills on the server then you'll need to import babel-polyfill at the top of `src/server/index.js`
+[0.8.x-0.9.0 Migration guide](/docs/migration-guides/0.8-0.9.md).
 
-## 0.9.0-alpha.20 10/06/17
-
-- removes babel-polyfill from kyt which means that users that need polyfills have to install `babel-polyfill` as a `dependency` and manually import it at the top of `src/client/index.js`. Fortunately, `babel-preset-kyt-core` uses the `useBuiltIns` `babel-preset-env` option which will only include the polyfills for your targeted browsers.
-
-## 0.9.0-alpha.8 09/19/17
-
-- Fixes `test` command by removing babel `node` environment setting.
-
-## 0.9.0-alpha.7 09/19/17
-
-- Fixes `test` command which was broken after the 0.9.0-alpha.5 release.
-
-## 0.9.0-alpha.6 09/18/17
-
-- Fixes `babel-preset-kyt-core` bugs introduced in the 0.9.0-alpha.5 release.
-
-## 0.9.0-alpha.5 09/17/17
-
-- Adds `babel-preset-env` with smarter browser and node targeting.
-
-## 0.9.0-alpha.4 08/14/17
-
+- Adds `babel-preset-env` to `babel-preset-kyt-core`/`babel-preset-kyt-react` to optimize the client and server build size and polyfilling. [531](https://github.com/NYTimes/kyt/pull/531) [532](https://github.com/NYTimes/kyt/pull/532)
 - Upgrades [node-sass from 4.5.0 to 4.5.3](https://github.com/sass/node-sass/releases) for Node 8 support.
-
-
-## 0.9.0-alpha.3 08/10/17
-
-- Adds lint rule that restricts server imports. See more in [eslint-config-kyt 0.5.0 changelog](/packages/eslint-config-kyt/README.md#changelog).
-
-## 0.9.0-alpha.2 08/08/17
-
-- Fixes assets manifest merging by only merging server public assets
-- Fixes 404'ing server public assets in `dev` mode
-- Fixes static starter script order
-
-## 0.9.0-alpha.1 08/03/17
-
 - Adds static asset support [518](https://github.com/NYTimes/kyt/issues/518)
+- Fixes static starter script order [524](https://github.com/NYTimes/kyt/pull/524)
+- Adds a new eslint rule to restrict server file imports from outside of the `src/server` directory. [528](https://github.com/NYTimes/kyt/pull/528)
 
 ## 0.8.0 08/03/17
 

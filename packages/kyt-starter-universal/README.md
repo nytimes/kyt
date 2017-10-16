@@ -27,3 +27,7 @@ Want to build your own starter-kyt?
 See directions [here](https://github.com/NYTimes/kyt/blob/master/docs/Starterkyts.md).
 
 ## Changelog
+
+0.6.0 - 10/16/17
+
+- Upgrades `kyt-core` to 0.9.0 and `babel-preset-kyt-react` to 0.3.0.
