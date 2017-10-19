@@ -3,6 +3,7 @@
 var babelPresetEnv = require('babel-preset-env');
 var babelTransformRuntime = require('babel-plugin-transform-runtime');
 var babelSyntaxDynamicImport = require('babel-plugin-syntax-dynamic-import');
+var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
 var merge = require('lodash.merge');
 
 module.exports = function getPresetCore(context, opts) {
@@ -45,6 +46,9 @@ module.exports = function getPresetCore(context, opts) {
     envOptions = merge({}, serverEnvOptions, userEnvOptions.server ? userEnvOptions.server : {});
   } else if (process.env.KYT_ENV_TYPE === 'test') {
     envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
+    // Unless the user wants to define the transform-runtime plugin,
+    // we needs to make sure it's true/added for tests.
+    if (opts.includeRuntime === undefined) opts.includeRuntime = true;
   } else {
     envOptions = clientEnvOptions;
   }
@@ -58,5 +62,11 @@ module.exports = function getPresetCore(context, opts) {
       opts.includeRuntime === true && babelTransformRuntime,
       babelSyntaxDynamicImport,
     ].filter(Boolean),
+
+    env: {
+      test: {
+        plugins: [[babelTransformModules, { loose: true }]],
+      },
+    },
   };
 };
