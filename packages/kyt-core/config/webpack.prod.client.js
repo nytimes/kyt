@@ -5,6 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const HashOutput = require('webpack-plugin-hash-output');
 
 const cssStyleLoaders = [
   {
@@ -57,7 +58,7 @@ module.exports = options => ({
 
   plugins: [
     new ExtractTextPlugin({
-      filename: '[name]-[chunkhash].css',
+      filename: '[name]-[contenthash].css',
       allChunks: true,
     }),
 
@@ -96,5 +97,11 @@ module.exports = options => ({
 
     // Scope Hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
+
+    // Webpack fingerprinting can break sometimes, this plugin will
+    // guarantee that our hashes are deterministic, every build.
+    new HashOutput({
+      manifestFiles: ['manifest'],
+    }),
   ],
 });
