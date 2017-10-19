@@ -5,7 +5,7 @@
 
 ## Master
 
-## 0.9.0 10/16/17
+## 0.9.0 10/19/17
 
 [0.8.x-0.9.0 Migration guide](/docs/migration-guides/0.8-0.9.md).
 
@@ -13,6 +13,7 @@
 - Upgrades [node-sass from 4.5.0 to 4.5.3](https://github.com/sass/node-sass/releases) for Node 8 support.
 - Adds static asset support [518](https://github.com/NYTimes/kyt/issues/518)
 - Fixes static starter script order [524](https://github.com/NYTimes/kyt/pull/524)
+- Fixes asset/css fingerprinting bugs. [538](https://github.com/NYTimes/kyt/pull/538)
 - Adds a new eslint rule to restrict server file imports from outside of the `src/server` directory. [528](https://github.com/NYTimes/kyt/pull/528)
 
 ## 0.8.0 08/03/17

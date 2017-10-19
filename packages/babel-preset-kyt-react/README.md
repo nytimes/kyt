@@ -27,7 +27,7 @@ To use in your project:
 
 ## CHANGELOG
 
-### `0.3.0` - 10/16/17
+### `0.3.0` - 10/19/17
 
 - Updates `babel-preset-kyt-core` to `0.3.0` to take advantage of `babel-preset-env`. `babel-preset-kyt-react` passes down options to extend preset-env, so you can read more about the `envOptions` option in the [kyt-core](/packages/babel-preset-kyt-core/README.md).
 
