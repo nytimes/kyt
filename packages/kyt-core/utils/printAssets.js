@@ -40,6 +40,7 @@ module.exports = (stats, clientConfig) => {
 
   const addLabelPadding = (label, longestLength) => {
     let padded = label;
+    // eslint-disable-next-line prefer-destructuring
     const length = stripAnsi(label).length;
     if (length < longestLength) {
       const rightPadding = ' '.repeat(longestLength - length);

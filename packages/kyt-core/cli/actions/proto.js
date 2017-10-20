@@ -10,7 +10,7 @@ const protoConfig = require('./../../config/webpack.proto');
 const { userPrototypePath, publicSrcPath } = require('kyt-utils/paths')();
 
 module.exports = config => {
-  const prototypeURL = config.prototypeURL;
+  const { prototypeURL } = config;
   let server;
 
   // Kill the server on exit.
