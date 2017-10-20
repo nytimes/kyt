@@ -13,7 +13,7 @@ and export an object with the following options.
  2. `clientURL` - in development, the url for the client assets server *default*: http://localhost:3001
  3. `prototypeURL` - url for the prototyping dev server *default*: http://localhost:3002
  4. `debug` - when true, the CLI returns all verbose output *default*: false
- 5. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/assets/`
+ 5. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/`
  6. `reactHotLoader` - Turns on React Hot Loading *default*: false
  7. `hasServer` - Use a backend node server for build and dev (useful to false this out if you already have a backend) *default*: true
  8. `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).

@@ -8,9 +8,6 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 
 [![Build Status](https://travis-ci.org/NYTimes/kyt.svg?branch=master)](https://travis-ci.org/NYTimes/kyt) [![Dependency Status](https://david-dm.org/NYTimes/kyt.svg)](https://david-dm.org/NYTimes/kyt) [![npm](https://img.shields.io/npm/v/kyt.svg)](https://www.npmjs.com/package/kyt)
 
-## Upgrading to 0.5.0
-Check out our [migration guide](/docs/migration-guides/0.4-0.5.md) and [changelog](/CHANGELOG.md)
-
 ## Quick Start
 
 1. Install [Node.js](https://nodejs.org/) (v6.0+ required).
@@ -19,23 +16,24 @@ Check out our [migration guide](/docs/migration-guides/0.4-0.5.md) and [changelo
 4. `npm run dev`
 5. Check out `http://localhost:3000`
 
+## Features
+
+* Optional universal support with a Node server provided for rendering front-end page requests
+* Client and server hot reloading
+* Custom Babel presets with ES6 support, optional React support and optimizations for polyfilling Node and browser builds.
+* CSS Module and SASS support
+* PostCSS support
+* Static asset support
+* Inline SVG support
+* Style and script linter rulesets
+* A pre-configured test runner with Jest
+* Optional client-only mode for apps that already have a server
 
 ## How it Works
 
 kyt manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. kyt’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. kyt provides a [command line interface](/docs/commands.md) for running all development tools.
 
 <p align="center"><img src="/images/kyt-diagram.png"></p>
-
-kyt's base features include:
-
-* A Node server provided for rendering front-end page requests
-* Client and server hot reloading
-* [ES-Latest stable](https://babeljs.io/docs/plugins/preset-latest/) features using Babel and [babel-polyfill](https://babeljs.io/docs/usage/polyfill/)
-* CSS Module and SASS support
-* Inline SVG support
-* Style and script linter rulesets
-* A pre-configured test runner with Jest
-* Optional client-only mode for apps that already have a server
 
 Developers design their own architecture, choosing the tools they need for rendering, styling, and handling data.
 
@@ -46,6 +44,7 @@ _In an attempt to gather feedback to set future priorities, we're running a brie
 
 
 ## Setting up a kyt project
+
 kyt-cli is a utility for bootstrapping kyt projects. It can be installed globally and run to create a new project or integrate kyt with an existing project.
 
 `kyt-cli setup`
