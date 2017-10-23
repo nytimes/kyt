@@ -25,9 +25,9 @@
   },
   "devDependencies": {
     "enzyme": "2.4.1",
-    "kyt": "1.0.0-alpha.1",
+    "kyt": "1.0.0-alpha.2",
     "react-addons-test-utils": "15.3.0",
     "react-hot-loader": "3.0.0-beta.6"
   },
-  "version": "1.0.0-alpha.1"
+  "version": "1.0.0-alpha.2"
 }
