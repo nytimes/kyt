@@ -19,6 +19,16 @@
       {
         "message": "Selector should be alhpanumeric, without hyphens [stylelint-config-kyt]"
       }
-    ]
+    ],
+    "at-rule-no-unknown": [ true, {
+      "ignoreAtRules": [
+        "extend",
+        "include",
+        "mixin",
+        "if",
+        "else",
+        "for"
+      ]
+    }]
   }
 }
