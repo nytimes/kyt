@@ -25,6 +25,7 @@
     "constructor-super": 2,
     "no-this-before-super": 2,
     "prefer-spread": 2,
+    "arrow-parens": 0,
     "no-warning-comments": [
       1,
       { "terms": ["todo", "fixme"], "location": "start" }
