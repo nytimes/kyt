@@ -24,6 +24,8 @@ module.exports = (flags, args) => {
   let tmpDir;
   let repoURL = 'https://github.com/NYTimes/kyt.git';
   let localPath = args.localPath;
+  let customNpmPackage = args.npmPackage;
+  let customNpmPackagePath = args.npmPackagePath;
   let tempPackageJSON;
   let oldPackageJSON;
   const fakePackageJson = {
@@ -406,6 +408,13 @@ module.exports = (flags, args) => {
       tmpDir = path.join(tmpDir, starterKyts.supported[starterName].path);
       npmName = starterKyts.supported[starterName].npmName;
     }
+    if (customNpmPackage) {
+      // Handle the case of --npm-package (and optional --npm-package-directory)
+      npmName = customNpmPackage;
+      // --npm-package may contain a specific version, strip that away.
+      const packageDirectoryName = npmName.split('@')[0];
+      tmpDir = path.join(tmpDir, '/node_modules/', packageDirectoryName, customNpmPackagePath || 'starter-src');
+    }
 
     const kytName = starterName || localPath || repoURL;
     starterName = starterName || 'specified';
@@ -528,6 +537,29 @@ module.exports = (flags, args) => {
     }
   };
 
+  const getNpmPackageName = packageNameArg => {
+    if (packageNameArg) {
+      srcPrompt();
+    } else {
+      const question = [
+        {
+          type: 'input',
+          name: 'npmPackageName',
+          message: 'Enter the name of the NPM package',
+        },
+      ];
+      inquire.prompt(question).then(answer => {
+        if (answer.npmPackageName !== '') {
+          customNpmPackage = answer.npmPackageName;
+          srcPrompt();
+        } else {
+          logger.error('You did not enter a package name. exiting...');
+          process.exit(1);
+        }
+      });
+    }
+  };
+
   const createDir = dirName => {
     if (dirName === '') return;
     const checkAndBail = code => {
@@ -556,8 +588,10 @@ module.exports = (flags, args) => {
   const setupPrompt = () => {
     const skList = Object.keys(starterKyts.supported);
     const ownRepo = 'I have my own url';
+    const npmPackage = "I have an NPM package name";
     const exist = "I don't want a starter-kyt";
     skList.push(ownRepo);
+    skList.push(npmPackage);
     skList.push(exist);
     const ypmQ = {
       type: 'list',
@@ -585,7 +619,7 @@ module.exports = (flags, args) => {
     if (yarnOrNpm === 'yarn' && !args.packageManager) questions.push(ypmQ);
     ypm = args.packageManager ? args.packageManager : yarnOrNpm;
     if (!args.directory) questions.push(dirNameQ);
-    if (!args.repository && !localPath) questions.push(skQ);
+    if (!args.repository && !localPath && !customNpmPackage) questions.push(skQ);
 
     inquire.prompt(questions).then(answer => {
       // question 1
@@ -605,6 +639,8 @@ module.exports = (flags, args) => {
         getRepoUrl(args.repository);
       } else if (starterKyts.supported[choice] || localPath) {
         srcPrompt(choice);
+      } else if (choice === npmPackage || customNpmPackage) {
+        getNpmPackageName(args.npmPackage);
       } else if (choice === exist) {
         existingProjectSetup();
       }

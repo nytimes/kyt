@@ -16,6 +16,11 @@ program
     'Optional: Creates the given directory name and installs there. Defaults to your current working directory.'
   )
   .option('-r, --repository [address]', 'Optional: Github repository address')
+  .option('-n, --npm-package [package_name]', 'Optional: NPM package name')
+  .option(
+    '--npm-package-path [path]',
+    'Optional: Path below NPM package to install. Use with --npm-package only. Default: starter-src'
+  )
   .option('-k, --kyt-version [version]', 'Optional: Version of kyt-core to install')
   .option(
     '-p, --package-manager <npm|yarn>',
