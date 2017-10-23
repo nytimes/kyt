@@ -5,6 +5,14 @@
 
 ## Master
 
+## 1.0.0-alpha.2 10/23/17
+
+- Upgrades ESLint dependencies in `eslint-config-kyt`. [540](https://github.com/NYTimes/kyt/pull/540)
+
+## 1.0.0-alpha.1 10/20/17
+
+- Upgrades StyleLint and Prettier dependencies in `stylelint-config-kyt`, and adds a few new rules. [538](https://github.com/NYTimes/kyt/pull/538) [539](https://github.com/NYTimes/kyt/pull/539)
+
 ## 0.9.0 10/19/17
 
 [0.8.x-0.9.0 Migration guide](/docs/migration-guides/0.8-0.9.md).
