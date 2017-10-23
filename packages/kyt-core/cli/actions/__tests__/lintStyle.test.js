@@ -6,12 +6,16 @@ const stylelintMock = {
   lint: jest
     .fn()
     .mockReturnValueOnce(new Promise(resolve => resolve({})))
+    // eslint-disable-next-line prefer-promise-reject-errors
     .mockReturnValueOnce(new Promise((resolve, reject) => reject({ stack: 'mockError' }))),
 };
 jest.setMock('stylelint', stylelintMock);
 
 jest.setMock('glob', {
-  sync: jest.fn().mockReturnValueOnce(['filename']).mockReturnValueOnce([]),
+  sync: jest
+    .fn()
+    .mockReturnValueOnce(['filename'])
+    .mockReturnValueOnce([]),
 });
 
 jest.mock('kyt-utils/paths');

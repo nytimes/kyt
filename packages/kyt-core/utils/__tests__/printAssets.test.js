@@ -36,7 +36,10 @@ const fs = {
 };
 
 const gzSize = {
-  sync: jest.fn().mockReturnValueOnce(200000).mockReturnValueOnce(60000),
+  sync: jest
+    .fn()
+    .mockReturnValueOnce(200000)
+    .mockReturnValueOnce(60000),
 };
 
 jest.setMock('fs', fs);

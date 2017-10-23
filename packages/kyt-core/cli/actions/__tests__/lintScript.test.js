@@ -1,7 +1,10 @@
 /* eslint-disable global-require */
 
 jest.setMock('glob', {
-  sync: jest.fn().mockReturnValueOnce(['filename']).mockReturnValue([]),
+  sync: jest
+    .fn()
+    .mockReturnValueOnce(['filename'])
+    .mockReturnValue([]),
 });
 jest.setMock('path', {
   join: jest.fn().mockReturnValue('base filename'),

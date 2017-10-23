@@ -51,6 +51,12 @@
         "zones": [{ "target": "./src", "from": "./src/server" }]
       }
     ],
+    "jsx-a11y/anchor-is-valid": [
+      "off",
+      {
+        "components": ["Link"]
+      }
+    ],
     "prettier/prettier": [
       "error",
       {

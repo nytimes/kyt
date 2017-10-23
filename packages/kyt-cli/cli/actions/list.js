@@ -1,7 +1,7 @@
 const starterKyts = require('../../config/starterKyts');
 const logger = require('kyt-utils/logger');
 
-const log = console.log; // eslint-disable-line no-console
+const { log } = console; // eslint-disable-line no-console
 
 const printStarter = (li, starter) => {
   log(`${li}. The ${starter.displayName} starter-kyt:`);
