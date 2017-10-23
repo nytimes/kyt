@@ -140,6 +140,10 @@ Default values can be used when it's convenient
 
 **Master**
 
+**1.0.0-alpha.1** - 10/20/17
+
+- Upgrades StyleLint dependencies and adds a few new rules.
+
 **0.3.2** - 04/10/17
 
 Removes `at-rule-no-unknown` so all sass syntax is supported.
