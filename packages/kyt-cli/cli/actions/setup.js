@@ -25,7 +25,7 @@ module.exports = (flags, args) => {
   let repoURL = 'https://github.com/NYTimes/kyt.git';
   let localPath = args.localPath;
   let customNpmPackage = args.npmPackage;
-  let customNpmPackagePath = args.npmPackagePath;
+  const customNpmPackagePath = args.npmPackagePath;
   let tempPackageJSON;
   let oldPackageJSON;
   const fakePackageJson = {
@@ -413,7 +413,12 @@ module.exports = (flags, args) => {
       npmName = customNpmPackage;
       // --npm-package may contain a specific version, strip that away.
       const packageDirectoryName = npmName.split('@')[0];
-      tmpDir = path.join(tmpDir, '/node_modules/', packageDirectoryName, customNpmPackagePath || 'starter-src');
+      tmpDir = path.join(
+        tmpDir,
+        '/node_modules/',
+        packageDirectoryName,
+        customNpmPackagePath || 'starter-src'
+      );
     }
 
     const kytName = starterName || localPath || repoURL;
@@ -588,7 +593,7 @@ module.exports = (flags, args) => {
   const setupPrompt = () => {
     const skList = Object.keys(starterKyts.supported);
     const ownRepo = 'I have my own url';
-    const npmPackage = "I have an NPM package name";
+    const npmPackage = 'I have an NPM package name';
     const exist = "I don't want a starter-kyt";
     skList.push(ownRepo);
     skList.push(npmPackage);
