@@ -5,6 +5,11 @@
 
 ## Master
 
+## 1.0.0-alpha.3 10/23/17
+
+- Upgrades ESLint prettier and babel-eslint and makes it a `peerDependency` in `eslint-config-kyt`. [543](https://github.com/NYTimes/kyt/pull/543)
+- Fixes at-rule for Sass support in `eslint-config-stylelint`. [543](https://github.com/NYTimes/kyt/pull/543)
+
 ## 1.0.0-alpha.2 10/23/17
 
 - Upgrades ESLint dependencies in `eslint-config-kyt`. [540](https://github.com/NYTimes/kyt/pull/540)
