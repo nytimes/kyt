@@ -25,6 +25,7 @@
     "constructor-super": 2,
     "no-this-before-super": 2,
     "prefer-spread": 2,
+    "arrow-parens": 0,
     "no-warning-comments": [
       1,
       { "terms": ["todo", "fixme"], "location": "start" }
@@ -49,6 +50,12 @@
       "error",
       {
         "zones": [{ "target": "./src", "from": "./src/server" }]
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "off",
+      {
+        "components": ["Link"]
       }
     ],
     "prettier/prettier": [

@@ -23,7 +23,7 @@ module.exports = (flags, args) => {
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir;
   let repoURL = 'https://github.com/NYTimes/kyt.git';
-  let localPath = args.localPath;
+  let { localPath } = args;
   let customNpmPackage = args.npmPackage;
   const customNpmPackagePath = args.npmPackagePath;
   let tempPackageJSON;
@@ -406,6 +406,7 @@ module.exports = (flags, args) => {
     let npmName = null;
     if (starterName) {
       tmpDir = path.join(tmpDir, starterKyts.supported[starterName].path);
+      // eslint-disable-next-line prefer-destructuring
       npmName = starterKyts.supported[starterName].npmName;
     }
     if (customNpmPackage) {
@@ -482,7 +483,8 @@ module.exports = (flags, args) => {
         {
           type: 'confirm',
           name: 'srcBackup',
-          message: 'You already have a src directory. Would you like kyt to backup src/ and continue?', // eslint-disable-line
+          message:
+            "You already have a src directory. Would you like kyt to backup src/ and continue?", // eslint-disable-line
           default: true,
         },
       ];
@@ -582,7 +584,7 @@ module.exports = (flags, args) => {
   };
 
   const setupPaths = () => {
-    paths = require('kyt-utils/paths')(); // eslint-disable-line
+    paths = require("kyt-utils/paths")(); // eslint-disable-line
     tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
     // For passed starter-kyts the root of the starter-kyt is the root of the repo
     tmpDir = tmpStarter;
@@ -614,7 +616,7 @@ module.exports = (flags, args) => {
     const skQ = {
       type: 'list',
       name: 'starterChoice',
-      message: 'Choose a starter-kyt:', // eslint-disable-line
+      message: "Choose a starter-kyt:", // eslint-disable-line
       choices: skList,
       default: 0,
     };

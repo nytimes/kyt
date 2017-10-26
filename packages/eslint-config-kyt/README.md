@@ -63,11 +63,15 @@ To keep things formatted as you develop, install an editor package. See more [he
 
 ## Changelog
 
-**0.5.0-alpha.1 - 08/10/17
+**1.0.0-alpha.1** - 10/23/17
+
+- Upgrades ESLint and dependencies to 3.19.0 and Prettier to 1.5.2.
+
+**0.5.0** - 09/16/17
 
 - Adds rule to restrict server imports. If you have a `src/server` directory, you will need to add this  [.eslintrc.js](https://github.com/NYTimes/kyt/blob/965bb7b7cd244822e353795195c7d3f22c50fac1/packages/kyt-starter-universal/starter-src/src/server/.eslintrc.js) into the root of the server directory. This may be a breaking change if you have any server imports in your project from outside of the `src/server` directory.
 
-**0.4.0 - 07/07/17
+**0.4.0** - 07/07/17
 
 ### BREAKING CHANGES
 

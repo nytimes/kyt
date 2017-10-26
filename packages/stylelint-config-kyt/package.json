@@ -1,6 +1,6 @@
 {
   "name": "stylelint-config-kyt",
-  "version": "0.3.2",
+  "version": "1.0.0-alpha.2",
   "main": "stylelintrc.json",
   "description": "StyleLint configuration for kyt projects.",
   "author": "NYTimes",
@@ -9,8 +9,8 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "peerDependencies": {
-    "stylelint": "7.9.0",
-    "stylelint-config-standard": "16.0.0"
+    "stylelint": "8.2.0",
+    "stylelint-config-standard": "17.0.0"
   },
   "keywords": [
     "kyt",
