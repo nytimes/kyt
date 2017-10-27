@@ -14,7 +14,7 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 2. `npm install -g kyt-cli`
 3. `kyt-cli setup` - This will set up your project with application and configuration files so that you can get started with kyt. Learn more about [setup](/packages/kyt-cli/README.md).
 4. `npm run dev`
-5. Check out `http://localhost:3000`
+5. Check out `http://localhost:3001`
 
 ## Features
 
