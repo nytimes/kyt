@@ -40,8 +40,8 @@
     "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
   },
   "devDependencies": {
-    "lerna": "^2.0.0",
-    "eslint-config-kyt": "file:packages/eslint-config-kyt"
+    "eslint-config-kyt": "file:packages/eslint-config-kyt",
+    "lerna": "^2.9.0"
   },
   "dependencies": {}
 }
