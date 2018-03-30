@@ -1,11 +1,12 @@
 // Production webpack config for client code
 
-const webpack = require('webpack');
+const webpack = require('webpack@4.3.0');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const cssStyleLoaders = [
   {
@@ -33,6 +34,30 @@ module.exports = options => ({
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
     libraryTarget: 'var',
+  },
+
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true,
+      cacheGroups: {
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true
+        },
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+          priority: -10
+        }
+      }
+    }
   },
 
   module: {
@@ -81,23 +106,23 @@ module.exports = options => ({
     // Modules should get deterministic ids so that they don't change between builds
     new webpack.HashedModuleIdsPlugin(),
 
-    // Extract all 3rd party modules into a separate chunk
-    // Only include vendor modules as needed,
-    // https://github.com/webpack/webpack/issues/2372#issuecomment-213149173
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: ({ resource }) => /node_modules/.test(resource),
-    }),
-
-    // Generate a 'manifest' chunk to be inlined
-    new webpack.optimize.CommonsChunkPlugin({ name: 'manifest' }),
-
     // Merge bundles that would otherwise be negligibly small
     new webpack.optimize.AggressiveMergingPlugin(),
 
     // Scope Hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
 
+    new HtmlWebpackPlugin({
+      template: 'src/index.ejs',
+      // Sort the chunks so that the scripts are added in the correct order.
+      chunksSortMode: (chunk1, chunk2) => {
+        const orders = ['manifest', 'vendor', 'main'];
+        const order1 = orders.indexOf(chunk1.names[0]);
+        const order2 = orders.indexOf(chunk2.names[0]);
+        return order1 - order2;
+      },
+    }),
+      
     // Webpack fingerprinting can break sometimes, this plugin will
     // guarantee that our hashes are deterministic, every build.
     new HashOutput({
