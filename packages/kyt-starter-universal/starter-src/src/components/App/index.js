@@ -18,7 +18,9 @@ function App({ children }) {
           </Link>
         </li>
       </ul>
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        {children}
+      </div>
     </div>
   );
 }

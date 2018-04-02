@@ -7,7 +7,7 @@ import { renderToString } from 'react-dom/server';
 import RouterContext from 'react-router/lib/RouterContext';
 import createMemoryHistory from 'react-router/lib/createMemoryHistory';
 import match from 'react-router/lib/match';
-import template from './template';
+import template from './template'; // eslint-disable-line import/no-restricted-paths
 import routes from '../routes';
 
 const clientAssets = require(KYT.ASSETS_MANIFEST); // eslint-disable-line import/no-dynamic-require
