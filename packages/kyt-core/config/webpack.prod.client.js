@@ -1,6 +1,6 @@
 // Production webpack config for client code
 
-const webpack = require('webpack@4.3.0');
+const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
