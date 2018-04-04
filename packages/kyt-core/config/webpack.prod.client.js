@@ -23,6 +23,8 @@ const cssStyleLoaders = [
 module.exports = options => ({
   target: 'web',
 
+  mode: 'production',
+
   devtool: 'source-map',
 
   entry: {
@@ -39,7 +41,7 @@ module.exports = options => ({
 
   optimization: {
     splitChunks: {
-      chunks: "all",
+      chunks: 'all',
       minSize: 30000,
       minChunks: 1,
       maxAsyncRequests: 5,

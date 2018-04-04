@@ -19,8 +19,8 @@ describe('kyt build', () => {
     // Should copy static assets from src/public directory
     expect(shell.test('-f', 'build/public/nothing.txt')).toBe(true);
 
-    // Should produce the manifest, main and vendor scripts
-    expect(shell.ls('build/public/manifest-*.js').code).toBe(0);
+    // Should produce the testChunk, main and vendor scripts
+    expect(shell.ls('build/public/testChunk-*.js').code).toBe(0);
     expect(shell.ls('build/public/main-*.js').code).toBe(0);
     expect(shell.ls('build/public/vendor-*.js').code).toBe(0);
 

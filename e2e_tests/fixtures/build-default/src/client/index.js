@@ -6,7 +6,6 @@ import react from 'react';
 
 require.ensure(['./randomChunk'], function(require) {
 	var c = require('./randomChunk');
-}, 'manifest');
-
+}, 'testChunk');
 
 module.exports = { client: true };
