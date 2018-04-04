@@ -66,6 +66,7 @@
     "stylelint-config-kyt": "1.0.0-alpha.2",
     "stylelint-config-standard": "18.2.0",
     "temp": "0.8.3",
+    "uglifyjs-webpack-plugin": "^1.2.4",
     "url-loader": "1.0.1",
     "webpack": "4.2.0",
     "webpack-assets-manifest": "3.0.0",

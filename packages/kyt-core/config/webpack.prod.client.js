@@ -1,6 +1,7 @@
 // Production webpack config for client code
 
-const webpack = require('webpack');
+const webpack = require('webpack
+  ');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
@@ -58,6 +59,28 @@ module.exports = options => ({
         }
       }
     }
+    minimize: [
+      // new webpack.optimize.UglifyJsPlugin({
+      //   compress: {
+      //     screw_ie8: true,
+      //     warnings: false,
+      //   },
+      //   output: {
+      //     comments: false,
+      //   },
+      //   sourceMap: true,
+      // }),
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: true,
+          ecma: 6,
+          // mangle: true
+        },
+        sourceMap: true,
+      })
+    ]
   },
 
   module: {
@@ -92,17 +115,6 @@ module.exports = options => ({
       debug: false,
     }),
 
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-      sourceMap: true,
-    }),
-
     // Modules should get deterministic ids so that they don't change between builds
     new webpack.HashedModuleIdsPlugin(),
 
@@ -112,16 +124,16 @@ module.exports = options => ({
     // Scope Hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
 
-    new HtmlWebpackPlugin({
-      template: 'src/index.ejs',
-      // Sort the chunks so that the scripts are added in the correct order.
-      chunksSortMode: (chunk1, chunk2) => {
-        const orders = ['manifest', 'vendor', 'main'];
-        const order1 = orders.indexOf(chunk1.names[0]);
-        const order2 = orders.indexOf(chunk2.names[0]);
-        return order1 - order2;
-      },
-    }),
+    // new HtmlWebpackPlugin({
+    //   template: 'src/index.ejs',
+    //   // Sort the chunks so that the scripts are added in the correct order.
+    //   chunksSortMode: (chunk1, chunk2) => {
+    //     const orders = ['manifest', 'vendor', 'main'];
+    //     const order1 = orders.indexOf(chunk1.names[0]);
+    //     const order2 = orders.indexOf(chunk2.names[0]);
+    //     return order1 - order2;
+    //   },
+    // }),
       
     // Webpack fingerprinting can break sometimes, this plugin will
     // guarantee that our hashes are deterministic, every build.
