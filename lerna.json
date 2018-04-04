@@ -3,7 +3,8 @@
   "packages": ["packages/*", "packages/**/starter-src"],
   "commands": {
     "bootstrap": {
-      "hoist": true
+      "hoist": true,
+      "nohoist": "express"
     }
   },
   "loglevel": "verbose",
