@@ -72,24 +72,28 @@ module.exports = options => {
             fs.writeFile(assetsFilePath, JSON.stringify(assets, null, '  '), 'utf8');
           }
         },
-        customize: (key, value) => {
+        customize: (filePair) => {
           const prependPublicPath = asset => `${options.publicPath || ''}${asset}`;
           const removePublicDir = asset => asset.replace(/(.*)?public\//, '');
-
+          
+          let key = filePair.key
+          let val = filePair.value
+          
           // Server asset files have "../public" prepended to them
           // (see file-loader `outputPath`). We need to remove that.
+
           if (options.type === 'server') {
-            if (value.startsWith('../public')) {
+            if (val.startsWith('../public')) {
               key = removePublicDir(key);
-              value = prependPublicPath(removePublicDir(value));
+              val = prependPublicPath(removePublicDir(val));
             } else {
               return false;
             }
           } else {
-            value = prependPublicPath(value);
+            val = prependPublicPath(val);
           }
 
-          return { key, value };
+          return { key: key, value: val };
         },
       }),
     ],
