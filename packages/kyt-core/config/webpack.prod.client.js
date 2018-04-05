@@ -6,7 +6,6 @@ const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const cssStyleLoaders = [
