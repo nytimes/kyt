@@ -6,8 +6,8 @@ it('bails when min node version is not met', () => {
   global.process.exit = jest.fn();
   global.console.error = jest.fn();
   global.console.info = jest.fn();
-  delete global.process.versions;
-  global.process.versions = { node: '2.0' };
+  delete global.process.versions.node;
+  global.process.versions.node = '2.0';
   require('../index');
 
   expect(global.console.error).toBeCalled();
