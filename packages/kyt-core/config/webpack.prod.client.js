@@ -49,17 +49,17 @@ module.exports = options => ({
       name: true,
       cacheGroups: {
         commons: {
-            test: /[\\/]node_modules[\\/]/,
-            name: "vendor",
-            chunks: "all"
-        },        
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
         main: {
           chunks: 'all',
           minChunks: 2,
           reuseExistingChunk: true,
-          enforce: true
-        },        
-      }
+          enforce: true,
+        },
+      },
     },
     minimize: true,
     minimizer: [
@@ -82,8 +82,8 @@ module.exports = options => ({
           // mangle: true
         },
         sourceMap: true,
-      })
-    ]
+      }),
+    ],
   },
 
   module: {
