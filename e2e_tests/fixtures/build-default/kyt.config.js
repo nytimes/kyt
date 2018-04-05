@@ -1,0 +1,10 @@
+module.exports = { 
+	modifyWebpackConfig: (config, options) => {
+		if (options.type === 'client') {
+			config.optimization.splitChunks.minSize = 10;
+			config.optimization.splitChunks.minChunks = 1;
+			config.optimization.runtimeChunk = true;
+		}
+		return config;
+	}
+};
