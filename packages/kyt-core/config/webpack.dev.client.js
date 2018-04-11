@@ -29,6 +29,8 @@ module.exports = options => {
   return {
     target: 'web',
 
+    mode: 'development',
+
     devtool: 'inline-source-map',
 
     entry: {
@@ -41,6 +43,28 @@ module.exports = options => {
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
       libraryTarget: 'var',
+    },
+
+    optimization: {
+      runtimeChunk: {
+        name: 'manifest',
+      },
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            chunks: 'all',
+          },
+          main: {
+            chunks: 'all',
+            minChunks: 2,
+            reuseExistingChunk: true,
+            enforce: true,
+          },
+        },
+      },
     },
 
     devServer: {

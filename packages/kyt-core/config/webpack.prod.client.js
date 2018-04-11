@@ -39,6 +39,9 @@ module.exports = options => ({
   },
 
   optimization: {
+    runtimeChunk: {
+      name: 'manifest',
+    },
     splitChunks: {
       chunks: 'all',
       minSize: 30000,
