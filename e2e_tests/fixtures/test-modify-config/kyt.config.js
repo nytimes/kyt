@@ -1,9 +1,9 @@
 const path = require('path');
 
 module.exports = {
-  modifyJestConfig: (config) => {
+  modifyJestConfig: config => {
     delete config.testRegex;
-    config.testMatch = ['**/?(*.)test.js'];
+    config.testMatch = ['**/test*.js'];
     return config;
-  }
+  },
 };

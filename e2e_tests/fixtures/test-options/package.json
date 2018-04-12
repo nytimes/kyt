@@ -1,5 +1,5 @@
 {
   "scripts": {
-    "test": "../packages/kyt-core/cli/index.js test -- --testNamePattern \\.blah.js$"
+    "test": "../packages/kyt-core/cli/index.js test -- --testPathPattern=src"
   }
 }
