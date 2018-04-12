@@ -19,8 +19,6 @@ const cssStyleLoaders = [
 ];
 
 module.exports = options => {
-
-
   const main = [
     `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
     `${clientSrcPath}/index.js`,
@@ -91,10 +89,6 @@ module.exports = options => {
       ],
     },
 
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+    plugins: [new webpack.NoEmitOnErrorsPlugin(), new webpack.HotModuleReplacementPlugin()],
   };
 };
