@@ -33,7 +33,7 @@
     "clean-bootstrap": "rm -rf node_modules && npm i && lerna clean --yes && npm run bootstrap",
     "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
     "publish-release": "lerna publish --exact --message",
-    "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/.bin/kyt test",
+    "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/.bin/kyt test && cd  ../../kyt-starter-static/starter-src && node_modules/.bin/kyt test",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
