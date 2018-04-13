@@ -30,12 +30,6 @@ describe('kyt test', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should fail when no file pattern matches', () => {
-    util.setupStageWithFixture(stageName, 'test-options-fail');
-    const output = shell.exec('npm run test');
-    expect(output.code).toBe(1);
-  });
-
   it('should setup a global window/document', () => {
     util.setupStageWithFixture(stageName, 'test-global-setup');
     const output = shell.exec('npm run test');
