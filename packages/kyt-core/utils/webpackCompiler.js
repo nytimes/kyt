@@ -10,7 +10,7 @@ module.exports = (webpackConfig, cb) => {
     webpackCompiler = webpack(webpackConfig, err => {
       if (err) {
         logger.error(`${type} webpack error:\n`, err);
-        process.exit();
+        process.exit(1);
       }
     });
     logger.task(`${type} webpack configuration compiled`);
