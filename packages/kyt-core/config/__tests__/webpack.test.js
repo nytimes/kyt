@@ -35,7 +35,7 @@ jest.setMock('path', path);
 jest.setMock('kyt-utils/logger', logger);
 jest.setMock('webpack', webpack);
 jest.setMock('../../utils/getPostcssLoader', {});
-jest.setMock('extract-text-webpack-plugin', extractPlugin);
+jest.setMock('mini-css-extract-plugin', extractPlugin);
 
 const baseConfig = require('../webpack.base');
 

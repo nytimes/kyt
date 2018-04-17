@@ -2,23 +2,11 @@
 
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-
-const cssStyleLoaders = [
-  {
-    loader: 'css-loader',
-    options: {
-      modules: true,
-      localIdentName: '[name]-[local]--[hash:base64:5]',
-    },
-  },
-  postcssLoader,
-];
 
 module.exports = options => ({
   target: 'web',
@@ -124,6 +112,8 @@ module.exports = options => ({
       filename: '[name].[contenthash].css',
       chunkFilename: '[id].[contenthash].css',
     }),
+
+    new OptimizeCSSAssetsPlugin({}),
 
     new webpack.LoaderOptionsPlugin({
       minimize: true,
