@@ -21,7 +21,7 @@
     "react": "15.3.0",
     "react-dom": "15.3.0",
     "react-router": "2.6.1",
-    "webpack": "4.2.0"
+    "webpack": "4.5.0"
   },
   "devDependencies": {
     "enzyme": "2.9.1",

@@ -1,12 +1,13 @@
 // Production webpack config for client code
 
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const clone = require('lodash.clonedeep');
 const postcssLoader = require('../utils/getPostcssLoader');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const cssStyleLoaders = [
   {
@@ -91,28 +92,37 @@ module.exports = options => ({
   module: {
     rules: [
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: cssStyleLoaders,
-        }),
+        test: /\.(scss|css)$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              localIdentName: '[name]-[local]--[hash:base64:5]',
+            },
+          },
+          postcssLoader,
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
         exclude: [publicSrcPath],
       },
       {
-        test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: clone(cssStyleLoaders).concat('sass-loader'),
-        }),
-        exclude: [publicSrcPath],
+        test: /\.(png|jpg|gif)$/,
+        use: ['file-loader'],
       },
     ],
   },
 
   plugins: [
-    new ExtractTextPlugin({
-      filename: '[name]-[md5:contenthash:hex:20].css',
-      allChunks: true,
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+      chunkFilename: '[id].[contenthash].css',
     }),
 
     new webpack.LoaderOptionsPlugin({
