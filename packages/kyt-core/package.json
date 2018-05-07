@@ -17,7 +17,7 @@
     "autoprefixer": "7.1.1",
     "babel-cli": "6.18.0",
     "babel-core": "6.18.0",
-    "babel-eslint": "8.1.0",
+    "babel-eslint": "8.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.1",
     "babel-preset-kyt-core": "0.3.0",
