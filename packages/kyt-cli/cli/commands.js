@@ -8,6 +8,8 @@ const loadArgsAndDo = action => {
   action(flags, args[0]);
 };
 
+program.version(require('../package.json').version, '-v, --version');
+
 program
   .command('setup')
   .description('Generate a project from a github url to get started.')
