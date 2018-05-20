@@ -19,9 +19,7 @@ export default function App() {
           </Link>
         </li>
       </ul>
-      <div className={styles.content}>
-        {Routes}
-      </div>
+      <div className={styles.content}>{Routes}</div>
     </div>
   );
 }
