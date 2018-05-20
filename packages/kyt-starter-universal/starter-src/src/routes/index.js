@@ -1,43 +1,51 @@
 import React from 'react';
-import Route from 'react-router/lib/Route';
-import IndexRoute from 'react-router/lib/IndexRoute';
-import App from '../components/App';
-
-// Webpack 2 supports ES2015 `import()` by auto-
-// chunking assets. Check out the following for more:
-// https://webpack.js.org/guides/migrating/#code-splitting-with-es2015
-
-const importHome = (nextState, cb) => {
-  import(/* webpackChunkName: "home" */ '../components/Home')
-    .then(module => cb(null, module.default))
-    .catch(e => {
-      throw e;
-    });
-};
-
-const importTools = (nextState, cb) => {
-  import(/* webpackChunkName: "tools" */ '../components/Tools')
-    .then(module => cb(null, module.default))
-    .catch(e => {
-      throw e;
-    });
-};
-
-// We use `getComponent` to dynamically load routes.
-// https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md
-const routes = (
-  <Route path="/" component={App}>
-    <IndexRoute getComponent={importHome} />
-    <Route path="tools" getComponent={importTools} />
-  </Route>
-);
+import { Route, Switch, Redirect} from 'react-router-dom';
+import Home from '../components/Home';
+import Tools from '../components/Tools';
 
 // Unfortunately, HMR breaks when we dynamically resolve
 // routes so we need to require them here as a workaround.
 // https://github.com/gaearon/react-hot-loader/issues/288
 if (module.hot) {
-  require('../components/Home'); // eslint-disable-line global-require
-  require('../components/Tools'); // eslint-disable-line global-require
+  require('../components/Home');    // eslint-disable-line global-require
+  require('../components/Tools');   // eslint-disable-line global-require
 }
 
-export default routes;
+// with guidance from https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/server-rendering.md
+const Status = ({ code, children }) => (
+  <Route render={({ staticContext }) => {
+    // there is no `staticContext` on the client, so
+    // we need to guard against that here
+    if (staticContext) {
+      staticContext.status = code
+    }
+
+    return children
+  }}/>
+)
+const RedirectWithStatus = ({ from, to, status }) => (
+  <Status code={status}>
+    <Redirect from={from} to={to}/>
+  </Status>
+)
+
+const NotFound = () => (
+  <Status code={404}>
+    <div>
+      <h1>Sorry, can’t find that.</h1>
+    </div>
+  </Status>
+)
+
+export default (
+  <Switch>
+    <Route exact path="/" component={Home} />
+    <Route path="tools" component={Tools} />
+    <RedirectWithStatus
+      status={301}
+      from="/old7"
+      to="/"
+    />
+    <Route component={NotFound}/>
+  </Switch>
+);

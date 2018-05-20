@@ -3,12 +3,10 @@ import express from 'express';
 import compression from 'compression';
 import path from 'path';
 import React from 'react';
-import { renderToString } from 'react-dom/server';
-import RouterContext from 'react-router/lib/RouterContext';
-import createMemoryHistory from 'react-router/lib/createMemoryHistory';
-import match from 'react-router/lib/match';
+import ReactDOMServer from 'react-dom/server'
+import { StaticRouter } from 'react-router'
+import ClientApp from '../components/App';
 import template from './template';
-import routes from '../routes';
 
 const clientAssets = require(KYT.ASSETS_MANIFEST); // eslint-disable-line import/no-dynamic-require
 const port = parseInt(KYT.SERVER_PORT, 10);
@@ -25,29 +23,41 @@ app.use(express.static(path.join(process.cwd(), KYT.PUBLIC_DIR)));
 
 // Setup server side routing.
 app.get('*', (request, response) => {
-  const history = createMemoryHistory(request.originalUrl);
+  const context = {}
 
-  match({ routes, history }, (error, redirectLocation, renderProps) => {
-    if (error) {
-      response.status(500).send(error.message);
-    } else if (redirectLocation) {
-      response.redirect(302, `${redirectLocation.pathname}${redirectLocation.search}`);
-    } else if (renderProps) {
-      // When a React Router route is matched then we render
-      // the components and assets into the template.
-      response.status(200).send(
-        template({
-          root: renderToString(<RouterContext {...renderProps} />),
-          manifestJSBundle: clientAssets['manifest.js'],
-          mainJSBundle: clientAssets['main.js'],
-          vendorJSBundle: clientAssets['vendor.js'],
-          mainCSSBundle: clientAssets['main.css'],
-        })
-      );
-    } else {
-      response.status(404).send('Not found');
-    }
-  });
+  // See docs for details
+  // https://github.com/ReactTraining/react-router/blob/master/packages/react-router/docs/api/StaticRouter.md
+  const html = ReactDOMServer.renderToString(
+    <StaticRouter
+      location={request.url}
+      context={context}
+    >
+      <ClientApp/>
+    </StaticRouter>
+  );
+
+  if (context.status) {
+    response.status(context.status);
+  }
+
+  if (context.url) {
+    response.writeHead(301, {
+      Location: context.url,
+    });
+
+    response.end();
+    return;
+  }
+
+  response.write(template({
+    root: html,
+    manifestJSBundle: clientAssets['manifest.js'],
+    mainJSBundle: clientAssets['main.js'],
+    vendorJSBundle: clientAssets['vendor.js'],
+    mainCSSBundle: clientAssets['main.css'],
+  }));
+
+  response.end();
 });
 
 app.listen(port, () => {

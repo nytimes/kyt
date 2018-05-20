@@ -1,13 +1,12 @@
-import 'babel-polyfill';
 import React from 'react';
-import { render } from 'react-dom';
+import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import Root from './Root';
 
 const root = document.querySelector('#root');
 
 const mount = RootComponent => {
-  render(
+  ReactDOM.render(
     <AppContainer>
       <RootComponent />
     </AppContainer>,
