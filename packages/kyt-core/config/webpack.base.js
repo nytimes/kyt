@@ -15,6 +15,7 @@ const {
   publicSrcPath,
 } = require('kyt-utils/paths')();
 const fileExtensions = require('./fileExtensions');
+const os = require('os');
 
 let clientAssets;
 
@@ -121,7 +122,10 @@ module.exports = options => {
           options: Object.assign(
             {
               // this is a loader-specific option and can't be put in a babel preset
-              cacheDirectory: false,
+              cacheDirectory:
+                options.environment === 'development'
+                  ? path.join(os.tmpdir(), 'babel-loader')
+                  : false,
             },
             // add react hot loader babel plugin for development here--users
             // should only need to specify the reactHotLoader option in one place
