@@ -207,6 +207,9 @@ module.exports = (flags, args) => {
     // Add scripts
     userPackageJSON = addPackageJsonScripts(userPackageJSON);
     fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(userPackageJSON, null, 2));
+    if (fs.existsSync(`${tmpDir}/.npmrc`)) {
+      fs.copyFileSync(`${tmpDir}/.npmrc`, `${paths.userRootPath}/.npmrc`);
+    }
   };
 
   // Cleans and reinstalls node modules.
