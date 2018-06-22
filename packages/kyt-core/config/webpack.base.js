@@ -70,7 +70,7 @@ module.exports = options => {
           } else {
             // Merge the server assets into the client assets and write the result to disk.
             const assets = merge({}, clientAssets, manifest.toJSON());
-            fs.writeFile(assetsFilePath, JSON.stringify(assets, null, '  '), 'utf8');
+            fs.writeFile(assetsFilePath, JSON.stringify(assets, null, '  '), 'utf8', function(err) {});
           }
         },
         customize: (key, value) => {
