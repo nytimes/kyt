@@ -38,3 +38,5 @@ test-packages
 
 # Local stuff
 packages/kyt-starter-*/starter-src/build
+
+.vscode
