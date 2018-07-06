@@ -4,7 +4,7 @@ import compression from 'compression';
 import path from 'path';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import { StaticRouter } from 'react-router';
+import { StaticRouter } from 'react-router-dom';
 import ClientApp from '../components/App';
 import template from './template';
 
