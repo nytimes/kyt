@@ -3,14 +3,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import Home from '../components/Home';
 import Tools from '../components/Tools';
 
-// Unfortunately, HMR breaks when we dynamically resolve
-// routes so we need to require them here as a workaround.
-// https://github.com/gaearon/react-hot-loader/issues/288
-if (module.hot) {
-  require('../components/Home'); // eslint-disable-line global-require
-  require('../components/Tools'); // eslint-disable-line global-require
-}
-
 // with guidance from https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/docs/guides/server-rendering.md
 const Status = ({ code, children }) => (
   <Route
