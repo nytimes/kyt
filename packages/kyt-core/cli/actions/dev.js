@@ -11,10 +11,10 @@ const history = require('connect-history-api-fallback');
 const nodemon = require('nodemon');
 const once = require('lodash.once');
 const logger = require('kyt-utils/logger');
+const { buildPath, serverSrcPath, publicSrcPath, publicBuildPath } = require('kyt-utils/paths')();
 const ifPortIsFreeDo = require('../../utils/ifPortIsFreeDo');
 const buildConfigs = require('../../utils/buildConfigs');
 const webpackCompiler = require('../../utils/webpackCompiler');
-const { buildPath, serverSrcPath, publicSrcPath, publicBuildPath } = require('kyt-utils/paths')();
 
 module.exports = (config, flags) => {
   logger.start('Starting development build...');
