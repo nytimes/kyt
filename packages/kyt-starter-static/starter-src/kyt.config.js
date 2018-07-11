@@ -4,6 +4,15 @@ module.exports = {
   reactHotLoader: true,
   debug: false,
   hasServer: false,
+  modifyJestConfig(kytConfig) {
+    const jestConfig = Object.assign({}, kytConfig);
+
+    jestConfig.setupFiles = ['raf/polyfill', ...jestConfig.setupFiles];
+    jestConfig.setupTestFrameworkScriptFile = require.resolve('./jest.setup.js');
+    jestConfig.snapshotSerializers = ['enzyme-to-json/serializer'];
+
+    return jestConfig;
+  },
   modifyWebpackConfig: (config, options) => {
     if (options.type === 'client') {
       config.plugins.push(
