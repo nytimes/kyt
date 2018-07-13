@@ -34,15 +34,13 @@ const NotFound = () => (
 
 // Note: A redirect can be added in this form
 // <RedirectWithStatus status={301} from="/old" to="/new" />
-function Routes() {
-  return (
-    <Switch>
-      <Route exact path="/" component={Home} />
-      <Route path="/tools" component={Tools} />
-      <Route component={NotFound} />
-    </Switch>
-  );
-}
+const Routes = (
+  <Switch>
+    <Route exact path="/" component={Home} />
+    <Route path="/tools" component={Tools} />
+    <Route component={NotFound} />
+  </Switch>
+);
 
 Status.propTypes = {
   code: PropTypes.number.isRequired,
@@ -55,4 +53,4 @@ RedirectWithStatus.propTypes = {
   status: PropTypes.number.isRequired,
 };
 
-export default Routes();
+export default Routes;
