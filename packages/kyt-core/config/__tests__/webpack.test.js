@@ -54,6 +54,7 @@ describe('webpack.base', () => {
   it('sets up kyt-core babel preset if a .babelrc exists', () => {
     shell.test.mockImplementationOnce(() => false);
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
+    // this test was updated
     const babelLoader = config.module.rules.find(loader => loader.use);
     expect(babelLoader.use[1].options.presets.length).toBe(1);
     expect(babelLoader.use[1].options.presets[0]).toMatch(/babel-preset-kyt-core/);
