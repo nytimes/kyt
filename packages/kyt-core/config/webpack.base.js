@@ -114,12 +114,11 @@ module.exports = options => {
         },
         {
           test: /\.(js|jsx)$/,
-          loader: 'babel-loader',
-          exclude: [/node_modules/, buildPath, publicSrcPath],
+          use: ['thread-loader',
           // babel configuration should come from presets defined in the user's
           // .babelrc, unless there's a specific reason why it has to be put in
           // the webpack loader options
-          options: Object.assign(
+          {loader: 'babel-loader', options: Object.assign(
             {
               // this is a loader-specific option and can't be put in a babel preset
               cacheDirectory:
@@ -146,7 +145,8 @@ module.exports = options => {
                   presets: [require.resolve('babel-preset-kyt-core')],
                 }
               : {}
-          ),
+          )}],
+          exclude: [/node_modules/, buildPath, publicSrcPath],
         },
       ],
     },
