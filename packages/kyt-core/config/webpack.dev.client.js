@@ -6,6 +6,7 @@ const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/pat
 const postcssLoader = require('../utils/getPostcssLoader');
 
 const cssStyleLoaders = [
+  'cache-loader',
   'style-loader',
   {
     loader: 'css-loader',
