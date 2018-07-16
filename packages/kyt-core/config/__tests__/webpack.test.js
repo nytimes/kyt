@@ -47,16 +47,16 @@ describe('webpack.base', () => {
   it("doesn't set up a babel preset if a .babelrc exists", () => {
     shell.test.mockImplementationOnce(() => true);
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
-    const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
-    expect(babelLoader.options.presets).toBeUndefined();
+    const babelLoader = config.module.rules.find((loader) => loader.use);
+    expect(babelLoader.use[1].options.presets).toBeUndefined();
     expect(logger.warn).not.toHaveBeenCalled();
   });
   it('sets up kyt-core babel preset if a .babelrc exists', () => {
     shell.test.mockImplementationOnce(() => false);
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
-    const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
-    expect(babelLoader.options.presets.length).toBe(1);
-    expect(babelLoader.options.presets[0]).toMatch(/babel-preset-kyt-core/);
+    const babelLoader = config.module.rules.find((loader) => loader.use);
+    expect(babelLoader.use[1].options.presets.length).toBe(1);
+    expect(babelLoader.use[1].options.presets[0]).toMatch(/babel-preset-kyt-core/);
   });
   it('sets up a DefinePlugin entry for options.type', () => {
     baseConfig({ clientURL: {}, publicPath: '/', type: 'foo' });
