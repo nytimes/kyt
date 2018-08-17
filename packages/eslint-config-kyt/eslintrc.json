@@ -34,6 +34,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/extensions": [1, { "js": "never" }],
     "react/require-extension": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-access-state-in-setstate": "off",
     "import/no-extraneous-dependencies": [0],
     "no-param-reassign": 0,
     "comma-dangle": [

@@ -55,7 +55,6 @@
     "nodemon": "1.10.2",
     "postcss-loader": "2.0.5",
     "prettier": "1.14.2",
-    "prettier-eslint-cli": "4.7.1",
     "ps-tree": "1.1.0",
     "react-hot-loader": "3.0.0-beta.6",
     "sass-loader": "6.0.6",
