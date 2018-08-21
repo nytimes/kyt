@@ -3,8 +3,8 @@
 const clone = require('lodash.clonedeep');
 const jest = require('jest');
 const shell = require('shelljs');
-const jestConfigBuilder = require('../../config/jest');
 const { srcPath } = require('kyt-utils/paths')();
+const jestConfigBuilder = require('../../config/jest');
 const buildConfigs = require('../../utils/buildConfigs');
 
 module.exports = (config, flags) => {

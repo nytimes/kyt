@@ -1,8 +1,8 @@
 const shell = require('shelljs');
-const util = require('../fixtures/util');
-const kill = require('../utils/psKill');
 const path = require('path');
 const fs = require('fs');
+const util = require('../fixtures/util');
+const kill = require('../utils/psKill');
 
 shell.config.silent = true;
 
