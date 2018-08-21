@@ -3,10 +3,7 @@
 var minNodeVersion = 6;
 
 // Make sure that the user has a compatible node version before loading the app.
-console.log(process.versions.node);
-console.log(minNodeVersion);
 if (Number(process.versions.node.split('.')[0]) < minNodeVersion) {
-  console.log('fell through');
   console.error('kyt requires Node v' + minNodeVersion + '+');
   console.info('Need to run multiple versions of node? Check out nvm');
   process.exit(1);
