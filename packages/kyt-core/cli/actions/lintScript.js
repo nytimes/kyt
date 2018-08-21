@@ -2,6 +2,7 @@
 
 const shell = require('shelljs');
 const path = require('path');
+const fs = require('fs');
 const logger = require('kyt-utils/logger');
 const glob = require('glob');
 const { userRootPath } = require('kyt-utils/paths')();
@@ -13,7 +14,8 @@ module.exports = (config, flags) => {
   const configFile = eslintrc.length ? '' : `-c ${backupFile}`;
   const eslintLib = require.resolve('eslint');
   const eslint = eslintLib.replace(/(.*)(lib\/api\.js)/, '$1bin/eslint.js');
-  const sources = 'src/ kyt.config.js package.json';
+  const hasKytConfig = fs.existsSync(`${userRootPath}/kyt.config.js`);
+  const sources = `src/ package.json ${hasKytConfig ? 'kyt.config.js' : ''}`;
   const userFlags = `${flags.join(' ')}`;
   const extensions = '--ext .js --ext .json';
 
