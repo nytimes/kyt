@@ -20,12 +20,12 @@ jest.mock('../../../utils/webpackCompiler');
 
 global.process.exit = jest.fn();
 
+const logger = require('kyt-utils/logger');
+const { buildPath, publicBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const printAssets = require('../../../utils/printAssets');
 const webpackCompiler = require('../../../utils/webpackCompiler');
-const logger = require('kyt-utils/logger');
 const build = require('../build');
 const buildConfigs = require('../../../utils/buildConfigs');
-const { buildPath, publicBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 
 const submodules = mod => Object.keys(mod).map(key => mod[key]);
 
