@@ -29,7 +29,7 @@ module.exports = options => {
   return {
     target: 'web',
 
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-eval-source-map',
 
     entry: {
       main,
