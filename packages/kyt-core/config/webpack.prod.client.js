@@ -3,9 +3,9 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const clone = require('lodash.clonedeep');
-const postcssLoader = require('../utils/getPostcssLoader');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
+const postcssLoader = require('../utils/getPostcssLoader');
 
 const cssStyleLoaders = [
   {

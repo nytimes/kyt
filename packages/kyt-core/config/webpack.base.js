@@ -14,8 +14,8 @@ const {
   userBabelrcPath,
   publicSrcPath,
 } = require('kyt-utils/paths')();
-const fileExtensions = require('./fileExtensions');
 const os = require('os');
+const fileExtensions = require('./fileExtensions');
 
 let clientAssets;
 

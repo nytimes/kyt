@@ -1,5 +1,7 @@
 const program = require('commander');
 const shell = require('shelljs');
+const logger = require('kyt-utils/logger');
+const { userPackageJSONPath } = require('kyt-utils/paths')();
 const devAction = require('./actions/dev');
 const lintScriptAction = require('./actions/lintScript');
 const testAction = require('./actions/test');
@@ -7,8 +9,6 @@ const buildAction = require('./actions/build');
 const protoAction = require('./actions/proto');
 const lintStyleAction = require('./actions/lintStyle');
 const kytConfigFn = require('./../utils/kytConfig');
-const logger = require('kyt-utils/logger');
-const { userPackageJSONPath } = require('kyt-utils/paths')();
 
 // Comment the following to see verbose shell ouput.
 shell.config.silent = true;

@@ -1,6 +1,6 @@
 const shell = require('shelljs');
-const util = require('../fixtures/util');
 const fs = require('fs');
+const util = require('../fixtures/util');
 
 shell.config.silent = true;
 
