@@ -1,7 +1,7 @@
 const shell = require('shelljs');
 const util = require('../fixtures/util');
 
-shell.config.silent = true;
+shell.config.silent = false;
 
 const stageName = 'stage-test';
 
@@ -21,13 +21,13 @@ describe('kyt test', () => {
   it('should respect modifyJestConfig', () => {
     util.setupStageWithFixture(stageName, 'test-modify-config');
     const output = shell.exec('npm run test');
-    expect(output.code).toBe(1);
+    expect(output.code).toBe(0);
   });
 
   it('should respect cli options', () => {
     util.setupStageWithFixture(stageName, 'test-options');
     const output = shell.exec('npm run test');
-    expect(output.code).toBe(1);
+    expect(output.code).toBe(0);
   });
 
   it('should setup a global window/document', () => {
