@@ -21,13 +21,13 @@ describe('kyt test', () => {
   it('should respect modifyJestConfig', () => {
     util.setupStageWithFixture(stageName, 'test-modify-config');
     const output = shell.exec('npm run test');
-    expect(output.code).toBe(0);
+    expect(output.code).toBe(1);
   });
 
   it('should respect cli options', () => {
     util.setupStageWithFixture(stageName, 'test-options');
     const output = shell.exec('npm run test');
-    expect(output.code).toBe(0);
+    expect(output.code).toBe(1);
   });
 
   it('should setup a global window/document', () => {
