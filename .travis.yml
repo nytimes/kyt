@@ -1,5 +1,5 @@
 language: node_js
 node_js:
-  - 6
-before_install: npm install npm@5.3.0 -g
+  - 8
+before_install: npm install npm@6.1.0 -g
 script: npm run bootstrap && npm run lint && npm test && npm run e2e
