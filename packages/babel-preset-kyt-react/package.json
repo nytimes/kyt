@@ -13,7 +13,7 @@
     "babel-plugin-transform-react-inline-elements": "6.8.0",
     "babel-plugin-transform-react-jsx-source": "6.9.0",
     "babel-plugin-transform-react-remove-prop-types": "0.2.10",
-    "babel-preset-kyt-core": "0.3.0",
+    "babel-preset-kyt-core": "1.0.0-alpha.0",
     "babel-preset-react": "6.16.0"
   },
   "keywords": ["babel", "babel-preset", "kyt", "react"],
