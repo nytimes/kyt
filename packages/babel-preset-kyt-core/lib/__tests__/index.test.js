@@ -42,4 +42,12 @@ describe('babel-preset-kyt-core', () => {
     const config = presetKytCore({}, { includeRuntime: true });
     expect(config.plugins[0]).toEqual('runtime');
   });
+
+  it('should support a node import option when KYT_ENV_TYPE=test', () => {
+    process.env.KYT_ENV_TYPE = 'test';
+    const presetKytCore = require('../index.js');
+    const config = presetKytCore({});
+    const nodeImport = require('babel-plugin-dynamic-import-node');
+    expect(config.plugins[1]).toEqual(nodeImport);
+  });
 });

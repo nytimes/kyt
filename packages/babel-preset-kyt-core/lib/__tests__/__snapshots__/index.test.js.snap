@@ -36,3 +36,30 @@ Object {
   ],
 }
 `;
+
+exports[`babel-preset-kyt-core should support an node import option when KYT_ENV_TYPE=test 1`] = `
+Object {
+  "env": Object {
+    "test": Object {
+      "plugins": Array [
+        Array [
+          "commonjs",
+          Object {
+            "loose": true,
+          },
+        ],
+      ],
+    },
+  },
+  "plugins": Array [
+    "runtime",
+    [Function],
+  ],
+  "presets": Array [
+    Array [
+      "env",
+      Object {},
+    ],
+  ],
+}
+`;
