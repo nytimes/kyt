@@ -76,6 +76,9 @@
     "webpack-node-externals": "1.6.0",
     "webpack-plugin-hash-output": "^1.3.0"
   },
+  "peerDependencies": {
+    "babel-polyfill": "6.26.0"
+  },
   "keywords": [
     "kyt",
     "core",
