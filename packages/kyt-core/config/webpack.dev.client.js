@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const clone = require('lodash.clonedeep');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
+const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   'style-loader',
@@ -25,6 +26,7 @@ module.exports = options => {
   ];
 
   if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
+  main.unshift(getPolyfill(options.type));
 
   return {
     target: 'web',

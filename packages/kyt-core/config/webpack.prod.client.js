@@ -6,6 +6,7 @@ const clone = require('lodash.clonedeep');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
 const postcssLoader = require('../utils/getPostcssLoader');
+const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   {
@@ -24,7 +25,7 @@ module.exports = options => ({
   devtool: 'source-map',
 
   entry: {
-    main: `${clientSrcPath}/index.js`,
+    main: [getPolyfill(options.type), `${clientSrcPath}/index.js`],
   },
 
   output: {
