@@ -51,7 +51,7 @@
     "lodash.clonedeep": "4.5.0",
     "lodash.merge": "4.6.0",
     "lodash.once": "4.1.1",
-    "node-sass": "4.5.3",
+    "node-sass": "4.9.3",
     "nodemon": "1.10.2",
     "postcss-loader": "2.0.5",
     "prettier": "1.14.2",
