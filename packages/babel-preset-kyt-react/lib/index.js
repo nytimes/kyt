@@ -14,7 +14,6 @@ module.exports = function getPresetReact(context, opts) {
           // pass options through to core preset
           [babelPresetKytCore, opts || {}],
         ],
-        plugins: [reactTransformJsxSource],
       },
       production: {
         presets: [
