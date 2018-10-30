@@ -1,11 +1,12 @@
 const babelJest = require('babel-jest');
+const fs = require('fs');
 const shell = require('shelljs');
 const { userBabelrcPath, userRootPath } = require('kyt-utils/paths')();
 const logger = require('kyt-utils/logger');
 const resolve = require('resolve');
 
 /**
- * Support preset and plugin definitions in babel.config.js
+ * Support preset and plugin definitions in .babelrc
  * without the babel-* prefixes.
  *
  * E.g. {presets: ['babel-preset-react']} --> {presets: ['react']}
@@ -47,12 +48,11 @@ const resolvePluginsPresets = babelGroup => {
 let babelrc;
 
 if (shell.test('-f', userBabelrcPath)) {
-  // eslint-disable-next-line
-  babelrc = require(userBabelrcPath);
+  babelrc = JSON.parse(fs.readFileSync(userBabelrcPath));
   resolvePluginsPresets(babelrc);
   Object.keys(babelrc.env || {}).forEach(env => resolvePluginsPresets(babelrc.env[env]));
 } else {
-  // if the user hasn't defined a babel.config.js, use the kyt default preset
+  // if the user hasn't defined a .babelrc, use the kyt default preset
   babelrc = {
     presets: [require.resolve('babel-preset-kyt-core')],
   };

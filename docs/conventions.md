@@ -104,6 +104,6 @@ The `kyt lint-style` command finds all files with `.css` and `.scss` extensions 
 
 Specify lint rules with a `.stylelintrc.json` file in the root of your project. [`setup`](/packages/kyt-cli/README.md) will create this file for you.
 
-## babel.config.js
+## .babelrc
 
-Making changes to babel settings should be done by creating a `babel.config.js` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a starter-kyt, then you should already have a babel.config.js configured with one of the kyt presets.
+Making changes to babel settings should be done by creating a `.babelrc` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a starter-kyt, then you should already have a .babelrc configured with one of the kyt presets.

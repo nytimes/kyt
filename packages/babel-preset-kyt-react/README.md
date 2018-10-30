@@ -9,12 +9,14 @@ See the included presets and plugins [here](/packages/babel-preset-kyt-react/lib
 To use in your project:
 
 1. `npm install babel-preset-kyt-react --save`
-2. In your `babel.config.js`:
+2. In your .babelrc:
 
-```js
-module.exports = {
-  presets: ['babel-preset-kyt-react'],
-};
+```
+  {
+    presets: [
+      "babel-preset-kyt-react"
+    ]
+  }
 ```
 
 ## Options

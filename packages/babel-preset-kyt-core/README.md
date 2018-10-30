@@ -4,19 +4,20 @@
 
 An opinionated [Babel preset](https://babeljs.io/docs/plugins/#presets), best used with [kyt](https://github.com/NYTimes/kyt). Check out the Options for how to extend polyfill your build targets.
 
-This preset is used as a default if a kyt project does not include a babel.config.js
+This preset is used as a default if a kyt project does not include a .babelrc
 It is also included as part of [babel-preset-kyt-react](/packages/babel-preset-kyt-react)
 
 To install:
 
 1. `npm install babel-preset-kyt-core --save`
-2. In `babel.config.js`:
-
-```js
-module.exports = {
-  presets: ['babel-preset-kyt-core'],
-};
-```
+2. In babelrc:
+   ```
+   {
+     presets: [
+       "babel-preset-kyt-core"
+     ]
+   }
+   ```
 
 ## Options
 
@@ -42,30 +43,29 @@ _(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) fo
     },
     ```
 
-  These are sensible defaults that work well with kyt out of the box. The `client` option, typically reserved for client builds in kyt, is used to target browsers, while the `server` option targets the current version of node. The `client.targets.browsers` configuration is in the [browserlist](https://github.com/sitespeedio/browsertime) format. The following is an example of how to override the option types in your babel.config.js configuration:
+  These are sensible defaults that work well with kyt out of the box. The `client` option, typically reserved for client builds in kyt, is used to target browsers, while the `server` option targets the current version of node. The `client.targets.browsers` configuration is in the [browserlist](https://github.com/sitespeedio/browsertime) format. The following is an example of how to override the option types in your babelrc configuration:
 
-  ```js
-  module.exports = {
-    presets: [
+  ```
+  {
+    "presets": [
       [
-        'babel-preset-kyt-core',
-        {
-          envOptions: {
-            client: {
-              debug: true,
-              targets: {
-                browsers: ['last 2 versions'],
-              },
+        "babel-preset-kyt-core", {
+          "envOptions": {
+            "client": {
+              "debug": true,
+              "targets": {
+                "browsers": ["last 2 versions"]
+              }
             },
-            server: {
-              debug: true,
-              modules: true,
+            "server": {
+              "debug": true,
+              "modules": true
             },
           },
         },
       ],
     ],
-  };
+  }
   ```
 
   You can find additional options to configure babel-preset-env [here](https://github.com/babel/babel/tree/master/experimental/babel-preset-env#options).

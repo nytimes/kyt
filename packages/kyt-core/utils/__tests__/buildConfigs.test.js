@@ -48,7 +48,7 @@ describe('buildConfigs', () => {
     const built = buildConfigs(stubConfig);
 
     expect(logger.info).toHaveBeenCalledWith(
-      'No user babel.config.js found. Using kyt default babel preset...'
+      'No user .babelrc found. Using kyt default babel preset...'
     );
 
     // for client
