@@ -1,9 +1,9 @@
 /* eslint-disable global-require */
 
-jest.setMock('babel-preset-env', 'env');
-jest.setMock('babel-plugin-transform-runtime', 'runtime');
-jest.setMock('babel-plugin-transform-es2015-modules-commonjs', 'commonjs');
-jest.setMock('babel-plugin-syntax-dynamic-import', 'import');
+jest.setMock('@babel/preset-env', 'env');
+jest.setMock('@babel/plugin-transform-runtime', 'runtime');
+jest.setMock('@babel/plugin-transform-modules-commonjs', 'commonjs');
+jest.setMock('@babel/plugin-syntax-dynamic-import', 'import');
 jest.setMock('babel-plugin-dynamic-import-node', 'import-node');
 
 describe('babel-preset-kyt-core', () => {

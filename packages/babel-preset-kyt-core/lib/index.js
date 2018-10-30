@@ -1,9 +1,9 @@
 /* eslint-disable vars-on-top */
 
-var babelPresetEnv = require('babel-preset-env');
-var babelTransformRuntime = require('babel-plugin-transform-runtime');
-var babelSyntaxDynamicImport = require('babel-plugin-syntax-dynamic-import');
-var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
+var babelPresetEnv = require('@babel/preset-env');
+var babelTransformRuntime = require('@babel/plugin-transform-runtime');
+var babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
+var babelTransformModules = require('@babel/plugin-transform-modules-commonjs');
 var babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 var merge = require('lodash.merge');
 
