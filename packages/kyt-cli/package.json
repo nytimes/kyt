@@ -14,7 +14,7 @@
   "dependencies": {
     "commander": "2.9.0",
     "inquirer": "1.2.3",
-    "kyt-utils": "0.1.0",
+    "kyt-utils": "0.1.1",
     "lodash.uniq": "4.5.0",
     "semver": "5.3.0",
     "shelljs": "0.7.8",

@@ -117,7 +117,7 @@ module.exports = options => {
           loader: 'babel-loader',
           exclude: [/node_modules/, buildPath, publicSrcPath],
           // babel configuration should come from presets defined in the user's
-          // .babelrc, unless there's a specific reason why it has to be put in
+          // babel.config.js, unless there's a specific reason why it has to be put in
           // the webpack loader options
           options: Object.assign(
             {
@@ -129,8 +129,8 @@ module.exports = options => {
             },
             // add react hot loader babel plugin for development here--users
             // should only need to specify the reactHotLoader option in one place
-            // (kyt.config.js), instead of two (kyt.config.js and .babelrc).
-            // additionally, .babelrc has no notion of client vs server
+            // (kyt.config.js), instead of two (kyt.config.js and babel.config.js).
+            // additionally, babel.config.js has no notion of client vs server
             options.type === 'client' && options.reactHotLoader
               ? {
                   env: {
@@ -140,7 +140,7 @@ module.exports = options => {
                   },
                 }
               : {},
-            // if the user hasn't defined a .babelrc, use the kyt default
+            // if the user hasn't defined a babel.config.js, use the kyt default
             !hasBabelrc
               ? {
                   presets: [require.resolve('babel-preset-kyt-core')],

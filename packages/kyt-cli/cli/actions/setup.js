@@ -286,14 +286,14 @@ module.exports = (flags, args) => {
   };
 
   const createBabelrc = () => {
-    // back up existing .babelrc, if it exists
+    // back up existing babel.config.js, if it exists
     if (shell.test('-f', paths.userBabelrcPath)) {
-      const mvTo = path.join(paths.userRootPath, `.babelrc-${date}.bak`);
+      const mvTo = path.join(paths.userRootPath, `babel.config.js-${date}.bak`);
       shell.mv(paths.userBabelrcPath, mvTo);
-      logger.info(`Backed up current .babelrc to ${mvTo}`);
+      logger.info(`Backed up current babel.config.js to ${mvTo}`);
     }
-    shell.cp(`${tmpDir}/.babelrc`, paths.userBabelrcPath);
-    logger.task('Created .babelrc');
+    shell.cp(`${tmpDir}/babel.config.js`, paths.userBabelrcPath);
+    logger.task('Created babel.config.js');
   };
 
   // Copies the starter kyt kyt.config.js

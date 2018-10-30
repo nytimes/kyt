@@ -15,8 +15,8 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
   "dependencies": {
-    "babel-polyfill": "6.26.0",
-    "babel-preset-kyt-react": "0.3.0",
+    "@babel/polyfill": "7.0.0",
+    "babel-preset-kyt-react": "1.0.0-alpha.0",
     "html-webpack-plugin": "3.2.0",
     "prop-types": "15.6.2",
     "react": "16.4.1",

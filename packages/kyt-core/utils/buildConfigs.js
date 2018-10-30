@@ -47,7 +47,7 @@ module.exports = (config, environment = 'development') => {
 
   const hasBabelrc = shell.test('-f', userBabelrcPath);
   if (!hasBabelrc) {
-    logger.info('No user .babelrc found. Using kyt default babel preset...');
+    logger.info('No user babel.config.js found. Using kyt default babel preset...');
   }
 
   // Merge options with static webpack configs

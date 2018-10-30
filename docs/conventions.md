@@ -5,6 +5,7 @@ In order to use kyt, your project must follow these conventions.
 ## Directory Structure
 
 kyt follows several conventions for folder structure. If you're setting up a new project, structure your directory as follows.
+
 ```
 src/
   /client
@@ -17,13 +18,16 @@ src/
 ## File extensions
 
 ### JavaScript
+
 All `.js` files in `/src` are transpiled with Babel.
 
 ### CSS and Sass
+
 `.css` files are intended for writing css with CSS Modules
 `.scss` files are intended for writing Sass with CSS Modules
 
 ### Misc assets
+
 `jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico` see the static asset handling section for how files with these extensions are handled.
 
 ## Static asset handling, assets manifest, CDN
@@ -39,7 +43,6 @@ import imgSrc from '../my-img.jpg';
 
 // in jsx or html template
 return <img src={imgSrc}>
-
 ```
 
 On `build`, `my-img.jpg` will be added to the `build/public` directory with a unique hash appended to the file name (eg: `my-img-f819dc82059e3414df8b.jpg`). You can find a mapping of the original file name to the hashed version in the assets manifest.
@@ -67,12 +70,12 @@ To keep each version of an asset unique, kyt will output the client assets with 
 
 kyt sets several global variables with useful information about the app environment.
 
-* `KYT.SERVER_PORT` Port your node server should listen on.
-* `KYT.CLIENT_PORT` Port the client assets server is listening on.
-* `KYT.PUBLIC_PATH` Full path for static assets server
-* `KYT.PUBLIC_DIR` Relative path to the public directory
-* `KYT.ASSETS_MANIFEST` Object with build assets paths
-* `KYT.EXECUTION_ENVIRONMENT` Where this code is running: `"server"` or `"client"`
+- `KYT.SERVER_PORT` Port your node server should listen on.
+- `KYT.CLIENT_PORT` Port the client assets server is listening on.
+- `KYT.PUBLIC_PATH` Full path for static assets server
+- `KYT.PUBLIC_DIR` Relative path to the public directory
+- `KYT.ASSETS_MANIFEST` Object with build assets paths
+- `KYT.EXECUTION_ENVIRONMENT` Where this code is running: `"server"` or `"client"`
 
 Note, these variables are casted to type String. For example, the following saves the server port as a Number to a local variable:
 
@@ -81,10 +84,12 @@ const port = Number.parseInt(KYT.SERVER_PORT, 10);
 ```
 
 ## kyt.config.js
+
 The kyt config file must live in the root of your repository.
 See further instructions [here](/docs/kytConfig.md)
 
 ## Testing
+
 The `kyt test` command finds all files with `*.test.js` in the `/src` directory.
 
 ## Linting
@@ -94,10 +99,11 @@ The `kyt lint-script` command finds all files with `.js` extension in `/src`
 Specify lint rules with a `.eslintrc.json` file in the root of your project. [`setup`](/packages/kyt-cli/README.md) will create this file for you.
 
 ## Style Linting
+
 The `kyt lint-style` command finds all files with `.css` and `.scss` extensions in `/src`
 
 Specify lint rules with a `.stylelintrc.json` file in the root of your project. [`setup`](/packages/kyt-cli/README.md) will create this file for you.
 
-## .babelrc
+## babel.config.js
 
-Making changes to babel settings should be done by creating a `.babelrc` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a starter-kyt, then you should already have a .babelrc configured with one of the kyt presets.
+Making changes to babel settings should be done by creating a `babel.config.js` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a starter-kyt, then you should already have a babel.config.js configured with one of the kyt presets.

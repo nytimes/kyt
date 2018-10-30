@@ -8,7 +8,7 @@ const shell = {
 
 const paths = jest.fn(() => ({
   userRootPath: '',
-  userBabelrcPath: '',
+  userBabelrcPath: 'my-test-config',
 }));
 
 const fs = {
@@ -43,13 +43,13 @@ describe('jest preprocessor', () => {
     global.process.exit.mockClear();
   });
 
-  it('uses user-defined .babelrc if it exists', () => {
+  it('uses user-defined babel.config.js if it exists', () => {
     shell.test.mockImplementationOnce(() => true);
     const fakeBabelrc = {
       presets: ['my-whatever-preset'],
       plugins: ['babel-plugin-my-whatever-plugin'],
     };
-    fs.readFileSync.mockImplementationOnce(() => JSON.stringify(fakeBabelrc));
+    jest.setMock('my-test-config', fakeBabelrc);
     // eslint-disable-next-line global-require, import/newline-after-import
     require('../preprocessor');
     expect(babelJest.createTransformer.mock.calls.length).toBe(1);
@@ -82,7 +82,7 @@ describe('jest preprocessor', () => {
       presets: ['my-whatever-preset'],
       plugins: ['babel-plugin-my-whatever-plugin'],
     };
-    fs.readFileSync.mockImplementationOnce(() => JSON.stringify(fakeBabelrc));
+    jest.setMock('my-test-config', fakeBabelrc);
     const err = new Error('fake error');
     resolve.sync.mockImplementationOnce(() => {
       throw err;

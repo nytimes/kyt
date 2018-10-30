@@ -44,14 +44,14 @@ describe('webpack.base', () => {
     logger.warn.mockClear();
     webpack.DefinePlugin.mockClear();
   });
-  it("doesn't set up a babel preset if a .babelrc exists", () => {
+  it("doesn't set up a babel preset if a babel.config.js exists", () => {
     shell.test.mockImplementationOnce(() => true);
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
     expect(babelLoader.options.presets).toBeUndefined();
     expect(logger.warn).not.toHaveBeenCalled();
   });
-  it('sets up kyt-core babel preset if a .babelrc exists', () => {
+  it('sets up kyt-core babel preset if a babel.config.js exists', () => {
     shell.test.mockImplementationOnce(() => false);
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');

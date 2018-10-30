@@ -21,6 +21,7 @@ Object {
     Array [
       "env",
       Object {
+        "forceAllTransforms": true,
         "modules": false,
         "targets": Object {
           "browsers": Array [
@@ -28,9 +29,8 @@ Object {
             "last 4 versions",
             "not ie < 11",
           ],
-          "uglify": true,
         },
-        "useBuiltIns": true,
+        "useBuiltIns": "entry",
       },
     ],
   ],

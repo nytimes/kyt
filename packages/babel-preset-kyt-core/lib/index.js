@@ -14,16 +14,16 @@ module.exports = function getPresetCore(context, opts) {
 
   var clientEnvOptions = {
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
-      uglify: true,
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
     },
   };
 
   var serverEnvOptions = {
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
     targets: {
       node: 'current',
     },
