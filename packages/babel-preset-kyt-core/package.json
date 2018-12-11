@@ -9,10 +9,11 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "7.0.0",
-    "@babel/plugin-transform-modules-commonjs": "7.1.0",
-    "@babel/plugin-transform-runtime": "7.1.0",
-    "@babel/preset-env": "7.1.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-modules-commonjs": "7.2.0",
+    "@babel/plugin-transform-react-constant-elements": "^7.2.0",
+    "@babel/plugin-transform-runtime": "7.2.0",
+    "@babel/preset-env": "7.2.0",
     "babel-plugin-dynamic-import-node": "2.2.0"
   },
   "keywords": [
