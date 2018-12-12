@@ -51,7 +51,7 @@ module.exports = (config, environment = 'development') => {
   }
 
   // Merge options with static webpack configs
-  clientConfig = merge.smart(baseConfig(clientOptions), clientConfig(clientOptions));
+  clientConfig = merge.smart(clientConfig(clientOptions), baseConfig(clientOptions));
   serverConfig = merge.smart(baseConfig(serverOptions), serverConfig(serverOptions));
 
   // Modify via userland config
