@@ -16,7 +16,7 @@
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "dependencies": {
     "@babel/polyfill": "7.0.0",
-    "babel-preset-kyt-react": "1.0.0-alpha.0",
+    "babel-preset-kyt-react": "1.0.0-alpha.cf14d144",
     "compression": "1.7.2",
     "express": "4.16.3",
     "prop-types": "15.6.2",
