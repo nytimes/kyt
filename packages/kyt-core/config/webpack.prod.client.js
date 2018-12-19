@@ -58,6 +58,12 @@ module.exports = options => ({
   },
 
   plugins: [
+    // Webpack fingerprinting can break sometimes, this plugin will
+    // guarantee that our hashes are deterministic, every build.
+    new HashOutput({
+      manifestFiles: ['manifest'],
+    }),
+
     new ExtractTextPlugin({
       filename: '[name]-[contenthash].css',
       allChunks: true,
@@ -98,11 +104,5 @@ module.exports = options => ({
 
     // Scope Hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
-
-    // Webpack fingerprinting can break sometimes, this plugin will
-    // guarantee that our hashes are deterministic, every build.
-    new HashOutput({
-      manifestFiles: ['manifest'],
-    }),
   ],
 });
