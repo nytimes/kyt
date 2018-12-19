@@ -5,6 +5,7 @@ const nodeExternals = require('webpack-node-externals');
 const clone = require('lodash.clonedeep');
 const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
+const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   {
@@ -28,7 +29,7 @@ module.exports = options => ({
   externals: nodeExternals(),
 
   entry: {
-    main: `${serverSrcPath}/index.js`,
+    main: [getPolyfill(options.type), `${serverSrcPath}/index.js`],
   },
 
   output: {
