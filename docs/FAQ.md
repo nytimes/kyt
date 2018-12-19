@@ -1,4 +1,4 @@
-#FAQ
+# FAQ
 
 Frequently Asked Questions
 
@@ -10,9 +10,9 @@ kyt is pronounced "kit".
 
 ## What are some alternatives to kyt?
 
-* [Create React App](https://github.com/facebookincubator/create-react-app)
+* [Create React App](https://github.com/facebook/create-react-app)
 * [Roc](http://getroc.org/)
-* [Neo](https://github.com/mozilla/neo)
+* [Neutrino](https://neutrinojs.org/)
 
 ## I don't see my question here.
 Submit an issue with your question.

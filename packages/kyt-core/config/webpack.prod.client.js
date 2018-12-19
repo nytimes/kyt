@@ -6,6 +6,7 @@ const clone = require('lodash.clonedeep');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
 const postcssLoader = require('../utils/getPostcssLoader');
+const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   {
@@ -24,7 +25,7 @@ module.exports = options => ({
   devtool: 'source-map',
 
   entry: {
-    main: `${clientSrcPath}/index.js`,
+    main: [getPolyfill(options.type), `${clientSrcPath}/index.js`],
   },
 
   output: {
@@ -57,6 +58,12 @@ module.exports = options => ({
   },
 
   plugins: [
+    // Webpack fingerprinting can break sometimes, this plugin will
+    // guarantee that our hashes are deterministic, every build.
+    new HashOutput({
+      manifestFiles: ['manifest'],
+    }),
+
     new ExtractTextPlugin({
       filename: '[name]-[contenthash].css',
       allChunks: true,
@@ -97,11 +104,5 @@ module.exports = options => ({
 
     // Scope Hoisting
     new webpack.optimize.ModuleConcatenationPlugin(),
-
-    // Webpack fingerprinting can break sometimes, this plugin will
-    // guarantee that our hashes are deterministic, every build.
-    new HashOutput({
-      manifestFiles: ['manifest'],
-    }),
   ],
 });
