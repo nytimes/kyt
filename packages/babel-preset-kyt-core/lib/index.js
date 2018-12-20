@@ -3,7 +3,6 @@
 var babelPresetEnv = require('@babel/preset-env');
 var babelTransformRuntime = require('@babel/plugin-transform-runtime');
 var babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
-var babelTransformModules = require('@babel/plugin-transform-modules-commonjs');
 var babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 var merge = require('lodash.merge');
 
@@ -13,7 +12,6 @@ module.exports = function getPresetCore(context, opts) {
   var envOptions = {};
 
   var clientEnvOptions = {
-    modules: false,
     useBuiltIns: 'entry',
     forceAllTransforms: true,
     targets: {
@@ -22,7 +20,6 @@ module.exports = function getPresetCore(context, opts) {
   };
 
   var serverEnvOptions = {
-    modules: false,
     useBuiltIns: 'entry',
     targets: {
       node: 'current',
@@ -63,11 +60,5 @@ module.exports = function getPresetCore(context, opts) {
       opts.includeRuntime === true && babelTransformRuntime,
       process.env.KYT_ENV_TYPE === 'test' ? babelDynamicImportNode : babelSyntaxDynamicImport,
     ].filter(Boolean),
-
-    env: {
-      test: {
-        plugins: [[babelTransformModules, { loose: true }]],
-      },
-    },
   };
 };

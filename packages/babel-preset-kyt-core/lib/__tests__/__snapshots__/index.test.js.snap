@@ -2,18 +2,6 @@
 
 exports[`babel-preset-kyt-core should load default presets and plugins 1`] = `
 Object {
-  "env": Object {
-    "test": Object {
-      "plugins": Array [
-        Array [
-          "commonjs",
-          Object {
-            "loose": true,
-          },
-        ],
-      ],
-    },
-  },
   "plugins": Array [
     "import",
   ],
@@ -22,7 +10,6 @@ Object {
       "env",
       Object {
         "forceAllTransforms": true,
-        "modules": false,
         "targets": Object {
           "browsers": Array [
             ">1%",
