@@ -1,4 +1,5 @@
 var babelPresetReact = require('@babel/preset-react');
+var addReactDisplayName = require('babel-plugin-add-react-displayname');
 var reactRemovePropTypes = require('babel-plugin-transform-react-remove-prop-types');
 var reactTransformConstant = require('@babel/plugin-transform-react-constant-elements');
 var reactTransformInline = require('@babel/plugin-transform-react-inline-elements');
@@ -7,6 +8,7 @@ var babelPresetKytCore = require('babel-preset-kyt-core');
 module.exports = function getPresetReact(context, opts) {
   opts = opts || {};
   return {
+    plugins: [addReactDisplayName],
     env: {
       development: {
         presets: [

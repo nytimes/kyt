@@ -12,6 +12,7 @@
     "@babel/plugin-transform-react-constant-elements": "7.2.0",
     "@babel/plugin-transform-react-inline-elements": "7.2.0",
     "@babel/preset-react": "7.0.0",
+    "babel-plugin-add-react-displayname": "0.0.5",
     "babel-plugin-transform-react-remove-prop-types": "0.4.21",
     "babel-preset-kyt-core": "1.0.0-alpha.0"
   },
