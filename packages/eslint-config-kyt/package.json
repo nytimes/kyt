@@ -16,7 +16,7 @@
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-json": "1.3.2",
     "eslint-plugin-jsx-a11y": "6.1.2",
-    "eslint-plugin-kyt": "1.0.0-alpha.6b63f166",
+    "eslint-plugin-kyt": "1.0.0-alpha.0",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.11.1",
     "prettier": "1.15.3"
