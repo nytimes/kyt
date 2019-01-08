@@ -1,0 +1,18 @@
+{
+  "name": "kyt-runtime",
+  "version": "1.0.0-alpha.0",
+  "description": "Runtime dependencies for kyt projects.",
+  "main": "index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-runtime",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
+  "dependencies": {
+    "@babel/polyfill": "7.2.5",
+    "@babel/runtime": "7.2.0"
+  },
+  "keywords": [
+    "kyt"
+  ]
+}
