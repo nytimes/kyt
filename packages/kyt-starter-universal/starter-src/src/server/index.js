@@ -36,6 +36,7 @@ app.get('*', (request, response) => {
       // the components and assets into the template.
       response.status(200).send(
         template({
+          // eslint-disable-next-line kyt/no-props-spread
           root: renderToString(<RouterContext {...renderProps} />),
           manifestJSBundle: clientAssets['manifest.js'],
           mainJSBundle: clientAssets['main.js'],
