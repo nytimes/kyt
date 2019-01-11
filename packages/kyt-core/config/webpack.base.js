@@ -20,7 +20,11 @@ const fileExtensions = require('./fileExtensions');
 let clientAssets;
 
 module.exports = options => {
-  const hasBabelrc = shell.test('-f', userBabelrcPath);
+  let babelrc;
+  if (shell.test('-f', userBabelrcPath)) {
+    const rcFile = fs.readFileSync(userBabelrcPath);
+    babelrc = JSON.parse(rcFile);
+  }
   const assetsFilePath = path.join(buildPath, options.clientAssetsFile);
 
   return {
@@ -119,7 +123,7 @@ module.exports = options => {
           // babel configuration should come from presets defined in the user's
           // .babelrc, unless there's a specific reason why it has to be put in
           // the webpack loader options
-          options: Object.assign(
+          options: merge(
             {
               // this is a loader-specific option and can't be put in a babel preset
               cacheDirectory:
@@ -141,11 +145,9 @@ module.exports = options => {
                 }
               : {},
             // if the user hasn't defined a .babelrc, use the kyt default
-            !hasBabelrc
-              ? {
-                  presets: [require.resolve('babel-preset-kyt-core')],
-                }
-              : {}
+            babelrc || {
+              presets: [require.resolve('babel-preset-kyt-core')],
+            }
           ),
         },
       ],
