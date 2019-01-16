@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
 const shell = require('shelljs');
-const merge = require('lodash.merge');
+const merge = require('webpack-merge');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const {
   buildPath,
@@ -126,6 +126,7 @@ module.exports = options => {
           options: merge(
             {
               // this is a loader-specific option and can't be put in a babel preset
+              babelrc: false,
               cacheDirectory:
                 options.environment === 'development'
                   ? path.join(os.tmpdir(), 'babel-loader')
