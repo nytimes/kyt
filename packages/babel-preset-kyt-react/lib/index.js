@@ -6,7 +6,21 @@ var reactTransformInline = require('@babel/plugin-transform-react-inline-element
 var babelPresetKytCore = require('babel-preset-kyt-core');
 
 module.exports = function getPresetReact(context, opts) {
+  var useProductionTransforms = true;
+  var productionTransforms = [reactRemovePropTypes];
+
   opts = opts || {};
+
+  if ('useProductionTransforms' in opts) {
+    // eslint-disable-next-line prefer-destructuring
+    useProductionTransforms = opts.useProductionTransforms;
+  }
+
+  if (useProductionTransforms === true) {
+    productionTransforms.push(reactTransformConstant);
+    productionTransforms.push(reactTransformInline);
+  }
+
   return {
     plugins: [addReactDisplayName],
     env: {
@@ -30,7 +44,7 @@ module.exports = function getPresetReact(context, opts) {
           // pass options through to core preset
           [babelPresetKytCore, opts || {}],
         ],
-        plugins: [reactRemovePropTypes, reactTransformConstant, reactTransformInline],
+        plugins: productionTransforms,
       },
     },
   };
