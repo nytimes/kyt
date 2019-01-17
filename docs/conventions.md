@@ -43,6 +43,7 @@ import imgSrc from '../my-img.jpg';
 
 // in jsx or html template
 return <img src={imgSrc}>
+
 ```
 
 On `build`, `my-img.jpg` will be added to the `build/public` directory with a unique hash appended to the file name (eg: `my-img-f819dc82059e3414df8b.jpg`). You can find a mapping of the original file name to the hashed version in the assets manifest.
