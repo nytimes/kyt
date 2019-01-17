@@ -65,6 +65,7 @@ module.exports = options => {
         space: 2,
         fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
         writeToDisk: options.type === 'client',
+        merge: 'customize',
         done: manifest => {
           // This plugin's `merge` doesn't work as expected. The "done" callback
           // gets called for the client and server asset builds, in that order.
@@ -77,9 +78,13 @@ module.exports = options => {
             fs.writeFile(assetsFilePath, JSON.stringify(assets, null, '  '), 'utf8', () => {});
           }
         },
-        customize: (key, value) => {
+        customize: ({ key, value }) => {
           const prependPublicPath = asset => `${options.publicPath || ''}${asset}`;
           const removePublicDir = asset => asset.replace(/(.*)?public\//, '');
+
+          if (key.toLowerCase().endsWith('.map')) {
+            return false;
+          }
 
           // Server asset files have "../public" prepended to them
           // (see file-loader `outputPath`). We need to remove that.

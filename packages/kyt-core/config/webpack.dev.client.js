@@ -31,6 +31,8 @@ module.exports = options => {
   return {
     target: 'web',
 
+    mode: 'development',
+
     devtool: 'cheap-module-eval-source-map',
 
     entry: {
@@ -43,6 +45,28 @@ module.exports = options => {
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
       libraryTarget: 'var',
+    },
+
+    optimization: {
+      runtimeChunk: {
+        name: 'manifest',
+      },
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendor',
+            chunks: 'all',
+          },
+          main: {
+            chunks: 'all',
+            minChunks: 2,
+            reuseExistingChunk: true,
+            enforce: true,
+          },
+        },
+      },
     },
 
     devServer: {
@@ -67,12 +91,6 @@ module.exports = options => {
       ],
     },
 
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-
-      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+    plugins: [new webpack.NoEmitOnErrorsPlugin(), new webpack.HotModuleReplacementPlugin()],
   };
 };
