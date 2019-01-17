@@ -94,6 +94,10 @@ module.exports = options => ({
         ],
         exclude: [publicSrcPath],
       },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: ['file-loader'],
+      },
     ],
   },
 
