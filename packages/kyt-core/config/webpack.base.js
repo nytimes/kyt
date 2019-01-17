@@ -118,42 +118,38 @@ module.exports = options => {
         },
         {
           test: /\.(js|jsx)$/,
-          use: [
-            'cache-loader',
-            {
-              loader: 'babel-loader', // babel configuration should come from presets defined in the user's
-              // .babelrc, unless there's a specific reason why it has to be put in
-              // the webpack loader options
-              options: merge(
-                {
-                  // this is a loader-specific option and can't be put in a babel preset
-                  babelrc: false,
-                  cacheDirectory:
-                    options.environment === 'development'
-                      ? path.join(os.tmpdir(), 'babel-loader')
-                      : false,
-                },
-                // add react hot loader babel plugin for development here--users
-                // should only need to specify the reactHotLoader option in one place
-                // (kyt.config.js), instead of two (kyt.config.js and .babelrc).
-                // additionally, .babelrc has no notion of client vs server
-                options.type === 'client' && options.reactHotLoader
-                  ? {
-                      env: {
-                        development: {
-                          plugins: [require.resolve('react-hot-loader/babel')],
-                        },
-                      },
-                    }
-                  : {},
-                // if the user hasn't defined a .babelrc, use the kyt default
-                babelrc || {
-                  presets: [require.resolve('babel-preset-kyt-core')],
-                }
-              ),
-            },
-          ],
+          loader: 'babel-loader',
           exclude: [/node_modules/, buildPath, publicSrcPath],
+          // babel configuration should come from presets defined in the user's
+          // .babelrc, unless there's a specific reason why it has to be put in
+          // the webpack loader options
+          options: merge(
+            {
+              // this is a loader-specific option and can't be put in a babel preset
+              babelrc: false,
+              cacheDirectory:
+                options.environment === 'development'
+                  ? path.join(os.tmpdir(), 'babel-loader')
+                  : false,
+            },
+            // add react hot loader babel plugin for development here--users
+            // should only need to specify the reactHotLoader option in one place
+            // (kyt.config.js), instead of two (kyt.config.js and .babelrc).
+            // additionally, .babelrc has no notion of client vs server
+            options.type === 'client' && options.reactHotLoader
+              ? {
+                  env: {
+                    development: {
+                      plugins: [require.resolve('react-hot-loader/babel')],
+                    },
+                  },
+                }
+              : {},
+            // if the user hasn't defined a .babelrc, use the kyt default
+            babelrc || {
+              presets: [require.resolve('babel-preset-kyt-core')],
+            }
+          ),
         },
       ],
     },
