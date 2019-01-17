@@ -5,6 +5,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
+const WebpackBar = require('webpackbar');
 const shell = require('shelljs');
 const merge = require('webpack-merge');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
@@ -45,6 +46,8 @@ module.exports = options => {
     },
 
     plugins: [
+      new WebpackBar(),
+
       new webpack.DefinePlugin({
         // Hardcode NODE_ENV at build time so libraries like React get optimized
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || options.environment),
