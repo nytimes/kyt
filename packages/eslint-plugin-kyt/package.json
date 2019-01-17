@@ -1,0 +1,22 @@
+{
+  "name": "eslint-plugin-kyt",
+  "version": "1.0.0-alpha.0",
+  "description": "ESLint plugin for kyt projects.",
+  "main": "lib/index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt/packages/eslint-plugin-kyt",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "scripts": {
+    "test": "mocha tests --recursive"
+  }
+}
