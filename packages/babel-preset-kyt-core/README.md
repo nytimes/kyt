@@ -38,6 +38,7 @@ _(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) fo
     ```
     modules: false,
     useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
       node: 'current'
     },

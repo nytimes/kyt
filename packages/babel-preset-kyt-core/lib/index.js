@@ -12,6 +12,7 @@ module.exports = function getPresetCore(context, opts) {
   var envOptions = {};
 
   var clientEnvOptions = {
+    modules: false,
     useBuiltIns: 'entry',
     forceAllTransforms: true,
     targets: {
@@ -20,6 +21,7 @@ module.exports = function getPresetCore(context, opts) {
   };
 
   var serverEnvOptions = {
+    modules: false,
     useBuiltIns: 'entry',
     forceAllTransforms: true,
     targets: {
