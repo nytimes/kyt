@@ -2,6 +2,7 @@
 
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const clone = require('lodash.clonedeep');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
@@ -74,15 +75,19 @@ module.exports = options => ({
       debug: false,
     }),
 
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
+    new UglifyJsPlugin({
+      cache: true,
+      parallel: true,
       sourceMap: true,
+      uglifyOptions: {
+        compress: {
+          screw_ie8: true,
+          warnings: false,
+        },
+        output: {
+          comments: false,
+        },
+      },
     }),
 
     // Modules should get deterministic ids so that they don't change between builds
