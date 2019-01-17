@@ -81,7 +81,6 @@ module.exports = options => ({
       sourceMap: true,
       uglifyOptions: {
         compress: {
-          screw_ie8: true,
           warnings: false,
         },
         output: {
