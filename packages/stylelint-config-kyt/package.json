@@ -9,7 +9,7 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "peerDependencies": {
-    "stylelint": "9.3.0",
+    "stylelint": "9.9.0",
     "stylelint-config-standard": "18.2.0"
   },
   "keywords": [

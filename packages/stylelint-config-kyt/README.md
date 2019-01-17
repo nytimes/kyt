@@ -4,24 +4,25 @@ This is an extension of [config-standard](https://github.com/stylelint/stylelint
 
 ## Table of Contents
 
-  1. [Install](#install)
-  1. [CSS + Sass Guide](#css--sass-guide)
-    - [Formatting](#formatting)
-    - [Comments](#comments)
-    - [ID Selectors](#id-selectors)
-    - [Syntax](#syntax)
-    - [Ordering](#ordering-of-property-declarations)
-    - [Variables](#variables)
-    - [Mixins](#mixins)
-  1. [Changelog](#changelog)
+1. [Install](#install)
+1. [CSS + Sass Guide](#css--sass-guide)
+   - [Formatting](#formatting)
+   - [Comments](#comments)
+   - [ID Selectors](#id-selectors)
+   - [Syntax](#syntax)
+   - [Ordering](#ordering-of-property-declarations)
+   - [Variables](#variables)
+   - [Mixins](#mixins)
+1. [Changelog](#changelog)
 
 ## Install
 
 Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
 
 1. Install the _stylelint-config-kyt_ node module:  
-  `npm install stylelint stylelint-config-kyt stylelint-config-standard --save-dev`
-2. Add an extension to your Stylelint configuration:  
+   `npm install stylelint stylelint-config-kyt stylelint-config-standard --save-dev`
+2. Add an extension to your Stylelint configuration:
+
 ```js
 {
   "extends": "stylelint-config-nyt",
@@ -37,24 +38,27 @@ The following guide is best used with the kyt linter against CSS/Sass Modules.
 
 ### Formatting
 
-* Use soft tabs (2 spaces) for indentation.
-* Always use camelCasing in class names.
-* Do not use ID selectors.
-* Do not use element selectors in CSS Modules files.
-* When using multiple selectors in a rule declaration, give each selector its own line.
-* Put a space before the opening brace `{` in rule declarations.
-* In properties, put a space after, but not before, the `:` character.
-* Put closing braces `}` of rule declarations on a new line
-* Put blank lines between rule declarations and nested pseudo-selectors.
+- Use soft tabs (2 spaces) for indentation.
+- Always use camelCasing in class names.
+- Do not use ID selectors.
+- Do not use element selectors in CSS Modules files.
+- When using multiple selectors in a rule declaration, give each selector its own line.
+- Put a space before the opening brace `{` in rule declarations.
+- In properties, put a space after, but not before, the `:` character.
+- Put closing braces `}` of rule declarations on a new line
+- Put blank lines between rule declarations and nested pseudo-selectors.
 
 **Bad**
 
 ```css
-.avatar{
-    border-radius:50%;
-    border:2px solid white; }
-.no, .nope, .not_good {
-    // ...
+.avatar {
+  border-radius: 50%;
+  border: 2px solid white;
+}
+.no,
+.nope,
+.not_good {
+  // ...
 }
 #lol-no {
   // ...
@@ -78,9 +82,9 @@ The following guide is best used with the kyt linter against CSS/Sass Modules.
 
 ### Comments
 
-* Prefer line comments (`//` in Sass-land) to block comments.
-* Prefer comments on their own line.
-* Write detailed comments for code that isn't self-documenting:
+- Prefer line comments (`//` in Sass-land) to block comments.
+- Prefer comments on their own line.
+- Write detailed comments for code that isn't self-documenting:
   - Uses of z-index
   - Compatibility or browser-specific hacks
 
@@ -92,38 +96,38 @@ You should never define an ID selector in a CSS Module.
 
 ### Syntax
 
-* Use the `.scss` syntax, never the original `.sass` syntax
-* Order your regular CSS and `@include` declarations logically (see below)
+- Use the `.scss` syntax, never the original `.sass` syntax
+- Order your regular CSS and `@include` declarations logically (see below)
 
 ### Ordering of property declarations
 
 1. `@include` or `composes` declarations
 2. Property declarations in alphabetical order
 
-    ```scss
-    .btnGreen {
-      @include transition(background 0.5s ease);
-      background: green;
-      color: red;
-      font-weight: bold;
-      // ...
-    }
-    ```
+   ```scss
+   .btnGreen {
+     @include transition(background 0.5s ease);
+     background: green;
+     color: red;
+     font-weight: bold;
+     // ...
+   }
+   ```
+
 3. Nested pseudo-selectors
 
-    Nested pseudo-selectors go last, and nothing goes after them.
+   Nested pseudo-selectors go last, and nothing goes after them.
 
-    ```scss
-    .btn {
-      @include color(red);
-      font-weight: bold;
+   ```scss
+   .btn {
+     @include color(red);
+     font-weight: bold;
 
-      &:hover {
-        cursor: pointer;
-      }
-
-    }
-    ```
+     &:hover {
+       cursor: pointer;
+     }
+   }
+   ```
 
 ### Variables
 
@@ -131,10 +135,10 @@ Prefer camelCased variable names (e.g. `$myVariable`).
 
 ### Mixins
 
-  - 1 space after the mixin name before the opening parens
-  - 1 space after colons and between params
-  - Commas are used as separators unless passing in a comma separated list as an argument, in these cases use a semicolon
-Default values can be used when it's convenient
+- 1 space after the mixin name before the opening parens
+- 1 space after colons and between params
+- Commas are used as separators unless passing in a comma separated list as an argument, in these cases use a semicolon
+  Default values can be used when it's convenient
 
 ## Changelog
 

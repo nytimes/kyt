@@ -9,16 +9,15 @@ and export an object with the following options.
 
 ## kyt.config.js options
 
- 1. `serverURL` - url for the backend node server. *default*: http://localhost:3000. if `hasServer` is set to `false`, then this value is ignored
- 2. `clientURL` - in development, the url for the client assets server *default*: http://localhost:3001
- 3. `prototypeURL` - url for the prototyping dev server *default*: http://localhost:3002
- 4. `debug` - when true, the CLI returns all verbose output *default*: false
- 5. `productionPublicPath` - the public path for assets in the production build. Useful for CDN's *default*: `/`
- 6. `reactHotLoader` - Turns on React Hot Loading *default*: false
- 7. `hasServer` - Use a backend node server for build and dev (useful to false this out if you already have a backend) *default*: true
- 8. `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
- 9. `modifyJestConfig` - Callback function for editing kyt's Jest config. [See more details below](#modifyJestConfig).
-
+1.  `serverURL` - url for the backend node server. _default_: http://localhost:3000. if `hasServer` is set to `false`, then this value is ignored
+2.  `clientURL` - in development, the url for the client assets server _default_: http://localhost:3001
+3.  `prototypeURL` - url for the prototyping dev server _default_: http://localhost:3002
+4.  `debug` - when true, the CLI returns all verbose output _default_: false
+5.  `productionPublicPath` - the public path for assets in the production build. Useful for CDN's _default_: `/`
+6.  `reactHotLoader` - Turns on React Hot Loading _default_: false
+7.  `hasServer` - Use a backend node server for build and dev (useful to false this out if you already have a backend) _default_: true
+8.  `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
+9.  `modifyJestConfig` - Callback function for editing kyt's Jest config. [See more details below](#modifyJestConfig).
 
 ## modifyWebpackConfig
 
@@ -28,6 +27,7 @@ _In an attempt to gather feedback to set future priorities, we're running a brie
 This allows you to add new babel-plugins, modify Webpack loaders, etc.
 
 The function is called with two parameters:
+
 1. `baseConfig` The base Webpack config used in the process.
 2. `options` an object of useful options including the webpackConfig type, ports, and paths. The options object includes an environment and type so you can make changes based on a particular development task.
 
@@ -37,7 +37,7 @@ Define the function in your `kyt.config.js` and it will be called as each Webpac
 modifyWebpackConfig: (baseConfig, options) => {
   // modify baseConfig based on the options
   return baseConfig;
-}
+};
 ```
 
 > **NOTE:** [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) is included in the Webpack configs' `entry.main[]` array by default. If you use `modifyWebpackConfig()` to modify `entry.main[]` and you wish to keep using the polyfill, be sure to add the new main entries _after_ the polyfill.
@@ -46,18 +46,18 @@ Dev Tip:
 [webpack-merge](https://github.com/survivejs/webpack-merge) is a helpful tool for changing and combining Webpack configs.
 
 ## modifyJestConfig
+
 `modifyJestConfig` is an optional callback you can define to edit the Jest config for your tests.
 
 The function is called with one parameter:
 
 - `baseConfig` The base Jest config that will be used.
 
-
 ```javascript
-modifyJestConfig: (baseConfig) => {
+modifyJestConfig: baseConfig => {
   // modify baseConfig as needed
   return baseConfig;
-}
+};
 ```
 
 > **NOTE:** Currently the base Jest config runs `modifyWebpackConfig()` for you with `options.environment = "development"` in order to grab the development settings for your app (babel plugins, aliases, etc). See the [Jest config recipe](/docs/Recipes.md) for an example use case.
@@ -70,8 +70,11 @@ kyt test -- --no-cache
 ```
 
 ## Creating env specific kyt configs
+
 kyt allows developers to specify a different kyt config in `dev` and `build` commands for the purpose of creating environment specific configurations.
+
 ```
 kyt build -C kyt.stage.js
 ```
+
 option `-C` or `--config` takes a configuration path from the root of your project.
