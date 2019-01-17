@@ -4,6 +4,7 @@ var babelPresetEnv = require('babel-preset-env');
 var babelTransformRuntime = require('babel-plugin-transform-runtime');
 var babelSyntaxDynamicImport = require('babel-plugin-syntax-dynamic-import');
 var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
+var babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 var merge = require('lodash.merge');
 
 module.exports = function getPresetCore(context, opts) {
@@ -60,7 +61,7 @@ module.exports = function getPresetCore(context, opts) {
     // provide the ability to opt into babel-plugin-transform-runtime inclusion
     plugins: [
       opts.includeRuntime === true && babelTransformRuntime,
-      babelSyntaxDynamicImport,
+      process.env.KYT_ENV_TYPE === 'test' ? babelDynamicImportNode : babelSyntaxDynamicImport,
     ].filter(Boolean),
 
     env: {

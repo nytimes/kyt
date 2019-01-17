@@ -4,6 +4,8 @@ module.exports = () => {
   const userRootPath = path.resolve(process.cwd());
   const buildPath = path.join(userRootPath, 'build');
   const srcPath = path.join(userRootPath, 'src');
+  const serverSrcPath = path.join(srcPath, 'server');
+  const clientSrcPath = path.join(srcPath, 'client');
   const publicBuildPath = path.join(buildPath, 'public');
 
   return {
@@ -12,8 +14,10 @@ module.exports = () => {
     buildPath,
     publicBuildPath,
     publicSrcPath: path.join(srcPath, 'public'),
-    serverSrcPath: path.join(srcPath, 'server'),
-    clientSrcPath: path.join(srcPath, 'client'),
+    serverSrcPath,
+    serverPolyfillsPath: path.join(serverSrcPath, 'polyfills.js'),
+    clientSrcPath,
+    clientPolyfillsPath: path.join(clientSrcPath, 'polyfills.js'),
     clientBuildPath: path.join(buildPath, 'client'),
     serverBuildPath: path.join(buildPath, 'server'),
     testBuildPath: path.join(buildPath, 'test'),

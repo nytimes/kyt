@@ -140,6 +140,10 @@ Default values can be used when it's convenient
 
 **Master**
 
+**1.0.0-alpha.2** - 10/20/17
+
+- Adds at-rule configuration for better Sass support
+
 **1.0.0-alpha.1** - 10/20/17
 
 - Upgrades StyleLint dependencies and adds a few new rules.
