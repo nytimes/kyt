@@ -50,6 +50,7 @@ module.exports = options => {
       headers: { 'Access-Control-Allow-Origin': '*' },
       noInfo: true,
       quiet: true,
+      logLevel: 'silent',
     },
 
     module: {
