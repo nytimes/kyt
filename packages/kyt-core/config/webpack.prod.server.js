@@ -21,8 +21,6 @@ const cssStyleLoaders = [
 module.exports = options => ({
   target: 'node',
 
-  mode: 'production',
-
   node: {
     __dirname: false,
     __filename: false,

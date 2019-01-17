@@ -21,8 +21,6 @@ const cssStyleLoaders = [
 module.exports = options => ({
   target: 'node',
 
-  mode: 'development',
-
   node: {
     __dirname: false,
     __filename: false,
@@ -59,7 +57,7 @@ module.exports = options => ({
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 2 }),
+    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
     new webpack.BannerPlugin({
       banner: 'require("source-map-support").install();',
       raw: true,
