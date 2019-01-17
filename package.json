@@ -38,7 +38,8 @@
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "packages/kyt-core/node_modules/.bin/eslint ./"
+    "lint": "packages/kyt-core/node_modules/.bin/eslint ./",
+    "lint-fix": "packages/kyt-core/node_modules/.bin/eslint ./ --fix"
   },
   "devDependencies": {
     "lerna": "^2.0.0",

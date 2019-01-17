@@ -18,16 +18,16 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 
 ## Features
 
-* Optional universal support with a Node server provided for rendering front-end page requests
-* Client and server hot reloading
-* Custom Babel presets with ES6 support, optional React support and optimizations for polyfilling Node and browser builds.
-* CSS Module and SASS support
-* PostCSS support
-* Static asset support
-* Inline SVG support
-* Style and script linter rulesets
-* A pre-configured test runner with Jest
-* Optional client-only mode for apps that already have a server
+- Optional universal support with a Node server provided for rendering front-end page requests
+- Client and server hot reloading
+- Custom Babel presets with ES6 support, optional React support and optimizations for polyfilling Node and browser builds.
+- CSS Module and SASS support
+- PostCSS support
+- Static asset support
+- Inline SVG support
+- Style and script linter rulesets
+- A pre-configured test runner with Jest
+- Optional client-only mode for apps that already have a server
 
 ## How it Works
 
@@ -41,7 +41,6 @@ For advanced use cases, kyt enables developers to add additional tools and confi
 See our [config override instructions](/docs/kytConfig.md#modifywebpackconfig) for details, and our [recipes](/docs/Recipes.md) for examples.
 
 _In an attempt to gather feedback to set future priorities, we're running a brief user survey asking: [what are you using `modifyWebpackConfig` for?](https://github.com/NYTimes/kyt/issues/432)_
-
 
 ## Setting up a kyt project
 
@@ -69,13 +68,13 @@ node_modules/.bin/kyt build
 
 Here are the available commands:
 
-* [`dev`](/docs/commands.md#dev) starts a development environment
-* [`build`](/docs/commands.md#build) compiles server and client code for production use
-* [`test`](/docs/commands.md#test) runs all tests in `/src`
-* [`proto`](/docs/commands.md#proto) starts the prototyping app
-* [`lint`](/docs/commands.md#lint) lints src code using ESLint
-* [`lint-style`](/docs/commands.md#lint-style) lints src code using Stylelint
-* [`help`](/docs/commands.md#help) shows commands and their documentation
+- [`dev`](/docs/commands.md#dev) starts a development environment
+- [`build`](/docs/commands.md#build) compiles server and client code for production use
+- [`test`](/docs/commands.md#test) runs all tests in `/src`
+- [`proto`](/docs/commands.md#proto) starts the prototyping app
+- [`lint`](/docs/commands.md#lint) lints src code using ESLint
+- [`lint-style`](/docs/commands.md#lint-style) lints src code using Stylelint
+- [`help`](/docs/commands.md#help) shows commands and their documentation
 
 See our [CLI docs](/docs/commands.md) for further details.
 
@@ -84,6 +83,7 @@ See our [CLI docs](/docs/commands.md) for further details.
 kyt follows a few simple conventions.
 
 All projects must have the following structure:
+
 ```
   src/
     client/
@@ -94,10 +94,9 @@ All projects must have the following structure:
 
 Each `index.js` file acts as the build entry.
 
-*(Note that `server/index.js` is not required if `hasServer` is `false` in [config](#configuration)).*
+_(Note that `server/index.js` is not required if `hasServer` is `false` in [config](#configuration))._
 
 If you're setting up a new project see our full list of [conventions](/docs/conventions.md).
-
 
 ## Configuration
 
@@ -119,7 +118,6 @@ See our recommended list of [starter-kyts](/packages/kyt-cli/README.md).
 
 Community supported starter-kyts can be built to support a variety of projects.
 See additional info on [how to build a starter-kyt](/docs/Starterkyts.md).
-
 
 ## How to contribute to kyt
 
