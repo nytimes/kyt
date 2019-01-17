@@ -10,6 +10,7 @@ Object {
       "env",
       Object {
         "forceAllTransforms": true,
+        "modules": false,
         "targets": Object {
           "browsers": Array [
             ">1%",
