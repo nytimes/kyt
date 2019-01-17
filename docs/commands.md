@@ -3,10 +3,13 @@
 kyt includes a CLI with all the commands needed for development.
 
 `kyt-cli setup` includes these commands as scripts in your package.json:
+
 ```
 npm run dev
 ```
+
 Or you can run a command with `node_modules/.bin/kyt command`
+
 ```
 node_modules/.bin/kyt build
 ```
@@ -30,9 +33,11 @@ Optionally, you can configure urls for the development servers in the [kyt confi
 
 You can pass flags to the node server through `kyt dev`.
 For example:
+
 ```
 kyt dev -- --inspect
 ```
+
 will run the [node debugging for Chrome DevTools](https://medium.com/@paul_irish/debugging-node-js-nightlies-with-chrome-devtools-7c4a1b95ae27#.mpuwgy17v)
 
 ## build
@@ -49,6 +54,7 @@ The `test` command takes test files in your `src/` directory and runs them using
 kyt test looks for any `*.test.js` files in `src/`.
 
 You can pass flags to jest through `kyt test`.
+
 ```
 kyt test -- --no-cache
 ```
@@ -109,13 +115,13 @@ The proto command takes a `prototype.js` file at the root of your app as an entr
 2. index.html
 
 The proto command also provides an `index.html` file with the following content:
+
 ```
 <div id="root"></div>
 <script src="/prototype/bundle.js"></script>
 ```
 
 `/prototype/bundle.js` loads the JavaScript assets.
-
 
 ### The proto command
 
