@@ -21,6 +21,8 @@ const cssStyleLoaders = [
 module.exports = options => ({
   target: 'node',
 
+  devtool: 'source-map',
+
   node: {
     __dirname: false,
     __filename: false,

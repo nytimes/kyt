@@ -21,6 +21,8 @@ const cssStyleLoaders = [
 module.exports = options => ({
   target: 'node',
 
+  devtool: 'cheap-module-eval-source-map',
+
   node: {
     __dirname: false,
     __filename: false,
@@ -57,7 +59,6 @@ module.exports = options => ({
 
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
     new webpack.BannerPlugin({
       banner: 'require("source-map-support").install();',
       raw: true,

@@ -34,8 +34,6 @@ module.exports = options => {
       __filename: true,
     },
 
-    devtool: 'source-map',
-
     resolve: {
       extensions: ['.js', '.json'],
       modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules'), 'node_modules'],

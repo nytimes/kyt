@@ -68,12 +68,6 @@ module.exports = options => {
       ],
     },
 
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-
-      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()],
   };
 };
