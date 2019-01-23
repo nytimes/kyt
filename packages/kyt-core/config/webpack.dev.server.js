@@ -9,7 +9,7 @@ const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   {
-    loader: 'css-loader/locals',
+    loader: 'css-loader',
     options: {
       modules: true,
       localIdentName: '[name]-[local]--[hash:base64:5]',
@@ -19,6 +19,8 @@ const cssStyleLoaders = [
 ];
 
 module.exports = options => ({
+  mode: 'development',
+
   target: 'node',
 
   devtool: 'cheap-module-eval-source-map',
@@ -58,7 +60,6 @@ module.exports = options => ({
   },
 
   plugins: [
-    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.BannerPlugin({
       banner: 'require("source-map-support").install();',
       raw: true,

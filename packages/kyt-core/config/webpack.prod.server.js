@@ -9,7 +9,7 @@ const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   {
-    loader: 'css-loader/locals',
+    loader: 'css-loader',
     options: {
       modules: true,
       localIdentName: '[name]-[local]--[hash:base64:5]',
@@ -19,6 +19,8 @@ const cssStyleLoaders = [
 ];
 
 module.exports = options => ({
+  mode: 'production',
+
   target: 'node',
 
   devtool: 'source-map',
@@ -63,8 +65,5 @@ module.exports = options => ({
       raw: true,
       entryOnly: true,
     }),
-
-    // Scope Hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 });

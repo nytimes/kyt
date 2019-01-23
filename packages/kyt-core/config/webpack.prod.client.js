@@ -1,7 +1,8 @@
 // Production webpack config for client code
 
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const clone = require('lodash.clonedeep');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
@@ -9,6 +10,7 @@ const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
+  MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
@@ -20,6 +22,8 @@ const cssStyleLoaders = [
 ];
 
 module.exports = options => ({
+  mode: 'production',
+
   target: 'web',
 
   devtool: 'source-map',
@@ -40,17 +44,16 @@ module.exports = options => ({
     rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: cssStyleLoaders,
-        }),
+        use: cssStyleLoaders,
         exclude: [publicSrcPath],
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: clone(cssStyleLoaders).concat('sass-loader'),
+        use: clone(cssStyleLoaders).concat({
+          loader: 'sass-loader',
+          options: {
+            sourceMap: true,
+          },
         }),
         exclude: [publicSrcPath],
       },
@@ -64,45 +67,30 @@ module.exports = options => ({
       manifestFiles: ['manifest'],
     }),
 
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css',
-      allChunks: true,
+      chunkFilename: '[name]-[contenthash].css',
     }),
 
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-    }),
-
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-      sourceMap: true,
-    }),
-
-    // Modules should get deterministic ids so that they don't change between builds
-    new webpack.HashedModuleIdsPlugin(),
-
-    // Extract all 3rd party modules into a separate chunk
-    // Only include vendor modules as needed,
-    // https://github.com/webpack/webpack/issues/2372#issuecomment-213149173
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: ({ resource }) => /node_modules/.test(resource),
-    }),
-
-    // Generate a 'manifest' chunk to be inlined
-    new webpack.optimize.CommonsChunkPlugin({ name: 'manifest' }),
+    new OptimizeCSSAssetsPlugin({}),
 
     // Merge bundles that would otherwise be negligibly small
     new webpack.optimize.AggressiveMergingPlugin(),
-
-    // Scope Hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
+
+  optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: {
+      name: 'manifest',
+    },
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+      },
+    },
+  },
 });

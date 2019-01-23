@@ -9,7 +9,7 @@ const ifPortIsFreeDo = (port, callback) => {
       process.exit();
     }
 
-    if (port === unusedPort) {
+    if (Number(port) === Number(unusedPort)) {
       callback();
     } else {
       logger.error(`port: ${port} is in use.`);

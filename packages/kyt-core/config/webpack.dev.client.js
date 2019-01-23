@@ -22,13 +22,13 @@ const cssStyleLoaders = [
 module.exports = options => {
   const main = [
     `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
+    getPolyfill(options.type),
     `${clientSrcPath}/index.js`,
   ];
 
-  if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
-  main.unshift(getPolyfill(options.type));
-
   return {
+    mode: 'development',
+
     target: 'web',
 
     devtool: 'cheap-module-eval-source-map',
@@ -51,6 +51,7 @@ module.exports = options => {
       noInfo: true,
       quiet: true,
       logLevel: 'silent',
+      overlay: true,
     },
 
     module: {
@@ -68,6 +69,6 @@ module.exports = options => {
       ],
     },
 
-    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
   };
 };

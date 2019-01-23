@@ -44,7 +44,9 @@ module.exports = options => {
     },
 
     plugins: [
-      new WebpackBar(),
+      new WebpackBar({
+        name: options.type === 'client' ? 'Client' : 'Server',
+      }),
 
       new webpack.DefinePlugin({
         // Hardcode NODE_ENV at build time so libraries like React get optimized
@@ -62,10 +64,10 @@ module.exports = options => {
       }),
 
       new WebpackAssetsManifest({
+        publicPath: options.publicPath,
         output: assetsFilePath,
-        space: 2,
-        fileExtRegex: /\.\w{2,4}\.(?:map|gz)$|\.\w+$/i,
         writeToDisk: options.type === 'client',
+        merge: 'customize',
         done: manifest => {
           // This plugin's `merge` doesn't work as expected. The "done" callback
           // gets called for the client and server asset builds, in that order.
@@ -81,6 +83,10 @@ module.exports = options => {
         customize: (key, value) => {
           const prependPublicPath = asset => `${options.publicPath || ''}${asset}`;
           const removePublicDir = asset => asset.replace(/(.*)?public\//, '');
+
+          if (key.toLowerCase().endsWith('.map')) {
+            return false;
+          }
 
           // Server asset files have "../public" prepended to them
           // (see file-loader `outputPath`). We need to remove that.
