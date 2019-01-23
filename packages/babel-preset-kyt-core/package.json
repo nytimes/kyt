@@ -9,12 +9,18 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
-    "babel-plugin-dynamic-import-node": "2.0.0",
-    "babel-plugin-syntax-dynamic-import": "6.18.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.0",
-    "babel-plugin-transform-runtime": "6.23.0",
-    "babel-preset-env": "1.6.0"
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.2.0",
+    "@babel/preset-env": "7.2.3",
+    "babel-plugin-dynamic-import-node": "2.2.0",
+    "lodash.merge": "4.6.1"
   },
-  "keywords": ["babel", "babel-preset", "kyt"],
-  "files": ["lib"]
+  "keywords": [
+    "babel",
+    "babel-preset",
+    "kyt"
+  ],
+  "files": [
+    "lib"
+  ]
 }

@@ -1,3 +1,7 @@
+const fs = {
+  readFileSync: jest.fn(),
+};
+
 const shell = {
   test: jest.fn(),
 };
@@ -30,6 +34,7 @@ const webpack = {
   HashedModuleIdsPlugin: jest.fn(),
 };
 
+jest.setMock('fs', fs);
 jest.setMock('shelljs', shell);
 jest.setMock('path', path);
 jest.setMock('kyt-utils/logger', logger);
@@ -46,6 +51,7 @@ describe('webpack.base', () => {
   });
   it("doesn't set up a babel preset if a .babelrc exists", () => {
     shell.test.mockImplementationOnce(() => true);
+    fs.readFileSync.mockImplementationOnce(() => '{}');
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
     expect(babelLoader.options.presets).toBeUndefined();
@@ -53,6 +59,7 @@ describe('webpack.base', () => {
   });
   it('sets up kyt-core babel preset if a .babelrc exists', () => {
     shell.test.mockImplementationOnce(() => false);
+    fs.readFileSync.mockImplementationOnce(() => '{}');
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
     expect(babelLoader.options.presets.length).toBe(1);

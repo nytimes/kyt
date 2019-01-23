@@ -7,8 +7,10 @@ See the included presets and plugins [here](/packages/babel-preset-kyt-react/lib
 (Note: this preset includes babel-preset-kyt-core)
 
 To use in your project:
+
 1. `npm install babel-preset-kyt-react --save`
 2. In your .babelrc:
+
 ```
   {
     presets: [
@@ -19,7 +21,7 @@ To use in your project:
 
 ## Options
 
-*(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) for Babel preset options)*
+_(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) for Babel preset options)_
 
 - `envOptions` (`Object`)- pass down babel-preset-env options to babel-preset-kyt-core. See more in the `envOptions` [kyt-core documentation](/packages/babel-preset-kyt-core/README.md#options).
 

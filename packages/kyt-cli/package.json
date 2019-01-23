@@ -12,13 +12,13 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
-    "commander": "2.9.0",
-    "inquirer": "1.2.3",
-    "kyt-utils": "0.1.0",
+    "commander": "2.19.0",
+    "inquirer": "6.2.1",
+    "kyt-utils": "0.1.1",
     "lodash.uniq": "4.5.0",
-    "semver": "5.3.0",
-    "shelljs": "0.7.8",
-    "simple-git": "1.62.0"
+    "semver": "5.6.0",
+    "shelljs": "0.8.3",
+    "simple-git": "1.107.0"
   },
   "keywords": [
     "kyt",
