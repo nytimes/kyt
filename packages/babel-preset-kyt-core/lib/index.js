@@ -1,9 +1,8 @@
 /* eslint-disable vars-on-top */
 
-var babelPresetEnv = require('babel-preset-env');
-var babelTransformRuntime = require('babel-plugin-transform-runtime');
-var babelSyntaxDynamicImport = require('babel-plugin-syntax-dynamic-import');
-var babelTransformModules = require('babel-plugin-transform-es2015-modules-commonjs');
+var babelPresetEnv = require('@babel/preset-env');
+var babelTransformRuntime = require('@babel/plugin-transform-runtime');
+var babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
 var babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 var merge = require('lodash.merge');
 
@@ -14,16 +13,17 @@ module.exports = function getPresetCore(context, opts) {
 
   var clientEnvOptions = {
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
-      uglify: true,
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
     },
   };
 
   var serverEnvOptions = {
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
       node: 'current',
     },
@@ -63,11 +63,5 @@ module.exports = function getPresetCore(context, opts) {
       opts.includeRuntime === true && babelTransformRuntime,
       process.env.KYT_ENV_TYPE === 'test' ? babelDynamicImportNode : babelSyntaxDynamicImport,
     ].filter(Boolean),
-
-    env: {
-      test: {
-        plugins: [[babelTransformModules, { loose: true }]],
-      },
-    },
   };
 };

@@ -5,8 +5,9 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
+const WebpackBar = require('webpackbar');
 const shell = require('shelljs');
-const merge = require('lodash.merge');
+const merge = require('webpack-merge');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const {
   buildPath,
@@ -20,7 +21,11 @@ const fileExtensions = require('./fileExtensions');
 let clientAssets;
 
 module.exports = options => {
-  const hasBabelrc = shell.test('-f', userBabelrcPath);
+  let babelrc;
+  if (shell.test('-f', userBabelrcPath)) {
+    const rcFile = fs.readFileSync(userBabelrcPath);
+    babelrc = JSON.parse(rcFile);
+  }
   const assetsFilePath = path.join(buildPath, options.clientAssetsFile);
 
   return {
@@ -28,8 +33,6 @@ module.exports = options => {
       __dirname: true,
       __filename: true,
     },
-
-    devtool: 'source-map',
 
     resolve: {
       extensions: ['.js', '.json'],
@@ -41,6 +44,8 @@ module.exports = options => {
     },
 
     plugins: [
+      new WebpackBar(),
+
       new webpack.DefinePlugin({
         // Hardcode NODE_ENV at build time so libraries like React get optimized
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || options.environment),
@@ -119,9 +124,10 @@ module.exports = options => {
           // babel configuration should come from presets defined in the user's
           // .babelrc, unless there's a specific reason why it has to be put in
           // the webpack loader options
-          options: Object.assign(
+          options: merge(
             {
               // this is a loader-specific option and can't be put in a babel preset
+              babelrc: false,
               cacheDirectory:
                 options.environment === 'development'
                   ? path.join(os.tmpdir(), 'babel-loader')
@@ -141,11 +147,9 @@ module.exports = options => {
                 }
               : {},
             // if the user hasn't defined a .babelrc, use the kyt default
-            !hasBabelrc
-              ? {
-                  presets: [require.resolve('babel-preset-kyt-core')],
-                }
-              : {}
+            babelrc || {
+              presets: [require.resolve('babel-preset-kyt-core')],
+            }
           ),
         },
       ],

@@ -28,16 +28,17 @@ _(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) fo
   - `client`
     ```
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
-      uglify: true,
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
     },
     ```
   - `server`
     ```
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
       node: 'current'
     },
