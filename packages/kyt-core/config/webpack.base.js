@@ -8,7 +8,7 @@ const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
 const shell = require('shelljs');
 const merge = require('webpack-merge');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
+
 const {
   buildPath,
   userNodeModulesPath,
@@ -18,15 +18,12 @@ const {
 const os = require('os');
 const fileExtensions = require('./fileExtensions');
 
-let clientAssets;
-
 module.exports = options => {
   let babelrc;
   if (shell.test('-f', userBabelrcPath)) {
     const rcFile = fs.readFileSync(userBabelrcPath);
     babelrc = JSON.parse(rcFile);
   }
-  const assetsFilePath = path.join(buildPath, options.clientAssetsFile);
 
   return {
     node: {
@@ -57,51 +54,10 @@ module.exports = options => {
           PUBLIC_PATH: JSON.stringify(options.publicPath || ''),
           PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
           EXECUTION_ENVIRONMENT: JSON.stringify(options.type || ''),
+          IS_BROWSER: options.type === 'client',
           ASSETS_MANIFEST: JSON.stringify(
             path.join(buildPath || '', options.clientAssetsFile || '')
           ),
-        },
-      }),
-
-      new WebpackAssetsManifest({
-        publicPath: options.publicPath,
-        output: assetsFilePath,
-        writeToDisk: options.type === 'client',
-        merge: 'customize',
-        done: manifest => {
-          // This plugin's `merge` doesn't work as expected. The "done" callback
-          // gets called for the client and server asset builds, in that order.
-          if (options.type === 'client') {
-            // Save the client assets for merging later.
-            clientAssets = manifest.toJSON();
-          } else {
-            // Merge the server assets into the client assets and write the result to disk.
-            const assets = merge({}, clientAssets, manifest.toJSON());
-            fs.writeFile(assetsFilePath, JSON.stringify(assets, null, '  '), 'utf8', () => {});
-          }
-        },
-        customize: (key, value) => {
-          const prependPublicPath = asset => `${options.publicPath || ''}${asset}`;
-          const removePublicDir = asset => asset.replace(/(.*)?public\//, '');
-
-          if (key.toLowerCase().endsWith('.map')) {
-            return false;
-          }
-
-          // Server asset files have "../public" prepended to them
-          // (see file-loader `outputPath`). We need to remove that.
-          if (options.type === 'server') {
-            if (value.startsWith('../public')) {
-              key = removePublicDir(key);
-              value = prependPublicPath(removePublicDir(value));
-            } else {
-              return false;
-            }
-          } else {
-            value = prependPublicPath(value);
-          }
-
-          return { key, value };
         },
       }),
     ],

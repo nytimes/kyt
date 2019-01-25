@@ -1,11 +1,14 @@
 // Production webpack config for client code
 
+const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const clone = require('lodash.clonedeep');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
+const WebpackAssetsManifest = require('webpack-assets-manifest');
+const { buildPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
 
@@ -37,7 +40,6 @@ module.exports = options => ({
     filename: '[name]-[chunkhash].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
-    libraryTarget: 'var',
   },
 
   module: {
@@ -61,6 +63,11 @@ module.exports = options => ({
   },
 
   plugins: [
+    new WebpackAssetsManifest({
+      publicPath: options.publicPath,
+      output: path.join(buildPath, options.clientAssetsFile),
+    }),
+
     // Webpack fingerprinting can break sometimes, this plugin will
     // guarantee that our hashes are deterministic, every build.
     new HashOutput({
