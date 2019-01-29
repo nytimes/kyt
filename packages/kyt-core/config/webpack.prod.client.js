@@ -1,7 +1,6 @@
 // Production webpack config for client code
 
 const path = require('path');
-const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
