@@ -4,10 +4,10 @@ const path = require('path');
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const clone = require('lodash.clonedeep');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const HashOutput = require('webpack-plugin-hash-output');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { buildPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
@@ -46,32 +46,33 @@ module.exports = options => ({
     rules: [
       {
         test: /\.css$/,
-        use: cssStyleLoaders,
+        use: [...cssStyleLoaders],
         exclude: [publicSrcPath],
       },
       {
         test: /\.scss$/,
-        use: clone(cssStyleLoaders).concat({
-          loader: 'sass-loader',
-          options: {
-            sourceMap: true,
+        use: [
+          ...cssStyleLoaders,
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
           },
-        }),
+        ],
         exclude: [publicSrcPath],
       },
     ],
   },
 
   plugins: [
+    // Webpack fingerprinting can break sometimes, this plugin will
+    // guarantee that our hashes are deterministic, every build.
+    new HashOutput(),
+
     new WebpackAssetsManifest({
       publicPath: options.publicPath,
       output: path.join(buildPath, options.clientAssetsFile),
-    }),
-
-    // Webpack fingerprinting can break sometimes, this plugin will
-    // guarantee that our hashes are deterministic, every build.
-    new HashOutput({
-      manifestFiles: ['manifest'],
     }),
 
     new MiniCssExtractPlugin({
@@ -80,24 +81,34 @@ module.exports = options => ({
     }),
 
     new OptimizeCSSAssetsPlugin({}),
-
-    // Merge bundles that would otherwise be negligibly small
-    new webpack.optimize.AggressiveMergingPlugin(),
   ],
 
   optimization: {
     moduleIds: 'hashed',
     runtimeChunk: {
-      name: 'manifest',
+      name: 'runtime',
     },
     splitChunks: {
       cacheGroups: {
-        commons: {
+        vendor: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'all',
+          minChunks: 2,
         },
       },
     },
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: true,
+          ecma: 6,
+          // mangle: true
+        },
+        sourceMap: true,
+      }),
+    ],
   },
 });

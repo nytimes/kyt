@@ -1,10 +1,7 @@
 // Development webpack config for client code
 
-const path = require('path');
 const webpack = require('webpack');
-const WebpackAssetsManifest = require('webpack-assets-manifest');
-const clone = require('lodash.clonedeep');
-const { buildPath, clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
 
@@ -60,23 +57,17 @@ module.exports = options => {
       rules: [
         {
           test: /\.css$/,
-          use: cssStyleLoaders,
+          use: [...cssStyleLoaders],
           exclude: [publicSrcPath],
         },
         {
           test: /\.scss$/,
-          use: clone(cssStyleLoaders).concat('sass-loader'),
+          use: [...cssStyleLoaders, 'sass-loader'],
           exclude: [publicSrcPath],
         },
       ],
     },
 
-    plugins: [
-      new WebpackAssetsManifest({
-        publicPath: options.publicPath,
-        output: path.join(buildPath, options.clientAssetsFile),
-      }),
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
   };
 };

@@ -2,7 +2,6 @@
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const clone = require('lodash.clonedeep');
 const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
@@ -13,6 +12,7 @@ const cssStyleLoaders = [
     options: {
       modules: true,
       localIdentName: '[name]-[local]--[hash:base64:5]',
+      exportOnlyLocals: true,
     },
   },
   postcssLoader,
@@ -48,12 +48,12 @@ module.exports = options => ({
     rules: [
       {
         test: /\.css$/,
-        use: cssStyleLoaders,
+        use: [...cssStyleLoaders],
         exclude: [publicSrcPath],
       },
       {
         test: /\.scss$/,
-        use: clone(cssStyleLoaders).concat('sass-loader'),
+        use: [...cssStyleLoaders, 'sass-loader'],
         exclude: [publicSrcPath],
       },
     ],
