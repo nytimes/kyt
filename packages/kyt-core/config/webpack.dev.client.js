@@ -1,7 +1,9 @@
 // Development webpack config for client code
 
+const path = require('path');
 const webpack = require('webpack');
-const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
+const { buildPath, clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
 
@@ -68,6 +70,11 @@ module.exports = options => {
       ],
     },
 
-    plugins: [new webpack.HotModuleReplacementPlugin()],
+    plugins: [
+      new ReactLoadablePlugin({
+        filename: path.join(buildPath, 'react-loadable.json'),
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+    ],
   };
 };

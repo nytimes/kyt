@@ -5,13 +5,14 @@ function Loading() {
 }
 
 function dynamic(loader, opts) {
-  opts = opts || {};
-  opts.loader = loader;
-  if (!opts.loading) {
-    opts.loading = Loading;
+  var options = Object.assign({}, opts || {}, (opts && opts.loadableGenerated) || {});
+  delete options.loadableGenerated;
+  options.loader = loader;
+  if (!options.loading) {
+    options.loading = Loading;
   }
 
-  return Loadable(opts);
+  return Loadable(options);
 }
 
 module.exports = dynamic;
