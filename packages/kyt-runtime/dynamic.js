@@ -1,13 +1,17 @@
-const Loadable = require('react-loadable');
+var Loadable = require('react-loadable');
 
-const Loading = () => null;
+function Loading() {
+  return null;
+}
 
-function dynamic(loader, opts = {}) {
-  return Loadable({
-    loader,
-    loading: Loading,
-    ...opts,
-  });
+function dynamic(loader, opts) {
+  opts = opts || {};
+  opts.loader = loader;
+  if (!opts.loading) {
+    opts.loading = Loading;
+  }
+
+  return Loadable(opts);
 }
 
 module.exports = dynamic;
