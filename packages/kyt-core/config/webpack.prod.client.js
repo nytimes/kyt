@@ -4,7 +4,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
-const HashOutput = require('webpack-plugin-hash-output');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { buildPath } = require('kyt-utils/paths')();
@@ -65,10 +64,6 @@ module.exports = options => ({
   },
 
   plugins: [
-    // Webpack fingerprinting can break sometimes, this plugin will
-    // guarantee that our hashes are deterministic, every build.
-    new HashOutput(),
-
     new WebpackAssetsManifest({
       publicPath: options.publicPath,
       output: path.join(buildPath, options.clientAssetsFile),
