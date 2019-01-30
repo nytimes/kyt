@@ -4,6 +4,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { buildPath } = require('kyt-utils/paths')();
@@ -64,6 +65,10 @@ module.exports = options => ({
   },
 
   plugins: [
+    new ReactLoadablePlugin({
+      filename: path.join(buildPath, 'react-loadable.json'),
+    }),
+
     new WebpackAssetsManifest({
       publicPath: options.publicPath,
       output: path.join(buildPath, options.clientAssetsFile),
