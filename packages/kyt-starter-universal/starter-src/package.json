@@ -26,11 +26,11 @@
     "source-map-support": "0.5.10"
   },
   "devDependencies": {
-    "babel-preset-kyt-react": "1.0.0-alpha.f941e0e4",
+    "babel-preset-kyt-react": "1.0.0-alpha.2adcf980",
     "enzyme": "3.8.0",
     "enzyme-adapter-react-16": "1.8.0",
     "enzyme-to-json": "3.3.5",
-    "kyt": "1.0.0-alpha.f941e0e4",
+    "kyt": "1.0.0-alpha.2adcf980",
     "raf": "3.4.1",
     "react-test-renderer": "16.7.0",
     "react-hot-loader": "4.6.3"
