@@ -24,5 +24,7 @@ module.exports = (config, flags) => {
   process.env.KYT_ENV_TYPE = 'test';
 
   // Run Jest
-  child.spawn('jest', ['--config', JSON.stringify(jestConfig), ...flags]);
+  child.spawn('jest', ['--config', JSON.stringify(jestConfig), ...flags], {
+    stdio: 'inherit',
+  });
 };
