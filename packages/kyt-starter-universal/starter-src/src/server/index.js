@@ -6,10 +6,11 @@ import { renderToString } from 'react-dom/server';
 import RouterContext from 'react-router/lib/RouterContext';
 import createMemoryHistory from 'react-router/lib/createMemoryHistory';
 import match from 'react-router/lib/match';
+import { getClientAssets } from 'kyt-runtime/server';
 import template from './template';
 import routes from '../routes';
 
-const clientAssets = require(KYT.ASSETS_MANIFEST); // eslint-disable-line import/no-dynamic-require
+const clientAssets = getClientAssets();
 const port = parseInt(KYT.SERVER_PORT, 10);
 const app = express();
 
@@ -38,7 +39,7 @@ app.get('*', (request, response) => {
         template({
           // eslint-disable-next-line kyt/no-props-spread
           root: renderToString(<RouterContext {...renderProps} />),
-          manifestJSBundle: clientAssets['manifest.js'],
+          runtimeJSBundle: clientAssets['runtime.js'],
           mainJSBundle: clientAssets['main.js'],
           vendorJSBundle: clientAssets['vendor.js'],
           mainCSSBundle: clientAssets['main.css'],

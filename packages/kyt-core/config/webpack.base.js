@@ -55,9 +55,8 @@ module.exports = options => {
           PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
           EXECUTION_ENVIRONMENT: JSON.stringify(options.type || ''),
           IS_BROWSER: options.type === 'client',
-          ASSETS_MANIFEST: JSON.stringify(
-            path.join(buildPath || '', options.clientAssetsFile || '')
-          ),
+          ASSETS_MANIFEST: JSON.stringify(options.clientAssetsFile || ''),
+          LOADABLE_MANIFEST: JSON.stringify(options.loadableAssetsFile || ''),
         },
       }),
     ],

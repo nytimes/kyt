@@ -25,7 +25,6 @@ module.exports = config => {
     environment: 'prototype',
     port: prototypeURL.port,
     publicDir: publicSrcPath,
-    clientAssetsFile: 'publicAssets.json',
   };
 
   const startPrototype = () => {

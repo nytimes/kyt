@@ -16,6 +16,8 @@
   "dependencies": {
     "@babel/cli": "7.2.3",
     "@babel/core": "7.2.2",
+    "@babel/polyfill": "7.2.5",
+    "@babel/runtime": "7.3.1",
     "autoprefixer": "9.4.7",
     "babel-eslint": "10.0.1",
     "babel-loader": "8.0.5",
@@ -46,6 +48,7 @@
     "inquirer": "6.2.1",
     "install": "0.12.2",
     "jest": "24.0.0",
+    "kyt-runtime": "1.0.0-alpha.0",
     "kyt-utils": "0.1.1",
     "lodash.clonedeep": "4.5.0",
     "lodash.merge": "4.6.1",
@@ -58,9 +61,9 @@
     "prettier": "1.16.1",
     "ps-tree": "1.2.0",
     "react-hot-loader": "4.6.3",
-    "react-loadable": "5.5.0",
     "sass-loader": "7.1.0",
     "shelljs": "0.8.3",
+    "source-map-support": "0.5.10",
     "strip-ansi": "5.0.0",
     "style-loader": "0.23.1",
     "stylelint": "9.10.1",
@@ -71,17 +74,11 @@
     "url-loader": "1.1.2",
     "webpack": "4.28.4",
     "webpackbar": "3.1.5",
-    "webpack-assets-manifest": "3.1.1",
     "webpack-dev-middleware": "3.5.1",
     "webpack-dev-server": "3.1.14",
     "webpack-hot-middleware": "2.24.3",
     "webpack-merge": "4.2.1",
     "webpack-node-externals": "1.7.2"
-  },
-  "peerDependencies": {
-    "@babel/polyfill": "7.2.5",
-    "@babel/runtime": "7.3.1",
-    "source-map-support": "0.5.10"
   },
   "keywords": [
     "kyt",
