@@ -1,13 +1,20 @@
 const fs = require('fs');
 const Loadable = require('react-loadable');
 const { getBundles } = require('react-loadable/webpack');
-const { clientAssetsFile, loadableAssetsFile } = require('kyt-utils/paths')();
+const {
+  clientAssetsFile,
+  loadableAssetsFile,
+  publicSrcPath,
+  publicBuildPath,
+} = require('kyt-utils/paths')();
 
 const isProd = process.env.NODE_ENV === 'production';
 
 exports.preloadDynamicImports = Loadable.preloadAll;
 
 exports.DynamicImports = Loadable.Capture;
+
+exports.getPublicDir = isProd ? publicBuildPath : publicSrcPath;
 
 exports.getClientAssets = () => {
   if (!isProd) {
