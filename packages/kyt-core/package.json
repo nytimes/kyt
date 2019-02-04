@@ -48,7 +48,7 @@
     "install": "0.12.2",
     "jest": "24.0.0",
     "kyt-runtime": "1.0.0-alpha.0",
-    "kyt-utils": "0.1.1",
+    "kyt-utils": "1.0.0-alpha.0",
     "lodash.clonedeep": "4.5.0",
     "lodash.merge": "4.6.1",
     "lodash.once": "4.1.1",
