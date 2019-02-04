@@ -14,7 +14,7 @@ exports.preloadDynamicImports = Loadable.preloadAll;
 
 exports.DynamicImports = Loadable.Capture;
 
-exports.getPublicDir = isProd ? publicBuildPath : publicSrcPath;
+exports.publicDirPath = isProd ? publicBuildPath : publicSrcPath;
 
 exports.getClientAssets = () => {
   if (!isProd) {
