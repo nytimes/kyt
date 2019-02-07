@@ -1,5 +1,10 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react",
+    "react-hooks"
+  ],
 
   "env": {
     "jest": true,
@@ -19,6 +24,7 @@
   },
 
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
     "no-lonely-if": 2,
     "no-nested-ternary": 2,
     "max-nested-callbacks": [2, { "max": 5 }],
