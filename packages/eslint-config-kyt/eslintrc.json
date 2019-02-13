@@ -2,8 +2,7 @@
   "extends": [
     "airbnb",
     "plugin:prettier/recommended",
-    "prettier/react",
-    "react-hooks"
+    "prettier/react"
   ],
 
   "env": {
@@ -11,7 +10,7 @@
     "browser": true
   },
 
-  "plugins": ["json", "prettier", "kyt"],
+  "plugins": ["json", "prettier", "kyt", "react-hooks"],
 
   "parser": "babel-eslint",
   "parserOptions": {
