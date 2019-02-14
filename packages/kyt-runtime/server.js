@@ -18,7 +18,12 @@ exports.publicDirPath = {
 };
 
 exports.getClientAssets = () => {
-  const assetJSON = fs.readFileSync(clientAssetsFile);
+  let assetJSON;
+  try {
+    assetJSON = fs.readFileSync(clientAssetsFile);
+  } catch (e) {
+    return {};
+  }
   return JSON.parse(assetJSON);
 };
 
