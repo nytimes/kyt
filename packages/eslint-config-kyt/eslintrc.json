@@ -1,12 +1,16 @@
 {
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
 
   "env": {
     "jest": true,
     "browser": true
   },
 
-  "plugins": ["json", "prettier", "kyt"],
+  "plugins": ["json", "prettier", "kyt", "react-hooks"],
 
   "parser": "babel-eslint",
   "parserOptions": {
@@ -19,6 +23,7 @@
   },
 
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
     "no-lonely-if": 2,
     "no-nested-ternary": 2,
     "max-nested-callbacks": [2, { "max": 5 }],

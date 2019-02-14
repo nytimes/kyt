@@ -38,6 +38,7 @@
     "eslint-plugin-kyt": "1.0.0-alpha.0",
     "eslint-plugin-prettier": "3.0.1",
     "eslint-plugin-react": "7.12.4",
+    "eslint-plugin-react-hooks": "1.0.1",
     "express": "4.16.4",
     "file-loader": "3.0.1",
     "filesize": "4.0.0",
@@ -72,12 +73,12 @@
     "uglifyjs-webpack-plugin": "2.1.1",
     "url-loader": "1.1.2",
     "webpack": "4.28.4",
-    "webpackbar": "3.1.5",
     "webpack-dev-middleware": "3.5.1",
     "webpack-dev-server": "3.1.14",
     "webpack-hot-middleware": "2.24.3",
     "webpack-merge": "4.2.1",
-    "webpack-node-externals": "1.7.2"
+    "webpack-node-externals": "1.7.2",
+    "webpackbar": "3.1.5"
   },
   "keywords": [
     "kyt",
