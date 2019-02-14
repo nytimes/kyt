@@ -8,18 +8,16 @@ const {
   publicBuildPath,
 } = require('kyt-utils/paths')();
 
-const isProd = process.env.NODE_ENV === 'production';
-
 exports.preloadDynamicImports = Loadable.preloadAll;
 
 exports.DynamicImports = Loadable.Capture;
 
-exports.publicDirPath = isProd ? publicBuildPath : publicSrcPath;
+exports.publicDirPath = {
+  src: publicSrcPath,
+  build: publicBuildPath,
+};
 
 exports.getClientAssets = () => {
-  if (!isProd) {
-    return {};
-  }
   const assetJSON = fs.readFileSync(clientAssetsFile);
   return JSON.parse(assetJSON);
 };
