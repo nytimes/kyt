@@ -58,7 +58,17 @@ module.exports = (config, flags) => {
     app.use(express.static(publicSrcPath));
 
     app.use(webpackDevMiddleware);
-    app.use(hotMiddleware(clientCompiler));
+    app.use(
+      hotMiddleware(clientCompiler, {
+        log: msg => {
+          // these logs are redundant
+          if (msg.indexOf('webpack') === 0) {
+            return;
+          }
+          logger.log('[hot]', msg);
+        },
+      })
+    );
     app.listen(clientURL.port, clientURL.hostname);
   };
 
