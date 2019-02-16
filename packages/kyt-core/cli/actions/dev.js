@@ -1,5 +1,6 @@
 // Command to run development server
 
+const fs = require('fs');
 const path = require('path');
 const chokidar = require('chokidar');
 const express = require('express');
@@ -72,19 +73,34 @@ module.exports = (config, flags) => {
     app.listen(clientURL.port, clientURL.hostname);
   };
 
+  let restarts = 0;
+
   const startServer = () => {
     const serverPaths = Object.keys(serverCompiler.options.entry).map(entry =>
       path.join(serverCompiler.options.output.path, `${entry}.js`)
     );
     const mainPath = path.join(serverCompiler.options.output.path, 'main.js');
+    const restartsFile = path.join(serverCompiler.options.output.path, '.restarts');
 
     nodemon({ script: mainPath, watch: serverPaths, nodeArgs: flags })
       .once('start', () => {
+        if (fs.existsSync(restartsFile)) {
+          fs.unlinkSync(restartsFile);
+        }
         logger.task(`Server running at: ${serverURL.href}`);
         logger.end('Development started');
       })
-      .on('restart', () => logger.end('Development server restarted'))
-      .on('quit', process.exit);
+      .on('restart', () => {
+        restarts += 1;
+        fs.writeFileSync(restartsFile, restarts);
+        logger.end('Development server restarted');
+      })
+      .on('quit', () => {
+        if (fs.existsSync(restartsFile)) {
+          fs.unlinkSync(restartsFile);
+        }
+        process.exit();
+      });
   };
 
   const compileServer = () => serverCompiler.run(() => undefined);

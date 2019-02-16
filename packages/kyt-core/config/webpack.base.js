@@ -44,7 +44,7 @@ module.exports = options => {
     },
 
     plugins: [
-      new WebpackBar(),
+      new WebpackBar({ name: options.type === 'client' ? 'Client' : 'Server' }),
 
       new webpack.DefinePlugin({
         // Hardcode NODE_ENV at build time so libraries like React get optimized
