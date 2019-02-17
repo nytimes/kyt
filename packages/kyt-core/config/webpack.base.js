@@ -14,6 +14,8 @@ const {
   userNodeModulesPath,
   userBabelrcPath,
   publicSrcPath,
+  clientAssetsFile,
+  loadableAssetsFile,
 } = require('kyt-utils/paths')();
 const os = require('os');
 const fileExtensions = require('./fileExtensions');
@@ -55,8 +57,8 @@ module.exports = options => {
           PUBLIC_DIR: JSON.stringify(options.publicDir || ''),
           EXECUTION_ENVIRONMENT: JSON.stringify(options.type || ''),
           IS_BROWSER: options.type === 'client',
-          ASSETS_MANIFEST: JSON.stringify(options.clientAssetsFile || ''),
-          LOADABLE_MANIFEST: JSON.stringify(options.loadableAssetsFile || ''),
+          ASSETS_MANIFEST: JSON.stringify(clientAssetsFile || ''),
+          LOADABLE_MANIFEST: JSON.stringify(loadableAssetsFile || ''),
         },
       }),
     ],
