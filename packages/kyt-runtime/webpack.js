@@ -12,14 +12,13 @@ exports.kytWebpackPlugins = function kytWebpackPlugins(options) {
       })
     );
 
-    if (options.environment === 'production') {
-      plugins.push(
-        new WebpackAssetsManifest({
-          publicPath: options.publicPath,
-          output: clientAssetsFile,
-        })
-      );
-    }
+    plugins.push(
+      new WebpackAssetsManifest({
+        publicPath: options.publicPath,
+        output: clientAssetsFile,
+        writeToDisk: true,
+      })
+    );
   }
 
   return plugins;
