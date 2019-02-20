@@ -1,4 +1,5 @@
 import React from 'react';
+import { hot } from 'react-hot-loader/root';
 import Router from 'react-router/lib/Router';
 import browserHistory from 'react-router/lib/browserHistory';
 import routes from '../routes';
@@ -8,4 +9,4 @@ function Root() {
   return <Router history={browserHistory} routes={routes} />;
 }
 
-export default Root;
+export default hot(Root);

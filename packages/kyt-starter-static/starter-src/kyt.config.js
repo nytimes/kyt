@@ -8,7 +8,7 @@ module.exports = {
     const jestConfig = Object.assign({}, kytConfig);
 
     jestConfig.setupFiles = ['raf/polyfill', ...jestConfig.setupFiles];
-    jestConfig.setupTestFrameworkScriptFile = require.resolve('./jest.setup.js');
+    jestConfig.setupFilesAfterEnv = [require.resolve('./jest.setup.js')];
     jestConfig.snapshotSerializers = ['enzyme-to-json/serializer'];
 
     return jestConfig;
@@ -20,7 +20,7 @@ module.exports = {
           template: 'src/index.ejs',
           // Sort the chunks so that the scripts are added in the correct order.
           chunksSortMode: (chunk1, chunk2) => {
-            const orders = ['manifest', 'vendor', 'main'];
+            const orders = ['runtime', 'vendor', 'main'];
             const order1 = orders.indexOf(chunk1.names[0]);
             const order2 = orders.indexOf(chunk2.names[0]);
             return order1 - order2;

@@ -38,7 +38,7 @@ app.get('*', (request, response) => {
         template({
           // eslint-disable-next-line kyt/no-props-spread
           root: renderToString(<RouterContext {...renderProps} />),
-          manifestJSBundle: clientAssets['manifest.js'],
+          runtimeJSBundle: clientAssets['runtime.js'],
           mainJSBundle: clientAssets['main.js'],
           vendorJSBundle: clientAssets['vendor.js'],
           mainCSSBundle: clientAssets['main.css'],
