@@ -1,12 +1,15 @@
 import React from 'react';
 import { hot } from 'react-hot-loader/root';
-import Router from 'react-router/lib/Router';
-import browserHistory from 'react-router/lib/browserHistory';
-import routes from '../routes';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
+import App from '../components/App';
 
 // We need a Root component for React Hot Loading.
 function Root() {
-  return <Router history={browserHistory} routes={routes} />;
+  return (
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  );
 }
 
 export default hot(Root);

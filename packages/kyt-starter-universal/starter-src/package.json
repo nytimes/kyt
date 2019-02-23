@@ -20,10 +20,10 @@
     "compression": "1.7.3",
     "express": "4.16.4",
     "kyt-runtime": "1.0.0-alpha.0",
-    "prop-types": "15.6.2",
-    "react": "16.7.0",
-    "react-dom": "16.7.0",
-    "react-router": "3.2.1",
+    "prop-types": "15.7.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "react-router-dom": "4.3.1",
     "source-map-support": "0.5.10"
   },
   "devDependencies": {
@@ -33,7 +33,6 @@
     "enzyme-to-json": "3.3.5",
     "kyt": "1.0.0-alpha.3",
     "raf": "3.4.1",
-    "react-test-renderer": "16.7.0",
     "react-hot-loader": "4.6.3"
   },
   "version": "1.0.0-alpha.3"
