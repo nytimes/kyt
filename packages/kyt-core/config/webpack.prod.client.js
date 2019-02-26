@@ -75,7 +75,7 @@ module.exports = options => ({
   optimization: {
     moduleIds: 'hashed',
     runtimeChunk: {
-      name: 'runtime',
+      name: entrypoint => `runtime~${entrypoint.name}`,
     },
     splitChunks: {
       cacheGroups: {
