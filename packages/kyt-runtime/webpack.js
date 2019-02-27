@@ -1,6 +1,6 @@
-const { ReactLoadablePlugin } = require('react-loadable/webpack');
 const WebpackAssetsManifest = require('webpack-assets-manifest');
 const { loadableAssetsFile, clientAssetsFile } = require('kyt-utils/paths')();
+const { ReactLoadablePlugin } = require('./react-loadable-plugin');
 
 exports.kytWebpackPlugins = function kytWebpackPlugins(options) {
   const plugins = [];
