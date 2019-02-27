@@ -43,16 +43,16 @@ exports.getBundles = ({ entry = 'main', modules, assets = null, loadableBundles 
   }
 
   let hashes = [];
-  Object.keys(loadableBundles.entries).forEach(key => {
+  loadableBundles.entries.forEach(key => {
     hashes = hashes.concat([assets[`${key}.js`], assets[`${key}.css`]]).filter(Boolean);
   });
 
   const bundles = getBundles(loadableBundles.bundles, modules);
 
-  const cssBundles = bundles.filter(b => b.file.endsWith('.css') && !hashes.includes(b));
+  const cssBundles = bundles.filter(b => b.file.endsWith('.css') && !hashes.includes(b.publicPath));
   bundleManifest.styles = [...new Set(cssBundles.map(b => b.publicPath))];
 
-  const jsBundles = bundles.filter(b => b.file.endsWith('.js') && !hashes.includes(b));
+  const jsBundles = bundles.filter(b => b.file.endsWith('.js') && !hashes.includes(b.publicPath));
   bundleManifest.scripts = [...new Set(jsBundles.map(b => b.publicPath))];
 
   return bundleManifest;
