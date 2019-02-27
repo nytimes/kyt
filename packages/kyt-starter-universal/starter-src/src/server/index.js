@@ -4,11 +4,10 @@ import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import StaticRouter from 'react-router/StaticRouter';
-import { preloadDynamicImports, DynamicImports, getLoadableBundles } from 'kyt-runtime/server';
+import { preloadDynamicImports, DynamicImports, getBundles } from 'kyt-runtime/server';
 import template from './template';
 import App from '../components/App';
 
-const clientAssets = require(KYT.ASSETS_MANIFEST); // eslint-disable-line import/no-dynamic-require
 const port = parseInt(KYT.SERVER_PORT, 10);
 const app = express();
 
@@ -44,16 +43,10 @@ app.get('*', (req, res) => {
     res.redirect(context.redirect.code || 302, context.redirect.url);
   }
 
-  const bundles = getLoadableBundles(modules);
-
   res.status(200).send(
     template({
       html,
-      runtimeJSBundle: clientAssets['runtime~main.js'],
-      mainJSBundle: clientAssets['main.js'],
-      vendorJSBundle: clientAssets['vendor.js'],
-      mainCSSBundle: clientAssets['main.css'],
-      bundles,
+      bundles: getBundles({ modules }),
     })
   );
 });

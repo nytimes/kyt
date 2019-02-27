@@ -7,7 +7,10 @@ const url = require('url');
 
 function buildManifest(compiler, compilation) {
   const { context } = compiler.options;
-  const manifest = {};
+  const manifest = {
+    entries: Array.from(compilation.entrypoints.keys()),
+    bundles: {},
+  };
 
   compilation.chunks.forEach(chunk => {
     chunk.files.forEach(file => {
@@ -34,18 +37,23 @@ function buildManifest(compiler, compilation) {
         if (
           !currentModule.rawRequest ||
           currentModule.rawRequest.match(
-            /\.(css|scss|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$/
+            /\.(scss|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$/
           )
         ) {
           // eslint-disable-next-line no-continue
           continue;
         }
 
-        if (!manifest[currentModule.rawRequest]) {
-          manifest[currentModule.rawRequest] = [];
+        if (!manifest.bundles[currentModule.rawRequest]) {
+          manifest.bundles[currentModule.rawRequest] = [];
         }
 
-        manifest[currentModule.rawRequest].push({ id, name, file, publicPath });
+        manifest.bundles[currentModule.rawRequest].push({
+          id,
+          name,
+          file,
+          publicPath,
+        });
       }
     });
   });
@@ -53,13 +61,13 @@ function buildManifest(compiler, compilation) {
   return manifest;
 }
 
-class ReactLoadablePlugin {
+class LoadablePlugin {
   constructor(opts = {}) {
     this.filename = opts.filename;
   }
 
   apply(compiler) {
-    compiler.hooks.emit.tapAsync('ReactLoadableManifest', (compilation, callback) => {
+    compiler.hooks.emit.tapAsync('LoadableManifest', (compilation, callback) => {
       const manifest = buildManifest(compiler, compilation);
       var json = JSON.stringify(manifest, null, 2);
       const outputDirectory = path.dirname(this.filename);
@@ -82,5 +90,5 @@ function getBundles(manifest, moduleIds) {
   }, []);
 }
 
-exports.ReactLoadablePlugin = ReactLoadablePlugin;
+exports.LoadablePlugin = LoadablePlugin;
 exports.getBundles = getBundles;
