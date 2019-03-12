@@ -1,8 +1,14 @@
-import React, { PropTypes } from 'react';
-import Link from 'react-router/lib/Link';
+import React from 'react';
+import Switch from 'react-router-dom/Switch';
+import Route from 'react-router-dom/Route';
+import Link from 'react-router-dom/Link';
+import dynamic from 'kyt-runtime/dynamic';
 import styles from './styles.scss';
 
-function App({ children }) {
+const Home = dynamic(() => import(/* webpackChunkName: "home" */ '../Home'));
+const Tools = dynamic(() => import(/* webpackChunkName: "tools" */ '../Tools'));
+
+function App() {
   return (
     <div>
       <i className={styles.logo} />
@@ -18,13 +24,14 @@ function App({ children }) {
           </Link>
         </li>
       </ul>
-      <div className={styles.content}>{children}</div>
+      <div className={styles.content}>
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/tools" component={Tools} />
+        </Switch>
+      </div>
     </div>
   );
 }
-
-App.propTypes = {
-  children: PropTypes.node.isRequired,
-};
 
 export default App;

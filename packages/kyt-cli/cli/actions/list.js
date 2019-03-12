@@ -1,5 +1,5 @@
-const starterKyts = require('../../config/starterKyts');
 const logger = require('kyt-utils/logger');
+const starterKyts = require('../../config/starterKyts');
 
 const { log } = console; // eslint-disable-line no-console
 

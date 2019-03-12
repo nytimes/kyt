@@ -8,35 +8,37 @@ This preset is used as a default if a kyt project does not include a .babelrc
 It is also included as part of [babel-preset-kyt-react](/packages/babel-preset-kyt-react)
 
 To install:
+
 1. `npm install babel-preset-kyt-core --save`
 2. In babelrc:
-    ```
-    {
-      presets: [
-        "babel-preset-kyt-core"
-      ]
-    }
-    ```
+   ```
+   {
+     presets: [
+       "babel-preset-kyt-core"
+     ]
+   }
+   ```
 
 ## Options
 
-*(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) for Babel preset options)*
+_(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) for Babel preset options)_
 
 - `envOptions` (`Object`) - extend the default babel-preset-env options. The type of options, `client`, `server`, and `test`, are dependent on the value of `process.env.KYT_ENV_TYPE` which, when undefined, defaults to `client`. kyt will automatically set the `KYT_ENV_TYPE` when it runs commands. For debugging purposes, use `"debug": true` to see what the plugin is targeting. The following are the default babel-preset-env configurations used by kyt-core:
 
   - `client`
     ```
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
-      uglify: true,
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
     },
     ```
   - `server`
     ```
     modules: false,
-    useBuiltIns: true,
+    useBuiltIns: 'entry',
+    forceAllTransforms: true,
     targets: {
       node: 'current'
     },
@@ -66,6 +68,7 @@ To install:
     ],
   }
   ```
+
   You can find additional options to configure babel-preset-env [here](https://github.com/babel/babel/tree/master/experimental/babel-preset-env#options).
 
 - `includeRuntime` (`Boolean`) - whether or not to include [`babel-plugin-transform-runtime`](https://www.npmjs.com/package/babel-plugin-transform-runtime); default: `false`

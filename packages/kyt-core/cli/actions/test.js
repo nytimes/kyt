@@ -1,10 +1,10 @@
 // Command to run tests with Jest
 
+const child = require('child_process');
 const clone = require('lodash.clonedeep');
-const jest = require('jest');
 const shell = require('shelljs');
-const jestConfigBuilder = require('../../config/jest');
 const { srcPath } = require('kyt-utils/paths')();
+const jestConfigBuilder = require('../../config/jest');
 const buildConfigs = require('../../utils/buildConfigs');
 
 module.exports = (config, flags) => {
@@ -24,5 +24,9 @@ module.exports = (config, flags) => {
   process.env.KYT_ENV_TYPE = 'test';
 
   // Run Jest
-  jest.run(['--config', JSON.stringify(jestConfig), ...flags]);
+  const testRunner = child.spawn('jest', ['--config', JSON.stringify(jestConfig), ...flags], {
+    stdio: 'inherit',
+  });
+
+  testRunner.on('exit', process.exit);
 };

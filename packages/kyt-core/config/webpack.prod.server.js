@@ -2,23 +2,28 @@
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const clone = require('lodash.clonedeep');
 const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
+const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   {
-    loader: 'css-loader/locals',
+    loader: 'css-loader',
     options: {
       modules: true,
       localIdentName: '[name]-[local]--[hash:base64:5]',
+      exportOnlyLocals: true,
     },
   },
   postcssLoader,
 ];
 
 module.exports = options => ({
+  mode: 'production',
+
   target: 'node',
+
+  devtool: 'source-map',
 
   node: {
     __dirname: false,
@@ -28,7 +33,7 @@ module.exports = options => ({
   externals: nodeExternals(),
 
   entry: {
-    main: `${serverSrcPath}/index.js`,
+    main: [getPolyfill(options.type), `${serverSrcPath}/index.js`],
   },
 
   output: {
@@ -43,12 +48,12 @@ module.exports = options => ({
     rules: [
       {
         test: /\.css$/,
-        use: cssStyleLoaders,
+        use: [...cssStyleLoaders],
         exclude: [publicSrcPath],
       },
       {
         test: /\.scss$/,
-        use: clone(cssStyleLoaders).concat('sass-loader'),
+        use: [...cssStyleLoaders, 'sass-loader'],
         exclude: [publicSrcPath],
       },
     ],
@@ -60,8 +65,5 @@ module.exports = options => ({
       raw: true,
       entryOnly: true,
     }),
-
-    // Scope Hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
   ],
 });

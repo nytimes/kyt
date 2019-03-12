@@ -1,13 +1,15 @@
 // Production webpack config for client code
 
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const clone = require('lodash.clonedeep');
-const postcssLoader = require('../utils/getPostcssLoader');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
-const HashOutput = require('webpack-plugin-hash-output');
+const { kytWebpackPlugins } = require('kyt-runtime/webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const postcssLoader = require('../utils/getPostcssLoader');
+const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
+  MiniCssExtractPlugin.loader,
   {
     loader: 'css-loader',
     options: {
@@ -19,12 +21,14 @@ const cssStyleLoaders = [
 ];
 
 module.exports = options => ({
+  mode: 'production',
+
   target: 'web',
 
   devtool: 'source-map',
 
   entry: {
-    main: `${clientSrcPath}/index.js`,
+    main: [getPolyfill(options.type), `${clientSrcPath}/index.js`],
   },
 
   output: {
@@ -32,76 +36,68 @@ module.exports = options => ({
     filename: '[name]-[chunkhash].js',
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
-    libraryTarget: 'var',
   },
 
   module: {
     rules: [
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: cssStyleLoaders,
-        }),
+        use: [...cssStyleLoaders],
         exclude: [publicSrcPath],
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: clone(cssStyleLoaders).concat('sass-loader'),
-        }),
+        use: [
+          ...cssStyleLoaders,
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
         exclude: [publicSrcPath],
       },
     ],
   },
 
   plugins: [
-    new ExtractTextPlugin({
+    ...kytWebpackPlugins(options),
+
+    new MiniCssExtractPlugin({
       filename: '[name]-[contenthash].css',
-      allChunks: true,
+      chunkFilename: '[name]-[contenthash].css',
     }),
 
-    new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-    }),
-
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        screw_ie8: true,
-        warnings: false,
-      },
-      output: {
-        comments: false,
-      },
-      sourceMap: true,
-    }),
-
-    // Modules should get deterministic ids so that they don't change between builds
-    new webpack.HashedModuleIdsPlugin(),
-
-    // Extract all 3rd party modules into a separate chunk
-    // Only include vendor modules as needed,
-    // https://github.com/webpack/webpack/issues/2372#issuecomment-213149173
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: ({ resource }) => /node_modules/.test(resource),
-    }),
-
-    // Generate a 'manifest' chunk to be inlined
-    new webpack.optimize.CommonsChunkPlugin({ name: 'manifest' }),
-
-    // Merge bundles that would otherwise be negligibly small
-    new webpack.optimize.AggressiveMergingPlugin(),
-
-    // Scope Hoisting
-    new webpack.optimize.ModuleConcatenationPlugin(),
-
-    // Webpack fingerprinting can break sometimes, this plugin will
-    // guarantee that our hashes are deterministic, every build.
-    new HashOutput({
-      manifestFiles: ['manifest'],
-    }),
+    new OptimizeCSSAssetsPlugin({}),
   ],
+
+  optimization: {
+    moduleIds: 'hashed',
+    runtimeChunk: {
+      name: entrypoint => `runtime~${entrypoint.name}`,
+    },
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+          minChunks: 2,
+        },
+      },
+    },
+    minimizer: [
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        uglifyOptions: {
+          compress: true,
+          ecma: 6,
+          // mangle: true
+        },
+        sourceMap: true,
+      }),
+    ],
+  },
 });

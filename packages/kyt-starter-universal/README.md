@@ -2,7 +2,6 @@
 
 This starter-kyt should serve as the base for an advanced, server and client-rendered React app.
 
-
 ## Installation
 
 1. run `kyt-cli setup`
@@ -20,9 +19,10 @@ The following are some of the tools included in this starter-kyt:
 
 ## Notes on implementation
 
-- As a performance optimization, React Router routes are loaded dynamically and chunked separately using the ES2015 `import()` directive. See more about  [Webpack 2 support](https://gist.github.com/sokra/27b24881210b56bbaff7#code-splitting-with-es6) and [dynamic routing](https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md).
+- As a performance optimization, React Router routes are loaded dynamically and chunked separately using the ES2015 `import()` directive. See more about [Webpack 2 support](https://gist.github.com/sokra/27b24881210b56bbaff7#code-splitting-with-es6) and [dynamic routing](https://github.com/reactjs/react-router/blob/master/docs/guides/DynamicRouting.md).
 
 ## How To Contribute
+
 Want to build your own starter-kyt?
 See directions [here](https://github.com/NYTimes/kyt/blob/master/docs/Starterkyts.md).
 

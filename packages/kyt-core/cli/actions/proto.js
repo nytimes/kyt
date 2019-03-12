@@ -4,10 +4,11 @@ const merge = require('webpack-merge');
 const WebpackDevServer = require('webpack-dev-server');
 const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
+const { userPrototypePath, publicSrcPath } = require('kyt-utils/paths')();
+
 const ifPortIsFreeDo = require('./../../utils/ifPortIsFreeDo');
 const baseConfig = require('./../../config/webpack.base');
 const protoConfig = require('./../../config/webpack.proto');
-const { userPrototypePath, publicSrcPath } = require('kyt-utils/paths')();
 
 module.exports = config => {
   const { prototypeURL } = config;
@@ -24,7 +25,6 @@ module.exports = config => {
     environment: 'prototype',
     port: prototypeURL.port,
     publicDir: publicSrcPath,
-    clientAssetsFile: 'publicAssets.json',
   };
 
   const startPrototype = () => {

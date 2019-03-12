@@ -13,6 +13,7 @@ module.exports = (rootDir, aliases = {}) => ({
     },
     aliases
   ),
+  verbose: true,
   transform: { '.*': resolveFromUtils('preprocessor') },
   testPathIgnorePatterns: ['<rootDir>/(build|docs|node_modules|images)/'],
   testEnvironment: 'node',

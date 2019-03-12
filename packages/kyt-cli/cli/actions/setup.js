@@ -5,8 +5,8 @@ const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
-const starterKyts = require('../../config/starterKyts');
 const uniq = require('lodash.uniq');
+const starterKyts = require('../../config/starterKyts');
 const cliPkgJson = require('../../package.json');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
 
@@ -60,7 +60,9 @@ module.exports = (flags, args) => {
         if (!semver.satisfies(kytVersion, kytStarterPreferredVersion)) {
           // eslint-disable-next-line max-len
           logger.warn(
-            `${tempPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
+            `${
+              tempPackageJSON.name
+            } requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
           );
         }
       }
@@ -484,7 +486,7 @@ module.exports = (flags, args) => {
           type: 'confirm',
           name: 'srcBackup',
           message:
-            "You already have a src directory. Would you like kyt to backup src/ and continue?", // eslint-disable-line
+            'You already have a src directory. Would you like kyt to backup src/ and continue?', // eslint-disable-line
           default: true,
         },
       ];
@@ -584,7 +586,7 @@ module.exports = (flags, args) => {
   };
 
   const setupPaths = () => {
-    paths = require("kyt-utils/paths")(); // eslint-disable-line
+    paths = require('kyt-utils/paths')(); // eslint-disable-line
     tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
     // For passed starter-kyts the root of the starter-kyt is the root of the repo
     tmpDir = tmpStarter;
@@ -616,7 +618,7 @@ module.exports = (flags, args) => {
     const skQ = {
       type: 'list',
       name: 'starterChoice',
-      message: "Choose a starter-kyt:", // eslint-disable-line
+      message: 'Choose a starter-kyt:', // eslint-disable-line
       choices: skList,
       default: 0,
     };

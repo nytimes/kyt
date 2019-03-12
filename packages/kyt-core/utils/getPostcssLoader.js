@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { userPostcssConfigPath } = require('kyt-utils/paths')();
-const kytPostcssConfig = require('../config/postcss.config');
 const logger = require('kyt-utils/logger');
+const kytPostcssConfig = require('../config/postcss.config');
 
 // We either use the kyt postcss.config.js or we use an
 // override from the user.

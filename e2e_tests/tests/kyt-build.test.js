@@ -1,6 +1,6 @@
 const shell = require('shelljs');
-const util = require('../fixtures/util');
 const fs = require('fs');
+const util = require('../fixtures/util');
 
 shell.config.silent = true;
 
@@ -20,7 +20,7 @@ describe('kyt build', () => {
     expect(shell.test('-f', 'build/public/nothing.txt')).toBe(true);
 
     // Should produce the manifest, main and vendor scripts
-    expect(shell.ls('build/public/manifest-*.js').code).toBe(0);
+    expect(shell.ls('build/public/runtime~main-*.js').code).toBe(0);
     expect(shell.ls('build/public/main-*.js').code).toBe(0);
     expect(shell.ls('build/public/vendor-*.js').code).toBe(0);
 

@@ -46,13 +46,17 @@ module.exports = options => {
       ],
     },
 
-    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()],
+    plugins: [new webpack.HotModuleReplacementPlugin()],
 
     devServer: {
       publicPath,
       hot: true,
       contentBase: srcPath,
       stats: 'errors-only',
+    },
+
+    optimization: {
+      noEmitOnErrors: true,
     },
   };
 };

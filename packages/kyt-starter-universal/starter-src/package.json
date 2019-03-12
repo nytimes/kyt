@@ -15,19 +15,25 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "dependencies": {
-    "babel-polyfill": "6.26.0",
-    "babel-preset-kyt-react": "0.3.0",
-    "compression": "1.6.2",
-    "express": "4.15.3",
-    "react": "15.3.0",
-    "react-dom": "15.3.0",
-    "react-router": "2.6.1"
+    "@babel/polyfill": "7.2.5",
+    "@babel/runtime": "7.3.1",
+    "compression": "1.7.3",
+    "express": "4.16.4",
+    "kyt-runtime": "1.0.0-alpha.0",
+    "prop-types": "15.7.2",
+    "react": "16.8.3",
+    "react-dom": "16.8.3",
+    "react-router-dom": "4.3.1",
+    "source-map-support": "0.5.10"
   },
   "devDependencies": {
-    "enzyme": "2.4.1",
+    "babel-preset-kyt-react": "1.0.0-alpha.0",
+    "enzyme": "3.8.0",
+    "enzyme-adapter-react-16": "1.8.0",
+    "enzyme-to-json": "3.3.5",
     "kyt": "1.0.0-alpha.3",
-    "react-addons-test-utils": "15.3.0",
-    "react-hot-loader": "3.0.0-beta.6"
+    "raf": "3.4.1",
+    "react-hot-loader": "4.6.3"
   },
   "version": "1.0.0-alpha.3"
 }

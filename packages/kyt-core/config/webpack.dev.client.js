@@ -1,9 +1,10 @@
 // Development webpack config for client code
 
 const webpack = require('webpack');
-const clone = require('lodash.clonedeep');
+const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
+const getPolyfill = require('../utils/getPolyfill');
 
 const cssStyleLoaders = [
   'style-loader',
@@ -21,15 +22,16 @@ const cssStyleLoaders = [
 module.exports = options => {
   const main = [
     `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
+    getPolyfill(options.type),
     `${clientSrcPath}/index.js`,
   ];
 
-  if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
-
   return {
+    mode: 'development',
+
     target: 'web',
 
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-eval-source-map',
 
     entry: {
       main,
@@ -48,29 +50,25 @@ module.exports = options => {
       headers: { 'Access-Control-Allow-Origin': '*' },
       noInfo: true,
       quiet: true,
+      logLevel: 'silent',
+      overlay: true,
     },
 
     module: {
       rules: [
         {
           test: /\.css$/,
-          use: cssStyleLoaders,
+          use: [...cssStyleLoaders],
           exclude: [publicSrcPath],
         },
         {
           test: /\.scss$/,
-          use: clone(cssStyleLoaders).concat('sass-loader'),
+          use: [...cssStyleLoaders, 'sass-loader'],
           exclude: [publicSrcPath],
         },
       ],
     },
 
-    plugins: [
-      new webpack.NoEmitOnErrorsPlugin(),
-
-      new webpack.optimize.LimitChunkCountPlugin({ maxChunks: 1 }),
-
-      new webpack.HotModuleReplacementPlugin(),
-    ],
+    plugins: [...kytWebpackPlugins(options), new webpack.HotModuleReplacementPlugin()],
   };
 };

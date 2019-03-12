@@ -1,12 +1,16 @@
 {
-  "extends": ["airbnb", "prettier", "prettier/react"],
+  "extends": [
+    "airbnb",
+    "plugin:prettier/recommended",
+    "prettier/react"
+  ],
 
   "env": {
     "jest": true,
     "browser": true
   },
 
-  "plugins": ["json", "prettier"],
+  "plugins": ["json", "prettier", "kyt", "react-hooks"],
 
   "parser": "babel-eslint",
   "parserOptions": {
@@ -19,6 +23,7 @@
   },
 
   "rules": {
+    "react-hooks/rules-of-hooks": "error",
     "no-lonely-if": 2,
     "no-nested-ternary": 2,
     "max-nested-callbacks": [2, { "max": 5 }],
@@ -34,6 +39,8 @@
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "import/extensions": [1, { "js": "never" }],
     "react/require-extension": "off",
+    "react/destructuring-assignment": "off",
+    "react/no-access-state-in-setstate": "off",
     "import/no-extraneous-dependencies": [0],
     "no-param-reassign": 0,
     "comma-dangle": [
@@ -66,6 +73,7 @@
         "singleQuote": true,
         "trailingComma": "es5"
       }
-    ]
+    ],
+    "kyt/no-props-spread": 1
   }
 }
