@@ -13,6 +13,8 @@ module.exports = () => {
     srcPath,
     buildPath,
     publicBuildPath,
+    clientAssetsFile: path.join(buildPath, 'publicAssets.json'),
+    loadableAssetsFile: path.join(buildPath, 'loadable.json'),
     publicSrcPath: path.join(srcPath, 'public'),
     serverSrcPath,
     serverPolyfillsPath: path.join(serverSrcPath, 'polyfills.js'),

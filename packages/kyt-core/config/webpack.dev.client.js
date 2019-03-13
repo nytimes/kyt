@@ -1,7 +1,7 @@
 // Development webpack config for client code
 
 const webpack = require('webpack');
-const clone = require('lodash.clonedeep');
+const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
@@ -22,13 +22,13 @@ const cssStyleLoaders = [
 module.exports = options => {
   const main = [
     `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
+    getPolyfill(options.type),
     `${clientSrcPath}/index.js`,
   ];
 
-  if (options.reactHotLoader) main.unshift('react-hot-loader/patch');
-  main.unshift(getPolyfill(options.type));
-
   return {
+    mode: 'development',
+
     target: 'web',
 
     devtool: 'cheap-module-eval-source-map',
@@ -51,23 +51,24 @@ module.exports = options => {
       noInfo: true,
       quiet: true,
       logLevel: 'silent',
+      overlay: true,
     },
 
     module: {
       rules: [
         {
           test: /\.css$/,
-          use: cssStyleLoaders,
+          use: [...cssStyleLoaders],
           exclude: [publicSrcPath],
         },
         {
           test: /\.scss$/,
-          use: clone(cssStyleLoaders).concat('sass-loader'),
+          use: [...cssStyleLoaders, 'sass-loader'],
           exclude: [publicSrcPath],
         },
       ],
     },
 
-    plugins: [new webpack.HotModuleReplacementPlugin(), new webpack.NoEmitOnErrorsPlugin()],
+    plugins: [...kytWebpackPlugins(options), new webpack.HotModuleReplacementPlugin()],
   };
 };

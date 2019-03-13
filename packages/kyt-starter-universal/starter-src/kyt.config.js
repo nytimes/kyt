@@ -8,7 +8,7 @@ module.exports = {
     const jestConfig = Object.assign({}, kytConfig);
 
     jestConfig.setupFiles = ['raf/polyfill', ...jestConfig.setupFiles];
-    jestConfig.setupTestFrameworkScriptFile = require.resolve('./jest.setup.js');
+    jestConfig.setupFilesAfterEnv = [require.resolve('./jest.setup.js')];
     jestConfig.snapshotSerializers = ['enzyme-to-json/serializer'];
 
     return jestConfig;
