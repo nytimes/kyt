@@ -21,7 +21,7 @@ extractPlugin.extract = jest.fn();
 const webpack = {
   LoaderOptionsPlugin: jest.fn(),
   optimize: {
-    UglifyJsPlugin: jest.fn(),
+    TerserPlugin: jest.fn(),
     LimitChunkCountPlugin: jest.fn(),
     CommonsChunkPlugin: jest.fn(),
     AggressiveMergingPlugin: jest.fn(),

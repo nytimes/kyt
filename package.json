@@ -42,9 +42,9 @@
     "lint-fix": "packages/kyt-core/node_modules/.bin/eslint ./ --fix"
   },
   "devDependencies": {
-    "lerna": "^2.0.0",
     "eslint-config-kyt": "file:packages/eslint-config-kyt",
-    "eslint-plugin-kyt": "file:packages/eslint-plugin-kyt"
+    "eslint-plugin-kyt": "file:packages/eslint-plugin-kyt",
+    "lerna": "^2.0.0"
   },
   "dependencies": {}
 }
