@@ -22,7 +22,7 @@ module.exports = (webpackConfig, cb) => {
   });
 
   // Handle errors in webpack build
-  webpackCompiler.hooks.done.tapAsync('kyt', stats => {
+  webpackCompiler.hooks.done.tap('kyt', stats => {
     if (stats.hasErrors()) {
       logger.error(`${type} build failed\n`, stats.toString());
       logger.info('See webpack error above');
