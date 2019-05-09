@@ -24,7 +24,10 @@ module.exports = function getPresetCore(context, opts) {
   };
 
   var serverEnvOptions = {
-    modules: 'commonjs',
+    // modules are handled by webpack, don't transform them
+    // however, scripts outside of Jest/Webpack will want these
+    // transformed by default
+    modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
     forceAllTransforms: true,
     targets: {
