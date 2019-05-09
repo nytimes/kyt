@@ -12,7 +12,10 @@ module.exports = function getPresetCore(context, opts) {
   var envOptions = {};
 
   var clientEnvOptions = {
-    modules: 'commonjs',
+    // modules are handled by webpack, don't transform them
+    // however, scripts outside of Jest/Webpack will want these
+    // transformed by default
+    modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
     forceAllTransforms: true,
     targets: {
@@ -42,12 +45,9 @@ module.exports = function getPresetCore(context, opts) {
   //  }]]
   //
   if (process.env.KYT_ENV_TYPE === 'client') {
-    // modules are handled by webpack, don't transform them
-    clientEnvOptions.modules = false;
     envOptions = merge({}, clientEnvOptions, userEnvOptions.client ? userEnvOptions.client : {});
   } else if (process.env.KYT_ENV_TYPE === 'server') {
     // modules are handled by webpack, don't transform them
-    serverEnvOptions.modules = false;
     envOptions = merge({}, serverEnvOptions, userEnvOptions.server ? userEnvOptions.server : {});
   } else if (process.env.KYT_ENV_TYPE === 'test') {
     envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
