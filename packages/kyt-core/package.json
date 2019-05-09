@@ -47,7 +47,7 @@
     "identity-obj-proxy": "3.0.0",
     "inquirer": "6.2.1",
     "install": "0.12.2",
-    "jest": "24.0.0",
+    "jest": "24.8.0",
     "kyt-runtime": "1.0.0-alpha.0",
     "kyt-utils": "1.0.0-alpha.0",
     "lodash.clonedeep": "4.5.0",
