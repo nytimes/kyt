@@ -54,7 +54,6 @@
     "lodash.merge": "4.6.1",
     "lodash.once": "4.1.1",
     "mini-css-extract-plugin": "0.5.0",
-    "node-sass": "4.11.0",
     "nodemon": "1.18.9",
     "optimize-css-assets-webpack-plugin": "5.0.1",
     "postcss-loader": "3.0.0",
@@ -79,6 +78,9 @@
     "webpack-merge": "4.2.1",
     "webpack-node-externals": "1.7.2",
     "webpackbar": "3.1.5"
+  },
+  "optionalDependencies": {
+    "node-sass": "4.11.0"
   },
   "keywords": [
     "kyt",
