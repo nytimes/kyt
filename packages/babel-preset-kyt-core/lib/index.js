@@ -17,7 +17,7 @@ module.exports = function getPresetCore(context, opts) {
     // transformed by default
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
-    corejs: 3,
+    corejs: 2,
     forceAllTransforms: true,
     targets: {
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
@@ -30,7 +30,7 @@ module.exports = function getPresetCore(context, opts) {
     // transformed by default
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
-    corejs: 3,
+    corejs: 2,
     forceAllTransforms: true,
     targets: {
       node: 'current',

@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.4.4",
-    "core-js": "^3.0.1",
+    "core-js": "^2.6.5",
     "react-hot-loader": "^4.6.3",
     "regenerator-runtime": "^0.13.2",
     "source-map-support": "^0.5.10"

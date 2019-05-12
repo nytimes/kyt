@@ -16,7 +16,7 @@
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
   "dependencies": {
     "@babel/runtime": "7.4.4",
-    "core-js": "3.0.1",
+    "core-js": "2.6.5",
     "kyt-runtime": "1.0.0-alpha.0",
     "prop-types": "15.7.2",
     "react": "16.8.3",
