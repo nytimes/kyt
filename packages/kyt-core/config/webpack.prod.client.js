@@ -7,6 +7,7 @@ const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
+const isSassAsset = require('../utils/isSassAsset');
 
 const cssStyleLoaders = [
   MiniCssExtractPlugin.loader,
@@ -46,7 +47,7 @@ module.exports = options => ({
         exclude: [publicSrcPath],
       },
       {
-        test: /\.scss$/,
+        test: isSassAsset,
         use: [
           ...cssStyleLoaders,
           {

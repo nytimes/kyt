@@ -79,9 +79,6 @@
     "webpack-node-externals": "1.7.2",
     "webpackbar": "3.1.5"
   },
-  "optionalDependencies": {
-    "node-sass": "4.11.0"
-  },
   "keywords": [
     "kyt",
     "core",
