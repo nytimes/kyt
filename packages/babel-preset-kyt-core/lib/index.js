@@ -52,7 +52,6 @@ module.exports = function getPresetCore(context, opts) {
   if (process.env.KYT_ENV_TYPE === 'client') {
     envOptions = merge({}, clientEnvOptions, userEnvOptions.client ? userEnvOptions.client : {});
   } else if (process.env.KYT_ENV_TYPE === 'server') {
-    // modules are handled by webpack, don't transform them
     envOptions = merge({}, serverEnvOptions, userEnvOptions.server ? userEnvOptions.server : {});
   } else if (process.env.KYT_ENV_TYPE === 'test') {
     envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
