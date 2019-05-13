@@ -17,6 +17,7 @@ module.exports = function getPresetCore(context, opts) {
     // transformed by default
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
+    corejs: 2,
     forceAllTransforms: true,
     targets: {
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
@@ -29,6 +30,7 @@ module.exports = function getPresetCore(context, opts) {
     // transformed by default
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
+    corejs: 2,
     forceAllTransforms: true,
     targets: {
       node: 'current',
@@ -50,7 +52,6 @@ module.exports = function getPresetCore(context, opts) {
   if (process.env.KYT_ENV_TYPE === 'client') {
     envOptions = merge({}, clientEnvOptions, userEnvOptions.client ? userEnvOptions.client : {});
   } else if (process.env.KYT_ENV_TYPE === 'server') {
-    // modules are handled by webpack, don't transform them
     envOptions = merge({}, serverEnvOptions, userEnvOptions.server ? userEnvOptions.server : {});
   } else if (process.env.KYT_ENV_TYPE === 'test') {
     envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
