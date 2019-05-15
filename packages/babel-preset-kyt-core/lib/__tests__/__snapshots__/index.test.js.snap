@@ -9,6 +9,7 @@ Object {
     Array [
       "env",
       Object {
+        "corejs": 2,
         "forceAllTransforms": true,
         "modules": "commonjs",
         "targets": Object {
