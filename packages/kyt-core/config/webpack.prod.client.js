@@ -4,7 +4,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
 
