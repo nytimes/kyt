@@ -35,6 +35,7 @@
     "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
     "publish-release": "lerna publish --exact --message",
     "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/.bin/kyt test && cd  ../../kyt-starter-static/starter-src && node_modules/.bin/kyt test",
+    "test-update": "jest -u && cd packages/kyt-starter-universal/starter-src && node_modules/.bin/kyt test -- -u && cd  ../../kyt-starter-static/starter-src && node_modules/.bin/kyt test -- -u",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
