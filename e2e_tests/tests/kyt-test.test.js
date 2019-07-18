@@ -12,12 +12,6 @@ describe('kyt test', () => {
     expect(output.code).toBe(0);
   });
 
-  it('should respect a custom BABEL_ENV', () => {
-    util.setupStageWithFixture(stageName, 'test-custom-babel-env');
-    const output = shell.exec('BABEL_ENV=custom npm run test');
-    expect(output.code).toBe(0);
-  });
-
   it('should respect modifyJestConfig', () => {
     util.setupStageWithFixture(stageName, 'test-modify-config');
     const output = shell.exec('npm run test');

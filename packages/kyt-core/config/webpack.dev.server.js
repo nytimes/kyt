@@ -33,7 +33,7 @@ module.exports = options => ({
   externals: nodeExternals(),
 
   entry: {
-    main: [getPolyfill(options.type), `${serverSrcPath}/index.js`],
+    main: [getPolyfill(options.type), `${serverSrcPath}/index.js`].filter(Boolean),
   },
 
   output: {

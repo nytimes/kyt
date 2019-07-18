@@ -25,7 +25,7 @@ module.exports = options => {
     `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
     getPolyfill(options.type),
     `${clientSrcPath}/index.js`,
-  ];
+  ].filter(Boolean);
 
   return {
     mode: 'development',
