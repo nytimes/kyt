@@ -1,4 +1,3 @@
-
-import '../public/img-server.png';
-
-module.exports = { server: true };
+module.exports = function() {
+  return true;
+};

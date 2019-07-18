@@ -27,7 +27,7 @@ module.exports = options => ({
   devtool: 'source-map',
 
   entry: {
-    main: [getPolyfill(options.type), `${clientSrcPath}/index.js`],
+    main: [getPolyfill(options.type), `${clientSrcPath}/index.js`].filter(Boolean),
   },
 
   output: {
