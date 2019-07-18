@@ -6,6 +6,7 @@ const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/pat
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
+const isSassAsset = require('../utils/isSassAsset');
 
 const cssStyleLoaders = [
   MiniCssExtractPlugin.loader,
@@ -45,7 +46,7 @@ module.exports = options => ({
         exclude: [publicSrcPath],
       },
       {
-        test: /\.scss$/,
+        test: isSassAsset,
         use: [
           ...cssStyleLoaders,
           {
