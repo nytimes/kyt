@@ -203,50 +203,50 @@ describe('KYT CLI', () => {
     });
   });
 
-  describe('setup for starter-kyt from a local path', () => {
-    it('sets up a static starter-kyt', () => {
-      const exec = new Promise(resolve => {
-        shell.cd(rootPath);
-        const localPath = path.resolve(rootPath, '../packages/kyt-starter-universal/starter-src');
-        const child = shell.exec(
-          `../packages/kyt-cli/index.js setup --local-path ${localPath}`,
-          (code, stdout) => {
-            resolve({ code, output: stdout });
-          }
-        );
-        let skdone = false;
-        let ypmDone = false;
-        child.stdout.on('data', data => {
-          if (data.includes('Choose an installer')) {
-            if (!ypmDone) {
-              child.stdin.write('\n');
-              ypmDone = true;
-            }
-          }
-          if (data.includes('Enter a new directory name.')) {
-            if (!skdone) {
-              child.stdin.write('local-starter\n');
-              skdone = true;
-            }
-          }
-        });
-      });
-      return exec.then(test => {
-        shell.cd('local-starter');
-        expect(test.code).toBe(0);
-        const setupArr = test.output.split('\n');
-        outputCheck(setupArr);
-      });
-    });
-    baseFileCheck();
-    packageScripts();
-    it('verifies the source directory', () => {
-      expect(shell.test('-d', 'src/client')).toBe(true);
-      expect(shell.test('-d', 'src/server')).toBe(true);
-      expect(shell.test('-f', 'src/client/index.js')).toBe(true);
-      expect(shell.test('-f', 'src/server/index.js')).toBe(true);
-    });
-  });
+  // describe('setup for starter-kyt from a local path', () => {
+  //   it('sets up a static starter-kyt', () => {
+  //     const exec = new Promise(resolve => {
+  //       shell.cd(rootPath);
+  //       const localPath = path.resolve(rootPath, '../packages/kyt-starter-universal/starter-src');
+  //       const child = shell.exec(
+  //         `../packages/kyt-cli/index.js setup --local-path ${localPath}`,
+  //         (code, stdout) => {
+  //           resolve({ code, output: stdout });
+  //         }
+  //       );
+  //       let skdone = false;
+  //       let ypmDone = false;
+  //       child.stdout.on('data', data => {
+  //         if (data.includes('Choose an installer')) {
+  //           if (!ypmDone) {
+  //             child.stdin.write('\n');
+  //             ypmDone = true;
+  //           }
+  //         }
+  //         if (data.includes('Enter a new directory name.')) {
+  //           if (!skdone) {
+  //             child.stdin.write('local-starter\n');
+  //             skdone = true;
+  //           }
+  //         }
+  //       });
+  //     });
+  //     return exec.then(test => {
+  //       shell.cd('local-starter');
+  //       expect(test.code).toBe(0);
+  //       const setupArr = test.output.split('\n');
+  //       outputCheck(setupArr);
+  //     });
+  //   });
+  //   baseFileCheck();
+  //   packageScripts();
+  //   it('verifies the source directory', () => {
+  //     expect(shell.test('-d', 'src/client')).toBe(true);
+  //     expect(shell.test('-d', 'src/server')).toBe(true);
+  //     expect(shell.test('-f', 'src/client/index.js')).toBe(true);
+  //     expect(shell.test('-f', 'src/server/index.js')).toBe(true);
+  //   });
+  // });
 
   afterAll(() => {
     shell.cd('../..');

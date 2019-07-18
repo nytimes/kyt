@@ -4,7 +4,7 @@ const fs = require('fs');
 const util = require('../fixtures/util');
 const kill = require('../utils/psKill');
 
-shell.config.silent = true;
+shell.config.silent = false;
 
 describe('starter kyts', () => {
   describe('kyt-starter-universal', () => {
@@ -92,7 +92,7 @@ describe('starter kyts', () => {
     });
 
     afterAll(() => {
-      shell.rm('-rf', 'build');
+      // shell.rm('-rf', 'build');
       shell.cd(util.rootDir);
     });
   });
