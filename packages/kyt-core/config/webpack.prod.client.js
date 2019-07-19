@@ -27,6 +27,10 @@ module.exports = options => ({
 
   devtool: 'source-map',
 
+  resolve: {
+    mainFields: ['browser'],
+  },
+
   entry: {
     main: [getPolyfill(options.type), `${clientSrcPath}/index.js`].filter(Boolean),
   },

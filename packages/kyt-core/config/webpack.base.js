@@ -36,6 +36,9 @@ module.exports = options => {
     resolve: {
       extensions: ['.js', '.json'],
       modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules'), 'node_modules'],
+      // Not resolving "module" avoids issues with packages that specify entrypoints
+      // containing ES6 modules e.g., lodash-es, a transitive dependency of redux.
+      mainFields: ['main'],
     },
 
     resolveLoader: {

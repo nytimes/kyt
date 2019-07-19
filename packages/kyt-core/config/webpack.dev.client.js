@@ -34,6 +34,10 @@ module.exports = options => {
 
     devtool: 'cheap-module-eval-source-map',
 
+    resolve: {
+      mainFields: ['browser'],
+    },
+
     entry: {
       main,
     },

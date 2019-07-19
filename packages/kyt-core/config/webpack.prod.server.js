@@ -5,6 +5,7 @@ const nodeExternals = require('webpack-node-externals');
 const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('../utils/getPolyfill');
+const devtoolModuleFilenameTemplate = require('../utils/devtoolModuleFilenameTemplate');
 
 const cssStyleLoaders = [
   {
@@ -42,6 +43,7 @@ module.exports = options => ({
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
     libraryTarget: 'commonjs2',
+    devtoolModuleFilenameTemplate,
   },
 
   module: {
