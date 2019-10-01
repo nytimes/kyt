@@ -1,7 +1,5 @@
 import React from 'react';
-import Switch from 'react-router-dom/Switch';
-import Route from 'react-router-dom/Route';
-import Link from 'react-router-dom/Link';
+import { Switch, Route, Link } from 'react-router-dom';
 import dynamic from 'kyt-runtime/dynamic';
 import styles from './styles.scss';
 
