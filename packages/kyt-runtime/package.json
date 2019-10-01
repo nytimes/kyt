@@ -13,10 +13,17 @@
     "webpack-assets-manifest": "3.1.1"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.4.4",
-    "core-js": "^2.6.5",
+    "@babel/runtime": "^7.6.2",
+    "core-js": "^2.6.9",
     "react-hot-loader": "^4.6.3",
-    "regenerator-runtime": "^0.13.2",
+    "regenerator-runtime": "^0.13.3",
     "source-map-support": "^0.5.10"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.6.2",
+    "@babel/core": "7.6.2"
+  },
+  "scripts": {
+    "prepublish": "babel --root-mode upward es -d lib"
   }
 }

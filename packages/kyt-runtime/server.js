@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { clientAssetsFile, loadableAssetsFile } = require('kyt-utils/paths')();
-const { preloadAll } = require('./loadable');
+const { preloadAll } = require('./lib/loadable');
 const { getBundles } = require('./loadable-plugin');
 const { Capture } = require('./Capture');
 
