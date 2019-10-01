@@ -5,7 +5,6 @@ exports[`Test home route 1`] = `
   report={[Function]}
 >
   <StaticRouter
-    basename=""
     context={Object {}}
     location="/"
   >
@@ -29,6 +28,7 @@ exports[`Test home route 1`] = `
           "replace": [Function],
         }
       }
+      staticContext={Object {}}
     >
       <App>
         <div>
@@ -43,16 +43,21 @@ exports[`Test home route 1`] = `
             >
               <Link
                 className="link"
-                replace={false}
                 to="/"
               >
-                <a
+                <LinkAnchor
                   className="link"
                   href="/"
-                  onClick={[Function]}
+                  navigate={[Function]}
                 >
-                  Home
-                </a>
+                  <a
+                    className="link"
+                    href="/"
+                    onClick={[Function]}
+                  >
+                    Home
+                  </a>
+                </LinkAnchor>
               </Link>
             </li>
             <li
@@ -60,16 +65,21 @@ exports[`Test home route 1`] = `
             >
               <Link
                 className="link"
-                replace={false}
                 to="/tools"
               >
-                <a
+                <LinkAnchor
                   className="link"
                   href="/tools"
-                  onClick={[Function]}
+                  navigate={[Function]}
                 >
-                  Tools
-                </a>
+                  <a
+                    className="link"
+                    href="/tools"
+                    onClick={[Function]}
+                  >
+                    Tools
+                  </a>
+                </LinkAnchor>
               </Link>
             </li>
           </ul>
@@ -213,7 +223,6 @@ exports[`Test tools route 1`] = `
   report={[Function]}
 >
   <StaticRouter
-    basename=""
     context={Object {}}
     location="/tools"
   >
@@ -237,6 +246,7 @@ exports[`Test tools route 1`] = `
           "replace": [Function],
         }
       }
+      staticContext={Object {}}
     >
       <App>
         <div>
@@ -251,16 +261,21 @@ exports[`Test tools route 1`] = `
             >
               <Link
                 className="link"
-                replace={false}
                 to="/"
               >
-                <a
+                <LinkAnchor
                   className="link"
                   href="/"
-                  onClick={[Function]}
+                  navigate={[Function]}
                 >
-                  Home
-                </a>
+                  <a
+                    className="link"
+                    href="/"
+                    onClick={[Function]}
+                  >
+                    Home
+                  </a>
+                </LinkAnchor>
               </Link>
             </li>
             <li
@@ -268,16 +283,21 @@ exports[`Test tools route 1`] = `
             >
               <Link
                 className="link"
-                replace={false}
                 to="/tools"
               >
-                <a
+                <LinkAnchor
                   className="link"
                   href="/tools"
-                  onClick={[Function]}
+                  navigate={[Function]}
                 >
-                  Tools
-                </a>
+                  <a
+                    className="link"
+                    href="/tools"
+                    onClick={[Function]}
+                  >
+                    Tools
+                  </a>
+                </LinkAnchor>
               </Link>
             </li>
           </ul>
