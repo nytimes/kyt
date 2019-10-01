@@ -1,0 +1,452 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test home route 1`] = `
+<Capture
+  report={[Function]}
+>
+  <StaticRouter
+    basename=""
+    context={Object {}}
+    location="/"
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <App>
+        <div>
+          <i
+            className="logo"
+          />
+          <ul
+            className="nav"
+          >
+            <li
+              className="navItem"
+            >
+              <Link
+                className="link"
+                replace={false}
+                to="/"
+              >
+                <a
+                  className="link"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Home
+                </a>
+              </Link>
+            </li>
+            <li
+              className="navItem"
+            >
+              <Link
+                className="link"
+                replace={false}
+                to="/tools"
+              >
+                <a
+                  className="link"
+                  href="/tools"
+                  onClick={[Function]}
+                >
+                  Tools
+                </a>
+              </Link>
+            </li>
+          </ul>
+          <div
+            className="content"
+          >
+            <Switch>
+              <Route
+                component={[Function]}
+                computedMatch={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/",
+                    "url": "/",
+                  }
+                }
+                exact={true}
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                path="/"
+              >
+                <LoadableComponent
+                  history={
+                    Object {
+                      "action": "POP",
+                      "block": [Function],
+                      "createHref": [Function],
+                      "go": [Function],
+                      "goBack": [Function],
+                      "goForward": [Function],
+                      "listen": [Function],
+                      "location": Object {
+                        "hash": "",
+                        "pathname": "/",
+                        "search": "",
+                        "state": undefined,
+                      },
+                      "push": [Function],
+                      "replace": [Function],
+                    }
+                  }
+                  location={
+                    Object {
+                      "hash": "",
+                      "pathname": "/",
+                      "search": "",
+                      "state": undefined,
+                    }
+                  }
+                  match={
+                    Object {
+                      "isExact": true,
+                      "params": Object {},
+                      "path": "/",
+                      "url": "/",
+                    }
+                  }
+                  staticContext={Object {}}
+                >
+                  <Home
+                    history={
+                      Object {
+                        "action": "POP",
+                        "block": [Function],
+                        "createHref": [Function],
+                        "go": [Function],
+                        "goBack": [Function],
+                        "goForward": [Function],
+                        "listen": [Function],
+                        "location": Object {
+                          "hash": "",
+                          "pathname": "/",
+                          "search": "",
+                          "state": undefined,
+                        },
+                        "push": [Function],
+                        "replace": [Function],
+                      }
+                    }
+                    location={
+                      Object {
+                        "hash": "",
+                        "pathname": "/",
+                        "search": "",
+                        "state": undefined,
+                      }
+                    }
+                    match={
+                      Object {
+                        "isExact": true,
+                        "params": Object {},
+                        "path": "/",
+                        "url": "/",
+                      }
+                    }
+                    staticContext={Object {}}
+                  >
+                    <section>
+                      <p
+                        className="paragraph"
+                      >
+                        Welcome to the 
+                        <strong>
+                          Universal React Starter-kyt
+                        </strong>
+                        . This starter kyt should serve as the base for an advanced, server-rendered React app.
+                      </p>
+                      <p
+                        className="paragraph"
+                      >
+                        Check out the Tools section for an outline of the libraries that are used in this Starter-kyt.
+                      </p>
+                    </section>
+                  </Home>
+                </LoadableComponent>
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </App>
+    </Router>
+  </StaticRouter>
+</Capture>
+`;
+
+exports[`Test home route 2`] = `
+Array [
+  "../Home",
+]
+`;
+
+exports[`Test tools route 1`] = `
+<Capture
+  report={[Function]}
+>
+  <StaticRouter
+    basename=""
+    context={Object {}}
+    location="/tools"
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "createHref": [Function],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "pathname": "/tools",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <App>
+        <div>
+          <i
+            className="logo"
+          />
+          <ul
+            className="nav"
+          >
+            <li
+              className="navItem"
+            >
+              <Link
+                className="link"
+                replace={false}
+                to="/"
+              >
+                <a
+                  className="link"
+                  href="/"
+                  onClick={[Function]}
+                >
+                  Home
+                </a>
+              </Link>
+            </li>
+            <li
+              className="navItem"
+            >
+              <Link
+                className="link"
+                replace={false}
+                to="/tools"
+              >
+                <a
+                  className="link"
+                  href="/tools"
+                  onClick={[Function]}
+                >
+                  Tools
+                </a>
+              </Link>
+            </li>
+          </ul>
+          <div
+            className="content"
+          >
+            <Switch>
+              <Route
+                component={[Function]}
+                computedMatch={
+                  Object {
+                    "isExact": true,
+                    "params": Object {},
+                    "path": "/tools",
+                    "url": "/tools",
+                  }
+                }
+                location={
+                  Object {
+                    "hash": "",
+                    "pathname": "/tools",
+                    "search": "",
+                    "state": undefined,
+                  }
+                }
+                path="/tools"
+              >
+                <LoadableComponent
+                  history={
+                    Object {
+                      "action": "POP",
+                      "block": [Function],
+                      "createHref": [Function],
+                      "go": [Function],
+                      "goBack": [Function],
+                      "goForward": [Function],
+                      "listen": [Function],
+                      "location": Object {
+                        "hash": "",
+                        "pathname": "/tools",
+                        "search": "",
+                        "state": undefined,
+                      },
+                      "push": [Function],
+                      "replace": [Function],
+                    }
+                  }
+                  location={
+                    Object {
+                      "hash": "",
+                      "pathname": "/tools",
+                      "search": "",
+                      "state": undefined,
+                    }
+                  }
+                  match={
+                    Object {
+                      "isExact": true,
+                      "params": Object {},
+                      "path": "/tools",
+                      "url": "/tools",
+                    }
+                  }
+                  staticContext={Object {}}
+                >
+                  <Tools
+                    history={
+                      Object {
+                        "action": "POP",
+                        "block": [Function],
+                        "createHref": [Function],
+                        "go": [Function],
+                        "goBack": [Function],
+                        "goForward": [Function],
+                        "listen": [Function],
+                        "location": Object {
+                          "hash": "",
+                          "pathname": "/tools",
+                          "search": "",
+                          "state": undefined,
+                        },
+                        "push": [Function],
+                        "replace": [Function],
+                      }
+                    }
+                    location={
+                      Object {
+                        "hash": "",
+                        "pathname": "/tools",
+                        "search": "",
+                        "state": undefined,
+                      }
+                    }
+                    match={
+                      Object {
+                        "isExact": true,
+                        "params": Object {},
+                        "path": "/tools",
+                        "url": "/tools",
+                      }
+                    }
+                    staticContext={Object {}}
+                  >
+                    <ul>
+                      <li
+                        className="tool"
+                      >
+                        <a
+                          href="https://expressjs.com/"
+                        >
+                          Express
+                        </a>
+                         - server-side rendering
+                      </li>
+                      <li
+                        className="tool"
+                      >
+                        <a
+                          href="https://facebook.github.io/react/"
+                        >
+                          React
+                        </a>
+                         - component library
+                      </li>
+                      <li
+                        className="tool"
+                      >
+                        <a
+                          href="https://github.com/reactjs/react-router"
+                        >
+                          React Router
+                        </a>
+                         - server and browser routing
+                      </li>
+                      <li
+                        className="tool"
+                      >
+                        <a
+                          href="https://github.com/css-modules/css-modules"
+                        >
+                          Sass Modules
+                        </a>
+                         - CSS Modules with a Sass pre-processor for styles
+                      </li>
+                      <li
+                        className="tool"
+                      >
+                        <a
+                          href="https://github.com/airbnb/enzyme"
+                        >
+                          Enzyme
+                        </a>
+                         - React component testing
+                      </li>
+                    </ul>
+                  </Tools>
+                </LoadableComponent>
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </App>
+    </Router>
+  </StaticRouter>
+</Capture>
+`;
+
+exports[`Test tools route 2`] = `
+Array [
+  "../Tools",
+]
+`;

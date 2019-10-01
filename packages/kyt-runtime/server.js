@@ -1,11 +1,12 @@
 const fs = require('fs');
-const Loadable = require('react-loadable');
 const { clientAssetsFile, loadableAssetsFile } = require('kyt-utils/paths')();
+const { preloadAll } = require('./loadable');
 const { getBundles } = require('./loadable-plugin');
+const { Capture } = require('./Capture');
 
-exports.preloadDynamicImports = Loadable.preloadAll;
+exports.preloadDynamicImports = preloadAll;
 
-exports.DynamicImports = Loadable.Capture;
+exports.DynamicImports = Capture;
 
 // Get JS and CSS bundles for an entry (defaults to `main`)
 // Compares `modules` with `loadableBundles`

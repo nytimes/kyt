@@ -1,4 +1,4 @@
-var Loadable = require('react-loadable');
+const { Loadable } = require('./loadable');
 
 function Loading() {
   return null;
