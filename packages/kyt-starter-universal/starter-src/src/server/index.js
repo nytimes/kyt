@@ -3,7 +3,7 @@ import compression from 'compression';
 import path from 'path';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
-import StaticRouter from 'react-router/StaticRouter';
+import { StaticRouter } from 'react-router-dom';
 import { preloadDynamicImports, DynamicImports, getBundles } from 'kyt-runtime/server';
 import template from './template';
 import App from '../components/App';

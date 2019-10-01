@@ -1,3 +1,3 @@
-var Loadable = require('react-loadable');
+const { preloadReady } = require('./loadable');
 
-exports.preloadDynamicImports = Loadable.preloadReady;
+exports.preloadDynamicImports = preloadReady;

@@ -5,8 +5,8 @@ import Link from 'react-router-dom/Link';
 import dynamic from 'kyt-runtime/dynamic';
 import styles from './styles.scss';
 
-const Home = dynamic(() => import(/* webpackChunkName: "home" */ '../Home'));
-const Tools = dynamic(() => import(/* webpackChunkName: "tools" */ '../Tools'));
+export const Home = dynamic(() => import(/* webpackChunkName: "home" */ '../Home'));
+export const Tools = dynamic(() => import(/* webpackChunkName: "tools" */ '../Tools'));
 
 function App() {
   return (
