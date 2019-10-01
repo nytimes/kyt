@@ -1,5 +1,5 @@
 const React = require('react');
-const { LoadableContext } = require('./Capture');
+const { LoadableContext } = require('../Capture');
 
 /* eslint-disable no-underscore-dangle,consistent-return */
 
