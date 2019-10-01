@@ -55,18 +55,16 @@ function createLoadableComponent(loadFn, options) {
     throw new Error('react-loadable requires a `loading` component');
   }
 
-  const opts = Object.assign(
-    {
-      loader: null,
-      loading: null,
-      delay: 200,
-      timeout: null,
-      render,
-      webpack: null,
-      modules: null,
-    },
-    options
-  );
+  const opts = {
+    loader: null,
+    loading: null,
+    delay: 200,
+    timeout: null,
+    render,
+    webpack: null,
+    modules: null,
+    ...options,
+  };
 
   let res = null;
 

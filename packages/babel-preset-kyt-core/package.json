@@ -10,11 +10,11 @@
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.2.0",
-    "@babel/plugin-transform-runtime": "7.4.4",
-    "@babel/preset-env": "7.4.4",
-    "babel-plugin-dynamic-import-node": "2.2.0",
-    "core-js": "2.6.5",
-    "lodash.merge": "4.6.1"
+    "@babel/plugin-transform-runtime": "7.6.2",
+    "@babel/preset-env": "7.6.2",
+    "babel-plugin-dynamic-import-node": "2.3.0",
+    "core-js": "2.6.9",
+    "lodash.merge": "4.6.2"
   },
   "keywords": [
     "babel",

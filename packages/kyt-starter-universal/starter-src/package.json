@@ -15,9 +15,9 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "dependencies": {
-    "@babel/runtime": "7.4.4",
+    "@babel/runtime": "7.6.2",
     "compression": "1.7.3",
-    "core-js": "2.6.5",
+    "core-js": "2.6.9",
     "express": "4.16.4",
     "kyt-runtime": "1.0.0-alpha.0",
     "prop-types": "15.7.2",
@@ -25,7 +25,7 @@
     "react-dom": "16.8.3",
     "react-hot-loader": "4.6.3",
     "react-router-dom": "4.3.1",
-    "regenerator-runtime": "0.13.2",
+    "regenerator-runtime": "0.13.3",
     "source-map-support": "0.5.10"
   },
   "devDependencies": {
