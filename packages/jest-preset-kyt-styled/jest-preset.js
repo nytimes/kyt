@@ -1,5 +1,7 @@
+const runner = require.resolve('./src/index.js');
+
 module.exports = {
-  runner: 'jest-runner-stylelint',
+  runner,
   displayName: 'stylelint',
   moduleFileExtensions: ['js'],
   testMatch: ['<rootDir>/src/**/**/styled.js'],
