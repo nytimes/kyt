@@ -9,7 +9,7 @@ module.exports = ({ testPath /* , config, globalConfig */ }) => {
 
   return stylelint
     .lint({
-      config: configPath,
+      configFile: configPath,
       files: testPath,
       formatter: 'string',
       fix: configOverrides.getFix(),
