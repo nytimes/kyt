@@ -1,3 +1,3 @@
-const { preloadReady } = require('./lib/loadable');
+var { preloadReady } = require('./lib/loadable');
 
 exports.preloadDynamicImports = preloadReady;
