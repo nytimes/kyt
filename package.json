@@ -11,41 +11,25 @@
   "directories": {
     "doc": "docs"
   },
-  "jest": {
-    "testPathIgnorePatterns": [
-      "<rootDir>/packages/kyt-starter-*",
-      "<rootDir>/packages/kyt-core/cli/actions/test.js",
-      "<rootDir>/e2e_tests"
-    ],
-    "collectCoverageFrom": [
-      "**/*.js"
-    ],
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/node_modules",
-      "<rootDir>/packages/*/node_modules",
-      "<rootDir>/packages/kyt-starter-*",
-      "<rootDir>/coverage",
-      "<rootDir>/packages/kyt-core/utils/jest"
-    ]
-  },
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap",
-    "clean-bootstrap": "rm -rf node_modules && npm i && lerna clean --yes && npm run bootstrap",
+    "clean-bootstrap": "rm -rf node_modules && lerna clean --yes && npm run bootstrap",
     "publish-pre": "lerna publish --exact --npm-tag=pre --canary=alpha",
     "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
     "publish-release": "lerna publish --exact --message",
-    "test": "jest && cd packages/kyt-starter-universal/starter-src && node_modules/.bin/kyt test && cd  ../../kyt-starter-static/starter-src && node_modules/.bin/kyt test",
-    "test-update": "jest -u && cd packages/kyt-starter-universal/starter-src && node_modules/.bin/kyt test -- -u && cd  ../../kyt-starter-static/starter-src && node_modules/.bin/kyt test -- -u",
+    "test:universal": "cd packages/kyt-starter-universal/starter-src && kyt test",
+    "test:static": "cd packages/kyt-starter-static/starter-src && kyt test",
+    "test": "jest && npm run test:universal && npm run test:static",
+    "test-update": "jest && npm run test:universal -- -u && npm run test:static -- -u",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "packages/kyt-core/node_modules/.bin/eslint ./",
-    "lint-fix": "packages/kyt-core/node_modules/.bin/eslint ./ --fix"
+    "lint-fix": "npm run lint -- --fix"
   },
   "devDependencies": {
     "lerna": "^2.0.0",
     "eslint-config-kyt": "file:packages/eslint-config-kyt",
     "eslint-plugin-kyt": "file:packages/eslint-plugin-kyt"
-  },
-  "dependencies": {}
+  }
 }
