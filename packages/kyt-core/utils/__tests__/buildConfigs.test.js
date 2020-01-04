@@ -16,6 +16,9 @@ const baseConfig = jest.fn(() => ({}));
 const logger = {
   info: jest.fn(),
 };
+const findBabelConfig = {
+  sync: jest.fn().mockImplementation(() => ({ config: null })),
+};
 
 // for now just mock these
 jest.setMock('../../config/webpack.dev.client', devClientConfig);
@@ -25,6 +28,7 @@ jest.setMock('../../config/webpack.prod.server', prodServerConfig);
 jest.setMock('../../config/webpack.base', baseConfig);
 
 jest.setMock('kyt-utils/logger', logger);
+jest.setMock('find-babel-config', findBabelConfig);
 
 const stubConfig = {
   modifyWebpackConfig: jest.fn(c => c),
@@ -48,7 +52,7 @@ describe('buildConfigs', () => {
     const built = buildConfigs(stubConfig);
 
     expect(logger.info).toHaveBeenCalledWith(
-      'No user .babelrc found. Using kyt default babel preset...'
+      'No user Babel config found. Using kyt default babel preset...'
     );
 
     // for client
