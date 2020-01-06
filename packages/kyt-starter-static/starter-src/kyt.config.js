@@ -5,7 +5,7 @@ module.exports = {
   debug: false,
   hasServer: false,
   modifyJestConfig(kytConfig) {
-    const jestConfig = Object.assign({}, kytConfig);
+    const jestConfig = { ...kytConfig };
 
     jestConfig.setupFiles = ['raf/polyfill', ...jestConfig.setupFiles];
     jestConfig.setupFilesAfterEnv = [require.resolve('./jest.setup.js')];

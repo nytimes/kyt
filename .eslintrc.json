@@ -1,5 +1,3 @@
 {
-  "extends": [
-    "./packages/eslint-config-kyt/eslintrc.json"
-  ]
+  "extends": ["eslint-config-kyt"]
 }

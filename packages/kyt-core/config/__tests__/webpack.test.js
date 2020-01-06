@@ -2,10 +2,6 @@ const fs = {
   readFileSync: jest.fn(),
 };
 
-const shell = {
-  test: jest.fn(),
-};
-
 const logger = {
   warn: jest.fn(),
 };
@@ -17,6 +13,10 @@ const path = {
 
 const extractPlugin = jest.fn();
 extractPlugin.extract = jest.fn();
+
+const findBabelConfig = {
+  sync: jest.fn(),
+};
 
 const webpack = {
   LoaderOptionsPlugin: jest.fn(),
@@ -35,12 +35,12 @@ const webpack = {
 };
 
 jest.setMock('fs', fs);
-jest.setMock('shelljs', shell);
 jest.setMock('path', path);
 jest.setMock('kyt-utils/logger', logger);
 jest.setMock('webpack', webpack);
 jest.setMock('../../utils/getPostcssLoader', {});
 jest.setMock('mini-css-extract-plugin', extractPlugin);
+jest.setMock('find-babel-config', findBabelConfig);
 
 const baseConfig = require('../webpack.base');
 
@@ -50,7 +50,7 @@ describe('webpack.base', () => {
     webpack.DefinePlugin.mockClear();
   });
   it("doesn't set up a babel preset if a .babelrc exists", () => {
-    shell.test.mockImplementationOnce(() => true);
+    findBabelConfig.sync.mockImplementationOnce(() => ({ config: {} }));
     fs.readFileSync.mockImplementationOnce(() => '{}');
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');
@@ -58,7 +58,7 @@ describe('webpack.base', () => {
     expect(logger.warn).not.toHaveBeenCalled();
   });
   it('sets up kyt-core babel preset if a .babelrc exists', () => {
-    shell.test.mockImplementationOnce(() => false);
+    findBabelConfig.sync.mockImplementationOnce(() => ({ config: null }));
     fs.readFileSync.mockImplementationOnce(() => '{}');
     const config = baseConfig({ clientURL: {}, publicPath: '/' });
     const babelLoader = config.module.rules.find(({ loader }) => loader === 'babel-loader');

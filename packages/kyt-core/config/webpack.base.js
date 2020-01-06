@@ -3,16 +3,15 @@
 // https://github.com/survivejs/webpack-merge
 
 const path = require('path');
-const fs = require('fs');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-const shell = require('shelljs');
 const merge = require('webpack-merge');
+const findBabelConfigSync = require('find-babel-config').sync;
 
 const {
   buildPath,
   userNodeModulesPath,
-  userBabelrcPath,
+  userRootPath,
   publicSrcPath,
   clientAssetsFile,
   loadableAssetsFile,
@@ -21,10 +20,9 @@ const os = require('os');
 const fileExtensions = require('./fileExtensions');
 
 module.exports = options => {
-  let babelrc;
-  if (shell.test('-f', userBabelrcPath)) {
-    const rcFile = fs.readFileSync(userBabelrcPath);
-    babelrc = JSON.parse(rcFile);
+  let babelrc = findBabelConfigSync(userRootPath);
+  if (babelrc) {
+    babelrc = babelrc.config;
   }
 
   return {

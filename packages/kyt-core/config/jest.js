@@ -6,13 +6,11 @@ const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', 
 // For configuration information, see:
 // https://facebook.github.io/jest/docs/api.html#configuration-options-configuration
 module.exports = (rootDir, aliases = {}) => ({
-  moduleNameMapper: Object.assign(
-    {
-      [fileExtensions]: resolveFromUtils('file.stub'),
-      '^[./a-zA-Z0-9!&$_-]+\\.(css|scss)$': 'identity-obj-proxy',
-    },
-    aliases
-  ),
+  moduleNameMapper: {
+    [fileExtensions]: resolveFromUtils('file.stub'),
+    '^[./a-zA-Z0-9!&$_-]+\\.(css|scss)$': 'identity-obj-proxy',
+    ...aliases,
+  },
   moduleFileExtensions: ['js', 'jsx', 'json'],
   verbose: true,
   transform: { '^.+\\.(js)$': resolveFromUtils('preprocessor') },

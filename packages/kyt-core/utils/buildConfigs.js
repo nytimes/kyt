@@ -4,8 +4,8 @@
 const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
 const clone = require('lodash.clonedeep');
-const shell = require('shelljs');
-const { userBabelrcPath } = require('kyt-utils/paths')();
+const findBabelConfigSync = require('find-babel-config').sync;
+const { userRootPath } = require('kyt-utils/paths')();
 
 // base configs
 const baseConfig = require('../config/webpack.base');
@@ -44,9 +44,9 @@ module.exports = (config, environment = 'development') => {
 
   const serverOptions = merge(clientOptions, { type: 'server' });
 
-  const hasBabelrc = shell.test('-f', userBabelrcPath);
-  if (!hasBabelrc) {
-    logger.info('No user .babelrc found. Using kyt default babel preset...');
+  const hasBabelrc = findBabelConfigSync(userRootPath);
+  if (!hasBabelrc || !hasBabelrc.config) {
+    logger.info('No user Babel config found. Using kyt default babel preset...');
   }
 
   // Merge options with static webpack configs

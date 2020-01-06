@@ -58,9 +58,7 @@ module.exports = (flags, args) => {
         if (!semver.satisfies(kytVersion, kytStarterPreferredVersion)) {
           // eslint-disable-next-line max-len
           logger.warn(
-            `${
-              tempPackageJSON.name
-            } requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
+            `${tempPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
           );
         }
       }
@@ -195,7 +193,7 @@ module.exports = (flags, args) => {
       logger.task('Creating a new package.json. You should fill it in.');
     }
     // Clone the package.json so that we have a backup.
-    oldPackageJSON = Object.assign({}, userPackageJSON);
+    oldPackageJSON = { ...userPackageJSON };
 
     // Add dependencies from starter-kyts
     if (!existingProject) {
