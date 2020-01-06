@@ -1,0 +1,13 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {},
+  "kyt": {
+    "reactHotLoader": true,
+    "debug": false
+  }
+}

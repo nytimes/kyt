@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`paths with project containing standard configuration files returns an object with expected properties 1`] = `
+Object {
+  "assetsBuildPath": "/standard/build/public/",
+  "buildPath": "/standard/build",
+  "clientAssetsFile": "/standard/build/publicAssets.json",
+  "clientBuildPath": "/standard/build/client",
+  "clientPolyfillsPath": "/standard/src/client/polyfills.js",
+  "clientSrcPath": "/standard/src/client",
+  "loadableAssetsFile": "/standard/build/loadable.json",
+  "prototypeBuildPath": "/standard/build/prototype",
+  "publicBuildPath": "/standard/build/public",
+  "publicSrcPath": "/standard/src/public",
+  "serverBuildPath": "/standard/build/server",
+  "serverPolyfillsPath": "/standard/src/server/polyfills.js",
+  "serverSrcPath": "/standard/src/server",
+  "srcPath": "/standard/src",
+  "testBuildPath": "/standard/build/test",
+  "userBabelrcIsEmpty": undefined,
+  "userBabelrcNotFound": false,
+  "userBabelrcParsed": Object {
+    "presets": Array [
+      "kyt-react",
+    ],
+  },
+  "userBabelrcPath": "/standard/.babelrc",
+  "userKytConfigIsEmpty": undefined,
+  "userKytConfigNotFound": false,
+  "userKytConfigParsed": Object {
+    "debug": false,
+    "reactHotLoader": true,
+  },
+  "userKytConfigPath": "/standard/kyt.config.js",
+  "userNodeModulesPath": "/standard/node_modules",
+  "userPackageJSONPath": "/standard/package.json",
+  "userPostcssConfigIsEmpty": undefined,
+  "userPostcssConfigNotFound": false,
+  "userPostcssConfigParsed": Object {
+    "plugins": Object {
+      "foo": false,
+    },
+  },
+  "userPostcssConfigPath": "/standard/postcss.config.js",
+  "userPrototypePath": "/standard/prototype.js",
+  "userRootPath": "/standard",
+}
+`;

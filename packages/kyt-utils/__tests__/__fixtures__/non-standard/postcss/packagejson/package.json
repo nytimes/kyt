@@ -1,0 +1,14 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {},
+  "postcss": {
+    "plugins": {
+      "foo": false
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "eslint-config-kyt"
+  ],
+
+  "env": {
+  },
+
+  "plugins": [
+  ],
+
+  "rules": {
+  }
+}

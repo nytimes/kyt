@@ -3,7 +3,9 @@
   "private": true,
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "kyt test"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nytimes/kyt/packages/kyt-starter-static.git"

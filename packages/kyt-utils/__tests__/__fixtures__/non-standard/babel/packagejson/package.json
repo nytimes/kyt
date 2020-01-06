@@ -1,0 +1,12 @@
+{
+  "name": "",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {},
+  "babel": {
+    "presets": ["kyt-react"]
+  }  
+}

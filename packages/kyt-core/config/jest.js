@@ -21,5 +21,6 @@ module.exports = (rootDir, aliases = {}) => ({
   testRegex: '\\.test.js$',
   collectCoverageFrom: ['**/*.js'],
   setupFiles: [resolveFromUtils('setup')],
+  setupFilesAfterEnv: ['jest-extended'],
   rootDir,
 });
