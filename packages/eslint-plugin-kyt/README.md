@@ -1,1 +1,0 @@
-# kyt ESLint Plugin
