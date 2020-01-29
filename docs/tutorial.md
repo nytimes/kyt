@@ -1,3 +1,0 @@
-# Using kyt: An Opinionated Guide
-
-More to come...

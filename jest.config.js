@@ -1,4 +1,5 @@
 module.exports = {
+  preset: 'jest-preset-kyt',
   testPathIgnorePatterns: [
     '<rootDir>/packages/kyt-starter-*',
     '<rootDir>/packages/kyt-core/cli/actions/test.js',
@@ -10,6 +11,5 @@ module.exports = {
     '<rootDir>/packages/*/node_modules',
     '<rootDir>/packages/kyt-starter-*',
     '<rootDir>/coverage',
-    '<rootDir>/packages/kyt-core/utils/jest',
   ],
 };

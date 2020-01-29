@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 const hooks = {
   beforeRun: {
     tap: jest.fn(),

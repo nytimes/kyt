@@ -21,12 +21,8 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 - Optional universal support with a Node server provided for rendering front-end page requests
 - Client and server hot reloading
 - Custom Babel presets with ES6 support, optional React support and optimizations for polyfilling Node and browser builds.
-- CSS Module and SASS support
-- PostCSS support
 - Static asset support
 - Inline SVG support
-- Style and script linter rulesets
-- A pre-configured test runner with Jest
 - Optional client-only mode for apps that already have a server
 
 ## How it Works
@@ -70,10 +66,7 @@ Here are the available commands:
 
 - [`dev`](/docs/commands.md#dev) starts a development environment
 - [`build`](/docs/commands.md#build) compiles server and client code for production use
-- [`test`](/docs/commands.md#test) runs all tests in `/src`
 - [`proto`](/docs/commands.md#proto) starts the prototyping app
-- [`lint`](/docs/commands.md#lint) lints src code using ESLint
-- [`lint-style`](/docs/commands.md#lint-style) lints src code using Stylelint
 - [`help`](/docs/commands.md#help) shows commands and their documentation
 
 See our [CLI docs](/docs/commands.md) for further details.

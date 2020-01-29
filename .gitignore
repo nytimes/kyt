@@ -39,7 +39,10 @@ cli-test
 test-packages
 
 # Local stuff
+packages/kyt-starter-*/starter-src/package-lock.json
 packages/kyt-starter-*/starter-src/build
+packages/babel-preset-kyt-core/lib
+packages/babel-preset-kyt-react/lib
 packages/kyt-runtime/lib
 
 .vscode

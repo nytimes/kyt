@@ -33,25 +33,25 @@ exports[`Test home route 1`] = `
       <App>
         <div>
           <i
-            className="logo"
+            className="css-s9mm7z"
           />
           <ul
-            className="nav"
+            className="css-1puk6xf"
           >
             <li
-              className="navItem"
+              className="css-7kp13n"
             >
               <Link
-                className="link"
+                className="css-1rtak3j"
                 to="/"
               >
                 <LinkAnchor
-                  className="link"
+                  className="css-1rtak3j"
                   href="/"
                   navigate={[Function]}
                 >
                   <a
-                    className="link"
+                    className="css-1rtak3j"
                     href="/"
                     onClick={[Function]}
                   >
@@ -61,19 +61,19 @@ exports[`Test home route 1`] = `
               </Link>
             </li>
             <li
-              className="navItem"
+              className="css-7kp13n"
             >
               <Link
-                className="link"
+                className="css-1rtak3j"
                 to="/tools"
               >
                 <LinkAnchor
-                  className="link"
+                  className="css-1rtak3j"
                   href="/tools"
                   navigate={[Function]}
                 >
                   <a
-                    className="link"
+                    className="css-1rtak3j"
                     href="/tools"
                     onClick={[Function]}
                   >
@@ -84,7 +84,7 @@ exports[`Test home route 1`] = `
             </li>
           </ul>
           <div
-            className="content"
+            className="css-47aydu"
           >
             <Switch>
               <Route
@@ -186,7 +186,7 @@ exports[`Test home route 1`] = `
                   >
                     <section>
                       <p
-                        className="paragraph"
+                        className="css-1bvn8cx"
                       >
                         Welcome to the 
                         <strong>
@@ -195,7 +195,7 @@ exports[`Test home route 1`] = `
                         . This starter kyt should serve as the base for an advanced, server-rendered React app.
                       </p>
                       <p
-                        className="paragraph"
+                        className="css-1bvn8cx"
                       >
                         Check out the Tools section for an outline of the libraries that are used in this Starter-kyt.
                       </p>
@@ -251,25 +251,25 @@ exports[`Test tools route 1`] = `
       <App>
         <div>
           <i
-            className="logo"
+            className="css-s9mm7z"
           />
           <ul
-            className="nav"
+            className="css-1puk6xf"
           >
             <li
-              className="navItem"
+              className="css-7kp13n"
             >
               <Link
-                className="link"
+                className="css-1rtak3j"
                 to="/"
               >
                 <LinkAnchor
-                  className="link"
+                  className="css-1rtak3j"
                   href="/"
                   navigate={[Function]}
                 >
                   <a
-                    className="link"
+                    className="css-1rtak3j"
                     href="/"
                     onClick={[Function]}
                   >
@@ -279,19 +279,19 @@ exports[`Test tools route 1`] = `
               </Link>
             </li>
             <li
-              className="navItem"
+              className="css-7kp13n"
             >
               <Link
-                className="link"
+                className="css-1rtak3j"
                 to="/tools"
               >
                 <LinkAnchor
-                  className="link"
+                  className="css-1rtak3j"
                   href="/tools"
                   navigate={[Function]}
                 >
                   <a
-                    className="link"
+                    className="css-1rtak3j"
                     href="/tools"
                     onClick={[Function]}
                   >
@@ -302,7 +302,7 @@ exports[`Test tools route 1`] = `
             </li>
           </ul>
           <div
-            className="content"
+            className="css-47aydu"
           >
             <Switch>
               <Route
@@ -403,7 +403,7 @@ exports[`Test tools route 1`] = `
                   >
                     <ul>
                       <li
-                        className="tool"
+                        className="css-wsq77t"
                       >
                         <a
                           href="https://expressjs.com/"
@@ -413,7 +413,7 @@ exports[`Test tools route 1`] = `
                          - server-side rendering
                       </li>
                       <li
-                        className="tool"
+                        className="css-wsq77t"
                       >
                         <a
                           href="https://facebook.github.io/react/"
@@ -423,7 +423,7 @@ exports[`Test tools route 1`] = `
                          - component library
                       </li>
                       <li
-                        className="tool"
+                        className="css-wsq77t"
                       >
                         <a
                           href="https://github.com/reactjs/react-router"
@@ -433,17 +433,7 @@ exports[`Test tools route 1`] = `
                          - server and browser routing
                       </li>
                       <li
-                        className="tool"
-                      >
-                        <a
-                          href="https://github.com/css-modules/css-modules"
-                        >
-                          Sass Modules
-                        </a>
-                         - CSS Modules with a Sass pre-processor for styles
-                      </li>
-                      <li
-                        className="tool"
+                        className="css-wsq77t"
                       >
                         <a
                           href="https://github.com/airbnb/enzyme"

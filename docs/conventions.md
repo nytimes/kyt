@@ -21,11 +21,6 @@ src/
 
 All `.js` files in `/src` are transpiled with Babel.
 
-### CSS and Sass
-
-`.css` files are intended for writing css with CSS Modules
-`.scss` files are intended for writing Sass with CSS Modules
-
 ### Misc assets
 
 `jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico` see the static asset handling section for how files with these extensions are handled.
@@ -55,7 +50,6 @@ If you need to deploy your static assets to a CDN or route them to a different p
 After a `build`, kyt produces the following client bundles (with their corresponding map files (asset.map.js)):
 
 - `main.js` - The main script.
-- `main.css` - All of the CSS.
 - `manifest.js` - A mapping of chunk names.
 - `vendor.js` - Common/shared modules between the bundles and chunks.
 
@@ -64,8 +58,6 @@ To keep each version of an asset unique, kyt will output the client assets with 
 - `manifest.js`
 - `vendor.js`
 - `main.js`
-
-`main.css` should be included in the `<head>` of your document, which is taken care of for you if you based your project on a starter kyt.
 
 ## Environment Variables
 
@@ -89,22 +81,6 @@ const port = Number.parseInt(KYT.SERVER_PORT, 10);
 The kyt config file must live in the root of your repository.
 See further instructions [here](/docs/kytConfig.md)
 
-## Testing
-
-The `kyt test` command finds all files with `*.test.js` in the `/src` directory.
-
-## Linting
-
-The `kyt lint-script` command finds all files with `.js` extension in `/src`
-
-Specify lint rules with a `.eslintrc.json` file in the root of your project. [`setup`](/packages/kyt-cli/README.md) will create this file for you.
-
-## Style Linting
-
-The `kyt lint-style` command finds all files with `.css` and `.scss` extensions in `/src`
-
-Specify lint rules with a `.stylelintrc.json` file in the root of your project. [`setup`](/packages/kyt-cli/README.md) will create this file for you.
-
-## .babelrc
+## Babel
 
 Making changes to babel settings should be done by creating a `.babelrc` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a starter-kyt, then you should already have a .babelrc configured with one of the kyt presets.

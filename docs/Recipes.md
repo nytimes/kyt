@@ -6,9 +6,6 @@ Easy ways to extend kyt.
 
 1. [Extend Webpack Configuration](#extend-webpack-configuration)
 1. [Add Webpack Aliases](#add-webpack-aliases)
-1. [Add PostCSS Plugins](#add-postcss-plugins)
-1. [Add Babel Plugins and Presets](#add-babel-plugins-and-presets)
-1. [Add always-mocked modules to Jest configuration](#add-always-mocked-modules-to-jest-configuration)
 
 ## Extend Webpack Configuration
 
@@ -51,46 +48,6 @@ modifyWebpackConfig: (baseConfig, options) => {
 };
 ```
 
-## Add PostCSS Plugins
-
-You can find the basic PostCSS configuration that kyt applies [here](/packages/kyt-core/config/postcss.config.js). To apply your own PostCSS configuration, add a postcss.config.js file to the root of your project with a custom configuration. Check out the [postcss.config.js documentation](https://github.com/postcss/postcss-loader#config) for more.
-
-## Add Babel Plugins and Presets
-
-As of v0.4.0, kyt respects user `.babelrc` files.
-
-```bash
-npm i --save-dev my-babel-plugin
-```
-
-in `.babelrc`
-
-```json
-{
-  "presets": ["kyt-core"],
-  "plugins": ["my-babel-plugin"]
-}
-```
-
-Check out the current [Babel configuration](/.babelrc).
-
-## Add always-mocked modules to Jest configuration
-
-in `kyt.config.js`
-
-```javascript
-modifyJestConfig: baseConfig => {
-  const jestConfig = Object.assign({}, baseConfig);
-
-  // always mock Relay (react-relay) for tests
-  jestConfig.moduleNameMapper = Object.assign({}, jestConfig.moduleNameMapper, {
-    'react-relay': require('path').resolve(__dirname, '__mocks__/react-relay.js'),
-  });
-
-  return jestConfig;
-};
-```
-
 ## Polyfilling
 
 If you created your application with a starter-kyt then you should be setup for polyfilling. A starter-kyt should configure one of the kyt presets -- [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md) -- in your .babelrc and should add a `babel-polyfill` dependency to your package.json and import it at the top of `src/server/index.js` and `src/client/index.js`. With this setup, kyt will target the current version of Node in the server build. For the client, a [browserlist](https://github.com/ai/browserslist) configuration is used to target a set of browsers and polyfill the features they are missing. You can read more about changing these options in the [`babel-preset-kyt-core` `envOptions` configuration](/packages/babel-preset-kyt-core/README.md#options).
@@ -105,7 +62,6 @@ A kyt app should work with any editor but we recommend that you install and conf
 1. Install `linter`
 1. Install `linter-eslint`
 1. Install `prettier-atom` - in the prettier atom Settings, check the `ESLint Integration` checkbox.
-1. Install `linter-stylelint`
 1. Make sure all packages are enabled. You may need to restart Atom.
 
 ### VSCode

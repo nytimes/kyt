@@ -18,7 +18,7 @@
     "lodash.uniq": "4.5.0",
     "semver": "5.6.0",
     "shelljs": "0.8.3",
-    "simple-git": "1.107.0"
+    "simple-git": "1.131.0"
   },
   "keywords": [
     "kyt",

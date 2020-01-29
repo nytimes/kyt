@@ -13,22 +13,37 @@
   },
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap",
-    "clean-bootstrap": "rm -rf node_modules && lerna clean --yes && npm run bootstrap",
+    "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
     "publish-pre": "lerna publish --exact --npm-tag=pre --canary=alpha",
     "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
     "publish-release": "lerna publish --exact --message",
-    "test:universal": "cd packages/kyt-starter-universal/starter-src && kyt test",
-    "test:static": "cd packages/kyt-starter-static/starter-src && kyt test",
+    "test:universal": "cd packages/kyt-starter-universal/starter-src && jest",
+    "test:static": "cd packages/kyt-starter-static/starter-src && jest",
     "test": "jest && npm run test:universal && npm run test:static",
     "test-update": "jest && npm run test:universal -- -u && npm run test:static -- -u",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "packages/kyt-core/node_modules/.bin/eslint ./",
+    "lint": "eslint ./",
     "lint-fix": "npm run lint -- --fix"
   },
   "devDependencies": {
+    "@babel/cli": "7.8.3",
+    "@babel/core": "7.8.3",
+    "enzyme": "3.11.0",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-kyt": "file:packages/eslint-config-kyt",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-json": "2.0.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "7.18.0",
+    "eslint-plugin-react-hooks": "2.3.0",
+    "jest": "25.1.0",
+    "jest-preset-kyt": "file:packages/jest-preset-kyt",
     "lerna": "^2.0.0",
-    "eslint-config-kyt": "file:packages/eslint-config-kyt"
+    "prettier": "1.19.1"
   }
 }

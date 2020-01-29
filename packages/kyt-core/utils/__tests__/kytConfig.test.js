@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 jest.setMock('path', {
   join: () => 'joined-path',
   resolve: () => 'resolve',
@@ -31,12 +29,9 @@ describe('kytConfig', () => {
 
     expect(logger.info).toBeCalled();
     expect(typeof config.modifyWebpackConfig).toBe('function');
-    expect(typeof config.modifyJestConfig).toBe('function');
 
     expect(Object.isFrozen(config)).toBe(true);
-    expect(() => {
-      config.productionPublicPath = 'frozen!';
-    }).toThrow();
+    config.productionPublicPath = 'frozen!';
     expect(config.productionPublicPath).not.toBe('frozen!');
   });
 });

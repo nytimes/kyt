@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 const assert = require('assert');
 
 // jest.enableAutomock();

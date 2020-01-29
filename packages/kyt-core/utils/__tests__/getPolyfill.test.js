@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 jest.setMock('kyt-utils/paths', () => ({
   serverPolyfillsPath: 'server-path',
   clientPolyfillsPath: 'client-path',

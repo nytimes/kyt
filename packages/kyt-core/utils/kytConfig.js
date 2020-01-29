@@ -47,7 +47,7 @@ module.exports = optionalConfig => {
   }
 
   // Create default identity functions for modify functions
-  ['modifyWebpackConfig', 'modifyJestConfig'].forEach(m => {
+  ['modifyWebpackConfig'].forEach(m => {
     if (typeof config[m] !== 'function') {
       config[m] = c => c;
     }
