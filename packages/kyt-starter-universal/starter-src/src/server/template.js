@@ -2,7 +2,7 @@
 
 const getDeferScript = src => `<script defer src="${src}"></script>`;
 
-export default ({ html, bundles }) => `
+export default ({ html, ids, css, bundles }) => `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,8 +13,7 @@ export default ({ html, bundles }) => `
     <link id="favicon" rel="shortcut icon" href="/kyt-favicon.png" sizes="16x16 32x32" type="image/png" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css" />
-    ${bundles.cssBundle ? `<link rel="stylesheet" href="${bundles.cssBundle}" />` : ''}
-    ${bundles.styles.map(e => `<link rel="stylesheet" href="${e}">`).join('\n')}
+    <style data-lights-css="${ids.join(' ')}">${css}</style>
     <title>Universal React Starter Kyt</title>
   </head>
   <body>
