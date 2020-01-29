@@ -11,7 +11,8 @@
     "raf": "3.4.1"
   },
   "peerDependencies": {
-    "enzyme": "3.11.0",
-    "jest": "25.1.0"
+    "enzyme": "^3.11.0",
+    "jest": "^25.1.0",
+    "pretty-lights": "^0.0.14"
   }
 }

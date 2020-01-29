@@ -6,5 +6,5 @@ module.exports = {
   },
   setupFiles: ['raf/polyfill'],
   setupFilesAfterEnv: [require.resolve('./setup.js')],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
+  snapshotSerializers: ['enzyme-to-json/serializer', 'pretty-lights/jest'],
 };
