@@ -6,7 +6,6 @@ Easy ways to extend kyt.
 
 1. [Extend Webpack Configuration](#extend-webpack-configuration)
 1. [Add Webpack Aliases](#add-webpack-aliases)
-1. [Add PostCSS Plugins](#add-postcss-plugins)
 1. [Add Babel Plugins and Presets](#add-babel-plugins-and-presets)
 1. [Add always-mocked modules to Jest configuration](#add-always-mocked-modules-to-jest-configuration)
 
@@ -50,10 +49,6 @@ modifyWebpackConfig: (baseConfig, options) => {
   return baseConfig;
 };
 ```
-
-## Add PostCSS Plugins
-
-You can find the basic PostCSS configuration that kyt applies [here](/packages/kyt-core/config/postcss.config.js). To apply your own PostCSS configuration, add a postcss.config.js file to the root of your project with a custom configuration. Check out the [postcss.config.js documentation](https://github.com/postcss/postcss-loader#config) for more.
 
 ## Add Babel Plugins and Presets
 
@@ -105,7 +100,6 @@ A kyt app should work with any editor but we recommend that you install and conf
 1. Install `linter`
 1. Install `linter-eslint`
 1. Install `prettier-atom` - in the prettier atom Settings, check the `ESLint Integration` checkbox.
-1. Install `linter-stylelint`
 1. Make sure all packages are enabled. You may need to restart Atom.
 
 ### VSCode

@@ -21,11 +21,8 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 - Optional universal support with a Node server provided for rendering front-end page requests
 - Client and server hot reloading
 - Custom Babel presets with ES6 support, optional React support and optimizations for polyfilling Node and browser builds.
-- CSS Module and SASS support
-- PostCSS support
 - Static asset support
 - Inline SVG support
-- Style and script linter rulesets
 - A pre-configured test runner with Jest
 - Optional client-only mode for apps that already have a server
 

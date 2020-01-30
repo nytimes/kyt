@@ -18,7 +18,6 @@ describe('KYT CLI', () => {
       expect(shell.test('-f', '.editorconfig')).toBe(true);
       expect(shell.test('-f', '.babelrc')).toBe(true);
       expect(shell.test('-f', '.eslintrc.json')).toBe(true);
-      expect(shell.test('-f', '.stylelintrc.json')).toBe(true);
       expect(shell.test('-f', 'prototype.js')).toBe(true);
     });
   };
@@ -45,7 +44,6 @@ describe('KYT CLI', () => {
     expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
     expect(setupArr.includes('👍  Installed new modules')).toBe(true);
     expect(setupArr.includes('👍  Created .eslintrc.json file')).toBe(true);
-    expect(setupArr.includes('👍  Created .stylelintrc.json file')).toBe(true);
     expect(setupArr.includes('👍  Created kyt.config.js file')).toBe(true);
     expect(setupArr.includes('👍  Created .editorconfig file')).toBe(true);
     expect(setupArr.includes('👍  Created .babelrc')).toBe(true);

@@ -8,20 +8,18 @@ kyt includes a CLI with all the commands needed for development.
 npm run dev
 ```
 
-Or you can run a command with `node_modules/.bin/kyt command`
+Or you can run a command with `npx kyt command`
 
 ```
-node_modules/.bin/kyt build
+npx kyt build
 ```
 
 1. [starter-kyt](/docs/Starterkyts.md)
-2. [`dev`](/docs/commands.md#dev) starts up a development environment
-3. [`build`](/docs/commands.md#build) compiles server and client code for production use
-4. [`test`](/docs/commands.md#test) runs all tests in /src
-5. [`proto`](/docs/commands.md#proto) starts the prototyping app
-6. [`lint-script`](/docs/commands.md#lint-script) lints src code using ESLint
-7. [`lint-style`](/docs/commands.md#lint-style) lints src code using StyleLint
-8. `--help` shows commands and their documentation
+1. [`dev`](/docs/commands.md#dev) starts up a development environment
+1. [`build`](/docs/commands.md#build) compiles server and client code for production use
+1. [`test`](/docs/commands.md#test) runs all tests in /src
+1. [`proto`](/docs/commands.md#proto) starts the prototyping app
+1. `--help` shows commands and their documentation
 
 ## dev
 
@@ -81,25 +79,6 @@ kyt will inject DOM globals, like `global.window` and `global.document` into eve
 #### Tests are hanging and/or `test-watch` is broken on OSX Sierra
 
 See [facebook/jest#1767](https://github.com/facebook/jest/issues/1767) for various workarounds, the most common of which are installing or reinstalling [Watchman](https://facebook.github.io/watchman/).
-
-## lint-script
-
-The `lint-script` command lints all files in the `src/` directory using ESLint.
-During `kyt-cli setup`, an `.eslintrc.json` file is copied into the root of your app which extends kyt's base configuration.
-You can add or override rules in this file.
-
-kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/packages/eslint-config-kyt/eslintrc.json). Read the kyt style guide [here](/packages/eslint-config-kyt/README.md)
-
-Flags can be passed to ESLint through `kyt lint-script`
-
-```
-kyt lint-script -- --fix
-```
-
-## lint-style
-
-The `lint-style` command uses Stylelint to lint all files in the `src/` directory. By convention, it looks for files with a `.css` or `.scss` extension.
-During `kyt-cli setup`, a `.stylelintrc.json` is copied into the root of your app that extends kyt's base configuration, pre-configured with [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules. You can find kyt's base Stylelint configuration [here](/packages/stylelint-config-kyt/stylelintrc.json). You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc.json`. Read the kyt style guide [here](/packages/stylelint-config-kyt/README.md).
 
 ## proto
 
