@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 jest.setMock('path', {
   join: () => 'joined-path',
   resolve: () => 'resolve',

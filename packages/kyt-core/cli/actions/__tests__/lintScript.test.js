@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 jest.setMock('glob', {
   sync: jest
     .fn()

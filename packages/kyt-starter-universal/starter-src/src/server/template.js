@@ -1,5 +1,3 @@
-/* eslint-disable prefer-template, max-len */
-
 const getDeferScript = src => `<script defer src="${src}"></script>`;
 
 export default ({ html, bundles }) => `

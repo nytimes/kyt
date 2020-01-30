@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 describe('ifPortIsFreeDo', () => {
   jest.mock('kyt-utils/logger');
 

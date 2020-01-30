@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 jest.setMock('kyt-utils/paths', () => ({ userPostcssConfigPath: 'testfile' }));
 jest.mock('testfile', () => ({ plugins: ['yeah'] }), { virtual: true });
 jest.setMock('../../config/postcss.config', { plugins: ['no'] });
