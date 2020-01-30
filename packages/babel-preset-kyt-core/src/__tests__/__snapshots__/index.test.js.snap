@@ -3,6 +3,19 @@
 exports[`babel-preset-kyt-core should load default presets and plugins 1`] = `
 Object {
   "plugins": Array [
+    Array [
+      "proposal-decorators",
+      Object {
+        "legacy": true,
+      },
+    ],
+    Array [
+      "class-properties",
+      Object {
+        "loose": true,
+      },
+    ],
+    "optional-chaining",
     "import",
   ],
   "presets": Array [

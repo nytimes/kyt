@@ -1,4 +1,7 @@
 jest.setMock('@babel/preset-env', 'env');
+jest.setMock('@babel/plugin-proposal-class-properties', 'class-properties');
+jest.setMock('@babel/plugin-proposal-decorators', 'proposal-decorators');
+jest.setMock('@babel/plugin-proposal-optional-chaining', 'optional-chaining');
 jest.setMock('@babel/plugin-transform-runtime', 'runtime');
 jest.setMock('@babel/plugin-syntax-dynamic-import', 'import');
 jest.setMock('babel-plugin-dynamic-import-node', 'import-node');
@@ -35,17 +38,17 @@ describe('babel-preset-kyt-core', () => {
 
   it('should support an `includeRuntime` option', () => {
     const config = presetKytCore({}, { includeRuntime: true });
-    expect(config.plugins[0]).toEqual('runtime');
+    expect(config.plugins[3]).toEqual('runtime');
   });
 
   it('should include a dynamic import plugin', () => {
     const config = presetKytCore();
-    expect(config.plugins[0]).toEqual('import');
+    expect(config.plugins[3]).toEqual('import');
   });
 
   it('should include a import node plugin when KYT_ENV_TYPE=test', () => {
     process.env.KYT_ENV_TYPE = 'test';
     const config = presetKytCore();
-    expect(config.plugins[1]).toEqual('import-node');
+    expect(config.plugins[4]).toEqual('import-node');
   });
 });

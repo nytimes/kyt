@@ -1,4 +1,7 @@
 const babelPresetEnv = require('@babel/preset-env');
+const babelPluginClassProperties = require('@babel/plugin-proposal-class-properties');
+const babelPluginDecorators = require('@babel/plugin-proposal-decorators');
+const babelPluginOptionalChaining = require('@babel/plugin-proposal-optional-chaining');
 const babelTransformRuntime = require('@babel/plugin-transform-runtime');
 const babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
 const babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
@@ -61,8 +64,11 @@ module.exports = function getPresetCore(context, opts) {
   return {
     presets: [[babelPresetEnv, envOptions]],
 
-    // provide the ability to opt into babel-plugin-transform-runtime inclusion
     plugins: [
+      [babelPluginDecorators, { legacy: true }],
+      [babelPluginClassProperties, { loose: true }],
+      babelPluginOptionalChaining,
+      // provide the ability to opt into babel-plugin-transform-runtime inclusion
       opts.includeRuntime === true && babelTransformRuntime,
       process.env.KYT_ENV_TYPE === 'test' ? babelDynamicImportNode : babelSyntaxDynamicImport,
     ].filter(Boolean),
