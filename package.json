@@ -20,7 +20,7 @@
     "test:universal": "cd packages/kyt-starter-universal/starter-src && jest",
     "test:static": "cd packages/kyt-starter-static/starter-src && jest",
     "test": "jest && npm run test:universal && npm run test:static",
-    "test-update": "jest && npm run test:universal -- -u && npm run test:static -- -u",
+    "test-update": "jest -u && npm run test:universal -- -u && npm run test:static -- -u",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
