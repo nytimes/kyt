@@ -41,5 +41,6 @@ test-packages
 # Local stuff
 packages/kyt-starter-*/starter-src/build
 packages/kyt-runtime/lib
+packages/*/package-lock.json
 
 .vscode

@@ -1,5 +1,5 @@
 describe('paths', () => {
-  const paths = require('../paths')(); // eslint-disable-line global-require
+  const paths = require('../paths')();
 
   it('exports the expected properties', () => {
     [

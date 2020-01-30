@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 const assets = [
   {
     name: 'main-1087ba4603e1150cbc80.js',

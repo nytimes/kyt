@@ -50,7 +50,7 @@ describe('jest preprocessor', () => {
     findBabelConfig.sync.mockImplementationOnce(() => ({
       config,
     }));
-    // eslint-disable-next-line global-require, import/newline-after-import
+    // eslint-disable-next-line import/newline-after-import
     require('../preprocessor');
     expect(babelJest.createTransformer.mock.calls.length).toBe(1);
     expect(logger.warn).not.toHaveBeenCalled();
@@ -61,7 +61,7 @@ describe('jest preprocessor', () => {
 
   it('otherwise uses kyt default babel preset', () => {
     findBabelConfig.sync.mockImplementationOnce(() => ({ config: null }));
-    // eslint-disable-next-line global-require, import/newline-after-import
+    // eslint-disable-next-line import/newline-after-import
     require('../preprocessor');
     expect(fs.readFileSync).not.toHaveBeenCalled();
     expect(babelJest.createTransformer.mock.calls.length).toBe(1);
