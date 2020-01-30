@@ -1,6 +1,5 @@
 const shell = require('shelljs');
 const fs = require('fs');
-const glob = require('glob');
 const util = require('../fixtures/util');
 
 shell.config.silent = true;
@@ -21,15 +20,15 @@ describe('kyt build', () => {
     expect(shell.test('-f', 'build/public/nothing.txt')).toBe(true);
 
     // Should produce the manifest and main scripts
-    expect(glob.sync('*/build/public/runtime~main-*.js')).toHaveLength(1);
-    expect(glob.sync('*/build/public/main-*.js')).toHaveLength(1);
+    expect(shell.ls('build/public/runtime~main-*.js').code).toBe(0);
+    expect(shell.ls('build/public/main-*.js').code).toBe(0);
 
-    // // Should fingerprint client and server assets
-    expect(glob.sync('*/build/public/img-*.jpg')).toHaveLength(1);
-    expect(glob.sync('*/build/public/script-*.js')).toHaveLength(1);
-    expect(glob.sync('*/build/public/file-*.ico')).toHaveLength(1);
+    // Should fingerprint client and server assets
+    expect(shell.ls('build/public/img-*.jpg').code).toBe(0);
+    expect(shell.ls('build/public/script-*.js').code).toBe(0);
+    expect(shell.ls('build/public/file-*.ico').code).toBe(0);
 
-    // // Should produce asset manifest mappings for client and server assets and bundles
+    // Should produce asset manifest mappings for client and server assets and bundles
     const manifest = JSON.parse(fs.readFileSync('build/publicAssets.json', 'utf8'));
     expect(manifest['img.jpg']).toMatch(/img-.*\.jpg/);
     expect(manifest['script.js']).toMatch(/script-.*\.js/);
