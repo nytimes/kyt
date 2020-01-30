@@ -20,8 +20,8 @@
     "kyt-runtime": "1.0.0-alpha.0",
     "pretty-lights": "0.0.14",
     "prop-types": "15.7.2",
-    "react": "16.10.1",
-    "react-dom": "16.10.1",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
     "react-hot-loader": "4.12.14",
     "react-router-dom": "5.1.2",
     "regenerator-runtime": "0.13.3"
