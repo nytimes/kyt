@@ -4,4 +4,4 @@ e2e_tests/fixtures
 **/build
 **/lib
 **/.babelrc
-packages/kyt-runtime/lib
+**/lib

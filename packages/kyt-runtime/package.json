@@ -19,6 +19,9 @@
     "regenerator-runtime": "^0.13.3",
     "source-map-support": "^0.5.16"
   },
+  "devDependencies": {
+    "babel-preset-kyt-core": "1.0.0-alpha.0"
+  },
   "scripts": {
     "prepublish": "babel es -d lib --ignore \"**/__tests__/**\""
   }

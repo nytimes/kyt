@@ -1,6 +1,10 @@
 const babelPresetEnv = require('@babel/preset-env');
+const babelPluginClassProperties = require('@babel/plugin-proposal-class-properties');
+const babelPluginDecorators = require('@babel/plugin-proposal-decorators');
+const babelPluginOptionalChaining = require('@babel/plugin-proposal-optional-chaining');
 const babelTransformRuntime = require('@babel/plugin-transform-runtime');
 const babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
+const babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 const merge = require('lodash.merge');
 
 module.exports = function getPresetCore(context, opts) {
@@ -32,7 +36,6 @@ module.exports = function getPresetCore(context, opts) {
     },
   };
 
-  // Derive the babel-preset-env options based on the type of environment
   // we are in, client, server or test. Give the ability to users to override
   // the default environments in their own configurations, for example:
   //
@@ -52,10 +55,13 @@ module.exports = function getPresetCore(context, opts) {
   return {
     presets: [[babelPresetEnv, envOptions]],
 
-    // provide the ability to opt into babel-plugin-transform-runtime inclusion
     plugins: [
+      [babelPluginDecorators, { legacy: true }],
+      [babelPluginClassProperties, { loose: true }],
+      babelPluginOptionalChaining,
+      // provide the ability to opt into babel-plugin-transform-runtime inclusion
       opts.includeRuntime === true && babelTransformRuntime,
-      babelSyntaxDynamicImport,
+      process.env.KYT_ENV_TYPE === 'test' ? babelDynamicImportNode : babelSyntaxDynamicImport,
     ].filter(Boolean),
   };
 };

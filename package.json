@@ -12,7 +12,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "bootstrap": "npm i && lerna bootstrap",
+    "bootstrap": "npm i && lerna bootstrap --hoist",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
     "publish-pre": "lerna publish --exact --npm-tag=pre --canary=alpha",
     "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
@@ -20,7 +20,7 @@
     "test:universal": "cd packages/kyt-starter-universal/starter-src && jest",
     "test:static": "cd packages/kyt-starter-static/starter-src && jest",
     "test": "jest && npm run test:universal && npm run test:static",
-    "test-update": "jest && npm run test:universal -- -u && npm run test:static -- -u",
+    "test-update": "jest -u && npm run test:universal -- -u && npm run test:static -- -u",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "@babel/cli": "7.8.3",
     "@babel/core": "7.8.3",
+    "@babel/preset-env": "7.8.3",
     "babel-eslint": "10.0.3",
     "enzyme": "3.11.0",
     "eslint": "5.16.0",
