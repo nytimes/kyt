@@ -2,7 +2,7 @@
   "name": "eslint-config-kyt",
   "version": "1.0.0-alpha.2",
   "description": "ESLint configuration for kyt projects.",
-  "main": "eslintrc.json",
+  "main": ".eslintrc.js",
   "author": "NYTimes",
   "license": "Apache-2.0",
   "repository": "git+https://github.com/nytimes/kyt/packages/eslint-config-kyt",

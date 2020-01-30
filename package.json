@@ -30,6 +30,7 @@
   "devDependencies": {
     "@babel/cli": "7.8.3",
     "@babel/core": "7.8.3",
+    "babel-eslint": "10.0.3",
     "enzyme": "3.11.0",
     "eslint": "5.16.0",
     "eslint-config-airbnb": "18.0.1",
@@ -43,7 +44,7 @@
     "eslint-plugin-react-hooks": "2.3.0",
     "jest": "25.1.0",
     "jest-preset-kyt": "file:packages/jest-preset-kyt",
-    "lerna": "^2.0.0",
+    "lerna": "2.11.0",
     "prettier": "1.19.1"
   }
 }

@@ -56,7 +56,6 @@ module.exports = (flags, args) => {
         (userPackageJSON.dependencies && userPackageJSON.dependencies.kyt);
       if (semver.valid(kytVersion)) {
         if (!semver.satisfies(kytVersion, kytStarterPreferredVersion)) {
-          // eslint-disable-next-line max-len
           logger.warn(
             `${tempPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
           );
@@ -68,7 +67,6 @@ module.exports = (flags, args) => {
 
   // Add kyt to list of dev dependencies if its not there
   const addKytDependency = (packageJson, kytPrefVersion) => {
-    // eslint-disable-next-line max-len
     // check to see if kyt is in dependencies or devDependencies
     if (
       !(packageJson.dependencies && packageJson.dependencies.kyt) &&
@@ -470,7 +468,7 @@ module.exports = (flags, args) => {
           type: 'confirm',
           name: 'srcBackup',
           message:
-            'You already have a src directory. Would you like kyt to backup src/ and continue?', // eslint-disable-line
+            'You already have a src directory. Would you like kyt to backup src/ and continue?',
           default: true,
         },
       ];
@@ -547,8 +545,8 @@ module.exports = (flags, args) => {
   };
 
   const setupPaths = () => {
-    paths = require('kyt-utils/paths')(); // eslint-disable-line
-    tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp'); // eslint-disable-line no-useless-escape
+    paths = require('kyt-utils/paths')(); // eslint-disable-line global-require
+    tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp');
     // For passed starter-kyts the root of the starter-kyt is the root of the repo
     tmpDir = tmpStarter;
     repoURL = 'https://github.com/NYTimes/kyt.git';
@@ -577,7 +575,7 @@ module.exports = (flags, args) => {
     const skQ = {
       type: 'list',
       name: 'starterChoice',
-      message: 'Choose a starter-kyt:', // eslint-disable-line
+      message: 'Choose a starter-kyt:',
       choices: skList,
       default: 0,
     };
