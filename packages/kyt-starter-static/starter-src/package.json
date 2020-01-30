@@ -15,7 +15,7 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
   "dependencies": {
-    "@babel/runtime": "7.6.2",
+    "@babel/runtime": "7.8.3",
     "core-js": "2.6.9",
     "kyt-runtime": "1.0.0-alpha.0",
     "prop-types": "15.7.2",
@@ -30,6 +30,7 @@
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.4.0",
+    "jest": "25.1.0",
     "html-webpack-plugin": "3.2.0",
     "kyt": "1.0.0-alpha.3",
     "node-sass": "4.11.0",

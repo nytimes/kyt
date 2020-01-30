@@ -4,13 +4,4 @@
 module.exports = {
   reactHotLoader: true,
   debug: false,
-  modifyJestConfig(kytConfig) {
-    const jestConfig = { ...kytConfig };
-
-    jestConfig.setupFiles = ['raf/polyfill', ...jestConfig.setupFiles];
-    jestConfig.setupFilesAfterEnv = [require.resolve('./jest.setup.js')];
-    jestConfig.snapshotSerializers = ['enzyme-to-json/serializer'];
-
-    return jestConfig;
-  },
 };

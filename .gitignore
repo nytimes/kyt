@@ -39,8 +39,8 @@ cli-test
 test-packages
 
 # Local stuff
-packages/kyt-starter-*/starter-src/build
-packages/kyt-runtime/lib
+packages/kyt-starter-*/*/build
+packages/*/lib
 packages/*/package-lock.json
 
 .vscode
