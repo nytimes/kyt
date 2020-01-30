@@ -31,9 +31,6 @@ describe('KYT CLI', () => {
       expect(scripts.start).toBe('node build/server/main.js');
       expect(scripts.build).toBe('kyt build');
       expect(scripts.test).toBe('kyt test');
-      expect(scripts.lint).toBe('npm run lint-script && npm run lint-style');
-      expect(scripts['lint-style']).toBe('kyt lint-style');
-      expect(scripts['lint-script']).toBe('kyt lint-script');
       expect(scripts.proto).toBe('kyt proto');
       expect(scripts['kyt:help']).toBe('kyt --help');
     });
