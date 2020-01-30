@@ -1,17 +1,15 @@
-/* eslint-disable vars-on-top */
-
-var babelPresetEnv = require('@babel/preset-env');
-var babelTransformRuntime = require('@babel/plugin-transform-runtime');
-var babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
-var babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
-var merge = require('lodash.merge');
+const babelPresetEnv = require('@babel/preset-env');
+const babelTransformRuntime = require('@babel/plugin-transform-runtime');
+const babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
+const babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
+const merge = require('lodash.merge');
 
 module.exports = function getPresetCore(context, opts) {
   opts = opts || {};
-  var userEnvOptions = opts.envOptions || {};
-  var envOptions = {};
+  const userEnvOptions = opts.envOptions || {};
+  let envOptions = {};
 
-  var clientEnvOptions = {
+  const clientEnvOptions = {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
     // transformed by default
@@ -24,7 +22,7 @@ module.exports = function getPresetCore(context, opts) {
     },
   };
 
-  var serverEnvOptions = {
+  const serverEnvOptions = {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
     // transformed by default
