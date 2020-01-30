@@ -1,5 +1,3 @@
-/* eslint-disable global-require */
-
 jest.setMock('@babel/preset-env', 'env');
 jest.setMock('@babel/plugin-transform-runtime', 'runtime');
 jest.setMock('@babel/plugin-syntax-dynamic-import', 'import');

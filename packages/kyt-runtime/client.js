@@ -1,4 +1,4 @@
 // this file doesn't get transpiled. Please avoid ES6 syntax.
-var preloadReady = require('./lib/loadable').preloadReady; // eslint-disable-line
+var preloadReady = require('./lib/loadable').preloadReady; // eslint-disable-line prefer-destructuring
 
 exports.preloadDynamicImports = preloadReady;
