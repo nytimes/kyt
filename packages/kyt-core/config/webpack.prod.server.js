@@ -2,21 +2,8 @@
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
-const postcssLoader = require('../utils/getPostcssLoader');
+const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
 const getPolyfill = require('../utils/getPolyfill');
-
-const cssStyleLoaders = [
-  {
-    loader: 'css-loader',
-    options: {
-      modules: true,
-      localIdentName: '[name]-[local]--[hash:base64:5]',
-      exportOnlyLocals: true,
-    },
-  },
-  postcssLoader,
-];
 
 module.exports = options => ({
   mode: 'production',
@@ -42,21 +29,6 @@ module.exports = options => ({
     chunkFilename: '[name]-[chunkhash].js',
     publicPath: options.publicPath,
     libraryTarget: 'commonjs2',
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.css$/,
-        use: [...cssStyleLoaders],
-        exclude: [publicSrcPath],
-      },
-      {
-        test: /\.scss$/,
-        use: [...cssStyleLoaders, 'sass-loader'],
-        exclude: [publicSrcPath],
-      },
-    ],
   },
 
   plugins: [

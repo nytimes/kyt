@@ -2,17 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
-const clone = require('lodash.clonedeep');
 const { userPrototypePath, prototypeBuildPath, srcPath } = require('kyt-utils/paths')();
-
-const cssStyleLoaders = [
-  'style-loader',
-  {
-    loader: 'css-loader',
-    options: { modules: true, sourceMap: true, localIdentName: '[name]-[local]--[hash:base64:5]' },
-  },
-  'postcss-loader',
-];
 
 module.exports = options => {
   const publicRoot = `http://localhost:${options.port}`;
@@ -31,19 +21,6 @@ module.exports = options => {
       path: prototypeBuildPath,
       filename: 'bundle.js',
       publicPath,
-    },
-
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: cssStyleLoaders,
-        },
-        {
-          test: /\.scss$/,
-          use: clone(cssStyleLoaders).concat('sass-loader'),
-        },
-      ],
     },
 
     plugins: [new webpack.HotModuleReplacementPlugin()],

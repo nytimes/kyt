@@ -13,6 +13,7 @@
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "commander": "2.19.0",
+    "glob": "7.1.6",
     "inquirer": "6.2.1",
     "kyt-utils": "1.0.0-alpha.0",
     "lodash.uniq": "4.5.0",

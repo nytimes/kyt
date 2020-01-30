@@ -18,10 +18,5 @@ module.exports = () => {
     const li = index + 1;
     printStarter(li, starterKyts.supported[starterName]);
   });
-  logger.task('Recommended starter-kyts:\n');
-  Object.keys(starterKyts.recommended).forEach((starterName, index) => {
-    const li = index + 1;
-    printStarter(li, starterKyts.recommended[starterName]);
-  });
   logger.end('List complete');
 };

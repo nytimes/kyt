@@ -3,11 +3,9 @@ const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
 const { userPackageJSONPath } = require('kyt-utils/paths')();
 const devAction = require('./actions/dev');
-const lintScriptAction = require('./actions/lintScript');
 const testAction = require('./actions/test');
 const buildAction = require('./actions/build');
 const protoAction = require('./actions/proto');
-const lintStyleAction = require('./actions/lintStyle');
 const kytConfigFn = require('./../utils/kytConfig');
 
 // Comment the following to see verbose shell ouput.
@@ -32,11 +30,6 @@ const loadConfigAndDo = (action, optionalConfig) => {
   const config = kytConfigFn(optionalConfig);
   action(config, flags, args[0]);
 };
-
-program
-  .command('lint-script')
-  .description('lints .js files in the ./src directory.')
-  .action(() => loadConfigAndDo(lintScriptAction));
 
 program
   .command('dev')
@@ -64,11 +57,6 @@ program
   .action(() => loadConfigAndDo(testAction));
 
 program
-  .command('lint-style')
-  .description('')
-  .action(() => loadConfigAndDo(lintStyleAction));
-
-program
   .command('proto')
   .description('Start a prototype dev server.')
   .action(() => loadConfigAndDo(protoAction));
@@ -85,13 +73,6 @@ program
   .description('deprecated')
   .action(() => {
     logger.error('kyt start is deprecated. \n Run the server with: node build/server/main.js');
-  });
-
-program
-  .command('lint')
-  .description('deprecated')
-  .action(() => {
-    logger.error('kyt lint is deprecated. \n Run lint-script to lint js files.');
   });
 
 program.parse(process.argv);

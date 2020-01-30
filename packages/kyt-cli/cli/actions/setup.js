@@ -112,25 +112,13 @@ module.exports = (flags, args) => {
   // Adds kyt and Starter-kyt commands as npm scripts
   const addPackageJsonScripts = packageJson => {
     if (!packageJson.scripts) packageJson.scripts = {};
-    let commands = [
-      'dev',
-      'build',
-      'start',
-      'proto',
-      'test',
-      'test-watch',
-      'test-coverage',
-      'lint',
-      'lint-script',
-      'lint-style',
-    ];
+    let commands = ['dev', 'build', 'start', 'proto', 'test', 'test-watch', 'test-coverage'];
 
     // for commands that aren't 1:1 name:script
     const commandMap = {
       start: 'node build/server/main.js',
       'test-watch': 'kyt test -- --watch',
       'test-coverage': 'kyt test -- --coverage',
-      lint: 'npm run lint-script && npm run lint-style',
     };
 
     // Merge the Starter-kyt script names into the list of commands.
@@ -244,27 +232,6 @@ module.exports = (flags, args) => {
     }
   };
 
-  // Create an stylelint.json in the user's base directory.
-  const createStylelintFile = () => {
-    const stylelintFileName = '.stylelintrc.json';
-    const userStylelintPath = path.join(paths.userRootPath, stylelintFileName);
-
-    // Backup the user's .stylelintrc if it exists.
-    if (shell.test('-f', userStylelintPath)) {
-      const stylelintBackup = path.join(paths.userRootPath, `${stylelintFileName}-${date}.bak`);
-      shell.mv(userStylelintPath, stylelintBackup);
-      logger.info(`Backed up current stylelint file to: ${stylelintBackup}`);
-    }
-
-    // Copy our .stylelintrc into the user's directory
-    const stylelintPath = path.join(__dirname, `../../config/user/${stylelintFileName}`);
-    if (shell.cp(stylelintPath, userStylelintPath).code === 0) {
-      logger.task(`Created ${stylelintFileName} file`);
-    } else {
-      logger.error(`There was a problem creating ${stylelintFileName}`);
-    }
-  };
-
   // .editorconfig to the user's base directory.
   const createEditorconfigLink = () => {
     const editorPath = path.join(__dirname, '../../config/user/.kyt-editorconfig');
@@ -363,7 +330,6 @@ module.exports = (flags, args) => {
         if (
           [
             '.gitignore',
-            '.stylelintrc.json',
             '.eslintrc.json',
             '.editorconfig',
             'kyt.config.js',
@@ -422,7 +388,6 @@ module.exports = (flags, args) => {
       installUserDependencies();
       createESLintFile();
       createBabelrc();
-      createStylelintFile();
       createEditorconfigLink();
       createKytConfig();
       createPrototypeFile();
@@ -490,7 +455,6 @@ module.exports = (flags, args) => {
     updateUserPackageJSON(true);
     createEditorconfigLink();
     createESLintFile();
-    createStylelintFile();
     createKytConfig();
     createGitignore();
     logger.end('Done setting up kyt');

@@ -2,23 +2,8 @@
 
 const webpack = require('webpack');
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
-const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
-const postcssLoader = require('../utils/getPostcssLoader');
+const { clientSrcPath, assetsBuildPath } = require('kyt-utils/paths')();
 const getPolyfill = require('../utils/getPolyfill');
-const isSassAsset = require('../utils/isSassAsset');
-
-const cssStyleLoaders = [
-  'style-loader',
-  {
-    loader: 'css-loader',
-    options: {
-      modules: true,
-      sourceMap: true,
-      localIdentName: '[name]-[local]--[hash:base64:5]',
-    },
-  },
-  postcssLoader,
-];
 
 module.exports = options => {
   const main = [
@@ -53,21 +38,6 @@ module.exports = options => {
       quiet: true,
       logLevel: 'silent',
       overlay: true,
-    },
-
-    module: {
-      rules: [
-        {
-          test: /\.css$/,
-          use: [...cssStyleLoaders],
-          exclude: [publicSrcPath],
-        },
-        {
-          test: isSassAsset,
-          use: [...cssStyleLoaders, 'sass-loader'],
-          exclude: [publicSrcPath],
-        },
-      ],
     },
 
     plugins: [...kytWebpackPlugins(options), new webpack.HotModuleReplacementPlugin()],
