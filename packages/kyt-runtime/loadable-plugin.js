@@ -69,7 +69,7 @@ class LoadablePlugin {
   apply(compiler) {
     compiler.hooks.emit.tapAsync('LoadableManifest', (compilation, callback) => {
       const manifest = buildManifest(compiler, compilation);
-      var json = JSON.stringify(manifest, null, 2);
+      const json = JSON.stringify(manifest, null, 2);
       const outputDirectory = path.dirname(this.filename);
       try {
         fs.mkdirSync(outputDirectory);
