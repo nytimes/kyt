@@ -17,7 +17,6 @@ and export an object with the following options.
 6.  `reactHotLoader` - Turns on React Hot Loading _default_: false
 7.  `hasServer` - Use a backend node server for build and dev (useful to false this out if you already have a backend) _default_: true
 8.  `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
-9.  `modifyJestConfig` - Callback function for editing kyt's Jest config. [See more details below](#modifyJestConfig).
 
 ## modifyWebpackConfig
 
@@ -44,30 +43,6 @@ modifyWebpackConfig: (baseConfig, options) => {
 
 Dev Tip:
 [webpack-merge](https://github.com/survivejs/webpack-merge) is a helpful tool for changing and combining Webpack configs.
-
-## modifyJestConfig
-
-`modifyJestConfig` is an optional callback you can define to edit the Jest config for your tests.
-
-The function is called with one parameter:
-
-- `baseConfig` The base Jest config that will be used.
-
-```javascript
-modifyJestConfig: baseConfig => {
-  // modify baseConfig as needed
-  return baseConfig;
-};
-```
-
-> **NOTE:** Currently the base Jest config runs `modifyWebpackConfig()` for you with `options.environment = "development"` in order to grab the development settings for your app (babel plugins, aliases, etc). See the [Jest config recipe](/docs/Recipes.md) for an example use case.
-
-**Dev Tip:**
-In some cases you may notice that your Jest configuration doesn't seem to have an affect, this is because Jest has a built-in cache to speed up subsequent test runs. In order to ensure that your configuration changes are reflected, run your tests with the [--no-cache flag](http://facebook.github.io/jest/docs/troubleshooting.html#caching-issues) passed into Jest, like so:
-
-```
-kyt test -- --no-cache
-```
 
 ## Creating env specific kyt configs
 

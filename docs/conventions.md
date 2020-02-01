@@ -83,16 +83,6 @@ const port = Number.parseInt(KYT.SERVER_PORT, 10);
 The kyt config file must live in the root of your repository.
 See further instructions [here](/docs/kytConfig.md)
 
-## Testing
-
-The `kyt test` command finds all files with `*.test.js` in the `/src` directory.
-
-## Linting
-
-The `kyt lint-script` command finds all files with `.js` extension in `/src`
-
-Specify lint rules with a `.eslintrc.js` file in the root of your project. [`setup`](/packages/kyt-cli/README.md) will create this file for you.
-
 ## .babelrc.js
 
 Making changes to babel settings should be done by creating a `.babelrc.js` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a starter-kyt, then you should already have a .babelrc.js configured with one of the kyt presets.
