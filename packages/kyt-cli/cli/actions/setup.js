@@ -118,19 +118,22 @@ module.exports = (flags, args) => {
       'start',
       'proto',
       'test',
+      'test-update',
       'test-watch',
       'test-coverage',
       'lint',
-      'lint-script',
-      'lint-style',
+      'lint-fix',
     ];
 
     // for commands that aren't 1:1 name:script
     const commandMap = {
       start: 'node build/server/main.js',
-      'test-watch': 'kyt test -- --watch',
-      'test-coverage': 'kyt test -- --coverage',
-      lint: 'npm run lint-script && npm run lint-style',
+      test: 'jest',
+      'test-update': 'jest -u',
+      'test-watch': 'jest --watch',
+      'test-coverage': 'jest --coverage',
+      lint: 'eslint .',
+      'lint-fix': 'eslint . --fix',
     };
 
     // Merge the Starter-kyt script names into the list of commands.
@@ -224,7 +227,7 @@ module.exports = (flags, args) => {
 
   // Create an .eslintrc in the user's base directory
   const createESLintFile = () => {
-    const eslintFileName = '.eslintrc.json';
+    const eslintFileName = '.eslintrc.js';
     const linkedPath = path.join(paths.userRootPath, eslintFileName);
 
     // Backup esLint if it exists
@@ -235,33 +238,12 @@ module.exports = (flags, args) => {
     }
 
     // Copy our user eslintrc into the user's root.
-    const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.json');
+    const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.js');
 
     if (shell.cp(esLintPath, linkedPath).code === 0) {
       logger.task(`Created ${eslintFileName} file`);
     } else {
       logger.error(`There was a problem creating ${eslintFileName}`);
-    }
-  };
-
-  // Create an stylelint.json in the user's base directory.
-  const createStylelintFile = () => {
-    const stylelintFileName = '.stylelintrc.json';
-    const userStylelintPath = path.join(paths.userRootPath, stylelintFileName);
-
-    // Backup the user's .stylelintrc if it exists.
-    if (shell.test('-f', userStylelintPath)) {
-      const stylelintBackup = path.join(paths.userRootPath, `${stylelintFileName}-${date}.bak`);
-      shell.mv(userStylelintPath, stylelintBackup);
-      logger.info(`Backed up current stylelint file to: ${stylelintBackup}`);
-    }
-
-    // Copy our .stylelintrc into the user's directory
-    const stylelintPath = path.join(__dirname, `../../config/user/${stylelintFileName}`);
-    if (shell.cp(stylelintPath, userStylelintPath).code === 0) {
-      logger.task(`Created ${stylelintFileName} file`);
-    } else {
-      logger.error(`There was a problem creating ${stylelintFileName}`);
     }
   };
 
@@ -279,17 +261,6 @@ module.exports = (flags, args) => {
 
     shell.cp(editorPath, configPath);
     logger.task('Created .editorconfig file');
-  };
-
-  const createBabelrc = () => {
-    // back up existing .babelrc, if it exists
-    if (shell.test('-f', paths.userBabelrcPath)) {
-      const mvTo = path.join(paths.userRootPath, `.babelrc-${date}.bak`);
-      shell.mv(paths.userBabelrcPath, mvTo);
-      logger.info(`Backed up current .babelrc to ${mvTo}`);
-    }
-    shell.cp(`${tmpDir}/.babelrc`, paths.userBabelrcPath);
-    logger.task('Created .babelrc');
   };
 
   // Copies the starter kyt kyt.config.js
@@ -361,14 +332,9 @@ module.exports = (flags, args) => {
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
         if (
-          [
-            '.gitignore',
-            '.stylelintrc.json',
-            '.eslintrc.json',
-            '.editorconfig',
-            'kyt.config.js',
-            'prototype.js',
-          ].indexOf(file) === -1 &&
+          ['.gitignore', '.eslintrc.js', '.editorconfig', 'kyt.config.js', 'prototype.js'].indexOf(
+            file
+          ) === -1 &&
           (shell.test('-f', filePath) || shell.test('-d', filePath))
         ) {
           const fileBackup = path.join(paths.userRootPath, `${file}-${date}-bak`);
@@ -421,8 +387,6 @@ module.exports = (flags, args) => {
       updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
-      createBabelrc();
-      createStylelintFile();
       createEditorconfigLink();
       createKytConfig();
       createPrototypeFile();
@@ -490,7 +454,6 @@ module.exports = (flags, args) => {
     updateUserPackageJSON(true);
     createEditorconfigLink();
     createESLintFile();
-    createStylelintFile();
     createKytConfig();
     createGitignore();
     logger.end('Done setting up kyt');
