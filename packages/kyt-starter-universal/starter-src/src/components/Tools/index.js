@@ -1,5 +1,5 @@
 import React from 'react';
-import * as styles from './styles';
+import * as styles from './styled';
 
 function Tools() {
   return (
