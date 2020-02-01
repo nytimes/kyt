@@ -36,5 +36,3 @@ starter-kyts act as boilerplates for projects. They use kyt as their build syste
    ```
 
 5. Create documentation
-
-6. Submit to kyt to be considered as a recommended starter-kyt

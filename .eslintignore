@@ -3,5 +3,3 @@ coverage
 e2e_tests/fixtures
 **/build
 **/lib
-**/.babelrc
-**/lib

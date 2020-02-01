@@ -1,14 +1,14 @@
 import React from 'react';
-import { paragraphClass } from './styles';
+import * as styles from './styled';
 
 function Home() {
   return (
     <section>
-      <p className={paragraphClass}>
+      <p className={styles.paragraphClass}>
         Welcome to the <strong>Static React Starter-kyt</strong>. This starter kyt should serve as
         the base for a client rendered React app.
       </p>
-      <p className={paragraphClass}>
+      <p className={styles.paragraphClass}>
         Check out the Tools section for an outline of the libraries that are used in this
         Starter-kyt.
       </p>

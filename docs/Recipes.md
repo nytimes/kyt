@@ -6,6 +6,7 @@ Easy ways to extend kyt.
 
 1. [Extend Webpack Configuration](#extend-webpack-configuration)
 1. [Add Webpack Aliases](#add-webpack-aliases)
+1. [Add Babel Plugins and Presets](#add-babel-plugins-and-presets)
 
 ## Extend Webpack Configuration
 
@@ -47,6 +48,25 @@ modifyWebpackConfig: (baseConfig, options) => {
   return baseConfig;
 };
 ```
+
+## Add Babel Plugins and Presets
+
+As of v0.4.0, kyt respects user `.babelrc` files.
+
+```bash
+npm i --save-dev my-babel-plugin
+```
+
+in `.babelrc.js`
+
+```js
+module.exports = {
+  presets: ['babel-preset-kyt-core'],
+  plugins: ['my-babel-plugin'],
+};
+```
+
+Check out the current [Babel configuration](/.babelrc.js).
 
 ## Polyfilling
 

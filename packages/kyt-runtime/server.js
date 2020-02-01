@@ -12,8 +12,7 @@ exports.DynamicImports = Capture;
 // Compares `modules` with `loadableBundles`
 // `assets` may exist in an alternate location, so allow it to be passed
 // `loadableBundles` may exist in an alternate location, so allow it to be passed
-// Filter out entry bundles, these can show up when you have small bundles that all
-//   get hoisted to the entry bundle
+// Filter out entry bundle, it can show up when you have small bundles that all get hoisted to the entry bundle
 exports.getBundles = ({ entry = 'main', modules, assets = null, loadableBundles = null }) => {
   if (!assets) {
     const assetsFile = fs.readFileSync(clientAssetsFile);

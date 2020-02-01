@@ -260,7 +260,7 @@ exports[`Test tools route 1`] = `
   text-align: center;
 }
 
-.lights-14 {
+.lights-15 {
   width: 500px;
   margin: 15px auto;
 }
@@ -370,7 +370,7 @@ exports[`Test tools route 1`] = `
             </li>
           </ul>
           <div
-            className="lights-14"
+            className="lights-15"
           >
             <Switch>
               <Route
@@ -499,6 +499,16 @@ exports[`Test tools route 1`] = `
                           React Router
                         </a>
                          - server and browser routing
+                      </li>
+                      <li
+                        className="lights-10"
+                      >
+                        <a
+                          href="https://github.com/nytimes/pretty-lights"
+                        >
+                          Pretty Lights
+                        </a>
+                         - CSS-in-JS with a reliable API
                       </li>
                       <li
                         className="lights-10"

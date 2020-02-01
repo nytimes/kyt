@@ -4,6 +4,12 @@
 
 ## Master
 
+## 1.0.0-alpha.4 2/1/20
+
+- New package: `kyt-runtime`. Using this ensures that you will be nagged about installing dependencies for your production install. This is useful when you are pruning `node_modules` for production in CI, which will remove `kyt`. Also, allows you make `kyt` a dev dependency.
+- New package: `jest-preset-kyt-styled`. Use this preset to run `stylelint` against your `styled.js` files. `styled.js` is the convention that the NYT uses to store `css` and `styled` exports from Pretty Lights.
+- SCSS support is now completely removed. `stylelint-config-kyt` still exists, but you will have to configure SCSS via `modifyWebpackConfig`.
+
 ## 1.0.0-alpha.3 10/23/17
 
 - Upgrades ESLint prettier and babel-eslint and makes it a `peerDependency` in `eslint-config-kyt`. [543](https://github.com/NYTimes/kyt/pull/543)

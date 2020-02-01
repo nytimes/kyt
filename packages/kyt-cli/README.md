@@ -24,7 +24,7 @@ The `setup` command sets up your project with all the application files that you
 1. Creates a new [kyt.config.js](/docs/kytConfig.md)
 2. Install necessary npm packages
 3. Creates a .gitignore and .editorconfig
-4. Creates linter configurations - .eslintrc.json and .stylelintrc.json files
+4. Creates linter configurations - .eslintrc.js files
 5. Adds kyt commands to npm scripts
 
 If kyt finds any files with duplicate names, it will back up your file before replacing it.
@@ -43,7 +43,7 @@ kyt will provide you with a list of supported starter-kyts to install. The suppo
 
 ## `list` command
 
-The `list` command lists the supported and recommended starter-kyts.
+The `list` command lists the supported starter-kyts.
 It includes:
 
 - A description of best use cases

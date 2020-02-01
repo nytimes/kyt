@@ -1,20 +1,24 @@
 import React from 'react';
-import { toolClass } from './styles';
+import * as styles from './styled';
 
 function Tools() {
   return (
     <ul>
-      <li className={toolClass}>
+      <li className={styles.toolClass}>
         <a href="https://expressjs.com/">Express</a> - server-side rendering
       </li>
-      <li className={toolClass}>
+      <li className={styles.toolClass}>
         <a href="https://facebook.github.io/react/">React</a> - component library
       </li>
-      <li className={toolClass}>
+      <li className={styles.toolClass}>
         <a href="https://github.com/reactjs/react-router">React Router</a> - server and browser
         routing
       </li>
-      <li className={toolClass}>
+      <li className={styles.toolClass}>
+        <a href="https://github.com/nytimes/pretty-lights">Pretty Lights</a> - CSS-in-JS with a
+        reliable API
+      </li>
+      <li className={styles.toolClass}>
         <a href="https://github.com/airbnb/enzyme">Enzyme</a> - React component testing
       </li>
     </ul>

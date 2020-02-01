@@ -13,12 +13,13 @@ The following are some of the tools included in this starter-kyt:
 
 - [React](https://facebook.github.io/react/) - Component library
 - [React Router](https://github.com/reactjs/react-router) - Server and client routing
+- [Pretty Lights](https://github.com/nytimes/pretty-lights) - CSS-in-JS with a reliable API
 - [Enzyme](https://github.com/airbnb/enzyme) - React component testing
 - [html webpack plugin](https://github.com/ampedandwired/html-webpack-plugin) - Builds a static html file
 
 ## Notes on implementation
 
-- You will find a `src/index.ejs` file which gets compiled to an html file by the html webpack plugin. See more for configuration in the `kyt.config.js`. After a build, kyt will copy the html build into `build/public`.
+- You will find a `src/index.ejs` file which gets compiled to an html file by the html webpack plugin. See more for configuration in the kyt.config.js. After a build, kyt will copy the html build into `build/public`.
 
 - Assets from `src/public` are accessible from `/` in both `dev` and production (`build`).
 

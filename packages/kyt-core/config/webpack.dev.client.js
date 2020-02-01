@@ -2,7 +2,7 @@
 
 const webpack = require('webpack');
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
-const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const { clientSrcPath, assetsBuildPath } = require('kyt-utils/paths')();
 const getPolyfill = require('../utils/getPolyfill');
 
 module.exports = options => {
