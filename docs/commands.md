@@ -85,7 +85,7 @@ See [facebook/jest#1767](https://github.com/facebook/jest/issues/1767) for vario
 ## lint-script
 
 The `lint-script` command lints all files in the `src/` directory using ESLint.
-During `kyt-cli setup`, an `.eslintrc.json` file is copied into the root of your app which extends kyt's base configuration.
+During `kyt-cli setup`, an `.eslintrc.js` file is copied into the root of your app which extends kyt's base configuration.
 You can add or override rules in this file.
 
 kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/packages/eslint-config-kyt/eslintrc.json). Read the kyt style guide [here](/packages/eslint-config-kyt/README.md)
@@ -95,11 +95,6 @@ Flags can be passed to ESLint through `kyt lint-script`
 ```
 kyt lint-script -- --fix
 ```
-
-## lint-style
-
-The `lint-style` command uses Stylelint to lint all files in the `src/` directory. By convention, it looks for files with a `.css` or `.scss` extension.
-During `kyt-cli setup`, a `.stylelintrc.json` is copied into the root of your app that extends kyt's base configuration, pre-configured with [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules. You can find kyt's base Stylelint configuration [here](/packages/stylelint-config-kyt/stylelintrc.json). You can add or update any of the [Stylelint rules](http://stylelint.io/user-guide/rules/) in your `.stylelintrc.json`. Read the kyt style guide [here](/packages/stylelint-config-kyt/README.md).
 
 ## proto
 

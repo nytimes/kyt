@@ -106,7 +106,7 @@ See the [kyt config docs](/docs/kytConfig.md) for instructions.
 kyt uses Webpack to compile src code and run tests.
 See our [recipes](/docs/Recipes.md) for extending configuration.
 
-To configure Babel, kyt respects `.babelrc` files defined at the root of user projects, and provides [presets](/packages/babel-preset-kyt-react) to provide opinionated configurations. (If no `.babelrc` is defined in the user project, [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core) is used.)
+To configure Babel, kyt respects `.babelrc.js` files defined at the root of user projects, and provides [presets](/packages/babel-preset-kyt-react) to provide opinionated configurations. (If no Babel config file is defined in the user project, [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core) is used.)
 
 ## starter-kyts
 
