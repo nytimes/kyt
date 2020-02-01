@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "test": "../packages/kyt-core/cli/index.js test"
-  }
-}
