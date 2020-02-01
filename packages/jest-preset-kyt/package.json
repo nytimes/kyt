@@ -1,13 +1,13 @@
 {
   "name": "jest-preset-kyt",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "description": "Jest preset",
   "main": "jest-preset.js",
   "author": "NYTimes",
   "license": "Apache-2.0",
   "dependencies": {
     "enzyme-adapter-react-16": "1.15.2",
-    "enzyme-to-json": "3.4.3",
+    "enzyme-to-json": "3.4.4",
     "raf": "3.4.1"
   },
   "peerDependencies": {

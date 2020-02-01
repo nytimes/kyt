@@ -44,7 +44,6 @@
     "eslint-plugin-react": "7.18.0",
     "eslint-plugin-react-hooks": "2.3.0",
     "jest": "25.1.0",
-    "jest-preset-kyt": "file:packages/jest-preset-kyt",
     "lerna": "2.11.0",
     "prettier": "1.19.1"
   }
