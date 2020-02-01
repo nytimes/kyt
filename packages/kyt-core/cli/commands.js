@@ -3,7 +3,6 @@ const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
 const { userPackageJSONPath } = require('kyt-utils/paths')();
 const devAction = require('./actions/dev');
-const testAction = require('./actions/test');
 const buildAction = require('./actions/build');
 const protoAction = require('./actions/proto');
 const kytConfigFn = require('./../utils/kytConfig');
@@ -50,11 +49,6 @@ program
     const config = args[0].config ? args[0].config : null;
     loadConfigAndDo(buildAction, config);
   });
-
-program
-  .command('test')
-  .description('Run test files with Jest.')
-  .action(() => loadConfigAndDo(testAction));
 
 program
   .command('proto')

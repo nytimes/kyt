@@ -69,23 +69,6 @@ module.exports = {
 
 Check out the current [Babel configuration](/.babelrc.js).
 
-## Add always-mocked modules to Jest configuration
-
-in `kyt.config.js`
-
-```javascript
-modifyJestConfig: baseConfig => {
-  const jestConfig = Object.assign({}, baseConfig);
-
-  // always mock Relay (react-relay) for tests
-  jestConfig.moduleNameMapper = Object.assign({}, jestConfig.moduleNameMapper, {
-    'react-relay': require('path').resolve(__dirname, '__mocks__/react-relay.js'),
-  });
-
-  return jestConfig;
-};
-```
-
 ## Polyfilling
 
 If you created your application with a starter-kyt then you should be setup for polyfilling. A starter-kyt should configure one of the kyt presets -- [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md) -- in your .babelrc and should add a `babel-polyfill` dependency to your package.json and import it at the top of `src/server/index.js` and `src/client/index.js`. With this setup, kyt will target the current version of Node in the server build. For the client, a [browserlist](https://github.com/ai/browserslist) configuration is used to target a set of browsers and polyfill the features they are missing. You can read more about changing these options in the [`babel-preset-kyt-core` `envOptions` configuration](/packages/babel-preset-kyt-core/README.md#options).

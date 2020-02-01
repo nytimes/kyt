@@ -15,11 +15,10 @@ npx kyt build
 ```
 
 1. [starter-kyt](/docs/Starterkyts.md)
-1. [`dev`](/docs/commands.md#dev) starts up a development environment
-1. [`build`](/docs/commands.md#build) compiles server and client code for production use
-1. [`test`](/docs/commands.md#test) runs all tests in /src
-1. [`proto`](/docs/commands.md#proto) starts the prototyping app
-1. `--help` shows commands and their documentation
+2. [`dev`](/docs/commands.md#dev) starts up a development environment
+3. [`build`](/docs/commands.md#build) compiles server and client code for production use
+4. [`proto`](/docs/commands.md#proto) starts the prototyping app
+5. `--help` shows commands and their documentation
 
 ## dev
 
@@ -45,40 +44,6 @@ The `build` command takes the entry index.js in `src/client/` and `src/server/` 
 The build command will also copy the `src/public` directory for static assets.
 
 `build` uses option `-C`(`--config`) to denote a path to a different [kyt.config.js](/docs/kytConfig.md) file
-
-## test
-
-The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
-kyt test looks for any `*.test.js` files in `src/`.
-
-You can pass flags to jest through `kyt test`.
-
-```
-kyt test -- --no-cache
-```
-
-### test-watch
-
-Runs Jest with `--watch`.
-
-### test-coverage
-
-Runs Jest with `--coverage`.
-
-### Updating the Jest config
-
-You can update the Jest configuration by defining a `modifyJestConfig` function in your `kyt.config.js`.
-See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
-
-### test globals
-
-kyt will inject DOM globals, like `global.window` and `global.document` into every test. If you need to remove or add to the globals, then you can override the Jest [`setupFiles` configuration](https://github.com/NYTimes/kyt/blob/5c80c117ae98268187e178388ae3b17a14f84c12/packages/kyt-core/config/jest.js#L21) in your `modifyJestConfig` callback.
-
-### Troubleshooting
-
-#### Tests are hanging and/or `test-watch` is broken on OSX Sierra
-
-See [facebook/jest#1767](https://github.com/facebook/jest/issues/1767) for various workarounds, the most common of which are installing or reinstalling [Watchman](https://facebook.github.io/watchman/).
 
 ## proto
 
