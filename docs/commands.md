@@ -17,11 +17,8 @@ node_modules/.bin/kyt build
 1. [starter-kyt](/docs/Starterkyts.md)
 2. [`dev`](/docs/commands.md#dev) starts up a development environment
 3. [`build`](/docs/commands.md#build) compiles server and client code for production use
-4. [`test`](/docs/commands.md#test) runs all tests in /src
-5. [`proto`](/docs/commands.md#proto) starts the prototyping app
-6. [`lint-script`](/docs/commands.md#lint-script) lints src code using ESLint
-7. [`lint-style`](/docs/commands.md#lint-style) lints src code using StyleLint
-8. `--help` shows commands and their documentation
+4. [`proto`](/docs/commands.md#proto) starts the prototyping app
+5. `--help` shows commands and their documentation
 
 ## dev
 
@@ -47,54 +44,6 @@ The `build` command takes the entry index.js in `src/client/` and `src/server/` 
 The build command will also copy the `src/public` directory for static assets.
 
 `build` uses option `-C`(`--config`) to denote a path to a different [kyt.config.js](/docs/kytConfig.md) file
-
-## test
-
-The `test` command takes test files in your `src/` directory and runs them using [Jest](http://facebook.github.io/jest/).
-kyt test looks for any `*.test.js` files in `src/`.
-
-You can pass flags to jest through `kyt test`.
-
-```
-kyt test -- --no-cache
-```
-
-### test-watch
-
-Runs Jest with `--watch`.
-
-### test-coverage
-
-Runs Jest with `--coverage`.
-
-### Updating the Jest config
-
-You can update the Jest configuration by defining a `modifyJestConfig` function in your `kyt.config.js`.
-See [modifyJestConfig](/docs/kytConfig.md#modifyJestConfig) instructions.
-
-### test globals
-
-kyt will inject DOM globals, like `global.window` and `global.document` into every test. If you need to remove or add to the globals, then you can override the Jest [`setupFiles` configuration](https://github.com/NYTimes/kyt/blob/5c80c117ae98268187e178388ae3b17a14f84c12/packages/kyt-core/config/jest.js#L21) in your `modifyJestConfig` callback.
-
-### Troubleshooting
-
-#### Tests are hanging and/or `test-watch` is broken on OSX Sierra
-
-See [facebook/jest#1767](https://github.com/facebook/jest/issues/1767) for various workarounds, the most common of which are installing or reinstalling [Watchman](https://facebook.github.io/watchman/).
-
-## lint-script
-
-The `lint-script` command lints all files in the `src/` directory using ESLint.
-During `kyt-cli setup`, an `.eslintrc.js` file is copied into the root of your app which extends kyt's base configuration.
-You can add or override rules in this file.
-
-kyt's base ESLint config extends [Airbnb](https://github.com/airbnb/javascript) with a few overrides. You can find kyt's base ESLint configuration [here](/packages/eslint-config-kyt/eslintrc.json). Read the kyt style guide [here](/packages/eslint-config-kyt/README.md)
-
-Flags can be passed to ESLint through `kyt lint-script`
-
-```
-kyt lint-script -- --fix
-```
 
 ## proto
 

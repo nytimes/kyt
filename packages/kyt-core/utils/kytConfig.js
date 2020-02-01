@@ -46,12 +46,10 @@ module.exports = optionalConfig => {
     logger.info('Let us know: https://github.com/NYTimes/kyt/issues/432');
   }
 
-  // Create default identity functions for modify functions
-  ['modifyWebpackConfig', 'modifyJestConfig'].forEach(m => {
-    if (typeof config[m] !== 'function') {
-      config[m] = c => c;
-    }
-  });
+  // Create default identity functions for modify function
+  if (typeof config.modifyWebpackConfig !== 'function') {
+    config.modifyWebpackConfig = c => c;
+  }
 
   const validateURL = (name, userURL) => {
     // Check to see if the url has the
