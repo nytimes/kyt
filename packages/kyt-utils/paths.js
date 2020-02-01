@@ -29,7 +29,6 @@ module.exports = () => {
     userKytConfigPath: path.join(userRootPath, 'kyt.config.js'),
     userNodeModulesPath: path.join(userRootPath, 'node_modules'),
     userPackageJSONPath: path.join(userRootPath, 'package.json'),
-    userBabelrcPath: path.join(userRootPath, '.babelrc.js'),
     userPostcssConfigPath: path.join(userRootPath, 'postcss.config.js'),
   };
 };

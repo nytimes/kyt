@@ -6,7 +6,6 @@ const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const uniq = require('lodash.uniq');
-const findBabelConfigSync = require('find-babel-config').sync;
 const starterKyts = require('../../config/starterKyts');
 const cliPkgJson = require('../../package.json');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
@@ -264,19 +263,6 @@ module.exports = (flags, args) => {
     logger.task('Created .editorconfig file');
   };
 
-  const createBabelrc = () => {
-    // back up existing .babelrc, if it exists
-    const found = findBabelConfigSync(paths.userRootPath);
-    if (found) {
-      const fileName = path.basename(found.file);
-      const mvTo = path.join(paths.userRootPath, `.babelrc-${date}.bak`);
-      shell.mv(found.file, mvTo);
-      logger.info(`Backed up current ${fileName} to ${mvTo}`);
-    }
-    shell.cp(`${tmpDir}/.babelrc.js`, paths.userBabelrcPath);
-    logger.task('Created .babelrc.js');
-  };
-
   // Copies the starter kyt kyt.config.js
   // to the user's base directory.
   const createKytConfig = () => {
@@ -401,7 +387,6 @@ module.exports = (flags, args) => {
       updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
-      createBabelrc();
       createEditorconfigLink();
       createKytConfig();
       createPrototypeFile();
