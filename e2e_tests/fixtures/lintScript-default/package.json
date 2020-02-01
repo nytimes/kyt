@@ -1,5 +1,0 @@
-{
-  "scripts": {
-    "lint-script": "../packages/kyt-core/cli/index.js lint-script"
-  }
-}
