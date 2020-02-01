@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import dynamic from 'kyt-runtime/dynamic';
-import * as styles from './styles';
+import * as styles from './styled';
 
 const Home = dynamic(() => import(/* webpackChunkName: "home" */ '../Home'));
 const Tools = dynamic(() => import(/* webpackChunkName: "tools" */ '../Tools'));
