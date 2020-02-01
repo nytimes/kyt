@@ -5,7 +5,6 @@ const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
-const uniq = require('lodash.uniq');
 const starterKyts = require('../../config/starterKyts');
 const cliPkgJson = require('../../package.json');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
@@ -140,7 +139,7 @@ module.exports = (flags, args) => {
     const tempScripts =
       (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
     if (tempScripts.length) {
-      commands = uniq(commands.concat(tempScripts));
+      commands = [...new Set(commands.concat(tempScripts))];
     }
 
     // This is the default test script added by 'npm init'.

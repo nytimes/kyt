@@ -8,7 +8,6 @@ const resolveFromUtils = file => path.resolve(__dirname, '..', 'utils', 'jest', 
 module.exports = (rootDir, aliases = {}) => ({
   moduleNameMapper: {
     [fileExtensions]: resolveFromUtils('file.stub'),
-    '^[./a-zA-Z0-9!&$_-]+\\.(css|scss)$': 'identity-obj-proxy',
     ...aliases,
   },
   moduleFileExtensions: ['js', 'jsx', 'json'],

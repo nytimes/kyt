@@ -14,26 +14,30 @@ This is an extension of the Airbnb [**JavaScript**](https://github.com/airbnb/ja
 
 Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
 
-1. Install the _eslint-config-kyt_ node module and its dependencies:  
-   `npm install eslint prettier eslint-config-kyt eslint-config-airbnb eslint-plugin-import eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-react eslint-config-prettier eslint-plugin-prettier prettier-eslint-cli babel-eslint eslint-plugin-react-hooks --save-dev`
-2. Copy the following into an `.eslintrc` in your project:
+1. Install the _eslint-config-kyt_ node module and its dependencies:
+   ```sh
+   npm i  --save-dev eslint babel-eslint prettier eslint-config-airbnb eslint-config-kyt eslint-plugin-import eslint-plugin-json eslint-plugin-jsx-a11y eslint-config-prettier eslint-plugin-prettier eslint-plugin-react eslint-plugin-react-hooks
+   ```
+2. Copy the following into an `.eslintrc.js` in your project:
 
 ```js
-{
-  "extends": "eslint-config-kyt",
-  "rules": {
+module.exports = {
+  extends: 'eslint-config-kyt',
+  rules: {
     /* If you must, override rules here :P */
-  }
-}
+  },
+};
 ```
 
 ## Prettier Support
 
-If you need to format code in your codebase, run the prettier-eslint command:
+If you need to format code in your codebase, run this command:
 
 ```
-node_modules/.bin/prettier-eslint src/**/*.js --write
+npx eslint src --fix
 ```
+
+starter-kyts add the `lint-fix` command to your `package.json` set of `scripts`.
 
 To keep things formatted as you develop, install an editor package. See more [here](/docs/Recipes.md#editor-configuration).
 
@@ -62,6 +66,10 @@ To keep things formatted as you develop, install an editor package. See more [he
 **[prefer-spread](http://eslint.org/docs/rules/prefer-spread)** - _Aimed to flag usage of Function.prototype.apply() that can be replaced with the spread operator._
 
 ## Changelog
+
+**1.0.0-alpha.4** - 2/1/20
+
+- Upgrades all `peerDependencies` to latest
 
 **1.0.0-alpha.2** - 10/23/17
 

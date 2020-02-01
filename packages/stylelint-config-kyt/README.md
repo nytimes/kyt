@@ -17,24 +17,25 @@ This is an extension of [config-standard](https://github.com/stylelint/stylelint
 
 ## Install
 
-Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
+If you want to install this linter extension, follow these install instructions.
 
-1. Install the _stylelint-config-kyt_ node module:  
-   `npm install stylelint stylelint-config-kyt stylelint-config-standard --save-dev`
-2. Add an extension to your Stylelint configuration:
+1. Install the `stylelint-config-kyt` npm package:
+   ```
+   npm i --save-dev stylelint stylelint-config-kyt stylelint-config-standard
+   ```
+1. Add a `.stylelintrc` file to your project's root
+1. Add configuration:
 
-```js
+```json
 {
   "extends": "stylelint-config-nyt",
-  "rules": {
-    /* If you must, override rules here :P */
-  }
+  "rules": {}
 }
 ```
 
 ## CSS + Sass Guide
 
-The following guide is best used with the kyt linter against CSS/Sass Modules.
+The following guide is best used with the `kyt` linter against CSS/Sass Modules.
 
 ### Formatting
 
@@ -139,47 +140,3 @@ Prefer camelCased variable names (e.g. `$myVariable`).
 - 1 space after colons and between params
 - Commas are used as separators unless passing in a comma separated list as an argument, in these cases use a semicolon
   Default values can be used when it's convenient
-
-## Changelog
-
-**Master**
-
-**1.0.0-alpha.2** - 10/20/17
-
-- Adds at-rule configuration for better Sass support
-
-**1.0.0-alpha.1** - 10/20/17
-
-- Upgrades StyleLint dependencies and adds a few new rules.
-
-**0.3.2** - 04/10/17
-
-Removes `at-rule-no-unknown` so all sass syntax is supported.
-
-**0.3.1** - 03/28/17
-
-This release ensures using CSS modules selectors such as :global and :local
-don't trigger invalid stylelint errors. Useful when using libraries such as
-react-addons-css-transition-group.
-
-**0.3.0** - 03/23/17
-
-This release upgrades Stylelint from [7.5.0 to 7.9.0](https://github.com/stylelint/stylelint/blob/master/CHANGELOG.md) and stylelint-config-standard from [14.0.0 to 16.0.0](https://github.com/stylelint/stylelint-config-standard/blob/master/CHANGELOG.md).
-
-### BREAKING CHANGES
-
-### FEATURES
-
-### FIXES
-
-**0.2.0** - 02/07/17
-
-### BREAKING CHANGES
-
-`dependencies` were converted to `peerDependencies` and `kyt` now includes the dependencies. If you're using `kyt`, then an `npm install` should be enough. If you installed this package as a standalone extension then you'll need to follow the Installation instructions and `npm install` the named dependencies.
-
-### FEATURES
-
-### FIXES
-
-**0.0.1 - 0.1.0 ** - 12/08/16 - life

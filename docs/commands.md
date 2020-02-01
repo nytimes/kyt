@@ -1,17 +1,17 @@
 # kyt command line interface
 
-kyt includes a CLI with all the commands needed for development.
+`kyt` includes a CLI with all the commands needed for development.
 
-`kyt-cli setup` includes these commands as scripts in your package.json:
+`kyt-cli setup` includes these commands as scripts in your `package.json`:
 
 ```
 npm run dev
 ```
 
-Or you can run a command with `node_modules/.bin/kyt command`
+Or you can run a command with `npx kyt command`
 
 ```
-node_modules/.bin/kyt build
+npx kyt build
 ```
 
 1. [starter-kyt](/docs/Starterkyts.md)
@@ -22,7 +22,7 @@ node_modules/.bin/kyt build
 
 ## dev
 
-The `dev` command takes the entry index.js in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot reloading to allow for fast development.
+The `dev` command takes the entry `index.js` in `src/client/` and `src/server/`, compiles them, and starts client and backend servers. The dev environment includes hot-reloading to allow for fast development.
 
 If `hasServer` is set to `false` in [kyt.config.js](/docs/kytConfig.md), `src/server/` is ignored and no backend server is started.
 
@@ -39,7 +39,7 @@ will run the [node debugging for Chrome DevTools](https://medium.com/@paul_irish
 
 ## build
 
-The `build` command takes the entry index.js in `src/client/` and `src/server/` (ignoring the latter if `hasServer` set to false in [kyt.config.js](/docs/kytConfig.md)), compiles them, and saves them to a build folder. This is an optimized production build.
+The `build` command takes the entry `index.js` in `src/client/` and `src/server/` (ignoring the latter if `hasServer` set to false in [kyt.config.js](/docs/kytConfig.md)), compiles them, and saves them to a build folder. This is an optimized production build.
 
 The build command will also copy the `src/public` directory for static assets.
 
@@ -47,14 +47,14 @@ The build command will also copy the `src/public` directory for static assets.
 
 ## proto
 
-kyt provides a scratch space for building simple prototypes alongside your app.
+`kyt` provides a scratch space for building simple prototypes alongside your app.
 To get started, follow the setup instructions below.
 
 ### How Prototype Works
 
 1. Create a `prototype.js` file.
 
-The proto command takes a `prototype.js` file at the root of your app as an entry for a dev server. You can use this file as the start of your prototype.
+The `proto` command takes a `prototype.js` file at the root of your app as an entry for a dev server. You can use this file as the start of your prototype.
 
 2. index.html
 
@@ -77,5 +77,5 @@ prototypeURL: "http://localhost:3002/prototype"
 
 ### Updating the prototype Webpack config
 
-You can update the prototype config by using the modifyWebpackConfig function in `kyt.config.js`.
+You can update the prototype config by using the `modifyWebpackConfig` function in `kyt.config.js`.
 See [modifyWebpackConfig](/docs/kytConfig.md#modifywebpackconfig) instructions.

@@ -43,7 +43,7 @@ kyt will provide you with a list of supported starter-kyts to install. The suppo
 
 ## `list` command
 
-The `list` command lists the supported and recommended starter-kyts.
+The `list` command lists the supported starter-kyts.
 It includes:
 
 - A description of best use cases
