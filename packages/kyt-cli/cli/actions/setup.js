@@ -112,13 +112,28 @@ module.exports = (flags, args) => {
   // Adds kyt and Starter-kyt commands as npm scripts
   const addPackageJsonScripts = packageJson => {
     if (!packageJson.scripts) packageJson.scripts = {};
-    let commands = ['dev', 'build', 'start', 'proto', 'test', 'test-watch', 'test-coverage'];
+    let commands = [
+      'dev',
+      'build',
+      'start',
+      'proto',
+      'test',
+      'test-update',
+      'test-watch',
+      'test-coverage',
+      'lint',
+      'lint-fix',
+    ];
 
     // for commands that aren't 1:1 name:script
     const commandMap = {
       start: 'node build/server/main.js',
-      'test-watch': 'kyt test -- --watch',
-      'test-coverage': 'kyt test -- --coverage',
+      test: 'jest',
+      'test-update': 'jest -u',
+      'test-watch': 'jest --watch',
+      'test-coverage': 'jest --coverage',
+      lint: 'eslint .',
+      'lint-fix': 'eslint . --fix',
     };
 
     // Merge the Starter-kyt script names into the list of commands.
@@ -212,7 +227,7 @@ module.exports = (flags, args) => {
 
   // Create an .eslintrc in the user's base directory
   const createESLintFile = () => {
-    const eslintFileName = '.eslintrc.json';
+    const eslintFileName = '.eslintrc.js';
     const linkedPath = path.join(paths.userRootPath, eslintFileName);
 
     // Backup esLint if it exists
@@ -223,7 +238,7 @@ module.exports = (flags, args) => {
     }
 
     // Copy our user eslintrc into the user's root.
-    const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.json');
+    const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.js');
 
     if (shell.cp(esLintPath, linkedPath).code === 0) {
       logger.task(`Created ${eslintFileName} file`);
@@ -246,17 +261,6 @@ module.exports = (flags, args) => {
 
     shell.cp(editorPath, configPath);
     logger.task('Created .editorconfig file');
-  };
-
-  const createBabelrc = () => {
-    // back up existing .babelrc, if it exists
-    if (shell.test('-f', paths.userBabelrcPath)) {
-      const mvTo = path.join(paths.userRootPath, `.babelrc-${date}.bak`);
-      shell.mv(paths.userBabelrcPath, mvTo);
-      logger.info(`Backed up current .babelrc to ${mvTo}`);
-    }
-    shell.cp(`${tmpDir}/.babelrc`, paths.userBabelrcPath);
-    logger.task('Created .babelrc');
   };
 
   // Copies the starter kyt kyt.config.js
@@ -328,13 +332,9 @@ module.exports = (flags, args) => {
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
         if (
-          [
-            '.gitignore',
-            '.eslintrc.json',
-            '.editorconfig',
-            'kyt.config.js',
-            'prototype.js',
-          ].indexOf(file) === -1 &&
+          ['.gitignore', '.eslintrc.js', '.editorconfig', 'kyt.config.js', 'prototype.js'].indexOf(
+            file
+          ) === -1 &&
           (shell.test('-f', filePath) || shell.test('-d', filePath))
         ) {
           const fileBackup = path.join(paths.userRootPath, `${file}-${date}-bak`);
@@ -387,7 +387,6 @@ module.exports = (flags, args) => {
       updateUserPackageJSON(false);
       installUserDependencies();
       createESLintFile();
-      createBabelrc();
       createEditorconfigLink();
       createKytConfig();
       createPrototypeFile();

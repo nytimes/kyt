@@ -2,5 +2,4 @@ coverage
 **/node_modules
 e2e_tests/fixtures
 **/build
-**/.babelrc
 **/lib

@@ -58,16 +58,16 @@ As of v0.4.0, kyt respects user `.babelrc` files.
 npm i --save-dev my-babel-plugin
 ```
 
-in `.babelrc`
+in `.babelrc.js`
 
-```json
-{
-  "presets": ["kyt-core"],
-  "plugins": ["my-babel-plugin"]
-}
+```js
+module.exports = {
+  presets: ['babel-preset-kyt-core'],
+  plugins: ['my-babel-plugin'],
+};
 ```
 
-Check out the current [Babel configuration](/.babelrc).
+Check out the current [Babel configuration](/.babelrc.js).
 
 ## Add always-mocked modules to Jest configuration
 

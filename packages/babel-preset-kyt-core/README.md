@@ -10,13 +10,11 @@ It is also included as part of [babel-preset-kyt-react](/packages/babel-preset-k
 To install:
 
 1. `npm install babel-preset-kyt-core --save`
-2. In babelrc:
-   ```
-   {
-     presets: [
-       "babel-preset-kyt-core"
-     ]
-   }
+2. In `.babelrc.js`:
+   ```js
+   module.exports = {
+     presets: ['babel-preset-kyt-core'],
+   };
    ```
 
 ## Options
@@ -76,13 +74,3 @@ _(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) fo
 ## Polyfilling
 
 By default `babel-preset-env`, an internal dependency, is configured to `useBuiltIns` which means that you can install `babel-polyfill` as a dependency in your project and `import 'babel-polyfill'` at the top of your entry file (in a kyt project that would be `src/client/index.js` and `src/server/index.js`) to include an optimized polyfill for your build.
-
-## CHANGELOG
-
-### `0.3.0` - XX/XX/XX
-
-- Adds `babel-preset-env`, removes `babel-preset-latest`
-
-### `0.2.0` - 03/23/17
-
-- Includes [`babel-plugin-syntax-dynamic-import`](https://www.npmjs.com/package/babel-plugin-syntax-dynamic-import) to allow parsing of [dynamic `import()`](https://webpack.js.org/guides/code-splitting-import/#dynamic-import).
