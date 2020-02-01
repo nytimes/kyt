@@ -17,12 +17,4 @@ module.exports = {
       install: 'Select static in kyt-cli setup',
     },
   },
-  recommended: {
-    redux: {
-      displayName: 'Redux',
-      description:
-        'This starter-kyt should serve as the base for an advanced, isomorphic React app that will use Redux.',
-      install: 'kyt-cli setup -r https://github.com/julianvmodesto/kyt-starter-universal-redux.git',
-    },
-  },
 };
