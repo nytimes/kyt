@@ -39,6 +39,7 @@ cli-test
 test-packages
 
 # Local stuff
+packages/kyt-starter-*/*/package-lock.json
 packages/kyt-starter-*/*/build
 packages/*/lib
 packages/*/package-lock.json

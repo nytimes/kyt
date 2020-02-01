@@ -5,6 +5,7 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom';
 import { preloadDynamicImports, DynamicImports, getBundles } from 'kyt-runtime/server';
+import { extractCritical } from 'pretty-lights/server';
 import template from './template';
 import App from '../components/App';
 
@@ -25,12 +26,14 @@ app.get('*', (req, res) => {
   const context = {};
   const modules = [];
 
-  const html = renderToString(
-    <DynamicImports report={moduleName => modules.push(moduleName)}>
-      <StaticRouter location={req.url} context={context}>
-        <App />
-      </StaticRouter>
-    </DynamicImports>
+  const { html, ids, css } = extractCritical(
+    renderToString(
+      <DynamicImports report={moduleName => modules.push(moduleName)}>
+        <StaticRouter location={req.url} context={context}>
+          <App />
+        </StaticRouter>
+      </DynamicImports>
+    )
   );
 
   if (context.status && context.status.code) {
@@ -46,6 +49,8 @@ app.get('*', (req, res) => {
   res.status(200).send(
     template({
       html,
+      ids,
+      css,
       bundles: getBundles({ modules }),
     })
   );
