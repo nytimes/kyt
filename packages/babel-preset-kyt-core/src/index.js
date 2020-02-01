@@ -43,11 +43,17 @@ module.exports = function getPresetCore(context, opts) {
   //    "envOptions": {
   //      "client": { ... },
   //      "server": { ... },
+  //      "test": { ... }
   //    }
   //  }]]
   //
   if (process.env.KYT_ENV_TYPE === 'server') {
     envOptions = merge({}, serverEnvOptions, userEnvOptions.server || {});
+  } else if (process.env.KYT_ENV_TYPE === 'test') {
+    envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
+    // Unless the user wants to define the transform-runtime plugin,
+    // we needs to make sure it's true/added for tests.
+    if (opts.includeRuntime === undefined) opts.includeRuntime = true;
   } else {
     envOptions = merge({}, clientEnvOptions, userEnvOptions.client || {});
   }
