@@ -3,7 +3,6 @@
   "private": true,
   "description": "",
   "main": "index.js",
-  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nytimes/kyt/packages/kyt-starter-static.git"
@@ -14,6 +13,9 @@
     "url": "https://github.com/nytimes/kyt/issues"
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
+  "scripts": {
+    "test": "jest --config=jest.config.js"
+  },
   "dependencies": {
     "@babel/runtime": "7.8.3",
     "core-js": "2.6.9",
@@ -27,14 +29,26 @@
     "regenerator-runtime": "0.13.3"
   },
   "devDependencies": {
+    "babel-eslint": "10.0.3",
     "babel-preset-kyt-react": "1.0.0-alpha.0",
     "enzyme": "3.10.0",
     "enzyme-adapter-react-16": "1.14.0",
     "enzyme-to-json": "3.4.0",
+    "eslint": "5.16.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-kyt": "1.0.0-alpha.2",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.0",
+    "eslint-plugin-json": "2.0.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "7.18.0",
+    "eslint-plugin-react-hooks": "2.3.0",
     "jest": "25.1.0",
     "jest-preset-kyt-styled": "1.0.0-alpha.0",
     "html-webpack-plugin": "3.2.0",
     "kyt": "1.0.0-alpha.3",
+    "prettier": "1.19.1",
     "raf": "3.4.1"
   },
   "version": "1.0.0-alpha.3"
