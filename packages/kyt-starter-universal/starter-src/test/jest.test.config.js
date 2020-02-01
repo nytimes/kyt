@@ -7,4 +7,5 @@ module.exports = {
   setupFiles: ['raf/polyfill'],
   setupFilesAfterEnv: [require.resolve('./jest.setup.js')],
   snapshotSerializers: ['enzyme-to-json/serializer', 'pretty-lights/jest'],
+  testMatch: ['<rootDir>/src/**/*.test.js'],
 };
