@@ -6,5 +6,11 @@ module.exports = {
   },
   setupFiles: ['raf/polyfill'],
   setupFilesAfterEnv: [require.resolve('./setup.js')],
-  snapshotSerializers: ['enzyme-to-json/serializer', 'pretty-lights/jest'],
+  snapshotSerializers: ['enzyme-to-json/serializer'],
+  cacheDirectory: '<rootDir>/.caches/jest',
+  haste: {
+    computeSha1: true,
+    providesModuleNodeModules: [],
+    throwOnModuleCollision: false,
+  },
 };
