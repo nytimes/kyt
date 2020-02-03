@@ -46,7 +46,7 @@
     "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "2.3.0",
     "jest": "25.1.0",
-    "jest-preset-kyt": "1.0.0-alpha.4",
+    "jest-preset-kyt-enzyme": "1.0.0-alpha.4",
     "jest-preset-kyt-styled": "1.0.0-alpha.4",
     "kyt": "1.0.0-alpha.4",
     "prettier": "1.19.1",

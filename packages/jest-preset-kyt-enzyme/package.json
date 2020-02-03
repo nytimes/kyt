@@ -1,5 +1,5 @@
 {
-  "name": "jest-preset-kyt",
+  "name": "jest-preset-kyt-enzyme",
   "version": "1.0.0-alpha.4",
   "description": "Jest preset",
   "main": "jest-preset.js",
