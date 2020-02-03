@@ -7,7 +7,6 @@ Easy ways to extend kyt.
 1. [Extend Webpack Configuration](#extend-webpack-configuration)
 1. [Add Webpack Aliases](#add-webpack-aliases)
 1. [Add Babel Plugins and Presets](#add-babel-plugins-and-presets)
-1. [Add always-mocked modules to Jest configuration](#add-always-mocked-modules-to-jest-configuration)
 
 ## Extend Webpack Configuration
 
