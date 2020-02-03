@@ -5,7 +5,7 @@ module.exports = {
     name: 'jest',
     color: 'cyan',
   },
-  preset: 'jest-preset-kyt',
+  preset: 'jest-preset-kyt-enzyme',
   snapshotSerializers: ['enzyme-to-json/serializer', 'pretty-lights/jest'],
   rootDir: path.resolve(__dirname, '..'),
 };
