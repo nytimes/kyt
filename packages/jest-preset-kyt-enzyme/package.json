@@ -9,6 +9,7 @@
     "enzyme-adapter-react-16": "1.15.2",
     "enzyme-to-json": "3.4.4",
     "jest-environment-jsdom-global": "1.2.0",
+    "jsdom": "16.1.0",
     "raf": "3.4.1"
   },
   "peerDependencies": {
