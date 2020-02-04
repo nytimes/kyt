@@ -21,15 +21,3 @@ global.navigator = {
 };
 
 copyProps(window, global);
-
-// Make sure console.error's fail tests
-
-let errorSpy;
-beforeAll(() => {
-  errorSpy = jest.spyOn(global.console, 'error');
-});
-
-afterEach(() => {
-  expect(errorSpy).not.toHaveBeenCalled();
-  errorSpy.mockReset();
-});
