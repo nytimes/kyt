@@ -14,7 +14,8 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
   "scripts": {
-    "test": "jest --config=jest.config.js"
+    "test": "jest",
+    "test-update": "jest -u"
   },
   "dependencies": {
     "@babel/runtime": "7.8.4",

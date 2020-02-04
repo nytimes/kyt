@@ -1,4 +1,5 @@
 const path = require('path');
+const jestPreset = require('jest-preset-kyt-enzyme');
 
 module.exports = {
   displayName: {
@@ -6,6 +7,6 @@ module.exports = {
     color: 'cyan',
   },
   preset: 'jest-preset-kyt-enzyme',
-  snapshotSerializers: ['enzyme-to-json/serializer', 'pretty-lights/jest'],
+  snapshotSerializers: [...jestPreset.snapshotSerializers, 'pretty-lights/jest'],
   rootDir: path.resolve(__dirname, '..'),
 };
