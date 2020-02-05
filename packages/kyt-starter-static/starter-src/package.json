@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@babel/runtime": "7.8.4",
-    "core-js": "2.6.9",
+    "core-js": "3.6.4",
     "kyt-runtime": "1.0.0-alpha.4",
     "pretty-lights": "0.0.14",
     "prop-types": "15.7.2",
