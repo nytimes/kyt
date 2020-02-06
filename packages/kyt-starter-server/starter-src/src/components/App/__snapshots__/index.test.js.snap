@@ -224,9 +224,9 @@ exports[`Test home route 1`] = `
                       >
                         Welcome to the 
                         <strong>
-                          Universal React Starter-kyt
+                          React Server Starter-kyt
                         </strong>
-                        . This starter kyt should serve as the base for an advanced, server-rendered React app.
+                        . This starter kyt should serve as the base for an server-rendered React app.
                       </p>
                       <p
                         className="lights-10"

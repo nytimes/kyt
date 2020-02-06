@@ -19,7 +19,7 @@
     "publish-release": "lerna publish --exact --message",
     "starter-kyts": "lerna exec --scope \"kyt-starter-{server,static,universal}\"",
     "test": "jest && npm run starter-kyts -- -- \"cd starter-src && npm t\"",
-    "test-update": "jest -u && npm run starter-kyts -- -- \"cd starter-src && npm t -- -u\"",
+    "test-update": "jest -u && npm run starter-kyts -- -- \"cd starter-src && npm run test-update\"",
     "test-watch": "jest --watch",
     "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
