@@ -15,8 +15,9 @@ and export an object with the following options.
 4.  `debug` - when true, the CLI returns all verbose output _default_: false
 5.  `productionPublicPath` - the public path for assets in the production build. Useful for CDN's _default_: `/`
 6.  `reactHotLoader` - Turns on React Hot Loading _default_: false
-7.  `hasServer` - Use a backend node server for build and dev (useful to false this out if you already have a backend) _default_: true
-8.  `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
+7.  `hasClient` - Use a client client server for dev (useful if you are using Node to generate HTML pages which are not isomorphic) _default_: `true`
+8.  `hasServer` - Use a backend node server for build and dev (useful to `false` this out if you already have a backend) _default_: `true`
+9.  `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
 
 ## modifyWebpackConfig
 

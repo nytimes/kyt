@@ -10,7 +10,7 @@ starter-kyts act as boilerplates for projects. They use kyt as their build syste
 
 2. Add additional dependencies to a package.json
 
-3. Set up `/src/client/index.js` and `/src/server/index.js` (the latter is optional if `hasServer: false` is set in [config](/docs/kytConfig.md))
+3. Set up `/src/client/index.js` and `/src/server/index.js` (either is optional if `hasClient: false` or `hasServer: false` is set in [config](/docs/kytConfig.md))
 
 4. Optionally add a package.json `kyt` object configuration with the following keys and values:
 

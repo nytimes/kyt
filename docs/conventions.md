@@ -8,10 +8,11 @@ In order to use `kyt`, your project must follow these conventions.
 
 ```
 src/
+  // ignored if `hasClient` is set to `false` in config
   /client
     index.js // Webpack entry for client code
     polyfills.js // polyfills for supported browsers
-  // ignored if `hasServer` is set to false in config
+  // ignored if `hasServer` is set to `false` in config
   /server
     index.js // Webpack entry for server code
     polyfills.js // polyfills for supported Node.js version

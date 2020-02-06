@@ -25,7 +25,7 @@ module.exports = (config, flags) => {
   let clientCompiler;
   let serverCompiler;
   const { clientConfig, serverConfig } = buildConfigs(config);
-  const { clientURL, serverURL, reactHotLoader, hasServer } = config;
+  const { clientURL, serverURL, reactHotLoader, hasServer, hasClient } = config;
 
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
@@ -79,16 +79,18 @@ module.exports = (config, flags) => {
 
   const compileServer = () => serverCompiler.run(() => undefined);
 
-  // Compile Client Webpack Config
-  clientCompiler = webpackCompiler(clientConfig, stats => {
-    if (stats.hasErrors()) return;
-    afterClientCompile();
-    if (hasServer) {
-      compileServer();
-    } else {
-      logger.end('Client started');
-    }
-  });
+  if (hasClient) {
+    // Compile Client Webpack Config
+    clientCompiler = webpackCompiler(clientConfig, stats => {
+      if (stats.hasErrors()) return;
+      afterClientCompile();
+      if (hasServer) {
+        compileServer();
+      } else {
+        logger.end('Client started');
+      }
+    });
+  }
 
   // Compile Server Webpack Config
   if (hasServer) {
@@ -112,9 +114,13 @@ module.exports = (config, flags) => {
     });
   }
 
-  // Starting point...
-  // By starting the client, the middleware will
-  // compile the client configuration and trigger
-  // the `clientCompiler` callback.
-  ifPortIsFreeDo(clientURL.port, startClient);
+  if (hasClient) {
+    // Starting point...
+    // By starting the client, the middleware will
+    // compile the client configuration and trigger
+    // the `clientCompiler` callback.
+    ifPortIsFreeDo(clientURL.port, startClient);
+  } else {
+    compileServer();
+  }
 };

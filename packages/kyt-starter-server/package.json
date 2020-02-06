@@ -1,0 +1,15 @@
+{
+  "name": "kyt-starter-server",
+  "version": "1.0.0-alpha.4",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt/packages/kyt-starter-server.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nytimes/kyt/issues"
+  },
+  "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-server#readme"
+}
