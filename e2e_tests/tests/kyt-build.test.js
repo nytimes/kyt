@@ -45,6 +45,13 @@ describe('kyt build', () => {
     expect(shell.test('-d', 'build/server')).toBe(false);
   });
 
+  it('should ignore client build if hasClient=false', () => {
+    util.setupStageWithFixture(stageName, 'build-no-client');
+    const output = shell.exec('npm run build');
+    expect(output.code).toBe(0);
+    expect(shell.test('-d', 'build/server')).toBe(true);
+  });
+
   afterEach(() => {
     util.teardownStage(stageName);
   });

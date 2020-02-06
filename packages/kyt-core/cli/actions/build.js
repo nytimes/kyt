@@ -10,6 +10,7 @@ const webpackCompiler = require('../../utils/webpackCompiler');
 module.exports = config => {
   logger.start('Starting production build...');
 
+  let clientCompiler;
   let serverCompiler;
 
   const { clientConfig, serverConfig } = buildConfigs(config, 'production');
@@ -41,15 +42,23 @@ module.exports = config => {
     serverCompiler.run(() => undefined);
   };
 
-  const clientCompiler = webpackCompiler(clientConfig, stats => {
-    if (stats.hasErrors()) process.exit(1);
-    logger.info('Assets:');
-    printAssets(stats, clientConfig);
-    if (config.hasServer) {
-      buildServer();
-    } else {
-      logger.end('Done building');
-    }
-  });
-  clientCompiler.run(() => undefined);
+  const buildClient = () => {
+    clientCompiler = webpackCompiler(clientConfig, stats => {
+      if (stats.hasErrors()) process.exit(1);
+      logger.info('Assets:');
+      printAssets(stats, clientConfig);
+      if (config.hasServer) {
+        buildServer();
+      } else {
+        logger.end('Done building');
+      }
+    });
+    clientCompiler.run(() => undefined);
+  };
+
+  if (config.hasClient) {
+    buildClient();
+  } else {
+    buildServer();
+  }
 };

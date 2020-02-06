@@ -65,6 +65,7 @@ describe('dev', () => {
       clientURL: mockURL,
       serverURL: mockURL,
       reactHotLoader: false,
+      hasClient: true,
     },
     []
   );
@@ -76,6 +77,7 @@ describe('dev', () => {
         serverURL: mockURL,
         reactHotLoader: false,
         hasServer: true,
+        hasClient: true,
       },
       []
     );
@@ -180,6 +182,7 @@ describe('dev', () => {
       serverURL: mockURL,
       reactHotLoader: false,
       hasServer: false,
+      hasClient: true,
     });
 
     const clientDone = webpackCompiler.mock.calls[0][1];
@@ -201,6 +204,34 @@ describe('dev', () => {
     assert.equal(express.use.mock.calls.length, 4, 'should set up four express middlewares');
   });
 
+  it('runs correctly in server-only mode', () => {
+    dev({
+      clientURL: mockURL,
+      serverURL: mockURL,
+      reactHotLoader: false,
+      hasServer: true,
+      hasClient: false,
+    });
+
+    const serverDone = webpackCompiler.mock.calls[0][1];
+    serverDone({ hasErrors: jest.fn() });
+
+    assert.equal(webpackCompiler.mock.calls.length, 1, 'should only call webpackCompiler once');
+    assert.equal(
+      webpackCompiler.mock.calls[0][0],
+      'serverConfig',
+      'should call webpackCompiler with server config'
+    );
+    assert.equal(
+      chokidar.watch.mock.calls.length + chokidar.on.mock.calls.length,
+      2,
+      'should set up chokidar watchers'
+    );
+    assert.equal(ifPortIsFreeDo.mock.calls.length, 1, 'should only call ifPortIsFreeDo once');
+    assert.equal(express.static.mock.calls.length, 0, 'should not call express.static');
+    assert.equal(express.use.mock.calls.length, 0, 'should not set up express middlewares');
+  });
+
   it('handles multiple server entries', () => {
     require('../../../utils/webpackCompiler').configureOptionsType('multiEntry');
     const compiler = require('../../../utils/webpackCompiler');
@@ -211,6 +242,7 @@ describe('dev', () => {
         serverURL: mockURL,
         reactHotLoader: false,
         hasServer: true,
+        hasClient: true,
       },
       []
     );
@@ -238,6 +270,7 @@ describe('dev', () => {
         serverURL: mockURL,
         reactHotLoader: false,
         hasServer: true,
+        hasClient: true,
       },
       []
     );

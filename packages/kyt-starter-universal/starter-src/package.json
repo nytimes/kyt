@@ -50,8 +50,7 @@
     "jest-preset-kyt-enzyme": "1.0.0-alpha.4",
     "jest-preset-kyt-styled": "1.0.0-alpha.4",
     "kyt": "1.0.0-alpha.4",
-    "prettier": "1.19.1",
-    "raf": "3.4.1"
+    "prettier": "1.19.1"
   },
   "version": "1.0.0-alpha.4"
 }

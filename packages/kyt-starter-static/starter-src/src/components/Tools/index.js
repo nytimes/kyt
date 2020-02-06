@@ -5,10 +5,10 @@ function Tools() {
   return (
     <ul>
       <li className={styles.toolClass}>
-        <a href="https://facebook.github.io/react/">React</a> - component library
+        <a href="https://reactjs.org/">React</a> - component library
       </li>
       <li className={styles.toolClass}>
-        <a href="https://github.com/reactjs/react-router">React Router</a> - server and browser
+        <a href="https://reacttraining.com/react-router/">React Router</a> - server and browser
         routing
       </li>
       <li className={styles.toolClass}>
@@ -16,7 +16,7 @@ function Tools() {
         reliable API
       </li>
       <li className={styles.toolClass}>
-        <a href="https://github.com/airbnb/enzyme">Enzyme</a> - React component testing
+        <a href="https://airbnb.io/enzyme/">Enzyme</a> - React component testing
       </li>
     </ul>
   );

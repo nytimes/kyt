@@ -1,0 +1,56 @@
+{
+  "name": "kyt-starter-server-src",
+  "private": true,
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt/packages/kyt-starter-server.git"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/nytimes/kyt/issues"
+  },
+  "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-server#readme",
+  "scripts": {
+    "test": "jest",
+    "test-update": "jest -u"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.8.4",
+    "compression": "1.7.4",
+    "core-js": "3.6.4",
+    "express": "4.17.1",
+    "kyt-runtime": "1.0.0-alpha.4",
+    "pretty-lights": "0.0.14",
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-hot-loader": "4.12.19",
+    "react-router-dom": "5.1.2",
+    "regenerator-runtime": "0.13.3",
+    "source-map-support": "0.5.16"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.0.3",
+    "babel-preset-kyt-react": "1.0.0-alpha.4",
+    "enzyme": "3.11.0",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb": "18.0.1",
+    "eslint-config-kyt": "1.0.0-alpha.4",
+    "eslint-config-prettier": "6.10.0",
+    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-json": "2.0.1",
+    "eslint-plugin-jsx-a11y": "6.2.3",
+    "eslint-plugin-prettier": "3.1.2",
+    "eslint-plugin-react": "7.18.3",
+    "eslint-plugin-react-hooks": "2.3.0",
+    "jest": "25.1.0",
+    "jest-preset-kyt-enzyme": "1.0.0-alpha.4",
+    "jest-preset-kyt-styled": "1.0.0-alpha.4",
+    "kyt": "1.0.0-alpha.4",
+    "prettier": "1.19.1"
+  },
+  "version": "1.0.0-alpha.4"
+}

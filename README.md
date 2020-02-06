@@ -96,6 +96,7 @@ src/
 Each `index.js` file acts as the build entry.
 
 _(Note that `server/index.js` is not required if `hasServer` is `false` in [config](#configuration))._
+_(Note that `client/index.js` is not required if `hasClient` is `false` in [config](#configuration))._
 
 If you're setting up a new project see our full list of [conventions](/docs/conventions.md).
 
