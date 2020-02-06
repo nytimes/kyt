@@ -11,10 +11,10 @@ This starter-kyt should serve as the base for an advanced client-rendered React 
 
 The following are some of the tools included in this starter-kyt:
 
-- [React](https://facebook.github.io/react/) - Component library
-- [React Router](https://github.com/reactjs/react-router) - Server and client routing
+- [React](https://reactjs.org/) - Component library
+- [React Router](https://reacttraining.com/react-router/) - Server and client routing
 - [Pretty Lights](https://github.com/nytimes/pretty-lights) - CSS-in-JS with a reliable API
-- [Enzyme](https://github.com/airbnb/enzyme) - React component testing
+- [Enzyme](https://airbnb.io/enzyme/) - React component testing
 - [html webpack plugin](https://github.com/ampedandwired/html-webpack-plugin) - Builds a static html file
 
 ## Notes on implementation

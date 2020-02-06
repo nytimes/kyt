@@ -484,7 +484,7 @@ exports[`Test tools route 1`] = `
                         className="lights-10"
                       >
                         <a
-                          href="https://facebook.github.io/react/"
+                          href="https://reactjs.org/"
                         >
                           React
                         </a>
@@ -494,7 +494,7 @@ exports[`Test tools route 1`] = `
                         className="lights-10"
                       >
                         <a
-                          href="https://github.com/reactjs/react-router"
+                          href="https://reacttraining.com/react-router/"
                         >
                           React Router
                         </a>
@@ -514,7 +514,7 @@ exports[`Test tools route 1`] = `
                         className="lights-10"
                       >
                         <a
-                          href="https://github.com/airbnb/enzyme"
+                          href="https://airbnb.io/enzyme/"
                         >
                           Enzyme
                         </a>

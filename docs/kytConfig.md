@@ -40,7 +40,7 @@ modifyWebpackConfig: (baseConfig, options) => {
 };
 ```
 
-> **NOTE:** [babel-polyfill](https://babeljs.io/docs/usage/polyfill/) is included in the Webpack configs' `entry.main[]` array by default. If you use `modifyWebpackConfig()` to modify `entry.main[]` and you wish to keep using the polyfill, be sure to add the new main entries _after_ the polyfill.
+> **NOTE:** Polyfills are included in the Webpack configs' `entry.main[]` array by default. If you use `modifyWebpackConfig()` to modify `entry.main[]` and you wish to keep using the provided polyfills, be sure to add the new main entries _after_ the polyfill.
 
 Dev Tip:
 [webpack-merge](https://github.com/survivejs/webpack-merge) is a helpful tool for changing and combining Webpack configs.
