@@ -1,6 +1,9 @@
 {
-  "version": "0.9.0",
+  "version": "1.0.0-alpha.0",
   "npmClient": "npm",
-  "packages": ["packages/*", "packages/**/starter-src"],
+  "packages": [
+    "packages/*",
+    "packages/**/starter-src"
+  ],
   "loglevel": "verbose"
 }

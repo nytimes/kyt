@@ -1,6 +1,6 @@
 {
   "name": "kyt-runtime",
-  "version": "0.9.0",
+  "version": "1.0.0-alpha.0",
   "description": "A shared kyt runtime utility library.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/nytimes/kyt#readme",
   "main": "index.js",
   "dependencies": {
-    "kyt-utils": "0.9.0",
+    "kyt-utils": "1.0.0-alpha.0",
     "webpack-assets-manifest": "3.1.1"
   },
   "peerDependencies": {
@@ -20,7 +20,7 @@
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {
-    "babel-preset-kyt-core": "0.9.0"
+    "babel-preset-kyt-core": "1.0.0-alpha.0"
   },
   "scripts": {
     "prepublish": "babel es -d lib --ignore \"**/__tests__/**\""
