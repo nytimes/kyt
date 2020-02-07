@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
   "main": "index.js",
   "author": "NYTimes",
@@ -14,9 +14,9 @@
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap --hoist",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
-    "publish-pre": "lerna publish --exact --npm-tag=pre --canary=alpha",
-    "publish-next": "lerna publish --exact --npm-tag=next --canary=beta",
-    "publish-release": "lerna publish --exact --message",
+    "publish-pre": "lerna publish --dist-tag=pre --canary",
+    "publish-next": "lerna publish --dist-tag=next --canary --preid beta",
+    "publish-release": "lerna publish --message",
     "starter-kyts": "lerna exec --scope \"kyt-starter-{server,static,universal}\"",
     "test": "jest && npm run starter-kyts -- -- \"cd starter-src && npm t\"",
     "test-update": "jest -u && npm run starter-kyts -- -- \"cd starter-src && npm run test-update\"",
@@ -42,7 +42,7 @@
     "eslint-plugin-react": "7.18.3",
     "eslint-plugin-react-hooks": "2.3.0",
     "jest": "25.1.0",
-    "lerna": "2.11.0",
+    "lerna": "3.20.2",
     "prettier": "1.19.1"
   }
 }
