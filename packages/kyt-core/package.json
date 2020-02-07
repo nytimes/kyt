@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -16,7 +16,7 @@
   "dependencies": {
     "@babel/runtime": "7.8.4",
     "babel-loader": "8.0.6",
-    "babel-preset-kyt-core": "1.0.0-alpha.0",
+    "babel-preset-kyt-core": "1.0.0-alpha.1",
     "chokidar": "3.3.1",
     "commander": "2.19.0",
     "connect-history-api-fallback": "1.6.0",
@@ -30,8 +30,8 @@
     "gzip-size": "5.1.1",
     "inquirer": "6.2.1",
     "install": "0.13.0",
-    "kyt-runtime": "1.0.0-alpha.0",
-    "kyt-utils": "1.0.0-alpha.0",
+    "kyt-runtime": "1.0.0-alpha.1",
+    "kyt-utils": "1.0.0-alpha.1",
     "lodash.clonedeep": "4.5.0",
     "lodash.merge": "4.6.2",
     "lodash.once": "4.1.1",
