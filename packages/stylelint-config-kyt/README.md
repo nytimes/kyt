@@ -1,6 +1,6 @@
 # kyt Stylelint Linter and CSS/Sass Style Guide
 
-This is an extension of [config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules.
+This is an extension of [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules.
 
 ## Table of Contents
 
