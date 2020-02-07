@@ -14,8 +14,8 @@
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap --hoist",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
-    "publish-pre": "lerna publish --dist-tag=pre --canary",
-    "publish-next": "lerna publish --dist-tag=next --canary --preid beta",
+    "publish-pre": "lerna publish --exact --dist-tag=pre --canary",
+    "publish-next": "lerna publish --exact --dist-tag=next --canary --preid beta",
     "publish-release": "lerna publish --message",
     "starter-kyts": "lerna exec --scope \"kyt-starter-{server,static,universal}\"",
     "test": "jest && npm run starter-kyts -- -- \"cd starter-src && npm t\"",
