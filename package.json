@@ -14,7 +14,7 @@
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap --hoist",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
-    "bump-pre": "lerna version --exact prerelease",
+    "bump-pre": "lerna version --exact --force-publish=* prerelease",
     "publish-pre": "lerna publish --exact --dist-tag=pre --canary",
     "publish-next": "lerna publish --exact --dist-tag=next --canary --preid beta",
     "publish-release": "lerna publish --message",
