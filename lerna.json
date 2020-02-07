@@ -1,11 +1,9 @@
 {
-  "lerna": "2.0.0",
-  "packages": ["packages/*", "packages/**/starter-src"],
-  "commands": {
-    "bootstrap": {
-      "hoist": true
-    }
-  },
-  "loglevel": "verbose",
-  "version": "independent"
+  "version": "1.0.0-alpha.4",
+  "npmClient": "npm",
+  "packages": [
+    "packages/*",
+    "packages/**/starter-src"
+  ],
+  "loglevel": "verbose"
 }
