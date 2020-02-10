@@ -112,7 +112,9 @@ To configure Babel, `kyt` respects Babel config files defined at the root of use
 
 ## starter-kyts
 
-While `kyt` can be easily integrated into new or existing Node projects, it is even more powerful when used with a "starter-kyt". A starter-kyt offers the benefits of a boilerplate while minimizing the amount of new tools to learn and maintain. The `kyt-cli setup` command installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
+While `kyt` can be easily integrated into new or existing Node projects, it is even more powerful when used with a "starter-kyt". A starter-kyt offers the benefits of a boilerplate while minimizing the amount of new tools to learn and maintain.
+
+The `kyt-cli setup` command installs any preconfigured starter-kyt git repository, adding additional dependencies and building a source directory.
 
 ### How to build a starter-kyt
 
