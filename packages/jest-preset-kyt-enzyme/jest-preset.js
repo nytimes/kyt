@@ -1,3 +1,11 @@
+let coverageReporters;
+
+if (process.env.CI) {
+  coverageReporters = ['lcov', 'text-summary'];
+} else {
+  coverageReporters = ['json', 'lcov', 'text', 'clover'];
+}
+
 module.exports = {
   verbose: true,
   moduleFileExtensions: ['js', 'jsx', 'json'],
@@ -8,11 +16,13 @@ module.exports = {
   },
   setupFiles: ['raf/polyfill'],
   setupFilesAfterEnv: [require.resolve('./setup')],
-  snapshotSerializers: ['enzyme-to-json/serializer'],
+  // if projects spread this value, the import can be lost if it is not absolute
+  snapshotSerializers: [require.resolve('enzyme-to-json/serializer')],
   testMatch: ['**/*.test.js'],
   testEnvironment: 'jest-environment-jsdom-global',
   collectCoverageFrom: ['**/*.js'],
   coverageDirectory: '<rootDir>/coverage',
+  coverageReporters,
   errorOnDeprecated: true,
   cacheDirectory: '<rootDir>/.caches/jest',
   haste: {
