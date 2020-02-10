@@ -25,7 +25,7 @@ module.exports = (config, flags) => {
   let clientCompiler;
   let serverCompiler;
   const { clientConfig, serverConfig } = buildConfigs(config);
-  const { clientURL, serverURL, reactHotLoader, hasServer, hasClient } = config;
+  const { clientURL, serverURL, reactHotLoader, hasServer, hasClient, watchDirs } = config;
 
   const afterClientCompile = once(() => {
     if (reactHotLoader) logger.task('Setup React Hot Loader');
@@ -95,7 +95,11 @@ module.exports = (config, flags) => {
   // Compile Server Webpack Config
   if (hasServer) {
     // Watch the server files and recompile and restart on changes.
-    const watcher = chokidar.watch([serverSrcPath]);
+    let serverWatchDirs = [serverSrcPath];
+    if (watchDirs) {
+      serverWatchDirs = serverWatchDirs.concat(watchDirs);
+    }
+    const watcher = chokidar.watch(serverWatchDirs);
     watcher.on('ready', () => {
       watcher
         .on('add', compileServer)
