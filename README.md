@@ -116,7 +116,6 @@ While `kyt` can be easily integrated into new or existing Node projects, it is e
 
 ### How to build a starter-kyt
 
-Community supported starter-kyts can be built to support a variety of projects.
 See additional info on [how to build a starter-kyt](/docs/Starterkyts.md).
 
 ## How to contribute to kyt
