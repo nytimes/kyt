@@ -15,7 +15,7 @@
     "bootstrap": "npm i && lerna bootstrap --hoist",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
     "bump-pre": "lerna version --exact --force-publish=* prerelease",
-    "publish-pre": "lerna publish --exact --dist-tag=pre --canary",
+    "publish-pre": "lerna publish --exact --force-publish=* --dist-tag=pre --canary",
     "publish-next": "lerna publish --exact --force-publish=* --dist-tag=next --canary --preid beta",
     "publish-release": "lerna publish --message",
     "starter-kyts": "lerna exec --scope \"kyt-starter-{server,static,universal}\"",
