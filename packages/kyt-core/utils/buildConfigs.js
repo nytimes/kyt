@@ -17,7 +17,7 @@ const prodClientConfig = require('../config/webpack.prod.client');
 const prodServerConfig = require('../config/webpack.prod.server');
 
 module.exports = (config, environment = 'development') => {
-  const { clientURL, serverURL, reactHotLoader } = config;
+  const { clientURL, serverURL, reactHotLoader, modulesDir } = config;
 
   let clientConfig = devClientConfig;
   let serverConfig = devServerConfig;
@@ -42,7 +42,7 @@ module.exports = (config, environment = 'development') => {
     });
   }
 
-  const serverOptions = merge(clientOptions, { type: 'server' });
+  const serverOptions = merge(clientOptions, { type: 'server', modulesDir });
 
   const hasBabelrc = findBabelConfigSync(userRootPath);
   if (!hasBabelrc || !hasBabelrc.config) {
