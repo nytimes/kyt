@@ -1,6 +1,6 @@
 {
   "name": "kyt-cli",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0",
   "description": "CLI for setting up kyt projects.",
   "main": "index.js",
   "bin": {
@@ -14,7 +14,7 @@
   "dependencies": {
     "commander": "2.19.0",
     "inquirer": "6.2.1",
-    "kyt-utils": "1.0.0-alpha.5",
+    "kyt-utils": "1.0.0",
     "semver": "6.3.0",
     "shelljs": "0.8.3",
     "simple-git": "1.131.0"
