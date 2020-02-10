@@ -108,7 +108,7 @@ See the [kyt config docs](/docs/kytConfig.md) for instructions.
 `kyt` uses Webpack to compile src code.
 See our [recipes](/docs/Recipes.md) for extending configuration.
 
-To configure Babel, `kyt` respects Babel config files defined at the root of user projects, and provides [presets](/packages/babel-preset-kyt-react) to provide opinionated configurations. (If no Babel config file is defined in the user project, [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core) is used when compiling Webpack.)
+`kyt` respects Babel config files defined at the root of user projects, and provides [presets](/packages/babel-preset-kyt-react) to provide opinionated configurations. (If no Babel config file is defined in the user project, [`babel-preset-kyt-core`](https://www.npmjs.com/package/babel-preset-kyt-core) is used when compiling Webpack.)
 
 ## starter-kyts
 
