@@ -4,6 +4,8 @@
 
 ## Master
 
+1.0.0-alpha.6
+
 ## 1.0.0-alpha.4 2/1/20
 
 - New package: `kyt-runtime`. Using this ensures that you will be nagged about installing dependencies for your production install. This is useful when you are pruning `node_modules` for production in CI, which will remove `kyt`. Also, allows you make `kyt` a dev dependency.
