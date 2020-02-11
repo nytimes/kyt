@@ -10,14 +10,13 @@ and export an object with the following options.
 ## kyt.config.js options
 
 1.  `serverURL` - url for the backend node server. _default_: http://localhost:3000. if `hasServer` is set to `false`, then this value is ignored
-2.  `clientURL` - in development, the url for the client assets server _default_: http://localhost:3001
-3.  `prototypeURL` - url for the prototyping dev server _default_: http://localhost:3002
-4.  `debug` - when true, the CLI returns all verbose output _default_: false
-5.  `productionPublicPath` - the public path for assets in the production build. Useful for CDN's _default_: `/`
-6.  `reactHotLoader` - Turns on React Hot Loading _default_: false
-7.  `hasClient` - Use a client client server for dev (useful if you are using Node to generate HTML pages which are not isomorphic) _default_: `true`
-8.  `hasServer` - Use a backend node server for build and dev (useful to `false` this out if you already have a backend) _default_: `true`
-9.  `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
+1.  `clientURL` - in development, the url for the client assets server _default_: http://localhost:3001
+1.  `debug` - when true, the CLI returns all verbose output _default_: false
+1.  `productionPublicPath` - the public path for assets in the production build. Useful for CDN's _default_: `/`
+1.  `reactHotLoader` - Turns on React Hot Loading _default_: false
+1.  `hasClient` - Use a client client server for dev (useful if you are using Node to generate HTML pages which are not isomorphic) _default_: `true`
+1.  `hasServer` - Use a backend node server for build and dev (useful to `false` this out if you already have a backend) _default_: `true`
+1.  `modifyWebpackConfig` - Callback function for editing kyt's Webpack configs. [See more details below](#modifyWebpackConfig).
 
 ## modifyWebpackConfig
 

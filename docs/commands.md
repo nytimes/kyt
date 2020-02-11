@@ -15,10 +15,9 @@ npx kyt build
 ```
 
 1. [starter-kyt](/docs/Starterkyts.md)
-2. [`dev`](/docs/commands.md#dev) starts up a development environment
-3. [`build`](/docs/commands.md#build) compiles server and client code for production use
-4. [`proto`](/docs/commands.md#proto) starts the prototyping app
-5. `--help` shows commands and their documentation
+1. [`dev`](/docs/commands.md#dev) starts up a development environment
+1. [`build`](/docs/commands.md#build) compiles server and client code for production use
+1. `--help` shows commands and their documentation
 
 ## dev
 
@@ -46,38 +45,3 @@ The `build` command takes the entry `index.js` in `src/client/` and `src/server/
 The build command will also copy the `src/public` directory for static assets.
 
 `build` uses option `-C`(`--config`) to denote a path to a different [kyt.config.js](/docs/kytConfig.md) file
-
-## proto
-
-`kyt` provides a scratch space for building simple prototypes alongside your app.
-To get started, follow the setup instructions below.
-
-### How Prototype Works
-
-1. Create a `prototype.js` file.
-
-The `proto` command takes a `prototype.js` file at the root of your app as an entry for a dev server. You can use this file as the start of your prototype.
-
-2. index.html
-
-The proto command also provides an `index.html` file with the following content:
-
-```
-<div id="root"></div>
-<script src="/prototype/bundle.js"></script>
-```
-
-`/prototype/bundle.js` loads the JavaScript assets.
-
-### The proto command
-
-Running `proto` starts a dev server. Optionally, you can configure the prototype server url in your [kyt.config.js](/docs/kytConfig.md).
-
-```
-prototypeURL: "http://localhost:3002/prototype"
-```
-
-### Updating the prototype Webpack config
-
-You can update the prototype config by using the `modifyWebpackConfig` function in `kyt.config.js`.
-See [modifyWebpackConfig](/docs/kytConfig.md#modifywebpackconfig) instructions.
