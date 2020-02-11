@@ -34,7 +34,6 @@ const stubConfig = {
   modifyWebpackConfig: jest.fn(c => c),
   clientPort: 1000,
   serverPort: 2000,
-  reactHotLoader: false,
   clientURL: 'clientURL',
   serverURL: 'serverURL',
 };

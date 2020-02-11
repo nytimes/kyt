@@ -1,13 +1,14 @@
 // Development webpack config for client code
-
+const path = require('path');
 const webpack = require('webpack');
+const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const { clientSrcPath, assetsBuildPath } = require('kyt-utils/paths')();
 const getPolyfill = require('../utils/getPolyfill');
 
 module.exports = options => {
   const main = [
-    `webpack-hot-middleware/client?reload=true&path=${options.clientURL.href}__webpack_hmr`,
+    require.resolve('./webpackHotDevClient'),
     getPolyfill(options.type),
     `${clientSrcPath}/index.js`,
   ].filter(Boolean);
@@ -17,7 +18,7 @@ module.exports = options => {
 
     target: 'web',
 
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'cheap-module-source-map',
 
     entry: {
       main,
@@ -25,21 +26,48 @@ module.exports = options => {
 
     output: {
       path: assetsBuildPath,
+      publicPath: options.publicPath,
+      pathinfo: true,
+      libraryTarget: 'var',
       filename: '[name].js',
       chunkFilename: '[name]-[chunkhash].js',
-      publicPath: options.publicPath,
-      libraryTarget: 'var',
+      devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
     },
 
     devServer: {
-      publicPath: options.publicPath,
+      disableHostCheck: true,
+      clientLogLevel: 'none',
+      compress: true,
       headers: { 'Access-Control-Allow-Origin': '*' },
+      historyApiFallback: {
+        // Paths with dots should still use the history fallback.
+        // See https://github.com/facebookincubator/create-react-app/issues/387.
+        disableDotRule: true,
+      },
+      publicPath: options.publicPath,
+      host: options.clientURL.hostname,
+      hot: true,
       noInfo: true,
+      overlay: false,
+      port: options.clientURL.port,
       quiet: true,
-      logLevel: 'silent',
-      overlay: true,
+      // By default files from `contentBase` will not trigger a page reload.
+      // Reportedly, this avoids CPU overload on some systems.
+      // https://github.com/facebookincubator/create-react-app/issues/293
+      watchOptions: {
+        ignored: /node_modules/,
+      },
+      before(app) {
+        // This lets us open files from the runtime error overlay.
+        app.use(errorOverlayMiddleware());
+      },
     },
 
-    plugins: [...kytWebpackPlugins(options), new webpack.HotModuleReplacementPlugin()],
+    plugins: [
+      ...kytWebpackPlugins(options),
+      new webpack.HotModuleReplacementPlugin({
+        multiStep: true,
+      }),
+    ],
   };
 };

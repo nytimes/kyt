@@ -27,13 +27,18 @@ module.exports = options => {
 
   return {
     node: {
-      __dirname: true,
-      __filename: true,
+      __console: false,
+      __dirname: false,
+      __filename: false,
     },
 
     resolve: {
-      extensions: ['.js', '.json'],
+      extensions: ['.mjs', '.jsx', '.js', '.json'],
       modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules'), 'node_modules'],
+      alias: {
+        // This is required so symlinks work during development.
+        'webpack/hot/poll': require.resolve('webpack/hot/poll'),
+      },
     },
 
     resolveLoader: {
@@ -62,6 +67,7 @@ module.exports = options => {
     ],
 
     module: {
+      strictExportPresence: true,
       rules: [
         {
           test: asset => {
@@ -94,19 +100,6 @@ module.exports = options => {
                   ? path.join(os.tmpdir(), 'babel-loader')
                   : false,
             },
-            // add react hot loader babel plugin for development here--users
-            // should only need to specify the reactHotLoader option in one place
-            // (kyt.config.js), instead of two (kyt.config.js and .babelrc).
-            // additionally, .babelrc has no notion of client vs server
-            options.type === 'client' && options.reactHotLoader
-              ? {
-                  env: {
-                    development: {
-                      plugins: [require.resolve('react-hot-loader/babel')],
-                    },
-                  },
-                }
-              : {},
             // if the user hasn't defined a .babelrc, use the kyt default
             babelrc || {
               presets: [require.resolve('babel-preset-kyt-core')],

@@ -1,5 +1,4 @@
 import React from 'react';
-import { hot } from 'react-hot-loader/root';
 import { BrowserRouter } from 'react-router-dom';
 import App from '../components/App';
 
@@ -12,4 +11,4 @@ function Root() {
   );
 }
 
-export default hot(Root);
+export default Root;

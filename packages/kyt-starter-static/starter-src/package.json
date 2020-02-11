@@ -25,7 +25,6 @@
     "prop-types": "15.7.2",
     "react": "16.12.0",
     "react-dom": "16.12.0",
-    "react-hot-loader": "4.12.19",
     "react-router-dom": "5.1.2",
     "regenerator-runtime": "0.13.3"
   },
