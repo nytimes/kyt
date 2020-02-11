@@ -16,13 +16,15 @@ const launchEditorEndpoint = require('react-dev-utils/launchEditorEndpoint');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const ErrorOverlay = require('react-error-overlay');
 
+const sockJSPort = parseInt(KYT.CLIENT_PORT || window.location.port || 3000, 10) + 1;
+
 ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
   // Keep this sync with errorOverlayMiddleware.js
   fetch(
     url.format({
       protocol: window.location.protocol,
       hostname: window.location.hostname,
-      port: parseInt(process.env.PORT || window.location.port, 10) + 1,
+      port: sockJSPort,
       pathname: launchEditorEndpoint,
       search: `?fileName=${window.encodeURIComponent(
         errorLocation.fileName
@@ -60,7 +62,7 @@ const connection = new SockJS(
   url.format({
     protocol: window.location.protocol,
     hostname: window.location.hostname,
-    port: parseInt(process.env.PORT || window.location.port, 10) + 1,
+    port: sockJSPort,
     // Hardcoded in WebpackDevServer
     pathname: '/sockjs-node',
   })
