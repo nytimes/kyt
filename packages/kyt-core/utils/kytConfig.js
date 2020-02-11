@@ -16,7 +16,6 @@ module.exports = optionalConfig => {
     productionPublicPath: '/',
     serverURL: 'http://localhost:3000',
     clientURL: 'http://localhost:3001',
-    prototypeURL: 'http://localhost:3002',
     hasServer: true,
     hasClient: true,
     debug: false,
@@ -61,8 +60,6 @@ module.exports = optionalConfig => {
   validateURL('serverURL', config.serverURL);
   config.clientURL = url.parse(config.clientURL);
   validateURL('clientURL', config.clientURL);
-  config.prototypeURL = url.parse(config.prototypeURL);
-  validateURL('prototypeURL', config.prototypeURL);
 
   return Object.freeze(config);
 };

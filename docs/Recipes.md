@@ -17,8 +17,8 @@ It's called with two parameters:
 1. baseConfig: The current Webpack config
 2. options: an object of useful data for editing configuration
 
-- environment: The environment the Webpack file will be used for [production, development, test, prototype]
-- type: The type of config [client, server, test, prototype]
+- environment: The environment the Webpack file will be used for [production, development, test]
+- type: The type of config [client, server, test]
 
 For example, if you want to add a new loader for only production code:
 

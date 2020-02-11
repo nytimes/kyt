@@ -4,7 +4,6 @@ const logger = require('kyt-utils/logger');
 const { userPackageJSONPath } = require('kyt-utils/paths')();
 const devAction = require('./actions/dev');
 const buildAction = require('./actions/build');
-const protoAction = require('./actions/proto');
 const kytConfigFn = require('./../utils/kytConfig');
 
 // Comment the following to see verbose shell ouput.
@@ -52,8 +51,10 @@ program
 
 program
   .command('proto')
-  .description('Start a prototype dev server.')
-  .action(() => loadConfigAndDo(protoAction));
+  .description('deprecated')
+  .action(() => {
+    logger.error('`proto` is no longer supported.');
+  });
 
 program
   .command('setup')

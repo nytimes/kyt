@@ -17,7 +17,6 @@ describe('KYT CLI', () => {
       expect(shell.test('-f', 'kyt.config.js')).toBe(true);
       expect(shell.test('-f', '.editorconfig')).toBe(true);
       expect(shell.test('-f', '.eslintrc.js')).toBe(true);
-      expect(shell.test('-f', 'prototype.js')).toBe(true);
     });
   };
   // Checks to make sure package.json recieves correct script
@@ -31,7 +30,6 @@ describe('KYT CLI', () => {
       expect(scripts.build).toBe('kyt build');
       expect(scripts.test).toBe('jest');
       expect(scripts.lint).toBe('eslint .');
-      expect(scripts.proto).toBe('kyt proto');
       expect(scripts['kyt:help']).toBe('kyt --help');
     });
   };

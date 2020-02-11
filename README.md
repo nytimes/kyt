@@ -72,7 +72,6 @@ Here are the available commands:
 
 - [`dev`](/docs/commands.md#dev) starts a development environment
 - [`build`](/docs/commands.md#build) compiles server and client code for production use
-- [`proto`](/docs/commands.md#proto) starts the prototyping app
 - [`help`](/docs/commands.md#help) shows commands and their documentation
 
 See our [CLI docs](/docs/commands.md) for further details.

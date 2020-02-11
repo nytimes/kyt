@@ -115,7 +115,6 @@ module.exports = (flags, args) => {
       'dev',
       'build',
       'start',
-      'proto',
       'test',
       'test-update',
       'test-watch',
@@ -331,9 +330,7 @@ module.exports = (flags, args) => {
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
         if (
-          ['.gitignore', '.eslintrc.js', '.editorconfig', 'kyt.config.js', 'prototype.js'].indexOf(
-            file
-          ) === -1 &&
+          ['.gitignore', '.eslintrc.js', '.editorconfig', 'kyt.config.js'].indexOf(file) === -1 &&
           (shell.test('-f', filePath) || shell.test('-d', filePath))
         ) {
           const fileBackup = path.join(paths.userRootPath, `${file}-${date}-bak`);
@@ -344,22 +341,6 @@ module.exports = (flags, args) => {
         logger.task(`Copied ${file} from Starter-kyt`);
       });
     }
-  };
-
-  // Creates prototype file if one exists
-  const createPrototypeFile = () => {
-    const starterProto = `${tmpDir}/prototype.js`;
-    // No need to copy file if it doesn't exist
-    if (!shell.test('-f', starterProto)) return;
-    // Backup user's prototype file if they already have one
-    if (shell.test('-f', paths.userPrototypePath)) {
-      const prototypeBackup = path.join(paths.userRootPath, `prototype-${date}.js.bak`);
-      shell.mv(paths.userPrototypePath, prototypeBackup);
-      logger.info(`Backed up current prototype file to: ${prototypeBackup}`);
-    }
-    // Copy the prototype file from the starter-kyt into the users repo
-    shell.cp(starterProto, paths.userPrototypePath);
-    logger.task('copied prototype.js file into root');
   };
 
   // setup tasks for starter-kyts
@@ -388,7 +369,6 @@ module.exports = (flags, args) => {
       createESLintFile();
       createEditorconfigLink();
       createKytConfig();
-      createPrototypeFile();
       createSrcDirectory();
       createGitignore();
       copyStarterKytFiles();
