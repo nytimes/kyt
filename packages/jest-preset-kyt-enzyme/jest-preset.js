@@ -1,7 +1,11 @@
 let coverageReporters;
 
 if (process.env.CI) {
-  coverageReporters = ['lcov', 'text-summary'];
+  coverageReporters = [
+    'lcov',
+    'text-summary',
+    [require.resolve('jest-silent-reporter'), { useDots: true }],
+  ];
 } else {
   coverageReporters = ['json', 'lcov', 'text', 'clover'];
 }
