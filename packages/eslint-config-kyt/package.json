@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kyt",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "description": "ESLint configuration for kyt projects.",
   "main": ".eslintrc.js",
   "author": "NYTimes",
@@ -26,5 +26,6 @@
     "eslint",
     "config",
     "eslint-config"
-  ]
+  ],
+  "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }
