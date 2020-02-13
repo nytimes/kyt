@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.6",
   "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
   "main": "index.js",
   "author": "NYTimes",
