@@ -43,7 +43,7 @@
     "source-map-support": "0.5.16",
     "strip-ansi": "6.0.0",
     "url-loader": "3.0.0",
-    "webpack": "4.41.5",
+    "webpack": "4.41.6",
     "webpack-dev-middleware": "3.7.2",
     "webpack-dev-server": "3.10.3",
     "webpack-hot-middleware": "2.25.0",
