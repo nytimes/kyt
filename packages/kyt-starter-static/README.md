@@ -1,15 +1,16 @@
-# Static React starter-kyt
+# Static React `starter-kyt`
 
-This starter-kyt should serve as the base for an advanced client-rendered React app.
+This `starter-kyt` should serve as the base for an advanced client-rendered React app.
 
 ## Installation
 
-1. run `kyt-cli setup`
-2. select `static` from the list of starter-kyts
+1. run `npm install --save-dev kyt`
+1. run `kyt setup`
+1. select `static` from the list of `starter-kyt`s
 
 ## Tools
 
-The following are some of the tools included in this starter-kyt:
+The following are some of the tools included in this `starter-kyt`:
 
 - [React](https://reactjs.org/) - Component library
 - [React Router](https://reacttraining.com/react-router/) - Server and client routing
@@ -27,5 +28,5 @@ The following are some of the tools included in this starter-kyt:
 
 ## How To Contribute
 
-Want to build your own starter-kyt?
+Want to build your own `starter-kyt`?
 See directions [here](https://github.com/NYTimes/kyt/docs/Starterkyts.md).

@@ -36,7 +36,7 @@ describe('starter kyts', () => {
 
     it('should build and run', () => {
       let outputTest;
-      shell.exec('node_modules/kyt/cli/index.js build');
+      shell.exec('node_modules/kyt build');
       const run = new Promise(resolve => {
         const child = shell.exec('node build/server/main.js', () => {
           resolve(outputTest);
@@ -69,7 +69,7 @@ describe('starter kyts', () => {
     it('should start a server on :3001', () => {
       let outputTest;
       const run = new Promise(resolve => {
-        const child = shell.exec('node_modules/kyt/cli/index.js dev', () => {
+        const child = shell.exec('node_modules/kyt dev', () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
@@ -85,7 +85,7 @@ describe('starter kyts', () => {
     });
 
     it('should build', () => {
-      const output = shell.exec('node_modules/kyt/cli/index.js build');
+      const output = shell.exec('node_modules/kyt build');
       expect(output.stdout.includes('✅  Done building')).toBe(true);
       const htmlOutput = fs.readFileSync('build/public/index.html', 'utf8');
       expect(htmlOutput.includes('<html>')).toBe(true);

@@ -3,7 +3,7 @@
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
-const getPolyfill = require('../utils/getPolyfill');
+const getPolyfill = require('./getPolyfill');
 
 module.exports = options => ({
   mode: 'production',

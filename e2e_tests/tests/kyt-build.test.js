@@ -9,7 +9,7 @@ const stageName = 'stage-build';
 describe('kyt build', () => {
   it('should compile files into a build directory', () => {
     util.setupStageWithFixture(stageName, 'build-default');
-    const output = shell.exec('../packages/kyt-core/cli/index.js build');
+    const output = shell.exec('../packages/kyt-core/lib/index.js build');
     expect(shell.test('-f', 'build/publicAssets.json')).toBe(true);
     expect(shell.test('-d', 'build/server')).toBe(true);
 

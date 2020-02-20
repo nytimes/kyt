@@ -12,7 +12,7 @@ This is an extension of the Airbnb [**JavaScript**](https://github.com/airbnb/ja
 
 ## Install
 
-Note, installing `kyt` or setting up a starter-kyt will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
+Note, installing `kyt` or setting up a `starter-kyt` will install this package automatically. If you want to install this linter extension separately, follow these install instructions. If you have `kyt` installed and you want to override the linter configuration, skip to step (2).
 
 1. Install the _eslint-config-kyt_ node module and its dependencies:
    ```sh
@@ -37,7 +37,7 @@ If you need to format code in your codebase, run this command:
 npx eslint src --fix
 ```
 
-starter-kyts add the `lint-fix` command to your `package.json` set of `scripts`.
+`starter-kyt`s add the `lint-fix` command to your `package.json` set of `scripts`.
 
 To keep things formatted as you develop, install an editor package. See more [here](/docs/Recipes.md#editor-configuration).
 
