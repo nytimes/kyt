@@ -317,7 +317,7 @@ module.exports = (flags, args) => {
   const createGitignore = () => {
     const gitignoreFile = path.join(paths.userRootPath, './.gitignore');
     if (!shell.test('-f', gitignoreFile)) {
-      const gitignoreLocal = path.resolve(__dirname, '../../config/user/.kyt-gitignore');
+      const gitignoreLocal = path.resolve(__dirname, '../config/user/.kyt-gitignore');
       shell.cp(gitignoreLocal, gitignoreFile);
       logger.task('Created .gitignore file');
     }
@@ -385,7 +385,6 @@ module.exports = (flags, args) => {
       shell.exec(`cp -R ${localPath} ${tmpStarter}`);
       afterCopy();
     } else if (npmName) {
-      console.log('npmName', npmName);
       shell.mkdir(tmpStarter);
       shell.cd(tmpStarter);
       const fakePkgPath = `${tmpStarter}/package.json`;

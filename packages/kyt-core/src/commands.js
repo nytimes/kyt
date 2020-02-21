@@ -43,7 +43,7 @@ program
   .description('Start an express server for development')
   .action(() => {
     const args = program.args.filter(item => typeof item === 'object');
-    const config = args[0].config ? args[0].config : null;
+    const config = args.length && args[0].config ? args[0].config : null;
     loadConfigAndDo(devAction, config);
   });
 
@@ -53,7 +53,7 @@ program
   .description('Create a production build')
   .action(() => {
     const args = program.args.filter(item => typeof item === 'object');
-    const config = args[0].config ? args[0].config : null;
+    const config = args.length && args[0].config ? args[0].config : null;
     loadConfigAndDo(buildAction, config);
   });
 
