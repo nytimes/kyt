@@ -4,9 +4,9 @@ const shell = require('shelljs');
 const WebpackDevServer = require('webpack-dev-server');
 const logger = require('kyt-utils/logger');
 const { buildPath } = require('kyt-utils/paths')();
-const buildConfigs = require('../../utils/buildConfigs');
-const webpackCompiler = require('../../utils/webpackCompiler');
-const setPorts = require('../../utils/setPorts');
+const buildConfigs = require('../utils/buildConfigs');
+const webpackCompiler = require('../utils/webpackCompiler');
+const setPorts = require('../utils/setPorts');
 
 // Capture any --inspect or --inspect-brk flags (with optional values) so that we
 // can pass them when we invoke nodejs

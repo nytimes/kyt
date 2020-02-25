@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-beta.1",
   "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
   "main": "index.js",
   "author": "NYTimes",
@@ -20,12 +20,16 @@
     "publish-release": "lerna publish --message",
     "starter-kyts": "lerna exec --scope \"kyt-starter-{server,static,universal}\"",
     "test": "jest && npm run starter-kyts -- -- \"cd starter-src && npm t\"",
+    "test:ci": "jest --ci && npm run starter-kyts -- -- \"cd starter-src && npm t -- --ci\"",
     "test-update": "jest -u && npm run starter-kyts -- -- \"cd starter-src && npm run test-update\"",
+    "test-coverage": "jest --coverage && npm run starter-kyts -- -- \"cd starter-src && npm t -- --coverage\"",
     "test-watch": "jest --watch",
-    "test-coverage": "jest --coverage",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
     "lint": "eslint ./",
-    "lint-fix": "npm run lint -- --fix"
+    "lint:ci": "npm run lint -- --no-color --quiet",
+    "lint-fix": "npm run lint -- --fix",
+    "ncu": "ncu && lerna exec -- ncu",
+    "watch-cli": "cd packages/kyt-core && npm run watch"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",

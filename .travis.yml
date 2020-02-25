@@ -1,4 +1,4 @@
 language: node_js
 node_js:
-  - 10.18.1
-script: npm run bootstrap && npm run lint && npm test && npm run e2e
+  - 12.14.1
+script: npm run bootstrap && npm run lint:ci && npm run test:ci && npm run e2e

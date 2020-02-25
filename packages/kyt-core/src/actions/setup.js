@@ -5,9 +5,8 @@ const inquire = require('inquirer');
 const simpleGit = require('simple-git')();
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
-const starterKyts = require('../../config/starterKyts');
-const cliPkgJson = require('../../package.json');
-const yarnOrNpm = require('../../utils/yarnOrNpm')();
+const starterKyts = require('../config/starterKyts');
+const yarnOrNpm = require('../utils/yarnOrNpm')();
 
 module.exports = (flags, args) => {
   logger.start("Let's set up your new kyt project...");
@@ -15,14 +14,14 @@ module.exports = (flags, args) => {
   // Selects package manager to use
   let ypm;
   // Comment the following to see verbose shell ouput.
-  shell.config.silent = true;
+  shell.config.silent = false;
   let paths = {};
   const date = Date.now();
   let tmpStarter;
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir;
   let repoURL = 'https://github.com/NYTimes/kyt.git';
-  let { localPath } = args;
+  let { localPath } = args || {};
   let tempPackageJSON;
   let oldPackageJSON;
   const fakePackageJson = {
@@ -88,10 +87,10 @@ module.exports = (flags, args) => {
     const tempDevDependencies = tempPackageJSON.devDependencies || {};
     // In case the starter kyt used `kyt` as a dependency.
     if (tempDependencies.kyt) {
-      Reflect.deleteProperty(tempDependencies, 'kyt');
+      delete tempDependencies.kyt;
     }
     if (tempDevDependencies.kyt) {
-      Reflect.deleteProperty(tempDevDependencies, 'kyt');
+      delete tempDevDependencies.kyt;
     }
 
     packageJson.dependencies = Object.assign(packageJson.dependencies || {}, tempDependencies);
@@ -178,6 +177,8 @@ module.exports = (flags, args) => {
     return packageJson;
   };
 
+  const { kytVersion, packageManager, directory, repository } = args || {};
+
   // Add dependencies, scripts and other package to
   // the user's package.json configuration.
   const updateUserPackageJSON = existingProject => {
@@ -196,7 +197,7 @@ module.exports = (flags, args) => {
 
     // Add dependencies from starter-kyts
     if (!existingProject) {
-      const kytPrefVersion = args.kytVersion || checkStarterKytVersion(userPackageJSON);
+      const kytPrefVersion = kytVersion || checkStarterKytVersion(userPackageJSON);
       userPackageJSON = updatePackageJSONDependencies(userPackageJSON);
       addKytDependency(userPackageJSON, kytPrefVersion);
     } else {
@@ -236,7 +237,7 @@ module.exports = (flags, args) => {
     }
 
     // Copy our user eslintrc into the user's root.
-    const esLintPath = path.join(__dirname, '../../config/user/.eslintrc.base.js');
+    const esLintPath = path.join(__dirname, '../config/user/.eslintrc.base.js');
 
     if (shell.cp(esLintPath, linkedPath).code === 0) {
       logger.task(`Created ${eslintFileName} file`);
@@ -247,7 +248,7 @@ module.exports = (flags, args) => {
 
   // .editorconfig to the user's base directory.
   const createEditorconfigLink = () => {
-    const editorPath = path.join(__dirname, '../../config/user/.kyt-editorconfig');
+    const editorPath = path.join(__dirname, '../config/user/.kyt-editorconfig');
     const configPath = path.join(paths.userRootPath, '.editorconfig');
 
     // Backup existing editor config
@@ -266,7 +267,7 @@ module.exports = (flags, args) => {
   const createKytConfig = () => {
     const configFileName = 'kyt.config.js';
     const tmpConfig = path.join(tmpDir, configFileName);
-    const baseConfig = path.join(__dirname, `../../config/user/${configFileName}`);
+    const baseConfig = path.join(__dirname, `../config/user/${configFileName}`);
     let newConfig = tmpConfig;
 
     // Use the base kyt.config
@@ -315,7 +316,7 @@ module.exports = (flags, args) => {
   const createGitignore = () => {
     const gitignoreFile = path.join(paths.userRootPath, './.gitignore');
     if (!shell.test('-f', gitignoreFile)) {
-      const gitignoreLocal = path.resolve(__dirname, '../../config/user/.kyt-gitignore');
+      const gitignoreLocal = path.resolve(__dirname, '../config/user/.kyt-gitignore');
       shell.cp(gitignoreLocal, gitignoreFile);
       logger.task('Created .gitignore file');
     }
@@ -347,9 +348,9 @@ module.exports = (flags, args) => {
   const starterKytSetup = starterName => {
     let npmName = null;
     if (starterName) {
-      tmpDir = path.join(tmpDir, starterKyts.supported[starterName].path);
       // eslint-disable-next-line prefer-destructuring
       npmName = starterKyts.supported[starterName].npmName;
+      tmpDir = path.join(tmpDir, `/node_modules/${npmName}/starter-src`);
     }
 
     const kytName = starterName || localPath || repoURL;
@@ -391,7 +392,7 @@ module.exports = (flags, args) => {
       if (ypm === 'yarn') {
         iCmd = 'yarn add';
       }
-      const output = shell.exec(`${iCmd} ${npmName}`);
+      const output = shell.exec(`${iCmd} ${npmName}@next`);
       if (output.code !== 0) {
         throw output.stderr;
       }
@@ -505,7 +506,7 @@ module.exports = (flags, args) => {
       type: 'list',
       name: 'ypm',
       message: 'Choose an installer',
-      choices: ['yarn', 'npm'],
+      choices: ['npm', 'yarn'],
       default: 0,
     };
     const dirNameQ = {
@@ -524,10 +525,10 @@ module.exports = (flags, args) => {
     const questions = [];
 
     // Check to see if yarn is installed or user has specified flag
-    if (yarnOrNpm === 'yarn' && !args.packageManager) questions.push(ypmQ);
-    ypm = args.packageManager ? args.packageManager : yarnOrNpm;
-    if (!args.directory) questions.push(dirNameQ);
-    if (!args.repository && !localPath) questions.push(skQ);
+    if (yarnOrNpm === 'yarn' && !packageManager) questions.push(ypmQ);
+    ypm = packageManager || yarnOrNpm;
+    if (!directory) questions.push(dirNameQ);
+    if (!repository && !localPath) questions.push(skQ);
 
     inquire.prompt(questions).then(answer => {
       // question 1
@@ -538,13 +539,13 @@ module.exports = (flags, args) => {
         localPath = path.resolve(localPath);
       }
       // Create new directory and set up path strings
-      createDir(args.directory || answer.dirName);
+      createDir(directory || answer.dirName);
       setupPaths();
       // question 3
       const choice = answer.starterChoice;
-      if (choice === ownRepo || args.repository) {
+      if (choice === ownRepo || repository) {
         // add repo question then move on to src prompt
-        getRepoUrl(args.repository);
+        getRepoUrl(repository);
       } else if (starterKyts.supported[choice] || localPath) {
         srcPrompt(choice);
       } else if (choice === exist) {
@@ -553,37 +554,8 @@ module.exports = (flags, args) => {
     });
   };
 
-  // Checks to see if user is running current version of kyt-cli
-  // Gives option to exit if version is old
-  // runs setup
-  const checkCliVersionPrompt = () => {
-    const currentVersion = cliPkgJson.version;
-    const output = shell.exec('npm info kyt-cli version');
-    const latestVersion = output.stdout.trim();
-    // If kyt-cli is up to date, proceed
-    if (!semver.lt(currentVersion, latestVersion)) {
-      setupPrompt();
-    } else {
-      const question = [
-        {
-          type: 'confirm',
-          name: 'cliVersion',
-          message: `You are running version ${currentVersion} of kyt-cli but the latest version is ${latestVersion} \n We recommend you upgrade before you continue. \n Would you like to proceed anyway?`,
-          default: false,
-        },
-      ];
-      inquire.prompt(question).then(answer => {
-        if (answer.cliVersion) {
-          setupPrompt();
-        } else {
-          process.exit();
-        }
-      });
-    }
-  };
-
   try {
-    checkCliVersionPrompt();
+    setupPrompt();
   } catch (err) {
     bailProcess(err);
   }

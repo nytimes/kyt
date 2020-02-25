@@ -1,15 +1,16 @@
 {
   "name": "jest-preset-kyt-styled",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-beta.1",
   "description": "Jest preset for linting styles in CSS-in-JS projects",
   "main": "jest-preset.js",
   "author": "NYTimes",
   "license": "Apache-2.0",
   "dependencies": {
     "create-jest-runner": "0.5.3",
-    "stylelint": "13.0.0",
-    "stylelint-config-standard": "19.0.0",
+    "stylelint": "13.2.0",
+    "stylelint-config-standard": "20.0.0",
     "stylelint-config-styled-components": "0.1.1",
-    "stylelint-processor-styled-components": "1.9.0"
-  }
+    "stylelint-processor-styled-components": "1.10.0"
+  },
+  "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }

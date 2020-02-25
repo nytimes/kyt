@@ -9,7 +9,7 @@ const {
   clientAssetsFile,
   loadableAssetsFile,
 } = require('kyt-utils/paths')();
-const getPolyfill = require('../utils/getPolyfill');
+const getPolyfill = require('./getPolyfill');
 
 const nodeArgs = ['-r', 'source-map-support/register'];
 // Passthrough --inspect and --inspect-brk flags (with optional [host:port] value) to node

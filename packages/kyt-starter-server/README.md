@@ -1,15 +1,16 @@
-# Server React starter-kyt
+# Server React `starter-kyt`
 
-This starter-kyt should serve as the base for a server-only React app.
+This `starter-kyt` should serve as the base for a server-only React app.
 
 ## Installation
 
-1. run `kyt-cli setup`
-2. select `server` from the list of starter-kyts
+1. run `npm install --save-dev kyt`
+1. run `kyt setup`
+1. select `server` from the list of `starter-kyt`s
 
 ## Tools
 
-The following are some of the tools included in this starter-kyt:
+The following are some of the tools included in this `starter-kyt`:
 
 - [Express](https://expressjs.com/) - Server-side rendering
 - [React](https://reactjs.org/) - Component library
@@ -19,5 +20,5 @@ The following are some of the tools included in this starter-kyt:
 
 ## How To Contribute
 
-Want to build your own starter-kyt?
+Want to build your own `starter-kyt`?
 See directions [here](https://github.com/NYTimes/kyt/blob/master/docs/Starterkyts.md).

@@ -1,6 +1,6 @@
 {
   "name": "kyt-starter-static",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-beta.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -11,5 +11,6 @@
   "bugs": {
     "url": "https://github.com/nytimes/kyt/issues"
   },
-  "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme"
+  "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-static#readme",
+  "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }

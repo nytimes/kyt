@@ -3,8 +3,8 @@ const assert = require('assert');
 // jest.enableAutomock();
 jest.mock('kyt-utils/logger');
 jest.mock('kyt-utils/paths');
-jest.mock('../../../utils/buildConfigs');
-jest.mock('../../../utils/webpackCompiler');
+jest.mock('../../utils/buildConfigs');
+jest.mock('../../utils/webpackCompiler');
 jest.setMock('path', {
   resolve: p => p,
   join: (p, q) => p + q,
@@ -18,8 +18,8 @@ const stats = {
 };
 
 const logger = require('kyt-utils/logger');
-const webpackCompiler = require('../../../utils/webpackCompiler');
-const buildConfigs = require('../../../utils/buildConfigs');
+const webpackCompiler = require('../../utils/webpackCompiler');
+const buildConfigs = require('../../utils/buildConfigs');
 
 const dev = require('../dev');
 
@@ -141,8 +141,8 @@ describe('dev', () => {
   });
 
   it('handles multiple server entries', () => {
-    require('../../../utils/webpackCompiler').configureOptionsType('multiEntry');
-    const compiler = require('../../../utils/webpackCompiler');
+    require('../../utils/webpackCompiler').configureOptionsType('multiEntry');
+    const compiler = require('../../utils/webpackCompiler');
 
     require('../dev')(
       {
@@ -159,8 +159,8 @@ describe('dev', () => {
   });
 
   it('handles multiple server string literal entries', () => {
-    require('../../../utils/webpackCompiler').configureOptionsType('stringEntry');
-    const compiler = require('../../../utils/webpackCompiler');
+    require('../../utils/webpackCompiler').configureOptionsType('stringEntry');
+    const compiler = require('../../utils/webpackCompiler');
 
     require('../dev')(
       {
