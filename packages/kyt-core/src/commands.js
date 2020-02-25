@@ -31,7 +31,6 @@ const loadConfigAndDo = (action, optionalConfig) => {
 };
 
 const loadArgsAndDo = action => {
-  console.log('program.args', program.args);
   const args = program.args.filter(item => typeof item === 'object');
   const flags = program.args.filter(item => typeof item === 'string');
   action(flags, args[0]);
@@ -95,5 +94,4 @@ program
     logger.error('kyt start is deprecated. \n Run the server with: node build/server/main.js');
   });
 
-console.log('process.argv', process.argv);
 program.parse(process.argv);

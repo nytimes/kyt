@@ -31,7 +31,7 @@
     "gzip-size": "5.1.1",
     "ink": "2.7.0",
     "ink-table": "2.0.1",
-    "inquirer": "6.2.1",
+    "inquirer": "7.0.4",
     "install": "0.13.0",
     "kyt-runtime": "1.0.0-beta.1",
     "kyt-utils": "1.0.0-beta.1",
