@@ -43,8 +43,7 @@ module.exports = config => {
     // Instatiate a variable to track server watching
     let watching;
 
-    // Start our server webpack instance in watch mode after assets compile
-    clientCompiler.hooks.done.tap('kyt', () => {
+    const watchServer = () => {
       // If we've already started the server watcher, bail early.
       if (watching || !config.hasServer) {
         return;
@@ -58,7 +57,16 @@ module.exports = config => {
         // eslint-disable-next-line no-unused-vars
         stats => {}
       );
-    });
+    };
+
+    if (config.hasClient) {
+      // Start our server webpack instance in watch mode after assets compile
+      clientCompiler.hooks.done.tap('kyt', () => {
+        watchServer();
+      });
+    } else {
+      watchServer();
+    }
 
     // Create a new instance of Webpack-dev-server for our client assets.
     // This will actually run on a different port than the users app.
@@ -72,7 +80,10 @@ module.exports = config => {
     });
   }
 
-  setPorts(config)
-    .then(main)
-    .catch(console.error);
+  return (
+    setPorts(config)
+      .then(main)
+      // eslint-disable-next-line no-console
+      .catch(console.error)
+  );
 };
