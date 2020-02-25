@@ -7,6 +7,8 @@ const kill = require('../utils/psKill');
 shell.config.silent = false;
 
 describe('starter kyts', () => {
+  const kytCli = path.join(util.rootDir, 'packages/kyt-core/lib/index.js');
+
   describe('kyt-starter-universal', () => {
     beforeAll(() => {
       shell.cd(path.join(util.rootDir, 'packages/kyt-starter-universal/starter-src'));
@@ -17,7 +19,7 @@ describe('starter kyts', () => {
     it('should start a dev server on :3000', () => {
       let outputTest;
       const run = new Promise(resolve => {
-        const child = shell.exec('node_modules/.bin/kyt dev', () => {
+        const child = shell.exec(`${kytCli} dev`, () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
@@ -36,7 +38,7 @@ describe('starter kyts', () => {
 
     it('should build and run', () => {
       let outputTest;
-      shell.exec('node_modules/kyt/cli/index.js build');
+      shell.exec(`${kytCli} build`);
       const run = new Promise(resolve => {
         const child = shell.exec('node build/server/main.js', () => {
           resolve(outputTest);
@@ -69,7 +71,7 @@ describe('starter kyts', () => {
     it('should start a server on :3001', () => {
       let outputTest;
       const run = new Promise(resolve => {
-        const child = shell.exec('node_modules/kyt/cli/index.js dev', () => {
+        const child = shell.exec(`${kytCli} dev`, () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
@@ -85,14 +87,14 @@ describe('starter kyts', () => {
     });
 
     it('should build', () => {
-      const output = shell.exec('node_modules/kyt/cli/index.js build');
+      const output = shell.exec(`${kytCli} build`);
       expect(output.stdout.includes('✅  Done building')).toBe(true);
       const htmlOutput = fs.readFileSync('build/public/index.html', 'utf8');
       expect(htmlOutput.includes('<html>')).toBe(true);
     });
 
     afterAll(() => {
-      // shell.rm('-rf', 'build');
+      shell.rm('-rf', 'build');
       shell.cd(util.rootDir);
     });
   });

@@ -14,18 +14,18 @@ const shell = {
 jest.setMock('shelljs', shell);
 jest.mock('kyt-utils/paths');
 jest.mock('kyt-utils/logger');
-jest.mock('../../../utils/printAssets');
-jest.mock('../../../utils/buildConfigs');
-jest.mock('../../../utils/webpackCompiler');
+jest.mock('../../utils/printAssets');
+jest.mock('../../utils/buildConfigs');
+jest.mock('../../utils/webpackCompiler');
 
 global.process.exit = jest.fn();
 
 const logger = require('kyt-utils/logger');
 const { buildPath, publicBuildPath, publicSrcPath } = require('kyt-utils/paths')();
-const printAssets = require('../../../utils/printAssets');
-const webpackCompiler = require('../../../utils/webpackCompiler');
+const printAssets = require('../../utils/printAssets');
+const webpackCompiler = require('../../utils/webpackCompiler');
 const build = require('../build');
-const buildConfigs = require('../../../utils/buildConfigs');
+const buildConfigs = require('../../utils/buildConfigs');
 
 const submodules = mod => Object.keys(mod).map(key => mod[key]);
 

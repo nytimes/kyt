@@ -7,18 +7,19 @@
   "repository": "git+https://github.com/nytimes/kyt/packages/kyt-core",
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
+  "files": ["lib/"],
   "bin": {
-    "kyt": "cli/index.js"
+    "kyt": "lib/index.js"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=12.14.1"
   },
   "dependencies": {
     "@babel/runtime": "7.8.4",
     "babel-loader": "8.0.6",
     "babel-preset-kyt-core": "1.0.0-beta.1",
     "chokidar": "3.3.1",
-    "commander": "2.19.0",
+    "commander": "4.1.1",
     "connect-history-api-fallback": "1.6.0",
     "core-js": "3.6.4",
     "cors": "2.8.5",
@@ -28,7 +29,9 @@
     "filesize": "6.0.1",
     "find-babel-config": "1.2.0",
     "gzip-size": "5.1.1",
-    "inquirer": "6.2.1",
+    "ink": "2.7.0",
+    "ink-table": "2.0.1",
+    "inquirer": "7.0.4",
     "install": "0.13.0",
     "kyt-runtime": "1.0.0-beta.1",
     "kyt-utils": "1.0.0-beta.1",
@@ -36,10 +39,14 @@
     "lodash.merge": "4.6.2",
     "lodash.once": "4.1.1",
     "nodemon": "2.0.2",
+    "prop-types": "15.7.2",
     "ps-tree": "1.2.0",
+    "react": "16.12.0",
     "react-hot-loader": "4.12.19",
     "regenerator-runtime": "0.13.3",
+    "semver": "6.3.0",
     "shelljs": "0.8.3",
+    "simple-git": "1.131.0",
     "source-map-support": "0.5.16",
     "strip-ansi": "6.0.0",
     "url-loader": "3.0.0",
@@ -50,6 +57,13 @@
     "webpack-merge": "4.2.2",
     "webpack-node-externals": "1.7.2",
     "webpackbar": "4.0.0"
+  },
+  "devDependencies": {
+    "babel-preset-kyt-react": "1.0.0-beta.1"
+  },
+  "scripts": {
+    "watch": "npm run prepublish -- --watch",
+    "prepublish": "babel src -d lib --copy-files --no-copy-ignored --include-dotfiles --ignore \"**/__tests__/**,**/__mocks__/**\""
   },
   "keywords": [
     "kyt",

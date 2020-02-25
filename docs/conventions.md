@@ -84,4 +84,4 @@ See further instructions [here](/docs/kytConfig.md)
 
 ## Babel
 
-Making changes to babel settings should be done by creating a `.babelrc.js` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a starter-kyt, then you should already have a .babelrc.js configured with one of the `kyt` presets.
+Making changes to babel settings should be done by creating a `.babelrc.js` file. It's recommended that you use [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md). Note, if you configured your project with a `starter-kyt`, then you should already have a .babelrc.js configured with one of the `kyt` presets.

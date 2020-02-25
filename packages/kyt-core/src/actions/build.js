@@ -3,9 +3,9 @@
 const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
 const { buildPath, publicBuildPath, publicSrcPath } = require('kyt-utils/paths')();
-const printAssets = require('../../utils/printAssets');
-const buildConfigs = require('../../utils/buildConfigs');
-const webpackCompiler = require('../../utils/webpackCompiler');
+const printAssets = require('../utils/printAssets');
+const buildConfigs = require('../utils/buildConfigs');
+const webpackCompiler = require('../utils/webpackCompiler');
 
 module.exports = config => {
   logger.start('Starting production build...');

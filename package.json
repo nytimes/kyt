@@ -28,7 +28,8 @@
     "lint": "eslint ./",
     "lint:ci": "npm run lint -- --no-color --quiet",
     "lint-fix": "npm run lint -- --fix",
-    "ncu": "ncu && lerna exec -- ncu"
+    "ncu": "ncu && lerna exec -- ncu",
+    "watch-cli": "cd packages/kyt-core && npm run watch"
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
