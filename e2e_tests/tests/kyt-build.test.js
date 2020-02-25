@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const fs = require('fs');
 const util = require('../fixtures/util');
 
-shell.config.silent = false;
+shell.config.silent = true;
 
 const stageName = 'stage-build';
 
@@ -20,14 +20,17 @@ describe('kyt build', () => {
     // Should copy static assets from src/public directory
     expect(shell.test('-f', 'build/public/nothing.txt')).toBe(true);
 
+    // `ls` behaves weirdly on Macs vs Linux (tl;dr bash)
+    const publicBuild = `${shell.pwd()}/build/public`;
+
     // Should produce the manifest and main scripts
-    expect(shell.ls(`${shell.pwd()}/build/public/runtime~main-*.js`).code).toBe(0);
-    expect(shell.ls(`${shell.pwd()}/build/public/main-*.js`).code).toBe(0);
+    expect(shell.ls(`${publicBuild}/runtime~main-*.js`).code).toBe(0);
+    expect(shell.ls(`${publicBuild}/main-*.js`).code).toBe(0);
 
     // Should fingerprint client and server assets
-    expect(shell.ls(`${shell.pwd()}/build/public/img-*.jpg`).code).toBe(0);
-    expect(shell.ls(`${shell.pwd()}/build/public/script-*.js`).code).toBe(0);
-    expect(shell.ls(`${shell.pwd()}/build/public/file-*.ico`).code).toBe(0);
+    expect(shell.ls(`${publicBuild}/img-*.jpg`).code).toBe(0);
+    expect(shell.ls(`${publicBuild}/script-*.js`).code).toBe(0);
+    expect(shell.ls(`${publicBuild}/file-*.ico`).code).toBe(0);
 
     // Should produce asset manifest mappings for client and server assets and bundles
     const manifest = JSON.parse(fs.readFileSync('build/publicAssets.json', 'utf8'));

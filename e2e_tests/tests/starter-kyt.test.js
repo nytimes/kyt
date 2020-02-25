@@ -31,7 +31,7 @@ describe('starter kyts', () => {
 
     const dataCallback = (child, message) => data => {
       if (data.includes(message)) {
-        shell.exec('sleep 5');
+        shell.exec('sleep 2');
         const output = shell.exec(curlCommand);
         const test = output.stdout.includes(curlOutput);
         expect(test).toBe(true);

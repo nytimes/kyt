@@ -9,7 +9,6 @@ const starterKyts = require('../config/starterKyts');
 const yarnOrNpm = require('../utils/yarnOrNpm')();
 
 module.exports = (flags, args) => {
-  console.log(flags, args);
   logger.start("Let's set up your new kyt project...");
   logger.log('✨  Answer a few questions to get started  ✨ \n');
   // Selects package manager to use
@@ -88,10 +87,10 @@ module.exports = (flags, args) => {
     const tempDevDependencies = tempPackageJSON.devDependencies || {};
     // In case the starter kyt used `kyt` as a dependency.
     if (tempDependencies.kyt) {
-      Reflect.deleteProperty(tempDependencies, 'kyt');
+      delete tempDependencies.kyt;
     }
     if (tempDevDependencies.kyt) {
-      Reflect.deleteProperty(tempDevDependencies, 'kyt');
+      delete tempDevDependencies.kyt;
     }
 
     packageJson.dependencies = Object.assign(packageJson.dependencies || {}, tempDependencies);

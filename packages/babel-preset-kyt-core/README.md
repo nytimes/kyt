@@ -42,7 +42,7 @@ _(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) fo
     },
     ```
 
-  These are sensible defaults that work well with kyt out of the box. The `client` option, typically reserved for client builds in kyt, is used to target browsers, while the `server` option targets the current version of node. The `client.targets.browsers` configuration is in the [browserlist](https://github.com/sitespeedio/browsertime) format. The following is an example of how to override the option types in your babelrc configuration:
+  These are sensible defaults that work well with kyt out of the box. The `client` option, typically reserved for client builds in kyt, is used to target browsers, while the `server` option targets the current version of node. The `client.targets.browsers` configuration is in the [browserslist](https://github.com/sitespeedio/browsertime) format. The following is an example of how to override the option types in your babelrc configuration:
 
   ```
   {
