@@ -212,7 +212,7 @@ module.exports = (flags, args) => {
   // Cleans and reinstalls node modules.
   const installUserDependencies = () => {
     logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
-    shell.rm('-rf', paths.userNodeModulesPath);
+    // shell.rm('-rf', paths.userNodeModulesPath);
     const result = shell.exec(`${ypm} install`);
     if (result.code !== 0) {
       fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
