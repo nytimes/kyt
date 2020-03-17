@@ -22,6 +22,11 @@ module.exports = config => {
   const { clientConfig, serverConfig } = buildConfigs(config);
 
   function main() {
+    const port = parseInt(process.env.PORT_DEV, 10);
+    if (!port) {
+      throw new Error('Port is not available.');
+    }
+
     let clientCompiler;
     let serverCompiler;
 
@@ -73,7 +78,7 @@ module.exports = config => {
     const clientDevServer = new WebpackDevServer(clientCompiler, clientConfig.devServer);
 
     // Start Webpack-dev-server
-    clientDevServer.listen(parseInt(process.env.PORT_DEV, 10) || 3001, err => {
+    clientDevServer.listen(port, err => {
       if (err) {
         logger.error(err);
       }
