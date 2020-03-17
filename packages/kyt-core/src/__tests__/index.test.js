@@ -6,7 +6,7 @@ it('bails when min node version is not met', () => {
   delete global.process.versions.node;
   global.process.versions.node = '4.0';
   global.process.exit = jest.fn();
-  require('../');
+  require('..');
 
   expect(global.console.error).toBeCalled();
   expect(process.exit).toBeCalled();
