@@ -20,7 +20,7 @@
   "dependencies": {
     "@babel/runtime": "7.8.7",
     "core-js": "3.6.4",
-    "kyt-runtime": "1.0.0-beta.2",
+    "kyt-runtime": "1.0.0-beta.25",
     "pretty-lights": "0.0.14",
     "prop-types": "15.7.2",
     "react": "16.13.0",
@@ -30,11 +30,11 @@
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
-    "babel-preset-kyt-react": "1.0.0-beta.2",
+    "babel-preset-kyt-react": "1.0.0-beta.25",
     "enzyme": "3.11.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
-    "eslint-config-kyt": "1.0.0-beta.2",
+    "eslint-config-kyt": "1.0.0-beta.25",
     "eslint-config-prettier": "6.10.0",
     "eslint-plugin-import": "2.20.1",
     "eslint-plugin-json": "2.1.1",
@@ -44,10 +44,10 @@
     "eslint-plugin-react-hooks": "2.5.0",
     "html-webpack-plugin": "3.2.0",
     "jest": "25.1.0",
-    "jest-preset-kyt-enzyme": "1.0.0-beta.2",
-    "jest-preset-kyt-styled": "1.0.0-beta.2",
-    "kyt": "1.0.0-beta.2",
+    "jest-preset-kyt-enzyme": "1.0.0-beta.25",
+    "jest-preset-kyt-styled": "1.0.0-beta.25",
+    "kyt": "1.0.0-beta.25",
     "prettier": "1.19.1"
   },
-  "version": "1.0.0-beta.2"
+  "version": "1.0.0-beta.25"
 }
