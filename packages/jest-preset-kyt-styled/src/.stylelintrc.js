@@ -6,6 +6,7 @@ module.exports = {
     'function-name-case': null,
     'no-descending-specificity': null,
     'selector-list-comma-newline-after': null,
+    'value-keyword-case': null,
     'value-list-comma-newline-after': null,
   },
 };
