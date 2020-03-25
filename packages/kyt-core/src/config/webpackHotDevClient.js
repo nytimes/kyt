@@ -16,7 +16,7 @@ const launchEditorEndpoint = require('react-dev-utils/launchEditorEndpoint');
 const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const ErrorOverlay = require('react-error-overlay');
 
-const sockJSPort = KYT.CLIENT_PORT || parseInt(window.location.port || 3000, 10) + 1;
+const sockJSPort = parseInt(KYT.CLIENT_PORT, 10) || parseInt(window.location.port || 3000, 10) + 1;
 
 ErrorOverlay.setEditorHandler(function editorHandler(errorLocation) {
   // Keep this sync with errorOverlayMiddleware.js
