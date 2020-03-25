@@ -257,17 +257,5 @@ function tryApplyUpdates(onHotUpdateSuccess) {
   }
 
   // https://webpack.github.io/docs/hot-module-replacement.html#check
-  const result = module.hot.check(/* autoApply */ true, handleApplyUpdates);
-
-  // // Webpack 2 returns a Promise instead of invoking a callback
-  if (result && result.then) {
-    result.then(
-      updatedModules => {
-        handleApplyUpdates(null, updatedModules);
-      },
-      err => {
-        handleApplyUpdates(err, null);
-      }
-    );
-  }
+  module.hot.check(/* autoApply */ true, handleApplyUpdates);
 }
