@@ -72,8 +72,8 @@ const connection = new SockJS(
 // to avoid spamming the console. Disconnect usually happens
 // when developer stops the server.
 connection.onclose = () => {
-  if (typeof console !== 'undefined' && typeof console.info === 'function') {
-    console.info('The development server has disconnected.\nRefresh the page if necessary.');
+  if (typeof console !== 'undefined' && typeof console.warn === 'function') {
+    console.warn('⚠️ The development server has disconnected.\nRefresh the page if necessary.');
   }
 };
 
