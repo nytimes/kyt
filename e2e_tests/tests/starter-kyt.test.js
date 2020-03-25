@@ -23,7 +23,7 @@ describe('starter kyts', () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
-          if (data.includes('✅  Development started')) {
+          if (data.includes('✅  server started on port: 3000')) {
             shell.exec('sleep 5');
             const output = shell.exec('curl -I localhost:3000');
             outputTest = output.stdout.includes('200');
@@ -75,7 +75,7 @@ describe('starter kyts', () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
-          if (data.includes('✅  Client started')) {
+          if (data.includes('Project is running at http://localhost:3001/')) {
             shell.exec('sleep 5');
             const output = shell.exec('curl -sb -o "" localhost:3001');
             outputTest = output.stdout.includes('<html>');

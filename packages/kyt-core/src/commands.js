@@ -39,7 +39,7 @@ const loadArgsAndDo = action => {
 program
   .command('dev')
   .option('-C, --config <path>', 'config path')
-  .description('Start an express server for development')
+  .description('Start server for development')
   .action(() => {
     const args = program.args.filter(item => typeof item === 'object');
     const config = args.length && args[0].config ? args[0].config : null;

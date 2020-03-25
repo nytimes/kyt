@@ -19,7 +19,6 @@ module.exports = optionalConfig => {
     hasServer: true,
     hasClient: true,
     debug: false,
-    reactHotLoader: false,
   };
 
   const kytConfigPath = optionalConfig

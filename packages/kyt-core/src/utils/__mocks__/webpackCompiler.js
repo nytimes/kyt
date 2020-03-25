@@ -43,7 +43,17 @@ const configureOptionsType = type => {
   else options = defaultOptions;
 };
 
-const webpackCompiler = jest.fn(() => ({ run, options }));
+const webpackCompiler = jest.fn(() => ({
+  run,
+  options,
+  plugins: {},
+  hooks: {
+    done: {
+      tap: jest.fn(),
+    },
+  },
+  watch: jest.fn(),
+}));
 
 module.exports = webpackCompiler;
 module.exports.configureOptionsType = configureOptionsType;
