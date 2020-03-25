@@ -75,10 +75,7 @@ program
   )
   .action(() => loadArgsAndDo(setupAction));
 
-program
-  .command('list')
-  .description('Lists availble supported `starter-kyt`s')
-  .action(listAction);
+program.command('list').description('Lists availble supported `starter-kyt`s').action(listAction);
 
 program
   .command('proto')
