@@ -2,13 +2,13 @@
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const StartServerPlugin = require('start-server-webpack-plugin');
 const {
   serverSrcPath,
   serverBuildPath,
   clientAssetsFile,
   loadableAssetsFile,
 } = require('kyt-utils/paths')();
+const StartServerPlugin = require('./StartServerPlugin');
 const getPolyfill = require('./getPolyfill');
 
 const nodeArgs = ['-r', 'source-map-support/register'];

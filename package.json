@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0-beta.29",
+  "version": "1.0.0-beta.30",
   "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
   "main": "index.js",
   "author": "NYTimes",
@@ -33,9 +33,9 @@
   },
   "devDependencies": {
     "@babel/cli": "7.8.4",
-    "@babel/core": "7.9.0",
-    "@babel/preset-env": "7.9.0",
-    "babel-eslint": "10.1.0",
+    "@babel/core": "7.8.7",
+    "@babel/preset-env": "7.8.7",
+    "babel-eslint": "10.0.3",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-kyt": "file:packages/eslint-config-kyt",
