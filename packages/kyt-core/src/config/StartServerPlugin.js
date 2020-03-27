@@ -71,12 +71,14 @@ class StartServerPlugin {
     return signal;
   }
 
-  afterEmit(compilation, callback) {
+  afterEmit() {
     if (this.worker && this.worker.isConnected()) {
       const signal = this._getSignal();
       process.kill(this.worker.process.pid, signal);
     }
-    this.startServer(compilation, callback);
+    this._startServer(worker => {
+      this.worker = worker;
+    });
   }
 
   apply(compiler) {
