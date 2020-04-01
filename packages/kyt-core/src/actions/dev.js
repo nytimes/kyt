@@ -69,20 +69,20 @@ module.exports = config => {
       clientCompiler.hooks.done.tap('kyt', () => {
         watchServer();
       });
+
+      // Create a new instance of Webpack-dev-server for our client assets.
+      // This will actually run on a different port than the users app.
+      const clientDevServer = new WebpackDevServer(clientCompiler, clientConfig.devServer);
+
+      // Start Webpack-dev-server
+      clientDevServer.listen(port, err => {
+        if (err) {
+          logger.error(err);
+        }
+      });
     } else {
       watchServer();
     }
-
-    // Create a new instance of Webpack-dev-server for our client assets.
-    // This will actually run on a different port than the users app.
-    const clientDevServer = new WebpackDevServer(clientCompiler, clientConfig.devServer);
-
-    // Start Webpack-dev-server
-    clientDevServer.listen(port, err => {
-      if (err) {
-        logger.error(err);
-      }
-    });
   }
 
   return (
