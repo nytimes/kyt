@@ -1,6 +1,6 @@
 {
   "name": "eslint-config-kyt",
-  "version": "1.0.0-beta.33",
+  "version": "1.0.0-beta.35",
   "description": "ESLint configuration for kyt projects.",
   "main": ".eslintrc.js",
   "author": "NYTimes",
@@ -9,16 +9,16 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "peerDependencies": {
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-json": "^2.1.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-plugin-react-hooks": "^3.0.0",
     "prettier": "^2.0.2"
   },
   "keywords": [

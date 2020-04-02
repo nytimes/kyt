@@ -1,6 +1,6 @@
 {
   "name": "jest-preset-kyt-enzyme",
-  "version": "1.0.0-beta.33",
+  "version": "1.0.0-beta.35",
   "description": "Jest preset",
   "main": "jest-preset.js",
   "author": "NYTimes",
@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "enzyme": "^3.11.0",
-    "jest": "^25.2.0"
+    "jest": "^25.2.6"
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }
