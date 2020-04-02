@@ -18,7 +18,7 @@
     "test-update": "jest -u"
   },
   "dependencies": {
-    "@babel/runtime": "7.8.7",
+    "@babel/runtime": "7.9.2",
     "compression": "1.7.4",
     "core-js": "3.6.4",
     "express": "4.17.1",
@@ -32,20 +32,20 @@
     "source-map-support": "0.5.16"
   },
   "devDependencies": {
-    "babel-eslint": "10.0.3",
+    "babel-eslint": "10.1.0",
     "babel-preset-kyt-react": "1.0.0-beta.34",
     "enzyme": "3.11.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-kyt": "1.0.0-beta.34",
     "eslint-config-prettier": "6.10.1",
-    "eslint-plugin-import": "2.20.1",
+    "eslint-plugin-import": "2.20.2",
     "eslint-plugin-json": "2.1.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.1.2",
     "eslint-plugin-react": "7.19.0",
-    "eslint-plugin-react-hooks": "2.5.1",
-    "jest": "25.2.0",
+    "eslint-plugin-react-hooks": "3.0.0",
+    "jest": "25.2.6",
     "jest-preset-kyt-enzyme": "1.0.0-beta.34",
     "jest-preset-kyt-styled": "1.0.0-beta.34",
     "kyt": "1.0.0-beta.34",
