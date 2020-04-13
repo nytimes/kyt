@@ -11,7 +11,7 @@ const {
 const StartServerPlugin = require('./StartServerPlugin');
 const getPolyfill = require('./getPolyfill');
 
-const nodeArgs = ['-r', 'source-map-support/register'];
+const nodeArgs = ['-r', 'source-map-support/register', '--max_old_space_size=4096'];
 // Passthrough --inspect and --inspect-brk flags (with optional [host:port] value) to node
 if (process.env.INSPECT_BRK) {
   nodeArgs.push(process.env.INSPECT_BRK);

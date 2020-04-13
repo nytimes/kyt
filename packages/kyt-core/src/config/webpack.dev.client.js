@@ -63,11 +63,6 @@ module.exports = options => {
       },
     },
 
-    plugins: [
-      ...kytWebpackPlugins(options),
-      new webpack.HotModuleReplacementPlugin({
-        multiStep: true,
-      }),
-    ],
+    plugins: [...kytWebpackPlugins(options), new webpack.HotModuleReplacementPlugin()],
   };
 };
