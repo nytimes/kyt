@@ -6,6 +6,7 @@ describe('yarnOrNpm', () => {
     shell.__setExecReturnValue({
       code: 0,
     });
+
     expect(yarnOrNpm()).toBe('yarn');
   });
 
@@ -13,6 +14,7 @@ describe('yarnOrNpm', () => {
     shell.__setExecReturnValue({
       code: 127,
     });
+
     expect(yarnOrNpm()).toBe('npm');
   });
 });

@@ -26,9 +26,10 @@ describe('logger', () => {
     it(`logger.${method}: simple usage`, () => {
       const nLogCalls = newlineMethods.includes(method) ? 2 : 1;
       logger[method]('here is some text');
-      expect(global.console.log).toBeCalledWith(`${expectedPrefix}here is some text`);
-      expect(global.console.log.mock.calls.length).toEqual(nLogCalls);
-      expect(global.console.dir.mock.calls.length).toBe(0);
+
+      expect(global.console.log).toHaveBeenCalledWith(`${expectedPrefix}here is some text`);
+      expect(global.console.log.mock.calls).toHaveLength(nLogCalls);
+      expect(global.console.dir.mock.calls).toHaveLength(0);
     });
   });
 
@@ -36,9 +37,10 @@ describe('logger', () => {
     it(`logger.${method}: can only take one arg`, () => {
       const nLogCalls = newlineMethods.includes(method) ? 2 : 1;
       logger[method]('here is some text', { description: 'and a second argument' });
-      expect(global.console.log).toBeCalledWith(`${expectedPrefix}here is some text`);
-      expect(global.console.log.mock.calls.length).toEqual(nLogCalls);
-      expect(global.console.dir.mock.calls.length).toBe(0);
+
+      expect(global.console.log).toHaveBeenCalledWith(`${expectedPrefix}here is some text`);
+      expect(global.console.log.mock.calls).toHaveLength(nLogCalls);
+      expect(global.console.dir.mock.calls).toHaveLength(0);
     });
   });
 
@@ -47,11 +49,12 @@ describe('logger', () => {
       const nLogCalls = newlineMethods.includes(method) ? 4 : 2;
       logger[method]('here is some text', 'and a second string argument');
       logger[method]('here is some text', { description: 'and a second argument' });
-      expect(global.console.log).toBeCalledWith(
+
+      expect(global.console.log).toHaveBeenCalledWith(
         `${expectedPrefix}here is some text\nand a second string argument`
       );
-      expect(global.console.log.mock.calls.length).toEqual(nLogCalls);
-      expect(global.console.dir.mock.calls.length).toBe(1);
+      expect(global.console.log.mock.calls).toHaveLength(nLogCalls);
+      expect(global.console.dir.mock.calls).toHaveLength(1);
     });
   });
 
@@ -60,10 +63,11 @@ describe('logger', () => {
       const objectToLog = { description: 'and some object' };
       const nLogCalls = newlineMethods.includes(method) ? 2 : 1;
       logger[method]('here is some text', objectToLog);
-      expect(global.console.log).toBeCalledWith(`${expectedPrefix}here is some text`);
-      expect(global.console.log.mock.calls.length).toEqual(nLogCalls);
-      expect(global.console.dir.mock.calls.length).toBe(1);
-      expect(global.console.dir.mock.calls[0].length).toBe(2);
+
+      expect(global.console.log).toHaveBeenCalledWith(`${expectedPrefix}here is some text`);
+      expect(global.console.log.mock.calls).toHaveLength(nLogCalls);
+      expect(global.console.dir.mock.calls).toHaveLength(1);
+      expect(global.console.dir.mock.calls[0]).toHaveLength(2);
       expect(global.console.dir.mock.calls[0][0]).toBe(objectToLog);
       expect(global.console.dir.mock.calls[0][1]).toEqual({ depth: 15 });
     });

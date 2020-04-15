@@ -14,7 +14,7 @@ describe('starter kyts', () => {
       shell.cd(path.join(util.rootDir, 'packages/kyt-starter-universal/starter-src'));
     });
 
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 1000000; // eslint-disable-line no-undef
+    jest.setTimeout(1000000); // eslint-disable-line no-undef
 
     it('should start a dev server on :3000', () => {
       let outputTest;
@@ -34,7 +34,7 @@ describe('starter kyts', () => {
       return run.then(test => expect(test).toBe(true));
     });
 
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 400000; // eslint-disable-line no-undef
+    jest.setTimeout(400000); // eslint-disable-line no-undef
 
     it('should build and run', () => {
       let outputTest;
@@ -88,9 +88,12 @@ describe('starter kyts', () => {
 
     it('should build', () => {
       const output = shell.exec(`${kytCli} build`);
-      expect(output.stdout.includes('✅  Done building')).toBe(true);
+
+      expect(output.stdout).toContain('✅  Done building');
+
       const htmlOutput = fs.readFileSync('build/public/index.html', 'utf8');
-      expect(htmlOutput.includes('<html>')).toBe(true);
+
+      expect(htmlOutput).toContain('<html>');
     });
 
     afterAll(() => {

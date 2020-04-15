@@ -1,6 +1,3 @@
-const assert = require('assert');
-
-// jest.enableAutomock();
 jest.mock('kyt-utils/logger');
 jest.mock('kyt-utils/paths');
 jest.mock('webpack-dev-server');
@@ -43,30 +40,24 @@ describe('dev', () => {
       []
     );
 
-    assert.deepEqual(
-      logger.task.mock.calls[0],
-      ['Cleaned ./build'],
-      'should log that it cleaned the build directory'
-    );
+    // should log that it cleaned the build directory
+    expect(logger.task.mock.calls[0][0]).toEqual('Cleaned ./build');
 
     // watches files for server restarting
     // client dev server
-    assert.ok(webpackCompiler.mock.calls.length > 0, 'should call webpackCompiler');
-    assert.ok(buildConfigs.mock.calls.length > 0, 'should call buildConfigs');
+
+    // should call webpackCompiler
+    expect(webpackCompiler.mock.calls.length > 0).toBe(true);
+    // should call buildConfigs
+    expect(buildConfigs.mock.calls.length > 0).toBe(true);
 
     // clientCompiler
-    assert.equal(
-      webpackCompiler.mock.calls[0][0],
-      'clientConfig',
-      'first call to webpackCompiler should be client compilation'
-    );
+    // first call to webpackCompiler should be client compilation
+    expect(webpackCompiler.mock.calls[0][0]).toEqual('clientConfig');
 
     // serverCompiler
-    assert.equal(
-      webpackCompiler.mock.calls[1][0],
-      'serverConfig',
-      'second call to webpackCompiler should be server compilation'
-    );
+    // second call to webpackCompiler should be server compilation
+    expect(webpackCompiler.mock.calls[1][0]).toEqual('serverConfig');
   });
 
   it('runs correctly in client-only mode', async () => {
@@ -77,12 +68,10 @@ describe('dev', () => {
       hasClient: true,
     });
 
-    assert.equal(webpackCompiler.mock.calls.length, 1, 'should only call webpackCompiler once');
-    assert.equal(
-      webpackCompiler.mock.calls[0][0],
-      'clientConfig',
-      'should call webpackCompiler with client config'
-    );
+    // should only call webpackCompiler once
+    expect(webpackCompiler.mock.calls).toHaveLength(1);
+    // should call webpackCompiler with client config
+    expect(webpackCompiler.mock.calls[0][0]).toEqual('clientConfig');
   });
 
   it('runs correctly in server-only mode', async () => {
@@ -93,11 +82,9 @@ describe('dev', () => {
       hasClient: false,
     });
 
-    assert.equal(webpackCompiler.mock.calls.length, 1, 'should only call webpackCompiler once');
-    assert.equal(
-      webpackCompiler.mock.calls[0][0],
-      'serverConfig',
-      'should call webpackCompiler with server config'
-    );
+    // should only call webpackCompiler once
+    expect(webpackCompiler.mock.calls).toHaveLength(1);
+    // should call webpackCompiler with server config
+    expect(webpackCompiler.mock.calls[0][0]).toEqual('serverConfig');
   });
 });

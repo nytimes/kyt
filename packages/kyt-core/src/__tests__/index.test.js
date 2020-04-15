@@ -8,6 +8,6 @@ it('bails when min node version is not met', () => {
   global.process.exit = jest.fn();
   require('..');
 
-  expect(global.console.error).toBeCalled();
-  expect(process.exit).toBeCalled();
+  expect(global.console.error).toHaveBeenCalled();
+  expect(process.exit).toHaveBeenCalled();
 });

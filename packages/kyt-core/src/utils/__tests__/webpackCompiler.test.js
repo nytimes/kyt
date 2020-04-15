@@ -28,21 +28,22 @@ describe('webpackCompiler', () => {
     const doneHook = hooks.done.tap.mock.calls[0][1];
 
     it('calls webpack and defines a done and before-run function', () => {
-      expect(logger.task).toBeCalledWith('Server webpack configuration compiled');
+      expect(logger.task).toHaveBeenCalledWith('Server webpack configuration compiled');
       expect(typeof doneHook).toBe('function');
       expect(typeof beforeRunHook).toBe('function');
     });
 
     it('sets the process KYT_ENV_TYPE before running', () => {
       beforeRunHook({}, () => {});
+
       expect(process.env.KYT_ENV_TYPE).toEqual('server');
     });
 
     it('then displays any errors', () => {
       doneHook({ hasErrors: () => true, hasWarnings: () => true });
 
-      expect(logger.error).toBeCalled();
-      expect(logger.info).toBeCalledWith('See webpack error above');
+      expect(logger.error).toHaveBeenCalled();
+      expect(logger.info).toHaveBeenCalledWith('See webpack error above');
     });
 
     it('then displays any warnings', () => {
@@ -51,18 +52,21 @@ describe('webpackCompiler', () => {
         hasWarnings: () => true,
         toJson: () => ({ warnings: [] }),
       });
-      expect(logger.warn).toBeCalled();
+
+      expect(logger.warn).toHaveBeenCalled();
     });
 
     it('removes the process KYT_ENV_TYPE when done', () => {
       doneHook({ hasErrors: () => true, hasWarnings: () => true });
-      expect(process.env.KYT_ENV_TYPE).toEqual(undefined);
+
+      expect(process.env.KYT_ENV_TYPE).toBeUndefined();
     });
 
     it('calls the provided callback', () => {
       doneHook({ hasErrors: () => false, hasWarnings: () => false });
-      expect(logger.task).toBeCalledWith('Server build successful');
-      expect(cb).toBeCalled();
+
+      expect(logger.task).toHaveBeenCalledWith('Server build successful');
+      expect(cb).toHaveBeenCalled();
     });
 
     it('returns the webpackCompiler', () => {
@@ -77,6 +81,7 @@ describe('webpackCompiler', () => {
 
     it('sets the process KYT_ENV_TYPE to client before running', () => {
       beforeRunHook({}, () => {});
+
       expect(process.env.KYT_ENV_TYPE).toEqual('client');
     });
   });
@@ -86,7 +91,8 @@ describe('webpackCompiler', () => {
     try {
       webpackCompiler({ error: true });
     } catch (x) {} // eslint-disable-line no-empty
-    expect(logger.error).toBeCalled();
-    expect(global.process.exit).toBeCalled();
+
+    expect(logger.error).toHaveBeenCalled();
+    expect(global.process.exit).toHaveBeenCalled();
   });
 });

@@ -56,11 +56,13 @@ describe('buildConfigs', () => {
 
     // for client
     const clientCall = stubConfig.modifyWebpackConfig.mock.calls[0];
+
     expect(clientCall[1].type).toBe('client');
     expect(clientCall[1].environment).toBe('development');
 
     // for server
     const serverCall = stubConfig.modifyWebpackConfig.mock.calls[1];
+
     expect(serverCall[1].type).toBe('server');
     expect(serverCall[1].environment).toBe('development');
 
@@ -78,11 +80,13 @@ describe('buildConfigs', () => {
 
     // for client
     const clientCall = stubConfig.modifyWebpackConfig.mock.calls[0];
+
     expect(clientCall[1].type).toBe('client');
     expect(clientCall[1].environment).toBe('production');
 
     // for server
     const serverCall = stubConfig.modifyWebpackConfig.mock.calls[1];
+
     expect(serverCall[1].type).toBe('server');
     expect(serverCall[1].environment).toBe('production');
 
