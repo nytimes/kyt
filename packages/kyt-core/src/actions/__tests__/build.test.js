@@ -1,5 +1,3 @@
-const assert = require('assert');
-
 const shell = {
   exec: jest.fn(() => ({ code: 0 })),
   mkdir: jest.fn(),
@@ -48,102 +46,100 @@ describe('build', () => {
 
     build(testConfig);
 
-    assert.deepEqual(
-      logger.start.mock.calls,
-      [['Starting production build...']],
-      'should log start'
-    );
-    assert.deepEqual(
-      buildConfigs.mock.calls,
-      [[testConfig, 'production']],
-      'builds production configuration'
-    );
+    // should log start
+    expect(logger.start.mock.calls[0][0]).toEqual('Starting production build...');
 
-    assert.deepEqual(shell.rm.mock.calls[0], ['-rf', buildPath], 'should clean build directory...');
-    assert.deepEqual(shell.mkdir.mock.calls[0], [buildPath], 'should recreate build directory');
-    assert.deepEqual(
-      logger.task.mock.calls[0],
-      ['Cleaned ./build'],
-      'should log that build was cleaned'
-    );
+    // builds production configuration
+    expect(buildConfigs.mock.calls[0][0]).toEqual(testConfig);
+    expect(buildConfigs.mock.calls[0][1]).toEqual('production');
 
-    assert.deepEqual(
-      shell.test.mock.calls[0],
-      ['-d', publicSrcPath],
-      'should check public src path'
-    );
-    assert.deepEqual(shell.test.mock.calls[1], ['-d', buildPath], 'should check build path');
-    assert.equal(shell.mkdir.mock.calls[1], buildPath, 'should mkdir buildPath');
-    assert.deepEqual(
-      shell.cp.mock.calls[0],
-      ['-r', publicSrcPath, publicBuildPath],
-      'should copy public src to public build'
-    );
-    assert.deepEqual(
-      logger.task.mock.calls[1],
-      ['Copied /src/public to /build/public'],
-      'should log that it copied public src to public build'
-    );
+    // should clean build directory...
+    expect(shell.rm.mock.calls[0][0]).toEqual('-rf');
+    expect(shell.rm.mock.calls[0][1]).toEqual(buildPath);
 
-    // for client
-    assert.equal(
-      webpackCompiler.mock.calls[0][0],
-      'clientConfig',
-      'should call webpackCompiler with clientConfig'
-    );
-    assert.ok(webpackCompiler.run.mock.calls.length > 0, 'should call webpackCompiler.run');
+    // should recreate build directory
+    expect(shell.mkdir.mock.calls[0][0]).toEqual(buildPath);
+
+    // should log that build was cleaned
+    expect(logger.task.mock.calls[0][0]).toEqual('Cleaned ./build');
+
+    // should check public src path
+    expect(shell.test.mock.calls[0][0]).toEqual('-d');
+    expect(shell.test.mock.calls[0][1]).toEqual(publicSrcPath);
+
+    // should check build path
+    expect(shell.test.mock.calls[1][0]).toEqual('-d');
+    expect(shell.test.mock.calls[1][1]).toEqual(buildPath);
+
+    // should mkdir buildPath
+    expect(shell.mkdir.mock.calls[1][0]).toEqual(buildPath);
+
+    // should copy public src to public build
+    expect(shell.cp.mock.calls[0][0]).toEqual('-r');
+    expect(shell.cp.mock.calls[0][1]).toEqual(publicSrcPath);
+    expect(shell.cp.mock.calls[0][2]).toEqual(publicBuildPath);
+
+    // should log that it copied public src to public build
+    expect(logger.task.mock.calls[1][0]).toEqual('Copied /src/public to /build/public');
+
+    // should call webpackCompiler with clientConfig
+    expect(webpackCompiler.mock.calls[0][0]).toEqual('clientConfig');
+
+    // should call webpackCompiler.run
+    expect(webpackCompiler.run.mock.calls.length > 0).toBe(true);
 
     // client stats
     const clientCallback = webpackCompiler.mock.calls[0][1];
-    assert.equal(typeof clientCallback, 'function', 'clientCallback should be a function');
+
+    // clientCallback should be a function
+    expect(typeof clientCallback).toEqual('function');
+
     const stats = {
       hasErrors: jest.fn(),
     };
     clientCallback(stats);
-    assert.deepEqual(logger.info.mock.calls, [['Assets:']], 'should call logger.info');
-    assert.deepEqual(printAssets.mock.calls, [[stats, 'clientConfig']], 'should call printAssets');
+
+    // should call logger.info
+    expect(logger.info.mock.calls[0][0]).toEqual('Assets:');
+    // should call printAssets'
+    expect(printAssets.mock.calls[0][0]).toEqual(stats);
+    expect(printAssets.mock.calls[0][1]).toEqual('clientConfig');
 
     // for server
     const doneBuilding = webpackCompiler.mock.calls[1][1];
-    assert.equal(
-      webpackCompiler.mock.calls[1][0],
-      'serverConfig',
-      'should call webpackCompiler with serverConfig second'
-    );
+
+    // should call webpackCompiler with serverConfig second
+    expect(webpackCompiler.mock.calls[1][0]).toEqual('serverConfig');
 
     // done building server
     doneBuilding(stats);
-    assert.deepEqual(logger.end.mock.calls, [['Done building']], 'should log success');
+
+    // should log success
+    expect(logger.end.mock.calls[0][0]).toEqual('Done building');
   });
 
   it('builds correctly without a server', () => {
     build({ test: 'test', hasServer: false, hasClient: true });
-    assert.equal(
-      webpackCompiler.mock.calls[0][0],
-      'clientConfig',
-      'should call webpackCompiler with clientConfig'
-    );
-    assert.ok(webpackCompiler.run.mock.calls.length > 0, 'should call webpackCompiler.run');
-    assert.equal(
-      webpackCompiler.mock.calls.length,
-      1,
-      'should not call webpackCompiler a second time for server'
-    );
+
+    // should call webpackCompiler with clientConfig
+    expect(webpackCompiler.mock.calls[0][0]).toEqual('clientConfig');
+    // should call webpackCompiler.run
+    expect(webpackCompiler.run.mock.calls.length > 0).toBe(true);
+    // should not call webpackCompiler a second time for server
+    expect(webpackCompiler.mock.calls).toHaveLength(1);
   });
 
   it('builds correctly without a client', () => {
     build({ test: 'test', hasClient: false });
-    assert.equal(
-      webpackCompiler.mock.calls[0][0],
-      'serverConfig',
-      'should call webpackCompiler with serverConfig'
-    );
-    assert.ok(webpackCompiler.run.mock.calls.length > 0, 'should call webpackCompiler.run');
-    assert.equal(
-      webpackCompiler.mock.calls.length,
-      1,
-      'should not call webpackCompiler a second time for client'
-    );
+
+    // should call webpackCompiler with serverConfig
+    expect(webpackCompiler.mock.calls[0][0]).toEqual('serverConfig');
+
+    // should call webpackCompiler.run
+    expect(webpackCompiler.run.mock.calls.length > 0).toBe(true);
+
+    // should not call webpackCompiler a second time for client
+    expect(webpackCompiler.mock.calls).toHaveLength(1);
   });
 
   it('exits when the client build errors', () => {
@@ -153,7 +149,8 @@ describe('build', () => {
       hasErrors: jest.fn(() => true),
     };
     clientCallback(failingStats);
-    expect(process.exit).toBeCalledWith(1);
+
+    expect(process.exit).toHaveBeenCalledWith(1);
   });
 
   it('exits when the server build errors', () => {
@@ -162,12 +159,14 @@ describe('build', () => {
     clientCallback({
       hasErrors: jest.fn(),
     });
-    expect(process.exit.mock.calls.length).toEqual(0);
+
+    expect(process.exit.mock.calls).toHaveLength(0);
 
     const serverCallback = webpackCompiler.mock.calls[1][1];
     serverCallback({
       hasErrors: jest.fn(() => true),
     });
-    expect(process.exit).toBeCalledWith(1);
+
+    expect(process.exit).toHaveBeenCalledWith(1);
   });
 });

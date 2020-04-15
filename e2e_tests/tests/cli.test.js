@@ -3,6 +3,7 @@ const path = require('path');
 
 let rootPath;
 shell.config.silent = false;
+
 describe('KYT CLI', () => {
   beforeAll(() => {
     shell.mkdir('stage-cli');
@@ -61,19 +62,19 @@ describe('KYT CLI', () => {
       });
       return exec.then(test => {
         shell.cd(directory);
+
         expect(test.code).toBe(0);
+
         const setupArr = test.output.split('\n');
 
-        expect(setupArr.includes('👍  Added kyt scripts into your package.json scripts')).toBe(
-          true
-        );
-        expect(setupArr.includes('👍  Added new dependencies to package.json')).toBe(true);
-        expect(setupArr.includes('👍  Installed new modules')).toBe(true);
-        expect(setupArr.includes('👍  Created .eslintrc.js file')).toBe(true);
-        expect(setupArr.includes('👍  Created kyt.config.js file')).toBe(true);
-        expect(setupArr.includes('👍  Created .editorconfig file')).toBe(true);
-        expect(setupArr.includes('👍  Created .gitignore file')).toBe(true);
-        expect(setupArr.includes('👍  Created src directory')).toBe(true);
+        expect(setupArr).toContain('👍  Added kyt scripts into your package.json scripts');
+        expect(setupArr).toContain('👍  Added new dependencies to package.json');
+        expect(setupArr).toContain('👍  Installed new modules');
+        expect(setupArr).toContain('👍  Created .eslintrc.js file');
+        expect(setupArr).toContain('👍  Created kyt.config.js file');
+        expect(setupArr).toContain('👍  Created .editorconfig file');
+        expect(setupArr).toContain('👍  Created .gitignore file');
+        expect(setupArr).toContain('👍  Created src directory');
       });
     });
 
@@ -88,6 +89,7 @@ describe('KYT CLI', () => {
       const userPackageJSON = require.requireActual(path.join(process.cwd(), 'package.json'));
       // eslint-disable-next-line import/no-unresolved
       const { scripts } = userPackageJSON;
+
       expect(scripts.dev).toBe('kyt dev');
       expect(scripts.start).toBe('node build/server/main.js');
       expect(scripts.build).toBe('kyt build');

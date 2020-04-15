@@ -1,6 +1,6 @@
 {
   "private": true,
-  "version": "1.0.0-beta.32",
+  "version": "1.0.0-beta.37",
   "description": "<p align=\"center\"><img src=\"/images/kyt-logo-large.png\"></p>",
   "main": "index.js",
   "author": "NYTimes",
@@ -41,6 +41,8 @@
     "eslint-config-kyt": "file:packages/eslint-config-kyt",
     "eslint-config-prettier": "6.10.1",
     "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-jest": "23.8.2",
+    "eslint-plugin-jest-formatting": "1.2.0",
     "eslint-plugin-json": "2.1.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
     "eslint-plugin-prettier": "3.1.3",
@@ -48,6 +50,6 @@
     "eslint-plugin-react-hooks": "3.0.0",
     "jest": "25.3.0",
     "lerna": "3.20.2",
-    "prettier": "2.0.4"
+    "prettier": "2.0.2"
   }
 }

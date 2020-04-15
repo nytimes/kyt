@@ -11,6 +11,7 @@ describe('kyt build', () => {
     util.setupStageWithFixture(stageName, 'build-default');
 
     const output = shell.exec('../packages/kyt-core/lib/index.js build');
+
     expect(shell.test('-f', 'build/publicAssets.json')).toBe(true);
     expect(shell.test('-d', 'build/server')).toBe(true);
 
@@ -34,6 +35,7 @@ describe('kyt build', () => {
 
     // Should produce asset manifest mappings for client and server assets and bundles
     const manifest = JSON.parse(fs.readFileSync('build/publicAssets.json', 'utf8'));
+
     expect(manifest['img.jpg']).toMatch(/img-.*\.jpg/);
     expect(manifest['script.js']).toMatch(/script-.*\.js/);
     expect(manifest['file.ico']).toMatch(/file-.*\.ico/);
@@ -45,6 +47,7 @@ describe('kyt build', () => {
   it('should ignore server build if hasServer=false', () => {
     util.setupStageWithFixture(stageName, 'build-no-server');
     const output = shell.exec('npm run build');
+
     expect(output.code).toBe(0);
     expect(shell.test('-d', 'build/server')).toBe(false);
   });
@@ -52,6 +55,7 @@ describe('kyt build', () => {
   it('should ignore client build if hasClient=false', () => {
     util.setupStageWithFixture(stageName, 'build-no-client');
     const output = shell.exec('npm run build');
+
     expect(output.code).toBe(0);
     expect(shell.test('-d', 'build/server')).toBe(true);
   });

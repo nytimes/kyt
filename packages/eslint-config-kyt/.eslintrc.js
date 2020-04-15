@@ -1,5 +1,13 @@
 module.exports = {
-  extends: ['airbnb', 'plugin:prettier/recommended', 'plugin:json/recommended', 'prettier/react'],
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended',
+    'plugin:jest/recommended',
+    'plugin:jest/style',
+    'plugin:jest-formatting/strict',
+    'plugin:json/recommended',
+    'prettier/react'
+  ],
 
   env: {
     jest: true,

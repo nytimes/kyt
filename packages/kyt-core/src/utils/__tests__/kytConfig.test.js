@@ -9,6 +9,7 @@ jest.mock('kyt-utils/logger');
 
 describe('kytConfig', () => {
   let logger;
+
   beforeEach(() => {
     jest.resetModules();
     logger = require('kyt-utils/logger');
@@ -18,8 +19,8 @@ describe('kytConfig', () => {
     global.process.exit = jest.fn();
     require('../kytConfig')();
 
-    expect(logger.error).toBeCalled();
-    expect(global.process.exit).toBeCalled();
+    expect(logger.error).toHaveBeenCalled();
+    expect(global.process.exit).toHaveBeenCalled();
   });
 
   it('correctly builds config', () => {
@@ -27,11 +28,13 @@ describe('kytConfig', () => {
     logger.info = jest.fn();
     const config = require('../kytConfig')();
 
-    expect(logger.info).toBeCalled();
+    expect(logger.info).toHaveBeenCalled();
     expect(typeof config.modifyWebpackConfig).toBe('function');
 
     expect(Object.isFrozen(config)).toBe(true);
+
     config.productionPublicPath = 'frozen!';
+
     expect(config.productionPublicPath).not.toBe('frozen!');
   });
 });

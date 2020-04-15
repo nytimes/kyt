@@ -6,6 +6,7 @@ import App, { Home, Tools } from '.';
 
 it('Test example', () => {
   const wrapper = shallow(<App>test</App>);
+
   expect(wrapper.is('div')).toBeTruthy();
 });
 
@@ -19,6 +20,7 @@ it('Test home route', async () => {
       </StaticRouter>
     </DynamicImports>
   );
+
   expect(wrapper).toMatchSnapshot();
   expect(modules).toMatchSnapshot();
 });
@@ -33,6 +35,7 @@ it('Test tools route', async () => {
       </StaticRouter>
     </DynamicImports>
   );
+
   expect(wrapper).toMatchSnapshot();
   expect(modules).toMatchSnapshot();
 });
