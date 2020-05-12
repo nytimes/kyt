@@ -10,12 +10,12 @@
     "enzyme-to-json": "3.4.4",
     "jest-environment-jsdom-global": "2.0.2",
     "jest-silent-reporter": "0.2.1",
-    "jsdom": "15.2.1",
+    "jsdom": "16.2.2",
     "raf": "3.4.1"
   },
   "peerDependencies": {
     "enzyme": "^3.11.0",
-    "jest": "^25.3.0"
+    "jest": "^26.0.1"
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }

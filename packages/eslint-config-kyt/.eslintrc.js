@@ -6,7 +6,7 @@ module.exports = {
     'plugin:jest/style',
     'plugin:jest-formatting/strict',
     'plugin:json/recommended',
-    'prettier/react'
+    'prettier/react',
   ],
 
   env: {
