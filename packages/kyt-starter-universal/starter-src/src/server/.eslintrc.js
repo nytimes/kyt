@@ -4,6 +4,6 @@
 //
 module.exports = {
   rules: {
-    "import/no-restricted-paths": "off",
+    'import/no-restricted-paths': 'off',
   },
 };
