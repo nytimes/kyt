@@ -19,55 +19,69 @@ if (process.env.INSPECT_BRK) {
   nodeArgs.push(process.env.INSPECT);
 }
 
-module.exports = options => ({
-  mode: 'development',
+module.exports = options => {
+  let externals;
+  if (options.modulesDir && Array.isArray(options.modulesDir)) {
+    externals = options.modulesDir.map(dir =>
+      nodeExternals({
+        modulesDir: dir,
+        whitelist: ['webpack/hot/poll?300'],
+      })
+    );
+  } else {
+    externals = [
+      nodeExternals({
+        modulesDir: options.modulesDir,
+        whitelist: ['webpack/hot/poll?300'],
+      }),
+    ];
+  }
 
-  watch: true,
+  return {
+    mode: 'development',
 
-  target: 'node',
+    watch: true,
 
-  devtool: 'cheap-module-source-map',
+    target: 'node',
 
-  node: {
-    __dirname: false,
-    __filename: false,
-  },
+    devtool: 'cheap-module-source-map',
 
-  externals: [
-    nodeExternals({
-      modulesDir: options.modulesDir,
-      whitelist: ['webpack/hot/poll?300'],
-    }),
-  ],
+    node: {
+      __dirname: false,
+      __filename: false,
+    },
 
-  entry: {
-    main: [
-      require.resolve('./prettyNodeErrors'),
-      'webpack/hot/poll?300',
-      getPolyfill(options.type),
-      `${serverSrcPath}/index.js`,
-    ].filter(Boolean),
-  },
+    externals,
 
-  output: {
-    path: serverBuildPath,
-    filename: '[name].js',
-    chunkFilename: '[name]-[chunkhash].js',
-    publicPath: options.publicPath,
-    libraryTarget: 'commonjs2',
-  },
+    entry: {
+      main: [
+        require.resolve('./prettyNodeErrors'),
+        'webpack/hot/poll?300',
+        getPolyfill(options.type),
+        `${serverSrcPath}/index.js`,
+      ].filter(Boolean),
+    },
 
-  plugins: [
-    // Prevent creating multiple chunks for the server
-    new webpack.optimize.LimitChunkCountPlugin({
-      maxChunks: 1,
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new StartServerPlugin({
-      name: 'main.js',
-      nodeArgs,
-    }),
-    // Ignore to avoid infinite recompile bug
-    new webpack.WatchIgnorePlugin([clientAssetsFile, loadableAssetsFile]),
-  ],
-});
+    output: {
+      path: serverBuildPath,
+      filename: '[name].js',
+      chunkFilename: '[name]-[chunkhash].js',
+      publicPath: options.publicPath,
+      libraryTarget: 'commonjs2',
+    },
+
+    plugins: [
+      // Prevent creating multiple chunks for the server
+      new webpack.optimize.LimitChunkCountPlugin({
+        maxChunks: 1,
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+      new StartServerPlugin({
+        name: 'main.js',
+        nodeArgs,
+      }),
+      // Ignore to avoid infinite recompile bug
+      new webpack.WatchIgnorePlugin([clientAssetsFile, loadableAssetsFile]),
+    ],
+  };
+};

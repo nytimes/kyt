@@ -5,37 +5,54 @@ const nodeExternals = require('webpack-node-externals');
 const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
 const getPolyfill = require('./getPolyfill');
 
-module.exports = options => ({
-  mode: 'production',
+module.exports = options => {
+  let externals;
+  if (options.modulesDir && Array.isArray(options.modulesDir)) {
+    externals = options.modulesDir.map(dir =>
+      nodeExternals({
+        modulesDir: dir,
+      })
+    );
+  } else {
+    externals = [
+      nodeExternals({
+        modulesDir: options.modulesDir,
+      }),
+    ];
+  }
 
-  target: 'node',
+  return {
+    mode: 'production',
 
-  devtool: 'source-map',
+    target: 'node',
 
-  node: {
-    __dirname: false,
-    __filename: false,
-  },
+    devtool: 'source-map',
 
-  externals: [nodeExternals({ modulesDir: options.modulesDir })],
+    node: {
+      __dirname: false,
+      __filename: false,
+    },
 
-  entry: {
-    main: [getPolyfill(options.type), `${serverSrcPath}/index.js`].filter(Boolean),
-  },
+    externals,
 
-  output: {
-    path: serverBuildPath,
-    filename: '[name].js',
-    chunkFilename: '[name]-[chunkhash].js',
-    publicPath: options.publicPath,
-    libraryTarget: 'commonjs2',
-  },
+    entry: {
+      main: [getPolyfill(options.type), `${serverSrcPath}/index.js`].filter(Boolean),
+    },
 
-  plugins: [
-    new webpack.BannerPlugin({
-      banner: 'require("source-map-support").install();',
-      raw: true,
-      entryOnly: true,
-    }),
-  ],
-});
+    output: {
+      path: serverBuildPath,
+      filename: '[name].js',
+      chunkFilename: '[name]-[chunkhash].js',
+      publicPath: options.publicPath,
+      libraryTarget: 'commonjs2',
+    },
+
+    plugins: [
+      new webpack.BannerPlugin({
+        banner: 'require("source-map-support").install();',
+        raw: true,
+        entryOnly: true,
+      }),
+    ],
+  };
+};
