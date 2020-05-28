@@ -5028,7 +5028,7 @@ eslint-config-airbnb@18.1.0:
     object.entries "^1.1.1"
 
 "eslint-config-kyt@file:packages/eslint-config-kyt":
-  version "1.0.0-beta.40.0"
+  version "1.0.0-beta.40.1"
 
 eslint-config-prettier@6.11.0:
   version "6.11.0"
