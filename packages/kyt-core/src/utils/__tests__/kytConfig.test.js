@@ -33,7 +33,11 @@ describe('kytConfig', () => {
 
     expect(Object.isFrozen(config)).toBe(true);
 
-    config.productionPublicPath = 'frozen!';
+    try {
+      config.productionPublicPath = 'frozen!';
+    } catch (e) {
+      // silence
+    }
 
     expect(config.productionPublicPath).not.toBe('frozen!');
   });
