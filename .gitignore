@@ -1,5 +1,6 @@
 .caches
 stage-cli
+yarn.lock
 
 # Logs
 logs
