@@ -14,11 +14,11 @@
     "kyt": "lib/index.js"
   },
   "engines": {
-    "node": ">=12.14.1"
+    "node": ">=10"
   },
   "dependencies": {
-    "@babel/code-frame": "7.8.3",
-    "@babel/runtime": "7.9.6",
+    "@babel/code-frame": "7.10.1",
+    "@babel/runtime": "7.10.1",
     "babel-loader": "8.1.0",
     "babel-preset-kyt-core": "1.0.0-beta.40.0",
     "commander": "4.1.1",
@@ -43,14 +43,14 @@
     "react-error-overlay": "6.0.7",
     "regenerator-runtime": "0.13.5",
     "semver": "6.3.0",
-    "shelljs": "0.8.3",
+    "shelljs": "0.8.4",
     "simple-git": "1.132.0",
     "sockjs-client": "1.4.0",
     "source-map-support": "0.5.19",
     "strip-ansi": "6.0.0",
     "url-loader": "3.0.0",
-    "webpack": "4.42.1",
-    "webpack-dev-server": "3.10.3",
+    "webpack": "4.43.0",
+    "webpack-dev-server": "3.11.0",
     "webpack-merge": "4.2.2",
     "webpack-node-externals": "1.7.2",
     "webpackbar": "4.0.0"
@@ -59,8 +59,8 @@
     "babel-preset-kyt-react": "1.0.0-beta.40.0"
   },
   "scripts": {
-    "watch": "npm run prepublish -- --watch",
-    "prepublish": "babel src -d lib --copy-files --no-copy-ignored --include-dotfiles --ignore \"**/__tests__/**,**/__mocks__/**\""
+    "watch": "yarn prepare --watch",
+    "prepare": "babel src -d lib --copy-files --no-copy-ignored --include-dotfiles --ignore \"**/__tests__/**,**/__mocks__/**\""
   },
   "keywords": [
     "kyt",

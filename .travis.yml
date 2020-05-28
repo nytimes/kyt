@@ -3,4 +3,4 @@ node_js:
   - 12.14.1
   - lts/dubnium
   - lts/erbium
-script: npm run bootstrap && npm run lint:ci && npm run test:ci && npm run e2e
+script: yarn bootstrap:ci && yarn lint:ci && yarn test:ci && yarn e2e

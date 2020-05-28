@@ -1,10 +1,3 @@
 module.exports = {
-  presets: [
-    [
-      'babel-preset-kyt-react',
-      {
-        includeRuntime: true,
-      },
-    ],
-  ],
+  babelrcRoots: ['packages/*', 'packages/**/starter-src'],
 };

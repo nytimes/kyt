@@ -12,6 +12,12 @@ module.exports = {
 
   overrides: [
     {
+      files: ['**/config/*.js'],
+      rules: {
+        'no-console': 0,
+      },
+    },
+    {
       files: ['*.test.js'],
       rules: {
         'global-require': 0,

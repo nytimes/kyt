@@ -36,7 +36,7 @@ exports[`Test home route 1`] = `
 }
 
 <Capture
-  report={[Function]}
+  report={[MockFunction]}
 >
   <StaticRouter
     context={Object {}}
@@ -246,12 +246,6 @@ exports[`Test home route 1`] = `
 </Capture>
 `;
 
-exports[`Test home route 2`] = `
-Array [
-  "../Home",
-]
-`;
-
 exports[`Test tools route 1`] = `
 .lights-9 {
   width: 500px;
@@ -288,7 +282,7 @@ exports[`Test tools route 1`] = `
 }
 
 <Capture
-  report={[Function]}
+  report={[MockFunction]}
 >
   <StaticRouter
     context={Object {}}
@@ -531,10 +525,4 @@ exports[`Test tools route 1`] = `
     </Router>
   </StaticRouter>
 </Capture>
-`;
-
-exports[`Test tools route 2`] = `
-Array [
-  "../Tools",
-]
 `;
