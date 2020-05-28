@@ -13,7 +13,7 @@
   },
   "scripts": {
     "bootstrap": "yarn && lerna run prepare --stream",
-    "bootstrap:ci": "yarn --frozen-lockfile --network-timeout 1000000 && lerna run prepare",
+    "bootstrap:ci": "yarn && lerna run prepare",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "bump-pre": "lerna version --exact --force-publish=* prerelease",
     "publish-pre": "lerna publish --exact --force-publish=* --dist-tag=pre --canary prerelease",
@@ -63,7 +63,6 @@
     "stylelint-config-standard": "20.0.0"
   },
   "workspaces": {
-    "packages": ["packages/*", "packages/**/starter-src"],
-    "nohoist": ["**/kyt", "**/kyt-utils"]
+    "packages": ["packages/*", "packages/**/starter-src"]
   }
 }
