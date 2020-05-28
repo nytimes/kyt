@@ -12,9 +12,9 @@ it('Test example', () => {
 
 it('Test home route', async () => {
   await Home.preload();
-  const reportMock = jest.fn();
+  const modules = [];
   const wrapper = mount(
-    <DynamicImports report={reportMock}>
+    <DynamicImports report={module => modules.push(module)}>
       <StaticRouter location="/" context={{}}>
         <App />
       </StaticRouter>
@@ -22,13 +22,14 @@ it('Test home route', async () => {
   );
 
   expect(wrapper).toMatchSnapshot();
+  expect(modules).toMatchSnapshot();
 });
 
 it('Test tools route', async () => {
   await Tools.preload();
-  const reportMock = jest.fn();
+  const modules = [];
   const wrapper = mount(
-    <DynamicImports report={reportMock}>
+    <DynamicImports report={module => modules.push(module)}>
       <StaticRouter location="/tools" context={{}}>
         <App />
       </StaticRouter>
@@ -36,4 +37,5 @@ it('Test tools route', async () => {
   );
 
   expect(wrapper).toMatchSnapshot();
+  expect(modules).toMatchSnapshot();
 });
