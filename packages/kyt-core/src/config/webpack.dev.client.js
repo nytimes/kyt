@@ -18,7 +18,7 @@ module.exports = options => {
 
     target: 'web',
 
-    devtool: 'cheap-module-source-map',
+    devtool: 'eval-cheap-module-source-map',
 
     entry: {
       main,

@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@babel/code-frame": "7.10.1",
-    "@babel/runtime": "7.10.1",
+    "@babel/runtime": "7.10.2",
     "babel-loader": "8.1.0",
     "babel-preset-kyt-core": "1.0.0-beta.40.1",
     "commander": "4.1.1",
@@ -29,7 +29,7 @@
     "gzip-size": "5.1.1",
     "ink": "2.7.1",
     "ink-table": "2.0.1",
-    "inquirer": "7.1.0",
+    "inquirer": "7.2.0",
     "install": "0.13.0",
     "jest-message-util": "25.3.0",
     "kyt-runtime": "1.0.0-beta.40.1",
