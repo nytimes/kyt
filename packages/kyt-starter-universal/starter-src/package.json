@@ -18,7 +18,7 @@
     "test-update": "jest -u"
   },
   "dependencies": {
-    "@babel/runtime": "7.10.1",
+    "@babel/runtime": "7.10.2",
     "compression": "1.7.4",
     "core-js": "3.6.5",
     "express": "4.17.1",
@@ -39,12 +39,12 @@
     "eslint-config-airbnb": "18.1.0",
     "eslint-config-kyt": "1.0.0-beta.40.1",
     "eslint-config-prettier": "6.11.0",
-    "eslint-plugin-import": "2.20.2",
+    "eslint-plugin-import": "2.21.2",
     "eslint-plugin-jest": "23.13.2",
     "eslint-plugin-jest-formatting": "1.2.0",
     "eslint-plugin-json": "2.1.1",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-prettier": "3.1.3",
+    "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.4",
     "jest": "26.0.1",
