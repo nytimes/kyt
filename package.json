@@ -14,7 +14,7 @@
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap --hoist",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
-    "publish": "lerna publish --conventional-commits --create-release github",
+    "publish": "lerna publish --exact --conventional-commits --conventional-graduate --create-release github",
     "test:starter": "lerna exec --scope \"kyt-starter-{server,static,universal}-src\" --",
     "test": "jest && npm run test:starter -- npm t",
     "test:ci": "jest --ci && npm run test:starter -- npm t -- --ci",
