@@ -14,10 +14,7 @@
   "scripts": {
     "bootstrap": "npm i && lerna bootstrap --hoist",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
-    "bump-pre": "lerna version --exact --force-publish=* prerelease",
-    "publish-pre": "lerna publish --exact --force-publish=* --dist-tag=pre --canary prerelease",
-    "publish-next": "lerna publish --exact --force-publish=* --dist-tag=next --preid beta",
-    "publish-release": "lerna publish --message",
+    "publish": "lerna publish --conventional-commits --create-release github",
     "test:starter": "lerna exec --scope \"kyt-starter-{server,static,universal}-src\" --",
     "test": "jest && npm run test:starter -- npm t",
     "test:ci": "jest --ci && npm run test:starter -- npm t -- --ci",
