@@ -87,11 +87,9 @@ Or add to your `package.json`:
 }
 ```
 
-To keep things formatted as you develop, install an editor package. See more [here](/docs/Recipes.md#editor-configuration).
-
 ## Editor Configuration
 
-A `kyt` app should work with any editor, but we recommend that you install and configure ESLint with one of the following editors:
+To automatically format your code based on these rules during development, install a package for your IDE. We recommend that you install and configure ESLint with one of the following editors:
 
 #### VSCode
 
