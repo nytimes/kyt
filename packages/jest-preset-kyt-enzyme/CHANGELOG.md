@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.0.0-beta.40.2...jest-preset-kyt-enzyme@1.0.0) (2020-06-18)
+
+
+### Features
+
+* add markdown to list of stubbed file extensions, update docs ([fb6b369](https://github.com/nytimes/kyt/commit/fb6b3693bc9bf90a4fb89d5efb5091a65716e330))
+
+
+
+
+
 # 1.0.0-beta.40.2 (2020-06-18)
 
 
