@@ -36,6 +36,8 @@
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",
     "@babel/runtime": "7.10.2",
+    "@commitlint/cli": "8.3.5",
+    "@commitlint/config-conventional": "8.3.4",
     "babel-eslint": "10.1.0",
     "core-js": "3.6.5",
     "enzyme": "3.11.0",
@@ -51,6 +53,7 @@
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.4",
+    "husky": "4.2.5",
     "jest": "26.0.1",
     "lerna": "3.22.1",
     "prettier": "2.0.5",
@@ -58,5 +61,10 @@
     "source-map-support": "0.5.19",
     "stylelint": "13.6.1",
     "stylelint-config-standard": "20.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
   }
 }
