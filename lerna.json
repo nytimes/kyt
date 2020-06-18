@@ -4,5 +4,11 @@
   "packages": [
     "packages/*",
     "packages/**/starter-src"
-  ]
+  ],
+  "version": "independent",
+  "command": {
+    "publish": {
+      "conventionalCommits": true
+    }
+  }
 }
