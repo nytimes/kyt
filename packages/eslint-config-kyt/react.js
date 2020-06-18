@@ -1,7 +1,5 @@
 module.exports = {
-  extends: ['airbnb', 'prettier/react'],
-
-  plugins: ['react-hooks'],
+  extends: ['airbnb/rules/react', 'airbnb/rules/react-a11y', 'airbnb/hooks', 'prettier/react'],
 
   settings: {
     react: {
@@ -18,8 +16,6 @@ module.exports = {
     'react/require-extension': 'off',
     'react/destructuring-assignment': 'off',
     'react/no-access-state-in-setstate': 'off',
-    'react-hooks/exhaustive-deps': 'error',
-    'react-hooks/rules-of-hooks': 'error',
     'jsx-a11y/anchor-is-valid': [
       'off',
       {
