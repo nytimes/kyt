@@ -22,7 +22,7 @@
     "compression": "1.7.4",
     "core-js": "3.6.5",
     "express": "4.17.1",
-    "kyt-runtime": "^1.0.0-beta.40.2",
+    "kyt-runtime": "1.0.0-beta.40.3",
     "pretty-lights": "0.0.14",
     "prop-types": "15.7.2",
     "react": "16.13.1",
@@ -50,8 +50,8 @@
     "jest": "26.0.1",
     "jest-preset-kyt-enzyme": "1.0.0",
     "jest-preset-kyt-styled": "^1.0.0-beta.40.2",
-    "kyt": "1.0.0-beta.40.3",
+    "kyt": "1.0.0-beta.40.4",
     "prettier": "2.0.5"
   },
-  "version": "1.0.0-beta.40.6"
+  "version": "1.0.0-beta.40.7"
 }
