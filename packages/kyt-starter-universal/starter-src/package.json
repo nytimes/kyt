@@ -22,7 +22,7 @@
     "compression": "1.7.4",
     "core-js": "3.6.5",
     "express": "4.17.1",
-    "kyt-runtime": "1.0.0-beta.40.3",
+    "kyt-runtime": "1.0.0-beta.40.4",
     "pretty-lights": "0.0.14",
     "prop-types": "15.7.2",
     "react": "16.13.1",
@@ -33,11 +33,11 @@
   },
   "devDependencies": {
     "babel-eslint": "10.1.0",
-    "babel-preset-kyt-react": "^1.0.0-beta.40.2",
+    "babel-preset-kyt-react": "1.0.0",
     "enzyme": "3.11.0",
     "eslint": "6.8.0",
     "eslint-config-airbnb": "18.2.0",
-    "eslint-config-kyt": "1.0.2",
+    "eslint-config-kyt": "1.0.3",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.21.2",
     "eslint-plugin-jest": "23.13.2",
@@ -50,8 +50,8 @@
     "jest": "26.0.1",
     "jest-preset-kyt-enzyme": "1.0.0",
     "jest-preset-kyt-styled": "^1.0.0-beta.40.2",
-    "kyt": "1.0.0-beta.40.4",
+    "kyt": "1.0.0-beta.40.5",
     "prettier": "2.0.5"
   },
-  "version": "1.0.0-beta.40.7"
+  "version": "1.0.0-beta.40.8"
 }
