@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.4](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.0.0-beta.40.3...kyt-runtime@1.0.0-beta.40.4) (2020-06-19)
+
+**Note:** Version bump only for package kyt-runtime
+
+
+
+
+
 # [1.0.0-beta.40.3](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.0.0-beta.40.2...kyt-runtime@1.0.0-beta.40.3) (2020-06-19)
 
 **Note:** Version bump only for package kyt-runtime
