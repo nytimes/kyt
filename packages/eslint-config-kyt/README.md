@@ -7,12 +7,12 @@
 yarn add --dev eslint@6.8.0 \
   babel-eslint@10.1.0 \
   prettier@2.0.5 \
-  eslint-config-airbnb@18.1.0 \
+  eslint-config-airbnb@18.2.0 \
   eslint-config-prettier@6.11.0 \
   eslint-config-kyt \
   eslint-plugin-import@2.21.2 \
   eslint-plugin-json@2.1.1 \
-  eslint-plugin-jsx-a11y@6.2.3 \
+  eslint-plugin-jsx-a11y@6.3.0 \
   eslint-plugin-prettier@3.1.4 \
   eslint-plugin-react@7.20.0 \
   eslint-plugin-react-hooks@4.0.4
@@ -22,12 +22,12 @@ yarn add --dev eslint@6.8.0 \
 npm i --save-dev --save-exact eslint@6.8.0 \
   babel-eslint@10.1.0 \
   prettier@2.0.5 \
-  eslint-config-airbnb@18.1.0 \
+  eslint-config-airbnb@18.2.0 \
   eslint-config-prettier@6.11.0 \
   eslint-config-kyt \
   eslint-plugin-import@2.21.2 \
   eslint-plugin-json@2.1.1 \
-  eslint-plugin-jsx-a11y@6.2.3 \
+  eslint-plugin-jsx-a11y@6.3.0 \
   eslint-plugin-prettier@3.1.4 \
   eslint-plugin-react@7.20.0 \
   eslint-plugin-react-hooks@4.0.4
