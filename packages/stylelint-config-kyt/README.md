@@ -1,30 +1,26 @@
-# kyt Stylelint Linter and CSS/Sass Style Guide
+# NYT Stylelint and SCSS Style Guide
 
 This is an extension of [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules.
-
-## Table of Contents
-
-1. [Install](#install)
-1. [CSS + Sass Guide](#css--sass-guide)
-   - [Formatting](#formatting)
-   - [Comments](#comments)
-   - [ID Selectors](#id-selectors)
-   - [Syntax](#syntax)
-   - [Ordering](#ordering-of-property-declarations)
-   - [Variables](#variables)
-   - [Mixins](#mixins)
-1. [Changelog](#changelog)
 
 ## Install
 
 If you want to install this linter extension, follow these install instructions.
 
-1. Install the `stylelint-config-kyt` npm package:
-   ```
-   npm i --save-dev stylelint stylelint-config-kyt stylelint-config-standard
-   ```
-1. Add a `.stylelintrc` file to your project's root
-1. Add configuration:
+```
+yarn add --dev stylelint@13.6.1 \
+  stylelint-config-standard@20.0.0 \
+  stylelint-config-kyt
+
+// or
+
+npm i --save-dev --save-exact stylelint@13.6.1 \
+  stylelint-config-standard@20.0.0 \
+  stylelint-config-kyt
+```
+
+## Configuration
+
+Add a `.stylelintrc` file to your project's root with these contents:
 
 ```json
 {
@@ -34,8 +30,6 @@ If you want to install this linter extension, follow these install instructions.
 ```
 
 ## CSS + Sass Guide
-
-The following guide is best used with the `kyt` linter against CSS/Sass Modules.
 
 ### Formatting
 
@@ -102,8 +96,8 @@ You should never define an ID selector in a CSS Module.
 
 ### Ordering of property declarations
 
-1. `@include` or `composes` declarations
-2. Property declarations in alphabetical order
+* `@include` or `composes` declarations
+* Property declarations in alphabetical order
 
    ```scss
    .btnGreen {
@@ -115,20 +109,20 @@ You should never define an ID selector in a CSS Module.
    }
    ```
 
-3. Nested pseudo-selectors
+* Nested pseudo-selectors
 
-   Nested pseudo-selectors go last, and nothing goes after them.
+ Nested pseudo-selectors go last, and nothing goes after them.
 
-   ```scss
-   .btn {
-     @include color(red);
-     font-weight: bold;
+ ```scss
+ .btn {
+   @include color(red);
+   font-weight: bold;
 
-     &:hover {
-       cursor: pointer;
-     }
+   &:hover {
+     cursor: pointer;
    }
-   ```
+ }
+ ```
 
 ### Variables
 
