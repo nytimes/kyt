@@ -2,75 +2,106 @@
 
 [![npm](https://img.shields.io/npm/v/babel-preset-kyt-core.svg?maxAge=2592000)](https://www.npmjs.com/package/babel-preset-kyt-core)
 
-An opinionated [Babel preset](https://babeljs.io/docs/plugins/#presets), best used with [kyt](https://github.com/NYTimes/kyt). Check out the Options for how to extend polyfill your build targets.
+A wrapper around [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env) with sane defaults.
 
-This preset is used as a default if a kyt project does not include a .babelrc
-It is also included as part of [babel-preset-kyt-react](/packages/babel-preset-kyt-react)
+## Installation
 
-To install:
-
-1. `npm install babel-preset-kyt-core --save`
-2. In `.babelrc.js`:
-   ```js
-   module.exports = {
-     presets: ['babel-preset-kyt-core'],
-   };
-   ```
+```sh
+yarn add --dev babel-preset-kyt-core
+npm i --save-dev --save-exact babel-preset-kyt-core
+```
 
 ## Options
 
-_(see [documentation](https://babeljs.io/docs/plugins/#plugin-preset-options) for Babel preset options)_
+* `includeRuntime (Boolean)` option to `true` to automatically load [`@babel/plugin-transform-runtime`](https://babeljs.io/docs/en/babel-plugin-transform-runtime) **(RECOMMENDED!)**.
 
-- `envOptions` (`Object`) - extend the default babel-preset-env options. The type of options, `client`, `server`, and `test`, are dependent on the value of `process.env.KYT_ENV_TYPE` which, when undefined, defaults to `client`. kyt will automatically set the `KYT_ENV_TYPE` when it runs commands. For debugging purposes, use `"debug": true` to see what the plugin is targeting. The following are the default babel-preset-env configurations used by kyt-core:
+```js
+module.exports = {
+  presets: [
+    ['babel-preset-kyt-core', {
+      includeRuntime: true
+    }]
+  ]
+}
+```
 
-  - `client`
-    ```
-    modules: false,
-    useBuiltIns: 'entry',
-    forceAllTransforms: true,
-    targets: {
-      browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
-    },
-    ```
-  - `server`
-    ```
-    modules: false,
-    useBuiltIns: 'entry',
-    forceAllTransforms: true,
-    targets: {
-      node: 'current'
-    },
-    ```
+When using this option, your application will need to install [`@babel/runtime`](https://babeljs.io/docs/en/babel-runtime):
 
-  These are sensible defaults that work well with kyt out of the box. The `client` option, typically reserved for client builds in kyt, is used to target browsers, while the `server` option targets the current version of node. The `client.targets.browsers` configuration is in the [browserslist](https://github.com/sitespeedio/browsertime) format. The following is an example of how to override the option types in your babelrc configuration:
+```sh
+yarn add @babel/runtime
+npm i --save-exact @babel/runtime
+```
 
-  ```
-  {
-    "presets": [
-      [
-        "babel-preset-kyt-core", {
-          "envOptions": {
-            "client": {
-              "debug": true,
-              "targets": {
-                "browsers": ["last 2 versions"]
-              }
-            },
-            "server": {
-              "debug": true,
-              "modules": true
-            },
-          },
+* `envOptions (Object)`
+
+When used with `kyt`, using this preset allows you to specify different configuration values for `client` and `server`. By declaring `envOptions`, you can set options that are passed to [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env):
+
+```js
+module.exports = {
+  presets: [
+    ['babel-preset-kyt-core', {
+      // these are the default values for `targets`
+      envOptions: {
+        client: {
+          targets: {
+            browsers: ['>1%', 'last 4 versions', 'not ie < 11'],          
+          }
         },
-      ],
-    ],
-  }
-  ```
+        server: {
+          targets: {
+            node: 'current'
+          }
+        }
+      }  
+    }]
+  ]
+}
+```
 
-  You can find additional options to configure babel-preset-env [here](https://github.com/babel/babel/tree/master/experimental/babel-preset-env#options).
+Without `kyt`, only the values set for `client` will be used.
 
-- `includeRuntime` (`Boolean`) - whether or not to include [`babel-plugin-transform-runtime`](https://www.npmjs.com/package/babel-plugin-transform-runtime); default: `false`
+To support multi-configuration (`client` / `server`) when **not** using `kyt`, set `KYT_ENV_TYPE` before running Babel compilation.
+
+`KYT_ENV_TYPE` (supported values):
+* `client`
+* `server`
+* `test`
+
+Example:
+```sh
+// using `@babel/cli`
+KYT_ENV_TYPE=server babel src -d lib
+
+// using `webpack`
+KYT_ENV_TYPE=server webpack --config webpack.server.config.js
+```
+
+These are sensible defaults that work well with `kyt` out of the box. The `client` option, typically reserved for client builds in kyt, is used to target browsers. The `server` option targets the current version of node.
+
+The `client.targets.browsers` configuration is in the [browserslist](https://github.com/sitespeedio/browsertime) format.
 
 ## Polyfilling
 
-By default `babel-preset-env`, an internal dependency, is configured to `useBuiltIns` which means that you can install `babel-polyfill` as a dependency in your project and `import 'babel-polyfill'` at the top of your entry file (in a kyt project that would be `src/client/index.js` and `src/server/index.js`) to include an optimized polyfill for your build.
+This preset has `core-js@3*` as a dependency, but to add polyfills to Webpack entrypoints, you need to include any relevant polyfills while building your project.
+
+The convention in `kyt` is add them to `src/client/polyfills.js`:
+
+```js
+// src/client/polyfills.js
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+```
+
+In your Webpack configuration:
+```js
+// webpack.client.config.js
+module.exports = {
+  target: 'web',
+  entry: {
+    main: [
+      '/path/to/src/client/polyfills.js',
+      '/path/to/src/client/index.js',  
+    ]
+  }
+}
+```
