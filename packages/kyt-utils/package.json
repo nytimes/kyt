@@ -4,7 +4,11 @@
   "description": "A shared kyt utility library.",
   "author": "NYTimes",
   "license": "Apache-2.0",
-  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-utils",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nytimes/kyt.git",
+    "directory": "packages/kyt-utils"
+  },
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "main": "logger.js",
