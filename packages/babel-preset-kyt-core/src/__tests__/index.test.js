@@ -1,12 +1,12 @@
-jest.setMock('@babel/preset-env', 'env');
-jest.setMock('@babel/plugin-proposal-class-properties', 'class-properties');
-jest.setMock('@babel/plugin-proposal-decorators', 'proposal-decorators');
-jest.setMock('@babel/plugin-proposal-optional-chaining', 'optional-chaining');
-jest.setMock('@babel/plugin-transform-runtime', 'runtime');
-jest.setMock('@babel/plugin-syntax-dynamic-import', 'import');
-jest.setMock('babel-plugin-dynamic-import-node', 'import-node');
-
 const presetKytCore = require('..');
+
+jest.mock('@babel/preset-env', () => 'env');
+jest.mock('@babel/plugin-proposal-class-properties', () => 'class-properties');
+jest.mock('@babel/plugin-proposal-decorators', () => 'proposal-decorators');
+jest.mock('@babel/plugin-proposal-optional-chaining', () => 'optional-chaining');
+jest.mock('@babel/plugin-transform-runtime', () => 'runtime');
+jest.mock('@babel/plugin-syntax-dynamic-import', () => 'import');
+jest.mock('babel-plugin-dynamic-import-node', () => 'import-node');
 
 describe('babel-preset-kyt-core', () => {
   it('should load default presets and plugins', () => {
