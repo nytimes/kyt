@@ -18,7 +18,7 @@
     "test-update": "jest -u"
   },
   "dependencies": {
-    "@babel/runtime": "7.10.2",
+    "@babel/runtime": "7.10.3",
     "core-js": "3.6.5",
     "kyt-runtime": "1.0.0-beta.40.5",
     "pretty-lights": "0.0.14",
@@ -37,10 +37,10 @@
     "eslint-config-kyt": "1.0.4",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.21.2",
-    "eslint-plugin-jest": "23.13.2",
+    "eslint-plugin-jest": "23.17.0",
     "eslint-plugin-jest-formatting": "1.2.0",
     "eslint-plugin-json": "2.1.1",
-    "eslint-plugin-jsx-a11y": "6.3.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-prettier": "3.1.4",
     "eslint-plugin-react": "7.20.0",
     "eslint-plugin-react-hooks": "4.0.4",
