@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.9](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.8...kyt@1.0.0-beta.40.9) (2020-07-16)
+
+
+### Bug Fixes
+
+* source maps ([#670](http://github.com/nytimes/kyt/packages/kyt-core/issues/670)) ([5d2e479](http://github.com/nytimes/kyt/packages/kyt-core/commit/5d2e4798f8abda66ddcd5e9dcfa3216c961e6d65))
+
+
+
+
+
 # [1.0.0-beta.40.8](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.7...kyt@1.0.0-beta.40.8) (2020-07-13)
 
 **Note:** Version bump only for package kyt
