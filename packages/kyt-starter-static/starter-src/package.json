@@ -48,8 +48,8 @@
     "jest": "26.1.0",
     "jest-preset-kyt-enzyme": "1.0.1",
     "jest-preset-kyt-styled": "1.0.1",
-    "kyt": "1.0.0-beta.40.9",
+    "kyt": "1.0.0-beta.40.10",
     "prettier": "2.0.5"
   },
-  "version": "1.0.0-beta.40.12"
+  "version": "1.0.0-beta.40.13"
 }
