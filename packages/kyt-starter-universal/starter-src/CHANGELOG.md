@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.13](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.12...kyt-starter-universal-src@1.0.0-beta.40.13) (2020-07-21)
+
+**Note:** Version bump only for package kyt-starter-universal-src
+
+
+
+
+
+# [1.0.0-beta.40.12](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.11...kyt-starter-universal-src@1.0.0-beta.40.12) (2020-07-16)
+
+**Note:** Version bump only for package kyt-starter-universal-src
+
+
+
+
+
+# [1.0.0-beta.40.11](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.10...kyt-starter-universal-src@1.0.0-beta.40.11) (2020-07-13)
+
+**Note:** Version bump only for package kyt-starter-universal-src
+
+
+
+
+
 # [1.0.0-beta.40.10](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.9...kyt-starter-universal-src@1.0.0-beta.40.10) (2020-06-23)
 
 **Note:** Version bump only for package kyt-starter-universal-src
