@@ -10,12 +10,14 @@ yarn add --dev eslint@6.8.0 \
   eslint-config-airbnb@18.2.0 \
   eslint-config-prettier@6.11.0 \
   eslint-config-kyt \
-  eslint-plugin-import@2.21.2 \
+  eslint-plugin-import@2.22.0 \
+  eslint-plugin-jest@23.18.0 \
+  eslint-plugin-jest-formatting@2.0.0 \
   eslint-plugin-json@2.1.1 \
-  eslint-plugin-jsx-a11y@6.3.0 \
+  eslint-plugin-jsx-a11y@6.3.1 \
   eslint-plugin-prettier@3.1.4 \
-  eslint-plugin-react@7.20.0 \
-  eslint-plugin-react-hooks@4.0.4
+  eslint-plugin-react@7.20.3 \
+  eslint-plugin-react-hooks@4.0.7
 
 # or
 
@@ -25,12 +27,14 @@ npm i --save-dev --save-exact eslint@6.8.0 \
   eslint-config-airbnb@18.2.0 \
   eslint-config-prettier@6.11.0 \
   eslint-config-kyt \
-  eslint-plugin-import@2.21.2 \
+  eslint-plugin-import@2.22.0 \
+  eslint-plugin-jest@23.18.0 \
+  eslint-plugin-jest-formatting@2.0.0 \
   eslint-plugin-json@2.1.1 \
-  eslint-plugin-jsx-a11y@6.3.0 \
+  eslint-plugin-jsx-a11y@6.3.1 \
   eslint-plugin-prettier@3.1.4 \
-  eslint-plugin-react@7.20.0 \
-  eslint-plugin-react-hooks@4.0.4
+  eslint-plugin-react@7.20.3 \
+  eslint-plugin-react-hooks@4.0.7
 ```
 
 Add to the `extends` section of your ESLint configuration:
