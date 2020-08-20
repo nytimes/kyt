@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.7](http://github.com/nytimes/kyt/packages/kyt-starter-static/compare/kyt-starter-static@1.0.0-beta.40.6...kyt-starter-static@1.0.0-beta.40.7) (2020-08-20)
+
+
+### Bug Fixes
+
+* proper api for commander args, update most deps to latest ([#673](http://github.com/nytimes/kyt/packages/kyt-starter-static/issues/673)) ([a62705d](http://github.com/nytimes/kyt/packages/kyt-starter-static/commit/a62705da81bbec2aa04d7a69b49974e68bf0dc95))
+
+
+
+
+
 # [1.0.0-beta.40.6](http://github.com/nytimes/kyt/packages/kyt-starter-static/compare/kyt-starter-static@1.0.0-beta.40.5...kyt-starter-static@1.0.0-beta.40.6) (2020-07-13)
 
 **Note:** Version bump only for package kyt-starter-static

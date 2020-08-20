@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.14](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.13...kyt-starter-universal-src@1.0.0-beta.40.14) (2020-08-20)
+
+
+### Bug Fixes
+
+* proper api for commander args, update most deps to latest ([#673](http://github.com/nytimes/kyt/packages/kyt-starter-universal/issues/673)) ([a62705d](http://github.com/nytimes/kyt/packages/kyt-starter-universal/commit/a62705da81bbec2aa04d7a69b49974e68bf0dc95))
+
+
+
+
+
 # [1.0.0-beta.40.13](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.12...kyt-starter-universal-src@1.0.0-beta.40.13) (2020-07-21)
 
 **Note:** Version bump only for package kyt-starter-universal-src

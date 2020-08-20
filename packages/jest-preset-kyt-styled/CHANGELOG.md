@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.2](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.0.1...jest-preset-kyt-styled@1.0.2) (2020-08-20)
+
+
+### Bug Fixes
+
+* proper api for commander args, update most deps to latest ([#673](https://github.com/nytimes/kyt/issues/673)) ([a62705d](https://github.com/nytimes/kyt/commit/a62705da81bbec2aa04d7a69b49974e68bf0dc95))
+
+
+
+
+
 ## [1.0.1](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.0.0...jest-preset-kyt-styled@1.0.1) (2020-07-13)
 
 **Note:** Version bump only for package jest-preset-kyt-styled

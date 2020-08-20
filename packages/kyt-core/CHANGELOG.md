@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.11](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.10...kyt@1.0.0-beta.40.11) (2020-08-20)
+
+
+### Bug Fixes
+
+* proper api for commander args, update most deps to latest ([#673](http://github.com/nytimes/kyt/packages/kyt-core/issues/673)) ([a62705d](http://github.com/nytimes/kyt/packages/kyt-core/commit/a62705da81bbec2aa04d7a69b49974e68bf0dc95))
+
+
+
+
+
 # [1.0.0-beta.40.10](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.9...kyt@1.0.0-beta.40.10) (2020-07-21)
 
 **Note:** Version bump only for package kyt
