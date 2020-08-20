@@ -8,7 +8,7 @@ const semver = require('semver');
 const starterKyts = require('../config/starterKyts');
 const yarnOrNpm = require('../utils/yarnOrNpm')();
 
-module.exports = (flags, args) => {
+module.exports = args => {
   logger.start("Let's set up your new kyt project...");
   logger.log('✨  Answer a few questions to get started  ✨ \n');
   // Selects package manager to use

@@ -6,16 +6,16 @@
   "author": "NYTimes",
   "license": "Apache-2.0",
   "dependencies": {
-    "enzyme-adapter-react-16": "1.15.2",
+    "enzyme-adapter-react-16": "1.15.3",
     "enzyme-to-json": "3.5.0",
     "jest-environment-jsdom-global": "2.0.4",
     "jest-silent-reporter": "0.2.1",
-    "jsdom": "16.3.0",
+    "jsdom": "16.4.0",
     "raf": "3.4.1"
   },
   "peerDependencies": {
     "enzyme": "^3.11.0",
-    "jest": "^26.1.0"
+    "jest": "^26.4.0"
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }
