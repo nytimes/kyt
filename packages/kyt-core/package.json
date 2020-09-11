@@ -21,9 +21,9 @@
     "@babel/runtime": "7.11.2",
     "babel-loader": "8.1.0",
     "babel-preset-kyt-core": "1.0.4",
-    "commander": "6.0.0",
+    "commander": "6.1.0",
     "core-js": "3.6.5",
-    "file-loader": "6.0.0",
+    "file-loader": "6.1.0",
     "filesize": "6.1.0",
     "find-babel-config": "1.2.0",
     "gzip-size": "5.1.1",
@@ -52,7 +52,7 @@
     "webpack": "4.44.1",
     "webpack-dev-server": "3.11.0",
     "webpack-merge": "4.2.2",
-    "webpack-node-externals": "2.5.1",
+    "webpack-node-externals": "2.5.2",
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
