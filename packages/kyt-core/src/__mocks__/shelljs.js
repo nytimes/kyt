@@ -1,4 +1,4 @@
-const shell = jest.genMockFromModule('shelljs');
+const shell = jest.createMockFromModule('shelljs');
 
 let execReturnValue = {};
 

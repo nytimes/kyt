@@ -99,14 +99,11 @@ describe('KYT CLI', () => {
     });
 
     it('verifies the source directory', () => {
-      if (slug !== 'server') {
-        expect(shell.test('-d', 'src/client')).toBe(true);
-        expect(shell.test('-f', 'src/client/index.js')).toBe(true);
-      }
-      if (slug === 'universal') {
-        expect(shell.test('-d', 'src/server')).toBe(true);
-        expect(shell.test('-f', 'src/server/index.js')).toBe(true);
-      }
+      expect(slug !== 'server' ? shell.test('-d', 'src/client') : true).toBe(true);
+      expect(slug !== 'server' ? shell.test('-f', 'src/client/index.js') : true).toBe(true);
+
+      expect(slug === 'universal' ? shell.test('-d', 'src/server') : true).toBe(true);
+      expect(slug === 'universal' ? shell.test('-f', 'src/server/index.js') : true).toBe(true);
     });
   });
 
