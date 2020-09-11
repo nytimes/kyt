@@ -1,6 +1,6 @@
 {
   "name": "kyt-runtime",
-  "version": "1.0.0-beta.40.8",
+  "version": "1.0.0-beta.40.9",
   "description": "A shared kyt runtime utility library.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -19,7 +19,7 @@
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
-    "babel-preset-kyt-core": "1.0.4"
+    "babel-preset-kyt-core": "1.0.5"
   },
   "scripts": {
     "prepare": "babel es -d lib --ignore \"**/__tests__/**\""
