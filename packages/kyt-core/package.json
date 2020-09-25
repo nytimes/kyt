@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "1.0.0-beta.40.13",
+  "version": "1.0.0-beta.40.14",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "author": "NYTimes",
   "license": "Apache-2.0",

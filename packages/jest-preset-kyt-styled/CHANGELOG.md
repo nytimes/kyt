@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.0.4...jest-preset-kyt-styled@1.1.0) (2020-09-25)
+
+
+### Features
+
+* **eslint:** set ecmaVersion to 2020 ([#679](https://github.com/nytimes/kyt/issues/679)) ([b62d36a](https://github.com/nytimes/kyt/commit/b62d36a473fb69f5cdf31f04c97a5d43d8a55a99))
+
+
+
+
+
 ## [1.0.4](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.0.3...jest-preset-kyt-styled@1.0.4) (2020-09-13)
 
 **Note:** Version bump only for package jest-preset-kyt-styled

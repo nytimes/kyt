@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.17](http://github.com/nytimes/kyt/packages/kyt-starter-static/compare/kyt-starter-static-src@1.0.0-beta.40.16...kyt-starter-static-src@1.0.0-beta.40.17) (2020-09-25)
+
+
+### Features
+
+* **eslint:** set ecmaVersion to 2020 ([#679](http://github.com/nytimes/kyt/packages/kyt-starter-static/issues/679)) ([b62d36a](http://github.com/nytimes/kyt/packages/kyt-starter-static/commit/b62d36a473fb69f5cdf31f04c97a5d43d8a55a99))
+
+
+
+
+
 # [1.0.0-beta.40.16](http://github.com/nytimes/kyt/packages/kyt-starter-static/compare/kyt-starter-static-src@1.0.0-beta.40.15...kyt-starter-static-src@1.0.0-beta.40.16) (2020-09-13)
 
 **Note:** Version bump only for package kyt-starter-static-src

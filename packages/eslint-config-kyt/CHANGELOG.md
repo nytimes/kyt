@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.0.9...eslint-config-kyt@1.1.0) (2020-09-25)
+
+
+### Features
+
+* **eslint:** set ecmaVersion to 2020 ([#679](http://github.com/nytimes/kyt/packages/eslint-config-kyt/issues/679)) ([b62d36a](http://github.com/nytimes/kyt/packages/eslint-config-kyt/commit/b62d36a473fb69f5cdf31f04c97a5d43d8a55a99))
+
+
+
+
+
 ## [1.0.9](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.0.8...eslint-config-kyt@1.0.9) (2020-09-13)
 
 **Note:** Version bump only for package eslint-config-kyt
