@@ -9,6 +9,7 @@ module.exports = {
 
   parser: 'babel-eslint',
   parserOptions: {
+    // airbnb is 2018, which does not include optional-chaining
     ecmaVersion: 2020,
     sourceType: 'module',
     allowImportExportEverywhere: false,
@@ -19,15 +20,9 @@ module.exports = {
   },
 
   rules: {
-    'no-lonely-if': 2,
-    'no-nested-ternary': 2,
-    'max-nested-callbacks': [2, { max: 5 }],
-    'constructor-super': 2,
-    'no-this-before-super': 2,
-    'prefer-spread': 2,
-    'arrow-parens': 0,
-    'no-warning-comments': [1, { terms: ['todo', 'fixme'], location: 'start' }],
-    'no-param-reassign': 0,
+    'arrow-parens': 'off',
+    // airbnb sets `properties: 'never'`, which confuses the linter
+    camelcase: ['error', { properties: 'always', ignoreDestructuring: false }],
     'comma-dangle': [
       'error',
       {
@@ -38,15 +33,23 @@ module.exports = {
         functions: 'never',
       },
     ],
-    'import/extensions': [1, { js: 'never' }],
+    'constructor-super': 'error',
+    'import/extensions': ['warn', { js: 'never' }],
     'import/max-dependencies': ['error', { max: 40 }],
-    'import/no-extraneous-dependencies': [0],
+    'import/no-extraneous-dependencies': ['off'],
     'import/no-restricted-paths': [
       'error',
       {
         zones: [{ target: './src', from: './src/server' }],
       },
     ],
+    'max-nested-callbacks': ['error', { max: 5 }],
+    'no-lonely-if': 'error',
+    'no-nested-ternary': 'error',
+    'no-param-reassign': 'off',
+    'no-this-before-super': 'error',
+    'no-warning-comments': ['warn', { terms: ['todo', 'fixme'], location: 'start' }],
+    'prefer-spread': 'error',
     'prettier/prettier': [
       'error',
       {
