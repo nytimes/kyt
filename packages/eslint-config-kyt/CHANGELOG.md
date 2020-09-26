@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.1](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.1.0...eslint-config-kyt@1.1.1) (2020-09-26)
+
+
+### Bug Fixes
+
+* **eslint:** override some airbnb settings ([#680](http://github.com/nytimes/kyt/packages/eslint-config-kyt/issues/680)) ([f2d5f48](http://github.com/nytimes/kyt/packages/eslint-config-kyt/commit/f2d5f486e62478e59b1873434a048cc7e49d2ba8))
+
+
+
+
+
 # [1.1.0](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.0.9...eslint-config-kyt@1.1.0) (2020-09-25)
 
 
