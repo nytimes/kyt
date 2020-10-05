@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['eslint-config-kyt'],
+  extends: ['kyt'],
 
   rules: {
     'no-underscore-dangle': [

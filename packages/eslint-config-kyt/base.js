@@ -5,9 +5,9 @@ module.exports = {
     browser: true,
   },
 
-  plugins: ['json', 'prettier'],
+  plugins: ['@babel', 'json', 'prettier'],
 
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {
     // airbnb is 2018, which does not include optional-chaining
     ecmaVersion: 2020,
