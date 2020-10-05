@@ -91,7 +91,6 @@ describe('KYT CLI', () => {
       expect(scripts.dev).toBe('kyt dev');
       expect(scripts.start).toBe('node build/server/main.js');
       expect(scripts.build).toBe('kyt build');
-      expect(scripts.lint).toBe('eslint .');
       expect(scripts['kyt:help']).toBe('kyt --help');
     });
 
