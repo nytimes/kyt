@@ -14,8 +14,12 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "scripts": {
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
     "test": "jest",
-    "test-update": "jest -u"
+    "test-update": "jest -u",
+    "test-watch": "jest --watch",
+    "test-coverage": "jest --coverage"
   },
   "dependencies": {
     "@babel/runtime": "7.11.2",
@@ -32,20 +36,22 @@
     "source-map-support": "0.5.19"
   },
   "devDependencies": {
-    "babel-eslint": "10.1.0",
+    "@babel/core": "7.11.6",
+    "@babel/eslint-parser": "7.11.5",
+    "@babel/eslint-plugin": "7.11.5",
     "babel-preset-kyt-react": "1.0.5",
     "enzyme": "3.11.0",
-    "eslint": "7.9.0",
+    "eslint": "7.10.0",
     "eslint-config-airbnb": "18.2.0",
     "eslint-config-kyt": "1.1.1",
     "eslint-config-prettier": "6.12.0",
-    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jest": "24.0.2",
     "eslint-plugin-jest-formatting": "2.0.0",
     "eslint-plugin-json": "2.1.2",
     "eslint-plugin-jsx-a11y": "6.3.1",
     "eslint-plugin-prettier": "3.1.4",
-    "eslint-plugin-react": "7.21.2",
+    "eslint-plugin-react": "7.21.3",
     "eslint-plugin-react-hooks": "4.1.2",
     "jest": "26.4.2",
     "jest-preset-kyt-enzyme": "1.1.0",
