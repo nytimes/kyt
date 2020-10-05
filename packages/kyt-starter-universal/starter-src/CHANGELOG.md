@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.19](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.18...kyt-starter-universal-src@1.0.0-beta.40.19) (2020-10-05)
+
+
+### Features
+
+* use @babel/eslint-parser as eslint parser ([#681](http://github.com/nytimes/kyt/packages/kyt-starter-universal/issues/681)) ([e332a40](http://github.com/nytimes/kyt/packages/kyt-starter-universal/commit/e332a40f83564b0608347fcafca354d4844db3b4))
+
+
+
+
+
 # [1.0.0-beta.40.18](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.17...kyt-starter-universal-src@1.0.0-beta.40.18) (2020-09-26)
 
 **Note:** Version bump only for package kyt-starter-universal-src

@@ -43,7 +43,7 @@
     "enzyme": "3.11.0",
     "eslint": "7.10.0",
     "eslint-config-airbnb": "18.2.0",
-    "eslint-config-kyt": "1.1.1",
+    "eslint-config-kyt": "1.2.0",
     "eslint-config-prettier": "6.12.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jest": "24.0.2",
@@ -56,8 +56,8 @@
     "jest": "26.4.2",
     "jest-preset-kyt-enzyme": "1.1.0",
     "jest-preset-kyt-styled": "1.1.0",
-    "kyt": "1.0.0-beta.40.14",
+    "kyt": "1.0.0-beta.40.15",
     "prettier": "2.1.2"
   },
-  "version": "1.0.0-beta.40.18"
+  "version": "1.0.0-beta.40.19"
 }

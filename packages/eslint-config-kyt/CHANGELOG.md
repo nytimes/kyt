@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.1.1...eslint-config-kyt@1.2.0) (2020-10-05)
+
+
+### Features
+
+* use @babel/eslint-parser as eslint parser ([#681](http://github.com/nytimes/kyt/packages/eslint-config-kyt/issues/681)) ([e332a40](http://github.com/nytimes/kyt/packages/eslint-config-kyt/commit/e332a40f83564b0608347fcafca354d4844db3b4))
+
+
+
+
+
 ## [1.1.1](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.1.0...eslint-config-kyt@1.1.1) (2020-09-26)
 
 
