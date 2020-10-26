@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.23](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.22...kyt@1.0.0-beta.40.23) (2020-10-26)
+
+**Note:** Version bump only for package kyt
+
+
+
+
+
 # [1.0.0-beta.40.22](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.21...kyt@1.0.0-beta.40.22) (2020-10-26)
 
 **Note:** Version bump only for package kyt
