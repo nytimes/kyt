@@ -3,3 +3,4 @@ coverage
 e2e_tests/fixtures
 **/build
 **/lib
+!packages/eslint-plugin-kyt/lib

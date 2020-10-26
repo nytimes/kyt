@@ -2,8 +2,8 @@
 
 Jest preset for Stylelint-ing files in CSS-in-JS projects. Internally, uses these packages from the [`styled-components`](https://styled-components.com/) project:
 
-* [stylelint-config-styled-components](https://github.com/styled-components/stylelint-config-styled-components)
-* [stylelint-processor-styled-components](https://github.com/styled-components/stylelint-processor-styled-components)
+- [stylelint-config-styled-components](https://github.com/styled-components/stylelint-config-styled-components)
+- [stylelint-processor-styled-components](https://github.com/styled-components/stylelint-processor-styled-components)
 
 ## Installation
 
@@ -25,5 +25,5 @@ module.exports = {
   // By default, looks for files named `styled.js` in `src` (NYT convention)
   // change this value to match your project files that contain CSS-in-JS
   testMatch: ['<rootDir>/src/**/**/styled.js'],
-}
+};
 ```

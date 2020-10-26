@@ -15,7 +15,7 @@
   },
   "peerDependencies": {
     "enzyme": "^3.11.0",
-    "jest": "^26.6.0"
+    "jest": "^26.6.1"
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }
