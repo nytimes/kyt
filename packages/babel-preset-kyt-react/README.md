@@ -6,8 +6,8 @@ A wrapper around [`@babel/preset-react`](https://babeljs.io/docs/en/babel-preset
 
 This preset includes [`babel-preset-kyt-core`](https://github.com/nytimes/kyt/tree/master/packages/babel-preset-kyt-core) - you do not need to install both.
 
-Automatically strips `propTypes` when `(NODE|BABEL)_ENV=production`.
-Properly passes `{ development: true }` to [`@babel/preset-react`](https://babeljs.io/docs/en/babel-preset-react) when `(NODE|BABEL)_ENV=development`.
+- Automatically strips `propTypes` when `(NODE|BABEL)_ENV=production`.
+- Properly passes `{ development: true }` to [`@babel/preset-react`](https://babeljs.io/docs/en/babel-preset-react) when `(NODE|BABEL)_ENV=development`.
 
 ## Installation
 

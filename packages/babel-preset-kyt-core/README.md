@@ -31,8 +31,8 @@ module.exports = {
 When using this option, your application will need to install [`@babel/runtime`](https://babeljs.io/docs/en/babel-runtime):
 
 ```sh
-yarn add @babel/runtime
-npm i --save-exact @babel/runtime
+$ yarn add @babel/runtime
+$ npm i --save-exact @babel/runtime
 ```
 
 - `envOptions (Object)`
