@@ -1,5 +1,7 @@
 # kyt-runtime
 
+[![npm](https://img.shields.io/npm/v/kyt-runtime.svg?maxAge=2592000)](https://www.npmjs.com/package/kyt-runtime)
+
 This package is meant me to be paired with [`kyt@1.0.0+ (non-beta)`](https://www.npmjs.com/package/kyt).
 
 ## Installation

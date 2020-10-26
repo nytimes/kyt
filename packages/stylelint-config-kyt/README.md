@@ -1,5 +1,7 @@
 # NYT Stylelint and SCSS Style Guide
 
+[![npm](https://img.shields.io/npm/v/stylelint-config-kyt.svg?maxAge=2592000)](https://www.npmjs.com/package/stylelint-config-kyt)
+
 This is an extension of [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) with some overrides for CSS/Sass Modules.
 
 ## Install

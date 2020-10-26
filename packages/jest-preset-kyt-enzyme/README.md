@@ -1,5 +1,7 @@
 # jest-preset-kyt-enzyme
 
+[![npm](https://img.shields.io/npm/v/jest-preset-kyt-enzyme.svg?maxAge=2592000)](https://www.npmjs.com/package/jest-preset-kyt-enzyme)
+
 Jest preset for React projects that use Enzyme to test.
 
 ## Installation
