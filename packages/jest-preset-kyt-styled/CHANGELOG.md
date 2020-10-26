@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.3](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.2.2...jest-preset-kyt-styled@1.2.3) (2020-10-26)
+
+
+### Reverts
+
+* Revert "docs: add shields" ([8a69c30](https://github.com/nytimes/kyt/commit/8a69c3095e65784d6412147a581e79e71f43673b))
+
+
+
+
+
 ## [1.2.2](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.2.1...jest-preset-kyt-styled@1.2.2) (2020-10-26)
 
 **Note:** Version bump only for package jest-preset-kyt-styled

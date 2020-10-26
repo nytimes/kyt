@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.3](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.3.2...eslint-config-kyt@1.3.3) (2020-10-26)
+
+
+### Reverts
+
+* Revert "docs: add shields" ([8a69c30](http://github.com/nytimes/kyt/packages/eslint-config-kyt/commit/8a69c3095e65784d6412147a581e79e71f43673b))
+
+
+
+
+
 ## [1.3.2](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.3.1...eslint-config-kyt@1.3.2) (2020-10-26)
 
 **Note:** Version bump only for package eslint-config-kyt
