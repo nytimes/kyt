@@ -7,8 +7,8 @@ A wrapper around [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-e
 ## Installation
 
 ```sh
-yarn add --dev babel-preset-kyt-core
-npm i --save-dev --save-exact babel-preset-kyt-core
+$ yarn add --dev babel-preset-kyt-core
+$ npm i --save-dev --save-exact babel-preset-kyt-core
 ```
 
 ## Options

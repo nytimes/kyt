@@ -5,7 +5,7 @@
 #### yarn
 
 ```sh
-yarn add --dev @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
+$ yarn add --dev @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
   eslint-config-airbnb eslint-config-prettier eslint-plugin-import \
   eslint-plugin-jest eslint-plugin-jest-formatting \
   eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-prettier \
@@ -13,7 +13,7 @@ yarn add --dev @babel/core @babel/eslint-parser @babel/eslint-plugin eslint pret
 
 # or
 
-npm i --save-dev --save-exact @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
+$ npm i --save-dev --save-exact @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
   eslint-config-airbnb eslint-config-prettier eslint-plugin-import \
   eslint-plugin-jest eslint-plugin-jest-formatting \
   eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-prettier \

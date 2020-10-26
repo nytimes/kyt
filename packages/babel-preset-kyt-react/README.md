@@ -12,8 +12,8 @@ Properly passes `{ development: true }` to [`@babel/preset-react`](https://babel
 ## Installation
 
 ```sh
-yarn add --dev babel-preset-kyt-react
-npm i --save-dev --save-exact babel-preset-kyt-react
+$ yarn add --dev babel-preset-kyt-react
+$ npm i --save-dev --save-exact babel-preset-kyt-react
 ```
 
 ## Options

@@ -5,13 +5,13 @@ This package is meant me to be paired with [`kyt@1.0.0+ (non-beta)`](https://www
 ## Installation
 
 ```sh
-yarn add kyt-runtime
-yarn add --dev kyt
+$ yarn add kyt-runtime
+$ yarn add --dev kyt
 
 // or
 
-npm i --save-exact kyt-runtime
-npm i --save-dev --save-exact kyt
+$ npm i --save-exact kyt-runtime
+$ npm i --save-dev --save-exact kyt
 ```
 
 ## `kyt-runtime/dynamic`

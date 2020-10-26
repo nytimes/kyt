@@ -1,5 +1,15 @@
 # kyt-utils
 
+## Installation
+
+```sh
+$ yarn add --dev kyt-utils
+
+// or
+
+$ npm i --save-dev --save-exact kyt-utils
+```
+
 This package is for utilities shared across these `kyt` packages:
 
 - `kyt`

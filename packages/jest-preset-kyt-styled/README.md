@@ -8,11 +8,11 @@ Jest preset for Stylelint-ing files in CSS-in-JS projects. Internally, uses thes
 ## Installation
 
 ```sh
-yarn add --dev jest jest-preset-kyt-styled
+$ yarn add --dev jest jest-preset-kyt-styled
 
 // or
 
-npm i --save-dev --save-exact jest jest-preset-kyt-styled
+$ npm i --save-dev --save-exact jest jest-preset-kyt-styled
 ```
 
 ## Setup

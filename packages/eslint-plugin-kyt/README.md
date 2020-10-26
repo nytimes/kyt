@@ -3,8 +3,8 @@
 ## Installation
 
 ```sh
-yarn add --dev eslint-plugin-kyt
-npm i --save-dev --save-exact eslint-plugin-kyt
+$ yarn add --dev eslint-plugin-kyt
+$ npm i --save-dev --save-exact eslint-plugin-kyt
 ```
 
 Add to the `plugins` and `rules` sections of your ESLint configuration:

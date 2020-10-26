@@ -5,11 +5,11 @@ Jest preset for React projects that use Enzyme to test.
 ## Installation
 
 ```
-yarn add --dev jest enzyme jest-preset-kyt-enzyme
+$ yarn add --dev jest enzyme jest-preset-kyt-enzyme
 
 // or
 
-npm i --save-dev --save-exact jest enzyme jest-preset-kyt-enzyme
+$ npm i --save-dev --save-exact jest enzyme jest-preset-kyt-enzyme
 ```
 
 ## Setup

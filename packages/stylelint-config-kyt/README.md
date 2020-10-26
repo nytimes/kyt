@@ -7,11 +7,11 @@ This is an extension of [stylelint-config-standard](https://github.com/stylelint
 If you want to install this linter extension, follow these install instructions.
 
 ```
-yarn add --dev stylelint stylelint-config-standard stylelint-config-kyt
+$ yarn add --dev stylelint stylelint-config-standard stylelint-config-kyt
 
 // or
 
-npm i --save-dev --save-exact stylelint stylelint-config-standard stylelint-config-kyt
+$ npm i --save-dev --save-exact stylelint stylelint-config-standard stylelint-config-kyt
 ```
 
 ## Configuration
