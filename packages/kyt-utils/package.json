@@ -1,6 +1,6 @@
 {
   "name": "kyt-utils",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A shared kyt utility library.",
   "author": "NYTimes",
   "license": "Apache-2.0",
