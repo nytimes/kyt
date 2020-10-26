@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/compare/babel-preset-kyt-core@1.0.6...babel-preset-kyt-core@1.1.0) (2020-10-26)
+
+
+### Features
+
+* add eslint-plugin-kyt to the repo (again) ([#683](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/issues/683)) ([bfbf77a](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/commit/bfbf77a3f0f2f3cb624d9cfb10b42a7b2bc2f76d))
+
+
+
+
+
 ## [1.0.6](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/compare/babel-preset-kyt-core@1.0.5...babel-preset-kyt-core@1.0.6) (2020-10-19)
 
 **Note:** Version bump only for package babel-preset-kyt-core

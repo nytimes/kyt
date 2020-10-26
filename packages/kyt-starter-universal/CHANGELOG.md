@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.13](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal@1.0.0-beta.40.12...kyt-starter-universal@1.0.0-beta.40.13) (2020-10-26)
+
+
+### Features
+
+* add eslint-plugin-kyt to the repo (again) ([#683](http://github.com/nytimes/kyt/packages/kyt-starter-universal/issues/683)) ([bfbf77a](http://github.com/nytimes/kyt/packages/kyt-starter-universal/commit/bfbf77a3f0f2f3cb624d9cfb10b42a7b2bc2f76d))
+
+
+
+
+
 # [1.0.0-beta.40.12](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal@1.0.0-beta.40.11...kyt-starter-universal@1.0.0-beta.40.12) (2020-10-19)
 
 **Note:** Version bump only for package kyt-starter-universal

@@ -1,6 +1,6 @@
 {
   "name": "kyt",
-  "version": "1.0.0-beta.40.16",
+  "version": "1.0.0-beta.40.17",
   "description": "kyt is a toolkit that encapsulates and manages the configuration for web apps.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -20,7 +20,7 @@
     "@babel/code-frame": "7.10.4",
     "@babel/runtime": "7.12.1",
     "babel-loader": "8.1.0",
-    "babel-preset-kyt-core": "1.0.6",
+    "babel-preset-kyt-core": "1.1.0",
     "commander": "6.2.0",
     "core-js": "3.6.5",
     "file-loader": "6.1.1",
@@ -32,8 +32,8 @@
     "inquirer": "7.3.3",
     "install": "0.13.0",
     "jest-message-util": "26.6.1",
-    "kyt-runtime": "1.0.1",
-    "kyt-utils": "1.0.0",
+    "kyt-runtime": "1.1.0",
+    "kyt-utils": "1.1.0",
     "lodash.clonedeep": "4.5.0",
     "lodash.merge": "4.6.2",
     "prop-types": "15.7.2",
@@ -56,7 +56,7 @@
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
-    "babel-preset-kyt-react": "1.0.6"
+    "babel-preset-kyt-react": "1.1.0"
   },
   "scripts": {
     "watch": "npm run prepare -- --watch",
