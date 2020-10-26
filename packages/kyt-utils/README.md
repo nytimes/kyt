@@ -1,7 +1,5 @@
 # kyt-utils
 
-[![npm](https://img.shields.io/npm/v/kyt-utils.svg?maxAge=2592000)](https://www.npmjs.com/package/kyt-utils)
-
 ## Installation
 
 ```sh

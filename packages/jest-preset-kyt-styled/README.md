@@ -1,7 +1,5 @@
 # jest-preset-kyt-styled
 
-[![npm](https://img.shields.io/npm/v/jest-preset-kyt-styled.svg?maxAge=2592000)](https://www.npmjs.com/package/jest-preset-kyt-styled)
-
 Jest preset for Stylelint-ing files in CSS-in-JS projects. Internally, uses these packages from the [`styled-components`](https://styled-components.com/) project:
 
 - [stylelint-config-styled-components](https://github.com/styled-components/stylelint-config-styled-components)
