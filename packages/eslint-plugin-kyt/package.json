@@ -1,0 +1,25 @@
+{
+  "name": "eslint-plugin-kyt",
+  "version": "1.0.0",
+  "description": "ESLint plugin for Vi-specific rules.",
+  "main": "lib/index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": "git+https://github.com/nytimes/kyt",
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "7.12.1",
+    "@babel/preset-env": "7.12.1",
+    "@babel/preset-react": "7.12.1",
+    "mocha": "8.2.0"
+  },
+  "scripts": {
+    "test": "mocha tests --recursive ./tests"
+  }
+}

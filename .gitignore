@@ -38,8 +38,4 @@ Thumbs.db
 cli-test
 test-packages
 
-# Local stuff
-packages/kyt-starter-*/*/build
-packages/*/lib
-
 .vscode
