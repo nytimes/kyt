@@ -2,11 +2,13 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const inquire = require('inquirer');
-const simpleGit = require('simple-git')();
+const simpleGit = require('simple-git');
 const logger = require('kyt-utils/logger');
 const semver = require('semver');
 const starterKyts = require('../config/starterKyts');
 const yarnOrNpm = require('../utils/yarnOrNpm')();
+
+const git = simpleGit();
 
 module.exports = args => {
   logger.start("Let's set up your new kyt project...");
@@ -370,7 +372,7 @@ module.exports = args => {
       shell.cd('..');
       afterCopy();
     } else {
-      simpleGit.clone(repoURL, tmpStarter, {}, afterCopy);
+      git.clone(repoURL, tmpStarter).then(() => afterCopy());
     }
   };
 
