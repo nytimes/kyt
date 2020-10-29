@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.2.3...jest-preset-kyt-enzyme@1.2.4) (2020-10-29)
+
+**Note:** Version bump only for package jest-preset-kyt-enzyme
+
+
+
+
+
 ## [1.2.3](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.2.2...jest-preset-kyt-enzyme@1.2.3) (2020-10-26)
 
 
