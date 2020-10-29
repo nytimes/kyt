@@ -27,7 +27,6 @@ module.exports = options => {
 
   return {
     node: {
-      __console: false,
       __dirname: false,
       __filename: false,
     },
