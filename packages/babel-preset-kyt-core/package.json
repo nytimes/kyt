@@ -16,7 +16,7 @@
     "@babel/plugin-transform-runtime": "7.12.1",
     "@babel/preset-env": "7.12.1",
     "babel-plugin-dynamic-import-node": "2.3.3",
-    "core-js": "3.6.5",
+    "core-js": "3.7.0",
     "lodash.merge": "4.6.2"
   },
   "keywords": [
