@@ -8,7 +8,7 @@ const semver = require('semver');
 const starterKyts = require('../config/starterKyts');
 const yarnOrNpm = require('../utils/yarnOrNpm')();
 
-module.exports = (flags, args) => {
+module.exports = args => {
   logger.start("Let's set up your new kyt project...");
   logger.log('✨  Answer a few questions to get started  ✨ \n');
   // Selects package manager to use
@@ -125,12 +125,6 @@ module.exports = (flags, args) => {
     // for commands that aren't 1:1 name:script
     const commandMap = {
       start: 'node build/server/main.js',
-      test: 'jest',
-      'test-update': 'jest -u',
-      'test-watch': 'jest --watch',
-      'test-coverage': 'jest --coverage',
-      lint: 'eslint .',
-      'lint-fix': 'eslint . --fix',
     };
 
     // Merge the Starter-kyt script names into the list of commands.
@@ -224,28 +218,6 @@ module.exports = (flags, args) => {
     logger.task('Installed new modules');
   };
 
-  // Create an .eslintrc in the user's base directory
-  const createESLintFile = () => {
-    const eslintFileName = '.eslintrc.js';
-    const linkedPath = path.join(paths.userRootPath, eslintFileName);
-
-    // Backup esLint if it exists
-    if (shell.test('-f', linkedPath)) {
-      const eslintBackup = path.join(paths.userRootPath, `${eslintFileName}-${date}.bak`);
-      shell.mv(linkedPath, eslintBackup);
-      logger.info(`Backed up current eslint file to: ${eslintBackup}`);
-    }
-
-    // Copy our user eslintrc into the user's root.
-    const esLintPath = path.join(__dirname, '../config/user/.eslintrc.base.js');
-
-    if (shell.cp(esLintPath, linkedPath).code === 0) {
-      logger.task(`Created ${eslintFileName} file`);
-    } else {
-      logger.error(`There was a problem creating ${eslintFileName}`);
-    }
-  };
-
   // .editorconfig to the user's base directory.
   const createEditorconfigLink = () => {
     const editorPath = path.join(__dirname, '../config/user/.kyt-editorconfig');
@@ -331,7 +303,7 @@ module.exports = (flags, args) => {
         // If the file name isn't one of the kyt copied files then
         // we should back up any pre-existing files in the user dir.
         if (
-          ['.gitignore', '.eslintrc.js', '.editorconfig', 'kyt.config.js'].indexOf(file) === -1 &&
+          ['.gitignore', '.editorconfig', 'kyt.config.js'].indexOf(file) === -1 &&
           (shell.test('-f', filePath) || shell.test('-d', filePath))
         ) {
           const fileBackup = path.join(paths.userRootPath, `${file}-${date}-bak`);
@@ -367,7 +339,6 @@ module.exports = (flags, args) => {
       tempPackageJSON = require(`${tmpDir}/package.json`);
       updateUserPackageJSON(false);
       installUserDependencies();
-      createESLintFile();
       createEditorconfigLink();
       createKytConfig();
       createSrcDirectory();
@@ -433,7 +404,6 @@ module.exports = (flags, args) => {
     logger.start('Setting up kyt');
     updateUserPackageJSON(true);
     createEditorconfigLink();
-    createESLintFile();
     createKytConfig();
     createGitignore();
     logger.end('Done setting up kyt');

@@ -4,9 +4,12 @@ This `starter-kyt` should serve as the base for an advanced client-rendered Reac
 
 ## Installation
 
-1. run `npm install --save-dev kyt`
-1. run `kyt setup`
-1. select `static` from the list of `starter-kyt`s
+```sh
+$ npm install --save-dev kyt
+$ npx kyt setup
+```
+
+Select `static` from the list of `starter-kyt`s
 
 ## Tools
 

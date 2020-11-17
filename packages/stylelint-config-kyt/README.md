@@ -7,15 +7,11 @@ This is an extension of [stylelint-config-standard](https://github.com/stylelint
 If you want to install this linter extension, follow these install instructions.
 
 ```
-yarn add --dev stylelint@13.6.1 \
-  stylelint-config-standard@20.0.0 \
-  stylelint-config-kyt
+$ yarn add --dev stylelint stylelint-config-standard stylelint-config-kyt
 
 // or
 
-npm i --save-dev --save-exact stylelint@13.6.1 \
-  stylelint-config-standard@20.0.0 \
-  stylelint-config-kyt
+$ npm i --save-dev --save-exact stylelint stylelint-config-standard stylelint-config-kyt
 ```
 
 ## Configuration
@@ -96,33 +92,33 @@ You should never define an ID selector in a CSS Module.
 
 ### Ordering of property declarations
 
-* `@include` or `composes` declarations
-* Property declarations in alphabetical order
+- `@include` or `composes` declarations
+- Property declarations in alphabetical order
 
-   ```scss
-   .btnGreen {
-     @include transition(background 0.5s ease);
-     background: green;
-     color: red;
-     font-weight: bold;
-     // ...
-   }
-   ```
+  ```scss
+  .btnGreen {
+    @include transition(background 0.5s ease);
+    background: green;
+    color: red;
+    font-weight: bold;
+    // ...
+  }
+  ```
 
-* Nested pseudo-selectors
+- Nested pseudo-selectors
 
- Nested pseudo-selectors go last, and nothing goes after them.
+Nested pseudo-selectors go last, and nothing goes after them.
 
- ```scss
- .btn {
-   @include color(red);
-   font-weight: bold;
+```scss
+.btn {
+  @include color(red);
+  font-weight: bold;
 
-   &:hover {
-     cursor: pointer;
-   }
- }
- ```
+  &:hover {
+    cursor: pointer;
+  }
+}
+```
 
 ### Variables
 

@@ -25,14 +25,14 @@ module.exports = options => {
     externals = options.modulesDir.map(dir =>
       nodeExternals({
         modulesDir: dir,
-        whitelist: ['webpack/hot/poll?300'],
+        allowlist: ['webpack/hot/poll?300'],
       })
     );
   } else {
     externals = [
       nodeExternals({
         modulesDir: options.modulesDir,
-        whitelist: ['webpack/hot/poll?300'],
+        allowlist: ['webpack/hot/poll?300'],
       }),
     ];
   }

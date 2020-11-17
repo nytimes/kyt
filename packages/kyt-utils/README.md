@@ -1,9 +1,19 @@
 # kyt-utils
 
+## Installation
+
+```sh
+$ yarn add --dev kyt-utils
+
+// or
+
+$ npm i --save-dev --save-exact kyt-utils
+```
+
 This package is for utilities shared across these `kyt` packages:
 
-* `kyt`
-* `kyt-runtime`
+- `kyt`
+- `kyt-runtime`
 
 Ensure that Node 10+ is installed:
 
@@ -26,7 +36,6 @@ The default export is a `logger` - a wrapper around `console`:
 
 ```js
 import logger from 'kyt-utils';
-
 
 logger.log('message');
 
