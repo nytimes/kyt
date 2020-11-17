@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.3.0...jest-preset-kyt-styled@1.3.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* this rule is too specific, catches media queries ([9754f51](https://github.com/nytimes/kyt/commit/9754f5105f096bb5ca4958cfda1f9aa549b80639))
+
+
+
+
+
 # [1.3.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.2.5...jest-preset-kyt-styled@1.3.0) (2020-11-17)
 
 
