@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.1](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.3.0...stylelint-config-kyt@1.3.1) (2020-11-17)
+
+
+### Bug Fixes
+
+* this rule is too specific, catches media queries ([06999bc](https://github.com/nytimes/kyt/commit/06999bcc936bf191492567e881f5512a01d20e9c))
+
+
+
+
+
 # [1.3.0](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.2.3...stylelint-config-kyt@1.3.0) (2020-11-17)
 
 
