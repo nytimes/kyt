@@ -3,7 +3,7 @@ const path = require('path');
 const webpack = require('webpack');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
-const { clientSrcPath, assetsBuildPath } = require('kyt-utils/paths')();
+const { clientSrcPath, assetsBuildPath, publicBuildPath } = require('kyt-utils/paths')();
 const getPolyfill = require('./getPolyfill');
 
 module.exports = options => {
@@ -45,13 +45,15 @@ module.exports = options => {
         disableDotRule: true,
       },
       publicPath: options.publicPath,
+      // load hashed files from `build/public`
+      contentBase: publicBuildPath,
       host: options.clientURL.hostname,
       hot: true,
       noInfo: true,
       overlay: false,
       port: options.clientURL.port,
-      quiet: true,
       // By default files from `contentBase` will not trigger a page reload.
+      quiet: true,
       // Reportedly, this avoids CPU overload on some systems.
       // https://github.com/facebookincubator/create-react-app/issues/293
       watchOptions: {
