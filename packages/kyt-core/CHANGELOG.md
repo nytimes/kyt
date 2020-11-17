@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.26](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.25...kyt@1.0.0-beta.40.26) (2020-11-17)
+
+
+### Bug Fixes
+
+* set contentBase when configuring devServer ([#687](http://github.com/nytimes/kyt/packages/kyt-core/issues/687)) ([028089c](http://github.com/nytimes/kyt/packages/kyt-core/commit/028089c2412bfb864e16abdf84d15e3ec1989b80))
+
+
+
+
+
 # [1.0.0-beta.40.25](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.24...kyt@1.0.0-beta.40.25) (2020-11-11)
 
 **Note:** Version bump only for package kyt

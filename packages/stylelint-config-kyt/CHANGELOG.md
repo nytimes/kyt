@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.2.3...stylelint-config-kyt@1.3.0) (2020-11-17)
+
+
+### Features
+
+* enable declaration-no-important stylelint rule ([#667](https://github.com/nytimes/kyt/issues/667)) ([f5bdedc](https://github.com/nytimes/kyt/commit/f5bdedc58270008cac77a1bd23c8df743bb57219))
+* set max-nesting-depth stylelint rule to 1 ([#668](https://github.com/nytimes/kyt/issues/668)) ([27e7597](https://github.com/nytimes/kyt/commit/27e7597ea4f63dd7fcf4588150ca539f4b89d35a))
+
+
+
+
+
 ## [1.2.3](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.2.2...stylelint-config-kyt@1.2.3) (2020-10-26)
 
 
