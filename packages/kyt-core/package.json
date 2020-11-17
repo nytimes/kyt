@@ -26,7 +26,7 @@
     "file-loader": "6.2.0",
     "filesize": "6.1.0",
     "find-babel-config": "1.2.0",
-    "gzip-size": "5.1.1",
+    "gzip-size": "6.0.0",
     "ink": "3.0.8",
     "ink-table": "3.0.0",
     "inquirer": "7.3.3",

@@ -17,7 +17,7 @@
     "@babel/plugin-proposal-class-properties": "7.12.1",
     "@babel/preset-env": "7.12.1",
     "@babel/preset-react": "7.12.5",
-    "mocha": "8.2.0"
+    "mocha": "8.2.1"
   },
   "scripts": {
     "test": "mocha tests --recursive ./tests"
