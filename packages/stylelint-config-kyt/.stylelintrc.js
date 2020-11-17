@@ -2,6 +2,7 @@ modules.exports = {
   extends: 'stylelint-config-standard',
 
   rules: {
+    'declaration-no-important': true,
     'string-quotes': 'single',
     'selector-max-id': 0,
     'property-no-unknown': [true, { ignoreProperties: ['composes'] }],
