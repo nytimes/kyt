@@ -3,6 +3,65 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.3](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.1.2...babel-preset-kyt-react@1.1.3) (2020-11-11)
+
+**Note:** Version bump only for package babel-preset-kyt-react
+
+
+
+
+
+## [1.1.2](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.1.1...babel-preset-kyt-react@1.1.2) (2020-10-26)
+
+**Note:** Version bump only for package babel-preset-kyt-react
+
+
+
+
+
+## [1.1.1](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.1.0...babel-preset-kyt-react@1.1.1) (2020-10-26)
+
+**Note:** Version bump only for package babel-preset-kyt-react
+
+
+
+
+
+# [1.1.0](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.0.6...babel-preset-kyt-react@1.1.0) (2020-10-26)
+
+
+### Features
+
+* add eslint-plugin-kyt to the repo (again) ([#683](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/issues/683)) ([bfbf77a](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/commit/bfbf77a3f0f2f3cb624d9cfb10b42a7b2bc2f76d))
+
+
+
+
+
+## [1.0.6](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.0.5...babel-preset-kyt-react@1.0.6) (2020-10-19)
+
+**Note:** Version bump only for package babel-preset-kyt-react
+
+
+
+
+
+## [1.0.5](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.0.4...babel-preset-kyt-react@1.0.5) (2020-09-11)
+
+**Note:** Version bump only for package babel-preset-kyt-react
+
+
+
+
+
+## [1.0.4](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.0.3...babel-preset-kyt-react@1.0.4) (2020-08-20)
+
+**Note:** Version bump only for package babel-preset-kyt-react
+
+
+
+
+
 ## [1.0.3](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.0.2...babel-preset-kyt-react@1.0.3) (2020-07-13)
 
 **Note:** Version bump only for package babel-preset-kyt-react

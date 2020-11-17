@@ -23,37 +23,20 @@ process.on('SIGINT', () => {
   process.exit(0);
 });
 
-const loadConfigAndDo = (action, optionalConfig) => {
-  const args = program.args.filter(item => typeof item === 'object');
-  const flags = program.args.filter(item => typeof item === 'string');
-  const config = kytConfigFn(optionalConfig);
-  action(config, flags, args[0]);
-};
-
-const loadArgsAndDo = action => {
-  const args = program.args.filter(item => typeof item === 'object');
-  const flags = program.args.filter(item => typeof item === 'string');
-  action(flags, args[0]);
-};
-
 program
   .command('dev')
   .option('-C, --config <path>', 'config path')
   .description('Start server for development')
-  .action(() => {
-    const args = program.args.filter(item => typeof item === 'object');
-    const config = args.length && args[0].config ? args[0].config : null;
-    loadConfigAndDo(devAction, config);
+  .action(args => {
+    devAction(kytConfigFn(args.config));
   });
 
 program
   .command('build')
   .option('-C, --config <path>', 'config path')
   .description('Create a production build')
-  .action(() => {
-    const args = program.args.filter(item => typeof item === 'object');
-    const config = args.length && args[0].config ? args[0].config : null;
-    loadConfigAndDo(buildAction, config);
+  .action(args => {
+    buildAction(kytConfigFn(args.config));
   });
 
 program
@@ -73,7 +56,7 @@ program
     '--local-path [path]',
     'Optional: Local path for a `starter-kyt`. For copying local `starter-kyt`s for testing.'
   )
-  .action(() => loadArgsAndDo(setupAction));
+  .action(setupAction);
 
 program.command('list').description('Lists availble supported `starter-kyt`s').action(listAction);
 

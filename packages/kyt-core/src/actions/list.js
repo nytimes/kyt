@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, Color } from 'ink';
+import { render, Text } from 'ink';
 import Table from 'ink-table';
 import starterKyts from '../config/starterKyts';
 
@@ -15,7 +15,7 @@ const List = () => {
     };
   });
 
-  return <Table data={data} header={({ children }) => <Color magenta>{children}</Color>} />;
+  return <Table data={data} header={({ children }) => <Text color="magenta">{children}</Text>} />;
 };
 
 module.exports = () => {

@@ -3,49 +3,39 @@
 ## Installation
 
 #### yarn
+
 ```sh
-yarn add --dev eslint@6.8.0 \
-  babel-eslint@10.1.0 \
-  prettier@2.0.5 \
-  eslint-config-airbnb@18.2.0 \
-  eslint-config-prettier@6.11.0 \
-  eslint-config-kyt \
-  eslint-plugin-import@2.21.2 \
-  eslint-plugin-json@2.1.1 \
-  eslint-plugin-jsx-a11y@6.3.0 \
-  eslint-plugin-prettier@3.1.4 \
-  eslint-plugin-react@7.20.0 \
-  eslint-plugin-react-hooks@4.0.4
+$ yarn add --dev @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
+  eslint-config-airbnb eslint-config-prettier eslint-plugin-import \
+  eslint-plugin-jest eslint-plugin-jest-formatting \
+  eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-prettier \
+  eslint-plugin-react eslint-plugin-react-hooks eslint-config-kyt
 
 # or
 
-npm i --save-dev --save-exact eslint@6.8.0 \
-  babel-eslint@10.1.0 \
-  prettier@2.0.5 \
-  eslint-config-airbnb@18.2.0 \
-  eslint-config-prettier@6.11.0 \
-  eslint-config-kyt \
-  eslint-plugin-import@2.21.2 \
-  eslint-plugin-json@2.1.1 \
-  eslint-plugin-jsx-a11y@6.3.0 \
-  eslint-plugin-prettier@3.1.4 \
-  eslint-plugin-react@7.20.0 \
-  eslint-plugin-react-hooks@4.0.4
+$ npm i --save-dev --save-exact @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
+  eslint-config-airbnb eslint-config-prettier eslint-plugin-import \
+  eslint-plugin-jest eslint-plugin-jest-formatting \
+  eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-prettier \
+  eslint-plugin-react eslint-plugin-react-hooks eslint-config-kyt
 ```
 
 Add to the `extends` section of your ESLint configuration:
 
 `.eslintrc(.json)`:
+
 ```json
 {
-  "extends": ["eslint-config-kyt"],
+  "extends": ["kyt"],
   "rules": {}
 }
 ```
+
 `.eslintrc.js`:
+
 ```js
 module.exports = {
-  extends: ['eslint-config-kyt'],
+  extends: ['kyt'],
   // shorthand: ['kyt']
   rules: {
     /* If you must, override rules here :P */
@@ -65,9 +55,9 @@ module.exports = {
     // adds Airbnb's React rules before our custom rules
     'kyt/react',
     // all rules
-    'kyt'
-  ]
-}
+    'kyt',
+  ],
+};
 ```
 
 ## Prettier Support

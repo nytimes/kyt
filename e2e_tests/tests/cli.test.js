@@ -70,7 +70,6 @@ describe('KYT CLI', () => {
         expect(setupArr).toContain('👍  Added kyt scripts into your package.json scripts');
         expect(setupArr).toContain('👍  Added new dependencies to package.json');
         expect(setupArr).toContain('👍  Installed new modules');
-        expect(setupArr).toContain('👍  Created .eslintrc.js file');
         expect(setupArr).toContain('👍  Created kyt.config.js file');
         expect(setupArr).toContain('👍  Created .editorconfig file');
         expect(setupArr).toContain('👍  Created .gitignore file');
@@ -82,7 +81,6 @@ describe('KYT CLI', () => {
       expect(shell.test('-d', 'src')).toBe(true);
       expect(shell.test('-f', 'kyt.config.js')).toBe(true);
       expect(shell.test('-f', '.editorconfig')).toBe(true);
-      expect(shell.test('-f', '.eslintrc.js')).toBe(true);
     });
 
     it('sets up the package json scripts', () => {
@@ -93,20 +91,15 @@ describe('KYT CLI', () => {
       expect(scripts.dev).toBe('kyt dev');
       expect(scripts.start).toBe('node build/server/main.js');
       expect(scripts.build).toBe('kyt build');
-      expect(scripts.test).toBe('jest');
-      expect(scripts.lint).toBe('eslint .');
       expect(scripts['kyt:help']).toBe('kyt --help');
     });
 
     it('verifies the source directory', () => {
-      if (slug !== 'server') {
-        expect(shell.test('-d', 'src/client')).toBe(true);
-        expect(shell.test('-f', 'src/client/index.js')).toBe(true);
-      }
-      if (slug === 'universal') {
-        expect(shell.test('-d', 'src/server')).toBe(true);
-        expect(shell.test('-f', 'src/server/index.js')).toBe(true);
-      }
+      expect(slug !== 'server' ? shell.test('-d', 'src/client') : true).toBe(true);
+      expect(slug !== 'server' ? shell.test('-f', 'src/client/index.js') : true).toBe(true);
+
+      expect(slug === 'universal' ? shell.test('-d', 'src/server') : true).toBe(true);
+      expect(slug === 'universal' ? shell.test('-f', 'src/server/index.js') : true).toBe(true);
     });
   });
 
