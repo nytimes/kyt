@@ -27,6 +27,5 @@ modules.exports = {
         ignoreAtRules: ['extend', 'include', 'mixin', 'if', 'else', 'for'],
       },
     ],
-    'max-nesting-depth': 1,
   },
 };
