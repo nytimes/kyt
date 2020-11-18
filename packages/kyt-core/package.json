@@ -53,7 +53,7 @@
     "webpack-dev-server": "3.11.0",
     "webpack-merge": "5.2.0",
     "webpack-node-externals": "2.5.2",
-    "webpackbar": "4.0.0"
+    "webpackbar": "5.0.0-3"
   },
   "devDependencies": {
     "babel-preset-kyt-react": "1.1.3"
