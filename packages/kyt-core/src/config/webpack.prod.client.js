@@ -7,7 +7,7 @@ const getPolyfill = require('./getPolyfill');
 module.exports = options => ({
   mode: 'production',
 
-  target: 'web',
+  target: ['web', 'es5'],
 
   devtool: 'source-map',
 
@@ -25,7 +25,6 @@ module.exports = options => ({
   plugins: [...kytWebpackPlugins(options)],
 
   optimization: {
-    moduleIds: 'hashed',
     runtimeChunk: {
       name: entrypoint => `runtime~${entrypoint.name}`,
     },

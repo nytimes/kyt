@@ -16,7 +16,7 @@ module.exports = options => {
   return {
     mode: 'development',
 
-    target: 'web',
+    target: ['web', 'es5'],
 
     devtool: 'cheap-module-source-map',
 
@@ -29,7 +29,6 @@ module.exports = options => {
       publicPath: options.publicPath,
       pathinfo: true,
       libraryTarget: 'var',
-      filename: '[name].js',
       chunkFilename: '[name]-[chunkhash].js',
       devtoolModuleFilenameTemplate: info => path.resolve(info.resourcePath).replace(/\\/g, '/'),
     },
