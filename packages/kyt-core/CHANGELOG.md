@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.29](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.28...kyt@1.0.0-beta.40.29) (2020-11-18)
+
+
+### Bug Fixes
+
+* use webpack 5-compatible version of webpackbar ([5563d93](http://github.com/nytimes/kyt/packages/kyt-core/commit/5563d9378c531362c542ce49c0387cfb2d5a593e))
+
+
+
+
+
 # [1.0.0-beta.40.28](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.27...kyt@1.0.0-beta.40.28) (2020-11-18)
 
 **Note:** Version bump only for package kyt
