@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.27](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.26...kyt@1.0.0-beta.40.27) (2020-11-18)
+
+
+### Features
+
+* upgrade to webpack v5 ([#684](http://github.com/nytimes/kyt/packages/kyt-core/issues/684)) ([afce4f4](http://github.com/nytimes/kyt/packages/kyt-core/commit/afce4f492a74bce2bdadcbf7fb987417f6b4eb45))
+
+
+
+
+
 # [1.0.0-beta.40.26](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.25...kyt@1.0.0-beta.40.26) (2020-11-17)
 
 
