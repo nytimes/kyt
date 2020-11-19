@@ -1,5 +1,5 @@
-import React from 'react';
-import { LoadableContext } from './Capture';
+const React = require('react');
+const { LoadableContext } = require('./Capture');
 
 /* eslint-disable no-underscore-dangle,consistent-return */
 

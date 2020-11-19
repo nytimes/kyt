@@ -4,7 +4,7 @@ function Loading() {
   return null;
 }
 
-export default function dynamic(loader, opts = {}) {
+module.exports = function dynamic(loader, opts = {}) {
   const options = { ...opts, ...opts.loadableGenerated };
   delete options.loadableGenerated;
   options.loader = loader;
@@ -13,4 +13,4 @@ export default function dynamic(loader, opts = {}) {
   }
 
   return Loadable(options);
-}
+};

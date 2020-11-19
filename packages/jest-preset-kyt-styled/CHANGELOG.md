@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.3.1...jest-preset-kyt-styled@1.4.0) (2020-11-19)
+
+
+### Features
+
+* **kyt-runtime:** fully-compile the files in src ([#689](https://github.com/nytimes/kyt/issues/689)) ([21e27f2](https://github.com/nytimes/kyt/commit/21e27f2dc083ff8fe9473e483ff6e04915d9dc82))
+
+
+
+
+
 ## [1.3.1](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.3.0...jest-preset-kyt-styled@1.3.1) (2020-11-17)
 
 

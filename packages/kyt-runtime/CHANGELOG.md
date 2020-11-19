@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.1.7...kyt-runtime@1.2.0) (2020-11-19)
+
+
+### Features
+
+* **kyt-runtime:** fully-compile the files in src ([#689](http://github.com/nytimes/kyt/packages/kyt-runtime/issues/689)) ([21e27f2](http://github.com/nytimes/kyt/packages/kyt-runtime/commit/21e27f2dc083ff8fe9473e483ff6e04915d9dc82))
+
+
+
+
+
 ## [1.1.7](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.1.6...kyt-runtime@1.1.7) (2020-11-11)
 
 **Note:** Version bump only for package kyt-runtime

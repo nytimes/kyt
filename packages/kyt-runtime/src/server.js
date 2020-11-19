@@ -1,10 +1,11 @@
 import fs from 'fs';
 import { getBundles as getLoadableBundles } from './loadable-plugin';
 
-const { clientAssetsFile, loadableAssetsFile } = require('kyt-utils/paths')();
-
 export { preloadAll as preloadDynamicImports } from './loadable';
+
 export { Capture as DynamicImports } from './Capture';
+
+const { clientAssetsFile, loadableAssetsFile } = require('kyt-utils/paths')();
 
 // Get JS bundles for an entry (defaults to `main`)
 // Compares `modules` with `loadableBundles`

@@ -1,7 +1,6 @@
-import WebpackAssetsManifest from 'webpack-assets-manifest';
-import { LoadablePlugin } from './loadable-plugin';
-
+const WebpackAssetsManifest = require('webpack-assets-manifest');
 const { loadableAssetsFile, clientAssetsFile } = require('kyt-utils/paths')();
+const { LoadablePlugin } = require('./loadable-plugin');
 
 // eslint-disable-next-line import/prefer-default-export
 export function kytWebpackPlugins(options) {

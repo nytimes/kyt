@@ -1,4 +1,4 @@
-export default function kytRuntimeBabel({ types: t }) {
+module.exports = function kytRuntimeBabel({ types: t }) {
   return {
     visitor: {
       ImportDeclaration(path) {
@@ -119,4 +119,4 @@ export default function kytRuntimeBabel({ types: t }) {
       },
     },
   };
-}
+};
