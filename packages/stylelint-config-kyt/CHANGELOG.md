@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.3.3...stylelint-config-kyt@1.4.0) (2020-11-19)
+
+
+### Features
+
+* **kyt-runtime:** fully-compile the files in src ([#689](https://github.com/nytimes/kyt/issues/689)) ([21e27f2](https://github.com/nytimes/kyt/commit/21e27f2dc083ff8fe9473e483ff6e04915d9dc82))
+
+
+
+
+
 ## [1.3.3](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.3.2...stylelint-config-kyt@1.3.3) (2020-11-18)
 
 **Note:** Version bump only for package stylelint-config-kyt
