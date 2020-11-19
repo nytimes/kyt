@@ -1,4 +1,4 @@
-import { Loadable } from './loadable';
+const { Loadable } = require('./loadable');
 
 function Loading() {
   return null;
