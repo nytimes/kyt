@@ -1,5 +1,5 @@
-const React = require('react');
-const { LoadableContext } = require('../Capture');
+import React from 'react';
+import { LoadableContext } from './Capture';
 
 /* eslint-disable no-underscore-dangle,consistent-return */
 
@@ -210,19 +210,19 @@ function flushInitializers(initializers) {
   });
 }
 
-exports.preloadAll = function preloadAll() {
+export function preloadAll() {
   return new Promise(function promiseFn(resolve, reject) {
     flushInitializers(ALL_INITIALIZERS).then(resolve, reject);
   });
-};
+}
 
-exports.preloadReady = function preloadReady() {
+export function preloadReady() {
   return new Promise(function promiseFn(resolve) {
     // We always will resolve, errors should be handled within loading UIs.
     flushInitializers(READY_INITIALIZERS).then(resolve, resolve);
   });
-};
+}
 
-exports.Loadable = function Loadable(opts) {
+export function Loadable(opts) {
   return createLoadableComponent(load, opts);
-};
+}

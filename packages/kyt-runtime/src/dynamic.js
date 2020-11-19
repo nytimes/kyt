@@ -1,10 +1,10 @@
-const { Loadable } = require('./loadable');
+import { Loadable } from './loadable';
 
 function Loading() {
   return null;
 }
 
-function dynamic(loader, opts = {}) {
+export default function dynamic(loader, opts = {}) {
   const options = { ...opts, ...opts.loadableGenerated };
   delete options.loadableGenerated;
   options.loader = loader;
@@ -14,5 +14,3 @@ function dynamic(loader, opts = {}) {
 
   return Loadable(options);
 }
-
-module.exports = dynamic;
