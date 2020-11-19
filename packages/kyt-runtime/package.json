@@ -31,7 +31,7 @@
     "babel-preset-kyt-core": "1.1.3"
   },
   "scripts": {
-    "prepare": "babel es -d lib --ignore \"**/__tests__/**\""
+    "prepare": "babel src -d lib --ignore \"**/__tests__/**\""
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }
