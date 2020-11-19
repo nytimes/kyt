@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.30](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.29...kyt@1.0.0-beta.40.30) (2020-11-19)
+
+
+### Reverts
+
+* Revert "feat: upgrade to webpack v5 (#684)" ([56dd8a5](http://github.com/nytimes/kyt/packages/kyt-core/commit/56dd8a51208a22953a2fc1aacc68f7e378f9160d)), closes [#684](http://github.com/nytimes/kyt/packages/kyt-core/issues/684)
+* Revert "fix: use webpack 5-compatible version of webpackbar" ([0ac9246](http://github.com/nytimes/kyt/packages/kyt-core/commit/0ac92467e40b05b1dc006e481825e4fca2be9793))
+
+
+
+
+
 # [1.0.0-beta.40.29](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.28...kyt@1.0.0-beta.40.29) (2020-11-18)
 
 
