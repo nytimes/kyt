@@ -5,7 +5,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const WebpackBar = require('webpackbar');
-const { merge } = require('webpack-merge');
+const merge = require('webpack-merge');
 const findBabelConfigSync = require('find-babel-config').sync;
 
 const {
@@ -27,6 +27,7 @@ module.exports = options => {
 
   return {
     node: {
+      __console: false,
       __dirname: false,
       __filename: false,
     },
@@ -78,7 +79,7 @@ module.exports = options => {
           },
           loader: 'file-loader',
           options: {
-            name: '[name]-[contenthash].[ext]',
+            name: '[name]-[hash].[ext]',
             publicPath: options.publicPath,
             outputPath: asset => (options.type === 'server' ? `../public/${asset}` : asset),
           },

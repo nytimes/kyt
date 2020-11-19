@@ -49,9 +49,9 @@
     "source-map-support": "0.5.19",
     "strip-ansi": "6.0.0",
     "url-loader": "4.1.1",
-    "webpack": "5.3.0",
+    "webpack": "4.44.2",
     "webpack-dev-server": "3.11.0",
-    "webpack-merge": "5.2.0",
+    "webpack-merge": "4.2.2",
     "webpack-node-externals": "2.5.2",
     "webpackbar": "4.0.0"
   },

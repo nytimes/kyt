@@ -64,6 +64,7 @@ module.exports = options => {
 
     output: {
       path: serverBuildPath,
+      filename: '[name].js',
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
       libraryTarget: 'commonjs2',

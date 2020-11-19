@@ -1,7 +1,7 @@
 // Compiles the {server, client} configurations
 // For use by the client and server compilers.
 
-const { merge, mergeWithCustomize, customizeObject } = require('webpack-merge');
+const merge = require('webpack-merge');
 const logger = require('kyt-utils/logger');
 const clone = require('lodash.clonedeep');
 const findBabelConfigSync = require('find-babel-config').sync;
@@ -49,12 +49,11 @@ module.exports = (config, environment = 'development') => {
   }
 
   // Merge options with static webpack configs
-  clientConfig = mergeWithCustomize({
-    customizeObject: customizeObject({
-      plugins: 'prepend',
-    }),
-  })(baseConfig(clientOptions), clientConfig(clientOptions));
-  serverConfig = merge(baseConfig(serverOptions), serverConfig(serverOptions));
+  clientConfig = merge.smartStrategy({ plugins: 'prepend' })(
+    baseConfig(clientOptions),
+    clientConfig(clientOptions)
+  );
+  serverConfig = merge.smart(baseConfig(serverOptions), serverConfig(serverOptions));
 
   // Modify via userland config
   try {
