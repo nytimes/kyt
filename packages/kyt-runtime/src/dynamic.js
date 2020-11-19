@@ -4,7 +4,7 @@ function Loading() {
   return null;
 }
 
-function dynamic(loader, opts = {}) {
+module.exports = function dynamic(loader, opts = {}) {
   const options = { ...opts, ...opts.loadableGenerated };
   delete options.loadableGenerated;
   options.loader = loader;
@@ -13,6 +13,4 @@ function dynamic(loader, opts = {}) {
   }
 
   return Loadable(options);
-}
-
-module.exports = dynamic;
+};
