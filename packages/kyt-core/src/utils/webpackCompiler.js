@@ -26,7 +26,13 @@ module.exports = (webpackConfig, cb) => {
       logger.error(`${type} build failed\n`, stats.toString());
       logger.info('See webpack error above');
     } else if (stats.hasWarnings()) {
-      logger.warn(`${type} build warnings`, stats.toJson().warnings.join('\n'));
+      logger.warn(
+        `${type} build warnings`,
+        stats
+          .toJson()
+          .warnings.map(w => w.message)
+          .join('\n')
+      );
     } else {
       logger.task(`${type} build successful`);
     }

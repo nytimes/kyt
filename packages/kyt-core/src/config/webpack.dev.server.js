@@ -80,7 +80,7 @@ module.exports = options => {
         nodeArgs,
       }),
       // Ignore to avoid infinite recompile bug
-      new webpack.WatchIgnorePlugin([clientAssetsFile, loadableAssetsFile]),
+      new webpack.WatchIgnorePlugin({ paths: [clientAssetsFile, loadableAssetsFile] }),
     ],
   };
 };

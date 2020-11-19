@@ -1,85 +1,95 @@
 // Implementation of this PR: https://github.com/jamiebuilds/react-loadable/pull/132
 // Modified to strip out unneeded results for kyt's specific use case
 
-const fs = require('fs');
-const path = require('path');
 const url = require('url');
+const path = require('path');
+const webpack = require('webpack');
+
+const { RawSource } = webpack.sources;
+
+function getModulesIterable(compilation, chunk) {
+  return compilation.chunkGraph.getChunkModulesIterable(chunk);
+}
+
+function getModuleId(compilation, module) {
+  compilation.chunkGraph.getModuleId(module);
+}
 
 function buildManifest(compiler, compilation) {
-  const { context } = compiler.options;
   const manifest = {
     entries: Array.from(compilation.entrypoints.keys()),
     bundles: {},
   };
 
-  compilation.chunks.forEach(chunk => {
-    chunk.files.forEach(file => {
-      if (!file.match(/\.js$/)) {
-        return;
-      }
+  compilation.chunkGroups.forEach(chunkGroup => {
+    if (chunkGroup.isInitial()) {
+      return;
+    }
 
-      // eslint-disable-next-line no-restricted-syntax
-      for (const module of chunk.modulesIterable) {
-        const { id } = module;
-        const name = typeof module.libIdent === 'function' ? module.libIdent({ context }) : null;
-        if (name && name.match(/node_modules/)) {
-          // eslint-disable-next-line no-continue
-          continue;
-        }
+    chunkGroup.origins.forEach(chunkGroupOrigin => {
+      const { request } = chunkGroupOrigin;
 
-        const publicPath = url.resolve(compilation.outputOptions.publicPath || '', file);
+      chunkGroup.chunks.forEach(chunk => {
+        chunk.files.forEach(file => {
+          if (!file.endsWith('.js')) {
+            return;
+          }
 
-        let currentModule = module;
-        if (module.constructor.name === 'ConcatenatedModule') {
-          currentModule = module.rootModule;
-        }
+          const publicPath = url.resolve(compilation.outputOptions.publicPath || '', file);
 
-        if (
-          !currentModule.rawRequest ||
-          currentModule.rawRequest.match(
-            /\.(scss|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico)$/
-          )
-        ) {
-          // eslint-disable-next-line no-continue
-          continue;
-        }
+          // eslint-disable-next-line no-restricted-syntax
+          for (const module of getModulesIterable(compilation, chunk)) {
+            const id = getModuleId(compilation, module);
 
-        if (!manifest.bundles[currentModule.rawRequest]) {
-          manifest.bundles[currentModule.rawRequest] = [];
-        }
+            if (!manifest.bundles[request]) {
+              manifest.bundles[request] = [];
+            }
 
-        manifest.bundles[currentModule.rawRequest].push({
-          id,
-          name,
-          file,
-          publicPath,
+            // Avoid duplicate files
+            if (manifest.bundles[request].some(item => item.id === id && item.file === file)) {
+              // eslint-disable-next-line no-continue
+              continue;
+            }
+
+            manifest.bundles[request].push({ id, file, publicPath });
+          }
         });
-      }
+      });
     });
   });
+
+  manifest.bundles = Object.keys(manifest.bundles)
+    .sort()
+    .reduce((a, c) => {
+      a[c] = manifest.bundles[c];
+      return a;
+    }, {});
 
   return manifest;
 }
 
 class LoadablePlugin {
   constructor(opts = {}) {
-    this.filename = opts.filename;
+    this.filename = path.basename(opts.filename);
+  }
+
+  createAssets(compiler, compilation, assets) {
+    const manifest = buildManifest(compiler, compilation);
+    assets[this.filename] = new RawSource(JSON.stringify(manifest, null, 2));
+    return assets;
   }
 
   apply(compiler) {
-    compiler.hooks.emit.tapAsync('LoadableManifest', (compilation, callback) => {
-      const manifest = buildManifest(compiler, compilation);
-      const json = JSON.stringify(manifest, null, 2);
-      const outputDirectory = path.dirname(this.filename);
-      try {
-        fs.mkdirSync(outputDirectory);
-      } catch (err) {
-        if (err.code !== 'EEXIST') {
-          throw err;
+    compiler.hooks.make.tap('LoadableManifest', compilation => {
+      compilation.hooks.processAssets.tap(
+        {
+          name: 'LoadableManifest',
+          stage: webpack.Compilation.PROCESS_ASSETS_STAGE_ADDITIONS,
+        },
+        assets => {
+          this.createAssets(compiler, compilation, assets);
         }
-      }
-      fs.writeFileSync(this.filename, json);
-      callback();
+      );
     });
   }
 }
