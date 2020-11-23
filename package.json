@@ -23,7 +23,7 @@
     "test-coverage": "jest --coverage && yarn test:starter yarn test-coverage",
     "test-watch": "jest --watch && yarn test:starter yarn test-watch",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "jest --config=jest.eslint.js",
+    "lint": "jest --config ./jest.eslint.js",
     "lint-staged": "yarn run lint -o",
     "lint-fix": "ESLINT_FIX=1 ESLINT_QUIET=1 yarn run lint",
     "lint:ci": "ESLINT_QUIET=1 yarn run lint",
