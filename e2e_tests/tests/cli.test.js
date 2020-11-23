@@ -85,7 +85,6 @@ describe('KYT CLI', () => {
 
     it('sets up the package json scripts', () => {
       const userPackageJSON = jest.requireActual(path.join(process.cwd(), 'package.json'));
-      // eslint-disable-next-line import/no-unresolved
       const { scripts } = userPackageJSON;
 
       expect(scripts.dev).toBe('kyt dev');

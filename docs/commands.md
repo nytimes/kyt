@@ -5,7 +5,7 @@
 `kyt setup` includes these commands as scripts in your `package.json`:
 
 ```
-npm run dev
+yarn dev
 ```
 
 Or you can run a command with `npx kyt command`

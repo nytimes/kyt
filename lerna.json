@@ -1,7 +1,7 @@
 {
-  "npmClient": "npm",
-  "packages": ["packages/*", "packages/**/starter-src"],
+  "npmClient": "yarn",
   "version": "independent",
+  "useWorkspaces": true,
   "command": {
     "publish": {
       "conventionalCommits": true

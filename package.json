@@ -12,21 +12,23 @@
     "doc": "docs"
   },
   "scripts": {
-    "bootstrap": "npm i && lerna bootstrap --hoist",
-    "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && npm run bootstrap",
+    "bootstrap": "yarn && lerna run prepare --stream",
+    "bootstrap:ci": "yarn && lerna run prepare",
+    "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "publish": "lerna publish --exact --conventional-commits --create-release github",
     "test:starter": "lerna exec --scope \"kyt-starter-{server,static,universal}-src\" --",
-    "test": "jest && npm run test:starter -- npm t",
-    "test:ci": "jest --ci && npm run test:starter -- npm t -- --ci",
-    "test-update": "jest -u && npm run test:starter -- npm run test-update",
-    "test-coverage": "jest --coverage && npm run test:starter -- npm t -- --coverage",
-    "test-watch": "jest --watch",
+    "test": "jest && yarn test:starter yarn test",
+    "test:ci": "jest --ci && yarn test:starter yarn test --ci",
+    "test-update": "jest -u && yarn test:starter yarn test-update",
+    "test-coverage": "jest --coverage && yarn test:starter yarn test-coverage",
+    "test-watch": "jest --watch && yarn test:starter yarn test-watch",
     "e2e": "jest --config ./e2e_tests/jest.config.json --verbose --no-cache",
-    "lint": "eslint ./",
-    "lint:ci": "npm run lint -- --no-color --quiet",
-    "lint-fix": "npm run lint -- --fix",
+    "lint": "jest --config=jest.eslint.js",
+    "lint-staged": "yarn run lint -o",
+    "lint-fix": "ESLINT_FIX=1 ESLINT_QUIET=1 yarn run lint",
+    "lint:ci": "ESLINT_QUIET=1 yarn run lint",
     "ncu": "ncu && lerna exec -- ncu",
-    "watch-cli": "cd packages/kyt-core && npm run watch"
+    "watch-cli": "yarn workspace kyt watch"
   },
   "devDependencies": {
     "@babel/cli": "7.12.1",
@@ -52,6 +54,8 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "husky": "4.3.0",
     "jest": "26.6.3",
+    "jest-runner-eslint": "0.10.0",
+    "jest-silent-reporter": "0.3.0",
     "lerna": "3.22.1",
     "prettier": "2.1.2",
     "regenerator-runtime": "0.13.7",
@@ -63,5 +67,11 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "packages/**/starter-src"
+    ]
   }
 }

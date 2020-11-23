@@ -320,7 +320,6 @@ module.exports = args => {
   const starterKytSetup = starterName => {
     let npmName = null;
     if (starterName) {
-      // eslint-disable-next-line prefer-destructuring
       npmName = starterKyts.supported[starterName].npmName;
       tmpDir = path.join(tmpDir, `/node_modules/${npmName}/starter-src`);
     }

@@ -3,8 +3,6 @@ import { render, Text } from 'ink';
 import Table from 'ink-table';
 import starterKyts from '../config/starterKyts';
 
-/* eslint-disable jsx-a11y/accessible-emoji */
-
 const List = () => {
   const data = Object.keys(starterKyts.supported).map(starterName => {
     const starter = starterKyts.supported[starterName];

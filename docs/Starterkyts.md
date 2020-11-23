@@ -24,7 +24,7 @@ The following is a guide for building `starter-kyt`s. If you would like to know 
      ...
      "scripts": {
        "typings": "typings install",
-       "lint": "npm run tslint 'src/**/*.ts'"
+       "lint": "yarn tslint 'src/**/*.ts'"
      },
      "kyt": {
        "version": "0.0.1",
