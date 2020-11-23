@@ -3,6 +3,10 @@ node_js:
   - 14.5.0
   - lts/dubnium
   - lts/erbium
-install: yarn bootstrap:ci
-script: yarn lint:ci && yarn test:ci && yarn e2e
+before_script:
+  - yarn exec lerna run prepare
+script:
+  - yarn lint:ci
+  - yarn test:ci
+  - yarn e2e
 cache: yarn
