@@ -1,1 +1,3 @@
 starter-src/yarn.lock
+starter-src/.caches
+starter-src/node_modules
