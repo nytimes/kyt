@@ -33,7 +33,7 @@
     "regenerator-runtime": "0.13.7"
   },
   "devDependencies": {
-    "@babel/core": "7.12.8",
+    "@babel/core": "7.12.9",
     "@babel/eslint-parser": "7.12.1",
     "@babel/eslint-plugin": "7.12.1",
     "babel-preset-kyt-react": "1.2.0",
