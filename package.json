@@ -27,7 +27,6 @@
     "lint-staged": "yarn run lint -o",
     "lint-fix": "ESLINT_FIX=1 ESLINT_QUIET=1 yarn run lint",
     "lint:ci": "ESLINT_QUIET=1 yarn run lint",
-    "ncu": "ncu && lerna exec -- ncu",
     "watch-cli": "yarn workspace kyt watch"
   },
   "devDependencies": {
