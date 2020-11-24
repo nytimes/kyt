@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.2.5...jest-preset-kyt-enzyme@1.3.0) (2020-11-24)
+
+
+### Features
+
+* switch to Yarn Workspaces ([#690](https://github.com/nytimes/kyt/issues/690)) ([e029ef9](https://github.com/nytimes/kyt/commit/e029ef9f72e47179315ed928840b770e140ab0aa))
+
+
+
+
+
 ## [1.2.5](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.2.4...jest-preset-kyt-enzyme@1.2.5) (2020-11-11)
 
 **Note:** Version bump only for package jest-preset-kyt-enzyme

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.1.3...babel-preset-kyt-react@1.2.0) (2020-11-24)
+
+
+### Features
+
+* switch to Yarn Workspaces ([#690](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/issues/690)) ([e029ef9](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/commit/e029ef9f72e47179315ed928840b770e140ab0aa))
+
+
+
+
+
 ## [1.1.3](http://github.com/nytimes/kyt/packages/kyt-babel-preset-react/compare/babel-preset-kyt-react@1.1.2...babel-preset-kyt-react@1.1.3) (2020-11-11)
 
 **Note:** Version bump only for package babel-preset-kyt-react

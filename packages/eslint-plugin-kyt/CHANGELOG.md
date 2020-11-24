@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.1.5...eslint-plugin-kyt@1.2.0) (2020-11-24)
+
+
+### Features
+
+* switch to Yarn Workspaces ([#690](https://github.com/nytimes/kyt/issues/690)) ([e029ef9](https://github.com/nytimes/kyt/commit/e029ef9f72e47179315ed928840b770e140ab0aa))
+
+
+
+
+
 ## [1.1.5](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.1.4...eslint-plugin-kyt@1.1.5) (2020-11-17)
 
 **Note:** Version bump only for package eslint-plugin-kyt

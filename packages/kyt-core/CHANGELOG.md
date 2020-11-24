@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.32](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.31...kyt@1.0.0-beta.40.32) (2020-11-24)
+
+
+### Features
+
+* switch to Yarn Workspaces ([#690](http://github.com/nytimes/kyt/packages/kyt-core/issues/690)) ([e029ef9](http://github.com/nytimes/kyt/packages/kyt-core/commit/e029ef9f72e47179315ed928840b770e140ab0aa))
+
+
+
+
+
 # [1.0.0-beta.40.31](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.30...kyt@1.0.0-beta.40.31) (2020-11-19)
 
 **Note:** Version bump only for package kyt
