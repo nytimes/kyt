@@ -9,8 +9,8 @@ See something you think we should address? Open an issue.
 
 Please make sure all PRs are:
 
-1. linted (`npm run lint`)
-1. tested (`npm t`)
+1. linted (`yarn lint`)
+1. tested (`yarn test`)
 1. Connected to an issue
 1. Update the [CHANGELOG](/CHANGELOG.md) (for MASTER) to reflect your PR changes.
 
@@ -22,7 +22,7 @@ If you want to propose a large feature idea or architecture change you should co
 
 1. `nvm use`
 1. Fork and clone `kyt`
-1. Run `npm run bootstrap` to install the packages in the monorepo
+1. Run `yarn bootstrap` to install the packages in the monorepo
 
 [lerna](https://github.com/lerna/lerna) is used to manage the monorepo but most of the development commands should be exercised through root directory `package.json` scripts. The following are some useful npm scripts for development:
 
@@ -32,7 +32,7 @@ If you want to propose a large feature idea or architecture change you should co
 
 From the root of `kyt`, run:
 
-`npm run bootstrap`
+`yarn bootstrap`
 
 ### clean-bootstrap
 
@@ -40,17 +40,17 @@ From the root of `kyt`, run:
 
 From the root of `kyt`, run:
 
-`npm run clean-bootstrap`
+`yarn clean-bootstrap`
 
 ### Test
 
-Unit tests for all packages in the monorepo can be run from the root of the repository: `npm t`.
+Unit tests for all packages in the monorepo can be run from the root of the repository: `yarn test`.
 
-Similarly, e2e tests, located in the `e2e` directory can be run from the root of the repository: `npm run e2e`
+Similarly, e2e tests, located in the `e2e` directory can be run from the root of the repository: `yarn e2e`
 
 ### Lint
 
-The monorepo has a top level `lint` command which runs lint for all the packages: `npm run lint`
+The monorepo has a top level `lint` command which runs lint for all the packages: `yarn lint`
 
 ## Build a `starter-kyt`
 

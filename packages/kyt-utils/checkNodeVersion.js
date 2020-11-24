@@ -1,5 +1,5 @@
 // This module has to be supported by old versions of node, so no ES6
-/* eslint-disable no-var, prefer-arrow-callback, prefer-template, no-console */
+/* eslint-disable no-var, prefer-template, no-console */
 var minNodeVersion = 10;
 
 // Make sure that the user has a compatible node version before loading the app.

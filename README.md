@@ -17,9 +17,9 @@ brew install nvm
 nvm use
 ```
 
-1. `npm install --save-dev kyt`
+1. `yarn add --dev kyt`
 1. `kyt setup` - This will set up your project with application and configuration files so that you can get started with `kyt`. Learn more about [setup](/packages/kyt-core/README.md).
-1. `npm run dev`
+1. `yarn dev`
 1. Check out `http://localhost:3000`
 
 ## Features
@@ -57,7 +57,7 @@ See the [kyt](/packages/kyt-core/README.md) documentation for more details.
 Running `kyt setup` includes these commands as scripts in your `package.json`:
 
 ```
-npm run dev
+yarn dev
 ```
 
 Or you can run a command using `npx kyt {command}`:

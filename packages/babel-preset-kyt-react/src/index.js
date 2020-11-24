@@ -12,7 +12,6 @@ module.exports = function getPresetReact(context, opts) {
   opts = opts || {};
 
   if ('useProductionTransforms' in opts) {
-    // eslint-disable-next-line prefer-destructuring
     useProductionTransforms = opts.useProductionTransforms;
   }
 

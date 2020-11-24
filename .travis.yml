@@ -1,6 +1,12 @@
 language: node_js
 node_js:
-  - 12.14.1
+  - 14.5.0
   - lts/dubnium
   - lts/erbium
-script: npm run bootstrap && npm run lint:ci && npm run test:ci && npm run e2e
+before_script:
+  - yarn exec lerna run prepare
+script:
+  - yarn lint:ci
+  - yarn test:ci
+  - yarn e2e
+cache: yarn

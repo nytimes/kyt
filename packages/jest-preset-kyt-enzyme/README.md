@@ -48,7 +48,7 @@ Features:
     - name: test
       image: node:12.16.2
       commands:
-        - npm run test-coverage-ci
+        - yarn test-coverage-ci
 
     - name: rebuild_cache
       image: homerovalle/drone-gcs-cache:latest

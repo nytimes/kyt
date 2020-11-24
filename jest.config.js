@@ -15,7 +15,7 @@ const jestConfig = {
 
 if (process.env.CI) {
   jestConfig.coverageReporters = ['lcov', 'text-summary'];
-  jestConfig.reporters = [[require.resolve('jest-silent-reporter'), { useDots: true }]];
+  jestConfig.reporters = [['jest-silent-reporter', { useDots: true }]];
 }
 
 module.exports = jestConfig;

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 // Merges base and user kyt config
 
 const path = require('path');
