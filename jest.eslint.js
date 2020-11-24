@@ -6,15 +6,7 @@ const jestConfig = {
   rootDir: __dirname,
   cacheDirectory: path.join(__dirname, '.caches/jest-runner-eslint'),
   testMatch: ['<rootDir>/**/*.js(on)?'],
-  testPathIgnorePatterns: [
-    '/node_modules/',
-    '/lib/',
-    '/dist/',
-    '/build/',
-    '/stage-cli/',
-    '/.caches/',
-    '/coverage/',
-  ],
+  testPathIgnorePatterns: ['/node_modules/', '/lib/', '/stage-cli/', '/.caches/', '/coverage/'],
   haste: {
     computeSha1: true,
     throwOnModuleCollision: false,
