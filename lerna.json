@@ -3,10 +3,10 @@
   "version": "independent",
   "useWorkspaces": true,
   "command": {
-    "publish": {
-      "conventionalCommits": true
-    },
     "version": {
+      "conventionalCommits": true,
+      "createRelease": "github",
+      "exact": true,
       "message": "chore(publish): latest [skip ci]"
     }
   }
