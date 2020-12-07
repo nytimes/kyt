@@ -23,7 +23,7 @@
   },
   "peerDependencies": {
     "@babel/runtime": "^7.12.5",
-    "core-js": "^3.7.0",
+    "core-js": "^3.8.1",
     "regenerator-runtime": "^0.13.7",
     "source-map-support": "^0.5.19"
   },
