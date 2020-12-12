@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.4](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.3...kyt-runtime@1.2.4) (2020-12-12)
+
+
+### Bug Fixes
+
+* ensure that hot-update modules aren't returned in list of loadable bundles ([ca0ba91](http://github.com/nytimes/kyt/packages/kyt-runtime/commit/ca0ba91a3cb26fd5132998b86c075de403a19387))
+
+
+
+
+
 ## [1.2.3](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.2...kyt-runtime@1.2.3) (2020-12-10)
 
 **Note:** Version bump only for package kyt-runtime
