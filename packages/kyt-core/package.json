@@ -17,11 +17,11 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@babel/code-frame": "7.10.4",
+    "@babel/code-frame": "7.12.11",
     "@babel/runtime": "7.12.5",
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "1.1.6",
-    "commander": "6.2.0",
+    "commander": "6.2.1",
     "core-js": "3.8.1",
     "file-loader": "6.2.0",
     "filesize": "6.1.0",
