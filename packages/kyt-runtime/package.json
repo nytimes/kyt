@@ -1,6 +1,6 @@
 {
   "name": "kyt-runtime",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "A shared kyt runtime utility library.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -28,7 +28,7 @@
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
-    "babel-preset-kyt-core": "1.1.7"
+    "babel-preset-kyt-core": "1.1.8"
   },
   "scripts": {
     "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""

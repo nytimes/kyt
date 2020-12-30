@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.40.40](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.39...kyt@1.0.0-beta.40.40) (2020-12-30)
+
+
+### Bug Fixes
+
+* delete old files before compiling ([8ef2c89](http://github.com/nytimes/kyt/packages/kyt-core/commit/8ef2c89a9a2f46a287803e293563cdea3116d77d))
+
+
+
+
+
 # [1.0.0-beta.40.39](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.38...kyt@1.0.0-beta.40.39) (2020-12-30)
 
 **Note:** Version bump only for package kyt

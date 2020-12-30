@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.8](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/compare/babel-preset-kyt-core@1.1.7...babel-preset-kyt-core@1.1.8) (2020-12-30)
+
+
+### Bug Fixes
+
+* delete old files before compiling ([8ef2c89](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/commit/8ef2c89a9a2f46a287803e293563cdea3116d77d))
+
+
+
+
+
 ## [1.1.7](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/compare/babel-preset-kyt-core@1.1.6...babel-preset-kyt-core@1.1.7) (2020-12-29)
 
 **Note:** Version bump only for package babel-preset-kyt-core
