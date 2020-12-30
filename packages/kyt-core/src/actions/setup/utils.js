@@ -3,15 +3,6 @@ const path = require('path');
 const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
 
-export const fakePackageJson = {
-  name: '',
-  version: '1.0.0',
-  description: '',
-  main: '',
-  author: '',
-  license: '',
-};
-
 // Cleans and reinstalls node modules.
 export const installUserDependencies = (paths, ypm, oldPackageJSON, bailProcess) => {
   logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
@@ -68,21 +59,15 @@ export const createKytConfig = (paths, tmpDir) => {
     newConfig = baseConfig;
   }
 
-  const copyConfig = () => {
-    shell.cp(newConfig, paths.userKytConfigPath);
-    logger.task(`Created ${configFileName} file`);
-  };
-
   if (shell.test('-f', paths.userKytConfigPath)) {
     // Since the user already has a kyt.config,
     // we need to back it up before copying.
     const mvTo = path.join(paths.userRootPath, `${configFileName}-${Date.now()}.bak`);
     shell.mv('-f', paths.userKytConfigPath, mvTo);
     logger.info(`Backed up current ${configFileName} to: ${mvTo}`);
-    copyConfig();
-  } else {
-    copyConfig();
   }
+  shell.cp(newConfig, paths.userKytConfigPath);
+  logger.task(`Created ${configFileName} file`);
 };
 
 export const createDir = dirName => {

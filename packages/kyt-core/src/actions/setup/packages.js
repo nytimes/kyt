@@ -2,10 +2,18 @@ const fs = require('fs');
 const semver = require('semver');
 const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
-const { fakePackageJson } = require('./utils');
+
+export const fakePackageJson = {
+  name: '',
+  version: '1.0.0',
+  description: '',
+  main: '',
+  author: '',
+  license: '',
+};
 
 // Add kyt to list of dev dependencies if its not there
-const addKytDependency = (packageJson, kytPrefVersion) => {
+export const addKytDependency = (packageJson, kytPrefVersion) => {
   // check to see if kyt is in dependencies or devDependencies
   if (
     !(packageJson.dependencies && packageJson.dependencies.kyt) &&
@@ -17,74 +25,55 @@ const addKytDependency = (packageJson, kytPrefVersion) => {
       const output = shell.exec('npm info kyt version');
       kytVersion = output.stdout.trim();
     }
-    packageJson.dependencies = packageJson.dependencies || {};
-    packageJson.dependencies.kyt = kytVersion;
+
+    if (packageJson.dependencies && packageJson.dependencies.kyt) {
+      delete packageJson.dependencies.kyt;
+    }
+    packageJson.devDependencies = packageJson.devDependencies || {};
+    packageJson.devDependencies.kyt = kytVersion;
   }
+  return packageJson;
 };
 
 // Adds kyt and Starter-kyt commands as npm scripts
-const addPackageJsonScripts = (packageJson, tempPackageJSON) => {
+export const addPackageJsonScripts = (packageJson, tempPackageJSON) => {
   if (!packageJson.scripts) packageJson.scripts = {};
-  let commands = [
-    'dev',
-    'build',
-    'start',
-    'test',
-    'test-update',
-    'test-watch',
-    'test-coverage',
-    'lint',
-    'lint-fix',
-  ];
-
   // for commands that aren't 1:1 name:script
   const commandMap = {
+    dev: 'kyt dev',
+    build: 'kyt build',
     start: 'node build/server/main.js',
+    'kyt:help': 'kyt --help',
   };
 
   // Merge the Starter-kyt script names into the list of commands.
-  const tempScripts = (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
+  let tempScripts = (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
   if (tempScripts.length) {
-    commands = [...new Set(commands.concat(tempScripts))];
+    logger.error(
+      'Use of`kyt.scripts` is deprecated in `package.json`. You can simply declare `scripts`.'
+    );
+    process.exit(1);
   }
 
-  // This is the default test script added by 'npm init'.
-  const npmInitDefaultTestScript = 'echo "Error: no test specified" && exit 1';
+  tempScripts = (tempPackageJSON && tempPackageJSON.scripts) || {};
 
+  const commands = [...new Set([...Object.keys(commandMap), ...Object.keys(tempScripts)])].sort();
   commands.forEach(command => {
-    let commandName = command;
-
-    // If the command already exists, we namespace it with "kyt:".
-    if (packageJson.scripts[commandName]) {
-      // We don't need to prefix if the command already
-      // runs kyt and it's not a Starter-kyt script.
-      if (packageJson.scripts[commandName].includes('kyt') && !tempScripts.indexOf(command)) {
-        return;
-      }
-
-      // Prefix except for when the command is 'test' and the script is
-      // the default from 'npm init'.
-      if (commandName !== 'test' || packageJson.scripts[commandName] !== npmInitDefaultTestScript) {
-        commandName = `kyt:${commandName}`;
-      }
-    }
-
     // If the command is from a starter-kyt then
     // we need to copy in the starter-kyt value.
-    if (tempScripts.indexOf(command) > -1) {
-      packageJson.scripts[commandName] = tempPackageJSON.scripts[command];
-    } else {
-      packageJson.scripts[commandName] = commandMap[command] || `kyt ${command}`;
+    if (tempScripts[command]) {
+      packageJson.scripts[command] = tempScripts[command];
+    } else if (!packageJson.scripts[command]) {
+      packageJson.scripts[command] = commandMap[command];
     }
   });
-  packageJson.scripts['kyt:help'] = 'kyt --help';
   logger.task('Added kyt scripts into your package.json scripts');
   return packageJson;
 };
 
 // Compare the starter-kyt's package.json kyt.version
 // configuration to make sure kyt is an expected version.
-const checkStarterKytVersion = (userPackageJSON, tempPackageJSON) => {
+export const checkStarterKytVersion = (userPackageJSON, tempPackageJSON) => {
   const kytStarterPreferredVersion =
     (tempPackageJSON.dependencies && tempPackageJSON.dependencies.kyt) ||
     (tempPackageJSON.devDependencies && tempPackageJSON.devDependencies.kyt) ||
@@ -106,59 +95,56 @@ const checkStarterKytVersion = (userPackageJSON, tempPackageJSON) => {
 };
 
 // Adds dependencies from the starter-kyts package.json
-const updatePackageJSONDependencies = (packageJson, tempPackageJSON) => {
-  const tempDependencies = tempPackageJSON.dependencies || {};
-  const tempDevDependencies = tempPackageJSON.devDependencies || {};
-  // In case the starter kyt used `kyt` as a dependency.
-  if (tempDependencies.kyt) {
-    delete tempDependencies.kyt;
-  }
-  if (tempDevDependencies.kyt) {
-    delete tempDevDependencies.kyt;
-  }
-
-  packageJson.dependencies = Object.assign(packageJson.dependencies || {}, tempDependencies);
-
-  // Copies over dev dependencies
-  if (tempDevDependencies) {
-    packageJson.devDependencies = Object.assign(
-      packageJson.devDependencies || {},
-      tempDevDependencies
-    );
-  }
+export const updatePackageJSONDependencies = (packageJson, tempPackageJSON) => {
+  ['resolutions', 'dependencies', 'devDependencies'].forEach(key => {
+    if (!packageJson[key] && !tempPackageJSON[key]) {
+      return;
+    }
+    const deps = {};
+    [
+      ...new Set([
+        ...Object.keys(packageJson[key] || {}),
+        ...Object.keys(tempPackageJSON[key] || {}),
+      ]),
+    ]
+      .sort()
+      .forEach(depKey => {
+        deps[depKey] =
+          (tempPackageJSON[key] && tempPackageJSON[key][depKey]) ||
+          (packageJson[key] && packageJson[key][depKey]);
+      });
+    packageJson[key] = deps;
+  });
 
   logger.task('Added new dependencies to package.json');
+
   return packageJson;
 };
 
 // Add dependencies, scripts and other package to
 // the user's package.json configuration.
 
-// eslint-disable-next-line import/prefer-default-export
 export const updateUserPackageJSON = (existingProject, paths, kytVersion, tempPackageJSON) => {
   let userPackageJSON;
   // Create a package.json definition if
   // the user doesn't already have one.
   if (shell.test('-f', paths.userPackageJSONPath)) {
-    // eslint-disable-next-line global-require,import/no-dynamic-require
-    userPackageJSON = require(paths.userPackageJSONPath);
+    const userJSON = fs.readFileSync(paths.userPackageJSONPath, 'utf8');
+    userPackageJSON = JSON.parse(userJSON);
   } else {
     userPackageJSON = fakePackageJson;
     logger.task('Creating a new package.json. You should fill it in.');
   }
   // Clone the package.json so that we have a backup.
   const oldPackageJSON = { ...userPackageJSON };
+  let kytPrefVersion = kytVersion;
 
   // Add dependencies from starter-kyts
   if (!existingProject) {
-    const kytPrefVersion = kytVersion || checkStarterKytVersion(userPackageJSON, tempPackageJSON);
+    kytPrefVersion = kytVersion || checkStarterKytVersion(userPackageJSON, tempPackageJSON);
     userPackageJSON = updatePackageJSONDependencies(userPackageJSON, tempPackageJSON);
-    addKytDependency(userPackageJSON, kytPrefVersion);
-  } else {
-    // exisitng projects should also have kyt as a devDependency
-    addKytDependency(userPackageJSON);
   }
-  // Add scripts
+  userPackageJSON = addKytDependency(userPackageJSON, kytPrefVersion);
   userPackageJSON = addPackageJsonScripts(userPackageJSON, tempPackageJSON);
   fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(userPackageJSON, null, 2));
 

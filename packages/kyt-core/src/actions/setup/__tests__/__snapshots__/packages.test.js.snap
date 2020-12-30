@@ -1,0 +1,159 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`packages addPackageJsonScripts no scripts 1`] = `
+Object {
+  "build": "kyt build",
+  "dev": "kyt dev",
+  "kyt:help": "kyt --help",
+  "start": "node build/server/main.js",
+}
+`;
+
+exports[`packages addPackageJsonScripts scripts 1`] = `
+Object {
+  "build": "kyt build",
+  "dev": "kyt dev",
+  "foo": "bar",
+  "kyt:help": "kyt --help",
+  "start": "node build/server/main.js",
+  "test": "jest",
+}
+`;
+
+exports[`packages updateUserPackageJSON existing + existing packagejson 1`] = `
+Object {
+  "oldPackageJSON": Object {
+    "author": "baz",
+    "description": "a repo",
+    "license": "MIT",
+    "main": "index.js",
+    "name": "foo",
+    "version": "3.1.0",
+  },
+  "userPackageJSON": Object {
+    "author": "baz",
+    "description": "a repo",
+    "devDependencies": Object {
+      "kyt": "1.0.0",
+    },
+    "license": "MIT",
+    "main": "index.js",
+    "name": "foo",
+    "scripts": Object {
+      "build": "kyt build",
+      "dev": "kyt dev",
+      "kyt:help": "kyt --help",
+      "start": "node build/server/main.js",
+    },
+    "version": "3.1.0",
+  },
+}
+`;
+
+exports[`packages updateUserPackageJSON existing 1`] = `
+Object {
+  "oldPackageJSON": Object {
+    "author": "",
+    "description": "",
+    "license": "",
+    "main": "",
+    "name": "",
+    "version": "1.0.0",
+  },
+  "userPackageJSON": Object {
+    "author": "",
+    "description": "",
+    "devDependencies": Object {
+      "kyt": "1.0.0",
+    },
+    "license": "",
+    "main": "",
+    "name": "",
+    "scripts": Object {
+      "build": "kyt build",
+      "dev": "kyt dev",
+      "kyt:help": "kyt --help",
+      "start": "node build/server/main.js",
+    },
+    "version": "1.0.0",
+  },
+}
+`;
+
+exports[`packages updateUserPackageJSON not existing + no pref 1`] = `
+Object {
+  "oldPackageJSON": Object {
+    "author": "",
+    "description": "",
+    "devDependencies": Object {
+      "kyt": "1.0.0",
+    },
+    "license": "",
+    "main": "",
+    "name": "",
+    "scripts": Object {
+      "build": "kyt build",
+      "dev": "kyt dev",
+      "kyt:help": "kyt --help",
+      "start": "node build/server/main.js",
+    },
+    "version": "1.0.0",
+  },
+  "userPackageJSON": Object {
+    "author": "",
+    "description": "",
+    "devDependencies": Object {
+      "kyt": "1.0.0",
+    },
+    "license": "",
+    "main": "",
+    "name": "",
+    "scripts": Object {
+      "build": "kyt build",
+      "dev": "kyt dev",
+      "kyt:help": "kyt --help",
+      "start": "node build/server/main.js",
+    },
+    "version": "1.0.0",
+  },
+}
+`;
+
+exports[`packages updateUserPackageJSON not existing 1`] = `
+Object {
+  "oldPackageJSON": Object {
+    "author": "",
+    "description": "",
+    "devDependencies": Object {
+      "kyt": "1.0.0",
+    },
+    "license": "",
+    "main": "",
+    "name": "",
+    "scripts": Object {
+      "build": "kyt build",
+      "dev": "kyt dev",
+      "kyt:help": "kyt --help",
+      "start": "node build/server/main.js",
+    },
+    "version": "1.0.0",
+  },
+  "userPackageJSON": Object {
+    "author": "",
+    "description": "",
+    "devDependencies": Object {
+      "kyt": "1.0.0",
+    },
+    "license": "",
+    "main": "",
+    "name": "",
+    "scripts": Object {
+      "build": "kyt build",
+      "dev": "kyt dev",
+      "kyt:help": "kyt --help",
+      "start": "node build/server/main.js",
+    },
+    "version": "1.0.0",
+  },
+}
+`;

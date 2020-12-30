@@ -7,7 +7,6 @@ const logger = require('kyt-utils/logger');
 const starterKyts = require('../../config/starterKyts');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
 const {
-  fakePackageJson,
   installUserDependencies,
   createEditorconfigLink,
   createGitignore,
@@ -16,7 +15,7 @@ const {
   copyStarterKytFiles,
   createSrcDirectory,
 } = require('./utils');
-const { updateUserPackageJSON } = require('./packages');
+const { fakePackageJson, updateUserPackageJSON } = require('./packages');
 const { ypmQ, dirNameQ, getRepoUrl, getSrcBackup } = require('./questions');
 
 module.exports = args => {
