@@ -28,7 +28,7 @@
     "lib"
   ],
   "scripts": {
-    "prepare": "babel src -d lib --ignore \"**/__tests__/**\""
+    "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }

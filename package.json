@@ -58,6 +58,7 @@
     "lerna": "3.22.1",
     "prettier": "2.2.1",
     "regenerator-runtime": "0.13.7",
+    "rimraf": "3.0.2",
     "source-map-support": "0.5.19",
     "stylelint": "13.8.0",
     "stylelint-config-standard": "20.0.0"

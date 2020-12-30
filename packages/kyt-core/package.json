@@ -60,7 +60,7 @@
   },
   "scripts": {
     "watch": "yarn prepare --watch",
-    "prepare": "babel src -d lib --copy-files --no-copy-ignored --include-dotfiles --ignore \"**/__tests__/**,**/__mocks__/**\""
+    "prepare": "rimraf lib && babel src -d lib --copy-files --no-copy-ignored --include-dotfiles --ignore \"**/__tests__/**,**/__mocks__/**\""
   },
   "keywords": [
     "kyt",

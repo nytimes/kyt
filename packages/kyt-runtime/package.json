@@ -31,7 +31,7 @@
     "babel-preset-kyt-core": "1.1.7"
   },
   "scripts": {
-    "prepare": "babel src -d lib --ignore \"**/__tests__/**\""
+    "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }
