@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const shell = require('shelljs');
 const inquire = require('inquirer');
-const simpleGit = require('simple-git')();
+const git = require('simple-git');
 const logger = require('kyt-utils/logger');
 const starterKyts = require('../../config/starterKyts');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
@@ -74,6 +74,7 @@ module.exports = args => {
       copyStarterKytFiles(paths, tempPackageJSON, tmpDir);
       removeTmpStarter();
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
+      return true;
     };
 
     // First, clean any old cloned repositories.
@@ -81,8 +82,10 @@ module.exports = args => {
 
     if (localPath) {
       shell.exec(`cp -R ${localPath} ${tmpStarter}`);
-      afterCopy();
-    } else if (npmName) {
+      return afterCopy();
+    }
+
+    if (npmName) {
       shell.mkdir(tmpStarter);
       shell.cd(tmpStarter);
       const fakePkgPath = `${tmpStarter}/package.json`;
@@ -96,26 +99,27 @@ module.exports = args => {
         throw output.stderr;
       }
       shell.cd('..');
-      afterCopy();
-    } else {
-      simpleGit.clone(repoURL, tmpStarter, {}, afterCopy);
+      return afterCopy();
     }
+
+    const simpleGit = git();
+    return simpleGit.clone(repoURL, tmpStarter).then(() => {
+      afterCopy();
+    });
   };
 
   // Checks to see if user would like src backed up before continuing
   const srcPrompt = starterChoice => {
     // Check if src already exists
     if (shell.test('-d', paths.srcPath)) {
-      getSrcBackup().then(srcBackup => {
+      return getSrcBackup().then(srcBackup => {
         if (srcBackup) {
-          starterKytSetup(starterChoice);
-        } else {
-          process.exit();
+          return starterKytSetup(starterChoice);
         }
+        return process.exit();
       });
-    } else {
-      starterKytSetup(starterChoice);
     }
+    return starterKytSetup(starterChoice);
   };
 
   // Runs through setup questions
@@ -174,7 +178,7 @@ module.exports = args => {
         return getRepoUrl(repository)
           .then(url => {
             repoURL = url;
-            srcPrompt();
+            return srcPrompt();
           })
           .catch(e => {
             logger.error(e);
