@@ -33,9 +33,7 @@ class StartServerPlugin {
         if (data.trim() === 'rs') {
           console.log('Restarting app...');
           process.kill(this.worker.process.pid);
-          this._startServer(worker => {
-            this.worker = worker;
-          });
+          cluster.fork();
         }
       });
     }
@@ -75,9 +73,7 @@ class StartServerPlugin {
     if (this.worker && this.worker.isConnected()) {
       const signal = this._getSignal();
       process.kill(this.worker.process.pid, signal);
-      this._startServer(worker => {
-        this.worker = worker;
-      });
+      cluster.fork();
       return;
     }
     this.startServer(compilation, callback);
