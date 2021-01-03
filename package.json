@@ -12,7 +12,7 @@
     "doc": "docs"
   },
   "scripts": {
-    "bootstrap": "yarn && lerna run --parallel prepare",
+    "bootstrap": "yarn && lerna run prepare",
     "bootstrap:ci": "yarn && lerna run prepare",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "publish": "lerna publish",
