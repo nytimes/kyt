@@ -44,6 +44,10 @@ export const copyStarterKytFiles = (paths, tempPackageJSON, tmpDir) => {
   }
 
   kytStarterFiles.forEach(file => {
+    if (file === 'package.json') {
+      return;
+    }
+
     const tempFilePath = path.join(tmpDir, file);
     const filePath = path.join(paths.userRootPath, file);
     // we should back up any pre-existing files in the user dir.
