@@ -108,10 +108,13 @@ module.exports = (cliArgs = {}) => {
       return afterCopy();
     }
 
-    const simpleGit = git();
-    return simpleGit.clone(repoURL, tmpStarter).then(() => {
-      afterCopy();
-    });
+    if (repoURL) {
+      const simpleGit = git();
+      return simpleGit.clone(repoURL, tmpStarter).then(() => {
+        afterCopy();
+      });
+    }
+    return Promise.reject(new Error('No starter-kyt specified!'));
   };
 
   // Checks to see if user would like src backed up before continuing
@@ -159,14 +162,14 @@ module.exports = (cliArgs = {}) => {
         ypm = answer.ypm;
       }
 
-      // Create new directory
-      createDir(cliArgs.directory || answer.dirName);
+      // Create new directory if --directory was passed or question was answered
+      if (cliArgs.directory || answer.dirName) {
+        createDir(cliArgs.directory || answer.dirName);
+      }
 
       // set up path strings
-      // eslint-disable-next-line global-require
       paths = generatePaths();
       tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp');
-
       // For passed starter-kyts the root of the starter-kyt is the root of the repo
       tmpDir = tmpStarter;
 
