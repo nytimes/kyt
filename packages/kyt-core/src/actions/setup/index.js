@@ -4,6 +4,7 @@ const shell = require('shelljs');
 const inquire = require('inquirer');
 const git = require('simple-git');
 const logger = require('kyt-utils/logger');
+const generatePaths = require('kyt-utils/paths');
 const starterKyts = require('../../config/starterKyts');
 const yarnOrNpm = require('../../utils/yarnOrNpm');
 const {
@@ -22,7 +23,6 @@ module.exports = (cliArgs = {}) => {
   let ypm = cliArgs.packageManager || defaultManager;
   // --local-path
   let localPath;
-  // Save Local directory Path before moving to new directory
   if (cliArgs.localPath) {
     localPath = path.resolve(cliArgs.localPath);
   }
@@ -71,6 +71,7 @@ module.exports = (cliArgs = {}) => {
         logger.error('There was a problem downloading the starter-kyt');
         logger.log(error);
         bailProcess();
+        return false;
       }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
@@ -129,31 +130,25 @@ module.exports = (cliArgs = {}) => {
 
   // Runs through setup questions
   const setupPrompt = async () => {
-    const skList = Object.keys(starterKyts.supported);
     const ownRepo = 'I have my own url';
     const exist = "I don't want a starter-kyt";
-    skList.push(ownRepo);
-    skList.push(exist);
-
-    const skQ = {
-      type: 'list',
-      name: 'starterChoice',
-      message: 'Choose a starter-kyt:',
-      choices: skList,
-      default: 0,
-    };
     const questions = [];
 
     // Check to see if yarn is installed or user has specified flag
     if (defaultManager === 'yarn' && !cliArgs.packageManager) {
       questions.push(ypmQ);
     }
-    ypm = cliArgs.packageManager || yarnOrNpm;
     if (!cliArgs.directory) {
       questions.push(dirNameQ);
     }
     if (!cliArgs.repository && !localPath) {
-      questions.push(skQ);
+      questions.push({
+        type: 'list',
+        name: 'starterChoice',
+        message: 'Choose a starter-kyt:',
+        choices: [...Object.keys(starterKyts.supported), ownRepo, exist],
+        default: 0,
+      });
     }
 
     await inquire.prompt(questions).then(answer => {
@@ -164,21 +159,17 @@ module.exports = (cliArgs = {}) => {
         ypm = answer.ypm;
       }
 
-      // question 2
-
       // Create new directory
       createDir(cliArgs.directory || answer.dirName);
 
       // set up path strings
       // eslint-disable-next-line global-require
-      paths = require('kyt-utils/paths')();
+      paths = generatePaths();
       tmpStarter = path.resolve(paths.userRootPath, '.kyt-tmp');
 
       // For passed starter-kyts the root of the starter-kyt is the root of the repo
       tmpDir = tmpStarter;
-      repoURL = 'https://github.com/NYTimes/kyt.git';
 
-      // question 3
       if (answer.starterChoice === ownRepo || cliArgs.repository) {
         // add repo question then move on to src prompt
         return getRepoUrl(cliArgs.repository)

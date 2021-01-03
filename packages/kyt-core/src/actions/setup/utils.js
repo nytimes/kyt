@@ -19,7 +19,7 @@ export const installUserDependencies = (paths, ypm, oldPackageJSON, bailProcess)
 };
 
 export const createDir = dirName => {
-  if (dirName === '') {
+  if (!dirName) {
     return;
   }
 
@@ -50,7 +50,7 @@ export const copyStarterKytFiles = (paths, tempPackageJSON, tmpDir) => {
     if (shell.test('-f', filePath) || shell.test('-d', filePath)) {
       const fileBackup = path.join(paths.userRootPath, `${file}-${Date.now()}-bak`);
       shell.mv(filePath, fileBackup);
-      logger.info(`Backed up current ${file} to: ${fileBackup}`);
+      logger.info(`Backed up current '${file}' to: ${fileBackup}`);
     }
     shell.cp('-Rf', tempFilePath, paths.userRootPath);
     logger.task(`Copied ${file} from Starter-kyt`);

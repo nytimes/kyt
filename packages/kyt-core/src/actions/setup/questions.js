@@ -30,6 +30,9 @@ export const getRepoUrl = repositoryArg => {
         if (httpsPass || sshPass) {
           return true;
         }
+        if (answer && !answer.endsWith('.git')) {
+          return 'Repository URL must end with ".git"';
+        }
         return 'Please enter a valid repo url';
       },
     },
