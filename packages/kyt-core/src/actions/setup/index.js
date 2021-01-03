@@ -20,40 +20,51 @@ module.exports = (cliArgs = {}) => {
   const defaultManager = yarnOrNpm();
   // --package-manager
   let ypm = cliArgs.packageManager || defaultManager;
+  // --local-path
+  let localPath;
+  // Save Local directory Path before moving to new directory
+  if (cliArgs.localPath) {
+    localPath = path.resolve(cliArgs.localPath);
+  }
+
+  // local vars
+  let paths = {};
+  let tmpDir;
+  let tmpStarter;
+  let tempPackageJSON;
+  let oldPackageJSON;
+  // For passed starter-kyts the root of the starter-kyt is the root of the repo
+  let repoURL = 'https://github.com/nytimes/kyt.git';
 
   logger.start("Let's set up your new kyt project...");
   logger.log('✨  Answer a few questions to get started  ✨ \n');
 
   // Comment the following to see verbose shell ouput.
   shell.config.silent = false;
-  let paths = {};
-  let tmpStarter;
-  // For passed starter-kyts the root of the starter-kyt is the root of the repo
-  let tmpDir;
-  let repoURL = 'https://github.com/NYTimes/kyt.git';
-  let { localPath } = cliArgs;
-  let tempPackageJSON;
-  let oldPackageJSON;
 
   const removeTmpStarter = () => shell.rm('-rf', tmpStarter);
   const bailProcess = error => {
     logger.error(`Failed to setup: ${repoURL}`);
-    if (error) logger.log(error);
+    if (error) {
+      logger.log(error);
+    }
     removeTmpStarter();
     process.exit();
   };
 
   // setup tasks for starter-kyts
   const starterKytSetup = starterName => {
-    let npmName = null;
+    let npmName;
     if (starterName) {
       npmName = starterKyts.supported[starterName].npmName;
       tmpDir = path.join(tmpDir, `/node_modules/${npmName}/starter-src`);
     }
 
     const kytName = starterName || localPath || repoURL;
-    starterName = starterName || 'specified';
-    logger.task(`Setting up the ${starterName} starter-kyt`);
+    logger.task(`Setting up the ${starterName || 'specified'} starter-kyt`);
+
+    // First, clean any old cloned repositories.
+    removeTmpStarter();
 
     const afterCopy = error => {
       if (error) {
@@ -76,9 +87,6 @@ module.exports = (cliArgs = {}) => {
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
       return true;
     };
-
-    // First, clean any old cloned repositories.
-    removeTmpStarter();
 
     if (localPath) {
       shell.exec(`cp -R ${localPath} ${tmpStarter}`);
@@ -157,10 +165,7 @@ module.exports = (cliArgs = {}) => {
       }
 
       // question 2
-      // Save Local directory Path before moving to new directory
-      if (localPath) {
-        localPath = path.resolve(localPath);
-      }
+
       // Create new directory
       createDir(cliArgs.directory || answer.dirName);
 
