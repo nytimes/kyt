@@ -1,5 +1,15 @@
-const babelPresetKytCore = require('babel-preset-kyt-core');
+const babelTransformRuntime = require('@babel/plugin-transform-runtime');
 
 module.exports = {
-  presets: [[babelPresetKytCore, { includeRuntime: true }]],
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        targets: {
+          node: 'current',
+        },
+      },
+    ],
+  ],
+  plugins: [babelTransformRuntime],
 };
