@@ -118,7 +118,7 @@ module.exports = (cliArgs = {}) => {
     if (!cliArgs.directory) {
       questions.push(dirNameQ);
     }
-    if (!cliArgs.repository && !cliArgs.localPath) {
+    if (!cliArgs.repository && !localPath) {
       questions.push({
         type: 'list',
         name: 'starterChoice',
