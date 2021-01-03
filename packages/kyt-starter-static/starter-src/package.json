@@ -57,5 +57,17 @@
     "kyt": "1.0.0-beta.40.40",
     "prettier": "2.2.1"
   },
-  "version": "1.0.0-beta.40.47"
+  "version": "1.0.0-beta.40.47",
+  "kyt": {
+    "files": [
+      ".babelrc.js",
+      ".eslintrc.js",
+      ".gitignore",
+      "jest.config.js",
+      "kyt.config.js",
+      "package.json",
+      "src",
+      "test"
+    ]
+  }
 }
