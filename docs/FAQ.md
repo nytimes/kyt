@@ -13,8 +13,8 @@ kyt is pronounced "kit".
 ## What are some alternatives to kyt?
 
 - [Create React App](https://github.com/facebook/create-react-app)
-- [Roc](http://getroc.org/)
-- [Neutrino](https://neutrinojs.org/)
+- [Next](https://nextjs.org/)
+- [Razzle](https://github.com/jaredpalmer/razzle)
 
 ## I don't see my question here.
 

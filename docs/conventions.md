@@ -4,18 +4,28 @@ In order to use `kyt`, your project must follow these conventions.
 
 ## Directory Structure
 
-`kyt` follows several conventions for folder structure. If you're setting up a new project, structure your directory as follows:
+`kyt` follows these conventions for folder structure. If you're setting up a new project, structure your directory as follows:
 
 ```
 src/
-  // ignored if `hasClient` is set to `false` in config
-  /client
-    index.js // Webpack entry for client code
-    polyfills.js // polyfills for supported browsers
-  // ignored if `hasServer` is set to `false` in config
-  /server
-    index.js // Webpack entry for server code
-    polyfills.js // polyfills for supported Node.js version
+
+# ignored if `hasClient` is set to `false` in config
+src/client/
+
+# Webpack entrypoint for client code
+src/client/index.js
+
+# polyfills for supported browsers
+src/client/polyfills.js
+
+# ignored if `hasServer` is set to `false` in config
+src/server
+
+# Webpack entrypoint for server code
+src/server/index.js
+
+# polyfills for supported Node.js version
+src/server/polyfills.js
 ```
 
 ## File extensions
@@ -51,7 +61,7 @@ If you need to deploy your static assets to a CDN or route them to a different p
 After a `build`, `kyt` produces the following client bundles (with their corresponding map files (asset.map.js)):
 
 - `main.js` - The main script.
-- `manifest.js` - A mapping of chunk names.
+- `runtime~main.js` - A mapping of chunk names.
 - `vendor.js` - Common/shared modules between the bundles and chunks.
 
 To keep each version of an asset unique, `kyt` will output the client assets with a hash in the name (e.g.: `main-34a8b999.js`) `kyt` also exports a `publicAssets.json` file that can be referenced using the `KYT.ASSETS_MANIFEST` environment variable. In your project, you should import the asset manifest file, get the hashed asset names and load the client assets through `<script>` tags. If you based your project on a starter kyt, then you already have this code in place in the `src/server/index.js`/`src/server/template.js`. If not, [check out the following lines](https://github.com/NYTimes/kyt/blob/master/packages/kyt-starter-universal/starter-src/src/server/index.js#L40-L43) for how you import the asset manifest and reference the assets. Note that the JavaScript assets need to be loaded in the following order:

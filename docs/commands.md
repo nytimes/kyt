@@ -8,17 +8,18 @@
 yarn dev
 ```
 
-Or you can run a command with `npx kyt command`
+Or you can run a command with `yarn kyt {command}`, e.g.:
 
 ```
-npx kyt build
+yarn kyt build
 ```
 
-1. [`dev`](/docs/commands.md#dev) starts up a development environment
-1. [`build`](/docs/commands.md#build) compiles server and client code for production use
-1. [`setup`](/docs/commands.md#setup) is a tool for creating new kyt projects. It installs [`starter-kyt`s](/docs/Starterkyts.md) and all the tools you need to begin development.
-1. [`list`](/docs/commands.md#list) provides information about available `starter-kyt`s
-1. `--help` shows commands and their documentation
+- [`dev`](/docs/commands.md#dev) starts up a development environment
+- [`build`](/docs/commands.md#build) compiles server and client code for production use
+- [`setup`](/docs/commands.md#setup) is a tool for creating new kyt projects.
+  It installs [`starter-kyt`s](/docs/Starterkyts.md) and all the tools you need to begin development.
+- [`list`](/docs/commands.md#list) provides information about available `starter-kyt`s
+- `--help` shows commands and their documentation
 
 ## `dev`
 
@@ -49,12 +50,7 @@ The build command will also copy the `src/public` directory for static assets.
 
 ### `setup`
 
-The `setup` command sets up your project with all the application files that you'll need to use kyt:
-
-1. Creates a new [kyt.config.js](/docs/kytConfig.md)
-1. Install necessary npm packages
-1. Creates a .gitignore and .editorconfig
-1. Adds kyt commands to npm scripts
+The `setup` command sets up your project with all the application files that you'll need to use `kyt`, based on a starter-kyt.
 
 If `kyt` finds any files with duplicate names, it will back up your file before replacing it.
 
@@ -62,10 +58,9 @@ If `kyt` finds any files with duplicate names, it will back up your file before 
 
 - `-d` The name of the new project directory. If not specified `kyt` will install the project in your current working directory.
 - `-r` The Github url for a `starter-kyt`. If not specified you will be prompted to select a `starter-kyt` from the supported list.
-- `-k` For local development purposes, you can override the version of `kyt` to be installed by passing in a new version number or a file path eg. `file:../../my-local-kyt`
 - `-p` The package manager to use, either `npm` or `yarn`. If not specified, defaults to `yarn` if it's installed globally, otherwise `npm` will be used.
 
-kyt will provide you with a list of supported `starter-kyt`s to install. The supported `starter-kyt`s are:
+`kyt` will provide you with a list of supported `starter-kyt`s to install. The natively supported `starter-kyt`s are:
 
 - [kyt-starter-universal](/packages/kyt-starter-universal)
 - [kyt-starter-static](/packages/kyt-starter-static)
@@ -81,26 +76,24 @@ It includes:
 
 `kyt list`
 
-### Recommended `starter-kyt`s
+## Setup a new project
+
+`yarn kyt setup`
 
 #### [Universal React `starter-kyt`](/packages/kyt-starter-universal)
 
 This default `starter-kyt` is a good base for building advanced, universal React apps.
 
-## Setup a new project
-
-`kyt setup`
+Select `universal` when prompted to choose a `starter-kyt`
 
 #### [Static `starter-kyt`](/packages/kyt-starter-static)
 
-`kyt setup`
-Select `I have my own url` when prompted to set up a `starter-kyt`
+Generate a static site that does not require an application server. Useful when you want to host a site as a collection of files in a CDN.
 
-## Setup an existing project
+Select `static` when prompted to choose a `starter-kyt`
 
-Run `kyt setup` in your project directory.
-Select `I don't want a starter-kyt` when prompted to setup.
+#### [Server `starter-kyt`](/packages/kyt-starter-server)
 
-## See a list of supported `starter-kyt`s
+This starter-kyt is configured with a `src/client` directory and is intended to be used by applications that only run on Node with no client scripts. Useful for multi-page apps without a lot of interactivity.
 
-`kyt list`
+Select `server` when prompted to choose a `starter-kyt`

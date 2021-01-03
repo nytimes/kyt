@@ -3,11 +3,11 @@
 ## Installation
 
 ```sh
-$ yarn add --dev kyt
+$ yarn add --dev --exact kyt
 
 // or
 
-$ npm i --save-dev --save-exact jest kyt
+$ npm i --save-dev --save-exact kyt
 ```
 
 For more information on how `kyt` works see the [cli docs](/docs/commands.md).

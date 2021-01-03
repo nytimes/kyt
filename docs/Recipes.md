@@ -39,36 +39,21 @@ if (options.type === 'client') {
 
 ## Add Webpack Aliases
 
-In `kyt.config.js`
+In `kyt.config.js`:
 
 ```javascript
-modifyWebpackConfig: (baseConfig, options) => {
-  baseConfig.resolve.alias = {
-    myAliasFolder: require('path').resolve(process.cwd(), './src/path/to/my/folder'),
-  };
-  return baseConfig;
-};
-```
+const path = require('path');
 
-## Add Babel Plugins and Presets
-
-As of v0.4.0, kyt respects user `.babelrc` files.
-
-```bash
-npm i --save-dev my-babel-plugin
-```
-
-in `.babelrc.js`
-
-```js
 module.exports = {
-  presets: ['babel-preset-kyt-core'],
-  plugins: ['my-babel-plugin'],
+  modifyWebpackConfig: (baseConfig, options) => {
+    baseConfig.resolve.alias = {
+      foo: path.resolve(process.cwd(), './src/foo'),
+    };
+    return baseConfig;
+  };
 };
 ```
-
-Check out the current [Babel configuration](/.babelrc.js).
 
 ## Polyfilling
 
-If you created your application with a `starter-kyt` then you should be setup for polyfilling. A `starter-kyt` should configure one of the kyt presets -- [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md) -- in your .babelrc and should add a `babel-polyfill` dependency to your package.json and import it at the top of `src/server/index.js` and `src/client/index.js`. With this setup, kyt will target the current version of Node in the server build. For the client, a [browserslist](https://github.com/ai/browserslist) configuration is used to target a set of browsers and polyfill the features they are missing. You can read more about changing these options in the [`babel-preset-kyt-core` `envOptions` configuration](/packages/babel-preset-kyt-core/README.md#options).
+If you created your application with a `starter-kyt` then you should be setup for polyfilling. A `starter-kyt` should configure one of the kyt presets -- [`babel-preset-kyt-core`](/packages/babel-preset-kyt-core/README.md) or [`babel-preset-kyt-react`](/packages/babel-preset-kyt-react/README.md) -- in your `.babelrc.js`. With this setup, kyt will target the current version of Node in the server build. For the client, a [browserslist](https://github.com/ai/browserslist) configuration is used to target a set of browsers and polyfill the features they are missing. You can read more about changing these options in the [`babel-preset-kyt-core` `envOptions` configuration](/packages/babel-preset-kyt-core/README.md#options).
