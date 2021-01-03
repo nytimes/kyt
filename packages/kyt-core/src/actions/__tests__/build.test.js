@@ -10,7 +10,6 @@ const shell = {
 };
 
 jest.setMock('shelljs', shell);
-jest.mock('kyt-utils/paths');
 jest.mock('kyt-utils/logger');
 jest.mock('../../utils/printAssets');
 jest.mock('../../utils/buildConfigs');

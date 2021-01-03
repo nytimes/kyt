@@ -8,9 +8,6 @@ const starterKyts = require('../../config/starterKyts');
 const yarnOrNpm = require('../../utils/yarnOrNpm')();
 const {
   installUserDependencies,
-  createEditorconfigLink,
-  createGitignore,
-  createKytConfig,
   createDir,
   copyStarterKytFiles,
   createSrcDirectory,
@@ -66,10 +63,7 @@ module.exports = args => {
       tempPackageJSON = require(`${tmpDir}/package.json`);
       ({ oldPackageJSON } = updateUserPackageJSON(false, paths, kytVersion, tempPackageJSON));
       installUserDependencies(paths, ypm, oldPackageJSON, bailProcess);
-      createEditorconfigLink(paths);
-      createKytConfig(paths, tmpDir);
       createSrcDirectory(paths, tmpDir);
-      createGitignore(paths);
       copyStarterKytFiles(paths, tempPackageJSON, tmpDir);
       removeTmpStarter();
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
@@ -193,9 +187,6 @@ module.exports = args => {
         // setup tasks for setup in existing project
         logger.start('Setting up kyt');
         updateUserPackageJSON(true, paths, kytVersion, tempPackageJSON);
-        createEditorconfigLink(paths);
-        createKytConfig(paths, tmpDir);
-        createGitignore(paths);
         logger.end('Done setting up kyt');
       }
 

@@ -18,58 +18,6 @@ export const installUserDependencies = (paths, ypm, oldPackageJSON, bailProcess)
   logger.task('Installed new modules');
 };
 
-// .editorconfig to the user's base directory.
-export const createEditorconfigLink = paths => {
-  const editorPath = path.join(__dirname, '../config/user/.kyt-editorconfig');
-  const configPath = path.join(paths.userRootPath, '.editorconfig');
-
-  // Backup existing editor config
-  if (shell.test('-f', configPath)) {
-    const mvTo = path.join(paths.userRootPath, `editorconfig-${Date.now()}.bak`);
-    shell.mv(configPath, mvTo);
-    logger.info(`Backed up current editor config to ${mvTo}`);
-  }
-
-  shell.cp(editorPath, configPath);
-  logger.task('Created .editorconfig file');
-};
-
-// Copies gitignore file
-export const createGitignore = paths => {
-  const gitignoreFile = path.join(paths.userRootPath, './.gitignore');
-  if (!shell.test('-f', gitignoreFile)) {
-    const gitignoreLocal = path.resolve(__dirname, '../config/user/.kyt-gitignore');
-    shell.cp(gitignoreLocal, gitignoreFile);
-    logger.task('Created .gitignore file');
-  }
-};
-
-// Copies the starter kyt kyt.config.js
-// to the user's base directory.
-
-export const createKytConfig = (paths, tmpDir) => {
-  const configFileName = 'kyt.config.js';
-  const tmpConfig = path.join(tmpDir, configFileName);
-  const baseConfig = path.join(__dirname, `../config/user/${configFileName}`);
-  let newConfig = tmpConfig;
-
-  // Use the base kyt.config
-  // if one does not exist in the starter
-  if (!shell.test('-f', tmpConfig)) {
-    newConfig = baseConfig;
-  }
-
-  if (shell.test('-f', paths.userKytConfigPath)) {
-    // Since the user already has a kyt.config,
-    // we need to back it up before copying.
-    const mvTo = path.join(paths.userRootPath, `${configFileName}-${Date.now()}.bak`);
-    shell.mv('-f', paths.userKytConfigPath, mvTo);
-    logger.info(`Backed up current ${configFileName} to: ${mvTo}`);
-  }
-  shell.cp(newConfig, paths.userKytConfigPath);
-  logger.task(`Created ${configFileName} file`);
-};
-
 export const createDir = dirName => {
   if (dirName === '') {
     return;
@@ -98,12 +46,8 @@ export const copyStarterKytFiles = (paths, tempPackageJSON, tmpDir) => {
   kytStarterFiles.forEach(file => {
     const tempFilePath = path.join(tmpDir, file);
     const filePath = path.join(paths.userRootPath, file);
-    // If the file name isn't one of the kyt copied files then
     // we should back up any pre-existing files in the user dir.
-    if (
-      ['.gitignore', '.editorconfig', 'kyt.config.js'].indexOf(file) === -1 &&
-      (shell.test('-f', filePath) || shell.test('-d', filePath))
-    ) {
+    if (shell.test('-f', filePath) || shell.test('-d', filePath)) {
       const fileBackup = path.join(paths.userRootPath, `${file}-${Date.now()}-bak`);
       shell.mv(filePath, fileBackup);
       logger.info(`Backed up current ${file} to: ${fileBackup}`);

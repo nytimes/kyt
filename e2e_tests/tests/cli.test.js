@@ -70,17 +70,12 @@ describe('KYT CLI', () => {
         expect(setupArr).toContain('👍  Added kyt scripts into your package.json scripts');
         expect(setupArr).toContain('👍  Added new dependencies to package.json');
         expect(setupArr).toContain('👍  Installed new modules');
-        expect(setupArr).toContain('👍  Created kyt.config.js file');
-        expect(setupArr).toContain('👍  Created .editorconfig file');
-        expect(setupArr).toContain('👍  Created .gitignore file');
         expect(setupArr).toContain('👍  Created src directory');
       });
     });
 
     it('sets up with the correct files', () => {
       expect(shell.test('-d', 'src')).toBe(true);
-      expect(shell.test('-f', 'kyt.config.js')).toBe(true);
-      expect(shell.test('-f', '.editorconfig')).toBe(true);
     });
 
     it('sets up the package json scripts', () => {
