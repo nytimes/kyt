@@ -30,6 +30,9 @@ export const getRepoUrl = repositoryArg => {
         if (httpsPass || sshPass) {
           return true;
         }
+        if (answer && !answer.endsWith('.git')) {
+          return 'Repository URL must end with ".git"';
+        }
         return 'Please enter a valid repo url';
       },
     },
@@ -42,23 +45,6 @@ export const getRepoUrl = repositoryArg => {
       } else {
         reject(new Error('You did not enter a valid url. exiting...'));
       }
-    });
-  });
-};
-
-export const getSrcBackup = () => {
-  const question = [
-    {
-      type: 'confirm',
-      name: 'srcBackup',
-      message: 'You already have a src directory. Would you like kyt to backup src/ and continue?',
-      default: true,
-    },
-  ];
-
-  return new Promise(resolve => {
-    inquire.prompt(question).then(answer => {
-      resolve(answer.srcBackup);
     });
   });
 };

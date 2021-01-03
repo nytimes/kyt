@@ -20,7 +20,7 @@ describe('KYT CLI', () => {
       'Git repo',
       'git-starter',
       '\\027[B\\027[B',
-      'https://github.com/NYTimes/kyt-starter-test.git',
+      'https://github.com/nytimes/kyt-starter-test.git',
     ],
   ])('setup for %s starter-kyt', (slug, directory, starter, repo) => {
     it(`sets up a ${slug} starter-kyt`, () => {
@@ -70,10 +70,6 @@ describe('KYT CLI', () => {
         expect(setupArr).toContain('👍  Added kyt scripts into your package.json scripts');
         expect(setupArr).toContain('👍  Added new dependencies to package.json');
         expect(setupArr).toContain('👍  Installed new modules');
-        expect(setupArr).toContain('👍  Created kyt.config.js file');
-        expect(setupArr).toContain('👍  Created .editorconfig file');
-        expect(setupArr).toContain('👍  Created .gitignore file');
-        expect(setupArr).toContain('👍  Created src directory');
       });
     });
 

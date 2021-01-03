@@ -124,7 +124,7 @@ export const updatePackageJSONDependencies = (packageJson, tempPackageJSON) => {
 // Add dependencies, scripts and other package to
 // the user's package.json configuration.
 
-export const updateUserPackageJSON = (existingProject, paths, kytVersion, tempPackageJSON) => {
+export const updateUserPackageJSON = (paths, kytVersion, tempPackageJSON) => {
   let userPackageJSON;
   // Create a package.json definition if
   // the user doesn't already have one.
@@ -140,10 +140,8 @@ export const updateUserPackageJSON = (existingProject, paths, kytVersion, tempPa
   let kytPrefVersion = kytVersion;
 
   // Add dependencies from starter-kyts
-  if (!existingProject) {
-    kytPrefVersion = kytVersion || checkStarterKytVersion(userPackageJSON, tempPackageJSON);
-    userPackageJSON = updatePackageJSONDependencies(userPackageJSON, tempPackageJSON);
-  }
+  kytPrefVersion = kytVersion || checkStarterKytVersion(userPackageJSON, tempPackageJSON);
+  userPackageJSON = updatePackageJSONDependencies(userPackageJSON, tempPackageJSON);
   userPackageJSON = addKytDependency(userPackageJSON, kytPrefVersion);
   userPackageJSON = addPackageJsonScripts(userPackageJSON, tempPackageJSON);
   fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(userPackageJSON, null, 2));

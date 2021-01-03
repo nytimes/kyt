@@ -1,5 +1,4 @@
 jest.mock('kyt-utils/logger');
-jest.mock('kyt-utils/paths');
 jest.mock('webpack-dev-server');
 jest.mock('../../utils/buildConfigs');
 jest.mock('../../utils/webpackCompiler');
