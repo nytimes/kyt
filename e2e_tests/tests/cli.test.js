@@ -82,7 +82,6 @@ describe('KYT CLI', () => {
       const { scripts } = userPackageJSON;
 
       expect(scripts.dev).toBe('kyt dev');
-      expect(scripts.start).toBe('node build/server/main.js');
       expect(scripts.build).toBe('kyt build');
       expect(scripts['kyt:help']).toBe('kyt --help');
     });

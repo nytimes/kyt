@@ -14,6 +14,9 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "scripts": {
+    "dev": "kyt dev",
+    "build": "kyt build",
+    "start": "node build/server/main.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "test": "jest",
