@@ -1,5 +1,6 @@
 const jestConfig = {
   testPathIgnorePatterns: [
+    '<rootDir>/packages/*/lib',
     '<rootDir>/packages/kyt-starter-*',
     '<rootDir>/packages/kyt-core/cli/actions/test.js',
     '<rootDir>/e2e_tests',

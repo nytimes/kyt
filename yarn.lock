@@ -3387,6 +3387,29 @@ babel-preset-jest@^26.6.2:
     babel-plugin-jest-hoist "^26.6.2"
     babel-preset-current-node-syntax "^1.0.0"
 
+"babel-preset-kyt-core@file:packages/babel-preset-kyt-core":
+  version "1.1.8"
+  dependencies:
+    "@babel/plugin-proposal-class-properties" "7.12.1"
+    "@babel/plugin-proposal-decorators" "7.12.12"
+    "@babel/plugin-proposal-optional-chaining" "7.12.7"
+    "@babel/plugin-syntax-dynamic-import" "7.8.3"
+    "@babel/plugin-transform-runtime" "7.12.10"
+    "@babel/preset-env" "7.12.11"
+    babel-plugin-dynamic-import-node "2.3.3"
+    core-js "3.8.1"
+    lodash.merge "4.6.2"
+
+"babel-preset-kyt-react@file:packages/babel-preset-kyt-react":
+  version "1.2.4"
+  dependencies:
+    "@babel/plugin-transform-react-constant-elements" "7.12.1"
+    "@babel/plugin-transform-react-inline-elements" "7.12.1"
+    "@babel/preset-react" "7.12.10"
+    babel-plugin-add-react-displayname "0.0.5"
+    babel-plugin-transform-react-remove-prop-types "0.4.24"
+    babel-preset-kyt-core "1.1.8"
+
 bail@^1.0.0:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/bail/-/bail-1.0.5.tgz#b6fa133404a392cbc1f8c4bf63f5953351e7a776"

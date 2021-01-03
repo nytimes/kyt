@@ -11,6 +11,9 @@
   },
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
-  "main": "logger.js",
-  "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
+  "main": "lib/logger.js",
+  "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8",
+  "scripts": {
+    "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
+  }
 }

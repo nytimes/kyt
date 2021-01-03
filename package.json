@@ -12,12 +12,12 @@
     "doc": "docs"
   },
   "scripts": {
-    "bootstrap": "yarn && lerna run prepare --stream",
+    "bootstrap": "yarn && lerna run --parallel prepare",
     "bootstrap:ci": "yarn && lerna run prepare",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "publish": "lerna publish",
     "test:starter": "lerna exec --scope \"kyt-starter-{server,static,universal}-src\" --",
-    "test": "jest && yarn test:starter yarn test",
+    "test": "lerna run --parallel prepare && jest && yarn test:starter yarn test",
     "test:ci": "jest --ci && yarn test:starter yarn test --ci",
     "test-update": "jest -u && yarn test:starter yarn test-update",
     "test-coverage": "jest --coverage && yarn test:starter yarn test-coverage",
@@ -37,6 +37,8 @@
     "@babel/runtime": "7.12.5",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
+    "babel-preset-kyt-core": "file:packages/babel-preset-kyt-core",
+    "babel-preset-kyt-react": "file:packages/babel-preset-kyt-react",
     "core-js": "3.8.1",
     "enzyme": "3.11.0",
     "eslint": "7.16.0",
