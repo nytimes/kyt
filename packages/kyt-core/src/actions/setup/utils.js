@@ -46,12 +46,8 @@ export const copyStarterKytFiles = (paths, tempPackageJSON, tmpDir) => {
   kytStarterFiles.forEach(file => {
     const tempFilePath = path.join(tmpDir, file);
     const filePath = path.join(paths.userRootPath, file);
-    // If the file name isn't one of the kyt copied files then
     // we should back up any pre-existing files in the user dir.
-    if (
-      ['.gitignore', '.editorconfig', 'kyt.config.js'].indexOf(file) === -1 &&
-      (shell.test('-f', filePath) || shell.test('-d', filePath))
-    ) {
+    if (shell.test('-f', filePath) || shell.test('-d', filePath)) {
       const fileBackup = path.join(paths.userRootPath, `${file}-${Date.now()}-bak`);
       shell.mv(filePath, fileBackup);
       logger.info(`Backed up current '${file}' to: ${fileBackup}`);
