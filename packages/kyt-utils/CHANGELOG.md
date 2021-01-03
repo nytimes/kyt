@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/nytimes/kyt/compare/kyt-utils@1.2.0...kyt-utils@1.3.0) (2021-01-03)
+
+
+### Features
+
+* backup all existing files/dirs matching kyt.files ([#692](https://github.com/nytimes/kyt/issues/692)) ([c1be9bc](https://github.com/nytimes/kyt/commit/c1be9bca0ccb349541144d499e8597b65c892758))
+
+
+
+
+
 ## [1.2.1](https://github.com/nytimes/kyt/compare/kyt-utils@1.2.0...kyt-utils@1.2.1) (2021-01-03)
 
 **Note:** Version bump only for package kyt-utils

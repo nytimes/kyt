@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.40...kyt@1.0.0) (2021-01-03)
+
+
+### Features
+
+* backup all existing files/dirs matching kyt.files ([#692](http://github.com/nytimes/kyt/packages/kyt-core/issues/692)) ([c1be9bc](http://github.com/nytimes/kyt/packages/kyt-core/commit/c1be9bca0ccb349541144d499e8597b65c892758))
+* don't provide default files for starter-kyts ([07c07ae](http://github.com/nytimes/kyt/packages/kyt-core/commit/07c07ae404885e4a4f084254b11a17cf42b7b192))
+
+
+
+
+
 # [1.0.0-beta.40.41](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.0-beta.40.40...kyt@1.0.0-beta.40.41) (2021-01-03)
 
 

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.47...kyt-starter-universal-src@1.0.0) (2021-01-03)
+
+
+### Features
+
+* backup all existing files/dirs matching kyt.files ([#692](http://github.com/nytimes/kyt/packages/kyt-starter-universal/issues/692)) ([c1be9bc](http://github.com/nytimes/kyt/packages/kyt-starter-universal/commit/c1be9bca0ccb349541144d499e8597b65c892758))
+
+
+
+
+
 # [1.0.0-beta.40.48](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.0-beta.40.47...kyt-starter-universal-src@1.0.0-beta.40.48) (2021-01-03)
 
 **Note:** Version bump only for package kyt-starter-universal-src
