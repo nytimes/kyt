@@ -5,7 +5,7 @@ const inquire = require('inquirer');
 const git = require('simple-git');
 const logger = require('kyt-utils/logger');
 const starterKyts = require('../../config/starterKyts');
-const yarnOrNpm = require('../../utils/yarnOrNpm')();
+const yarnOrNpm = require('../../utils/yarnOrNpm');
 const {
   installUserDependencies,
   createDir,
@@ -15,11 +15,15 @@ const {
 const { fakePackageJson, updateUserPackageJSON } = require('./packages');
 const { ypmQ, dirNameQ, getRepoUrl, getSrcBackup } = require('./questions');
 
-module.exports = args => {
+module.exports = (cliArgs = {}) => {
+  // which package manager to use
+  const defaultManager = yarnOrNpm();
+  // --package-manager
+  let ypm = cliArgs.packageManager || defaultManager;
+
   logger.start("Let's set up your new kyt project...");
   logger.log('✨  Answer a few questions to get started  ✨ \n');
-  // Selects package manager to use
-  let ypm;
+
   // Comment the following to see verbose shell ouput.
   shell.config.silent = false;
   let paths = {};
@@ -27,7 +31,7 @@ module.exports = args => {
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let tmpDir;
   let repoURL = 'https://github.com/NYTimes/kyt.git';
-  let { localPath } = args || {};
+  let { localPath } = cliArgs;
   let tempPackageJSON;
   let oldPackageJSON;
 
@@ -38,8 +42,6 @@ module.exports = args => {
     removeTmpStarter();
     process.exit();
   };
-
-  const { kytVersion, packageManager, directory, repository } = args || {};
 
   // setup tasks for starter-kyts
   const starterKytSetup = starterName => {
@@ -61,7 +63,12 @@ module.exports = args => {
       }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
-      ({ oldPackageJSON } = updateUserPackageJSON(false, paths, kytVersion, tempPackageJSON));
+      ({ oldPackageJSON } = updateUserPackageJSON(
+        false,
+        paths,
+        cliArgs.kytVersion,
+        tempPackageJSON
+      ));
       installUserDependencies(paths, ypm, oldPackageJSON, bailProcess);
       createSrcDirectory(paths, tmpDir);
       copyStarterKytFiles(paths, tempPackageJSON, tmpDir);
@@ -83,10 +90,7 @@ module.exports = args => {
       shell.cd(tmpStarter);
       const fakePkgPath = `${tmpStarter}/package.json`;
       fs.writeFileSync(fakePkgPath, JSON.stringify(fakePackageJson, null, 2));
-      let iCmd = 'npm install';
-      if (ypm === 'yarn') {
-        iCmd = 'yarn add';
-      }
+      const iCmd = ypm === 'yarn' ? 'yarn add' : 'npm install';
       const output = shell.exec(`${iCmd} ${npmName}`);
       if (output.code !== 0) {
         throw output.stderr;
@@ -133,20 +137,24 @@ module.exports = args => {
     const questions = [];
 
     // Check to see if yarn is installed or user has specified flag
-    if (yarnOrNpm === 'yarn' && !packageManager) {
+    if (defaultManager === 'yarn' && !cliArgs.packageManager) {
       questions.push(ypmQ);
     }
-    ypm = packageManager || yarnOrNpm;
-    if (!directory) {
+    ypm = cliArgs.packageManager || yarnOrNpm;
+    if (!cliArgs.directory) {
       questions.push(dirNameQ);
     }
-    if (!repository && !localPath) {
+    if (!cliArgs.repository && !localPath) {
       questions.push(skQ);
     }
 
     await inquire.prompt(questions).then(answer => {
-      // question 1
-      ypm = answer.ypm || ypm;
+      // 0-3 questions have been answered
+
+      // if ypm question was asked and answered
+      if (answer.ypm) {
+        ypm = answer.ypm;
+      }
 
       // question 2
       // Save Local directory Path before moving to new directory
@@ -154,7 +162,7 @@ module.exports = args => {
         localPath = path.resolve(localPath);
       }
       // Create new directory
-      createDir(directory || answer.dirName);
+      createDir(cliArgs.directory || answer.dirName);
 
       // set up path strings
       // eslint-disable-next-line global-require
@@ -166,9 +174,9 @@ module.exports = args => {
       repoURL = 'https://github.com/NYTimes/kyt.git';
 
       // question 3
-      if (answer.starterChoice === ownRepo || repository) {
+      if (answer.starterChoice === ownRepo || cliArgs.repository) {
         // add repo question then move on to src prompt
-        return getRepoUrl(repository)
+        return getRepoUrl(cliArgs.repository)
           .then(url => {
             repoURL = url;
             return srcPrompt();
@@ -186,7 +194,7 @@ module.exports = args => {
       if (answer.starterChoice === exist) {
         // setup tasks for setup in existing project
         logger.start('Setting up kyt');
-        updateUserPackageJSON(true, paths, kytVersion, tempPackageJSON);
+        updateUserPackageJSON(true, paths, cliArgs.kytVersion, tempPackageJSON);
         logger.end('Done setting up kyt');
       }
 
