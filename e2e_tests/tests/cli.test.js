@@ -20,7 +20,7 @@ describe('KYT CLI', () => {
       'Git repo',
       'git-starter',
       '\\027[B\\027[B',
-      'https://github.com/NYTimes/kyt-starter-test.git',
+      'https://github.com/nytimes/kyt-starter-test.git',
     ],
   ])('setup for %s starter-kyt', (slug, directory, starter, repo) => {
     it(`sets up a ${slug} starter-kyt`, () => {
