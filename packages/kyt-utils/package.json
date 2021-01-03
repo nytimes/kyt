@@ -15,5 +15,8 @@
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8",
   "scripts": {
     "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
+  },
+  "devDependencies": {
+    "babel-preset-kyt-core": "1.1.8"
   }
 }
