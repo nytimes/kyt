@@ -4,7 +4,7 @@ export const ypmQ = {
   type: 'list',
   name: 'ypm',
   message: 'Choose an installer',
-  choices: ['npm', 'yarn'],
+  choices: ['yarn', 'npm'],
   default: 0,
 };
 

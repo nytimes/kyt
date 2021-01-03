@@ -13,11 +13,11 @@ export const fakePackageJson = {
 };
 
 // Add kyt to list of dev dependencies if its not there
-export const addKytDependency = (packageJson, kytPrefVersion) => {
+export const addKytDependency = (packageJSON, kytPrefVersion) => {
   // check to see if kyt is in dependencies or devDependencies
   if (
-    !(packageJson.dependencies && packageJson.dependencies.kyt) &&
-    !(packageJson.devDependencies && packageJson.devDependencies.kyt)
+    !(packageJSON.dependencies && packageJSON.dependencies.kyt) &&
+    !(packageJSON.devDependencies && packageJSON.devDependencies.kyt)
   ) {
     let kytVersion = kytPrefVersion;
     // If a version wasn't specified, install latest
@@ -26,57 +26,68 @@ export const addKytDependency = (packageJson, kytPrefVersion) => {
       kytVersion = output.stdout.trim();
     }
 
-    if (packageJson.dependencies && packageJson.dependencies.kyt) {
-      delete packageJson.dependencies.kyt;
+    if (packageJSON.dependencies && packageJSON.dependencies.kyt) {
+      delete packageJSON.dependencies.kyt;
     }
-    packageJson.devDependencies = packageJson.devDependencies || {};
-    packageJson.devDependencies.kyt = kytVersion;
+    packageJSON.devDependencies = packageJSON.devDependencies || {};
+    packageJSON.devDependencies.kyt = kytVersion;
   }
-  return packageJson;
+  return packageJSON;
 };
 
 // Adds kyt and Starter-kyt commands as npm scripts
-export const addPackageJsonScripts = (packageJson, tempPackageJSON) => {
-  if (!packageJson.scripts) packageJson.scripts = {};
+export const addPackageJsonScripts = (
+  userPackageJSON,
+  starterPackageJSON,
+  starterKytConfig = {}
+) => {
+  if (!userPackageJSON.scripts) {
+    userPackageJSON.scripts = {};
+  }
   // for commands that aren't 1:1 name:script
   const commandMap = {
     dev: 'kyt dev',
     build: 'kyt build',
-    start: 'node build/server/main.js',
     'kyt:help': 'kyt --help',
   };
 
-  // Merge the Starter-kyt script names into the list of commands.
-  let tempScripts = (tempPackageJSON && tempPackageJSON.kyt && tempPackageJSON.kyt.scripts) || [];
-  if (tempScripts.length) {
+  if (starterKytConfig.hasServer !== false) {
+    commandMap.start = 'node build/server/main.js';
+  }
+
+  const deprecatedConfig = starterPackageJSON?.kyt?.scripts || [];
+  if (deprecatedConfig && deprecatedConfig.length > 0) {
     logger.error(
       'Use of`kyt.scripts` is deprecated in `package.json`. You can simply declare `scripts`.'
     );
     process.exit(1);
   }
 
-  tempScripts = (tempPackageJSON && tempPackageJSON.scripts) || {};
+  const starterScripts = (starterPackageJSON && starterPackageJSON.scripts) || {};
 
-  const commands = [...new Set([...Object.keys(commandMap), ...Object.keys(tempScripts)])].sort();
+  // Merge the Starter-kyt script names into the list of commands.
+  const commands = [
+    ...new Set([...Object.keys(commandMap), ...Object.keys(starterScripts)]),
+  ].sort();
   commands.forEach(command => {
     // If the command is from a starter-kyt then
     // we need to copy in the starter-kyt value.
-    if (tempScripts[command]) {
-      packageJson.scripts[command] = tempScripts[command];
-    } else if (!packageJson.scripts[command]) {
-      packageJson.scripts[command] = commandMap[command];
+    if (starterScripts[command]) {
+      userPackageJSON.scripts[command] = starterScripts[command];
+    } else if (!userPackageJSON.scripts[command]) {
+      userPackageJSON.scripts[command] = commandMap[command];
     }
   });
   logger.task('Added kyt scripts into your package.json scripts');
-  return packageJson;
+  return userPackageJSON;
 };
 
 // Compare the starter-kyt's package.json kyt.version
 // configuration to make sure kyt is an expected version.
-export const checkStarterKytVersion = (userPackageJSON, tempPackageJSON) => {
+export const checkStarterKytVersion = (userPackageJSON, starterPackageJSON) => {
   const kytStarterPreferredVersion =
-    (tempPackageJSON.dependencies && tempPackageJSON.dependencies.kyt) ||
-    (tempPackageJSON.devDependencies && tempPackageJSON.devDependencies.kyt) ||
+    (starterPackageJSON.dependencies && starterPackageJSON.dependencies.kyt) ||
+    (starterPackageJSON.devDependencies && starterPackageJSON.devDependencies.kyt) ||
     null;
   if (kytStarterPreferredVersion) {
     // Look everywhere for kyt
@@ -86,7 +97,7 @@ export const checkStarterKytVersion = (userPackageJSON, tempPackageJSON) => {
     if (semver.valid(kytVersion)) {
       if (!semver.satisfies(kytVersion, kytStarterPreferredVersion)) {
         logger.warn(
-          `${tempPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
+          `${starterPackageJSON.name} requires kyt version ${kytStarterPreferredVersion} but kyt ${kytVersion} is installed.`
         );
       }
     }
@@ -95,56 +106,60 @@ export const checkStarterKytVersion = (userPackageJSON, tempPackageJSON) => {
 };
 
 // Adds dependencies from the starter-kyts package.json
-export const updatePackageJSONDependencies = (packageJson, tempPackageJSON) => {
+export const updatePackageJSONDependencies = (packageJSON, starterPackageJSON) => {
   ['resolutions', 'dependencies', 'devDependencies'].forEach(key => {
-    if (!packageJson[key] && !tempPackageJSON[key]) {
+    if (!packageJSON[key] && !starterPackageJSON[key]) {
       return;
     }
     const deps = {};
     [
       ...new Set([
-        ...Object.keys(packageJson[key] || {}),
-        ...Object.keys(tempPackageJSON[key] || {}),
+        ...Object.keys(packageJSON[key] || {}),
+        ...Object.keys(starterPackageJSON[key] || {}),
       ]),
     ]
       .sort()
       .forEach(depKey => {
         deps[depKey] =
-          (tempPackageJSON[key] && tempPackageJSON[key][depKey]) ||
-          (packageJson[key] && packageJson[key][depKey]);
+          (starterPackageJSON[key] && starterPackageJSON[key][depKey]) ||
+          (packageJSON[key] && packageJSON[key][depKey]);
       });
-    packageJson[key] = deps;
+    packageJSON[key] = deps;
   });
 
   logger.task('Added new dependencies to package.json');
 
-  return packageJson;
+  return packageJSON;
 };
 
 // Add dependencies, scripts and other package to
 // the user's package.json configuration.
 
-export const updateUserPackageJSON = (paths, kytVersion, tempPackageJSON) => {
-  let userPackageJSON;
+export const updateUserPackageJSON = (starterPackageJSON, starterKytConfig, paths, kytVersion) => {
+  let newUserPackageJSON;
   // Create a package.json definition if
   // the user doesn't already have one.
   if (shell.test('-f', paths.userPackageJSONPath)) {
     const userJSON = fs.readFileSync(paths.userPackageJSONPath, 'utf8');
-    userPackageJSON = JSON.parse(userJSON);
+    newUserPackageJSON = JSON.parse(userJSON);
   } else {
-    userPackageJSON = fakePackageJson;
+    newUserPackageJSON = fakePackageJson;
     logger.task('Creating a new package.json. You should fill it in.');
   }
   // Clone the package.json so that we have a backup.
-  const oldPackageJSON = { ...userPackageJSON };
+  const oldUserPackageJSON = { ...newUserPackageJSON };
   let kytPrefVersion = kytVersion;
 
   // Add dependencies from starter-kyts
-  kytPrefVersion = kytVersion || checkStarterKytVersion(userPackageJSON, tempPackageJSON);
-  userPackageJSON = updatePackageJSONDependencies(userPackageJSON, tempPackageJSON);
-  userPackageJSON = addKytDependency(userPackageJSON, kytPrefVersion);
-  userPackageJSON = addPackageJsonScripts(userPackageJSON, tempPackageJSON);
-  fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(userPackageJSON, null, 2));
+  kytPrefVersion = kytVersion || checkStarterKytVersion(newUserPackageJSON, starterPackageJSON);
+  newUserPackageJSON = updatePackageJSONDependencies(newUserPackageJSON, starterPackageJSON);
+  newUserPackageJSON = addKytDependency(newUserPackageJSON, kytPrefVersion);
+  newUserPackageJSON = addPackageJsonScripts(
+    newUserPackageJSON,
+    starterPackageJSON,
+    starterKytConfig
+  );
+  fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(newUserPackageJSON, null, 2));
 
-  return { oldPackageJSON, userPackageJSON };
+  return { oldUserPackageJSON, newUserPackageJSON };
 };

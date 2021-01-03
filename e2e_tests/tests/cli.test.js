@@ -84,6 +84,10 @@ describe('KYT CLI', () => {
       expect(scripts.dev).toBe('kyt dev');
       expect(scripts.build).toBe('kyt build');
       expect(scripts['kyt:help']).toBe('kyt --help');
+
+      const hasStart = scripts.start === 'node build/server/main.js';
+
+      expect(slug === 'universal' ? hasStart : true).toBe(true);
     });
 
     it('verifies the source directory', () => {

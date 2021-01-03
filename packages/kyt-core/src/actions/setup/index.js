@@ -26,8 +26,6 @@ module.exports = (cliArgs = {}) => {
   let paths = {};
   let tmpDir;
   let tmpStarter;
-  let tempPackageJSON;
-  let oldPackageJSON;
   // For passed starter-kyts the root of the starter-kyt is the root of the repo
   let repoURL = 'https://github.com/nytimes/kyt.git';
 
@@ -68,11 +66,24 @@ module.exports = (cliArgs = {}) => {
         bailProcess();
         return false;
       }
-      // eslint-disable-next-line global-require,import/no-dynamic-require
-      tempPackageJSON = require(`${tmpDir}/package.json`);
-      ({ oldPackageJSON } = updateUserPackageJSON(paths, cliArgs.kytVersion, tempPackageJSON));
-      installUserDependencies(paths, ypm, oldPackageJSON, bailProcess);
-      copyStarterKytFiles(paths, tempPackageJSON, tmpDir);
+
+      let starterKytConfig;
+      try {
+        // eslint-disable-next-line
+        starterKytConfig = require(`${tmpDir}/kyt.config.js`);
+      } catch (e) {
+        starterKytConfig = {};
+      }
+
+      const starterPackageJSON = JSON.parse(fs.readFileSync(`${tmpDir}/package.json`, 'utf8'));
+      const { oldUserPackageJSON } = updateUserPackageJSON(
+        starterPackageJSON,
+        starterKytConfig,
+        paths,
+        cliArgs.kytVersion
+      );
+      installUserDependencies(paths, ypm, oldUserPackageJSON, bailProcess);
+      copyStarterKytFiles(paths, starterPackageJSON, tmpDir);
       removeTmpStarter();
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
       return true;

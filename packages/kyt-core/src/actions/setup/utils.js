@@ -4,12 +4,12 @@ const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
 
 // Cleans and reinstalls node modules.
-export const installUserDependencies = (paths, ypm, oldPackageJSON, bailProcess) => {
+export const installUserDependencies = (paths, ypm, oldUserPackageJSON, bailProcess) => {
   logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
   // shell.rm('-rf', paths.userNodeModulesPath);
   const result = shell.exec(`${ypm} install`);
   if (result.code !== 0) {
-    fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
+    fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(oldUserPackageJSON, null, 2));
     logger.error('An error occurred when trying to install node modules', result.stderr);
     logger.task('Restored the original package.json and bailing');
     logger.info('You may need to reinstall your modules');

@@ -228,7 +228,7 @@ describe('packages', () => {
         )
       );
 
-      const result = updateUserPackageJSON({ userPackageJSONPath }, '1.0.0', {});
+      const result = updateUserPackageJSON({}, {}, { userPackageJSONPath }, '1.0.0');
 
       expect(result).toMatchSnapshot();
     });
@@ -236,7 +236,7 @@ describe('packages', () => {
     test('no existing packagejson', () => {
       shell.test.mockImplementationOnce(() => false);
 
-      const result = updateUserPackageJSON({ userPackageJSONPath }, '1.0.0', {});
+      const result = updateUserPackageJSON({}, {}, { userPackageJSONPath }, '1.0.0');
 
       expect(result).toMatchSnapshot();
     });
@@ -245,7 +245,7 @@ describe('packages', () => {
       shell.test.mockImplementationOnce(() => false);
       shell.exec.mockImplementationOnce(() => ({ stdout: '0.3.0' }));
 
-      const result = updateUserPackageJSON({ userPackageJSONPath }, undefined, {});
+      const result = updateUserPackageJSON({}, {}, { userPackageJSONPath });
 
       expect(result).toMatchSnapshot();
     });
