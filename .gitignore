@@ -1,5 +1,6 @@
 .caches
 stage-cli
+stage-build
 
 # Logs
 logs
