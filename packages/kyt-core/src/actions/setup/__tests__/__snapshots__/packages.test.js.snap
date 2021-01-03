@@ -20,7 +20,7 @@ Object {
 }
 `;
 
-exports[`packages updateUserPackageJSON existing + existing packagejson 1`] = `
+exports[`packages updateUserPackageJSON existing packagejson 1`] = `
 Object {
   "oldPackageJSON": Object {
     "author": "baz",
@@ -50,7 +50,7 @@ Object {
 }
 `;
 
-exports[`packages updateUserPackageJSON existing 1`] = `
+exports[`packages updateUserPackageJSON no existing packagejson 1`] = `
 Object {
   "oldPackageJSON": Object {
     "author": "",
@@ -81,45 +81,6 @@ Object {
 `;
 
 exports[`packages updateUserPackageJSON not existing + no pref 1`] = `
-Object {
-  "oldPackageJSON": Object {
-    "author": "",
-    "description": "",
-    "devDependencies": Object {
-      "kyt": "1.0.0",
-    },
-    "license": "",
-    "main": "",
-    "name": "",
-    "scripts": Object {
-      "build": "kyt build",
-      "dev": "kyt dev",
-      "kyt:help": "kyt --help",
-      "start": "node build/server/main.js",
-    },
-    "version": "1.0.0",
-  },
-  "userPackageJSON": Object {
-    "author": "",
-    "description": "",
-    "devDependencies": Object {
-      "kyt": "1.0.0",
-    },
-    "license": "",
-    "main": "",
-    "name": "",
-    "scripts": Object {
-      "build": "kyt build",
-      "dev": "kyt dev",
-      "kyt:help": "kyt --help",
-      "start": "node build/server/main.js",
-    },
-    "version": "1.0.0",
-  },
-}
-`;
-
-exports[`packages updateUserPackageJSON not existing 1`] = `
 Object {
   "oldPackageJSON": Object {
     "author": "",

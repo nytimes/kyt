@@ -56,19 +56,3 @@ export const copyStarterKytFiles = (paths, tempPackageJSON, tmpDir) => {
     logger.task(`Copied ${file} from Starter-kyt`);
   });
 };
-
-// Copies the src directory from the cloned
-// repo into the user's base direcotry.
-export const createSrcDirectory = (paths, tmpDir) => {
-  if (shell.test('-d', paths.srcPath)) {
-    // Since the user already has a src directory,
-    // we need to make a backup before copying.
-    const mvTo = path.join(paths.userRootPath, `src-${Date.now()}-bak`);
-    shell.mv('-f', paths.srcPath, mvTo);
-    logger.info(`Backed up current src directory to: ${mvTo}`);
-  }
-
-  const tmpSrcPath = path.join(tmpDir, '/src');
-  shell.cp('-r', `${tmpSrcPath}`, paths.userRootPath);
-  logger.task('Created src directory');
-};

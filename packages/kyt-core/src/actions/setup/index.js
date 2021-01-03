@@ -7,14 +7,9 @@ const logger = require('kyt-utils/logger');
 const generatePaths = require('kyt-utils/paths');
 const starterKyts = require('../../config/starterKyts');
 const yarnOrNpm = require('../../utils/yarnOrNpm');
-const {
-  installUserDependencies,
-  createDir,
-  copyStarterKytFiles,
-  createSrcDirectory,
-} = require('./utils');
+const { installUserDependencies, createDir, copyStarterKytFiles } = require('./utils');
 const { fakePackageJson, updateUserPackageJSON } = require('./packages');
-const { ypmQ, dirNameQ, getRepoUrl, getSrcBackup } = require('./questions');
+const { ypmQ, dirNameQ, getRepoUrl } = require('./questions');
 
 module.exports = (cliArgs = {}) => {
   // which package manager to use
@@ -75,14 +70,8 @@ module.exports = (cliArgs = {}) => {
       }
       // eslint-disable-next-line global-require,import/no-dynamic-require
       tempPackageJSON = require(`${tmpDir}/package.json`);
-      ({ oldPackageJSON } = updateUserPackageJSON(
-        false,
-        paths,
-        cliArgs.kytVersion,
-        tempPackageJSON
-      ));
+      ({ oldPackageJSON } = updateUserPackageJSON(paths, cliArgs.kytVersion, tempPackageJSON));
       installUserDependencies(paths, ypm, oldPackageJSON, bailProcess);
-      createSrcDirectory(paths, tmpDir);
       copyStarterKytFiles(paths, tempPackageJSON, tmpDir);
       removeTmpStarter();
       logger.end(`Done adding starter kyt: ${kytName}  ✨`);
@@ -117,24 +106,9 @@ module.exports = (cliArgs = {}) => {
     return Promise.reject(new Error('No starter-kyt specified!'));
   };
 
-  // Checks to see if user would like src backed up before continuing
-  const srcPrompt = starterChoice => {
-    // Check if src already exists
-    if (shell.test('-d', paths.srcPath)) {
-      return getSrcBackup().then(srcBackup => {
-        if (srcBackup) {
-          return starterKytSetup(starterChoice);
-        }
-        return process.exit();
-      });
-    }
-    return starterKytSetup(starterChoice);
-  };
-
   // Runs through setup questions
   const setupPrompt = async () => {
     const ownRepo = 'I have my own url';
-    const exist = "I don't want a starter-kyt";
     const questions = [];
 
     // Check to see if yarn is installed or user has specified flag
@@ -144,12 +118,12 @@ module.exports = (cliArgs = {}) => {
     if (!cliArgs.directory) {
       questions.push(dirNameQ);
     }
-    if (!cliArgs.repository && !localPath) {
+    if (!cliArgs.repository && !cliArgs.localPath) {
       questions.push({
         type: 'list',
         name: 'starterChoice',
         message: 'Choose a starter-kyt:',
-        choices: [...Object.keys(starterKyts.supported), ownRepo, exist],
+        choices: [...Object.keys(starterKyts.supported), ownRepo],
         default: 0,
       });
     }
@@ -178,7 +152,7 @@ module.exports = (cliArgs = {}) => {
         return getRepoUrl(cliArgs.repository)
           .then(url => {
             repoURL = url;
-            return srcPrompt();
+            return starterKytSetup();
           })
           .catch(e => {
             logger.error(e);
@@ -187,14 +161,7 @@ module.exports = (cliArgs = {}) => {
       }
 
       if (starterKyts.supported[answer.starterChoice] || localPath) {
-        return srcPrompt(answer.starterChoice);
-      }
-
-      if (answer.starterChoice === exist) {
-        // setup tasks for setup in existing project
-        logger.start('Setting up kyt');
-        updateUserPackageJSON(true, paths, cliArgs.kytVersion, tempPackageJSON);
-        logger.end('Done setting up kyt');
+        return starterKytSetup(answer.starterChoice);
       }
 
       return undefined;

@@ -48,20 +48,3 @@ export const getRepoUrl = repositoryArg => {
     });
   });
 };
-
-export const getSrcBackup = () => {
-  const question = [
-    {
-      type: 'confirm',
-      name: 'srcBackup',
-      message: 'You already have a src directory. Would you like kyt to backup src/ and continue?',
-      default: true,
-    },
-  ];
-
-  return new Promise(resolve => {
-    inquire.prompt(question).then(answer => {
-      resolve(answer.srcBackup);
-    });
-  });
-};
