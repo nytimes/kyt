@@ -20,17 +20,9 @@ Object {
 }
 `;
 
-exports[`packages updateUserPackageJSON existing + existing packagejson 1`] = `
+exports[`packages updateUserPackageJSON existing packagejson 1`] = `
 Object {
-  "oldPackageJSON": Object {
-    "author": "baz",
-    "description": "a repo",
-    "license": "MIT",
-    "main": "index.js",
-    "name": "foo",
-    "version": "3.1.0",
-  },
-  "userPackageJSON": Object {
+  "newUserPackageJSON": Object {
     "author": "baz",
     "description": "a repo",
     "devDependencies": Object {
@@ -45,22 +37,22 @@ Object {
       "kyt:help": "kyt --help",
       "start": "node build/server/main.js",
     },
+    "version": "3.1.0",
+  },
+  "oldUserPackageJSON": Object {
+    "author": "baz",
+    "description": "a repo",
+    "license": "MIT",
+    "main": "index.js",
+    "name": "foo",
     "version": "3.1.0",
   },
 }
 `;
 
-exports[`packages updateUserPackageJSON existing 1`] = `
+exports[`packages updateUserPackageJSON no existing packagejson 1`] = `
 Object {
-  "oldPackageJSON": Object {
-    "author": "",
-    "description": "",
-    "license": "",
-    "main": "",
-    "name": "",
-    "version": "1.0.0",
-  },
-  "userPackageJSON": Object {
+  "newUserPackageJSON": Object {
     "author": "",
     "description": "",
     "devDependencies": Object {
@@ -75,6 +67,14 @@ Object {
       "kyt:help": "kyt --help",
       "start": "node build/server/main.js",
     },
+    "version": "1.0.0",
+  },
+  "oldUserPackageJSON": Object {
+    "author": "",
+    "description": "",
+    "license": "",
+    "main": "",
+    "name": "",
     "version": "1.0.0",
   },
 }
@@ -82,7 +82,7 @@ Object {
 
 exports[`packages updateUserPackageJSON not existing + no pref 1`] = `
 Object {
-  "oldPackageJSON": Object {
+  "newUserPackageJSON": Object {
     "author": "",
     "description": "",
     "devDependencies": Object {
@@ -99,46 +99,7 @@ Object {
     },
     "version": "1.0.0",
   },
-  "userPackageJSON": Object {
-    "author": "",
-    "description": "",
-    "devDependencies": Object {
-      "kyt": "1.0.0",
-    },
-    "license": "",
-    "main": "",
-    "name": "",
-    "scripts": Object {
-      "build": "kyt build",
-      "dev": "kyt dev",
-      "kyt:help": "kyt --help",
-      "start": "node build/server/main.js",
-    },
-    "version": "1.0.0",
-  },
-}
-`;
-
-exports[`packages updateUserPackageJSON not existing 1`] = `
-Object {
-  "oldPackageJSON": Object {
-    "author": "",
-    "description": "",
-    "devDependencies": Object {
-      "kyt": "1.0.0",
-    },
-    "license": "",
-    "main": "",
-    "name": "",
-    "scripts": Object {
-      "build": "kyt build",
-      "dev": "kyt dev",
-      "kyt:help": "kyt --help",
-      "start": "node build/server/main.js",
-    },
-    "version": "1.0.0",
-  },
-  "userPackageJSON": Object {
+  "oldUserPackageJSON": Object {
     "author": "",
     "description": "",
     "devDependencies": Object {

@@ -10,32 +10,31 @@ Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/
 
 ## Quick Start
 
-1. Install [Node.js](https://nodejs.org/) (v10.0+ required). On Mac, this is as simple as:
+1. Install [Node.js](https://nodejs.org/) (v14.0+ required). On Mac, this is as simple as:
 
 ```sh
 brew install nvm
 nvm use
 ```
 
-1. `yarn add --dev kyt`
-1. `kyt setup` - This will set up your project with application and configuration files so that you can get started with `kyt`. Learn more about [setup](/packages/kyt-core/README.md).
+1. `yarn add kyt`
+1. `yarn kyt setup` - This will set up your project with application and configuration files so that you can get started with `kyt`. Learn more about [setup](/packages/kyt-core/README.md).
 1. `yarn dev`
 1. Check out `http://localhost:3000`
 
 ## Features
 
-- Optional universal support with a Node server provided for rendering front-end page requests
-- Client and server hot reloading
-- Custom Babel presets with ES6 support, optional React support and optimizations for polyfilling Node and browser builds.
-- Static asset support
-- Inline SVG support
-- ESLint ruleset
-- Jest configuration for ESLint and CSS-in-JS codebases
-- Optional client-only mode for apps that already have a server
+- Isomorphic rendering of JavaScript apps
+- Client and server hot-reloading in dev
+- Babel presets for general ES6 support and React
+- ESLint configuration and custom rules
+- Jest presets for running unit tests and CSS-in-JS linting
+- Optional client-only and server-only modes
+- Ability to override Webpack configuration from `kyt.config.js`
 
 ## How it Works
 
-`kyt` manages configuration for all aspects of development. It can be installed as an npm dependency into a new or existing project. `kyt`’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. `kyt` provides a [command line interface](/docs/commands.md) for running all development tools.
+`kyt` manages configuration for all aspects of development. It can be installed as a dependency into a new or existing project. `kyt`’s goal is to encapsulate only development tools, giving users the freedom to control their source directory and make important decisions about app architecture. `kyt` provides a [command line interface](/docs/commands.md) for running all development tools.
 
 <p align="center"><img src="/images/kyt-diagram.png"></p>
 
@@ -46,7 +45,7 @@ See our [config override instructions](/docs/kytConfig.md#modifywebpackconfig) f
 
 ## Setting up a kyt project
 
-`kyt setup` is a utility for bootstrapping `kyt` projects. It can be run to create a new project or integrate `kyt` with an existing project.
+`kyt setup` is a utility for bootstrapping `kyt` projects and installing starter-kyts. It can be run to create a new project or integrate `kyt` with an existing project.
 
 See the [kyt](/packages/kyt-core/README.md) documentation for more details.
 
@@ -60,10 +59,10 @@ Running `kyt setup` includes these commands as scripts in your `package.json`:
 yarn dev
 ```
 
-Or you can run a command using `npx kyt {command}`:
+Or you can run a command using `yarn kyt {command}`:
 
 ```
-npx kyt build
+yarn kyt build
 ```
 
 Here are the available commands:

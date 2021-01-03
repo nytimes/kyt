@@ -5,8 +5,8 @@ This `starter-kyt` should serve as the base for an advanced, server and client-r
 ## Installation
 
 ```sh
-$ npm install --save-dev kyt
-$ npx kyt setup
+$ yarn add kyt
+$ yarn kyt setup
 ```
 
 Select `universal` from the list of `starter-kyt`s

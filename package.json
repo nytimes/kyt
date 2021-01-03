@@ -37,8 +37,6 @@
     "@babel/runtime": "7.12.5",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
-    "babel-preset-kyt-core": "file:packages/babel-preset-kyt-core",
-    "babel-preset-kyt-react": "file:packages/babel-preset-kyt-react",
     "core-js": "3.8.1",
     "enzyme": "3.11.0",
     "eslint": "7.16.0",

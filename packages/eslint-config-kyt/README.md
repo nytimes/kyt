@@ -5,7 +5,7 @@
 #### yarn
 
 ```sh
-$ yarn add --dev @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
+$ yarn add --dev --exact @babel/core @babel/eslint-parser @babel/eslint-plugin eslint prettier \
   eslint-config-airbnb eslint-config-prettier eslint-plugin-import \
   eslint-plugin-jest eslint-plugin-jest-formatting \
   eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-prettier \
@@ -63,7 +63,7 @@ module.exports = {
 ## Prettier Support
 
 ```js
-npx eslint . --fix
+yarn eslint . --fix
 ```
 
 Or add to your `package.json`:

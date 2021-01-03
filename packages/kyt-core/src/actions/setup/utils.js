@@ -4,12 +4,12 @@ const shell = require('shelljs');
 const logger = require('kyt-utils/logger');
 
 // Cleans and reinstalls node modules.
-export const installUserDependencies = (paths, ypm, oldPackageJSON, bailProcess) => {
+export const installUserDependencies = (paths, ypm, oldUserPackageJSON, bailProcess) => {
   logger.info('Cleaning node modules and reinstalling. This may take a couple of minutes...');
   // shell.rm('-rf', paths.userNodeModulesPath);
   const result = shell.exec(`${ypm} install`);
   if (result.code !== 0) {
-    fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(oldPackageJSON, null, 2));
+    fs.writeFileSync(paths.userPackageJSONPath, JSON.stringify(oldUserPackageJSON, null, 2));
     logger.error('An error occurred when trying to install node modules', result.stderr);
     logger.task('Restored the original package.json and bailing');
     logger.info('You may need to reinstall your modules');
@@ -44,6 +44,10 @@ export const copyStarterKytFiles = (paths, tempPackageJSON, tmpDir) => {
   }
 
   kytStarterFiles.forEach(file => {
+    if (file === 'package.json') {
+      return;
+    }
+
     const tempFilePath = path.join(tmpDir, file);
     const filePath = path.join(paths.userRootPath, file);
     // we should back up any pre-existing files in the user dir.
@@ -55,20 +59,4 @@ export const copyStarterKytFiles = (paths, tempPackageJSON, tmpDir) => {
     shell.cp('-Rf', tempFilePath, paths.userRootPath);
     logger.task(`Copied ${file} from Starter-kyt`);
   });
-};
-
-// Copies the src directory from the cloned
-// repo into the user's base direcotry.
-export const createSrcDirectory = (paths, tmpDir) => {
-  if (shell.test('-d', paths.srcPath)) {
-    // Since the user already has a src directory,
-    // we need to make a backup before copying.
-    const mvTo = path.join(paths.userRootPath, `src-${Date.now()}-bak`);
-    shell.mv('-f', paths.srcPath, mvTo);
-    logger.info(`Backed up current src directory to: ${mvTo}`);
-  }
-
-  const tmpSrcPath = path.join(tmpDir, '/src');
-  shell.cp('-r', `${tmpSrcPath}`, paths.userRootPath);
-  logger.task('Created src directory');
 };

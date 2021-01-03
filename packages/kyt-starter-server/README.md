@@ -5,8 +5,8 @@ This `starter-kyt` should serve as the base for a server-only React app.
 ## Installation
 
 ```sh
-$ npm install --save-dev kyt
-$ npx kyt setup
+$ yarn add kyt
+$ yarn kyt setup
 ```
 
 Select `server` from the list of `starter-kyt`s

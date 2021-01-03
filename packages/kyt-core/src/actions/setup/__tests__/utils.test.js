@@ -1,11 +1,6 @@
 import logger from 'kyt-utils/logger';
 import shell from 'shelljs';
-import {
-  createDir,
-  createSrcDirectory,
-  installUserDependencies,
-  copyStarterKytFiles,
-} from '../utils';
+import { createDir, installUserDependencies, copyStarterKytFiles } from '../utils';
 
 jest.mock('fs', () => ({
   writeFileSync: () => {},
@@ -29,7 +24,6 @@ jest.mock('kyt-utils/logger', () => ({
 const tmpDir = '/path/to/temp';
 const userRootPath = '/path/to/repo';
 const userPackageJSONPath = `${userRootPath}/package.json`;
-const userKytConfigPath = `${userRootPath}/'kyt.config.js'`;
 
 describe('utils', () => {
   beforeEach(() => {
@@ -61,44 +55,6 @@ describe('utils', () => {
       expect(logger.task).toHaveBeenCalled();
       expect(logger.error).toHaveBeenCalled();
       expect(mockExit).toHaveBeenCalled();
-    });
-  });
-
-  describe('createSrcDirectory', () => {
-    test('from tmp', () => {
-      shell.test.mockImplementationOnce(() => true);
-
-      createSrcDirectory(
-        { srcPath: `${userRootPath}/src`, userRootPath },
-        `${userRootPath}/.kyt-tmp`
-      );
-
-      expect(logger.info).toHaveBeenCalled();
-      expect(logger.task).toHaveBeenCalled();
-    });
-
-    test('from tmp and backup', () => {
-      shell.test.mockImplementationOnce(() => false);
-
-      createSrcDirectory(
-        { srcPath: `${userRootPath}/src`, userRootPath },
-        `${userRootPath}/.kyt-tmp`
-      );
-
-      expect(logger.info).not.toHaveBeenCalled();
-      expect(logger.task).toHaveBeenCalled();
-    });
-
-    test('from starter', () => {
-      shell.test.mockImplementationOnce(() => false);
-
-      createSrcDirectory(
-        { srcPath: `${userRootPath}/src`, userRootPath },
-        `${userRootPath}/node_modules/kyt-starter-universal/starter-src`
-      );
-
-      expect(logger.info).not.toHaveBeenCalled();
-      expect(logger.task).toHaveBeenCalled();
     });
   });
 

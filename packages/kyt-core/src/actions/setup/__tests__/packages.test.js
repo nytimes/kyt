@@ -211,15 +211,7 @@ describe('packages', () => {
   });
 
   describe('updateUserPackageJSON', () => {
-    test('existing', () => {
-      shell.test.mockImplementationOnce(() => false);
-
-      const result = updateUserPackageJSON(true, { userPackageJSONPath }, '1.0.0', {});
-
-      expect(result).toMatchSnapshot();
-    });
-
-    test('existing + existing packagejson', () => {
+    test('existing packagejson', () => {
       shell.test.mockImplementationOnce(() => true);
       fs.readFileSync.mockImplementationOnce(() =>
         JSON.stringify(
@@ -236,15 +228,15 @@ describe('packages', () => {
         )
       );
 
-      const result = updateUserPackageJSON(true, { userPackageJSONPath }, '1.0.0', {});
+      const result = updateUserPackageJSON({}, {}, { userPackageJSONPath }, '1.0.0');
 
       expect(result).toMatchSnapshot();
     });
 
-    test('not existing', () => {
+    test('no existing packagejson', () => {
       shell.test.mockImplementationOnce(() => false);
 
-      const result = updateUserPackageJSON(false, { userPackageJSONPath }, '1.0.0', {});
+      const result = updateUserPackageJSON({}, {}, { userPackageJSONPath }, '1.0.0');
 
       expect(result).toMatchSnapshot();
     });
@@ -253,7 +245,7 @@ describe('packages', () => {
       shell.test.mockImplementationOnce(() => false);
       shell.exec.mockImplementationOnce(() => ({ stdout: '0.3.0' }));
 
-      const result = updateUserPackageJSON(false, { userPackageJSONPath }, undefined, {});
+      const result = updateUserPackageJSON({}, {}, { userPackageJSONPath });
 
       expect(result).toMatchSnapshot();
     });
