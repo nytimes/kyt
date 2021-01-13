@@ -22,7 +22,7 @@
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "1.1.8",
     "commander": "6.2.1",
-    "core-js": "3.8.1",
+    "core-js": "3.8.2",
     "file-loader": "6.2.0",
     "filesize": "6.1.0",
     "find-babel-config": "1.2.0",
@@ -50,7 +50,7 @@
     "strip-ansi": "6.0.0",
     "url-loader": "4.1.1",
     "webpack": "4.44.2",
-    "webpack-dev-server": "3.11.1",
+    "webpack-dev-server": "3.11.2",
     "webpack-merge": "4.2.2",
     "webpack-node-externals": "2.5.2",
     "webpackbar": "4.0.0"
