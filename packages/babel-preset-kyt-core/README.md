@@ -50,6 +50,13 @@ module.exports = {
 };
 ```
 
+When using this option, your application will need to install [`@babel/preset-typescript`](https://babeljs.io/docs/en/babel-preset-typescript):
+
+```sh
+$ yarn add -D @babel/preset-typescript
+$ npm i --save-dev --save-exact @babel/preset-typescript
+```
+
 - `envOptions (Object)`
 
 When used with `kyt`, using this preset allows you to specify different configuration values for `client` and `server`. By declaring `envOptions`, you can set options that are passed to [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env):
