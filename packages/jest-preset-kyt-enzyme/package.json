@@ -6,7 +6,7 @@
   "author": "NYTimes",
   "license": "Apache-2.0",
   "dependencies": {
-    "enzyme-adapter-react-16": "1.15.5",
+    "enzyme-adapter-react-16": "1.15.6",
     "enzyme-to-json": "3.6.1",
     "jest-environment-jsdom-global": "2.0.4",
     "jest-silent-reporter": "0.4.0",
