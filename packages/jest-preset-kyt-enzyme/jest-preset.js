@@ -1,6 +1,6 @@
 const jestConfig = {
   verbose: true,
-  moduleFileExtensions: ['js', 'jsx', 'json'],
+  moduleFileExtensions: ['js', 'jsx', 'json', 'ts', 'tsx'],
   moduleNameMapper: {
     '^[./a-zA-Z0-9!&$_-]+\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico|md)$': require.resolve(
       './stub'
@@ -10,9 +10,9 @@ const jestConfig = {
   setupFilesAfterEnv: [require.resolve('./setup')],
   // if projects spread this value, the import can be lost if it is not absolute
   snapshotSerializers: [require.resolve('enzyme-to-json/serializer')],
-  testMatch: ['**/*.test.js'],
+  testMatch: ['**/*.test.[jt]s?(x)'],
   testEnvironment: require.resolve('jest-environment-jsdom-global'),
-  collectCoverageFrom: ['**/*.js'],
+  collectCoverageFrom: ['**/*.{js,jsx,json,ts,tsx}'],
   coverageDirectory: '<rootDir>/coverage',
   errorOnDeprecated: true,
   cacheDirectory: '<rootDir>/.caches/jest',

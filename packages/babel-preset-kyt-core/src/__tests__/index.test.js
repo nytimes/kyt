@@ -51,6 +51,12 @@ describe('babel-preset-kyt-core', () => {
     expect(config.plugins[3]).toEqual('import');
   });
 
+  it('should include the TypeScript preset', () => {
+    const config = presetKytCore({}, { typescript: true });
+
+    expect(config.presets).toContain('@babel/preset-typescript');
+  });
+
   it('should include a import node plugin when KYT_ENV_TYPE=test', () => {
     process.env.KYT_ENV_TYPE = 'test';
     const config = presetKytCore();

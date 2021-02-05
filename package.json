@@ -34,6 +34,7 @@
     "@babel/core": "7.12.13",
     "@babel/eslint-parser": "7.12.13",
     "@babel/eslint-plugin": "7.12.13",
+    "@babel/preset-typescript": "7.12.13",
     "@babel/runtime": "7.12.13",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",

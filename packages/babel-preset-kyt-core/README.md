@@ -35,6 +35,21 @@ $ yarn add @babel/runtime
 $ npm i --save-exact @babel/runtime
 ```
 
+- `typescript (Boolean)` option to `true` to automatically load [`@babel/preset-typescript`](https://babeljs.io/docs/en/babel-preset-typescript).
+
+```js
+module.exports = {
+  presets: [
+    [
+      'babel-preset-kyt-core',
+      {
+        typescript: true,
+      },
+    ],
+  ],
+};
+```
+
 - `envOptions (Object)`
 
 When used with `kyt`, using this preset allows you to specify different configuration values for `client` and `server`. By declaring `envOptions`, you can set options that are passed to [`@babel/preset-env`](https://babeljs.io/docs/en/babel-preset-env):

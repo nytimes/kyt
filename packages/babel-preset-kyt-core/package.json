@@ -19,6 +19,9 @@
     "core-js": "3.8.3",
     "lodash.merge": "4.6.2"
   },
+  "optionalDependencies": {
+    "@babel/preset-typescript": "7.12.7"
+  },
   "keywords": [
     "babel",
     "babel-preset",

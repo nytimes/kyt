@@ -62,7 +62,11 @@ module.exports = function getPresetCore(context, opts) {
   }
 
   return {
-    presets: [[babelPresetEnv, envOptions]],
+    presets: [
+      [babelPresetEnv, envOptions],
+      // allow users to opt in to TypeScript support
+      opts.typescript === true && '@babel/preset-typescript',
+    ].filter(Boolean),
 
     plugins: [
       [babelPluginDecorators, { legacy: true }],
