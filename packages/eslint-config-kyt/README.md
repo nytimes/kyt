@@ -87,11 +87,13 @@ To automatically format your code based on these rules during development, insta
 1. Install `ESLint`
 1. Install `Prettier`
 1. Go to `Code > Preferences`
-1. Change the following preferences to `true`:
+1. Add the following settings:
 
 ```
 "prettier.eslintIntegration": true,
-"editor.formatOnSave": true
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true
+},
 ```
 
 #### Atom
@@ -101,3 +103,17 @@ To automatically format your code based on these rules during development, insta
 1. Install `linter-eslint`
 1. Install `prettier-atom`. In the `prettier-atom` settings, check the `ESLint Integration` checkbox.
 1. Make sure all packages are enabled. You may need to restart Atom.
+
+## Differences from Similar ESLint Configs
+
+This config is based on the following ESLint configs:
+- [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
+- [eslint-config-kyt](../eslint-config-kyt)
+- [eslint-config-airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript)
+
+The TypeScript-specific portions of the config are primarily based on [eslint-config-airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript), with these notable differences:
+
+- Enables the [`@typescript-eslint/no-explicit-any`](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/docs/rules/no-explicit-any.md) rule by default
+- Extends the [`prettier/@typescript-eslint`](https://github.com/prettier/eslint-config-prettier#installation) config by default
+- Uses [`@babel/eslint-parser`](https://www.npmjs.com/package/@babel/eslint-parser) for JavaScript files and [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser) for TypeScript files (`.ts` / `.tsx`)
+- Disables @typescript-eslint rules that require parserServices to be generated (by setting `parserOptions.project` to the path to a tsconfig.json file), which has a high performance cost in big projects and requires additional end user configuration
