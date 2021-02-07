@@ -1,18 +1,22 @@
 const airbnbTypescriptShared = require('eslint-config-airbnb-typescript/lib/shared');
+const prettierTypescriptEslint = require('eslint-config-prettier/@typescript-eslint');
 
 module.exports = {
-  extends: ['kyt', 'prettier/@typescript-eslint'],
+  extends: ['kyt'],
 
   plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
 
   rules: {
     /**
-     * Replace certain JS-only rules enabled by `eslint-config-airbnb` with their equivalents
-     * from `@typescript-eslint/eslint-plugin`.
+     * Replace certain JS-only rules enabled by `eslint-config-airbnb` with their equivalents from
+     * `@typescript-eslint/eslint-plugin`.
+     *
      * @see https://github.com/iamturns/eslint-config-airbnb-typescript/blob/v12.0.0/lib/shared.js#L27
      */
     ...airbnbTypescriptShared.rules,
+    // Ensure that TypeScript, Prettier, and `eslint-plugin-prettier` all play nice
+    ...prettierTypescriptEslint.rules,
     // Disallow explicit `any` types
     '@typescript-eslint/no-explicit-any': 'error',
     /**
