@@ -10,7 +10,7 @@ $ yarn add --dev --exact @babel/core @babel/eslint-parser @babel/eslint-plugin \
   typescript eslint prettier eslint-config-airbnb eslint-config-prettier eslint-plugin-import \
   eslint-plugin-jest eslint-plugin-jest-formatting \
   eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-prettier \
-  eslint-plugin-react eslint-plugin-react-hooks eslint-config-kyt
+  eslint-plugin-react eslint-plugin-react-hooks eslint-config-kyt prettier-plugin-jsdoc
 
 # or
 
@@ -19,7 +19,7 @@ $ npm i --save-dev --save-exact @babel/core @babel/eslint-parser @babel/eslint-p
   typescript eslint prettier eslint-config-airbnb eslint-config-prettier eslint-plugin-import \
   eslint-plugin-jest eslint-plugin-jest-formatting \
   eslint-plugin-json eslint-plugin-jsx-a11y eslint-plugin-prettier \
-  eslint-plugin-react eslint-plugin-react-hooks eslint-config-kyt
+  eslint-plugin-react eslint-plugin-react-hooks eslint-config-kyt prettier-plugin-jsdoc
 ```
 
 Add to the `extends` section of your ESLint configuration:
@@ -92,6 +92,7 @@ To automatically format your code based on these rules during development, insta
 ## Differences from Similar ESLint Configs
 
 This config is based on the following ESLint configs:
+
 - [eslint-config-airbnb](https://www.npmjs.com/package/eslint-config-airbnb)
 - [eslint-config-kyt](../eslint-config-kyt)
 - [eslint-config-airbnb-typescript](https://www.npmjs.com/package/eslint-config-airbnb-typescript)
@@ -102,3 +103,4 @@ The TypeScript-specific portions of the config are primarily based on [eslint-co
 - Extends the [`prettier/@typescript-eslint`](https://github.com/prettier/eslint-config-prettier#installation) config by default
 - Uses [`@babel/eslint-parser`](https://www.npmjs.com/package/@babel/eslint-parser) for JavaScript files and [`@typescript-eslint/parser`](https://www.npmjs.com/package/@typescript-eslint/parser) for TypeScript files (`.ts` / `.tsx`)
 - Disables @typescript-eslint rules that [require parserServices to be generated](https://github.com/typescript-eslint/typescript-eslint/issues/689) (by setting `parserOptions.project` to the path to a tsconfig.json file), which has a high performance cost in big projects and requires additional end user configuration
+- `prettier/prettier` rule: enables [`prettier-plugin-jsdoc`](https://github.com/hosseinmd/prettier-plugin-jsdoc/), which is particularly useful for type-checked JavaScript

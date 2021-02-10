@@ -4502,6 +4502,11 @@ commander@^4.0.1, commander@^4.1.1:
   resolved "https://registry.yarnpkg.com/commander/-/commander-4.1.1.tgz#9fd602bd936294e9e9ef46a3f4d6964044b18068"
   integrity sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==
 
+comment-parser@^0.7.6:
+  version "0.7.6"
+  resolved "https://registry.yarnpkg.com/comment-parser/-/comment-parser-0.7.6.tgz#0e743a53c8e646c899a1323db31f6cd337b10f12"
+  integrity sha512-GKNxVA7/iuTnAqGADlTWX4tkhzxZKXp5fLJqKTlQLHkE65XDUKutZ3BHaJC5IGcper2tT3QRD1xr4o3jNpgXXg==
+
 commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
@@ -8752,6 +8757,11 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
+linguist-languages@^7.11.1:
+  version "7.12.2"
+  resolved "https://registry.yarnpkg.com/linguist-languages/-/linguist-languages-7.12.2.tgz#246e22ed088a0afc4fa3b48ef4e136eb45f6703d"
+  integrity sha512-xRtwDRdTLNff0/8Gr65rJBC/lXdQwDH1/UIKFK9UvpXBEFhsgT5J7jEJMGT+IbsA3WGKJSjxuEZxakuYoToqRg==
+
 load-json-file@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -10630,6 +10640,14 @@ prettier-linter-helpers@^1.0.0:
   integrity sha512-GbK2cP9nraSSUF9N2XwUwqfzlAFlMNYYl+ShE/V+H8a9uNl/oUqB1w2EL54Jh0OlyRSd8RfWYJ3coVS4TROP2w==
   dependencies:
     fast-diff "^1.1.2"
+
+prettier-plugin-jsdoc@0.3.9:
+  version "0.3.9"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-jsdoc/-/prettier-plugin-jsdoc-0.3.9.tgz#71027d8082ae1c30b898f80da757adfbe3bd1fac"
+  integrity sha512-qxbMP7++gg3adkwI8r3Gr6M2o1GdxBUOeZQCeaPXn9uRjSOTKQMg7OE2b08DYhzbgyBRFd7dp2DSQ3pFTWcP2Q==
+  dependencies:
+    comment-parser "^0.7.6"
+    linguist-languages "^7.11.1"
 
 prettier@2.2.1:
   version "2.2.1"

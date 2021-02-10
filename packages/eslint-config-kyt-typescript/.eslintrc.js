@@ -1,3 +1,4 @@
+const kytBase = require('eslint-config-kyt/base');
 const airbnbTypescriptShared = require('eslint-config-airbnb-typescript/lib/shared');
 const prettierTypescriptEslint = require('eslint-config-prettier/@typescript-eslint');
 
@@ -28,6 +29,14 @@ module.exports = {
     '@typescript-eslint/dot-notation': 'off',
     '@typescript-eslint/no-implied-eval': 'off',
     '@typescript-eslint/no-throw-literal': 'off',
+    // Enable Prettier to format JSDoc, which is particularly useful for type-checked JavaScript
+    'prettier/prettier': [
+      'error',
+      {
+        ...kytBase.rules['prettier/prettier'],
+        jsdocParser: true,
+      },
+    ],
   },
 
   settings: airbnbTypescriptShared.settings,
