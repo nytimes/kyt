@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.11](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.10...kyt-runtime@1.2.11) (2021-02-22)
+
+**Note:** Version bump only for package kyt-runtime
+
+
+
+
+
 ## [1.2.10](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.9...kyt-runtime@1.2.10) (2021-02-04)
 
 **Note:** Version bump only for package kyt-runtime

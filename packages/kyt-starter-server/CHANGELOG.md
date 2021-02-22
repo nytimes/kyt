@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.4](http://github.com/nytimes/kyt/packages/kyt-starter-server/compare/kyt-starter-server@1.0.3...kyt-starter-server@1.0.4) (2021-02-22)
+
+**Note:** Version bump only for package kyt-starter-server
+
+
+
+
+
 ## [1.0.3](http://github.com/nytimes/kyt/packages/kyt-starter-server/compare/kyt-starter-server@1.0.2...kyt-starter-server@1.0.3) (2021-02-04)
 
 **Note:** Version bump only for package kyt-starter-server

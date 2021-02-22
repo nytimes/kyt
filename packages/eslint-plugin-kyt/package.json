@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-kyt",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "ESLint plugin for Vi-specific rules.",
   "main": "lib/index.js",
   "author": "NYTimes",

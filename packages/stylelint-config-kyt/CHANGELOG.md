@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.1](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.4.0...stylelint-config-kyt@1.4.1) (2021-02-22)
+
+**Note:** Version bump only for package stylelint-config-kyt
+
+
+
+
+
 # [1.4.0](https://github.com/nytimes/kyt/compare/stylelint-config-kyt@1.3.3...stylelint-config-kyt@1.4.0) (2020-11-19)
 
 
