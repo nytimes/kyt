@@ -15,9 +15,9 @@
   ],
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.12.13",
-    "@babel/preset-env": "7.12.13",
+    "@babel/preset-env": "7.12.17",
     "@babel/preset-react": "7.12.13",
-    "mocha": "8.2.1"
+    "mocha": "8.3.0"
   },
   "scripts": {
     "test": "mocha tests --recursive ./tests"
