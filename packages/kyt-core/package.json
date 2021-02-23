@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@babel/code-frame": "7.12.13",
-    "@babel/runtime": "7.13.2",
+    "@babel/runtime": "7.13.4",
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "1.1.14",
     "commander": "6.2.1",
@@ -56,6 +56,7 @@
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
+    "babel-preset-kyt-core": "1.1.14",
     "babel-preset-kyt-react": "1.2.10"
   },
   "scripts": {

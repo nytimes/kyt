@@ -10,7 +10,7 @@
   "homepage": "https://github.com/nytimes/kyt#readme",
   "peerDependencies": {
     "@babel/core": "^7.13.1",
-    "@babel/eslint-parser": "^7.13.0",
+    "@babel/eslint-parser": "^7.13.4",
     "@babel/eslint-plugin": "^7.13.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb": "^18.2.1",

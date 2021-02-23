@@ -24,7 +24,7 @@
     "test-coverage": "jest --coverage"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.2",
+    "@babel/runtime": "7.13.4",
     "core-js": "3.9.0",
     "kyt-runtime": "1.2.15",
     "pretty-lights": "0.0.19",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.13.1",
-    "@babel/eslint-parser": "7.13.0",
+    "@babel/eslint-parser": "7.13.4",
     "@babel/eslint-plugin": "7.13.0",
     "babel-preset-kyt-react": "1.2.10",
     "enzyme": "3.11.0",
