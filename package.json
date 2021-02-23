@@ -12,6 +12,7 @@
     "doc": "docs"
   },
   "scripts": {
+    "drone": "drone jsonnet",
     "bootstrap": "yarn && lerna run prepare",
     "bootstrap:ci": "yarn && lerna run prepare",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
