@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.13](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/compare/babel-preset-kyt-core@1.1.12...babel-preset-kyt-core@1.1.13) (2021-02-23)
+
+**Note:** Version bump only for package babel-preset-kyt-core
+
+
+
+
+
 ## [1.1.12](http://github.com/nytimes/kyt/packages/kyt-babel-preset-core/compare/babel-preset-kyt-core@1.1.11...babel-preset-kyt-core@1.1.12) (2021-02-23)
 
 **Note:** Version bump only for package babel-preset-kyt-core
