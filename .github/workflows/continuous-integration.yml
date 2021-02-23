@@ -16,6 +16,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
+    - run: yarn
     - run: yarn exec lerna run prepare
     - run: yarn lint:ci
     - run: yarn test:ci
