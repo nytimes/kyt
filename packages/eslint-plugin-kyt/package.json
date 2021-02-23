@@ -15,7 +15,7 @@
   ],
   "devDependencies": {
     "@babel/plugin-proposal-class-properties": "7.13.0",
-    "@babel/preset-env": "7.13.0",
+    "@babel/preset-env": "7.13.5",
     "@babel/preset-react": "7.12.13",
     "mocha": "8.3.0"
   },
