@@ -4,7 +4,7 @@ node_js:
   - lts/dubnium
   - lts/erbium
 before_script:
-  - yarn exec lerna run prepare
+  - yarn lerna run prepare
 script:
   - yarn lint:ci
   - yarn test:ci
