@@ -22,7 +22,7 @@ local steps = [
     name: "e2e",
     commands: ["yarn e2e"]
   }
-]
+];
 
 [
   {
