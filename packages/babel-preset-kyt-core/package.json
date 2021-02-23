@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-kyt-core",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "description": "An opinionated babel preset, best used with kyt",
   "main": "lib/index.js",
   "author": "NYTimes",
@@ -10,11 +10,11 @@
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "7.13.0",
-    "@babel/plugin-proposal-decorators": "7.13.0",
+    "@babel/plugin-proposal-decorators": "7.13.5",
     "@babel/plugin-proposal-optional-chaining": "7.13.0",
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
-    "@babel/plugin-transform-runtime": "7.13.2",
-    "@babel/preset-env": "7.13.0",
+    "@babel/plugin-transform-runtime": "7.13.6",
+    "@babel/preset-env": "7.13.5",
     "babel-plugin-dynamic-import-node": "2.3.3",
     "core-js": "3.9.0",
     "lodash.merge": "4.6.2"

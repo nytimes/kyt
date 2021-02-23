@@ -12,12 +12,13 @@
     "doc": "docs"
   },
   "scripts": {
+    "drone": "drone jsonnet",
     "bootstrap": "yarn && lerna run prepare",
     "bootstrap:ci": "yarn && lerna run prepare",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "publish": "lerna publish",
     "test:starter": "lerna exec --scope \"kyt-starter-{server,static,universal}-src\" --",
-    "test": "lerna run --parallel prepare && jest && yarn test:starter yarn test",
+    "test": "lerna run prepare && jest && yarn test:starter yarn test",
     "test:ci": "jest --ci && yarn test:starter yarn test --ci",
     "test-update": "jest -u && yarn test:starter yarn test-update",
     "test-coverage": "jest --coverage && yarn test:starter yarn test-coverage",
@@ -32,9 +33,9 @@
   "devDependencies": {
     "@babel/cli": "7.13.0",
     "@babel/core": "7.13.1",
-    "@babel/eslint-parser": "7.13.0",
+    "@babel/eslint-parser": "7.13.4",
     "@babel/eslint-plugin": "7.13.0",
-    "@babel/runtime": "7.13.2",
+    "@babel/runtime": "7.13.6",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "core-js": "3.9.0",
