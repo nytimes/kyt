@@ -30,11 +30,11 @@
     "watch-cli": "yarn workspace kyt watch"
   },
   "devDependencies": {
-    "@babel/cli": "7.12.17",
-    "@babel/core": "7.12.17",
-    "@babel/eslint-parser": "7.12.17",
-    "@babel/eslint-plugin": "7.12.13",
-    "@babel/runtime": "7.12.18",
+    "@babel/cli": "7.13.0",
+    "@babel/core": "7.13.0",
+    "@babel/eslint-parser": "7.13.0",
+    "@babel/eslint-plugin": "7.13.0",
+    "@babel/runtime": "7.13.0",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "core-js": "3.9.0",
