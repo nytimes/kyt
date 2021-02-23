@@ -24,7 +24,7 @@
     "test-coverage": "jest --coverage"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.1",
+    "@babel/runtime": "7.13.2",
     "core-js": "3.9.0",
     "kyt-runtime": "1.2.14",
     "pretty-lights": "0.0.19",
