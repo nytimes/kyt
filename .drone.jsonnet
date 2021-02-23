@@ -28,7 +28,7 @@ local steps = [
   {
     kind: "pipeline",
     type: "docker",
-    name: "kyt",
+    name: "kyt_master",
     when: {
       event: ["pull_request"]
     },
@@ -38,7 +38,7 @@ local steps = [
   {
     kind: "pipeline",
     type: "docker",
-    name: "kyt",
+    name: "kyt_pr",
     when: {
       branch: ["master"],
       event: ["push"]
