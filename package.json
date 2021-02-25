@@ -18,7 +18,7 @@
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "publish": "lerna publish",
     "test:starter": "lerna exec --scope \"kyt-starter-{server,static,universal}-src\" --",
-    "test": "lerna run prepare && jest && yarn test:starter yarn test",
+    "test": "lerna run prepare && jest --detectOpenHandles && yarn test:starter yarn test --detectOpenHandles",
     "test:ci": "jest --ci && yarn test:starter yarn test --ci",
     "test-update": "jest -u && yarn test:starter yarn test-update",
     "test-coverage": "jest --coverage && yarn test:starter yarn test-coverage",
