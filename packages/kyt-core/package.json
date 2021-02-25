@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@babel/code-frame": "7.12.13",
-    "@babel/runtime": "7.13.6",
+    "@babel/runtime": "7.13.7",
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "1.1.15",
     "commander": "6.2.1",
@@ -44,7 +44,7 @@
     "regenerator-runtime": "0.13.7",
     "semver": "7.3.4",
     "shelljs": "0.8.4",
-    "simple-git": "2.35.1",
+    "simple-git": "2.35.2",
     "sockjs-client": "1.5.0",
     "source-map-support": "0.5.19",
     "strip-ansi": "6.0.0",
