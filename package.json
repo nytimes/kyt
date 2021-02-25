@@ -35,7 +35,7 @@
     "@babel/core": "7.13.1",
     "@babel/eslint-parser": "7.13.4",
     "@babel/eslint-plugin": "7.13.0",
-    "@babel/runtime": "7.13.6",
+    "@babel/runtime": "7.13.7",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "core-js": "3.9.0",
