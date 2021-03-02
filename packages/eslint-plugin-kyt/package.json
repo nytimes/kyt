@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-kyt",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "ESLint plugin for Vi-specific rules.",
   "main": "lib/index.js",
   "author": "NYTimes",
@@ -14,7 +14,7 @@
     "eslint-plugin"
   ],
   "devDependencies": {
-    "babel-preset-kyt-react": "1.2.12",
+    "babel-preset-kyt-react": "1.2.13",
     "mocha": "8.3.0"
   },
   "scripts": {
