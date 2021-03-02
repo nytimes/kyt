@@ -1,6 +1,6 @@
 {
   "name": "jest-preset-kyt-styled",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Jest preset for linting styles in CSS-in-JS projects",
   "main": "jest-preset.js",
   "author": "NYTimes",
