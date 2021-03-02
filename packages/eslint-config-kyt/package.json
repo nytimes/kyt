@@ -9,10 +9,10 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "peerDependencies": {
-    "@babel/core": "^7.13.1",
-    "@babel/eslint-parser": "^7.13.4",
+    "@babel/core": "^7.13.8",
+    "@babel/eslint-parser": "^7.13.8",
     "@babel/eslint-plugin": "^7.13.0",
-    "eslint": "^7.20.0",
+    "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-import": "^2.22.1",
