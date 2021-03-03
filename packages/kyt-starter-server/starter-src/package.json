@@ -59,10 +59,10 @@
     "jest": "26.6.3",
     "jest-preset-kyt-enzyme": "1.3.6",
     "jest-preset-kyt-styled": "1.4.6",
-    "kyt": "1.0.14",
+    "kyt": "1.0.15",
     "prettier": "2.2.1"
   },
-  "version": "1.0.15",
+  "version": "1.0.16",
   "kyt": {
     "files": [
       ".babelrc.js",
