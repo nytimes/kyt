@@ -25,7 +25,7 @@
     "test-coverage": "jest --coverage"
   },
   "dependencies": {
-    "@babel/runtime": "7.13.9",
+    "@babel/runtime": "7.13.10",
     "compression": "1.7.4",
     "core-js": "3.9.1",
     "express": "4.17.1",
@@ -39,9 +39,9 @@
     "source-map-support": "0.5.19"
   },
   "devDependencies": {
-    "@babel/core": "7.13.8",
-    "@babel/eslint-parser": "7.13.8",
-    "@babel/eslint-plugin": "7.13.0",
+    "@babel/core": "7.13.10",
+    "@babel/eslint-parser": "7.13.10",
+    "@babel/eslint-plugin": "7.13.10",
     "babel-preset-kyt-react": "1.2.17",
     "enzyme": "3.11.0",
     "eslint": "7.21.0",
@@ -49,7 +49,7 @@
     "eslint-config-kyt": "1.4.13",
     "eslint-config-prettier": "7.2.0",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jest": "24.1.5",
+    "eslint-plugin-jest": "24.2.0",
     "eslint-plugin-jest-formatting": "2.0.1",
     "eslint-plugin-json": "2.1.2",
     "eslint-plugin-jsx-a11y": "6.4.1",
