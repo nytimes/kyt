@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.7](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.4.6...jest-preset-kyt-styled@1.4.7) (2021-03-10)
+
+**Note:** Version bump only for package jest-preset-kyt-styled
+
+
+
+
+
 ## [1.4.6](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.4.5...jest-preset-kyt-styled@1.4.6) (2021-03-02)
 
 **Note:** Version bump only for package jest-preset-kyt-styled

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.14](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.4.13...eslint-config-kyt@1.4.14) (2021-03-10)
+
+**Note:** Version bump only for package eslint-config-kyt
+
+
+
+
+
 ## [1.4.13](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.4.12...eslint-config-kyt@1.4.13) (2021-03-02)
 
 **Note:** Version bump only for package eslint-config-kyt
