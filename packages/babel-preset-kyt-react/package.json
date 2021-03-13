@@ -5,7 +5,11 @@
   "main": "lib/index.js",
   "author": "NYTimes",
   "license": "Apache-2.0",
-  "repository": "git+https://github.com/nytimes/kyt/packages/kyt-babel-preset-react",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt.git",
+    "directory": "packages/babel-preset-kyt-react"
+  },
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {

@@ -1,0 +1,33 @@
+{
+  "name": "babel-preset-kyt",
+  "version": "1.0.0",
+  "description": "An opinionated babel preset.",
+  "main": "lib/index.js",
+  "author": "NYTimes",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nytimes/kyt.git",
+    "directory": "packages/babel-preset-kyt"
+  },
+  "bugs": "https://github.com/nytimes/kyt/issues",
+  "homepage": "https://github.com/nytimes/kyt#readme",
+  "dependencies": {
+    "@babel/preset-typescript": "7.13.0",
+    "babel-plugin-replace-ts-export-assignment": "0.0.2",
+    "babel-preset-kyt-react": "1.2.18"
+  },
+  "keywords": [
+    "babel",
+    "babel-preset",
+    "kyt",
+    "react",
+    "typescript"
+  ],
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
+  }
+}
