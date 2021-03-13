@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.18...kyt-starter-universal-src@1.1.0) (2021-03-13)
+
+
+### Features
+
+* add babel preset with typescript support ([#704](http://github.com/nytimes/kyt/packages/kyt-starter-universal/issues/704)) ([066d24a](http://github.com/nytimes/kyt/packages/kyt-starter-universal/commit/066d24ad31fef2ab8777a9ed584901454b59a2e3)), closes [#694](http://github.com/nytimes/kyt/packages/kyt-starter-universal/issues/694)
+
+
+
+
+
 ## [1.0.18](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal-src@1.0.17...kyt-starter-universal-src@1.0.18) (2021-03-11)
 
 **Note:** Version bump only for package kyt-starter-universal-src

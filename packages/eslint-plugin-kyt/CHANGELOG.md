@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.3.0](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.2.12...eslint-plugin-kyt@1.3.0) (2021-03-13)
+
+
+### Features
+
+* add babel preset with typescript support ([#704](https://github.com/nytimes/kyt/issues/704)) ([066d24a](https://github.com/nytimes/kyt/commit/066d24ad31fef2ab8777a9ed584901454b59a2e3)), closes [#694](https://github.com/nytimes/kyt/issues/694)
+
+
+
+
+
 ## [1.2.12](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.2.11...eslint-plugin-kyt@1.2.12) (2021-03-10)
 
 **Note:** Version bump only for package eslint-plugin-kyt
