@@ -5,8 +5,35 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-function buildManifest(compiler, compilation) {
-  const { context } = compiler.options;
+/* eslint-disable no-continue,no-restricted-syntax */
+
+function ignoreModule(name, vendorTest, ignoreModuleTest) {
+  if (name && ignoreModuleTest) {
+    if (typeof ignoreModuleTest === 'function') {
+      if (ignoreModuleTest({ resource: name })) {
+        return true;
+      }
+    } else if (ignoreModuleTest.test(name)) {
+      return true;
+    }
+  } else if (name && vendorTest) {
+    if (typeof vendorTest === 'function') {
+      if (vendorTest({ resource: name })) {
+        return true;
+      }
+    } else if (vendorTest.test(name)) {
+      return true;
+    }
+  } else if (name && name.match(/node_modules/)) {
+    return true;
+  }
+  return false;
+}
+
+function buildManifest(compiler, compilation, opts) {
+  const { context, optimization } = compiler.options;
+  const vendorTest = optimization?.splitChunks?.cacheGroups?.vendor?.test;
+  const { ignoreModuleTest } = opts;
   const manifest = {
     entries: Array.from(compilation.entrypoints.keys()),
     bundles: {},
@@ -18,12 +45,11 @@ function buildManifest(compiler, compilation) {
         return;
       }
 
-      // eslint-disable-next-line no-restricted-syntax
       for (const module of chunk.modulesIterable) {
         const { id } = module;
         const name = typeof module.libIdent === 'function' ? module.libIdent({ context }) : null;
-        if (name && name.match(/node_modules/)) {
-          // eslint-disable-next-line no-continue
+
+        if (ignoreModule(name, vendorTest, ignoreModuleTest)) {
           continue;
         }
 
@@ -64,11 +90,18 @@ function buildManifest(compiler, compilation) {
 export class LoadablePlugin {
   constructor(opts = {}) {
     this.filename = opts.filename;
+    this.ignoreModuleTest = null;
+  }
+
+  setIgnoreModuleTest(test) {
+    this.ignoreModuleTest = test;
   }
 
   apply(compiler) {
     compiler.hooks.emit.tapAsync('LoadableManifest', (compilation, callback) => {
-      const manifest = buildManifest(compiler, compilation);
+      const manifest = buildManifest(compiler, compilation, {
+        ignoreModuleTest: this.ignoreModuleTest,
+      });
       const json = JSON.stringify(manifest, null, 2);
       const outputDirectory = path.dirname(this.filename);
       try {
