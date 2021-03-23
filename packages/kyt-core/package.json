@@ -51,7 +51,7 @@
     "url-loader": "4.1.1",
     "webpack": "4.44.2",
     "webpack-dev-server": "3.11.2",
-    "webpack-merge": "4.2.2",
+    "webpack-merge": "5.7.3",
     "webpack-node-externals": "2.5.2",
     "webpackbar": "4.0.0"
   },
