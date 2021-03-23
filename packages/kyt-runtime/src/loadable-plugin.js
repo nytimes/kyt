@@ -5,8 +5,6 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
-/* eslint-disable no-continue,no-restricted-syntax */
-
 function ignoreModule(name, vendorTest, ignoreModuleTest) {
   if (name && ignoreModuleTest) {
     if (typeof ignoreModuleTest === 'function') {
@@ -45,11 +43,13 @@ function buildManifest(compiler, compilation, opts) {
         return;
       }
 
+      // eslint-disable-next-line no-restricted-syntax
       for (const module of chunk.modulesIterable) {
         const { id } = module;
         const name = typeof module.libIdent === 'function' ? module.libIdent({ context }) : null;
 
         if (ignoreModule(name, vendorTest, ignoreModuleTest)) {
+          // eslint-disable-next-line no-continue
           continue;
         }
 
