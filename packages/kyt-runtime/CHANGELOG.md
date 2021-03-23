@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.25](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.24...kyt-runtime@1.2.25) (2021-03-23)
+
+
+### Bug Fixes
+
+* include code-split node_modules in loadable manifest ([#718](http://github.com/nytimes/kyt/packages/kyt-runtime/issues/718)) ([c9e1ca9](http://github.com/nytimes/kyt/packages/kyt-runtime/commit/c9e1ca95504a9d5c40564bcbbbdfdfcfccead00e))
+
+
+
+
+
 ## [1.2.24](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.23...kyt-runtime@1.2.24) (2021-03-13)
 
 **Note:** Version bump only for package kyt-runtime
