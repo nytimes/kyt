@@ -74,8 +74,23 @@
   },
   "workspaces": {
     "packages": [
-      "packages/*",
-      "packages/**/starter-src"
+      "packages/babel-preset-kyt",
+      "packages/babel-preset-kyt-core",
+      "packages/babel-preset-kyt-react",
+      "packages/eslint-config-kyt",
+      "packages/eslint-plugin-kyt",
+      "packages/jest-preset-kyt-enzyme",
+      "packages/jest-preset-kyt-styled",
+      "packages/kyt-core",
+      "packages/kyt-runtime",
+      "packages/kyt-starter-server",
+      "packages/kyt-starter-server/starter-src",
+      "packages/kyt-starter-static",
+      "packages/kyt-starter-static/starter-src",
+      "packages/kyt-starter-universal",
+      "packages/kyt-starter-universal/starter-src",
+      "packages/kyt-utils",
+      "packages/stylelint-config-kyt"
     ]
   }
 }
