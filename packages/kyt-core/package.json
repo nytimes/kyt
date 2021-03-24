@@ -49,7 +49,7 @@
     "source-map-support": "0.5.19",
     "strip-ansi": "6.0.0",
     "url-loader": "4.1.1",
-    "webpack": "4.44.2",
+    "webpack": "4.46.0",
     "webpack-dev-server": "3.11.2",
     "webpack-merge": "4.2.2",
     "webpack-node-externals": "2.5.2",
