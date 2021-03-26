@@ -45,7 +45,7 @@
     "semver": "7.3.5",
     "shelljs": "0.8.4",
     "simple-git": "2.37.0",
-    "sockjs-client": "1.5.0",
+    "sockjs-client": "1.5.1",
     "source-map-support": "0.5.19",
     "strip-ansi": "6.0.0",
     "url-loader": "4.1.1",
