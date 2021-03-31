@@ -10,7 +10,7 @@
     "enzyme-to-json": "3.6.1",
     "jest-environment-jsdom-global": "2.0.4",
     "jest-silent-reporter": "0.5.0",
-    "jsdom": "16.5.1",
+    "jsdom": "16.5.2",
     "raf": "3.4.1"
   },
   "peerDependencies": {
