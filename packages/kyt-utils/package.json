@@ -1,6 +1,6 @@
 {
   "name": "kyt-utils",
-  "version": "1.3.16",
+  "version": "1.3.17",
   "description": "A shared kyt utility library.",
   "author": "NYTimes",
   "license": "Apache-2.0",
@@ -17,6 +17,6 @@
     "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
   },
   "devDependencies": {
-    "babel-preset-kyt-core": "1.2.1"
+    "babel-preset-kyt-core": "1.2.2"
   }
 }
