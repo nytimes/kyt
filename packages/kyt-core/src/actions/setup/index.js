@@ -11,15 +11,15 @@ const { installUserDependencies, createDir, copyStarterKytFiles } = require('./u
 const { fakePackageJson, updateUserPackageJSON } = require('./packages');
 const { ypmQ, dirNameQ, getRepoUrl } = require('./questions');
 
-module.exports = (cliArgs = {}) => {
+module.exports = options => {
   // which package manager to use
   const defaultManager = yarnOrNpm();
   // --package-manager
-  let ypm = cliArgs.packageManager || defaultManager;
+  let ypm = options.packageManager || defaultManager;
   // --local-path
   let localPath;
-  if (cliArgs.localPath) {
-    localPath = path.resolve(cliArgs.localPath);
+  if (options.localPath) {
+    localPath = path.resolve(options.localPath);
   }
 
   // local vars
@@ -80,7 +80,7 @@ module.exports = (cliArgs = {}) => {
         starterPackageJSON,
         starterKytConfig,
         paths,
-        cliArgs.kytVersion
+        options.kytVersion
       );
       installUserDependencies(paths, ypm, oldUserPackageJSON, bailProcess);
       copyStarterKytFiles(paths, starterPackageJSON, tmpDir);
@@ -123,13 +123,13 @@ module.exports = (cliArgs = {}) => {
     const questions = [];
 
     // Check to see if yarn is installed or user has specified flag
-    if (defaultManager === 'yarn' && !cliArgs.packageManager) {
+    if (defaultManager === 'yarn' && !options.packageManager) {
       questions.push(ypmQ);
     }
-    if (!cliArgs.directory) {
+    if (!options.directory) {
       questions.push(dirNameQ);
     }
-    if (!cliArgs.repository && !cliArgs.localPath) {
+    if (!options.repository && !options.localPath) {
       questions.push({
         type: 'list',
         name: 'starterChoice',
@@ -148,8 +148,8 @@ module.exports = (cliArgs = {}) => {
       }
 
       // Create new directory if --directory was passed or question was answered
-      if (cliArgs.directory || answer.dirName) {
-        createDir(cliArgs.directory || answer.dirName);
+      if (options.directory || answer.dirName) {
+        createDir(options.directory || answer.dirName);
       }
 
       // set up path strings
@@ -158,9 +158,9 @@ module.exports = (cliArgs = {}) => {
       // For passed starter-kyts the root of the starter-kyt is the root of the repo
       tmpDir = tmpStarter;
 
-      if (answer.starterChoice === ownRepo || cliArgs.repository) {
+      if (answer.starterChoice === ownRepo || options.repository) {
         // add repo question then move on to src prompt
-        return getRepoUrl(cliArgs.repository)
+        return getRepoUrl(options.repository)
           .then(url => {
             repoURL = url;
             return starterKytSetup();
