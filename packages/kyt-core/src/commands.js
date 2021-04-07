@@ -27,16 +27,16 @@ program
   .command('dev')
   .option('-C, --config <path>', 'config path')
   .description('Start server for development')
-  .action(args => {
-    devAction(kytConfigFn(args.config));
+  .action(options => {
+    devAction(kytConfigFn(options.config));
   });
 
 program
   .command('build')
   .option('-C, --config <path>', 'config path')
   .description('Create a production build')
-  .action(args => {
-    buildAction(kytConfigFn(args.config));
+  .action(options => {
+    buildAction(kytConfigFn(options.config));
   });
 
 program
