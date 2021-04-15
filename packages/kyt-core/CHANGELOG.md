@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.21...kyt@1.1.0) (2021-04-15)
+
+
+### Features
+
+* **lint:** new rule, no-immediate-return ([#748](http://github.com/nytimes/kyt/packages/kyt-core/issues/748)) ([e73fc98](http://github.com/nytimes/kyt/packages/kyt-core/commit/e73fc980b65752310d861307d30864427ed4f3cb))
+
+
+
+
+
 ## [1.0.21](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.0.20...kyt@1.0.21) (2021-04-07)
 
 **Note:** Version bump only for package kyt

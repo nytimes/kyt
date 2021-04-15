@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.4.0](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.3.2...eslint-plugin-kyt@1.4.0) (2021-04-15)
+
+
+### Features
+
+* **lint:** new rule, no-immediate-return ([#748](https://github.com/nytimes/kyt/issues/748)) ([e73fc98](https://github.com/nytimes/kyt/commit/e73fc980b65752310d861307d30864427ed4f3cb))
+
+
+
+
+
 ## [1.3.2](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.3.1...eslint-plugin-kyt@1.3.2) (2021-03-31)
 
 **Note:** Version bump only for package eslint-plugin-kyt
