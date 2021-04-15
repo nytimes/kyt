@@ -7,10 +7,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "enzyme-adapter-react-16": "1.15.6",
-    "enzyme-to-json": "3.6.1",
+    "enzyme-to-json": "3.6.2",
     "jest-environment-jsdom-global": "2.0.4",
     "jest-silent-reporter": "0.5.0",
-    "jsdom": "16.5.2",
+    "jsdom": "16.5.3",
     "raf": "3.4.1"
   },
   "peerDependencies": {
