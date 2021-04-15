@@ -42,12 +42,14 @@ class StartServerPlugin {
   _getExecArgv() {
     const { options } = this;
     const execArgv = (options.nodeArgs || []).concat(process.execArgv);
+    // eslint-disable-next-line kyt/no-immediate-return
     return execArgv;
   }
 
   _getArgs() {
     const { options } = this;
     const argv = options.args || [];
+    // eslint-disable-next-line kyt/no-immediate-return
     return argv;
   }
 
