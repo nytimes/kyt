@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.2](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.4.1...eslint-plugin-kyt@1.4.2) (2021-04-15)
+
+
+### Bug Fixes
+
+* **lint:** ensure that node.argument.name is a string value ([8928b85](https://github.com/nytimes/kyt/commit/8928b85bc8a937910b4bc0f359174b1fbc4b524d))
+
+
+
+
+
 ## [1.4.1](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.4.0...eslint-plugin-kyt@1.4.1) (2021-04-15)
 
 **Note:** Version bump only for package eslint-plugin-kyt
