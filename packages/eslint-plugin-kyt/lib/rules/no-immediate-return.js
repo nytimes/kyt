@@ -17,7 +17,12 @@ exports.rule = {
         const next = node.body.body[i + 1];
         if (next && n.type === 'VariableDeclaration' && n.declarations.length === 1) {
           const name = n.declarations[0].id.name;
-          if (next.type === 'ReturnStatement' && name === next.argument.name) {
+          if (
+            next.type === 'ReturnStatement' &&
+            next.argument.type === 'Identifier' &&
+            next.argument.name &&
+            name === next.argument.name
+          ) {
             context.report({
               node: next,
               message,

@@ -20,6 +20,9 @@ ruleTester.run('no-immediate-return', rule, {
     {
       code: `class Foo { render() { const foo = ''; const bar = ''; return foo; } }`,
     },
+    {
+      code: `function Foo() { const { bar, baz } = {}; return (1); }`,
+    },
   ],
   invalid: [
     {
