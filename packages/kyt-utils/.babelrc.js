@@ -1,5 +1,17 @@
-const babelPresetKytCore = require('babel-preset-kyt-core');
-
 module.exports = {
-  presets: [[babelPresetKytCore, { includeRuntime: true }]],
+  presets: [
+    [
+      'babel-preset-kyt-core',
+      {
+        includeRuntime: true,
+        envOptions: {
+          client: {
+            targets: {
+              node: 'current',
+            },
+          },
+        },
+      },
+    ],
+  ],
 };
