@@ -22,7 +22,7 @@
     "webpack-assets-manifest": "4.0.3"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.13.16",
+    "@babel/runtime": "^7.13.17",
     "core-js": "^3.10.2",
     "regenerator-runtime": "^0.13.7",
     "source-map-support": "^0.5.19"
