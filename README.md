@@ -6,7 +6,7 @@ Every sizable JavaScript web app needs a common foundation: a setup to build, ru
 
 Read more about kyt in our [blog post](http://open.blogs.nytimes.com/2016/09/13/introducing-kyt-our-web-app-configuration-toolkit/).
 
-[![Build Status](https://travis-ci.org/nytimes/kyt.svg?branch=master)](https://travis-ci.org/nytimes/kyt) [![Dependency Status](https://david-dm.org/NYTimes/kyt.svg)](https://david-dm.org/NYTimes/kyt) [![npm](https://img.shields.io/npm/v/kyt.svg)](https://www.npmjs.com/package/kyt)
+[![Build Status](https://travis-ci.org/nytimes/kyt.svg?branch=main)](https://travis-ci.org/nytimes/kyt) [![Dependency Status](https://david-dm.org/NYTimes/kyt.svg)](https://david-dm.org/NYTimes/kyt) [![npm](https://img.shields.io/npm/v/kyt.svg)](https://www.npmjs.com/package/kyt)
 
 ## Quick Start
 
