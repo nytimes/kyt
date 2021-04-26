@@ -39,14 +39,14 @@
     "@babel/runtime": "7.13.17",
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-conventional": "12.1.1",
-    "core-js": "3.10.2",
+    "core-js": "3.11.0",
     "enzyme": "3.11.0",
-    "eslint": "7.24.0",
+    "eslint": "7.25.0",
     "eslint-config-airbnb": "18.2.1",
     "eslint-config-kyt": "file:packages/eslint-config-kyt",
-    "eslint-config-prettier": "8.2.0",
+    "eslint-config-prettier": "8.3.0",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jest": "24.3.5",
+    "eslint-plugin-jest": "24.3.6",
     "eslint-plugin-jest-formatting": "2.0.1",
     "eslint-plugin-json": "2.1.2",
     "eslint-plugin-jsx-a11y": "6.4.1",
@@ -64,8 +64,8 @@
     "regenerator-runtime": "0.13.7",
     "rimraf": "3.0.2",
     "source-map-support": "0.5.19",
-    "stylelint": "13.12.0",
-    "stylelint-config-standard": "21.0.0"
+    "stylelint": "13.13.0",
+    "stylelint-config-standard": "22.0.0"
   },
   "workspaces": {
     "packages": [
