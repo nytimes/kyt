@@ -52,7 +52,7 @@
     "webpack": "4.46.0",
     "webpack-dev-server": "3.11.2",
     "webpack-merge": "4.2.2",
-    "webpack-node-externals": "2.5.2",
+    "webpack-node-externals": "3.0.0",
     "webpackbar": "4.0.0"
   },
   "devDependencies": {
