@@ -1,6 +1,6 @@
 {
   "name": "stylelint-config-kyt",
-  "version": "1.4.6",
+  "version": "1.4.7",
   "main": ".stylelintrc.js",
   "description": "StyleLint configuration for kyt projects.",
   "author": "NYTimes",
