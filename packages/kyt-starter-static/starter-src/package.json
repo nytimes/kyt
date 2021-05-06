@@ -29,7 +29,7 @@
     "kyt-runtime": "1.2.33",
     "pretty-lights": "0.0.19",
     "prop-types": "15.7.2",
-    "react": "16.14.0",
+    "react": "17.0.2",
     "react-dom": "16.14.0",
     "react-router-dom": "5.2.0",
     "regenerator-runtime": "0.13.7"
