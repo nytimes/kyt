@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.6](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.1.5...kyt@1.1.6) (2021-05-18)
+
+
+### Bug Fixes
+
+* support file imports from namespaced packages ([#783](http://github.com/nytimes/kyt/packages/kyt-core/issues/783)) ([fcd9a7c](http://github.com/nytimes/kyt/packages/kyt-core/commit/fcd9a7c4322b0277b6557bc60d3c5cecbd9a227d))
+
+
+
+
+
 ## [1.1.5](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.1.4...kyt@1.1.5) (2021-04-26)
 
 **Note:** Version bump only for package kyt
