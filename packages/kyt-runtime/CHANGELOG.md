@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.34](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.33...kyt-runtime@1.2.34) (2021-05-20)
+
+
+### Bug Fixes
+
+* **runtme:** check for null bundle ([#785](http://github.com/nytimes/kyt/packages/kyt-runtime/issues/785)) ([02e00a8](http://github.com/nytimes/kyt/packages/kyt-runtime/commit/02e00a8a6fd94a00e1bc2040b2a238a8a50a19da))
+
+
+
+
+
 ## [1.2.33](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.32...kyt-runtime@1.2.33) (2021-04-26)
 
 **Note:** Version bump only for package kyt-runtime

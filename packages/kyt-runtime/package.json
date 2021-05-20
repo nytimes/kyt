@@ -1,6 +1,6 @@
 {
   "name": "kyt-runtime",
-  "version": "1.2.33",
+  "version": "1.2.34",
   "description": "A shared kyt runtime utility library.",
   "author": "NYTimes",
   "license": "Apache-2.0",
