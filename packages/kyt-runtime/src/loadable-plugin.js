@@ -119,9 +119,6 @@ export class LoadablePlugin {
 
 export function getBundles(manifest, moduleIds) {
   return moduleIds.reduce((bundles, moduleId) => {
-    if (manifest[moduleId]) {
-      bundles.push(manifest[moduleId]);
-    }
-    return bundles;
+    return manifest[moduleId] ? bundles.concat(manifest[moduleId]) : bundles;
   }, []);
 }
