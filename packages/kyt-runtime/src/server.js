@@ -47,7 +47,9 @@ export const getBundles = ({ entry = 'main', modules, assets = null, loadableBun
 
   const jsBundles = bundles.filter(
     b =>
-      b.file.endsWith('.js') && !b.file.endsWith('.hot-update.js') && !hashes.includes(b.publicPath)
+      b?.file?.endsWith('.js') &&
+      !b.file.endsWith('.hot-update.js') &&
+      !hashes.includes(b.publicPath)
   );
   bundleManifest.scripts = [...new Set(jsBundles.map(b => b.publicPath))];
 
