@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.9](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.1.8...kyt@1.1.9) (2021-05-20)
+
+**Note:** Version bump only for package kyt
+
+
+
+
+
 ## [1.1.8](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.1.7...kyt@1.1.8) (2021-05-20)
 
 **Note:** Version bump only for package kyt

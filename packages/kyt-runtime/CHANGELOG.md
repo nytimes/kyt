@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.36](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.35...kyt-runtime@1.2.36) (2021-05-20)
+
+
+### Bug Fixes
+
+* concat not push ([#787](http://github.com/nytimes/kyt/packages/kyt-runtime/issues/787)) ([55245a8](http://github.com/nytimes/kyt/packages/kyt-runtime/commit/55245a842e774f65229cb3033f1e5ffac9bbab8f))
+
+
+
+
+
 ## [1.2.35](http://github.com/nytimes/kyt/packages/kyt-runtime/compare/kyt-runtime@1.2.34...kyt-runtime@1.2.35) (2021-05-20)
 
 
