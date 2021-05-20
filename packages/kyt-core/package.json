@@ -22,7 +22,7 @@
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "1.2.6",
     "commander": "7.2.0",
-    "core-js": "3.11.0",
+    "core-js": "3.12.1",
     "file-loader": "6.2.0",
     "filesize": "6.3.0",
     "find-babel-config": "1.2.0",

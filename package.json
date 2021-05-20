@@ -39,7 +39,7 @@
     "@babel/runtime": "7.13.17",
     "@commitlint/cli": "12.1.1",
     "@commitlint/config-conventional": "12.1.1",
-    "core-js": "3.11.0",
+    "core-js": "3.12.1",
     "enzyme": "3.11.0",
     "eslint": "7.25.0",
     "eslint-config-airbnb": "18.2.1",
