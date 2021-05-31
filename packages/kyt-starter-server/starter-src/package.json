@@ -27,7 +27,7 @@
   "dependencies": {
     "@babel/runtime": "7.13.17",
     "compression": "1.7.4",
-    "core-js": "3.11.0",
+    "core-js": "3.13.1",
     "express": "4.17.1",
     "kyt-runtime": "1.2.36",
     "pretty-lights": "0.0.19",
