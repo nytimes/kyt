@@ -1,10 +1,3 @@
-const babelPresetEnv = require('@babel/preset-env');
-const babelPluginClassProperties = require('@babel/plugin-proposal-class-properties');
-const babelPluginDecorators = require('@babel/plugin-proposal-decorators');
-const babelPluginOptionalChaining = require('@babel/plugin-proposal-optional-chaining');
-const babelTransformRuntime = require('@babel/plugin-transform-runtime');
-const babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
-const babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 const merge = require('lodash.merge');
 const pkg = require('../package');
 
@@ -17,7 +10,6 @@ module.exports = function getPresetCore(context, opts) {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
     // transformed by default
-    loose: true,
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
     corejs: pkg.dependencies['core-js'],
@@ -31,7 +23,6 @@ module.exports = function getPresetCore(context, opts) {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
     // transformed by default
-    loose: true,
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
     corejs: pkg.dependencies['core-js'],
@@ -40,8 +31,6 @@ module.exports = function getPresetCore(context, opts) {
       node: 'current',
     },
   };
-
-  const testEnvOptions = { loose: true };
 
   // Derive the babel-preset-env options based on the type of environment
   // we are in, client, server or test. Give the ability to users to override
@@ -58,7 +47,7 @@ module.exports = function getPresetCore(context, opts) {
   if (process.env.KYT_ENV_TYPE === 'server') {
     envOptions = merge({}, serverEnvOptions, userEnvOptions.server ? userEnvOptions.server : {});
   } else if (process.env.KYT_ENV_TYPE === 'test') {
-    envOptions = merge({}, testEnvOptions, userEnvOptions.test ? userEnvOptions.test : {});
+    envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
     // Unless the user wants to define the transform-runtime plugin,
     // we needs to make sure it's true/added for tests.
     if (opts.includeRuntime === undefined) opts.includeRuntime = true;
@@ -67,15 +56,19 @@ module.exports = function getPresetCore(context, opts) {
   }
 
   return {
-    presets: [[babelPresetEnv, envOptions]],
+    presets: [['@babel/preset-env', envOptions]],
 
     plugins: [
-      [babelPluginDecorators, { legacy: true }],
-      [babelPluginClassProperties, { loose: true }],
-      babelPluginOptionalChaining,
+      ['@babel/plugin-proposal-decorators', { legacy: true }],
+      ['@babel/plugin-proposal-class-properties', { loose: true }],
+      // needed to suppress warnings about mismatched "loose" values across plugins
+      ['@babel/plugin-proposal-private-methods', { loose: true }],
+      '@babel/plugin-proposal-optional-chaining',
       // provide the ability to opt into babel-plugin-transform-runtime inclusion
-      opts.includeRuntime === true && babelTransformRuntime,
-      process.env.KYT_ENV_TYPE === 'test' ? babelDynamicImportNode : babelSyntaxDynamicImport,
+      opts.includeRuntime === true && '@babel/plugin-transform-runtime',
+      process.env.KYT_ENV_TYPE === 'test'
+        ? 'babel-plugin-dynamic-import-node'
+        : '@babel/plugin-syntax-dynamic-import',
     ].filter(Boolean),
   };
 };
