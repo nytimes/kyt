@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.10](https://github.com/nytimes/kyt/compare/babel-preset-kyt-react@1.3.9...babel-preset-kyt-react@1.3.10) (2021-06-01)
+
+**Note:** Version bump only for package babel-preset-kyt-react
+
+
+
+
+
 ## [1.3.9](https://github.com/nytimes/kyt/compare/babel-preset-kyt-react@1.3.8...babel-preset-kyt-react@1.3.9) (2021-06-01)
 
 **Note:** Version bump only for package babel-preset-kyt-react
