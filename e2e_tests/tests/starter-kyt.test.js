@@ -66,7 +66,7 @@ describe('starter kyts', () => {
       shell.cd(path.join(util.rootDir, 'packages/kyt-starter-static/starter-src'));
     });
 
-    window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 300000;
+    jest.setTimeout(300000);
 
     it('should start a server on :3001', () => {
       let outputTest;
