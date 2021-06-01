@@ -2,12 +2,8 @@
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const {
-  serverSrcPath,
-  serverBuildPath,
-  clientAssetsFile,
-  loadableAssetsFile,
-} = require('kyt-utils/paths')();
+const { serverSrcPath, serverBuildPath, clientAssetsFile, loadableAssetsFile } =
+  require('kyt-utils/paths')();
 const StartServerPlugin = require('./StartServerPlugin');
 const getPolyfill = require('./getPolyfill');
 

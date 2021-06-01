@@ -24,6 +24,7 @@ Object {
       Object {
         "corejs": "3.13.1",
         "forceAllTransforms": true,
+        "loose": true,
         "modules": "commonjs",
         "targets": Object {
           "browsers": Array [

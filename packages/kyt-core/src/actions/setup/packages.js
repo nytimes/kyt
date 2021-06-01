@@ -1,6 +1,7 @@
 const fs = require('fs');
 const semver = require('semver');
 const shell = require('shelljs');
+const cloneDeep = require('lodash.clonedeep');
 const logger = require('kyt-utils/logger');
 
 export const fakePackageJson = {
@@ -66,9 +67,8 @@ export const addPackageJsonScripts = (
   const starterScripts = (starterPackageJSON && starterPackageJSON.scripts) || {};
 
   // Merge the Starter-kyt script names into the list of commands.
-  const commands = [
-    ...new Set([...Object.keys(commandMap), ...Object.keys(starterScripts)]),
-  ].sort();
+  const keys = [...Object.keys(commandMap), ...Object.keys(starterScripts)];
+  const commands = new Set(keys);
   commands.forEach(command => {
     // If the command is from a starter-kyt then
     // we need to copy in the starter-kyt value.
@@ -112,18 +112,15 @@ export const updatePackageJSONDependencies = (packageJSON, starterPackageJSON) =
       return;
     }
     const deps = {};
-    [
-      ...new Set([
-        ...Object.keys(packageJSON[key] || {}),
-        ...Object.keys(starterPackageJSON[key] || {}),
-      ]),
-    ]
-      .sort()
-      .forEach(depKey => {
-        deps[depKey] =
-          (starterPackageJSON[key] && starterPackageJSON[key][depKey]) ||
-          (packageJSON[key] && packageJSON[key][depKey]);
-      });
+    const keys = new Set([
+      ...Object.keys(packageJSON[key] || {}),
+      ...Object.keys(starterPackageJSON[key] || {}),
+    ]);
+    keys.forEach(depKey => {
+      deps[depKey] =
+        (starterPackageJSON[key] && starterPackageJSON[key][depKey]) ||
+        (packageJSON[key] && packageJSON[key][depKey]);
+    });
     packageJSON[key] = deps;
   });
 
@@ -143,15 +140,15 @@ export const updateUserPackageJSON = (starterPackageJSON, starterKytConfig, path
     const userJSON = fs.readFileSync(paths.userPackageJSONPath, 'utf8');
     newUserPackageJSON = JSON.parse(userJSON);
   } else {
-    newUserPackageJSON = fakePackageJson;
+    newUserPackageJSON = cloneDeep(fakePackageJson);
     logger.task('Creating a new package.json. You should fill it in.');
   }
   // Clone the package.json so that we have a backup.
-  const oldUserPackageJSON = { ...newUserPackageJSON };
-  let kytPrefVersion = kytVersion;
+  const oldUserPackageJSON = cloneDeep(newUserPackageJSON);
 
   // Add dependencies from starter-kyts
-  kytPrefVersion = kytVersion || checkStarterKytVersion(newUserPackageJSON, starterPackageJSON);
+  const kytPrefVersion =
+    kytVersion || checkStarterKytVersion(newUserPackageJSON, starterPackageJSON);
   newUserPackageJSON = updatePackageJSONDependencies(newUserPackageJSON, starterPackageJSON);
   newUserPackageJSON = addKytDependency(newUserPackageJSON, kytPrefVersion);
   newUserPackageJSON = addPackageJsonScripts(
