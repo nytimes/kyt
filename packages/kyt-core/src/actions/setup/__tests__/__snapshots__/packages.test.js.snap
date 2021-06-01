@@ -86,7 +86,7 @@ Object {
     "author": "",
     "description": "",
     "devDependencies": Object {
-      "kyt": "1.0.0",
+      "kyt": "0.3.0",
     },
     "license": "",
     "main": "",
@@ -102,18 +102,9 @@ Object {
   "oldUserPackageJSON": Object {
     "author": "",
     "description": "",
-    "devDependencies": Object {
-      "kyt": "1.0.0",
-    },
     "license": "",
     "main": "",
     "name": "",
-    "scripts": Object {
-      "build": "kyt build",
-      "dev": "kyt dev",
-      "kyt:help": "kyt --help",
-      "start": "node build/server/main.js",
-    },
     "version": "1.0.0",
   },
 }

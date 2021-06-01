@@ -11,7 +11,7 @@ describe('KYT CLI', () => {
     rootPath = path.resolve(process.cwd());
   });
 
-  window.jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
+  jest.setTimeout(10000000);
 
   describe.each([
     ['universal', 'standard-starter', '', ''],

@@ -17,6 +17,7 @@ module.exports = function getPresetCore(context, opts) {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
     // transformed by default
+    loose: true,
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
     corejs: pkg.dependencies['core-js'],
@@ -30,6 +31,7 @@ module.exports = function getPresetCore(context, opts) {
     // modules are handled by webpack, don't transform them
     // however, scripts outside of Jest/Webpack will want these
     // transformed by default
+    loose: true,
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
     corejs: pkg.dependencies['core-js'],

@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 14.5.0
-  - lts/dubnium
+  - 15
   - lts/erbium
+  - lts/fermium
 before_script:
   - yarn lerna run prepare
 script:

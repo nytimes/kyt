@@ -1,4 +1,4 @@
-local node_image = "node:14.15.0@sha256:a2397f3a30c8631d761b6e7d13af5a1107b2222b7d0ec2f515640674a44a09fd";
+local node_image = "node:14.15.5";
 
 local local_step = {
   pull: "if-not-exists",
@@ -7,7 +7,7 @@ local local_step = {
 
 local steps = [
   local_step + {
-    name: "boostrap",
+    name: "bootstrap",
     commands: ["yarn bootstrap"]
   },
   local_step + {
