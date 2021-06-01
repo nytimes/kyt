@@ -41,6 +41,8 @@ module.exports = function getPresetCore(context, opts) {
     },
   };
 
+  const testEnvOptions = { loose: true };
+
   // Derive the babel-preset-env options based on the type of environment
   // we are in, client, server or test. Give the ability to users to override
   // the default environments in their own configurations, for example:
@@ -56,7 +58,7 @@ module.exports = function getPresetCore(context, opts) {
   if (process.env.KYT_ENV_TYPE === 'server') {
     envOptions = merge({}, serverEnvOptions, userEnvOptions.server ? userEnvOptions.server : {});
   } else if (process.env.KYT_ENV_TYPE === 'test') {
-    envOptions = merge({}, userEnvOptions.test ? userEnvOptions.test : {});
+    envOptions = merge({}, testEnvOptions, userEnvOptions.test ? userEnvOptions.test : {});
     // Unless the user wants to define the transform-runtime plugin,
     // we needs to make sure it's true/added for tests.
     if (opts.includeRuntime === undefined) opts.includeRuntime = true;
