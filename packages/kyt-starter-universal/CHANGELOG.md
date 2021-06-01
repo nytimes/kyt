@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.11](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal@1.1.10...kyt-starter-universal@1.1.11) (2021-06-01)
+
+**Note:** Version bump only for package kyt-starter-universal
+
+
+
+
+
 ## [1.1.10](http://github.com/nytimes/kyt/packages/kyt-starter-universal/compare/kyt-starter-universal@1.1.9...kyt-starter-universal@1.1.10) (2021-05-18)
 
 **Note:** Version bump only for package kyt-starter-universal
