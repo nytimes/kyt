@@ -6,6 +6,7 @@ const babelTransformRuntime = require('@babel/plugin-transform-runtime');
 const babelSyntaxDynamicImport = require('@babel/plugin-syntax-dynamic-import');
 const babelDynamicImportNode = require('babel-plugin-dynamic-import-node');
 const merge = require('lodash.merge');
+const pkg = require('../package');
 
 module.exports = function getPresetCore(context, opts) {
   opts = opts || {};
@@ -18,7 +19,7 @@ module.exports = function getPresetCore(context, opts) {
     // transformed by default
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
-    corejs: 3,
+    corejs: pkg.dependencies['core-js'],
     forceAllTransforms: true,
     targets: {
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
@@ -31,7 +32,7 @@ module.exports = function getPresetCore(context, opts) {
     // transformed by default
     modules: process.env.KYT_ENV_TYPE ? false : 'commonjs',
     useBuiltIns: 'entry',
-    corejs: 3,
+    corejs: pkg.dependencies['core-js'],
     forceAllTransforms: true,
     targets: {
       node: 'current',
