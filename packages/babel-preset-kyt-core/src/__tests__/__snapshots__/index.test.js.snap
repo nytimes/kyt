@@ -22,7 +22,7 @@ Object {
     Array [
       "env",
       Object {
-        "corejs": 3,
+        "corejs": "3.13.1",
         "forceAllTransforms": true,
         "modules": "commonjs",
         "targets": Object {
