@@ -7,7 +7,7 @@ local local_step = {
 
 local steps = [
   local_step + {
-    name: "boostrap",
+    name: "bootstrap",
     commands: ["yarn bootstrap"]
   },
   local_step + {

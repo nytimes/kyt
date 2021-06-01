@@ -11,6 +11,10 @@
   "directories": {
     "doc": "docs"
   },
+  "engines": {
+    "node": "^14.15.0",
+    "yarn": "^1"
+  },
   "scripts": {
     "drone": "drone jsonnet",
     "bootstrap": "yarn && lerna run prepare",
