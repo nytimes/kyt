@@ -57,7 +57,7 @@
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "husky": "6.0.0",
-    "jest": "27.0.3",
+    "jest": "27.0.4",
     "jest-runner-eslint": "0.10.0",
     "jest-silent-reporter": "0.5.0",
     "lerna": "4.0.0",
