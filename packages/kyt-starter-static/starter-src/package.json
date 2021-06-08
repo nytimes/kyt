@@ -54,12 +54,12 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "html-webpack-plugin": "4.5.1",
     "jest": "27.0.4",
-    "jest-preset-kyt-enzyme": "1.4.5",
+    "jest-preset-kyt-enzyme": "1.5.0",
     "jest-preset-kyt-styled": "1.4.10",
     "kyt": "1.1.13",
     "prettier": "2.3.1"
   },
-  "version": "1.1.18",
+  "version": "1.1.19",
   "kyt": {
     "files": [
       ".babelrc.js",

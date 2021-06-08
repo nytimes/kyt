@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.5.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.4.5...jest-preset-kyt-enzyme@1.5.0) (2021-06-08)
+
+
+### Features
+
+* use jsdom instead of jsdom-global for testEnvironment ([#811](https://github.com/nytimes/kyt/issues/811)) ([940ba7a](https://github.com/nytimes/kyt/commit/940ba7a699ada94e630d44ea4e5d5b68ec82aac6))
+
+
+
+
+
 ## [1.4.5](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.4.4...jest-preset-kyt-enzyme@1.4.5) (2021-06-08)
 
 
