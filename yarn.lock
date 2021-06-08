@@ -5368,7 +5368,7 @@ eslint-config-airbnb@18.2.1:
     object.entries "^1.1.2"
 
 "eslint-config-kyt@file:packages/eslint-config-kyt":
-  version "1.5.7"
+  version "1.5.8"
 
 eslint-config-prettier@8.3.0:
   version "8.3.0"
@@ -7658,12 +7658,7 @@ jest-each@^27.0.2:
     jest-util "^27.0.2"
     pretty-format "^27.0.2"
 
-jest-environment-jsdom-global@2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/jest-environment-jsdom-global/-/jest-environment-jsdom-global-2.0.4.tgz#b74704487a374a67ff301fc51cfeae30fae40e8e"
-  integrity sha512-1vB8q+PrszXW4Pf7Zgp3eQ4oNVbA7GY6+jmrg1qi6RtYRWDJ60/xdkhjqAbQpX8BRyvqQJYQi66LXER5YNeHXg==
-
-jest-environment-jsdom@^27.0.3:
+jest-environment-jsdom@27.0.3, jest-environment-jsdom@^27.0.3:
   version "27.0.3"
   resolved "https://registry.yarnpkg.com/jest-environment-jsdom/-/jest-environment-jsdom-27.0.3.tgz#ed73e913ddc03864eb9f934b5cbabf1b63504e2e"
   integrity sha512-5KLmgv1bhiimpSA8oGTnZYk6g4fsNyZiA/6gI2tAZUgrufd7heRUSVh4gRokzZVEj8zlwAQYT0Zs6tuJSW/ECA==

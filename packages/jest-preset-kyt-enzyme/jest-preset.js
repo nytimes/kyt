@@ -10,7 +10,7 @@ const jestConfig = {
   // if projects spread this value, the import can be lost if it is not absolute
   snapshotSerializers: [require.resolve('enzyme-to-json/serializer')],
   testMatch: ['**/*.test.js'],
-  testEnvironment: require.resolve('jest-environment-jsdom-global'),
+  testEnvironment: require.resolve('jest-environment-jsdom'),
   collectCoverageFrom: ['**/*.js'],
   coverageDirectory: '<rootDir>/coverage',
   errorOnDeprecated: true,
