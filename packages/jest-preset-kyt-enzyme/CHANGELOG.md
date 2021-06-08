@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.5](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.4.4...jest-preset-kyt-enzyme@1.4.5) (2021-06-08)
+
+
+### Bug Fixes
+
+* set url when instantiating jsdom ([#810](https://github.com/nytimes/kyt/issues/810)) ([b54ed7b](https://github.com/nytimes/kyt/commit/b54ed7b34538f21dede305d90ad6ab9d4bbc8434))
+
+
+
+
+
 ## [1.4.4](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.4.3...jest-preset-kyt-enzyme@1.4.4) (2021-06-08)
 
 **Note:** Version bump only for package jest-preset-kyt-enzyme

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.18](http://github.com/nytimes/kyt/packages/kyt-starter-static/compare/kyt-starter-static-src@1.1.17...kyt-starter-static-src@1.1.18) (2021-06-08)
+
+**Note:** Version bump only for package kyt-starter-static-src
+
+
+
+
+
 ## [1.1.17](http://github.com/nytimes/kyt/packages/kyt-starter-static/compare/kyt-starter-static-src@1.1.16...kyt-starter-static-src@1.1.17) (2021-06-08)
 
 **Note:** Version bump only for package kyt-starter-static-src
