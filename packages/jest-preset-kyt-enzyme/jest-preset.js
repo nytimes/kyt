@@ -9,9 +9,9 @@ const jestConfig = {
   setupFilesAfterEnv: [require.resolve('./setup')],
   // if projects spread this value, the import can be lost if it is not absolute
   snapshotSerializers: [require.resolve('enzyme-to-json/serializer')],
-  testMatch: ['**/*.test.js'],
+  testMatch: ['**/*.test.[jt]s?(x)'],
   testEnvironment: require.resolve('jest-environment-jsdom'),
-  collectCoverageFrom: ['**/*.js'],
+  collectCoverageFrom: ['**/*.[jt]s?(x)'],
   coverageDirectory: '<rootDir>/coverage',
   errorOnDeprecated: true,
   cacheDirectory: '<rootDir>/.caches/jest',
