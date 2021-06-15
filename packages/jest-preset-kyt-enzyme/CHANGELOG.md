@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.5.0...jest-preset-kyt-enzyme@1.6.0) (2021-06-15)
+
+
+### Features
+
+* **jest-preset-kyt-enzyme:** match and collect coverage from .ts/.tsx files ([#825](https://github.com/nytimes/kyt/issues/825)) ([20a03d2](https://github.com/nytimes/kyt/commit/20a03d27671ba456c9423733c01d09ea02051e5a))
+
+
+
+
+
 # [1.5.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.4.5...jest-preset-kyt-enzyme@1.5.0) (2021-06-08)
 
 
