@@ -1,6 +1,6 @@
 const jestConfig = {
   verbose: true,
-  moduleFileExtensions: ['js', 'jsx', 'json'],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json'],
   moduleNameMapper: {
     '^[./a-zA-Z0-9!&$_-]+\\.(css|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|ico|md)$':
       require.resolve('./stub'),
