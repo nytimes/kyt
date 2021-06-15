@@ -17,8 +17,8 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@babel/code-frame": "7.12.13",
-    "@babel/runtime": "7.14.0",
+    "@babel/code-frame": "7.14.5",
+    "@babel/runtime": "7.14.6",
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "1.2.10",
     "commander": "7.2.0",
@@ -29,7 +29,7 @@
     "gzip-size": "6.0.0",
     "ink": "3.0.8",
     "ink-table": "3.0.0",
-    "inquirer": "8.1.0",
+    "inquirer": "8.1.1",
     "install": "0.13.0",
     "jest-message-util": "27.0.2",
     "kyt-runtime": "1.2.40",
@@ -44,7 +44,7 @@
     "regenerator-runtime": "0.13.7",
     "semver": "7.3.5",
     "shelljs": "0.8.4",
-    "simple-git": "2.39.0",
+    "simple-git": "2.40.0",
     "sockjs-client": "1.5.1",
     "source-map-support": "0.5.19",
     "strip-ansi": "6.0.0",
