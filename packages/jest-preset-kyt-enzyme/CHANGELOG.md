@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.7.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.6.0...jest-preset-kyt-enzyme@1.7.0) (2021-06-15)
+
+
+### Features
+
+* **jest-preset-kyt-enzyme:** update moduleFileExtensions too ([#827](https://github.com/nytimes/kyt/issues/827)) ([7463bc5](https://github.com/nytimes/kyt/commit/7463bc53cbff2db6bb1337615e4300a35512e92a))
+
+
+
+
+
 # [1.6.0](https://github.com/nytimes/kyt/compare/jest-preset-kyt-enzyme@1.5.0...jest-preset-kyt-enzyme@1.6.0) (2021-06-15)
 
 
