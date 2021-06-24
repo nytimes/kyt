@@ -13,7 +13,7 @@
     "stylelint-processor-styled-components": "1.10.0"
   },
   "peerDependencies": {
-    "jest": "^27.0.4"
+    "jest": "^27.0.5"
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }

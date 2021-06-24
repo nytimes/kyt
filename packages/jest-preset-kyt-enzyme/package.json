@@ -8,14 +8,14 @@
   "dependencies": {
     "enzyme-adapter-react-16": "1.15.6",
     "enzyme-to-json": "3.6.2",
-    "jest-environment-jsdom": "27.0.3",
+    "jest-environment-jsdom": "27.0.5",
     "jest-silent-reporter": "0.5.0",
     "jsdom": "16.6.0",
     "raf": "3.4.1"
   },
   "peerDependencies": {
     "enzyme": "^3.11.0",
-    "jest": "^27.0.4"
+    "jest": "^27.0.5"
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"
 }

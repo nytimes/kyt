@@ -28,7 +28,7 @@ Object {
     Array [
       "@babel/preset-env",
       Object {
-        "corejs": "3.14.0",
+        "corejs": "3.15.1",
         "forceAllTransforms": true,
         "modules": "commonjs",
         "targets": Object {
