@@ -1480,10 +1480,10 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@jest/types@^27.0.2":
-  version "27.0.2"
-  resolved "https://registry.yarnpkg.com/@jest/types/-/types-27.0.2.tgz#e153d6c46bda0f2589f0702b071f9898c7bbd37e"
-  integrity sha512-XpjCtJ/99HB4PmyJ2vgmN7vT+JLP7RW1FBT9RgnMFS4Dt7cvIyBee8O3/j98aUZ34ZpenPZFqmaaObWSeL65dg==
+"@jest/types@^27.0.2", "@jest/types@^27.0.6":
+  version "27.0.6"
+  resolved "https://registry.yarnpkg.com/@jest/types/-/types-27.0.6.tgz#9a992bc517e0c49f035938b8549719c2de40706b"
+  integrity sha512-aSquT1qa9Pik26JK5/3rvnYb4bGtm1VFNesHKmNTwmPIgOrixvhL2ghIvFRNEpzy3gU+rUgjIF/KodbkFAl++g==
   dependencies:
     "@types/istanbul-lib-coverage" "^2.0.0"
     "@types/istanbul-reports" "^3.0.0"
@@ -5390,7 +5390,7 @@ eslint-config-airbnb@18.2.1:
     object.entries "^1.1.2"
 
 "eslint-config-kyt@file:packages/eslint-config-kyt":
-  version "1.5.9"
+  version "1.5.10"
 
 eslint-config-prettier@8.3.0:
   version "8.3.0"
@@ -7772,18 +7772,18 @@ jest-matcher-utils@^27.0.2:
     jest-get-type "^27.0.1"
     pretty-format "^27.0.2"
 
-jest-message-util@27.0.2, jest-message-util@^27.0.2:
-  version "27.0.2"
-  resolved "https://registry.yarnpkg.com/jest-message-util/-/jest-message-util-27.0.2.tgz#181c9b67dff504d8f4ad15cba10d8b80f272048c"
-  integrity sha512-rTqWUX42ec2LdMkoUPOzrEd1Tcm+R1KfLOmFK+OVNo4MnLsEaxO5zPDb2BbdSmthdM/IfXxOZU60P/WbWF8BTw==
+jest-message-util@27.0.6, jest-message-util@^27.0.2:
+  version "27.0.6"
+  resolved "https://registry.yarnpkg.com/jest-message-util/-/jest-message-util-27.0.6.tgz#158bcdf4785706492d164a39abca6a14da5ab8b5"
+  integrity sha512-rBxIs2XK7rGy+zGxgi+UJKP6WqQ+KrBbD1YMj517HYN3v2BG66t3Xan3FWqYHKZwjdB700KiAJ+iES9a0M+ixw==
   dependencies:
     "@babel/code-frame" "^7.12.13"
-    "@jest/types" "^27.0.2"
+    "@jest/types" "^27.0.6"
     "@types/stack-utils" "^2.0.0"
     chalk "^4.0.0"
     graceful-fs "^4.2.4"
     micromatch "^4.0.4"
-    pretty-format "^27.0.2"
+    pretty-format "^27.0.6"
     slash "^3.0.0"
     stack-utils "^2.0.3"
 
@@ -10260,12 +10260,12 @@ pretty-error@^2.1.1:
     lodash "^4.17.20"
     renderkid "^2.0.4"
 
-pretty-format@^27.0.2:
-  version "27.0.2"
-  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-27.0.2.tgz#9283ff8c4f581b186b2d4da461617143dca478a4"
-  integrity sha512-mXKbbBPnYTG7Yra9qFBtqj+IXcsvxsvOBco3QHxtxTl+hHKq6QdzMZ+q0CtL4ORHZgwGImRr2XZUX2EWzORxig==
+pretty-format@^27.0.2, pretty-format@^27.0.6:
+  version "27.0.6"
+  resolved "https://registry.yarnpkg.com/pretty-format/-/pretty-format-27.0.6.tgz#ab770c47b2c6f893a21aefc57b75da63ef49a11f"
+  integrity sha512-8tGD7gBIENgzqA+UBzObyWqQ5B778VIFZA/S66cclyd5YkFLYs2Js7gxDKf0MXtTc9zcS7t1xhdfcElJ3YIvkQ==
   dependencies:
-    "@jest/types" "^27.0.2"
+    "@jest/types" "^27.0.6"
     ansi-regex "^5.0.0"
     ansi-styles "^5.0.0"
     react-is "^17.0.1"
