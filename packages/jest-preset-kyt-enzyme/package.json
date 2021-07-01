@@ -1,6 +1,6 @@
 {
   "name": "jest-preset-kyt-enzyme",
-  "version": "1.7.1",
+  "version": "1.7.2",
   "description": "Jest preset",
   "main": "jest-preset.js",
   "author": "NYTimes",

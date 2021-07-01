@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.3.28](https://github.com/nytimes/kyt/compare/kyt-utils@1.3.27...kyt-utils@1.3.28) (2021-07-01)
+
+**Note:** Version bump only for package kyt-utils
+
+
+
+
+
 ## [1.3.27](https://github.com/nytimes/kyt/compare/kyt-utils@1.3.26...kyt-utils@1.3.27) (2021-06-24)
 
 **Note:** Version bump only for package kyt-utils
