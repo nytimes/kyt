@@ -1,41 +1,37 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render } from '@testing-library/react';
 import { StaticRouter } from 'react-router-dom';
 import { DynamicImports } from 'kyt-runtime/server';
 import App, { Home, Tools } from '.';
 
-it('Test example', () => {
-  const wrapper = shallow(<App>test</App>);
+describe('App', () => {
+  it('Test home route', async () => {
+    await Home.preload();
+    const modules = [];
+    const { container } = render(
+      <DynamicImports report={module => modules.push(module)}>
+        <StaticRouter location="/" context={{}}>
+          <App />
+        </StaticRouter>
+      </DynamicImports>
+    );
 
-  expect(wrapper.is('div')).toBeTruthy();
-});
+    expect(container.firstChild).toMatchSnapshot();
+    expect(modules).toMatchSnapshot();
+  });
 
-it('Test home route', async () => {
-  await Home.preload();
-  const modules = [];
-  const wrapper = mount(
-    <DynamicImports report={module => modules.push(module)}>
-      <StaticRouter location="/" context={{}}>
-        <App />
-      </StaticRouter>
-    </DynamicImports>
-  );
+  it('Test tools route', async () => {
+    await Tools.preload();
+    const modules = [];
+    const { container } = render(
+      <DynamicImports report={module => modules.push(module)}>
+        <StaticRouter location="/tools" context={{}}>
+          <App />
+        </StaticRouter>
+      </DynamicImports>
+    );
 
-  expect(wrapper).toMatchSnapshot();
-  expect(modules).toMatchSnapshot();
-});
-
-it('Test tools route', async () => {
-  await Tools.preload();
-  const modules = [];
-  const wrapper = mount(
-    <DynamicImports report={module => modules.push(module)}>
-      <StaticRouter location="/tools" context={{}}>
-        <App />
-      </StaticRouter>
-    </DynamicImports>
-  );
-
-  expect(wrapper).toMatchSnapshot();
-  expect(modules).toMatchSnapshot();
+    expect(container.firstChild).toMatchSnapshot();
+    expect(modules).toMatchSnapshot();
+  });
 });

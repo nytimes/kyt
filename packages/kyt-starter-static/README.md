@@ -18,7 +18,7 @@ The following are some of the tools included in this `starter-kyt`:
 - [React](https://reactjs.org/) - Component library
 - [React Router](https://reacttraining.com/react-router/) - Server and client routing
 - [Pretty Lights](https://github.com/nytimes/pretty-lights) - CSS-in-JS with a reliable API
-- [Enzyme](https://airbnb.io/enzyme/) - React component testing
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) - React component testing
 - [html webpack plugin](https://github.com/ampedandwired/html-webpack-plugin) - Builds a static html file
 
 ## Notes on implementation
