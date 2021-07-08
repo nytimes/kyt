@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](http://github.com/nytimes/kyt/packages/kyt-starter-server/compare/kyt-starter-server@1.1.15...kyt-starter-server@1.2.0) (2021-07-08)
+
+
+### Features
+
+* switch to React Testing Library for component testing ([#850](http://github.com/nytimes/kyt/packages/kyt-starter-server/issues/850)) ([ec89180](http://github.com/nytimes/kyt/packages/kyt-starter-server/commit/ec89180a179bfbd15b5afcd7b55233435286d798))
+
+
+
+
+
 ## [1.1.15](http://github.com/nytimes/kyt/packages/kyt-starter-server/compare/kyt-starter-server@1.1.14...kyt-starter-server@1.1.15) (2021-07-01)
 
 **Note:** Version bump only for package kyt-starter-server

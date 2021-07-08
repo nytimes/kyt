@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.6.0](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.5.11...eslint-config-kyt@1.6.0) (2021-07-08)
+
+
+### Features
+
+* switch to React Testing Library for component testing ([#850](http://github.com/nytimes/kyt/packages/eslint-config-kyt/issues/850)) ([ec89180](http://github.com/nytimes/kyt/packages/eslint-config-kyt/commit/ec89180a179bfbd15b5afcd7b55233435286d798))
+
+
+
+
+
 ## [1.5.11](http://github.com/nytimes/kyt/packages/eslint-config-kyt/compare/eslint-config-kyt@1.5.10...eslint-config-kyt@1.5.11) (2021-07-01)
 
 **Note:** Version bump only for package eslint-config-kyt

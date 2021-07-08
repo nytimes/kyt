@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.2.0](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.1.16...kyt@1.2.0) (2021-07-08)
+
+
+### Features
+
+* switch to React Testing Library for component testing ([#850](http://github.com/nytimes/kyt/packages/kyt-core/issues/850)) ([ec89180](http://github.com/nytimes/kyt/packages/kyt-core/commit/ec89180a179bfbd15b5afcd7b55233435286d798))
+
+
+
+
+
 ## [1.1.16](http://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.1.15...kyt@1.1.16) (2021-07-01)
 
 **Note:** Version bump only for package kyt
