@@ -1,9 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { render } from '@testing-library/react';
 import Home from '.';
 
 it('Test example', () => {
-  const wrapper = shallow(<Home />);
+  const { container } = render(<Home />);
 
-  expect(wrapper.is('section')).toBeTruthy();
+  expect(container.firstChild.tagName.toLowerCase()).toBe('section');
 });

@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test home route 1`] = `
-.lights-9 {
+exports[`App Test home route 1`] = `
+.lights-5 {
   width: 500px;
   margin: 0 auto;
   padding: 15px;
   text-align: center;
 }
 
-.lights-12 {
+.lights-8 {
   width: 500px;
   margin: 15px auto;
 }
 
-.lights-4 {
+.lights-2 {
   display: inline-block;
 }
 
@@ -31,241 +31,81 @@ exports[`Test home route 1`] = `
   background: url(file-stub);
 }
 
-.lights-10 + .lights-10 {
+.lights-6 + .lights-6 {
   padding-top: 15px;
 }
 
-<Capture
-  report={[Function]}
->
-  <StaticRouter
-    context={Object {}}
-    location="/"
+<div>
+  <i
+    class="lights-0"
+  />
+  <ul
+    class="lights-5"
   >
-    <Router
-      history={
-        Object {
-          "action": "POP",
-          "block": [Function],
-          "createHref": [Function],
-          "go": [Function],
-          "goBack": [Function],
-          "goForward": [Function],
-          "listen": [Function],
-          "location": Object {
-            "hash": "",
-            "pathname": "/",
-            "search": "",
-            "state": undefined,
-          },
-          "push": [Function],
-          "replace": [Function],
-        }
-      }
-      staticContext={Object {}}
+    <li
+      class="lights-2"
     >
-      <App>
-        <div>
-          <i
-            className="lights-0"
-          />
-          <ul
-            className="lights-9"
-          >
-            <li
-              className="lights-4"
-            >
-              <Link
-                className="lights-1"
-                to="/"
-              >
-                <LinkAnchor
-                  className="lights-1"
-                  href="/"
-                  navigate={[Function]}
-                >
-                  <a
-                    className="lights-1"
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Home
-                  </a>
-                </LinkAnchor>
-              </Link>
-            </li>
-            <li
-              className="lights-4"
-            >
-              <Link
-                className="lights-1"
-                to="/tools"
-              >
-                <LinkAnchor
-                  className="lights-1"
-                  href="/tools"
-                  navigate={[Function]}
-                >
-                  <a
-                    className="lights-1"
-                    href="/tools"
-                    onClick={[Function]}
-                  >
-                    Tools
-                  </a>
-                </LinkAnchor>
-              </Link>
-            </li>
-          </ul>
-          <div
-            className="lights-12"
-          >
-            <Switch>
-              <Route
-                component={[Function]}
-                computedMatch={
-                  Object {
-                    "isExact": true,
-                    "params": Object {},
-                    "path": "/",
-                    "url": "/",
-                  }
-                }
-                exact={true}
-                location={
-                  Object {
-                    "hash": "",
-                    "pathname": "/",
-                    "search": "",
-                    "state": undefined,
-                  }
-                }
-                path="/"
-              >
-                <LoadableComponent
-                  history={
-                    Object {
-                      "action": "POP",
-                      "block": [Function],
-                      "createHref": [Function],
-                      "go": [Function],
-                      "goBack": [Function],
-                      "goForward": [Function],
-                      "listen": [Function],
-                      "location": Object {
-                        "hash": "",
-                        "pathname": "/",
-                        "search": "",
-                        "state": undefined,
-                      },
-                      "push": [Function],
-                      "replace": [Function],
-                    }
-                  }
-                  location={
-                    Object {
-                      "hash": "",
-                      "pathname": "/",
-                      "search": "",
-                      "state": undefined,
-                    }
-                  }
-                  match={
-                    Object {
-                      "isExact": true,
-                      "params": Object {},
-                      "path": "/",
-                      "url": "/",
-                    }
-                  }
-                  staticContext={Object {}}
-                >
-                  <Home
-                    history={
-                      Object {
-                        "action": "POP",
-                        "block": [Function],
-                        "createHref": [Function],
-                        "go": [Function],
-                        "goBack": [Function],
-                        "goForward": [Function],
-                        "listen": [Function],
-                        "location": Object {
-                          "hash": "",
-                          "pathname": "/",
-                          "search": "",
-                          "state": undefined,
-                        },
-                        "push": [Function],
-                        "replace": [Function],
-                      }
-                    }
-                    location={
-                      Object {
-                        "hash": "",
-                        "pathname": "/",
-                        "search": "",
-                        "state": undefined,
-                      }
-                    }
-                    match={
-                      Object {
-                        "isExact": true,
-                        "params": Object {},
-                        "path": "/",
-                        "url": "/",
-                      }
-                    }
-                    staticContext={Object {}}
-                  >
-                    <section>
-                      <p
-                        className="lights-10"
-                      >
-                        Welcome to the 
-                        <strong>
-                          Universal React Starter-kyt
-                        </strong>
-                        . This starter kyt should serve as the base for an advanced, server-rendered React app.
-                      </p>
-                      <p
-                        className="lights-10"
-                      >
-                        Check out the Tools section for an outline of the libraries that are used in this Starter-kyt.
-                      </p>
-                    </section>
-                  </Home>
-                </LoadableComponent>
-              </Route>
-            </Switch>
-          </div>
-        </div>
-      </App>
-    </Router>
-  </StaticRouter>
-</Capture>
+      <a
+        class="lights-1"
+        href="/"
+      >
+        Home
+      </a>
+    </li>
+    <li
+      class="lights-2"
+    >
+      <a
+        class="lights-1"
+        href="/tools"
+      >
+        Tools
+      </a>
+    </li>
+  </ul>
+  <div
+    class="lights-8"
+  >
+    <section>
+      <p
+        class="lights-6"
+      >
+        Welcome to the 
+        <strong>
+          Universal React Starter-kyt
+        </strong>
+        . This starter kyt should serve as the base for an advanced, server-rendered React app.
+      </p>
+      <p
+        class="lights-6"
+      >
+        Check out the Tools section for an outline of the libraries that are used in this Starter-kyt.
+      </p>
+    </section>
+  </div>
+</div>
 `;
 
-exports[`Test home route 2`] = `
+exports[`App Test home route 2`] = `
 Array [
   "../Home",
 ]
 `;
 
-exports[`Test tools route 1`] = `
-.lights-9 {
+exports[`App Test tools route 1`] = `
+.lights-5 {
   width: 500px;
   margin: 0 auto;
   padding: 15px;
   text-align: center;
 }
 
-.lights-15 {
+.lights-11 {
   width: 500px;
   margin: 15px auto;
 }
 
-.lights-4 {
+.lights-2 {
   display: inline-block;
 }
 
@@ -283,257 +123,99 @@ exports[`Test tools route 1`] = `
   background: url(file-stub);
 }
 
-.lights-10 + .lights-10 {
+.lights-6 + .lights-6 {
   padding-top: 5px;
 }
 
-<Capture
-  report={[Function]}
->
-  <StaticRouter
-    context={Object {}}
-    location="/tools"
+<div>
+  <i
+    class="lights-0"
+  />
+  <ul
+    class="lights-5"
   >
-    <Router
-      history={
-        Object {
-          "action": "POP",
-          "block": [Function],
-          "createHref": [Function],
-          "go": [Function],
-          "goBack": [Function],
-          "goForward": [Function],
-          "listen": [Function],
-          "location": Object {
-            "hash": "",
-            "pathname": "/tools",
-            "search": "",
-            "state": undefined,
-          },
-          "push": [Function],
-          "replace": [Function],
-        }
-      }
-      staticContext={Object {}}
+    <li
+      class="lights-2"
     >
-      <App>
-        <div>
-          <i
-            className="lights-0"
-          />
-          <ul
-            className="lights-9"
-          >
-            <li
-              className="lights-4"
-            >
-              <Link
-                className="lights-1"
-                to="/"
-              >
-                <LinkAnchor
-                  className="lights-1"
-                  href="/"
-                  navigate={[Function]}
-                >
-                  <a
-                    className="lights-1"
-                    href="/"
-                    onClick={[Function]}
-                  >
-                    Home
-                  </a>
-                </LinkAnchor>
-              </Link>
-            </li>
-            <li
-              className="lights-4"
-            >
-              <Link
-                className="lights-1"
-                to="/tools"
-              >
-                <LinkAnchor
-                  className="lights-1"
-                  href="/tools"
-                  navigate={[Function]}
-                >
-                  <a
-                    className="lights-1"
-                    href="/tools"
-                    onClick={[Function]}
-                  >
-                    Tools
-                  </a>
-                </LinkAnchor>
-              </Link>
-            </li>
-          </ul>
-          <div
-            className="lights-15"
-          >
-            <Switch>
-              <Route
-                component={[Function]}
-                computedMatch={
-                  Object {
-                    "isExact": true,
-                    "params": Object {},
-                    "path": "/tools",
-                    "url": "/tools",
-                  }
-                }
-                location={
-                  Object {
-                    "hash": "",
-                    "pathname": "/tools",
-                    "search": "",
-                    "state": undefined,
-                  }
-                }
-                path="/tools"
-              >
-                <LoadableComponent
-                  history={
-                    Object {
-                      "action": "POP",
-                      "block": [Function],
-                      "createHref": [Function],
-                      "go": [Function],
-                      "goBack": [Function],
-                      "goForward": [Function],
-                      "listen": [Function],
-                      "location": Object {
-                        "hash": "",
-                        "pathname": "/tools",
-                        "search": "",
-                        "state": undefined,
-                      },
-                      "push": [Function],
-                      "replace": [Function],
-                    }
-                  }
-                  location={
-                    Object {
-                      "hash": "",
-                      "pathname": "/tools",
-                      "search": "",
-                      "state": undefined,
-                    }
-                  }
-                  match={
-                    Object {
-                      "isExact": true,
-                      "params": Object {},
-                      "path": "/tools",
-                      "url": "/tools",
-                    }
-                  }
-                  staticContext={Object {}}
-                >
-                  <Tools
-                    history={
-                      Object {
-                        "action": "POP",
-                        "block": [Function],
-                        "createHref": [Function],
-                        "go": [Function],
-                        "goBack": [Function],
-                        "goForward": [Function],
-                        "listen": [Function],
-                        "location": Object {
-                          "hash": "",
-                          "pathname": "/tools",
-                          "search": "",
-                          "state": undefined,
-                        },
-                        "push": [Function],
-                        "replace": [Function],
-                      }
-                    }
-                    location={
-                      Object {
-                        "hash": "",
-                        "pathname": "/tools",
-                        "search": "",
-                        "state": undefined,
-                      }
-                    }
-                    match={
-                      Object {
-                        "isExact": true,
-                        "params": Object {},
-                        "path": "/tools",
-                        "url": "/tools",
-                      }
-                    }
-                    staticContext={Object {}}
-                  >
-                    <ul>
-                      <li
-                        className="lights-10"
-                      >
-                        <a
-                          href="https://expressjs.com/"
-                        >
-                          Express
-                        </a>
-                         - server-side rendering
-                      </li>
-                      <li
-                        className="lights-10"
-                      >
-                        <a
-                          href="https://reactjs.org/"
-                        >
-                          React
-                        </a>
-                         - component library
-                      </li>
-                      <li
-                        className="lights-10"
-                      >
-                        <a
-                          href="https://reacttraining.com/react-router/"
-                        >
-                          React Router
-                        </a>
-                         - server and browser routing
-                      </li>
-                      <li
-                        className="lights-10"
-                      >
-                        <a
-                          href="https://github.com/nytimes/pretty-lights"
-                        >
-                          Pretty Lights
-                        </a>
-                         - CSS-in-JS with a reliable API
-                      </li>
-                      <li
-                        className="lights-10"
-                      >
-                        <a
-                          href="https://airbnb.io/enzyme/"
-                        >
-                          Enzyme
-                        </a>
-                         - React component testing
-                      </li>
-                    </ul>
-                  </Tools>
-                </LoadableComponent>
-              </Route>
-            </Switch>
-          </div>
-        </div>
-      </App>
-    </Router>
-  </StaticRouter>
-</Capture>
+      <a
+        class="lights-1"
+        href="/"
+      >
+        Home
+      </a>
+    </li>
+    <li
+      class="lights-2"
+    >
+      <a
+        class="lights-1"
+        href="/tools"
+      >
+        Tools
+      </a>
+    </li>
+  </ul>
+  <div
+    class="lights-11"
+  >
+    <ul>
+      <li
+        class="lights-6"
+      >
+        <a
+          href="https://expressjs.com/"
+        >
+          Express
+        </a>
+         - server-side rendering
+      </li>
+      <li
+        class="lights-6"
+      >
+        <a
+          href="https://reactjs.org/"
+        >
+          React
+        </a>
+         - component library
+      </li>
+      <li
+        class="lights-6"
+      >
+        <a
+          href="https://reacttraining.com/react-router/"
+        >
+          React Router
+        </a>
+         - server and browser routing
+      </li>
+      <li
+        class="lights-6"
+      >
+        <a
+          href="https://github.com/nytimes/pretty-lights"
+        >
+          Pretty Lights
+        </a>
+         - CSS-in-JS with a reliable API
+      </li>
+      <li
+        class="lights-6"
+      >
+        <a
+          href="https://testing-library.com/docs/react-testing-library/intro/"
+        >
+          React Testing Library
+        </a>
+         
+        - React component testing
+      </li>
+    </ul>
+  </div>
+</div>
 `;
 
-exports[`Test tools route 2`] = `
+exports[`App Test tools route 2`] = `
 Array [
   "../Tools",
 ]

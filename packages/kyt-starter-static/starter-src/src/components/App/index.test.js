@@ -1,9 +1,14 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { StaticRouter } from 'react-router-dom';
+import { render } from '@testing-library/react';
 import App from '.';
 
-it('Test example', () => {
-  const wrapper = shallow(<App>test</App>);
+it('App', () => {
+  const { container } = render(
+    <StaticRouter location="/foo">
+      <App />
+    </StaticRouter>
+  );
 
-  expect(wrapper.is('div')).toBeTruthy();
+  expect(container.firstChild.tagName.toLowerCase()).toBe('div');
 });

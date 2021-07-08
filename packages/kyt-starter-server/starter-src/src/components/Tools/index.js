@@ -19,7 +19,10 @@ function Tools() {
         reliable API
       </li>
       <li className={styles.toolClass}>
-        <a href="https://airbnb.io/enzyme/">Enzyme</a> - React component testing
+        <a href="https://testing-library.com/docs/react-testing-library/intro/">
+          React Testing Library
+        </a>{' '}
+        - React component testing
       </li>
     </ul>
   );
