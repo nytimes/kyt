@@ -35,7 +35,7 @@
     "regenerator-runtime": "0.13.7"
   },
   "devDependencies": {
-    "@babel/core": "7.14.6",
+    "@babel/core": "7.14.8",
     "@babel/eslint-parser": "7.14.7",
     "@babel/eslint-plugin": "7.14.5",
     "@testing-library/react": "12.0.0",
