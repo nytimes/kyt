@@ -5421,7 +5421,7 @@ eslint-config-airbnb@18.2.1:
     object.entries "^1.1.2"
 
 "eslint-config-kyt@file:packages/eslint-config-kyt":
-  version "1.5.11"
+  version "1.6.0"
 
 eslint-config-prettier@8.3.0:
   version "8.3.0"
@@ -5470,10 +5470,10 @@ eslint-plugin-jest-formatting@3.0.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-jest-formatting/-/eslint-plugin-jest-formatting-3.0.0.tgz#a9f45c7d8eabfb72692ec3899998613a3e63f868"
   integrity sha512-XM1CHe1jX6j+t/NeppcVnm/1zgDAFqwiSLJEyLB7HDpcqBEGbbTFLSayCW2Q9y7VwcXrJbDAKRoO6vZ7jCmRFw==
 
-eslint-plugin-jest@24.3.6:
-  version "24.3.6"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.3.6.tgz#5f0ca019183c3188c5ad3af8e80b41de6c8e9173"
-  integrity sha512-WOVH4TIaBLIeCX576rLcOgjNXqP+jNlCiEmRgFTfQtJ52DpwnIQKAVGlGPAN7CZ33bW6eNfHD6s8ZbEUTQubJg==
+eslint-plugin-jest@24.4.0:
+  version "24.4.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-24.4.0.tgz#fa4b614dbd46a98b652d830377971f097bda9262"
+  integrity sha512-8qnt/hgtZ94E9dA6viqfViKBfkJwFHXgJmTWlMGDgunw1XJEGqm3eiPjDsTanM3/u/3Az82nyQM9GX7PM/QGmg==
   dependencies:
     "@typescript-eslint/experimental-utils" "^4.0.1"
 
