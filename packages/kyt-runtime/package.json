@@ -22,9 +22,9 @@
     "webpack-assets-manifest": "4.0.6"
   },
   "peerDependencies": {
-    "@babel/runtime": "^7.14.6",
+    "@babel/runtime": "^7.14.8",
     "core-js": "^3.15.2",
-    "regenerator-runtime": "^0.13.7",
+    "regenerator-runtime": "^0.13.9",
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
