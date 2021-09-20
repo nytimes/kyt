@@ -38,7 +38,7 @@ describe('printAssets', () => {
 
   it('should print asset stats', () => {
     expect(logger.log).toHaveBeenCalledWith(
-      '    648.98 KB    (195.31 KB gzip)    build/public/main-1087ba4603e1150cbc80.js'
+      '    664.55 kB    (200 kB gzip)    build/public/main-1087ba4603e1150cbc80.js'
     );
   });
 });
