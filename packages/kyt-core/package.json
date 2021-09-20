@@ -46,7 +46,7 @@
     "shelljs": "0.8.4",
     "simple-git": "2.42.0",
     "sockjs-client": "1.5.2",
-    "source-map-support": "0.5.19",
+    "source-map-support": "0.5.20",
     "strip-ansi": "6.0.0",
     "url-loader": "4.1.1",
     "webpack": "4.46.0",
