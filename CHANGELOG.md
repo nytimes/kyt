@@ -2,6 +2,7 @@
 
 ## Master
 
+- Fixes broken link to blog post on `kyt`
 - `kyt-cli` is removed, commands are merged back into `kyt`
 - New package: `kyt-runtime`. Using this ensures that you will be nagged about installing dependencies for your production install. This is useful when you are pruning `node_modules` for production in CI, which will remove `kyt`. Also, allows you make `kyt` a dev dependency.
 - New package: `jest-preset-kyt-styled`. Use this preset to run `stylelint` against your `styled.js` files. `styled.js` is the convention that the NYT uses to store `css` and `styled` exports from Pretty Lights.
