@@ -13,7 +13,7 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
-    "@babel/preset-typescript": "7.14.5",
+    "@babel/preset-typescript": "7.15.0",
     "babel-plugin-replace-ts-export-assignment": "0.0.2",
     "babel-preset-kyt-react": "1.3.16"
   },
