@@ -21,7 +21,7 @@
     "@babel/runtime": "7.15.4",
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "1.2.15",
-    "commander": "8.1.0",
+    "commander": "8.2.0",
     "core-js": "3.18.0",
     "file-loader": "6.2.0",
     "filesize": "8.0.3",
