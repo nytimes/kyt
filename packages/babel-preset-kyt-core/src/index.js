@@ -17,6 +17,12 @@ module.exports = function getPresetCore(context, opts) {
     targets: {
       browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
     },
+    /**
+     * Ensure that certain plugins added by `@babel/preset-env` match the `loose: true`
+     * configuration option we set below for both `@babel/plugin-proposal-class-properties`
+     * and `@babel/plugin-proposal-private-methods`
+     */
+    loose: true,
   };
 
   const serverEnvOptions = {
@@ -30,6 +36,12 @@ module.exports = function getPresetCore(context, opts) {
     targets: {
       node: 'current',
     },
+    /**
+     * Ensure that certain plugins added by `@babel/preset-env` match the `loose: true`
+     * configuration option we set below for both `@babel/plugin-proposal-class-properties`
+     * and `@babel/plugin-proposal-private-methods`
+     */
+    loose: true,
   };
 
   // Derive the babel-preset-env options based on the type of environment
