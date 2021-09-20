@@ -63,6 +63,7 @@ module.exports = function getPresetCore(context, opts) {
       ['@babel/plugin-proposal-class-properties', { loose: true }],
       // needed to suppress warnings about mismatched "loose" values across plugins
       ['@babel/plugin-proposal-private-methods', { loose: true }],
+      ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
       '@babel/plugin-proposal-optional-chaining',
       // provide the ability to opt into babel-plugin-transform-runtime inclusion
       opts.includeRuntime === true && '@babel/plugin-transform-runtime',

@@ -21,6 +21,12 @@ Object {
         "loose": true,
       },
     ],
+    Array [
+      "@babel/plugin-proposal-private-property-in-object",
+      Object {
+        "loose": true,
+      },
+    ],
     "@babel/plugin-proposal-optional-chaining",
     "@babel/plugin-syntax-dynamic-import",
   ],

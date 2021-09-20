@@ -42,19 +42,19 @@ describe('babel-preset-kyt-core', () => {
   it('should support an `includeRuntime` option', () => {
     const config = presetKytCore({}, { includeRuntime: true });
 
-    expect(config.plugins[4]).toEqual('@babel/plugin-transform-runtime');
+    expect(config.plugins[5]).toEqual('@babel/plugin-transform-runtime');
   });
 
   it('should include a dynamic import plugin', () => {
     const config = presetKytCore();
 
-    expect(config.plugins[4]).toEqual('@babel/plugin-syntax-dynamic-import');
+    expect(config.plugins[5]).toEqual('@babel/plugin-syntax-dynamic-import');
   });
 
   it('should include a import node plugin when KYT_ENV_TYPE=test', () => {
     process.env.KYT_ENV_TYPE = 'test';
     const config = presetKytCore();
 
-    expect(config.plugins[5]).toEqual('babel-plugin-dynamic-import-node');
+    expect(config.plugins[6]).toEqual('babel-plugin-dynamic-import-node');
   });
 });
