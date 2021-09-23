@@ -15,7 +15,7 @@
   ],
   "devDependencies": {
     "babel-preset-kyt-react": "1.3.16",
-    "mocha": "9.0.3"
+    "mocha": "9.1.1"
   },
   "scripts": {
     "test": "mocha tests --recursive ./tests"
