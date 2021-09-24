@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.16](https://github.com/nytimes/kyt/compare/babel-preset-kyt-core@1.2.15...babel-preset-kyt-core@1.2.16) (2021-09-24)
+
+
+### Bug Fixes
+
+* silence "loose" warnings from babel plugin(s) ([#907](https://github.com/nytimes/kyt/issues/907)) ([c931081](https://github.com/nytimes/kyt/commit/c93108153efc4e718db265f1b5a171abc80d3c97)), closes [babel/babel#13176](https://github.com/babel/babel/issues/13176) [#906](https://github.com/nytimes/kyt/issues/906)
+
+
+
+
+
 ## [1.2.15](https://github.com/nytimes/kyt/compare/babel-preset-kyt-core@1.2.14...babel-preset-kyt-core@1.2.15) (2021-08-02)
 
 **Note:** Version bump only for package babel-preset-kyt-core

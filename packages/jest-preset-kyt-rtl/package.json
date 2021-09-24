@@ -1,6 +1,6 @@
 {
   "name": "jest-preset-kyt-rtl",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Jest preset",
   "main": "jest-preset.js",
   "author": "NYTimes",
