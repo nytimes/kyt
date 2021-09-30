@@ -53,7 +53,7 @@
     "eslint-plugin-react": "7.26.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "html-webpack-plugin": "4.5.1",
-    "jest": "27.2.1",
+    "jest": "27.2.4",
     "jest-preset-kyt-rtl": "1.1.2",
     "jest-preset-kyt-styled": "1.4.11",
     "kyt": "1.2.3",
