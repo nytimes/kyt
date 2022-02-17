@@ -1,0 +1,12 @@
+# Browsers that we support
+
+>1%
+last 4 versions
+not ie > 0
+not bb > 0
+not ie_mob > 0
+not opera > 0
+not kaios > 0
+not op_mob > 0
+not op_mini all
+not baidu > 0
