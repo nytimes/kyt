@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.5.4-alpha.0](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.5.3...eslint-plugin-kyt@1.5.4-alpha.0) (2022-02-22)
+
+**Note:** Version bump only for package eslint-plugin-kyt
+
+
+
+
+
 ## [1.5.3](https://github.com/nytimes/kyt/compare/eslint-plugin-kyt@1.5.2...eslint-plugin-kyt@1.5.3) (2021-09-24)
 
 **Note:** Version bump only for package eslint-plugin-kyt
