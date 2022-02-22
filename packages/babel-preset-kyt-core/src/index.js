@@ -14,9 +14,6 @@ module.exports = function getPresetCore(context, opts) {
     useBuiltIns: 'entry',
     corejs: pkg.dependencies['core-js'],
     forceAllTransforms: true,
-    targets: {
-      browsers: ['>1%', 'last 4 versions', 'not ie < 11'],
-    },
   };
 
   const serverEnvOptions = {
