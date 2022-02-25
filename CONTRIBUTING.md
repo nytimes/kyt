@@ -77,7 +77,7 @@ documentation](https://github.com/lerna/lerna/tree/main/commands/publish#readme)
 
 If you would like your prerelease to have the `next` dist tag, rather than
 `latest`, such as when creating a release candidate or testing a development
-version, you can use the provided `publish:next` script.o
+version, you can use the provided `publish:next` script.
 
 ```sh
 $ GH_TOKEN=$GITHUB_TOKEN npm run publish:next
