@@ -55,3 +55,34 @@ The monorepo has a top level `lint` command which runs lint for all the packages
 ## Build a `starter-kyt`
 
 Have a great idea for a boilerplate? Build it on top of `kyt` and let us know about it. Directions are [here](/docs/Starterkyts.md).
+
+## Publishing to `npm`
+
+!!! warning You _must_ use `npm` to publish, rather than `yarn`.
+
+In order to publish to `npm`, you _must_ use `npm` to publish (instead of
+`yarn`). In order for the various command line utilities that are used to work,
+you must publish using the provided `publish` script in `package.json`.
+
+This can be accomplished with the following command:
+
+```sh
+$ GH_TOKEN=$GITHUB_TOKEN npm run publish
+```
+
+For more information on using `lerna` to publish, see [the `lerna publish`
+documentation](https://github.com/lerna/lerna/tree/main/commands/publish#readme).
+
+### Development Versions
+
+If you would like your prerelease to have the `next` dist tag, rather than
+`latest`, such as when creating a release candidate or testing a development
+version, you can use the provided `publish:next` script.
+
+```sh
+$ GH_TOKEN=$GITHUB_TOKEN npm run publish:next
+```
+
+If you need more functionality than this, it is recommended that you pass your
+own parameters to the `npm run publish` command, that will be included in the
+flags/arguments to the `lerna publish` command.
