@@ -3,6 +3,40 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/nytimes/kyt/compare/babel-preset-kyt-core@1.2.16...babel-preset-kyt-core@2.0.0) (2022-02-25)
+
+
+* build!: rm `targets`, add .browserslistrc (#1003) ([fbba77c](https://github.com/nytimes/kyt/commit/fbba77cd9f936427f11a7956b7f32b026d19eb4a)), closes [#1003](https://github.com/nytimes/kyt/issues/1003)
+
+
+### BREAKING CHANGES
+
+* `targets` are no longer set for `@babel/preset-env`.
+
+In this commit, we introduced a breaking change in the way that browser
+`targets` work, namely in that the targets are no longer set and the
+user is expected to provide their own `.browserslistrc` or similar
+configuration.
+
+The previous behavior was to have browser `targets`, which overrides any
+other configuration, including `.browserslistrc`.
+
+From the `@babel/preset-env` documentation[^1]:
+> By default `@babel/preset-env` will use browserslist config sources
+> unless either the `targets` or `ignoreBrowserslistConfig` options are
+> set.
+
+When upgrading to the next major version that includes this change, *you
+must provide your own configuration* or else Babel will default to using
+the oldest browsers available[^2].
+
+1. https://babeljs.io/docs/en/babel-preset-env#browserslist-integration
+2. https://babeljs.io/docs/en/options#no-targets
+
+
+
+
+
 ## [1.2.16](https://github.com/nytimes/kyt/compare/babel-preset-kyt-core@1.2.15...babel-preset-kyt-core@1.2.16) (2021-09-24)
 
 
