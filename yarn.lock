@@ -4690,14 +4690,14 @@ create-hmac@^1.1.0, create-hmac@^1.1.4, create-hmac@^1.1.7:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-jest-runner@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/create-jest-runner/-/create-jest-runner-0.7.0.tgz#c5b438ab551fc727fda2db1828119a8b5c2408e2"
-  integrity sha512-lPG9GhfxrpcltKEls4/XsbkW6SEuzk9frCTC0SEA1ZVwk5XBYyxdmoqg/h7iKr9Nkq2uAg2Zcs+D4ZzUOuKabQ==
+create-jest-runner@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/create-jest-runner/-/create-jest-runner-0.9.0.tgz#106829db9ab15267897af61a897e73750330d0cf"
+  integrity sha512-cxfAQYKe+bqjqyE6XuF4flJfayko47E8Wd6NUZlPkclPf6yT8yRbGtD94Zq8FESOHJU3m+TWznBl4YOkfkzV7A==
   dependencies:
     chalk "^4.1.0"
-    jest-worker "^26.3.0"
-    throat "^5.0.0"
+    jest-worker "^27.0.6"
+    throat "^6.0.1"
 
 create-jest-runner@^0.6.0:
   version "0.6.0"
@@ -8167,19 +8167,10 @@ jest-worker@^25.1.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jest-worker@^26.3.0:
-  version "26.6.2"
-  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-26.6.2.tgz#7f72cbc4d643c365e27b9fd775f9d0eaa9c7a8ed"
-  integrity sha512-KWYVV1c4i+jbMpaBC+U++4Va0cp8OisU185o73T1vo99hqi7w8tSJfUXYswwqqrjzwxa6KpRK54WhPvwf5w6PQ==
-  dependencies:
-    "@types/node" "*"
-    merge-stream "^2.0.0"
-    supports-color "^7.0.0"
-
-jest-worker@^27.2.0:
-  version "27.2.0"
-  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-27.2.0.tgz#11eef39f1c88f41384ca235c2f48fe50bc229bc0"
-  integrity sha512-laB0ZVIBz+voh/QQy9dmUuuDsadixeerrKqyVpgPz+CCWiOYjOBabUXHIXZhsdvkWbLqSHbgkAHWl5cg24Q6RA==
+jest-worker@^27.0.6, jest-worker@^27.2.0:
+  version "27.5.1"
+  resolved "https://registry.yarnpkg.com/jest-worker/-/jest-worker-27.5.1.tgz#8d146f0900e8973b106b6f73cc1e9a8cb86f8db0"
+  integrity sha512-7vuh85V5cdDofPyxn58nrPjBktZo0u9x1g8WtjQol+jZDaE+fhN+cIvTj11GndBnMnyfrUOG1sZQxCdjKh+DKg==
   dependencies:
     "@types/node" "*"
     merge-stream "^2.0.0"
