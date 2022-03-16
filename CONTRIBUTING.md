@@ -70,6 +70,10 @@ This can be accomplished with the following command:
 $ GH_TOKEN=$GITHUB_TOKEN npm run publish
 ```
 
+`npm run publish` will push a new commit to the current branch, so _it is
+recommended to branch off of `main` prior to doing a new release_ to avoid
+pushing directly to `main`.
+
 For more information on using `lerna` to publish, see [the `lerna publish`
 documentation](https://github.com/lerna/lerna/tree/main/commands/publish#readme).
 
