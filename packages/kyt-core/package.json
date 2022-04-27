@@ -31,7 +31,7 @@
     "ink-table": "3.0.0",
     "inquirer": "8.1.5",
     "install": "0.13.0",
-    "jest-message-util": "27.2.0",
+    "jest-message-util": "28.0.2",
     "kyt-runtime": "1.2.47",
     "kyt-utils": "1.3.32",
     "lodash.clonedeep": "4.5.0",
