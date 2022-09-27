@@ -33,7 +33,7 @@ module.exports = options => {
     },
 
     resolve: {
-      extensions: ['.mjs', '.jsx', '.js', '.json'],
+      extensions: ['.mjs', '.jsx', '.js', '.json', '.ts', '.tsx'],
       modules: [userNodeModulesPath, path.resolve(__dirname, '../node_modules'), 'node_modules'],
       alias: {
         // This is required so symlinks work during development.
@@ -85,7 +85,7 @@ module.exports = options => {
           },
         },
         {
-          test: /\.(js|jsx)$/,
+          test: /\.(js|jsx|ts|tsx)$/,
           loader: 'babel-loader',
           exclude: [/node_modules/, buildPath, publicSrcPath],
           // babel configuration should come from presets defined in the user's
