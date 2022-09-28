@@ -1,5 +1,6 @@
 const babelPresetReact = require('@babel/preset-react');
 const addReactDisplayName = require('babel-plugin-add-react-displayname');
+const pureStaticProps = require('babel-plugin-pure-static-props');
 const reactRemovePropTypes = require('babel-plugin-transform-react-remove-prop-types');
 const reactTransformConstant = require('@babel/plugin-transform-react-constant-elements');
 const reactTransformInline = require('@babel/plugin-transform-react-inline-elements');
@@ -18,6 +19,7 @@ module.exports = function getPresetReact(context, opts) {
   if (useProductionTransforms === true) {
     productionTransforms.push(reactTransformConstant);
     productionTransforms.push(reactTransformInline);
+    productionTransforms.push(pureStaticProps);
   }
 
   return {
