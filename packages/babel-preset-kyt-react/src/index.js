@@ -19,11 +19,10 @@ module.exports = function getPresetReact(context, opts) {
   if (useProductionTransforms === true) {
     productionTransforms.push(reactTransformConstant);
     productionTransforms.push(reactTransformInline);
-    productionTransforms.push(pureStaticProps);
   }
 
   return {
-    plugins: [addReactDisplayName],
+    plugins: [addReactDisplayName, pureStaticProps],
     env: {
       development: {
         presets: [
