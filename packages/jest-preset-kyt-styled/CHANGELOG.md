@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.4.12](https://github.com/NYTimes/kyt/compare/jest-preset-kyt-styled@1.4.11...jest-preset-kyt-styled@1.4.12) (2022-11-01)
+
+
+### Bug Fixes
+
+* prettier + stylelint clashing ([#1087](https://github.com/NYTimes/kyt/issues/1087)) ([7198d68](https://github.com/NYTimes/kyt/commit/7198d68cbbfeb514ad0adf4afe6b1bf52c4db1d7))
+
+
+
+
+
 ## [1.4.11](https://github.com/nytimes/kyt/compare/jest-preset-kyt-styled@1.4.10...jest-preset-kyt-styled@1.4.11) (2021-06-24)
 
 **Note:** Version bump only for package jest-preset-kyt-styled
