@@ -5190,7 +5190,7 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dot-prop@^5.1.0:
+dot-prop@^5.1.0, dot-prop@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-5.3.0.tgz#90ccce708cd9cd82cc4dc8c3ddd9abdd55b20e88"
   integrity sha512-QM8q3zDe58hqUqjraQOmzZ1LIH9SWQJTlEKCH4kJ2oQvLZk7RbQXvtDM2XEq3fwkV9CCvvH4LA0AV+ogFsBM2Q==
@@ -7994,14 +7994,15 @@ jest-resolve@^27.2.0:
     resolve "^1.20.0"
     slash "^3.0.0"
 
-jest-runner-eslint@0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-0.10.1.tgz#f76eacb51154736d53d64eb195cc8a82f02caf12"
-  integrity sha512-3HiDDWwJfXksVUkpDIHphwPkXYtaKFCBjufTz3aR4b6WqSl31WECmTGFqhkfWzQdEACShO6WkKjBj/gSfgLsqQ==
+jest-runner-eslint@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/jest-runner-eslint/-/jest-runner-eslint-1.1.0.tgz#9aa133cdc63a7dd813511870c709391eef3af89f"
+  integrity sha512-XAQnEIuaZ/wHU8YVR4AEka5FBg3P+fnKd/upk8D9lxhejsclgai5gle7Ay4eLQ1+mlh2y5Ya3/AmfYz8FFZKJQ==
   dependencies:
     chalk "^3.0.0"
     cosmiconfig "^6.0.0"
     create-jest-runner "^0.6.0"
+    dot-prop "^5.3.0"
 
 jest-runner@^27.2.1:
   version "27.2.1"
@@ -12103,6 +12104,11 @@ style-search@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/style-search/-/style-search-0.1.0.tgz#7958c793e47e32e07d2b5cafe5c0bf8e12e77902"
   integrity sha1-eVjHk+R+MuB9K1yv5cC/jhLneQI=
+
+stylelint-config-prettier@9.0.3:
+  version "9.0.3"
+  resolved "https://registry.yarnpkg.com/stylelint-config-prettier/-/stylelint-config-prettier-9.0.3.tgz#0dccebeff359dcc393c9229184408b08964d561c"
+  integrity sha512-5n9gUDp/n5tTMCq1GLqSpA30w2sqWITSSEiAWQlpxkKGAUbjcemQ0nbkRvRUa0B1LgD3+hCvdL7B1eTxy1QHJg==
 
 stylelint-config-recommended@^5.0.0:
   version "5.0.0"
