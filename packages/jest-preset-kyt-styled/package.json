@@ -6,7 +6,7 @@
   "author": "NYTimes",
   "license": "Apache-2.0",
   "dependencies": {
-    "create-jest-runner": "0.7.0",
+    "create-jest-runner": "0.12.3",
     "stylelint": "13.13.1",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-standard": "22.0.0",
