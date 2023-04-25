@@ -60,7 +60,7 @@
     "jest-preset-kyt-rtl": "1.1.2",
     "jest-preset-kyt-styled": "1.4.12",
     "kyt": "1.2.5",
-    "prettier": "2.4.1"
+    "prettier": "2.8.8"
   },
   "version": "1.2.6",
   "kyt": {
