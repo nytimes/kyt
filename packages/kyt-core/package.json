@@ -17,8 +17,8 @@
     "node": ">=10"
   },
   "dependencies": {
-    "@babel/code-frame": "7.14.5",
-    "@babel/runtime": "7.15.4",
+    "@babel/code-frame": "7.21.4",
+    "@babel/runtime": "7.21.0",
     "babel-loader": "8.2.2",
     "babel-preset-kyt-core": "2.0.0",
     "commander": "8.2.0",

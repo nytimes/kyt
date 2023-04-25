@@ -13,9 +13,9 @@
   "bugs": "https://github.com/nytimes/kyt/issues",
   "homepage": "https://github.com/nytimes/kyt#readme",
   "dependencies": {
-    "@babel/plugin-transform-react-constant-elements": "7.14.5",
-    "@babel/plugin-transform-react-inline-elements": "7.16.7",
-    "@babel/preset-react": "7.14.5",
+    "@babel/plugin-transform-react-constant-elements": "7.21.3",
+    "@babel/plugin-transform-react-inline-elements": "7.21.0",
+    "@babel/preset-react": "7.18.6",
     "babel-plugin-add-react-displayname": "0.0.5",
     "babel-plugin-transform-react-remove-prop-types": "0.4.24",
     "babel-preset-kyt-core": "2.0.0"
