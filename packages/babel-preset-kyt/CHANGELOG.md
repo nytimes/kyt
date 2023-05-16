@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.20](https://github.com/nytimes/kyt/compare/babel-preset-kyt@1.1.19...babel-preset-kyt@1.1.20) (2023-05-16)
+
+**Note:** Version bump only for package babel-preset-kyt
+
+
+
+
+
 ## [1.1.19](https://github.com/nytimes/kyt/compare/babel-preset-kyt@1.1.18...babel-preset-kyt@1.1.19) (2022-09-28)
 
 **Note:** Version bump only for package babel-preset-kyt
