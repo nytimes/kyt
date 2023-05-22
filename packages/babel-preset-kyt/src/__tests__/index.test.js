@@ -1,8 +1,8 @@
 const presetTypescript = require('@babel/preset-typescript');
 const presetKyt = require('..');
 
-jest.mock('babel-preset-kyt-react', () => 'babel-preset-kyt-react');
 jest.mock('@babel/preset-typescript', () => '@babel/preset-typescript');
+jest.mock('babel-preset-kyt-react', () => 'babel-preset-kyt-react');
 
 describe('babel-preset-kyt', () => {
   /**
