@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-kyt",
-  "version": "1.1.20",
+  "version": "1.1.21",
   "description": "An opinionated babel preset.",
   "main": "lib/index.js",
   "author": "NYTimes",

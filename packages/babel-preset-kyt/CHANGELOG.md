@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.1.21](https://github.com/nytimes/kyt/compare/babel-preset-kyt@1.1.20...babel-preset-kyt@1.1.21) (2023-05-23)
+
+
+### Bug Fixes
+
+* **babel-preset-kyt:** ensure that @babel/preset-typescript is the last preset in the array ([#1142](https://github.com/nytimes/kyt/issues/1142)) ([8ed84a5](https://github.com/nytimes/kyt/commit/8ed84a5e88f08e6752318ca253daed67e4d5b8f5))
+
+
+
+
+
 ## [1.1.20](https://github.com/nytimes/kyt/compare/babel-preset-kyt@1.1.19...babel-preset-kyt@1.1.20) (2023-05-16)
 
 **Note:** Version bump only for package babel-preset-kyt
