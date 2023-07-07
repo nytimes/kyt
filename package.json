@@ -68,7 +68,7 @@
     "regenerator-runtime": "0.13.9",
     "rimraf": "3.0.2",
     "source-map-support": "0.5.20",
-    "stylelint": "13.13.1",
+    "stylelint": "15.10.1",
     "stylelint-config-standard": "22.0.0"
   },
   "workspaces": {
