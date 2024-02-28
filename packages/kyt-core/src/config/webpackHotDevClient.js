@@ -57,7 +57,7 @@ if (module.hot && typeof module.hot.dispose === 'function') {
   });
 }
 
-let connection
+let connection;
 if (!window.location.protocol.includes('http')) {
   // if the location protocol doesn't include http use a normal web-socket
   // sockjs doesn't support custom protocols
