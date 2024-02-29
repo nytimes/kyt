@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.2.7](https://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.2.6...kyt@1.2.7) (2024-02-29)
+
+
+### Bug Fixes
+
+* support custom url protocol scheme on websockets ([#1173](https://github.com/nytimes/kyt/packages/kyt-core/issues/1173)) ([9d0dbf5](https://github.com/nytimes/kyt/packages/kyt-core/commit/9d0dbf5971ad85d0770b6ebf676459d53b287fcf))
+
+
+
+
+
 ## [1.2.6](https://github.com/nytimes/kyt/packages/kyt-core/compare/kyt@1.2.5...kyt@1.2.6) (2023-05-16)
 
 **Note:** Version bump only for package kyt
