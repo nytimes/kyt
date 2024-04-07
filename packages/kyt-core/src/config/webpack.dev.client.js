@@ -84,7 +84,7 @@ module.exports = options => {
                 },
               },
             },
-            // postcssLoader,
+            postcssLoader,
             'sass-loader',
           ],
           exclude: [publicSrcPath],
