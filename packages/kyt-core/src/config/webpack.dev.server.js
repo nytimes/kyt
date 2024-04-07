@@ -2,9 +2,10 @@
 
 const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
-const { serverSrcPath, serverBuildPath, clientAssetsFile, loadableAssetsFile } =
+const { serverSrcPath, serverBuildPath, clientAssetsFile, loadableAssetsFile, publicSrcPath } =
   require('kyt-utils/paths')();
 const StartServerPlugin = require('./StartServerPlugin');
+const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
 
 const nodeArgs = ['-r', 'source-map-support/register', '--max_old_space_size=4096'];
@@ -64,6 +65,28 @@ module.exports = options => {
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
       libraryTarget: 'commonjs2',
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.module\.(sc|c)ss$/,
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]-[local]--[hash:base64:5]',
+                  exportOnlyLocals: true,
+                },
+              },
+            },
+            postcssLoader,
+            'sass-loader',
+          ],
+          exclude: [publicSrcPath],
+        },
+      ],
     },
 
     plugins: [

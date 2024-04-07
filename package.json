@@ -15,7 +15,7 @@
     "yarn": "^1"
   },
   "scripts": {
-    "bootstrap": "yarn && lerna run prepare",
+    "bootstrap": "yarn && lerna bootstrap && lerna run prepare && lerna link",
     "bootstrap:ci": "yarn && lerna run prepare",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "publish": "lerna publish",
@@ -31,7 +31,10 @@
     "lint-staged": "yarn run lint -o",
     "lint-fix": "ESLINT_FIX=1 ESLINT_QUIET=1 yarn run lint",
     "lint:ci": "ESLINT_QUIET=1 yarn run lint",
-    "watch-cli": "yarn workspace kyt watch",
+    "watch": "run-p watch-*",
+    "watch-kyt": "yarn workspace kyt watch",
+    "watch-kyt-runtime": "yarn workspace kyt-runtime watch",
+    "watch-kyt-utils": "yarn workspace kyt-utils watch",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -62,6 +65,7 @@
     "jest-runner-eslint": "0.10.1",
     "jest-silent-reporter": "0.5.0",
     "lerna": "4.0.0",
+    "npm-run-all": "4.1.5",
     "prettier": "2.8.8",
     "react": "17.0.2",
     "react-dom": "17.0.2",

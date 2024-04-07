@@ -20,11 +20,25 @@ If you want to propose a large feature idea or architecture change you should co
 
 ## kyt local development
 
-1. `nvm use`
 1. Fork and clone `kyt`
+1. [setup [mise](https://mise.jdx.dev/) and `mise install`]
 1. Run `yarn bootstrap` to install the packages in the monorepo
+1. Open a new shell and run `yarn watch`
 
-[lerna](https://github.com/lerna/lerna) is used to manage the monorepo but most of the development commands should be exercised through root directory `package.json` scripts. The following are some useful npm scripts for development:
+Most changes are best to develop against the universal starter kyt:
+
+1. `cd packages/kyt-starter-universal/starter-src`
+1. Run `yarn dev` or `yarn build` to test against kyt development and production builds
+
+Note: After you make changes, the watcher will update libraries but you will likely have to restart the universal app process to test changes. The watcher only works against kyt-core/server/runtimg. Changes to babel presets and a few other packages may require you to re-`yarn bootstrap` or `yarn clean-bootstrap`. When in doubt run `yarn clean-bootstrap`.
+
+[lerna](https://github.com/lerna/lerna) is used to manage the monorepo but most of the development commands should be exercised through root directory `package.json` scripts.
+
+### dev workflow
+
+1. open a new shell and start `yarn watch-cli`
+
+The following are some useful npm scripts for development:
 
 ### bootstrap
 

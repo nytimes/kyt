@@ -1,28 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`App Test home route 1`] = `
-.lights-5 {
-  width: 500px;
-  margin: 0 auto;
-  padding: 15px;
-  text-align: center;
-}
-
-.lights-8 {
-  width: 500px;
-  margin: 15px auto;
-}
-
-.lights-2 {
-  display: inline-block;
-}
-
-.lights-1 {
-  padding: 15px;
-  color: #00a68f;
-  font-size: 18px;
-}
-
 .lights-0 {
   display: block;
   width: 252px;
@@ -31,7 +9,7 @@ exports[`App Test home route 1`] = `
   background: url(file-stub);
 }
 
-.lights-6 + .lights-6 {
+.lights-1 + .lights-1 {
   padding-top: 15px;
 }
 
@@ -40,23 +18,23 @@ exports[`App Test home route 1`] = `
     class="lights-0"
   />
   <ul
-    class="lights-5"
+    class="navClass"
   >
     <li
-      class="lights-2"
+      class="navItemClass"
     >
       <a
-        class="lights-1"
+        class="linkClass"
         href="/"
       >
         Home
       </a>
     </li>
     <li
-      class="lights-2"
+      class="navItemClass"
     >
       <a
-        class="lights-1"
+        class="linkClass"
         href="/tools"
       >
         Tools
@@ -64,11 +42,11 @@ exports[`App Test home route 1`] = `
     </li>
   </ul>
   <div
-    class="lights-8"
+    class="contentClass"
   >
     <section>
       <p
-        class="lights-6"
+        class="lights-1"
       >
         Welcome to the 
         <strong>
@@ -77,7 +55,7 @@ exports[`App Test home route 1`] = `
         . This starter kyt should serve as the base for an advanced, server-rendered React app.
       </p>
       <p
-        class="lights-6"
+        class="lights-1"
       >
         Check out the Tools section for an outline of the libraries that are used in this Starter-kyt.
       </p>
@@ -93,28 +71,6 @@ Array [
 `;
 
 exports[`App Test tools route 1`] = `
-.lights-5 {
-  width: 500px;
-  margin: 0 auto;
-  padding: 15px;
-  text-align: center;
-}
-
-.lights-11 {
-  width: 500px;
-  margin: 15px auto;
-}
-
-.lights-2 {
-  display: inline-block;
-}
-
-.lights-1 {
-  padding: 15px;
-  color: #00a68f;
-  font-size: 18px;
-}
-
 .lights-0 {
   display: block;
   width: 252px;
@@ -123,7 +79,7 @@ exports[`App Test tools route 1`] = `
   background: url(file-stub);
 }
 
-.lights-6 + .lights-6 {
+.lights-1 + .lights-1 {
   padding-top: 5px;
 }
 
@@ -132,23 +88,23 @@ exports[`App Test tools route 1`] = `
     class="lights-0"
   />
   <ul
-    class="lights-5"
+    class="navClass"
   >
     <li
-      class="lights-2"
+      class="navItemClass"
     >
       <a
-        class="lights-1"
+        class="linkClass"
         href="/"
       >
         Home
       </a>
     </li>
     <li
-      class="lights-2"
+      class="navItemClass"
     >
       <a
-        class="lights-1"
+        class="linkClass"
         href="/tools"
       >
         Tools
@@ -156,11 +112,11 @@ exports[`App Test tools route 1`] = `
     </li>
   </ul>
   <div
-    class="lights-11"
+    class="contentClass"
   >
     <ul>
       <li
-        class="lights-6"
+        class="lights-1"
       >
         <a
           href="https://expressjs.com/"
@@ -170,7 +126,7 @@ exports[`App Test tools route 1`] = `
          - server-side rendering
       </li>
       <li
-        class="lights-6"
+        class="lights-1"
       >
         <a
           href="https://reactjs.org/"
@@ -180,7 +136,7 @@ exports[`App Test tools route 1`] = `
          - component library
       </li>
       <li
-        class="lights-6"
+        class="lights-1"
       >
         <a
           href="https://reacttraining.com/react-router/"
@@ -190,7 +146,7 @@ exports[`App Test tools route 1`] = `
          - server and browser routing
       </li>
       <li
-        class="lights-6"
+        class="lights-1"
       >
         <a
           href="https://github.com/nytimes/pretty-lights"
@@ -200,7 +156,7 @@ exports[`App Test tools route 1`] = `
          - CSS-in-JS with a reliable API
       </li>
       <li
-        class="lights-6"
+        class="lights-1"
       >
         <a
           href="https://testing-library.com/docs/react-testing-library/intro/"

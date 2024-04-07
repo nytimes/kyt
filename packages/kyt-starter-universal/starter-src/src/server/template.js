@@ -14,6 +14,7 @@ export default ({ html, ids, css, bundles }) => `
     <link id="favicon" rel="shortcut icon" href="${favicon}" sizes="16x16 32x32" type="image/png" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+    <link rel="stylesheet" type="text/css" href="${bundles.cssBundle}" />
     <style data-lights-css="${ids.join(' ')}">${css}</style>
   </head>
   <body>

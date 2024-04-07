@@ -1,0 +1,31 @@
+$content-width: 500px;
+
+:root {
+  --content-padding: 15px;
+}
+
+.headerClass {
+  text-align: center;
+}
+
+.navClass {
+  width: $content-width;
+  margin: 0 auto;
+  padding: var(--content-padding);
+  text-align: center;
+}
+
+.contentClass {
+  width: $content-width;
+  margin: var(--content-padding) auto;
+}
+
+.navItemClass {
+  display: inline-block;
+}
+
+.linkClass {
+  padding: var(--content-padding);
+  color: #00a68f;
+  font-size: 18px;
+}

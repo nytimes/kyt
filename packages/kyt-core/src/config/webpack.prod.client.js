@@ -1,7 +1,9 @@
 // Production webpack config for client code
-
-const { clientSrcPath, assetsBuildPath } = require('kyt-utils/paths')();
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
+const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
 
 module.exports = options => ({
@@ -22,7 +24,43 @@ module.exports = options => ({
     publicPath: options.publicPath,
   },
 
-  plugins: [...kytWebpackPlugins(options)],
+  module: {
+    rules: [
+      {
+        test: /\.module\.(sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                localIdentName: '[name]-[local]--[hash:base64:5]',
+              },
+            },
+          },
+          postcssLoader,
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+        exclude: [publicSrcPath],
+      },
+    ],
+  },
+
+  plugins: [
+    ...kytWebpackPlugins(options),
+
+    new MiniCssExtractPlugin({
+      filename: '[name]-[contenthash].css',
+      chunkFilename: '[name]-[contenthash].css',
+    }),
+
+    new OptimizeCSSAssetsPlugin({}),
+  ],
 
   optimization: {
     moduleIds: 'hashed',
