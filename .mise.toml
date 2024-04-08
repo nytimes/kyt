@@ -5,5 +5,5 @@ node = '20.10.0'
 yarn = '1.19.0'
 
 [env]
-RTX_FETCH_REMOTE_VERSIONS_TIMEOUT="300 s"
+MISE_FETCH_REMOTE_VERSIONS_TIMEOUT="300 s"
 NODE_OPTIONS = "--openssl-legacy-provider"
