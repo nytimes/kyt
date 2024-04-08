@@ -26,9 +26,12 @@ describe('KYT CLI', () => {
     it(`sets up a ${slug} starter-kyt`, () => {
       const exec = new Promise(resolve => {
         shell.cd(rootPath);
-        const child = shell.exec('../packages/kyt-core/lib/index.js setup', (code, stdout) => {
-          resolve({ code, output: stdout });
-        });
+        const child = shell.exec(
+          'NODE_OPTIONS=--openssl-legacy-provider ../packages/kyt-core/lib/index.js setup',
+          (code, stdout) => {
+            resolve({ code, output: stdout });
+          }
+        );
         let skdone = false;
         let chooseDone = false;
         let ypmDone = false;
