@@ -6111,6 +6111,9 @@ eslint-config-airbnb@18.2.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
+"eslint-config-kyt@file:packages/eslint-config-kyt":
+  version "1.6.3"
+
 eslint-config-prettier@8.3.0:
   version "8.3.0"
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.3.0.tgz#f7471b20b6fe8a9a9254cc684454202886a2dd7a"

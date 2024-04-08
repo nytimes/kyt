@@ -14,9 +14,9 @@
   },
   "homepage": "https://github.com/nytimes/kyt/packages/kyt-starter-universal#readme",
   "scripts": {
-    "dev": "NODE_OPTIONS=--openssl-legacy-provider kyt dev",
-    "build": "NODE_OPTIONS=--openssl-legacy-provider kyt build",
-    "start": "NODE_OPTIONS=--openssl-legacy-provider node build/server/main.js",
+    "dev": "kyt dev",
+    "build": "kyt build",
+    "start": "node build/server/main.js",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix",
     "test": "jest",
