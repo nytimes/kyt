@@ -19,7 +19,7 @@
     "bootstrap:ci": "yarn && lerna run prepare",
     "clean-bootstrap": "lerna clean --yes && rm -rf node_modules && yarn bootstrap",
     "publish": "lerna publish",
-    "publish:alpha": "lerna publish --canary --preid alpha --dist-tag alpha",
+    "publish:alpha": "lerna publish --canary --force-publish --preid alpha --dist-tag alpha",
     "test:starter": "lerna exec --scope \"kyt-starter-{server,static,universal}-src\" --",
     "test": "lerna run prepare && jest --detectOpenHandles && yarn test:starter yarn test --detectOpenHandles",
     "test:ci": "jest --detectOpenHandles --ci && yarn test:starter yarn test --detectOpenHandles --ci",
