@@ -17,22 +17,12 @@ if (process.env.INSPECT_BRK) {
 }
 
 module.exports = options => {
-  let externals;
-  if (options.modulesDir && Array.isArray(options.modulesDir)) {
-    externals = options.modulesDir.map(dir =>
-      nodeExternals({
-        modulesDir: dir,
-        allowlist: ['webpack/hot/poll?300'],
-      })
-    );
-  } else {
-    externals = [
-      nodeExternals({
-        modulesDir: options.modulesDir,
-        allowlist: ['webpack/hot/poll?300'],
-      }),
-    ];
-  }
+  const externals = (options.externalModulesDir || ['node_modules']).map(modulesDir =>
+    nodeExternals({
+      modulesDir,
+      allowlist: options.externalModulesAllowlist || [],
+    })
+  );
 
   return {
     mode: 'development',

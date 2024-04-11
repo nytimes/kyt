@@ -7,20 +7,12 @@ const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
 
 module.exports = options => {
-  let externals;
-  if (options.modulesDir && Array.isArray(options.modulesDir)) {
-    externals = options.modulesDir.map(dir =>
-      nodeExternals({
-        modulesDir: dir,
-      })
-    );
-  } else {
-    externals = [
-      nodeExternals({
-        modulesDir: options.modulesDir,
-      }),
-    ];
-  }
+  const externals = (options.externalModulesDir || ['node_modules']).map(modulesDir =>
+    nodeExternals({
+      modulesDir,
+      allowlist: options.externalModulesAllowlist || [],
+    })
+  );
 
   return {
     mode: 'production',
