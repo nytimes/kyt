@@ -44,7 +44,7 @@ module.exports = (config, environment = 'development') => {
   const serverOptions = merge(clientOptions, {
     type: 'server',
     externalModulesDir,
-    externalModulesAllowlist
+    externalModulesAllowlist,
   });
 
   const hasBabelrc = findBabelConfigSync(userRootPath);

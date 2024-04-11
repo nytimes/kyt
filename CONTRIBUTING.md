@@ -85,14 +85,12 @@ pushing directly to `main`.
 For more information on using `lerna` to publish, see [the `lerna publish`
 documentation](https://github.com/lerna/lerna/tree/main/commands/publish#readme).
 
-### Development Versions
+### Publishing Alpha Versions
 
-If you would like your prerelease to have the `next` dist tag, rather than
-`latest`, such as when creating a release candidate or testing a development
-version, you can use the provided `publish:next` script.
+If you would like to publish alpha release versions, for example `kyt@1.2.8-alpha.6`:
 
 ```sh
-$ GH_TOKEN=$GITHUB_TOKEN npm run publish:next
+$ GH_TOKEN=$GITHUB_TOKEN npm run publish:alpha
 ```
 
 If you need more functionality than this, it is recommended that you pass your
