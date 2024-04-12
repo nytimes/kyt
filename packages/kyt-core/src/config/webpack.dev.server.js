@@ -20,7 +20,7 @@ module.exports = options => {
   const externals = (options.externalModulesDir || ['node_modules']).map(modulesDir =>
     nodeExternals({
       modulesDir,
-      allowlist: options.externalModulesAllowlist || [],
+      allowlist: [...(options.externalModulesAllowlist || []), 'webpack/hot/poll?300'],
     })
   );
 
