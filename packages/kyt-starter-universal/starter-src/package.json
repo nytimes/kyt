@@ -28,7 +28,7 @@
     "@babel/runtime": "7.21.0",
     "compression": "1.7.4",
     "core-js": "3.18.0",
-    "express": "4.17.1",
+    "express": "4.19.2",
     "kyt-runtime": "1.2.48",
     "pretty-lights": "0.0.20",
     "prop-types": "15.7.2",
