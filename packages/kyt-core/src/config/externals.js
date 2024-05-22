@@ -4,8 +4,14 @@
 // used to match modules to include in the bundle.
 const { userPackageJSONPath } = require('kyt-utils/paths')();
 
-// eslint-disable-next-line import/no-dynamic-require
-const pkg = require(userPackageJSONPath);
+let pkg;
+
+try {
+  // eslint-disable-next-line import/no-dynamic-require, global-require
+  pkg = require(userPackageJSONPath);
+} catch (e) {
+  pkg = {};
+}
 
 module.exports = (allowList = []) => {
   // Get all of the dependencies from the package.json
