@@ -1,19 +1,12 @@
 // Production webpack config for server code
 
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
 const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const externals = require('./externals');
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
 
 module.exports = options => {
-  const externals = (options.externalModulesDir || ['node_modules']).map(modulesDir =>
-    nodeExternals({
-      modulesDir,
-      allowlist: options.externalModulesAllowlist || [],
-    })
-  );
-
   return {
     mode: 'production',
 
@@ -26,7 +19,7 @@ module.exports = options => {
       __filename: false,
     },
 
-    externals,
+    externals: externals(options.allowList),
 
     entry: {
       main: [getPolyfill(options.type), `${serverSrcPath}/index.js`].filter(Boolean),
