@@ -21,7 +21,7 @@ export const getBundles = ({ entry = 'main', modules, assets = null, loadableBun
   const runtimeBundle = assets[`runtime~${entry}.js`];
   const entryBundle = assets[`${entry}.js`];
   const vendorBundle = assets['vendor.js'];
-  const cssBundle = assets[`${entry}.css`];
+  const cssBundle = assets['styles.css'] || assets[`${entry}.css`];
 
   const bundleManifest = {
     runtimeBundle,
