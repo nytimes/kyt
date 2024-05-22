@@ -11,7 +11,7 @@ module.exports = (allowList = []) => {
   // Get all of the dependencies from the package.json
   // and filter out the ones that are in the allowList
   const packageModules = [];
-  Object.keys(pkg.dependencies).forEach(module => {
+  Object.keys(pkg.dependencies || []).forEach(module => {
     allowList.forEach(allowedModule => {
       if (!allowedModule.test(module)) packageModules.push(module);
     });
