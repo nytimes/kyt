@@ -19,7 +19,7 @@ module.exports = options => {
 
     target: 'node',
 
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
 
     node: {
       __dirname: false,
