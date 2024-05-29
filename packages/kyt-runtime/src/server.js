@@ -21,14 +21,16 @@ export const getBundles = ({ entry = 'main', modules, assets = null, loadableBun
   const runtimeBundle = assets[`runtime~${entry}.js`];
   const entryBundle = assets[`${entry}.js`];
   const vendorBundle = assets['vendor.js'];
-  const cssBundle = assets['styles.css'] || assets[`${entry}.css`];
+  const cssModulesStyles = assets['cssModulesStyles.css'] || assets[`${entry}.css`];
+  const cssModulesBundle = assets['cssModulesStyles.js'];
 
   const bundleManifest = {
     runtimeBundle,
     entryBundle,
     vendorBundle,
     scripts: [],
-    cssBundle,
+    cssModulesStyles,
+    cssModulesBundle,
   };
 
   if (!modules || modules.length === 0) {

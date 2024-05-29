@@ -76,8 +76,8 @@ module.exports = options => ({
           minChunks: 2,
         },
         styles: {
-          name: `styles`,
-          test: /\.s?css$/,
+          name: 'cssModulesStyles',
+          test: /\.module\.s?css$/,
           chunks: 'all',
           minChunks: 1,
           reuseExistingChunk: true,

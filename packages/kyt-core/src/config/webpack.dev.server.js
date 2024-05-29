@@ -31,7 +31,9 @@ module.exports = options => {
       __filename: false,
     },
 
-    externals: externals(options.allowList),
+    externals: externals(
+      (options.externalModulesAllowlist || []).concat([/webpack\/hot\/poll\?300/])
+    ),
 
     entry: {
       main: [

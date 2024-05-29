@@ -19,7 +19,7 @@ module.exports = options => {
       __filename: false,
     },
 
-    externals: externals(options.allowList),
+    externals: externals(options.externalModulesAllowlist),
 
     entry: {
       main: [getPolyfill(options.type), `${serverSrcPath}/index.js`].filter(Boolean),
