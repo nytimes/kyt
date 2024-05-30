@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 import dynamic from 'kyt-runtime/dynamic';
+import styled from './styles.module.scss';
 import * as styles from './styled';
 
 export const Home = dynamic(() => import(/* webpackChunkName: "home" */ '../Home'));
@@ -10,19 +11,19 @@ function App() {
   return (
     <div>
       <i className={styles.logoClass} />
-      <ul className={styles.navClass}>
-        <li className={styles.navItemClass}>
-          <Link className={styles.linkClass} to="/">
+      <ul className={styled.navClass}>
+        <li className={styled.navItemClass}>
+          <Link className={styled.linkClass} to="/">
             Home
           </Link>
         </li>
-        <li className={styles.navItemClass}>
-          <Link className={styles.linkClass} to="/tools">
+        <li className={styled.navItemClass}>
+          <Link className={styled.linkClass} to="/tools">
             Tools
           </Link>
         </li>
       </ul>
-      <div className={styles.contentClass}>
+      <div className={styled.contentClass}>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/tools" component={Tools} />

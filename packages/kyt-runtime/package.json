@@ -31,6 +31,7 @@
     "babel-preset-kyt-core": "2.0.1"
   },
   "scripts": {
+    "watch": "yarn prepare --watch",
     "prepare": "rimraf lib && babel src -d lib --ignore \"**/__tests__/**\""
   },
   "gitHead": "a120343756f132868e6af0cfee3579bfc3dafaa8"

@@ -1,10 +1,13 @@
 // Development webpack config for client code
 const path = require('path');
 const webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
-const { clientSrcPath, assetsBuildPath, publicBuildPath } = require('kyt-utils/paths')();
+const { clientSrcPath, assetsBuildPath, publicBuildPath, publicSrcPath } =
+  require('kyt-utils/paths')();
 const getPolyfill = require('./getPolyfill');
+const postcssLoader = require('../utils/getPostcssLoader');
 
 module.exports = options => {
   const main = [
@@ -65,6 +68,40 @@ module.exports = options => {
       },
     },
 
-    plugins: [...kytWebpackPlugins(options), new webpack.HotModuleReplacementPlugin()],
+    module: {
+      rules: [
+        {
+          test: /\.module\.(sc|c)ss$/,
+          use: [
+            // 'style-loader',
+            MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true,
+                modules: {
+                  localIdentName: '[name]-[local]--[hash:base64:5]',
+                  // exportOnlyLocals: true,
+                },
+              },
+            },
+            postcssLoader,
+            'sass-loader',
+          ],
+          exclude: [publicSrcPath],
+        },
+      ],
+    },
+
+    plugins: [
+      ...kytWebpackPlugins(options),
+      new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: '[name].css',
+        chunkFilename: '[id].css',
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+    ],
   };
 };

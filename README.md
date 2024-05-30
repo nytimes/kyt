@@ -2,6 +2,14 @@
 
 # kyt
 
+### Deprecation notice
+
+This project is still used internally at the new york times but has long been deprecated. Please don't expect any support or documented releases going forward.
+
+---
+
+---
+
 Every sizable JavaScript web app needs a common foundation: a setup to build, run, test and lint your code. `kyt` is a toolkit that encapsulates and manages the configuration for web apps.
 
 Read more about kyt in our [blog post](https://open.nytimes.com/introducing-kyt-our-web-app-configuration-toolkit-9ccddf6f6988).

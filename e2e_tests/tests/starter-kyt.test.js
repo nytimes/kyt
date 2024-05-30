@@ -19,7 +19,7 @@ describe('starter kyts', () => {
     it('should start a dev server on :3000', () => {
       let outputTest;
       const run = new Promise(resolve => {
-        const child = shell.exec(`${kytCli} dev`, () => {
+        const child = shell.exec(`NODE_OPTIONS=--openssl-legacy-provider ${kytCli} dev`, () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
@@ -38,11 +38,14 @@ describe('starter kyts', () => {
 
     it('should build and run', () => {
       let outputTest;
-      shell.exec(`${kytCli} build`);
+      shell.exec(`NODE_OPTIONS=--openssl-legacy-provider ${kytCli} build`);
       const run = new Promise(resolve => {
-        const child = shell.exec('node build/server/main.js', () => {
-          resolve(outputTest);
-        });
+        const child = shell.exec(
+          'NODE_OPTIONS=--openssl-legacy-provider node build/server/main.js',
+          () => {
+            resolve(outputTest);
+          }
+        );
         child.stdout.on('data', data => {
           if (data.includes('✅  server started on port: 3000')) {
             shell.exec('sleep 5');
@@ -71,7 +74,7 @@ describe('starter kyts', () => {
     it('should start a server on :3001', () => {
       let outputTest;
       const run = new Promise(resolve => {
-        const child = shell.exec(`${kytCli} dev`, () => {
+        const child = shell.exec(`NODE_OPTIONS=--openssl-legacy-provider ${kytCli} dev`, () => {
           resolve(outputTest);
         });
         child.stdout.on('data', data => {
@@ -87,7 +90,7 @@ describe('starter kyts', () => {
     });
 
     it('should build', () => {
-      const output = shell.exec(`${kytCli} build`);
+      const output = shell.exec(`NODE_OPTIONS=--openssl-legacy-provider ${kytCli} build`);
 
       expect(output.stdout).toContain('✅  Done building');
 

@@ -1,39 +1,25 @@
 // Production webpack config for server code
 
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
-const { serverSrcPath, serverBuildPath } = require('kyt-utils/paths')();
+const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
+const externals = require('./externals');
+const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
 
 module.exports = options => {
-  let externals;
-  if (options.modulesDir && Array.isArray(options.modulesDir)) {
-    externals = options.modulesDir.map(dir =>
-      nodeExternals({
-        modulesDir: dir,
-      })
-    );
-  } else {
-    externals = [
-      nodeExternals({
-        modulesDir: options.modulesDir,
-      }),
-    ];
-  }
-
   return {
     mode: 'production',
 
     target: 'node',
 
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
 
     node: {
       __dirname: false,
       __filename: false,
     },
 
-    externals,
+    externals: externals(options.externalModulesAllowlist),
 
     entry: {
       main: [getPolyfill(options.type), `${serverSrcPath}/index.js`].filter(Boolean),
@@ -45,6 +31,28 @@ module.exports = options => {
       chunkFilename: '[name]-[chunkhash].js',
       publicPath: options.publicPath,
       libraryTarget: 'commonjs2',
+    },
+
+    module: {
+      rules: [
+        {
+          test: /\.module\.(sc|c)ss$/,
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                modules: {
+                  localIdentName: '[name]-[local]--[hash:base64:5]',
+                  exportOnlyLocals: true,
+                },
+              },
+            },
+            postcssLoader,
+            'sass-loader',
+          ],
+          exclude: [publicSrcPath],
+        },
+      ],
     },
 
     plugins: [

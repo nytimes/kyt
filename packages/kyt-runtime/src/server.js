@@ -21,12 +21,16 @@ export const getBundles = ({ entry = 'main', modules, assets = null, loadableBun
   const runtimeBundle = assets[`runtime~${entry}.js`];
   const entryBundle = assets[`${entry}.js`];
   const vendorBundle = assets['vendor.js'];
+  const cssModulesStyles = assets['cssModulesStyles.css'] || assets[`${entry}.css`];
+  const cssModulesBundle = assets['cssModulesStyles.js'];
 
   const bundleManifest = {
     runtimeBundle,
     entryBundle,
     vendorBundle,
     scripts: [],
+    cssModulesStyles,
+    cssModulesBundle,
   };
 
   if (!modules || modules.length === 0) {
@@ -40,10 +44,13 @@ export const getBundles = ({ entry = 'main', modules, assets = null, loadableBun
 
   let hashes = [];
   loadableBundles.entries.forEach(key => {
-    hashes = hashes.concat([assets[`${key}.js`]]).filter(Boolean);
+    hashes = hashes.concat([assets[`${key}.js`], assets[`${key}.css`]]).filter(Boolean);
   });
 
   const bundles = getLoadableBundles(loadableBundles.bundles, modules);
+
+  const cssBundles = bundles.filter(b => b.file.endsWith('.css') && !hashes.includes(b.publicPath));
+  bundleManifest.styles = [...new Set(cssBundles.map(b => b.publicPath))];
 
   const jsBundles = bundles.filter(
     b =>

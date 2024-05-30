@@ -1,0 +1,9 @@
+[tools]
+node = '20.10.0'
+# stuck on this version of yarn because of some weird problems
+# related to babel tooling when installing new dependencies
+yarn = '1.19.0'
+
+[env]
+MISE_FETCH_REMOTE_VERSIONS_TIMEOUT="300 s"
+NODE_OPTIONS = "--openssl-legacy-provider"
