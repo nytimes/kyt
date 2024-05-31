@@ -18,4 +18,6 @@ if (userHasPostcssConfig) {
   postcssConfig.options = kytPostcssConfig;
 }
 
+postcssConfig.options.sourceMap = true;
+
 module.exports = postcssConfig;

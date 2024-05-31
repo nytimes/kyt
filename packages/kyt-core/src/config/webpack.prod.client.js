@@ -1,6 +1,6 @@
 // Production webpack config for client code
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const postcssLoader = require('../utils/getPostcssLoader');
@@ -33,6 +33,7 @@ module.exports = options => ({
           {
             loader: 'css-loader',
             options: {
+              sourceMap: true,
               modules: {
                 localIdentName: '[name]-[local]--[hash:base64:5]',
               },
@@ -58,8 +59,6 @@ module.exports = options => ({
       filename: '[name]-[contenthash].css',
       chunkFilename: '[name]-[contenthash].css',
     }),
-
-    new OptimizeCSSAssetsPlugin({}),
   ],
 
   optimization: {
@@ -67,6 +66,7 @@ module.exports = options => ({
     runtimeChunk: {
       name: entrypoint => `runtime~${entrypoint.name}`,
     },
+    minimizer: [new CssMinimizerPlugin()],
     splitChunks: {
       cacheGroups: {
         vendor: {
