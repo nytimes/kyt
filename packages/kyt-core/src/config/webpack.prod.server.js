@@ -1,8 +1,8 @@
 // Production webpack config for server code
 
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 const { serverSrcPath, serverBuildPath, publicSrcPath } = require('kyt-utils/paths')();
-const externals = require('./externals');
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
 
@@ -12,14 +12,17 @@ module.exports = options => {
 
     target: 'node',
 
-    devtool: 'cheap-module-source-map',
+    devtool: 'source-map',
 
     node: {
       __dirname: false,
       __filename: false,
     },
 
-    externals: externals(options.externalModulesAllowlist),
+    externals: nodeExternals({
+      modulesFromFile: true,
+      allowlist: options.externalModulesAllowlist || [],
+    }),
 
     entry: {
       main: [getPolyfill(options.type), `${serverSrcPath}/index.js`].filter(Boolean),
@@ -42,7 +45,7 @@ module.exports = options => {
               loader: 'css-loader',
               options: {
                 modules: {
-                  localIdentName: '[name]-[local]--[hash:base64:5]',
+                  localIdentName: 'st-[hash:base64:5]',
                   exportOnlyLocals: true,
                 },
               },
