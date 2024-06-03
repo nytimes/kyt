@@ -1,12 +1,12 @@
 // Development webpack config for server code
 
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
 const { serverSrcPath, serverBuildPath, clientAssetsFile, loadableAssetsFile, publicSrcPath } =
   require('kyt-utils/paths')();
 const StartServerPlugin = require('./StartServerPlugin');
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
-const externals = require('./externals');
 
 const nodeArgs = ['-r', 'source-map-support/register', '--max_old_space_size=4096'];
 // Passthrough --inspect and --inspect-brk flags (with optional [host:port] value) to node
@@ -31,9 +31,10 @@ module.exports = options => {
       __filename: false,
     },
 
-    externals: externals(
-      (options.externalModulesAllowlist || []).concat([/webpack\/hot\/poll\?300/])
-    ),
+    externals: nodeExternals({
+      modulesFromFile: true,
+      allowlist: (options.externalModulesAllowlist || []).concat([/webpack\/hot\/poll\?300/]),
+    }),
 
     entry: {
       main: [
