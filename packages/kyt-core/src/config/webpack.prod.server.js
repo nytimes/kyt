@@ -45,7 +45,7 @@ module.exports = options => {
               loader: 'css-loader',
               options: {
                 modules: {
-                  localIdentName: 'st-[hash:base64:5]',
+                  localIdentName: 'kyt-[hash:base64:5]',
                   exportOnlyLocals: true,
                 },
               },

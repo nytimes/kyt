@@ -35,7 +35,7 @@ module.exports = options => ({
             options: {
               sourceMap: true,
               modules: {
-                localIdentName: 'st-[hash:base64:5]',
+                localIdentName: 'kyt-[hash:base64:5]',
               },
             },
           },
