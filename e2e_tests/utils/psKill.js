@@ -1,20 +1,20 @@
 const psTree = require('ps-tree');
 
-// Loops through processes and kills them
 module.exports = (pid, signal = 'SIGKILL', callback) => {
   psTree(pid, (err, children) => {
-    let arr = [pid].concat(children.map(p => p.PID));
-    arr = arr.filter((item, poss) => arr.indexOf(item) === poss);
-    arr.forEach(tpid => {
+    if (err) {
+      console.error('Error fetching process tree:', err);
+      if (callback) callback(err);
+      return;
+    }
+    const pidsToKill = new Set([pid, ...children.map(p => p.PID)]);
+    pidsToKill.forEach(tpid => {
       try {
         process.kill(tpid, signal);
       } catch (ex) {
-        const logger = console;
-        logger.log('Could not kill process', tpid, ex);
+        console.log('Could not kill process', tpid, ex);
       }
     });
-    if (callback) {
-      callback();
-    }
+    if (callback) callback();
   });
 };
