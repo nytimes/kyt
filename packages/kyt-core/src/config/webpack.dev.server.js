@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const nodeExternals = require('webpack-node-externals');
 const { serverSrcPath, serverBuildPath, clientAssetsFile, loadableAssetsFile, publicSrcPath } =
   require('kyt-utils/paths')();
+const { NodePackageImporter } = require('sass');
 const StartServerPlugin = require('./StartServerPlugin');
 const postcssLoader = require('../utils/getPostcssLoader');
 const getPolyfill = require('./getPolyfill');
@@ -68,7 +69,15 @@ module.exports = options => {
               },
             },
             postcssLoader,
-            'sass-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                sassOptions: {
+                  pkgImporter: new NodePackageImporter(),
+                },
+              },
+            },
           ],
           exclude: [publicSrcPath],
         },

@@ -6,6 +6,7 @@ const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware')
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const { clientSrcPath, assetsBuildPath, publicBuildPath, publicSrcPath } =
   require('kyt-utils/paths')();
+const { NodePackageImporter } = require('sass');
 const getPolyfill = require('./getPolyfill');
 const postcssLoader = require('../utils/getPostcssLoader');
 
@@ -86,7 +87,15 @@ module.exports = options => {
               },
             },
             postcssLoader,
-            'sass-loader',
+            {
+              loader: 'sass-loader',
+              options: {
+                sourceMap: true,
+                sassOptions: {
+                  pkgImporter: new NodePackageImporter(),
+                },
+              },
+            },
           ],
           exclude: [publicSrcPath],
         },

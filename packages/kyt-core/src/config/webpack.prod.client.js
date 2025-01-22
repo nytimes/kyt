@@ -1,6 +1,7 @@
 // Production webpack config for client code
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const { NodePackageImporter } = require('sass');
 const { clientSrcPath, assetsBuildPath, publicSrcPath } = require('kyt-utils/paths')();
 const { kytWebpackPlugins } = require('kyt-runtime/webpack');
 const postcssLoader = require('../utils/getPostcssLoader');
@@ -44,6 +45,9 @@ module.exports = options => ({
             loader: 'sass-loader',
             options: {
               sourceMap: true,
+              sassOptions: {
+                pkgImporter: new NodePackageImporter(),
+              },
             },
           },
         ],
