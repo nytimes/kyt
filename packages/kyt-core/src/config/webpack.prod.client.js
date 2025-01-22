@@ -43,12 +43,12 @@ module.exports = options => ({
           postcssLoader,
           {
             loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-              sassOptions: {
-                pkgImporter: new NodePackageImporter(),
-              },
-            },
+            // options: {
+            //   sourceMap: true,
+            //   sassOptions: {
+            //     pkgImporter: new NodePackageImporter(),
+            //   },
+            // },
           },
         ],
         exclude: [publicSrcPath],
