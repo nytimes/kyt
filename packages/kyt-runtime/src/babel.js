@@ -3,7 +3,7 @@ module.exports = function kytRuntimeBabel({ types: t }) {
     visitor: {
       ImportDeclaration(path) {
         const source = path.node.source.value;
-        if (source !== 'kyt-runtime/dynamic') return;
+        if (!source.startsWith('kyt-runtime/dynamic')) return;
 
         const defaultSpecifier = path.get('specifiers').find(specifier => {
           return specifier.isImportDefaultSpecifier();
