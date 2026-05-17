@@ -25,10 +25,10 @@ brew install nvm
 nvm use
 ```
 
-1. `yarn add kyt`
-1. `yarn kyt setup` - This will set up your project with application and configuration files so that you can get started with `kyt`. Learn more about [setup](/packages/kyt-core/README.md).
-1. `yarn dev`
-1. Check out `http://localhost:3000`
+2. `yarn add kyt`
+3. `yarn kyt setup` - This will set up your project with application and configuration files so that you can get started with `kyt`. Learn more about [setup](/packages/kyt-core/README.md).
+4. `yarn dev`
+5. Check out `http://localhost:3000`
 
 ## Features
 
